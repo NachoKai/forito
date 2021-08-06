@@ -1,5 +1,13 @@
+import Post from "./Post/Post"
+
 const Posts = () => {
-	return <div>Posts</div>
+	return (
+		<>
+			<Post />
+			<Post />
+			<Post />
+		</>
+	)
 }
 
 export default Posts
