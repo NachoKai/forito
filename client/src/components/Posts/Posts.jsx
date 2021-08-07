@@ -1,6 +1,6 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
-import { Flex, Grid, Text } from "@chakra-ui/react"
+import { Flex, Stack, Text } from "@chakra-ui/react"
 import { FaPencilAlt } from "react-icons/fa"
 
 import { getAllPosts } from "../../redux/posts"
@@ -26,11 +26,11 @@ const Posts = ({ setCurrentId }) => {
 					</Text>
 				</Flex>
 			) : (
-				<Grid direction="column" gap={8} w="100%">
+				<Stack direction="column" spacing={8} w="100%">
 					{posts.map(post => (
 						<Post key={post._id} post={post} setCurrentId={setCurrentId} />
 					))}
-				</Grid>
+				</Stack>
 			)}
 		</Flex>
 	)

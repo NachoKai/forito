@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react"
+import styled from "styled-components"
 import { useDispatch, useSelector } from "react-redux"
 import {
 	Flex,
@@ -9,7 +10,7 @@ import {
 	FormLabel,
 	FormHelperText,
 	Textarea,
-	Grid,
+	Stack,
 } from "@chakra-ui/react"
 import FileBase from "react-file-base64"
 
@@ -57,15 +58,17 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	return (
 		<form noValidate autoComplete="off" onSubmit={handleSubmit}>
-			<Grid
+			<Stack
 				backgroundColor="primary.100"
 				border="1px"
 				borderColor="gray.200"
 				borderRadius="lg"
-				gap={4}
 				p="8"
+				spacing={4}
 			>
-				<Text fontSize="xl">{currentId ? "Edit" : "Create"} Post</Text>
+				<Text fontSize="xl" fontWeight="bold">
+					{currentId ? "Edit" : "Create"} Post
+				</Text>
 
 				<FormControl isRequired>
 					<FormLabel>Creator</FormLabel>
@@ -160,7 +163,7 @@ const Form = ({ currentId, setCurrentId }) => {
 					</FormControl>
 				</Flex>
 
-				<Grid display="flex" gap="4">
+				<Stack spacing="4">
 					<Button
 						color="white"
 						colorScheme="primary"
@@ -180,8 +183,8 @@ const Form = ({ currentId, setCurrentId }) => {
 					<Button colorScheme="primary" variant="outline" onClick={handleClear}>
 						Clear
 					</Button>
-				</Grid>
-			</Grid>
+				</Stack>
+			</Stack>
 		</form>
 	)
 }

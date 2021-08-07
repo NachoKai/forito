@@ -15,6 +15,10 @@ app.use(cors());
 
 app.use("/posts", postRoutes);
 
+app.get("/", (req, res) => {
+	res.send("Hello Forito!");
+});
+
 mongoose
 	.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 	.then(() =>

@@ -1,4 +1,4 @@
-import { Flex, Grid, Text, Image, Button, Badge, CircularProgress } from "@chakra-ui/react"
+import { Flex, Stack, Text, Image, Button, Badge, CircularProgress } from "@chakra-ui/react"
 import { FaThumbsUp, FaEraser, FaPen } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
@@ -8,7 +8,6 @@ import { deletePost, likePost } from "../../redux/posts"
 
 const Post = ({
 	setCurrentId,
-	post,
 	post: { _id, title, creator, message, likeCount, createdAt, tags, selectedFile },
 }) => {
 	const dispatch = useDispatch()
@@ -25,10 +24,26 @@ const Post = ({
 		dispatch(deletePost(_id))
 	}
 
-	return !post ? (
-		<CircularProgress isIndeterminate color="primary.200" />
-	) : (
-		<Grid flexGrow backgroundColor="primary.50" direction="column" gap={4} p="8" w="100%">
+	return (
+		<Stack
+			backgroundColor="primary.50"
+			borderRadius="lg"
+			direction="column"
+			p="8"
+			spacing={4}
+			w="100%"
+		>
+			{selectedFile && (
+				<Image
+					alt={title}
+					borderRadius="lg"
+					boxSize="320px"
+					fallback={<CircularProgress isIndeterminate color="primary.200" />}
+					objectFit="cover"
+					src={selectedFile}
+				/>
+			)}
+
 			<Flex direction="column">
 				<Text fontSize="lg">{creator}</Text>
 				<Text fontSize="sm">
@@ -39,7 +54,7 @@ const Post = ({
 			<Text fontSize="3xl" marginBottom="2">
 				{title}
 			</Text>
-			{selectedFile && <Image alt={title} boxSize="200px" src={selectedFile} />}
+
 			<Text fontSize="md">{message}</Text>
 
 			<Flex>
@@ -51,7 +66,7 @@ const Post = ({
 					))}
 			</Flex>
 
-			<Grid display="flex" gap="4">
+			<Stack direction="row" spacing="4">
 				<Button
 					colorScheme="primary"
 					leftIcon={<FaThumbsUp />}
@@ -82,8 +97,8 @@ const Post = ({
 				>
 					Delete
 				</Button>
-			</Grid>
-		</Grid>
+			</Stack>
+		</Stack>
 	)
 }
 
