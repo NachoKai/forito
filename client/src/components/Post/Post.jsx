@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux"
 
 import { splitTagList } from "../../utils/splitTagList"
 import { getRandomId } from "../../utils/getRandomId"
-import { deletePost } from "../../redux/posts"
+import { deletePost, likePost } from "../../redux/posts"
 
 const Post = ({
 	setCurrentId,
@@ -14,7 +14,9 @@ const Post = ({
 	const dispatch = useDispatch()
 	const tagList = splitTagList(tags)
 
-	const handleLike = () => {}
+	const handleLike = () => {
+		dispatch(likePost(_id))
+	}
 
 	const handleEdit = () => {
 		setCurrentId(_id)
@@ -32,7 +34,7 @@ const Post = ({
 			{selectedFile && <Image boxSize="200px" src={selectedFile} alt={title} />}
 			{creator && <Text>Author: {creator}</Text>}
 			<Text>{message}</Text>
-			{likeCount > 1 && <Text>{likeCount}</Text>}
+			<Text>{likeCount}</Text>
 			{tagList && (
 				<Text>
 					{tagList.map(tag => (

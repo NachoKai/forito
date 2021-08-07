@@ -1,0 +1,40 @@
+{
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": ["plugin:react/recommended", "plugin:prettier/recommended"],
+	"parserOptions": {
+		"ecmaFeatures": {
+			"jsx": true
+		},
+		"ecmaVersion": 12,
+		"sourceType": "module"
+	},
+	"plugins": ["react"],
+	"rules": {
+		"react/prop-types": "off",
+		"react/react-in-jsx-scope": "off",
+		"prettier/prettier": [
+			"warn",
+			{
+				"printWidth": 100,
+				"tabWidth": 2,
+				"useTabs": true,
+				"semi": false,
+				"arrowParens": "avoid",
+				"bracketSpacing": true,
+				"jsxBracketSameLine": false,
+				"singleQuote": false,
+				"trailingComma": "es5",
+				"endOfLine": "lf",
+				"htmlWhitespaceSensitivity": "css",
+				"jsxSingleQuote": false,
+				"quoteProps": "as-needed",
+				"requirePragma": false,
+				"insertPragma": false,
+				"proseWrap": "always"
+			}
+		]
+	}
+}

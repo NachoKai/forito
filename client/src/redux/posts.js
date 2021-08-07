@@ -8,6 +8,7 @@ const FETCH_ALL_POSTS = "FETCH_ALL_POSTS"
 const CREATE_POST = "CREATE_POST"
 const UPDATE_POST = "UPDATE_POST"
 const DELETE_POST = "DELETE_POST"
+const LIKE_POST = "LIKE_POST"
 
 /* ==========  ACTIONS  =========== */
 
@@ -47,6 +48,15 @@ export const deletePost = id => async dispatch => {
 	}
 }
 
+export const likePost = id => async dispatch => {
+	try {
+		const { data } = await api.likePost(id)
+		dispatch({ type: LIKE_POST, payload: data })
+	} catch (err) {
+		console.error(err)
+	}
+}
+
 /* ==========  REDUCERS  =========== */
 
 export const postsReducer = (posts = [], action) => {
@@ -55,10 +65,12 @@ export const postsReducer = (posts = [], action) => {
 			return action.payload
 		case CREATE_POST:
 			return [...posts, action.payload]
-		case UPDATE_POST:
-			return posts.map(post => (post._id === action.payload._id ? action.payload : post))
 		case DELETE_POST:
 			return posts.filter(post => post._id !== action.payload)
+		case UPDATE_POST:
+			return posts.map(post => (post._id === action.payload._id ? action.payload : post))
+		case LIKE_POST:
+			return posts.map(post => (post._id === action.payload._id ? action.payload : post))
 		default:
 			return posts
 	}
