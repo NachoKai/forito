@@ -1,6 +1,7 @@
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
-import { Flex, Grid, CircularProgress } from "@chakra-ui/react"
+import { Flex, Grid, Text } from "@chakra-ui/react"
+import { FaPencilAlt } from "react-icons/fa"
 
 import { getAllPosts } from "../../redux/posts"
 import Post from "../Post/Post"
@@ -16,7 +17,14 @@ const Posts = ({ setCurrentId }) => {
 	return (
 		<Flex flexGrow align="center" justify="center" w="100%">
 			{!havePosts ? (
-				<CircularProgress isIndeterminate color="primary.200" />
+				<Flex align="center" direction="column" justify="center">
+					<Text color="primary.400" fontSize="6xl">
+						<FaPencilAlt />
+					</Text>
+					<Text color="primary.400" fontSize="6xl">
+						No posts yet
+					</Text>
+				</Flex>
 			) : (
 				<Grid direction="column" gap={8} w="100%">
 					{posts.map(post => (

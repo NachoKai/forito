@@ -9,6 +9,7 @@ import {
 	FormLabel,
 	FormHelperText,
 	Textarea,
+	Grid,
 } from "@chakra-ui/react"
 import FileBase from "react-file-base64"
 
@@ -55,13 +56,21 @@ const Form = ({ currentId, setCurrentId }) => {
 	}, [post])
 
 	return (
-		<Flex p="8">
-			<form noValidate autoComplete="off" onSubmit={handleSubmit}>
+		<form noValidate autoComplete="off" onSubmit={handleSubmit}>
+			<Grid
+				backgroundColor="primary.100"
+				border="1px"
+				borderColor="gray.200"
+				borderRadius="lg"
+				gap={4}
+				p="8"
+			>
 				<Text fontSize="xl">{currentId ? "Edit" : "Create"} Post</Text>
 
 				<FormControl isRequired>
 					<FormLabel>Creator</FormLabel>
 					<Input
+						backgroundColor="white"
 						errorBorderColor="red.300"
 						focusBorderColor="primary.200"
 						maxLength="55"
@@ -81,6 +90,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				<FormControl isRequired>
 					<FormLabel>Title</FormLabel>
 					<Input
+						backgroundColor="white"
 						errorBorderColor="red.300"
 						focusBorderColor="primary.200"
 						maxLength="105"
@@ -100,6 +110,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				<FormControl isRequired>
 					<FormLabel>Message</FormLabel>
 					<Textarea
+						backgroundColor="white"
 						focusBorderColor="primary.200"
 						maxLength="5000"
 						name="message"
@@ -119,6 +130,7 @@ const Form = ({ currentId, setCurrentId }) => {
 					<FormLabel>Tags</FormLabel>
 					<FormHelperText>Separated by commas.</FormHelperText>
 					<Input
+						backgroundColor="white"
 						errorBorderColor="red.300"
 						focusBorderColor="primary.200"
 						maxLength="55"
@@ -148,10 +160,10 @@ const Form = ({ currentId, setCurrentId }) => {
 					</FormControl>
 				</Flex>
 
-				<Flex>
+				<Grid display="flex" gap="4">
 					<Button
-						backgroundColor="primary.300"
 						color="white"
+						colorScheme="primary"
 						disabled={
 							!(
 								postData.title.length > 0 &&
@@ -165,12 +177,12 @@ const Form = ({ currentId, setCurrentId }) => {
 					>
 						Submit
 					</Button>
-					<Button variant="ghost" onClick={handleClear}>
+					<Button colorScheme="primary" variant="outline" onClick={handleClear}>
 						Clear
 					</Button>
-				</Flex>
-			</form>
-		</Flex>
+				</Grid>
+			</Grid>
+		</form>
 	)
 }
 

@@ -1,4 +1,4 @@
-import { Flex, Grid, Text, Image, Button, Badge } from "@chakra-ui/react"
+import { Flex, Grid, Text, Image, Button, Badge, CircularProgress } from "@chakra-ui/react"
 import { FaThumbsUp, FaEraser, FaPen } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
@@ -8,6 +8,7 @@ import { deletePost, likePost } from "../../redux/posts"
 
 const Post = ({
 	setCurrentId,
+	post,
 	post: { _id, title, creator, message, likeCount, createdAt, tags, selectedFile },
 }) => {
 	const dispatch = useDispatch()
@@ -24,7 +25,9 @@ const Post = ({
 		dispatch(deletePost(_id))
 	}
 
-	return (
+	return !post ? (
+		<CircularProgress isIndeterminate color="primary.200" />
+	) : (
 		<Grid flexGrow backgroundColor="primary.50" direction="column" gap={4} p="8" w="100%">
 			<Flex direction="column">
 				<Text fontSize="lg">{creator}</Text>
@@ -48,17 +51,30 @@ const Post = ({
 					))}
 			</Flex>
 
-			<Flex>
-				<Button leftIcon={<FaThumbsUp />} size="sm" variant="ghost" onClick={handleLike}>
+			<Grid display="flex" gap="4">
+				<Button
+					colorScheme="primary"
+					leftIcon={<FaThumbsUp />}
+					size="sm"
+					variant="solid"
+					onClick={handleLike}
+				>
 					<Text>
 						{likeCount} {likeCount !== 1 ? "Likes" : "Like"}
 					</Text>
 				</Button>
-				<Button leftIcon={<FaPen />} size="sm" variant="ghost" onClick={handleEdit}>
+				<Button
+					colorScheme="primary"
+					leftIcon={<FaPen />}
+					size="sm"
+					variant="outline"
+					onClick={handleEdit}
+				>
 					Edit
 				</Button>
 				<Button
-					backgroundColor="red.200"
+					backgroundColor="red.400"
+					colorScheme="primary"
 					leftIcon={<FaEraser />}
 					size="sm"
 					variant="solid"
@@ -66,7 +82,7 @@ const Post = ({
 				>
 					Delete
 				</Button>
-			</Flex>
+			</Grid>
 		</Grid>
 	)
 }
