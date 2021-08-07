@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react"
-import { Flex, Text, Stack, Button, useColorMode } from "@chakra-ui/react"
+import { Flex, Text, Stack, Button, useColorMode, useColorModeValue } from "@chakra-ui/react"
 import { useDispatch } from "react-redux"
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom"
 import { FaSun, FaMoon } from "react-icons/fa"
@@ -14,6 +14,7 @@ const App = () => {
 	const dispatch = useDispatch()
 	const [currentId, setCurrentId] = useState(null)
 	const { colorMode, toggleColorMode } = useColorMode()
+	const color = useColorModeValue("primary.600", "primary.100")
 
 	useEffect(() => {
 		dispatch(getPosts())
@@ -32,9 +33,11 @@ const App = () => {
 				top="0"
 				zIndex="3"
 			>
-				<Text color="primary.500" fontSize="xl">
-					<Link to="/">Forito</Link>
-					<Link to="/test">Test</Link>
+				<Text color={color} fontSize="xl" fontWeight="bold">
+					<Stack direction="row" spacing="2">
+						<Link to="/">Forito</Link>
+						<Link to="/test">Test</Link>
+					</Stack>
 				</Text>
 				<Button colorScheme="primary" onClick={toggleColorMode}>
 					{colorMode === "light" ? <FaMoon /> : <FaSun />}

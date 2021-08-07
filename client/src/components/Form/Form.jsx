@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react"
-import styled from "styled-components"
 import { useDispatch, useSelector } from "react-redux"
 import {
 	Flex,
@@ -11,6 +10,7 @@ import {
 	FormHelperText,
 	Textarea,
 	Stack,
+	useColorModeValue,
 } from "@chakra-ui/react"
 import FileBase from "react-file-base64"
 
@@ -18,6 +18,7 @@ import { createPost, updatePost } from "../../redux/posts"
 
 const Form = ({ currentId, setCurrentId }) => {
 	const dispatch = useDispatch()
+	const bg = useColorModeValue("primary.100", "primary.600")
 	const [postData, setPostData] = useState({
 		creator: "",
 		title: "",
@@ -58,14 +59,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	return (
 		<form noValidate autoComplete="off" onSubmit={handleSubmit}>
-			<Stack
-				backgroundColor="primary.100"
-				border="1px"
-				borderColor="gray.200"
-				borderRadius="lg"
-				p="8"
-				spacing={4}
-			>
+			<Stack bg={bg} borderRadius="lg" p="8" spacing={4}>
 				<Text fontSize="xl" fontWeight="bold">
 					{currentId ? "Edit" : "Create"} Post
 				</Text>
@@ -73,7 +67,9 @@ const Form = ({ currentId, setCurrentId }) => {
 				<FormControl isRequired>
 					<FormLabel>Creator</FormLabel>
 					<Input
-						backgroundColor="white"
+						_placeholder={{ color: "gray" }}
+						bg="white"
+						color="black"
 						errorBorderColor="red.300"
 						focusBorderColor="primary.200"
 						maxLength="55"
@@ -93,7 +89,9 @@ const Form = ({ currentId, setCurrentId }) => {
 				<FormControl isRequired>
 					<FormLabel>Title</FormLabel>
 					<Input
-						backgroundColor="white"
+						_placeholder={{ color: "gray" }}
+						bg="white"
+						color="black"
 						errorBorderColor="red.300"
 						focusBorderColor="primary.200"
 						maxLength="105"
@@ -113,7 +111,9 @@ const Form = ({ currentId, setCurrentId }) => {
 				<FormControl isRequired>
 					<FormLabel>Message</FormLabel>
 					<Textarea
-						backgroundColor="white"
+						_placeholder={{ color: "gray" }}
+						bg="white"
+						color="black"
 						focusBorderColor="primary.200"
 						maxLength="5000"
 						name="message"
@@ -133,7 +133,9 @@ const Form = ({ currentId, setCurrentId }) => {
 					<FormLabel>Tags</FormLabel>
 					<FormHelperText>Separated by commas.</FormHelperText>
 					<Input
-						backgroundColor="white"
+						_placeholder={{ color: "gray" }}
+						bg="white"
+						color="black"
 						errorBorderColor="red.300"
 						focusBorderColor="primary.200"
 						maxLength="55"

@@ -1,4 +1,13 @@
-import { Flex, Stack, Text, Image, Button, Badge, CircularProgress } from "@chakra-ui/react"
+import {
+	Flex,
+	Stack,
+	Text,
+	Image,
+	Button,
+	Badge,
+	CircularProgress,
+	useColorModeValue,
+} from "@chakra-ui/react"
 import { FaThumbsUp, FaEraser, FaPen } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
@@ -11,6 +20,7 @@ const Post = ({
 	post: { _id, title, creator, message, likeCount, createdAt, tags, selectedFile },
 }) => {
 	const dispatch = useDispatch()
+	const bg = useColorModeValue("primary.50", "primary.500")
 
 	const handleLike = () => {
 		dispatch(likePost(_id))
@@ -25,14 +35,7 @@ const Post = ({
 	}
 
 	return (
-		<Stack
-			backgroundColor="primary.50"
-			borderRadius="lg"
-			direction="column"
-			p="8"
-			spacing={4}
-			w="100%"
-		>
+		<Stack bg={bg} borderRadius="lg" direction="column" p="8" spacing={4} w="100%">
 			{selectedFile && (
 				<Image
 					alt={title}
@@ -60,7 +63,7 @@ const Post = ({
 			<Flex>
 				{tags &&
 					tags.map(tag => (
-						<Badge key={getRandomId()} backgroundColor="primary.400" color="white" marginX="0.5">
+						<Badge key={getRandomId()} bg="primary.400" color="white" marginX="0.5">
 							{tag}
 						</Badge>
 					))}
@@ -88,7 +91,7 @@ const Post = ({
 					Edit
 				</Button>
 				<Button
-					backgroundColor="red.400"
+					bg="red.400"
 					colorScheme="primary"
 					leftIcon={<FaEraser />}
 					size="sm"
