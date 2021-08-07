@@ -56,7 +56,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	return (
 		<Flex maxWidth="300px">
-			<form autoComplete="off" noValidate onSubmit={handleSubmit}>
+			<form noValidate autoComplete="off" onSubmit={handleSubmit}>
 				<Text fontSize="xl">{currentId ? "Edit" : "Create"} Post</Text>
 
 				<FormControl isRequired>
@@ -64,8 +64,8 @@ const Form = ({ currentId, setCurrentId }) => {
 					<Input
 						name="creator"
 						placeholder="Creator"
-						variant="outline"
 						value={postData.creator}
+						variant="outline"
 						onChange={e => {
 							setPostData({
 								...postData,
@@ -80,8 +80,8 @@ const Form = ({ currentId, setCurrentId }) => {
 					<Input
 						name="title"
 						placeholder="Title"
-						variant="outline"
 						value={postData.title}
+						variant="outline"
 						onChange={e => {
 							setPostData({
 								...postData,
@@ -96,8 +96,8 @@ const Form = ({ currentId, setCurrentId }) => {
 					<Textarea
 						name="message"
 						placeholder="Message"
-						variant="outline"
 						value={postData.message}
+						variant="outline"
 						onChange={e => {
 							setPostData({
 								...postData,
@@ -113,8 +113,8 @@ const Form = ({ currentId, setCurrentId }) => {
 					<Input
 						name="tags"
 						placeholder="Tags"
-						variant="outline"
 						value={postData.tags}
+						variant="outline"
 						onChange={e => {
 							setPostData({
 								...postData,
@@ -128,8 +128,8 @@ const Form = ({ currentId, setCurrentId }) => {
 					<FormControl>
 						<FormLabel>Upload image</FormLabel>
 						<FileBase
-							type="file"
 							multiple={false}
+							type="file"
 							onDone={({ base64 }) => {
 								setPostData({ ...postData, selectedFile: base64 })
 							}}
@@ -139,16 +139,16 @@ const Form = ({ currentId, setCurrentId }) => {
 
 				<Flex>
 					<Button
-						type="submit"
-						loadingText="Submitting"
-						spinnerPlacement="end"
 						backgroundColor="primary.300"
 						color="white"
 						disabled={!(postData.title.length > 0)}
+						loadingText="Submitting"
+						spinnerPlacement="end"
+						type="submit"
 					>
 						Submit
 					</Button>
-					<Button onClick={handleClear} variant="ghost">
+					<Button variant="ghost" onClick={handleClear}>
 						Clear
 					</Button>
 				</Flex>

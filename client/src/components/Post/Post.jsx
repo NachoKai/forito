@@ -27,18 +27,18 @@ const Post = ({
 	}
 
 	return (
-		<Grid gap={2} direction="column" m="4" p="8" backgroundColor="primary.50" flexGrow>
+		<Grid flexGrow backgroundColor="primary.50" direction="column" gap={2} m="4" p="8">
 			<Text fontSize="2xl" marginBottom="2">
 				{title}
 			</Text>
-			{selectedFile && <Image boxSize="200px" src={selectedFile} alt={title} />}
+			{selectedFile && <Image alt={title} boxSize="200px" src={selectedFile} />}
 			{creator && <Text>Author: {creator}</Text>}
 			<Text>{message}</Text>
 			<Text>{likeCount}</Text>
 			{tagList && (
 				<Text>
 					{tagList.map(tag => (
-						<Badge key={getRandomId()} marginX="0.5" backgroundColor="primary.400" color="white">
+						<Badge key={getRandomId()} backgroundColor="primary.400" color="white" marginX="0.5">
 							{tag}
 						</Badge>
 					))}
@@ -56,10 +56,10 @@ const Post = ({
 					Edit
 				</Button>
 				<Button
+					backgroundColor="red.200"
 					leftIcon={<FaEraser />}
 					size="sm"
 					variant="solid"
-					backgroundColor="red.200"
 					onClick={handleDelete}
 				>
 					Delete

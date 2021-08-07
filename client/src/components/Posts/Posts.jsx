@@ -12,7 +12,7 @@ const Posts = ({ setCurrentId }) => {
 	useEffect(() => {}, [])
 
 	return (
-		<Flex justify="center" align="center" flexGrow>
+		<Flex flexGrow align="center" justify="center">
 			{!havePosts ? (
 				<CircularProgress isIndeterminate color="primary.200" />
 			) : (

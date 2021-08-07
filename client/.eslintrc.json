@@ -13,6 +13,22 @@
 	},
 	"plugins": ["react"],
 	"rules": {
+		"padding-line-between-statements": [
+			"error",
+			{ "blankLine": "always", "prev": "*", "next": "return" },
+			{ "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
+			{ "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] }
+		],
+		"react/jsx-sort-props": [
+			"warn",
+			{
+				"callbacksLast": true,
+				"shorthandFirst": true,
+				"noSortAlphabetically": false,
+				"reservedFirst": true
+			}
+		],
+		"react/self-closing-comp": "warn",
 		"react/prop-types": "off",
 		"react/react-in-jsx-scope": "off",
 		"prettier/prettier": [
