@@ -27,14 +27,20 @@ const Post = ({
 	}
 
 	return (
-		<Grid flexGrow backgroundColor="primary.50" direction="column" gap={2} m="4" p="8">
-			<Text fontSize="2xl" marginBottom="2">
+		<Grid flexGrow backgroundColor="primary.50" direction="column" gap={4} p="8" w="100%">
+			<Flex direction="column">
+				<Text fontSize="lg">{creator}</Text>
+				<Text fontSize="sm">
+					{formatDistance(new Date(), createdAt ? new Date(createdAt) : new Date()) + " ago"}
+				</Text>
+			</Flex>
+
+			<Text fontSize="3xl" marginBottom="2">
 				{title}
 			</Text>
 			{selectedFile && <Image alt={title} boxSize="200px" src={selectedFile} />}
-			{creator && <Text>Author: {creator}</Text>}
-			<Text>{message}</Text>
-			<Text>{likeCount}</Text>
+			<Text fontSize="md">{message}</Text>
+
 			{tagList && (
 				<Text>
 					{tagList.map(tag => (
@@ -44,13 +50,12 @@ const Post = ({
 					))}
 				</Text>
 			)}
-			<Text>
-				{formatDistance(new Date(), createdAt ? new Date(createdAt) : new Date()) + " ago"}
-			</Text>
 
 			<Flex>
 				<Button leftIcon={<FaThumbsUp />} size="sm" variant="ghost" onClick={handleLike}>
-					Like
+					<Text>
+						{likeCount} {likeCount !== 1 ? "Likes" : "Like"}
+					</Text>
 				</Button>
 				<Button leftIcon={<FaPen />} size="sm" variant="ghost" onClick={handleEdit}>
 					Edit

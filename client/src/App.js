@@ -17,17 +17,18 @@ const App = () => {
 
 	return (
 		<ChakraProvider theme={theme}>
-			<Flex direction="column">
-				<Flex p="8">
-					<Text fontSize="xl" color="primary.500">
+			<Flex direction="column" p="8" w="100%">
+				<Flex marginBottom="8" w="100%">
+					<Text color="primary.500" fontSize="xl">
 						<Link href="/">Forito</Link>
 					</Text>
 				</Flex>
 
-				<Flex p="8" direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}>
-					<Flex>
+				<Flex direction={{ sm: "column", md: "column", lg: "row", xl: "row" }} w="100%">
+					<Flex w="100%">
 						<Posts setCurrentId={setCurrentId} />
 					</Flex>
+
 					<Flex>
 						<Form currentId={currentId} setCurrentId={setCurrentId} />
 					</Flex>

@@ -55,13 +55,16 @@ const Form = ({ currentId, setCurrentId }) => {
 	}, [post])
 
 	return (
-		<Flex maxWidth="300px">
+		<Flex p="8">
 			<form noValidate autoComplete="off" onSubmit={handleSubmit}>
 				<Text fontSize="xl">{currentId ? "Edit" : "Create"} Post</Text>
 
 				<FormControl isRequired>
 					<FormLabel>Creator</FormLabel>
 					<Input
+						errorBorderColor="red.300"
+						focusBorderColor="primary.200"
+						maxLength="55"
 						name="creator"
 						placeholder="Creator"
 						value={postData.creator}
@@ -78,6 +81,9 @@ const Form = ({ currentId, setCurrentId }) => {
 				<FormControl isRequired>
 					<FormLabel>Title</FormLabel>
 					<Input
+						errorBorderColor="red.300"
+						focusBorderColor="primary.200"
+						maxLength="105"
 						name="title"
 						placeholder="Title"
 						value={postData.title}
@@ -94,6 +100,8 @@ const Form = ({ currentId, setCurrentId }) => {
 				<FormControl isRequired>
 					<FormLabel>Message</FormLabel>
 					<Textarea
+						focusBorderColor="primary.200"
+						maxLength="5000"
 						name="message"
 						placeholder="Message"
 						value={postData.message}
@@ -111,6 +119,9 @@ const Form = ({ currentId, setCurrentId }) => {
 					<FormLabel>Tags</FormLabel>
 					<FormHelperText>Separated by commas.</FormHelperText>
 					<Input
+						errorBorderColor="red.300"
+						focusBorderColor="primary.200"
+						maxLength="55"
 						name="tags"
 						placeholder="Tags"
 						value={postData.tags}
@@ -141,7 +152,13 @@ const Form = ({ currentId, setCurrentId }) => {
 					<Button
 						backgroundColor="primary.300"
 						color="white"
-						disabled={!(postData.title.length > 0)}
+						disabled={
+							!(
+								postData.title.length > 0 &&
+								postData.creator.length > 0 &&
+								postData.message.length > 0
+							)
+						}
 						loadingText="Submitting"
 						spinnerPlacement="end"
 						type="submit"
