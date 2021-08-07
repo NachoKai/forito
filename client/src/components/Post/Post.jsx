@@ -1,14 +1,17 @@
 import { Flex, Grid, Text, Image, Button, Badge } from "@chakra-ui/react"
 import { FaThumbsUp, FaEraser, FaPen } from "react-icons/fa"
 import { formatDistance } from "date-fns"
+import { useDispatch } from "react-redux"
 
 import { splitTagList } from "../../utils/splitTagList"
 import { getRandomId } from "../../utils/getRandomId"
+import { deletePost } from "../../redux/posts"
 
 const Post = ({
 	setCurrentId,
-	post: { _id, title, creator, message, likeCounter, createdAt, tags, selectedFile },
+	post: { _id, title, creator, message, likeCount, createdAt, tags, selectedFile },
 }) => {
+	const dispatch = useDispatch()
 	const tagList = splitTagList(tags)
 
 	const handleLike = () => {}
@@ -17,7 +20,9 @@ const Post = ({
 		setCurrentId(_id)
 	}
 
-	const handleDelete = () => {}
+	const handleDelete = () => {
+		dispatch(deletePost(_id))
+	}
 
 	return (
 		<Grid gap={2} direction="column" m="4" p="8" backgroundColor="primary.50" flexGrow>
@@ -27,7 +32,7 @@ const Post = ({
 			{selectedFile && <Image boxSize="200px" src={selectedFile} alt={title} />}
 			{creator && <Text>Author: {creator}</Text>}
 			<Text>{message}</Text>
-			{likeCounter > 1 && <Text>{likeCounter}</Text>}
+			{likeCount > 1 && <Text>{likeCount}</Text>}
 			{tagList && (
 				<Text>
 					{tagList.map(tag => (

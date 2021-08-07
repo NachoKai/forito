@@ -7,6 +7,7 @@ import * as api from "../api"
 const FETCH_ALL_POSTS = "FETCH_ALL_POSTS"
 const CREATE_POST = "CREATE_POST"
 const UPDATE_POST = "UPDATE_POST"
+const DELETE_POST = "DELETE_POST"
 
 /* ==========  ACTIONS  =========== */
 
@@ -15,7 +16,7 @@ export const getPosts = () => async dispatch => {
 		const { data } = await api.fetchPosts()
 		dispatch({ type: FETCH_ALL_POSTS, payload: data })
 	} catch (err) {
-		console.error(err.message)
+		console.error(err)
 	}
 }
 
@@ -24,7 +25,7 @@ export const createPost = post => async dispatch => {
 		const { data } = await api.createPost(post)
 		dispatch({ type: CREATE_POST, payload: data })
 	} catch (err) {
-		console.error(err.message)
+		console.error(err)
 	}
 }
 
@@ -33,7 +34,16 @@ export const updatePost = (id, post) => async dispatch => {
 		const { data } = await api.updatePost(id, post)
 		dispatch({ type: UPDATE_POST, payload: data })
 	} catch (err) {
-		console.error(err.message)
+		console.error(err)
+	}
+}
+
+export const deletePost = id => async dispatch => {
+	try {
+		await api.deletePost(id)
+		dispatch({ type: DELETE_POST, payload: id })
+	} catch (err) {
+		console.error(err)
 	}
 }
 
@@ -47,6 +57,8 @@ export const postsReducer = (posts = [], action) => {
 			return [...posts, action.payload]
 		case UPDATE_POST:
 			return posts.map(post => (post._id === action.payload._id ? action.payload : post))
+		case DELETE_POST:
+			return posts.filter(post => post._id !== action.payload)
 		default:
 			return posts
 	}
@@ -57,4 +69,3 @@ export const postsReducer = (posts = [], action) => {
 const getPostsState = state => state.posts
 
 export const getAllPosts = createSelector(getPostsState, posts => posts)
-export const getPost = createSelector(getPostsState, posts => posts)

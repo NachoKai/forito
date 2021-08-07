@@ -13,7 +13,7 @@ const App = () => {
 
 	useEffect(() => {
 		dispatch(getPosts())
-	}, [dispatch])
+	}, [currentId, dispatch])
 
 	return (
 		<ChakraProvider theme={theme}>

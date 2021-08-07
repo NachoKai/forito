@@ -4888,11 +4888,6 @@
   "resolved" "https://registry.npmjs.org/deep-is/-/deep-is-0.1.3.tgz"
   "version" "0.1.3"
 
-"deepmerge@^2.1.1":
-  "integrity" "sha1-XT/yKgHAD2RUBaL7wX0HeKGAEXA="
-  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/deepmerge/-/deepmerge-2.2.1.tgz"
-  "version" "2.2.1"
-
 "deepmerge@^4.2.2":
   "integrity" "sha512-FJ3UgI4gIl+PHZm53knsuSFpE+nESMr7M4v9QcgB7S63Kj/6WqMiFQJpBBYz1Pt+66bZpP3Q7Lye0Oo9MPKEdg=="
   "resolved" "https://registry.npmjs.org/deepmerge/-/deepmerge-4.2.2.tgz"
@@ -6073,19 +6068,6 @@
     "asynckit" "^0.4.0"
     "combined-stream" "^1.0.6"
     "mime-types" "^2.1.12"
-
-"formik@^2.2.9":
-  "integrity" "sha1-hZS6nF4uXPH0LFcEEo4Rn8RiMtA="
-  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/formik/-/formik-2.2.9.tgz"
-  "version" "2.2.9"
-  dependencies:
-    "deepmerge" "^2.1.1"
-    "hoist-non-react-statics" "^3.3.0"
-    "lodash" "^4.17.21"
-    "lodash-es" "^4.17.21"
-    "react-fast-compare" "^2.0.1"
-    "tiny-warning" "^1.0.2"
-    "tslib" "^1.10.0"
 
 "forwarded@~0.1.2":
   "integrity" "sha1-mMI9qxF1ZXuMBXPozszZGw/xjIQ="
@@ -8019,11 +8001,6 @@
   "version" "5.0.0"
   dependencies:
     "p-locate" "^4.1.0"
-
-"lodash-es@^4.17.21":
-  "integrity" "sha1-Q+YmxG5lkbd1C+srUBFzkMYJ4+4="
-  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/lodash-es/-/lodash-es-4.17.21.tgz"
-  "version" "4.17.21"
 
 "lodash._reinterpolate@^3.0.0":
   "integrity" "sha1-DM8tiRZq8Ds2Y8eWU4t1rG4RTZ0="
@@ -10198,11 +10175,6 @@
   "resolved" "https://registry.npmjs.org/react-error-overlay/-/react-error-overlay-6.0.9.tgz"
   "version" "6.0.9"
 
-"react-fast-compare@^2.0.1":
-  "integrity" "sha1-6EtNRVsP7BE+BALDKTUnFRlvgfk="
-  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/react-fast-compare/-/react-fast-compare-2.0.4.tgz"
-  "version" "2.0.4"
-
 "react-fast-compare@3.2.0":
   "integrity" "sha1-ZBqdqBtqYyDycOiXJPtFoLOeQ7s="
   "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/react-fast-compare/-/react-fast-compare-3.2.0.tgz"
@@ -11931,11 +11903,6 @@
   "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/tiny-invariant/-/tiny-invariant-1.1.0.tgz"
   "version" "1.1.0"
 
-"tiny-warning@^1.0.2":
-  "integrity" "sha1-lKMNtFPfTGQ9D9VmBg1gqHXYR1Q="
-  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/tiny-warning/-/tiny-warning-1.0.3.tgz"
-  "version" "1.0.3"
-
 "tinycolor2@1.4.2":
   "integrity" "sha1-P2pNEHGtB2dtf6Ry4frECnGdiAM="
   "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/tinycolor2/-/tinycolor2-1.4.2.tgz"
@@ -12043,11 +12010,6 @@
     "strip-bom" "^3.0.0"
 
 "tslib@^1.0.0":
-  "integrity" "sha1-zy04vcNKE0vK8QkcQfZhni9nLQA="
-  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/tslib/-/tslib-1.14.1.tgz"
-  "version" "1.14.1"
-
-"tslib@^1.10.0":
   "integrity" "sha1-zy04vcNKE0vK8QkcQfZhni9nLQA="
   "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/tslib/-/tslib-1.14.1.tgz"
   "version" "1.14.1"

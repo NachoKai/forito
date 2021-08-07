@@ -1,6 +1,15 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Flex, Text, Input, Button, FormControl, FormLabel, FormHelperText } from "@chakra-ui/react"
+import {
+	Flex,
+	Text,
+	Input,
+	Button,
+	FormControl,
+	FormLabel,
+	FormHelperText,
+	Textarea,
+} from "@chakra-ui/react"
 import FileBase from "react-file-base64"
 
 import { createPost, updatePost } from "../../redux/posts"
@@ -26,6 +35,8 @@ const Form = ({ currentId, setCurrentId }) => {
 		} else {
 			dispatch(createPost(postData))
 		}
+
+		handleClear()
 	}
 
 	const handleClear = () => {
@@ -82,7 +93,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 				<FormControl isRequired>
 					<FormLabel>Message</FormLabel>
-					<Input
+					<Textarea
 						name="message"
 						placeholder="Message"
 						variant="outline"
