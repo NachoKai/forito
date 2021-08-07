@@ -1,5 +1,9 @@
 # forito  
   
+Client: https://forito.netlify.app/  
+[![Netlify Status](https://api.netlify.com/api/v1/badges/c5386383-05db-4aa1-8b57-116ca0f6d833/deploy-status)](https://app.netlify.com/sites/forito/deploys)  
+Server: https://forito-app.herokuapp.com/  
+  
 Add:  
 *Sections  
 -Forum  
