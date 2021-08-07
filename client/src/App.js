@@ -1,5 +1,5 @@
-import { useEffect } from "react"
-import { ChakraProvider, Flex, Text } from "@chakra-ui/react"
+import { useState, useEffect } from "react"
+import { ChakraProvider, Flex, Text, Link } from "@chakra-ui/react"
 import { useDispatch } from "react-redux"
 
 import theme from "./theme"
@@ -9,6 +9,7 @@ import { getPosts } from "./redux/posts"
 
 const App = () => {
 	const dispatch = useDispatch()
+	const [currentId, setCurrentId] = useState(null)
 
 	useEffect(() => {
 		dispatch(getPosts())
@@ -16,17 +17,20 @@ const App = () => {
 
 	return (
 		<ChakraProvider theme={theme}>
-			<Flex p="8">
-				<Text>Forito</Text>
-			</Flex>
-
-			<Flex p="8">
-				<Flex>
-					<Posts />
+			<Flex direction="column">
+				<Flex p="8">
+					<Text fontSize="xl" color="primary.500">
+						<Link href="/">Forito</Link>
+					</Text>
 				</Flex>
 
-				<Flex>
-					<Form />
+				<Flex p="8" direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}>
+					<Flex>
+						<Posts setCurrentId={setCurrentId} />
+					</Flex>
+					<Flex>
+						<Form currentId={currentId} setCurrentId={setCurrentId} />
+					</Flex>
 				</Flex>
 			</Flex>
 		</ChakraProvider>

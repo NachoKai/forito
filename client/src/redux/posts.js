@@ -6,6 +6,7 @@ import * as api from "../api"
 
 const FETCH_ALL_POSTS = "FETCH_ALL_POSTS"
 const CREATE_POST = "CREATE_POST"
+const UPDATE_POST = "UPDATE_POST"
 
 /* ==========  ACTIONS  =========== */
 
@@ -27,20 +28,27 @@ export const createPost = post => async dispatch => {
 	}
 }
 
-/* ==========  REDUCERS  =========== */
-
-const initialState = {
-	posts: [],
+export const updatePost = (id, post) => async dispatch => {
+	try {
+		const { data } = await api.updatePost(id, post)
+		dispatch({ type: UPDATE_POST, payload: data })
+	} catch (err) {
+		console.error(err.message)
+	}
 }
 
-export const postsReducer = (state = initialState, action) => {
+/* ==========  REDUCERS  =========== */
+
+export const postsReducer = (posts = [], action) => {
 	switch (action.type) {
 		case FETCH_ALL_POSTS:
 			return action.payload
 		case CREATE_POST:
-			return [...state, action.payload]
+			return [...posts, action.payload]
+		case UPDATE_POST:
+			return posts.map(post => (post._id === action.payload._id ? action.payload : post))
 		default:
-			return state
+			return posts
 	}
 }
 
@@ -49,3 +57,4 @@ export const postsReducer = (state = initialState, action) => {
 const getPostsState = state => state.posts
 
 export const getAllPosts = createSelector(getPostsState, posts => posts)
+export const getPost = createSelector(getPostsState, posts => posts)
