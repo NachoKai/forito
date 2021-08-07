@@ -8,6 +8,7 @@ import Posts from "./components/Posts/Posts"
 import Form from "./components/Form/Form"
 import { getPosts } from "./redux/posts"
 import Test from "./components/Test"
+import ErrorPage from "./components/ErrorPage"
 
 const App = () => {
 	const dispatch = useDispatch()
@@ -20,7 +21,7 @@ const App = () => {
 	return (
 		<ChakraProvider theme={theme}>
 			<Router>
-				<Flex paddingTop="8" paddingX="8" w="100%">
+				<Flex paddingTop="8" paddingX="8">
 					<Text color="primary.500" fontSize="xl">
 						<Link to="/">Forito</Link>
 						<Link to="/test">Test</Link>
@@ -32,7 +33,7 @@ const App = () => {
 						<Test />
 					</Route>
 
-					<Route path="/">
+					<Route exact path="/">
 						<Flex direction="column" p="8" w="100%">
 							<Flex direction={{ sm: "column", md: "column", lg: "row", xl: "row" }} w="100%">
 								<Flex w="100%">
@@ -43,6 +44,12 @@ const App = () => {
 									<Form currentId={currentId} setCurrentId={setCurrentId} />
 								</Flex>
 							</Flex>
+						</Flex>
+					</Route>
+
+					<Route path="*">
+						<Flex flexGrow direction="column" p="8" w="100%">
+							<ErrorPage />
 						</Flex>
 					</Route>
 				</Switch>

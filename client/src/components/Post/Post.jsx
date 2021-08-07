@@ -3,7 +3,6 @@ import { FaThumbsUp, FaEraser, FaPen } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
 
-import { splitTagList } from "../../utils/splitTagList"
 import { getRandomId } from "../../utils/getRandomId"
 import { deletePost, likePost } from "../../redux/posts"
 
@@ -12,7 +11,6 @@ const Post = ({
 	post: { _id, title, creator, message, likeCount, createdAt, tags, selectedFile },
 }) => {
 	const dispatch = useDispatch()
-	const tagList = splitTagList(tags)
 
 	const handleLike = () => {
 		dispatch(likePost(_id))
@@ -41,15 +39,14 @@ const Post = ({
 			{selectedFile && <Image alt={title} boxSize="200px" src={selectedFile} />}
 			<Text fontSize="md">{message}</Text>
 
-			{tagList && (
-				<Text>
-					{tagList.map(tag => (
+			<Flex>
+				{tags &&
+					tags.map(tag => (
 						<Badge key={getRandomId()} backgroundColor="primary.400" color="white" marginX="0.5">
 							{tag}
 						</Badge>
 					))}
-				</Text>
-			)}
+			</Flex>
 
 			<Flex>
 				<Button leftIcon={<FaThumbsUp />} size="sm" variant="ghost" onClick={handleLike}>
