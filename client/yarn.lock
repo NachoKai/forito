@@ -1124,7 +1124,7 @@
     "core-js-pure" "^3.0.0"
     "regenerator-runtime" "^0.13.4"
 
-"@babel/runtime@^7.0.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
+"@babel/runtime@^7.0.0", "@babel/runtime@^7.10.2", "@babel/runtime@^7.11.2", "@babel/runtime@^7.12.1", "@babel/runtime@^7.12.13", "@babel/runtime@^7.12.5", "@babel/runtime@^7.13.10", "@babel/runtime@^7.5.5", "@babel/runtime@^7.7.2", "@babel/runtime@^7.8.4", "@babel/runtime@^7.9.2":
   "integrity" "sha1-cRmlb0IQGIUmlCkLn5FICXORtEY="
   "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/@babel/runtime/-/runtime-7.14.8.tgz"
   "version" "7.14.8"
@@ -2147,6 +2147,24 @@
     "prop-types" "^15.7.2"
     "tslib" "^2.1.0"
 
+"@redux-devtools/core@^3.9.0":
+  "integrity" "sha1-LxiHH0OlAChQWsNKvZTSKO4B2ZE="
+  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/@redux-devtools/core/-/core-3.9.0.tgz"
+  "version" "3.9.0"
+  dependencies:
+    "@redux-devtools/instrument" "^1.11.0"
+    "@types/prop-types" "^15.7.3"
+    "lodash" "^4.17.19"
+    "prop-types" "^15.7.2"
+
+"@redux-devtools/instrument@^1.11.0":
+  "integrity" "sha1-oGYiL2Hxf3rudqnAYhrdWI+X8go="
+  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/@redux-devtools/instrument/-/instrument-1.11.0.tgz"
+  "version" "1.11.0"
+  dependencies:
+    "lodash" "^4.17.19"
+    "symbol-observable" "^2.0.3"
+
 "@rollup/plugin-node-resolve@^7.1.1":
   "integrity" "sha512-RxtSL3XmdTAE2byxekYLnx+98kEUOrPHF/KRVjLH+DEIHy6kjIw7YINQzn+NXiH/NTrQLAwYs0GWB+csWygA9Q=="
   "resolved" "https://registry.npmjs.org/@rollup/plugin-node-resolve/-/plugin-node-resolve-7.1.3.tgz"
@@ -2420,6 +2438,14 @@
   dependencies:
     "@types/node" "*"
 
+"@types/hoist-non-react-statics@^3.3.0":
+  "integrity" "sha1-ESSq/lEYy1kZd66xzqrtEHDrA58="
+  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/@types/hoist-non-react-statics/-/hoist-non-react-statics-3.3.1.tgz"
+  "version" "3.3.1"
+  dependencies:
+    "@types/react" "*"
+    "hoist-non-react-statics" "^3.3.0"
+
 "@types/html-minifier-terser@^5.0.0":
   "integrity" "sha512-giAlZwstKbmvMk1OO7WXSj4OZ0keXAcl2TQq4LWHiiPH2ByaH7WeUzng+Qej8UPxxv+8lRTuouo0iaNDBuzIBA=="
   "resolved" "https://registry.npmjs.org/@types/html-minifier-terser/-/html-minifier-terser-5.1.1.tgz"
@@ -2499,10 +2525,34 @@
   "resolved" "https://registry.npmjs.org/@types/prettier/-/prettier-2.2.1.tgz"
   "version" "2.2.1"
 
+"@types/prop-types@*", "@types/prop-types@^15.7.3":
+  "integrity" "sha1-/PcgXCXf95Xuea8eMNosl5CAjxE="
+  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/@types/prop-types/-/prop-types-15.7.4.tgz"
+  "version" "15.7.4"
+
 "@types/q@^1.5.1":
   "integrity" "sha512-1HcDas8SEj4z1Wc696tH56G8OlRaH/sqZOynNNB+HF0WOeXPaxTtbYzJY2oEfiUxjSKjhCKr+MvR7dCHcEelug=="
   "resolved" "https://registry.npmjs.org/@types/q/-/q-1.5.4.tgz"
   "version" "1.5.4"
+
+"@types/react-redux@^7.1.16":
+  "integrity" "sha1-K/j9Vuuq5nmpDr/+SP9zcXxDjgQ="
+  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/@types/react-redux/-/react-redux-7.1.18.tgz"
+  "version" "7.1.18"
+  dependencies:
+    "@types/hoist-non-react-statics" "^3.3.0"
+    "@types/react" "*"
+    "hoist-non-react-statics" "^3.3.0"
+    "redux" "^4.0.0"
+
+"@types/react@*", "@types/react@^16.8.0 || ^17.0.0":
+  "integrity" "sha1-BW9AxFZFdhUnuut9idhCpqvfKFo="
+  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/@types/react/-/react-17.0.16.tgz"
+  "version" "17.0.16"
+  dependencies:
+    "@types/prop-types" "*"
+    "@types/scheduler" "*"
+    "csstype" "^3.0.2"
 
 "@types/resolve@0.0.8":
   "integrity" "sha512-auApPaJf3NPfe18hSoJkp8EbZzer2ISk7o8mCC3M9he/a04+gbMF97NkpD2S8riMGvm4BMRI59/SZQSaLTKpsQ=="
@@ -2510,6 +2560,11 @@
   "version" "0.0.8"
   dependencies:
     "@types/node" "*"
+
+"@types/scheduler@*":
+  "integrity" "sha1-GmL4lSVyPd4kuhsBsJK/XfitTTk="
+  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/@types/scheduler/-/scheduler-0.16.2.tgz"
+  "version" "0.16.2"
 
 "@types/source-list-map@*":
   "integrity" "sha512-K5K+yml8LTo9bWJI/rECfIPrGgxdpeNbj+d53lwN4QjW1MCwlkhUms+gtdzigTeUyBr09+u8BwOIY3MXvHdcsA=="
@@ -6417,7 +6472,7 @@
     "minimalistic-assert" "^1.0.0"
     "minimalistic-crypto-utils" "^1.0.1"
 
-"hoist-non-react-statics@^3.0.0", "hoist-non-react-statics@^3.3.1":
+"hoist-non-react-statics@^3.0.0", "hoist-non-react-statics@^3.3.0", "hoist-non-react-statics@^3.3.1", "hoist-non-react-statics@^3.3.2":
   "integrity" "sha1-7OCsr3HWLClpwuxZ/v9CpLGoW0U="
   "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/hoist-non-react-statics/-/hoist-non-react-statics-3.3.2.tgz"
   "version" "3.3.2"
@@ -7987,9 +8042,9 @@
   "resolved" "https://registry.npmjs.org/lodash.uniq/-/lodash.uniq-4.5.0.tgz"
   "version" "4.5.0"
 
-"lodash@^4.17.11", "lodash@^4.17.14", "lodash@^4.17.15", "lodash@^4.17.19", "lodash@^4.17.20", "lodash@^4.17.5", "lodash@>=3.5 <5":
-  "integrity" "sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg=="
-  "resolved" "https://registry.npmjs.org/lodash/-/lodash-4.17.21.tgz"
+"lodash@^4.17.11", "lodash@^4.17.14", "lodash@^4.17.15", "lodash@^4.17.19", "lodash@^4.17.20", "lodash@^4.17.21", "lodash@^4.17.5", "lodash@>=3.5 <5":
+  "integrity" "sha1-Z5WRxWTDv/quhFTPCz3zcMPWkRw="
+  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/lodash/-/lodash-4.17.21.tgz"
   "version" "4.17.21"
 
 "loglevel@^1.6.8":
@@ -10144,7 +10199,7 @@
     "use-callback-ref" "^1.2.1"
     "use-sidecar" "^1.0.1"
 
-"react-is@^16.7.0", "react-is@^16.8.1", "react-is@>= 16.8.0":
+"react-is@^16.13.1", "react-is@^16.7.0", "react-is@^16.8.1", "react-is@>= 16.8.0":
   "integrity" "sha512-24e6ynE2H+OKt4kqsOvNd8kBpV65zoxbA4BVsEOB3ARVWQki/DHzaUoC5KuON/BiccDaCCTZBuOcfZs70kR8bQ=="
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-16.13.1.tgz"
   "version" "16.13.1"
@@ -10153,6 +10208,18 @@
   "integrity" "sha512-NAnt2iGDXohE5LI7uBnLnqvLQMtzhkiAOLXTmv+qnF9Ky7xAPcX8Up/xWIhxvLVGJvuLiNc4xQLtuqDRzb4fSA=="
   "resolved" "https://registry.npmjs.org/react-is/-/react-is-17.0.1.tgz"
   "version" "17.0.1"
+
+"react-redux@^4.0.0 || ^5.0.0 || ^6.0.0 || ^7.0.0", "react-redux@^7.2.4":
+  "integrity" "sha1-HrtHQDK3LYBt4uBRnNB3YeIi4iU="
+  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/react-redux/-/react-redux-7.2.4.tgz"
+  "version" "7.2.4"
+  dependencies:
+    "@babel/runtime" "^7.12.1"
+    "@types/react-redux" "^7.1.16"
+    "hoist-non-react-statics" "^3.3.2"
+    "loose-envify" "^1.4.0"
+    "prop-types" "^15.7.2"
+    "react-is" "^16.13.1"
 
 "react-refresh@^0.8.3", "react-refresh@>=0.8.3 <0.10.0":
   "integrity" "sha512-X8jZHc7nCMjaCqoU+V2I0cOhNW+QMBwSUkeXnTi8IPe6zaRWfn60ZzvFDZqWPfmSJfjub7dDW1SP0jaHWLu/hg=="
@@ -10253,7 +10320,7 @@
     "invariant" "^2.2.4"
     "tslib" "^1.0.0"
 
-"react@*", "react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || 17.x", "react@^17.0.2", "react@>= 16", "react@>= 16.8.0", "react@>=16.8 || ^17.0.0", "react@>=16.8.0", "react@>=16.8.6", "react@17.0.2":
+"react@*", "react@^0.14.9 || ^15.3.0 || ^16.0.0 || ^17.0.0", "react@^15.3.0 || ^16.0.0 || ^17.0.0", "react@^16.8.0 || ^17.0.0", "react@^16.8.0 || 17.x", "react@^16.8.3 || ^17", "react@^17.0.2", "react@>= 16", "react@>= 16.8.0", "react@>=16.8 || ^17.0.0", "react@>=16.8.0", "react@>=16.8.6", "react@17.0.2":
   "integrity" "sha1-0LXMUW0p6z7uOD91tihkz7aAADc="
   "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/react/-/react-17.0.2.tgz"
   "version" "17.0.2"
@@ -10379,12 +10446,22 @@
     "indent-string" "^4.0.0"
     "strip-indent" "^3.0.0"
 
+"redux-devtools-extension@^2.13.9":
+  "integrity" "sha1-a3ZOgCi1B63LdaHK55D3Hmvgiuc="
+  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/redux-devtools-extension/-/redux-devtools-extension-2.13.9.tgz"
+  "version" "2.13.9"
+
+"redux-promise-middleware@^6.1.2":
+  "integrity" "sha1-HBQiJoaTS+JDy7KS40jvfVsg1tI="
+  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/redux-promise-middleware/-/redux-promise-middleware-6.1.2.tgz"
+  "version" "6.1.2"
+
 "redux-thunk@^2.3.0":
   "integrity" "sha1-UcLBmhhe1Rh6qpotCLZm0NZGdiI="
   "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/redux-thunk/-/redux-thunk-2.3.0.tgz"
   "version" "2.3.0"
 
-"redux@^4.1.1":
+"redux@^2.0.0 || ^3.0.0 || ^4.0.0", "redux@^3.1.0 || ^4.0.0", "redux@^3.4.0 || ^4.0.0", "redux@^3.5.2 || ^4.0.0", "redux@^4.0.0", "redux@^4.1.1":
   "integrity" "sha1-dvHEObtCBD+YX72b8hmQ5gvWf0c="
   "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/redux/-/redux-4.1.1.tgz"
   "version" "4.1.1"
@@ -10562,6 +10639,11 @@
   "integrity" "sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8="
   "resolved" "https://registry.npmjs.org/requires-port/-/requires-port-1.0.0.tgz"
   "version" "1.0.0"
+
+"reselect@^4.0.0":
+  "integrity" "sha1-8lKYMOXT0OAhQIskaiBu9OpEN/c="
+  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/reselect/-/reselect-4.0.0.tgz"
+  "version" "4.0.0"
 
 "resolve-cwd@^2.0.0":
   "integrity" "sha1-AKn3OHVW4nA46uIyyqNypqWbZlo="
@@ -11659,6 +11741,11 @@
     "stable" "^0.1.8"
     "unquote" "~1.1.1"
     "util.promisify" "~1.0.0"
+
+"symbol-observable@^2.0.3":
+  "integrity" "sha1-W1IdPQekPDUQVfpDuDVbYtM/0Wo="
+  "resolved" "https://artifactory.mlp.bluealba.com:443/artifactory/api/npm/npm-release-virtual/symbol-observable/-/symbol-observable-2.0.3.tgz"
+  "version" "2.0.3"
 
 "symbol-tree@^3.2.4":
   "integrity" "sha512-9QNk5KwDF+Bvz+PyObkmSYjI5ksVUYtjW7AU22r2NKcfLJcXp96hkDWU3+XndOsUb+AQ9QhfzfCT2O+CNWT5Tw=="

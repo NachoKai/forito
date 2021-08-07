@@ -1,5 +1,7 @@
+import { Flex } from "@chakra-ui/react"
+
 const Post = () => {
-	return <div>Post</div>
+	return <Flex>Post</Flex>
 }
 
 export default Post
