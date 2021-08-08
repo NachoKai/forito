@@ -27,7 +27,7 @@ const Auth = () => {
 	}
 
 	const onFailure = res => {
-		console.error("Login failed: res:", res)
+		console.error("Login failed: ", res)
 		alert("Google Sign In was unsuccessful. Please try again.")
 	}
 
