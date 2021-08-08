@@ -167,7 +167,6 @@ const Form = ({ currentId, setCurrentId }) => {
 
 				<Stack spacing="4">
 					<Button
-						color="white"
 						colorScheme="primary"
 						disabled={
 							!(

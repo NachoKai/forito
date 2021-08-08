@@ -12,7 +12,6 @@ const Auth = () => {
 	const dispatch = useDispatch()
 	const history = useHistory()
 
-	console.log("clientId", clientId)
 	const onSuccess = res => {
 		const result = res?.profileObj
 		const token = res?.tokenId
