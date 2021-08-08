@@ -9,6 +9,16 @@
 		"sourceType": "module"
 	},
 	"rules": {
+		"sort-imports": [
+			"warn",
+			{
+				"ignoreCase": false,
+				"ignoreDeclarationSort": true,
+				"ignoreMemberSort": false,
+				"memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
+				"allowSeparatedGroups": false
+			}
+		],
 		"no-unused-vars": [
 			"warn",
 			{ "vars": "all", "args": "after-used", "ignoreRestSiblings": false }

@@ -1,4 +1,4 @@
-import { Flex, Text, Stack, useColorModeValue, Button } from "@chakra-ui/react"
+import { Button, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react"
 import { GoogleLogin } from "react-google-login"
 import { FaGoogle } from "react-icons/fa"
 import { useHistory } from "react-router-dom"
@@ -8,12 +8,23 @@ import { refreshTokenSetup } from "../../utils/refreshTokenSetup"
 import FormInput from "../common/FormInput"
 import { useState } from "react"
 
+import { login, signup } from "../../redux/auth"
+
+const initialState = {
+	firstName: "",
+	lastName: "",
+	email: "",
+	password: "",
+	confirmPassword: "",
+}
+
 const Auth = () => {
 	const bg = useColorModeValue("primary.100", "primary.600")
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID
 	const dispatch = useDispatch()
 	const history = useHistory()
 	const [isSignup, setIsSignup] = useState(false)
+	const [formData, setFormData] = useState(initialState)
 
 	const onSuccess = res => {
 		const result = res?.profileObj
@@ -34,9 +45,19 @@ const Auth = () => {
 		console.error("Login failed: ", res)
 	}
 
-	const handleSubmit = () => {}
+	const handleSubmit = e => {
+		e.preventDefault()
 
-	const handleChange = () => {}
+		if (isSignup) {
+			dispatch(signup(formData, history))
+		} else {
+			dispatch(login(formData, history))
+		}
+	}
+
+	const handleChange = e => {
+		setFormData({ ...formData, [e.target.name]: e.target.value })
+	}
 
 	const handleSwitch = () => setIsSignup(prevIsSignup => !prevIsSignup)
 
@@ -54,50 +75,50 @@ const Auth = () => {
 									<FormInput
 										autoFocus
 										isRequired
-										handleChange={handleChange}
 										label="First Name"
 										maxLength="55"
 										name="firstName"
 										value={""}
+										onChange={handleChange}
 									/>
 									<FormInput
 										isRequired
-										handleChange={handleChange}
 										label="Last Name"
 										maxLength="55"
 										name="lastName"
 										value={""}
+										onChange={handleChange}
 									/>
 								</Stack>
 							</>
 						)}
 						<FormInput
 							isRequired
-							handleChange={handleChange}
 							label="Email"
 							maxLength="55"
 							name="email"
 							type="email"
 							value={""}
+							onChange={handleChange}
 						/>
 						<FormInput
 							isRequired
-							handleChange={handleChange}
 							label="Password"
 							maxLength="55"
 							name="password"
 							type="password"
 							value={""}
+							onChange={handleChange}
 						/>
 						{isSignup && (
 							<FormInput
 								isRequired
-								handleChange={handleChange}
 								label="Repeat Password"
 								maxLength="55"
-								name="repeatPassword"
+								name="confirmPassword"
 								type="password"
 								value={""}
+								onChange={handleChange}
 							/>
 						)}
 						<Button colorScheme="primary" type="submit" variant="solid">
@@ -122,7 +143,7 @@ const Auth = () => {
 							variant="outline"
 							onClick={onClick}
 						>
-							{isSignup ? "Google Sign Up" : "Google Login"}
+							Google Login
 						</Button>
 					)}
 					onFailure={onFailure}

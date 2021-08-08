@@ -1,21 +1,23 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Text, Button, Stack, useColorModeValue } from "@chakra-ui/react"
+import { Button, Stack, Text, useColorModeValue } from "@chakra-ui/react"
 // import FileBase from "react-file-base64"
 
 import { createPost, updatePost } from "../../redux/posts"
 import FormInput from "../common/FormInput"
 
+const initialState = {
+	creator: "",
+	title: "",
+	message: "",
+	tags: "",
+	selectedFile: "",
+}
+
 const Form = ({ currentId, setCurrentId }) => {
 	const dispatch = useDispatch()
 	const bg = useColorModeValue("primary.100", "primary.900")
-	const [postData, setPostData] = useState({
-		creator: "",
-		title: "",
-		message: "",
-		tags: "",
-		selectedFile: "",
-	})
+	const [postData, setPostData] = useState(initialState)
 	const post = useSelector(state =>
 		currentId ? state.posts.find(post => post._id === currentId) : null
 	)
@@ -34,18 +36,16 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	const handleClear = () => {
 		setCurrentId(null)
-		setPostData({
-			creator: "",
-			title: "",
-			message: "",
-			tags: "",
-			selectedFile: "",
-		})
+		setPostData(initialState)
 	}
 
 	useEffect(() => {
 		if (post) setPostData(post)
 	}, [post])
+
+	const handleChange = e => {
+		setPostData({ ...postData, [e.target.name]: e.target.value })
+	}
 
 	return (
 		<form noValidate autoComplete="off" onSubmit={handleSubmit}>
@@ -53,58 +53,37 @@ const Form = ({ currentId, setCurrentId }) => {
 				<Text fontSize="xl" fontWeight="bold">
 					{currentId ? "Edit" : "Create"} Post
 				</Text>
-
 				<FormInput
 					isRequired
-					handleChange={e => {
-						setPostData({
-							...postData,
-							creator: e.target.value,
-						})
-					}}
 					label="Creator"
 					maxLength="55"
 					name="creator"
 					value={postData.creator}
+					onChange={handleChange}
 				/>
 				<FormInput
 					isRequired
-					handleChange={e => {
-						setPostData({
-							...postData,
-							title: e.target.value,
-						})
-					}}
 					label="Title"
 					maxLength="105"
 					name="title"
 					value={postData.title}
+					onChange={handleChange}
 				/>
 				<FormInput
 					isRequired
-					handleChange={e => {
-						setPostData({
-							...postData,
-							message: e.target.value,
-						})
-					}}
 					label="Message"
 					maxLength="5000"
 					name="message"
 					value={postData.message}
+					onChange={handleChange}
 				/>
 				<FormInput
-					handleChange={e => {
-						setPostData({
-							...postData,
-							tags: e.target.value.split(","),
-						})
-					}}
 					helper="Separated by commas."
 					label="Tags"
 					maxLength="55"
 					name="tags"
 					value={postData.tags}
+					onChange={handleChange}
 				/>
 				{/* <FormInput
 					child={

@@ -1,4 +1,4 @@
-import { FormControl, Input, FormLabel, FormHelperText } from "@chakra-ui/react"
+import { FormControl, FormHelperText, FormLabel, Input } from "@chakra-ui/react"
 
 const FormInput = ({
 	label,
@@ -8,7 +8,7 @@ const FormInput = ({
 	helper,
 	autoFocus,
 	maxLength,
-	handleChange,
+	onChange,
 	child,
 	type,
 }) => {
@@ -32,7 +32,7 @@ const FormInput = ({
 					type={type}
 					value={value}
 					variant="outline"
-					onChange={handleChange}
+					onChange={onChange}
 				/>
 			)}
 		</FormControl>
