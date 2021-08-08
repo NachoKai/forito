@@ -41,7 +41,7 @@ const App = () => {
 						<Link to="/test">Test</Link>
 					</Text>
 				</Stack>
-				<Button colorScheme="primary" onClick={toggleColorMode}>
+				<Button colorScheme="primary" variant="ghost" onClick={toggleColorMode}>
 					{colorMode === "light" ? <FaMoon /> : <FaSun />}
 				</Button>
 			</Flex>
@@ -54,7 +54,7 @@ const App = () => {
 				<Route exact path="/">
 					<Stack
 						direction={{ sm: "column-reverse", md: "column-reverse", lg: "row", xl: "row" }}
-						p="8"
+						p={{ sm: "0", md: "0", lg: "8", xl: "8" }}
 						spacing={8}
 						w="100%"
 					>

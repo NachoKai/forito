@@ -59,7 +59,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	return (
 		<form noValidate autoComplete="off" onSubmit={handleSubmit}>
-			<Stack bg={bg} borderRadius="lg" minWidth="300px" p="8" spacing={4}>
+			<Stack bg={bg} borderRadius="lg" minWidth="320px" p="8" spacing={4}>
 				<Text fontSize="xl" fontWeight="bold">
 					{currentId ? "Edit" : "Create"} Post
 				</Text>
