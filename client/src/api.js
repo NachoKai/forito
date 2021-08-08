@@ -7,7 +7,9 @@ const API = axios.create({
 
 API.interceptors.request.use(req => {
 	if (localStorage.getItem("forito-profile")) {
-		req.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem("forito-profile")).token}`
+		req.headers.authorization = `Bearer ${
+			JSON.parse(localStorage.getItem("forito-profile")).token
+		}`
 	}
 
 	return req

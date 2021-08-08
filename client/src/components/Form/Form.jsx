@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Stack, Text, useColorModeValue } from "@chakra-ui/react"
+import { Button, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react"
 // import FileBase from "react-file-base64"
 
 import { createPost, updatePost } from "../../redux/posts"
@@ -8,7 +8,6 @@ import FormInput from "../common/FormInput"
 import FormTextArea from "../common/FormTextArea"
 
 const initialState = {
-	creator: "",
 	title: "",
 	message: "",
 	tags: "",
@@ -22,14 +21,15 @@ const Form = ({ currentId, setCurrentId }) => {
 	const post = useSelector(state =>
 		currentId ? state.posts.find(post => post._id === currentId) : null
 	)
+	const user = JSON.parse(localStorage.getItem("forito-profile"))
 
 	const handleSubmit = e => {
 		e.preventDefault()
 
-		if (currentId) {
-			dispatch(updatePost(currentId, postData))
+		if (currentId === 0) {
+			dispatch(createPost({ ...postData, name: user?.result?.name }))
 		} else {
-			dispatch(createPost(postData))
+			dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }))
 		}
 
 		handleClear()
@@ -48,20 +48,20 @@ const Form = ({ currentId, setCurrentId }) => {
 		setPostData({ ...postData, [e.target.name]: e.target.value })
 	}
 
+	if (!user?.result?.name) {
+		return (
+			<Flex>
+				<Text>Please login to create a Post.</Text>
+			</Flex>
+		)
+	}
+
 	return (
 		<form noValidate autoComplete="off" onSubmit={handleSubmit}>
 			<Stack bg={bg} borderRadius="lg" minWidth="320px" p="8" spacing={4}>
 				<Text fontSize="xl" fontWeight="bold">
 					{currentId ? "Edit" : "Create"} Post
 				</Text>
-				<FormInput
-					isRequired
-					label="Creator"
-					maxLength="55"
-					name="creator"
-					value={postData.creator}
-					onChange={handleChange}
-				/>
 				<FormInput
 					isRequired
 					label="Title"
@@ -102,13 +102,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				<Stack spacing="4">
 					<Button
 						colorScheme="primary"
-						disabled={
-							!(
-								postData.title.length > 0 &&
-								postData.creator.length > 0 &&
-								postData.message.length > 0
-							)
-						}
+						disabled={!(postData.title.length > 0 && postData.message.length > 0)}
 						type="submit"
 					>
 						Submit

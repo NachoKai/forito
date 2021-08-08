@@ -17,7 +17,7 @@ import { deletePost, likePost } from "../../redux/posts"
 
 const Post = ({
 	setCurrentId,
-	post: { _id, title, creator, message, likeCount, createdAt, tags, selectedFile },
+	post: { _id, title, name, message, likeCount, createdAt, tags, selectedFile },
 }) => {
 	const dispatch = useDispatch()
 	const bg = useColorModeValue("primary.50", "primary.800")
@@ -37,9 +37,10 @@ const Post = ({
 			)}
 
 			<Flex direction="column">
-				<Text fontSize="lg">{creator}</Text>
+				<Text fontSize="lg">{name}</Text>
 				<Text fontSize="sm">
-					{formatDistance(new Date(), createdAt ? new Date(createdAt) : new Date()) + " ago"}
+					{formatDistance(new Date(), createdAt ? new Date(createdAt) : new Date()) +
+						" ago"}
 				</Text>
 			</Flex>
 

@@ -63,7 +63,15 @@ const Auth = () => {
 
 	return (
 		<Flex align="center" h={isSignup ? "90%" : "80%"} justify="center" w="100%">
-			<Stack bg={bg} borderRadius="lg" maxWidth="450px" minWidth="320px" p="8" spacing={4} w="100%">
+			<Stack
+				bg={bg}
+				borderRadius="lg"
+				maxWidth="450px"
+				minWidth="320px"
+				p="8"
+				spacing={4}
+				w="100%"
+			>
 				<Text fontSize="xl" fontWeight="bold">
 					{isSignup ? "Sign Up" : "Login"}
 				</Text>
@@ -152,7 +160,9 @@ const Auth = () => {
 
 				<Flex justify="flex-end">
 					<Button colorScheme="primary" size="xs" variant="ghost" onClick={handleSwitch}>
-						{isSignup ? "Already have an account? Login" : "Don't have an account? Sign up"}
+						{isSignup
+							? "Already have an account? Login"
+							: "Don't have an account? Sign up"}
 					</Button>
 				</Flex>
 			</Stack>

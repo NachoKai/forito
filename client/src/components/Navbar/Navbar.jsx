@@ -1,7 +1,15 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { FaMoon, FaSun } from "react-icons/fa"
-import { Button, Flex, Image, Stack, Text, useColorMode, useColorModeValue } from "@chakra-ui/react"
+import {
+	Button,
+	Flex,
+	Image,
+	Stack,
+	Text,
+	useColorMode,
+	useColorModeValue,
+} from "@chakra-ui/react"
 import { Link, useHistory, useLocation } from "react-router-dom"
 
 import { LOGOUT } from "../../redux/auth"
