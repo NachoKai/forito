@@ -52,7 +52,7 @@ export const signup = async (req, res) => {
 			return res.status(400).json({ message: "Passwords don't match." });
 		}
 
-		const hashedPassword = await bcrypt.hash(password, salt);
+		const hashedPassword = await bcrypt.hash(password, Number(salt));
 		const result = await User.create({
 			email,
 			password: hashedPassword,
