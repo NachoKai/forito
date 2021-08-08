@@ -33,12 +33,14 @@ const App = () => {
 				top="0"
 				zIndex="3"
 			>
-				<Text color={color} fontSize="xl" fontWeight="bold">
-					<Stack direction="row" spacing="2">
+				<Stack direction="row" spacing="2">
+					<Text color={color} fontSize="xl" fontWeight="bold">
 						<Link to="/">Forito</Link>
+					</Text>
+					<Text color={color} fontSize="xl">
 						<Link to="/test">Test</Link>
-					</Stack>
-				</Text>
+					</Text>
+				</Stack>
 				<Button colorScheme="primary" onClick={toggleColorMode}>
 					{colorMode === "light" ? <FaMoon /> : <FaSun />}
 				</Button>

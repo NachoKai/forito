@@ -22,18 +22,6 @@ const Post = ({
 	const dispatch = useDispatch()
 	const bg = useColorModeValue("primary.50", "primary.500")
 
-	const handleLike = () => {
-		dispatch(likePost(_id))
-	}
-
-	const handleEdit = () => {
-		setCurrentId(_id)
-	}
-
-	const handleDelete = () => {
-		dispatch(deletePost(_id))
-	}
-
 	return (
 		<Stack bg={bg} borderRadius="lg" direction="column" p="8" spacing={4} w="100%">
 			{selectedFile && (
@@ -75,7 +63,7 @@ const Post = ({
 					leftIcon={<FaThumbsUp />}
 					size="sm"
 					variant="solid"
-					onClick={handleLike}
+					onClick={() => dispatch(likePost(_id))}
 				>
 					<Text>
 						{likeCount} {likeCount !== 1 ? "Likes" : "Like"}
@@ -86,7 +74,7 @@ const Post = ({
 					leftIcon={<FaPen />}
 					size="sm"
 					variant="outline"
-					onClick={handleEdit}
+					onClick={() => setCurrentId(_id)}
 				>
 					Edit
 				</Button>
@@ -96,7 +84,7 @@ const Post = ({
 					leftIcon={<FaEraser />}
 					size="sm"
 					variant="solid"
-					onClick={handleDelete}
+					onClick={() => dispatch(deletePost(_id))}
 				>
 					Delete
 				</Button>

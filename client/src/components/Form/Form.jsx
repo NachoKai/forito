@@ -59,7 +59,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	return (
 		<form noValidate autoComplete="off" onSubmit={handleSubmit}>
-			<Stack bg={bg} borderRadius="lg" p="8" spacing={4}>
+			<Stack bg={bg} borderRadius="lg" minWidth="300px" p="8" spacing={4}>
 				<Text fontSize="xl" fontWeight="bold">
 					{currentId ? "Edit" : "Create"} Post
 				</Text>
@@ -153,7 +153,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				</FormControl>
 
 				<Flex>
-					<FormControl>
+					{/* <FormControl>
 						<FormLabel>Upload image</FormLabel>
 						<FileBase
 							multiple={false}
@@ -162,7 +162,7 @@ const Form = ({ currentId, setCurrentId }) => {
 								setPostData({ ...postData, selectedFile: base64 })
 							}}
 						/>
-					</FormControl>
+					</FormControl> */}
 				</Flex>
 
 				<Stack spacing="4">
