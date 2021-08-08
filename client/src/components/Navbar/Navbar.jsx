@@ -13,7 +13,7 @@ const Navbar = () => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const history = useHistory()
-	const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")))
+	const [user, setUser] = useState(JSON.parse(localStorage.getItem("forito-profile")))
 
 	const logout = () => {
 		dispatch({ type: LOGOUT })
@@ -30,7 +30,7 @@ const Navbar = () => {
 			if (decodedToken.exp * 1000 < new Date().getTime()) logout()
 		}
 
-		setUser(JSON.parse(localStorage.getItem("profile")))
+		setUser(JSON.parse(localStorage.getItem("forito-profile")))
 	}, [location])
 
 	return (
