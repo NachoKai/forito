@@ -1,13 +1,13 @@
-import { Button, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react"
-import { GoogleLogin } from "react-google-login"
-import { FaGoogle } from "react-icons/fa"
-import { useHistory } from "react-router-dom"
+import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { AUTH } from "../../redux/auth"
+import { useHistory } from "react-router-dom"
+import { GoogleLogin } from "react-google-login"
+import { Button, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react"
+import { FaGoogle } from "react-icons/fa"
+
 import { refreshTokenSetup } from "../../utils/refreshTokenSetup"
 import FormInput from "../common/FormInput"
-import { useState } from "react"
-
+import { AUTH } from "../../redux/auth"
 import { login, signup } from "../../redux/auth"
 
 const initialState = {
