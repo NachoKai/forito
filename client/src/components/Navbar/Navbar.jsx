@@ -3,7 +3,6 @@ import { useDispatch } from "react-redux"
 import { FaSun, FaMoon } from "react-icons/fa"
 import { Flex, Text, Stack, Button, useColorMode, useColorModeValue, Image } from "@chakra-ui/react"
 import { Link, useHistory, useLocation } from "react-router-dom"
-import decode from "jwt-decode"
 
 import { LOGOUT } from "../../redux/auth"
 
