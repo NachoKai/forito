@@ -1,8 +1,19 @@
+import { useState, useEffect } from "react"
+import { useDispatch } from "react-redux"
 import { Stack } from "@chakra-ui/react"
+
 import Posts from "../Posts/Posts"
 import Form from "../Form/Form"
+import { getPosts } from "../../redux/posts"
 
-const Home = ({ currentId, setCurrentId }) => {
+const Home = () => {
+	const dispatch = useDispatch()
+	const [currentId, setCurrentId] = useState(0)
+
+	useEffect(() => {
+		dispatch(getPosts())
+	}, [currentId, dispatch])
+
 	return (
 		<Stack
 			direction={{ sm: "column-reverse", md: "column-reverse", lg: "row", xl: "row" }}

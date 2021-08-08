@@ -7,7 +7,7 @@ import Post from "../Post/Post"
 
 const Posts = ({ setCurrentId }) => {
 	const posts = useSelector(getAllPosts)
-	const havePosts = posts.length > 0
+	const havePosts = posts?.length > 0
 
 	return (
 		<Flex flexGrow align="center" justify="center" w="100%">

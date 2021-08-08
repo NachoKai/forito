@@ -1,11 +1,37 @@
+import { useEffect, useState } from "react"
+import { useDispatch } from "react-redux"
 import { FaSun, FaMoon } from "react-icons/fa"
 import { Flex, Text, Stack, Button, useColorMode, useColorModeValue, Image } from "@chakra-ui/react"
-import { Link } from "react-router-dom"
+import { Link, useHistory, useLocation } from "react-router-dom"
+import decode from "jwt-decode"
+
+import { LOGOUT } from "../../redux/auth"
 
 const Navbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode()
 	const color = useColorModeValue("primary.600", "primary.100")
-	const user = null
+	const dispatch = useDispatch()
+	const location = useLocation()
+	const history = useHistory()
+	const [user, setUser] = useState(JSON.parse(localStorage.getItem("profile")))
+
+	const logout = () => {
+		dispatch({ type: LOGOUT })
+		history.push("/auth")
+		setUser(null)
+	}
+
+	useEffect(() => {
+		const token = user?.token
+
+		if (token) {
+			const decodedToken = decode(token)
+
+			if (decodedToken.exp * 1000 < new Date().getTime()) logout()
+		}
+
+		setUser(JSON.parse(localStorage.getItem("profile")))
+	}, [location])
 
 	return (
 		<Flex
@@ -27,7 +53,7 @@ const Navbar = () => {
 
 			<Stack direction="row" spacing="4">
 				{user?.result ? (
-					<Flex>
+					<Stack align="center" direction="row" spacing="4">
 						<Image
 							alt={user?.result.name}
 							borderRadius="full"
@@ -36,10 +62,10 @@ const Navbar = () => {
 							src={user?.result.imageUrl}
 						/>
 						<Text>{user?.result.name}</Text>
-						<Button colorScheme="primary" variant="outline">
+						<Button colorScheme="primary" variant="outline" onClick={logout}>
 							Logout
 						</Button>
-					</Flex>
+					</Stack>
 				) : (
 					<Flex>
 						<Link to="/auth">

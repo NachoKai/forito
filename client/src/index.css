@@ -24,7 +24,12 @@
 
 body {
   width: 100%;
+  height: calc(100% - 60px);
   margin: 0;
+}
+
+#root{
+  height: calc(100% - 60px);
 }
 
 /**
