@@ -4,13 +4,15 @@ import { FaGoogle } from "react-icons/fa"
 import { useHistory } from "react-router-dom"
 import { useDispatch } from "react-redux"
 import { AUTH } from "../../redux/auth"
+import { refreshTokenSetup } from "../../utils/refreshTokenSetup"
 
 const Auth = () => {
 	const bg = useColorModeValue("primary.100", "primary.600")
+	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID
 	const dispatch = useDispatch()
 	const history = useHistory()
 
-	const googleSuccess = async res => {
+	const onSuccess = res => {
 		const result = res?.profileObj
 		const token = res?.tokenId
 
@@ -20,9 +22,14 @@ const Auth = () => {
 		} catch (err) {
 			console.error(err)
 		}
+
+		refreshTokenSetup(res)
 	}
 
-	const googleError = () => alert("Google Sign In was unsuccessful. Please try again.")
+	const onFailure = res => {
+		console.error("Login failed: res:", res)
+		alert("Google Sign In was unsuccessful. Please try again.")
+	}
 
 	return (
 		<Flex align="center" h="50%" justify="center" w="100%">
@@ -31,21 +38,21 @@ const Auth = () => {
 					Login
 				</Text>
 				<GoogleLogin
-					clientId={process.env.REACT_APP_GOOGLE_CLIENT_ID}
-					cookiePolicy="single_host_origin"
-					render={renderProps => (
+					clientId={clientId}
+					cookiePolicy={"single_host_origin"}
+					render={({ disabled, onClick }) => (
 						<Button
 							colorScheme="primary"
-							disabled={renderProps.disabled}
+							disabled={disabled}
 							leftIcon={<FaGoogle />}
 							variant="solid"
-							onClick={renderProps.onClick}
+							onClick={onClick}
 						>
 							Google Sign In
 						</Button>
 					)}
-					onFailure={googleError}
-					onSuccess={googleSuccess}
+					onFailure={onFailure}
+					onSuccess={onSuccess}
 				/>
 			</Stack>
 		</Flex>
