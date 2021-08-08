@@ -78,7 +78,7 @@ const Auth = () => {
 										label="First Name"
 										maxLength="55"
 										name="firstName"
-										value={""}
+										value={formData.firstName}
 										onChange={handleChange}
 									/>
 									<FormInput
@@ -86,7 +86,7 @@ const Auth = () => {
 										label="Last Name"
 										maxLength="55"
 										name="lastName"
-										value={""}
+										value={formData.lastName}
 										onChange={handleChange}
 									/>
 								</Stack>
@@ -98,7 +98,7 @@ const Auth = () => {
 							maxLength="55"
 							name="email"
 							type="email"
-							value={""}
+							value={formData.email}
 							onChange={handleChange}
 						/>
 						<FormInput
@@ -107,7 +107,7 @@ const Auth = () => {
 							maxLength="55"
 							name="password"
 							type="password"
-							value={""}
+							value={formData.password}
 							onChange={handleChange}
 						/>
 						{isSignup && (
@@ -117,7 +117,7 @@ const Auth = () => {
 								maxLength="55"
 								name="confirmPassword"
 								type="password"
-								value={""}
+								value={formData.confirmPassword}
 								onChange={handleChange}
 							/>
 						)}

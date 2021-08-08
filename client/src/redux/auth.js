@@ -13,8 +13,8 @@ export const login = (formData, router) => async dispatch => {
 
 		dispatch({ type: AUTH, data })
 		router.push("/")
-	} catch (error) {
-		console.error(error)
+	} catch (err) {
+		console.error(err)
 	}
 }
 
@@ -24,8 +24,8 @@ export const signup = (formData, router) => async dispatch => {
 
 		dispatch({ type: AUTH, data })
 		router.push("/")
-	} catch (error) {
-		console.error(error)
+	} catch (err) {
+		console.error(err)
 	}
 }
 
