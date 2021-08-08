@@ -36,13 +36,13 @@ const Navbar = () => {
 			top="0"
 			zIndex="3"
 		>
-			<Stack direction="row" spacing="2">
+			<Stack align="center" direction="row" spacing="2">
 				<Text color={color} fontSize="xl" fontWeight="bold">
 					<Link to="/">Forito</Link>
 				</Text>
 			</Stack>
 
-			<Stack direction="row" spacing="4">
+			<Stack align="center" direction="row" spacing="2">
 				{user?.result ? (
 					<Stack align="center" direction="row" spacing="4">
 						<Image
@@ -52,22 +52,22 @@ const Navbar = () => {
 							objectFit="cover"
 							src={user?.result.imageUrl}
 						/>
-						<Text>{user?.result.name}</Text>
-						<Button colorScheme="primary" variant="outline" onClick={logout}>
+						<Text isTruncated>{user?.result.name}</Text>
+						<Button colorScheme="primary" size="sm" variant="outline" onClick={logout}>
 							Logout
 						</Button>
 					</Stack>
 				) : (
 					<Flex>
 						<Link to="/auth">
-							<Button colorScheme="primary" variant="solid">
+							<Button colorScheme="primary" size="sm" variant="solid">
 								Login
 							</Button>
 						</Link>
 					</Flex>
 				)}
-				<Button colorScheme="primary" variant="ghost" onClick={toggleColorMode}>
-					Toggle&nbsp; {colorMode === "light" ? <FaMoon /> : <FaSun />}
+				<Button colorScheme="primary" size="sm" variant="ghost" onClick={toggleColorMode}>
+					{colorMode === "light" ? <FaMoon /> : <FaSun />}
 				</Button>
 			</Stack>
 		</Flex>
