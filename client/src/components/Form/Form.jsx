@@ -12,7 +12,7 @@ import {
 	Stack,
 	useColorModeValue,
 } from "@chakra-ui/react"
-import FileBase from "react-file-base64"
+// import FileBase from "react-file-base64"
 
 import { createPost, updatePost } from "../../redux/posts"
 

@@ -4,8 +4,15 @@ import mongoose from "mongoose";
 import cors from "cors";
 import postRoutes from "./routes/posts.js";
 
-dotenv.config();
 const app = express();
+
+app.get("env");
+
+const isDev = process.env.NODE_ENV !== "production";
+const envFile = isDev ? `.env.${process.env.NODE_ENV}` : ".env";
+
+dotenv.config({ path: envFile });
+
 const PORT = process.env.PORT || 5000;
 const CONNECTION_URL = process.env.MONGODB_URI;
 
