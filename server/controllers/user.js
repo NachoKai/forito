@@ -1,7 +1,13 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
+import dotenv from "dotenv";
 
 import User from "../models/user.js";
+
+const isDev = process.env.NODE_ENV !== "production";
+const envFile = isDev ? `.env.${process.env.NODE_ENV}` : ".env";
+
+dotenv.config({ path: envFile });
 
 const secret = process.env.SECRET;
 const salt = process.env.SALT;
