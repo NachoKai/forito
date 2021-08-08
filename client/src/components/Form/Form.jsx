@@ -1,7 +1,8 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react"
+import { Button, Stack, Text, useColorModeValue } from "@chakra-ui/react"
 // import FileBase from "react-file-base64"
+import { FaExclamationCircle } from "react-icons/fa"
 
 import { createPost, updatePost } from "../../redux/posts"
 import FormInput from "../common/FormInput"
@@ -50,9 +51,14 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	if (!user?.result?.name) {
 		return (
-			<Flex>
-				<Text>Please login to create a Post.</Text>
-			</Flex>
+			<Stack align="center" direction="column" spacing="4">
+				<Text fontSize="4xl" fontWeight="bold">
+					<FaExclamationCircle />
+				</Text>
+				<Text fontSize="lg" fontWeight="bold">
+					Please login to create a Post.
+				</Text>
+			</Stack>
 		)
 	}
 
