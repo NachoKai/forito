@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { Flex, Stack, Text } from "@chakra-ui/react"
 import { FaPencilAlt } from "react-icons/fa"
@@ -9,10 +8,6 @@ import Post from "../Post/Post"
 const Posts = ({ setCurrentId }) => {
 	const posts = useSelector(getAllPosts)
 	const havePosts = posts.length > 0
-
-	useEffect(() => {
-		console.log(posts)
-	}, [posts])
 
 	return (
 		<Flex flexGrow align="center" justify="center" w="100%">
