@@ -9,6 +9,10 @@
 		"sourceType": "module"
 	},
 	"rules": {
+		"no-unused-vars": [
+			"warn",
+			{ "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
+		],
 		"padding-line-between-statements": [
 			"warn",
 			{ "blankLine": "always", "prev": "*", "next": "return" },
