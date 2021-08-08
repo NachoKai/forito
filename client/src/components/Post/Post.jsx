@@ -20,7 +20,8 @@ const Post = ({
 	post: { _id, title, creator, message, likeCount, createdAt, tags, selectedFile },
 }) => {
 	const dispatch = useDispatch()
-	const bg = useColorModeValue("primary.50", "primary.500")
+	const bg = useColorModeValue("primary.50", "primary.800")
+	const bgDelete = useColorModeValue("red.500", "red.200")
 
 	return (
 		<Stack bg={bg} borderRadius="lg" direction="column" p="8" spacing={4} w="100%">
@@ -79,7 +80,7 @@ const Post = ({
 					Edit
 				</Button>
 				<Button
-					bg="red.400"
+					bg={bgDelete}
 					colorScheme="primary"
 					leftIcon={<FaEraser />}
 					size="sm"

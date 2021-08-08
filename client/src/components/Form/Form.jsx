@@ -18,7 +18,7 @@ import { createPost, updatePost } from "../../redux/posts"
 
 const Form = ({ currentId, setCurrentId }) => {
 	const dispatch = useDispatch()
-	const bg = useColorModeValue("primary.100", "primary.600")
+	const bg = useColorModeValue("primary.100", "primary.900")
 	const [postData, setPostData] = useState({
 		creator: "",
 		title: "",

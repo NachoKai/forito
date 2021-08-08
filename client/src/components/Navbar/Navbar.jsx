@@ -76,7 +76,7 @@ const Navbar = () => {
 					</Flex>
 				)}
 				<Button colorScheme="primary" variant="ghost" onClick={toggleColorMode}>
-					{colorMode === "light" ? <FaMoon /> : <FaSun />}
+					Toggle&nbsp; {colorMode === "light" ? <FaMoon /> : <FaSun />}
 				</Button>
 			</Stack>
 		</Flex>
