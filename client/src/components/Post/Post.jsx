@@ -1,14 +1,14 @@
 import {
+	Badge,
+	Button,
+	CircularProgress,
 	Flex,
+	Image,
 	Stack,
 	Text,
-	Image,
-	Button,
-	Badge,
-	CircularProgress,
 	useColorModeValue,
 } from "@chakra-ui/react"
-import { FaThumbsUp, FaEraser, FaPen } from "react-icons/fa"
+import { FaEraser, FaPen, FaThumbsUp } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
 
