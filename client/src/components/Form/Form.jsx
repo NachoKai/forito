@@ -1,20 +1,10 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import {
-	Flex,
-	Text,
-	Input,
-	Button,
-	FormControl,
-	FormLabel,
-	FormHelperText,
-	Textarea,
-	Stack,
-	useColorModeValue,
-} from "@chakra-ui/react"
+import { Text, Button, Stack, useColorModeValue } from "@chakra-ui/react"
 // import FileBase from "react-file-base64"
 
 import { createPost, updatePost } from "../../redux/posts"
+import FormInput from "../common/FormInput"
 
 const Form = ({ currentId, setCurrentId }) => {
 	const dispatch = useDispatch()
@@ -64,97 +54,60 @@ const Form = ({ currentId, setCurrentId }) => {
 					{currentId ? "Edit" : "Create"} Post
 				</Text>
 
-				<FormControl isRequired>
-					<FormLabel>Creator</FormLabel>
-					<Input
-						_placeholder={{ color: "gray" }}
-						bg="white"
-						color="black"
-						errorBorderColor="red.300"
-						focusBorderColor="primary.200"
-						maxLength="55"
-						name="creator"
-						placeholder="Creator"
-						value={postData.creator}
-						variant="outline"
-						onChange={e => {
-							setPostData({
-								...postData,
-								creator: e.target.value,
-							})
-						}}
-					/>
-				</FormControl>
-
-				<FormControl isRequired>
-					<FormLabel>Title</FormLabel>
-					<Input
-						_placeholder={{ color: "gray" }}
-						bg="white"
-						color="black"
-						errorBorderColor="red.300"
-						focusBorderColor="primary.200"
-						maxLength="105"
-						name="title"
-						placeholder="Title"
-						value={postData.title}
-						variant="outline"
-						onChange={e => {
-							setPostData({
-								...postData,
-								title: e.target.value,
-							})
-						}}
-					/>
-				</FormControl>
-
-				<FormControl isRequired>
-					<FormLabel>Message</FormLabel>
-					<Textarea
-						_placeholder={{ color: "gray" }}
-						bg="white"
-						color="black"
-						focusBorderColor="primary.200"
-						maxLength="5000"
-						name="message"
-						placeholder="Message"
-						value={postData.message}
-						variant="outline"
-						onChange={e => {
-							setPostData({
-								...postData,
-								message: e.target.value,
-							})
-						}}
-					/>
-				</FormControl>
-
-				<FormControl>
-					<FormLabel>Tags</FormLabel>
-					<FormHelperText>Separated by commas.</FormHelperText>
-					<Input
-						_placeholder={{ color: "gray" }}
-						bg="white"
-						color="black"
-						errorBorderColor="red.300"
-						focusBorderColor="primary.200"
-						maxLength="55"
-						name="tags"
-						placeholder="Tags"
-						value={postData.tags}
-						variant="outline"
-						onChange={e => {
-							setPostData({
-								...postData,
-								tags: e.target.value.split(","),
-							})
-						}}
-					/>
-				</FormControl>
-
-				<Flex>
-					{/* <FormControl>
-						<FormLabel>Upload image</FormLabel>
+				<FormInput
+					isRequired
+					handleChange={e => {
+						setPostData({
+							...postData,
+							creator: e.target.value,
+						})
+					}}
+					label="Creator"
+					maxLength="55"
+					name="creator"
+					value={postData.creator}
+				/>
+				<FormInput
+					isRequired
+					handleChange={e => {
+						setPostData({
+							...postData,
+							title: e.target.value,
+						})
+					}}
+					label="Title"
+					maxLength="105"
+					name="title"
+					value={postData.title}
+				/>
+				<FormInput
+					isRequired
+					handleChange={e => {
+						setPostData({
+							...postData,
+							message: e.target.value,
+						})
+					}}
+					label="Message"
+					maxLength="5000"
+					name="message"
+					value={postData.message}
+				/>
+				<FormInput
+					handleChange={e => {
+						setPostData({
+							...postData,
+							tags: e.target.value.split(","),
+						})
+					}}
+					helper="Separated by commas."
+					label="Tags"
+					maxLength="55"
+					name="tags"
+					value={postData.tags}
+				/>
+				{/* <FormInput
+					child={
 						<FileBase
 							multiple={false}
 							type="file"
@@ -162,8 +115,9 @@ const Form = ({ currentId, setCurrentId }) => {
 								setPostData({ ...postData, selectedFile: base64 })
 							}}
 						/>
-					</FormControl> */}
-				</Flex>
+					}
+					label="Upload image"
+				/> */}
 
 				<Stack spacing="4">
 					<Button
@@ -175,8 +129,6 @@ const Form = ({ currentId, setCurrentId }) => {
 								postData.message.length > 0
 							)
 						}
-						loadingText="Submitting"
-						spinnerPlacement="end"
 						type="submit"
 					>
 						Submit
