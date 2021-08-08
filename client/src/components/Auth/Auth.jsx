@@ -45,6 +45,7 @@ const Auth = () => {
 							colorScheme="primary"
 							disabled={disabled}
 							leftIcon={<FaGoogle />}
+							size="lg"
 							variant="solid"
 							onClick={onClick}
 						>
