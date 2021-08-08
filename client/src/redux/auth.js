@@ -1,35 +1,9 @@
-// import { createSelector } from "reselect"
-
-import * as api from "../api"
-
 /* ==========  CONSTANTS  =========== */
 
 export const AUTH = "AUTH"
 export const LOGOUT = "LOGOUT"
 
 /* ==========  ACTIONS  =========== */
-
-export const signin = (formData, router) => async dispatch => {
-	try {
-		const { data } = await api.signIn(formData)
-
-		dispatch({ type: AUTH, data })
-		router.push("/")
-	} catch (err) {
-		console.error(err)
-	}
-}
-
-export const signup = (formData, router) => async dispatch => {
-	try {
-		const { data } = await api.signUp(formData)
-
-		dispatch({ type: AUTH, data })
-		router.push("/")
-	} catch (err) {
-		console.error(err)
-	}
-}
 
 /* ==========  REDUCERS  =========== */
 
