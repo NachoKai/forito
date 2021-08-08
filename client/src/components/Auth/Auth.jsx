@@ -8,7 +8,7 @@ import { refreshTokenSetup } from "../../utils/refreshTokenSetup"
 
 const Auth = () => {
 	const bg = useColorModeValue("primary.100", "primary.600")
-	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID
+	const clientId = "207943156916-9pr69jvidh3gcpht14i88i1ipfhagv65.apps.googleusercontent.com"
 	const dispatch = useDispatch()
 	const history = useHistory()
 
