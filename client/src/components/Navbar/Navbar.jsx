@@ -45,14 +45,16 @@ const Navbar = () => {
 			<Stack align="center" direction="row" spacing="2">
 				{user?.result ? (
 					<Stack align="center" direction="row" spacing="4">
-						<Image
-							alt={user?.result.name}
-							borderRadius="full"
-							boxSize="25px"
-							objectFit="cover"
-							src={user?.result.imageUrl}
-						/>
-						<Text isTruncated>{user?.result.name}</Text>
+						{user?.result.imageUrl && (
+							<Image
+								alt={user.result.name}
+								borderRadius="full"
+								boxSize="25px"
+								objectFit="cover"
+								src={user.result.imageUrl}
+							/>
+						)}
+						{user?.result.name && <Text isTruncated>{user.result.name}</Text>}
 						<Button colorScheme="primary" size="sm" variant="outline" onClick={logout}>
 							Logout
 						</Button>

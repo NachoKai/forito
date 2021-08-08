@@ -5,6 +5,7 @@ import { Button, Stack, Text, useColorModeValue } from "@chakra-ui/react"
 
 import { createPost, updatePost } from "../../redux/posts"
 import FormInput from "../common/FormInput"
+import FormTextArea from "../common/FormTextArea"
 
 const initialState = {
 	creator: "",
@@ -69,7 +70,7 @@ const Form = ({ currentId, setCurrentId }) => {
 					value={postData.title}
 					onChange={handleChange}
 				/>
-				<FormInput
+				<FormTextArea
 					isRequired
 					label="Message"
 					maxLength="5000"
