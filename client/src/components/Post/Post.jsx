@@ -40,24 +40,35 @@ const Post = ({
 					src={selectedFile}
 				/>
 			)}
-			<Flex direction="column">
-				<Text fontSize="lg">{name}</Text>
-				<Text fontSize="sm">
-					{formatDistance(new Date(), createdAt ? new Date(createdAt) : new Date()) +
-						" ago"}
-				</Text>
-			</Flex>
+			<Stack direction="row" spacing="2">
+				{/* <Flex direction="column">
+					<Image
+						alt={user?.result?.name}
+						borderRadius="full"
+						boxSize="50px"
+						fallback={""}
+						objectFit="cover"
+						src={user?.result?.imageUrl}
+					/>
+				</Flex> */}
+				<Flex direction="column">
+					<Text fontSize="lg">{name}</Text>
+					<Text fontSize="sm">
+						{formatDistance(new Date(), createdAt ? new Date(createdAt) : new Date()) +
+							" ago"}
+					</Text>
+				</Flex>
+			</Stack>
 			<Text fontSize="3xl" marginBottom="2">
 				{title}
 			</Text>
 			<Text fontSize="md">{message}</Text>
 			<Flex>
-				{tags &&
-					tags.map(tag => (
-						<Badge key={getRandomId()} bg="primary.400" color="white" marginX="0.5">
-							{tag}
-						</Badge>
-					))}
+				{tags?.map(tag => (
+					<Badge key={getRandomId()} bg="primary.400" color="white" marginX="0.5">
+						{tag}
+					</Badge>
+				))}
 			</Flex>
 			<Stack direction="row" spacing="4">
 				<Button

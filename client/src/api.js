@@ -1,4 +1,5 @@
 import axios from "axios"
+import { getUser } from "./utils/getUser"
 
 const isDev = process.env.NODE_ENV !== "production"
 const API = axios.create({
@@ -7,9 +8,7 @@ const API = axios.create({
 
 API.interceptors.request.use(req => {
 	if (localStorage.getItem("forito-profile")) {
-		req.headers.authorization = `Bearer ${
-			JSON.parse(localStorage.getItem("forito-profile")).token
-		}`
+		req.headers.authorization = `Bearer ${getUser().token}`
 	}
 
 	return req

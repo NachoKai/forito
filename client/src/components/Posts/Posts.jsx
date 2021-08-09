@@ -22,7 +22,7 @@ const Posts = ({ setCurrentId }) => {
 				</Flex>
 			) : (
 				<Stack direction="column" spacing={8} w="100%">
-					{posts.map(post => (
+					{posts?.map(post => (
 						<Post key={post._id} post={post} setCurrentId={setCurrentId} />
 					))}
 				</Stack>

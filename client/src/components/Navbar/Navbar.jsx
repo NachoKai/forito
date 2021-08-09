@@ -11,8 +11,10 @@ import {
 	useColorModeValue,
 } from "@chakra-ui/react"
 import { Link, useHistory, useLocation } from "react-router-dom"
+import decode from "jwt-decode"
 
 import { LOGOUT } from "../../redux/auth"
+import { getUser } from "../../utils/getUser"
 
 const Navbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode()
@@ -20,7 +22,7 @@ const Navbar = () => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const history = useHistory()
-	const [user, setUser] = useState(JSON.parse(localStorage.getItem("forito-profile")))
+	const [user, setUser] = useState(getUser())
 
 	const logout = () => {
 		dispatch({ type: LOGOUT })
@@ -29,7 +31,14 @@ const Navbar = () => {
 	}
 
 	useEffect(() => {
-		setUser(JSON.parse(localStorage.getItem("forito-profile")))
+		const token = user?.token
+
+		if (token) {
+			const decodedToken = decode(token)
+
+			if (decodedToken.exp * 1000 < new Date().getTime()) logout()
+		}
+		setUser(getUser())
 	}, [location])
 
 	return (
@@ -55,11 +64,11 @@ const Navbar = () => {
 					<Stack align="center" direction="row" spacing="4">
 						{user?.result.imageUrl && (
 							<Image
-								alt={user.result.name}
+								alt={user?.result?.name}
 								borderRadius="full"
 								boxSize="25px"
 								objectFit="cover"
-								src={user.result.imageUrl}
+								src={user?.result?.imageUrl}
 							/>
 						)}
 						{user?.result.name && <Text isTruncated>{user.result.name}</Text>}
