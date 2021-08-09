@@ -10,7 +10,7 @@ const Posts = ({ setCurrentId }) => {
 	const havePosts = posts?.length > 0
 
 	return (
-		<Flex flexGrow align="center" h="80%" justify="center" w="100%">
+		<Flex flexGrow align="center" justify="center" w="100%">
 			{!havePosts ? (
 				<Flex align="center" direction="column" justify="center">
 					<Text color="primary.400" fontSize="6xl">

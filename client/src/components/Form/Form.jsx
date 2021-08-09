@@ -19,6 +19,7 @@ const initialState = {
 const Form = ({ currentId, setCurrentId }) => {
 	const dispatch = useDispatch()
 	const bg = useColorModeValue("primary.100", "primary.900")
+	const color = useColorModeValue("primary.600", "primary.100")
 	const [postData, setPostData] = useState(initialState)
 	const post = useSelector(state =>
 		currentId ? state.posts.find(post => post._id === currentId) : null
@@ -52,7 +53,14 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	if (!user?.result?.name) {
 		return (
-			<Stack align="center" direction="column" spacing="4">
+			<Stack
+				align="center"
+				color={color}
+				direction="column"
+				minWidth="320px"
+				p="8"
+				spacing="4"
+			>
 				<Text fontSize="4xl" fontWeight="bold">
 					<FaExclamationCircle />
 				</Text>
