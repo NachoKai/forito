@@ -11,7 +11,7 @@ import FormTextArea from "../common/FormTextArea"
 const initialState = {
 	title: "",
 	message: "",
-	tags: "",
+	tags: [],
 	selectedFile: "",
 }
 
@@ -90,7 +90,12 @@ const Form = ({ currentId, setCurrentId }) => {
 					maxLength="55"
 					name="tags"
 					value={postData.tags}
-					onChange={handleChange}
+					onChange={e => {
+						setPostData({
+							...postData,
+							tags: e.target.value.split(","),
+						})
+					}}
 				/>
 				{/* <FormInput
 					child={
