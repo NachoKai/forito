@@ -8,16 +8,17 @@ import {
 	Text,
 	useColorModeValue,
 } from "@chakra-ui/react"
-import { FaEraser, FaPen, FaThumbsUp } from "react-icons/fa"
+import { FaEraser, FaPen } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
 
 import { getRandomId } from "../../utils/getRandomId"
 import { deletePost, likePost } from "../../redux/posts"
+import Likes from "./Likes"
 
 const Post = ({
 	setCurrentId,
-	post: { _id, title, name, message, likeCount, createdAt, tags, selectedFile },
+	post: { _id, title, name, message, likes, createdAt, tags, selectedFile },
 }) => {
 	const dispatch = useDispatch()
 	const bg = useColorModeValue("primary.50", "primary.800")
@@ -62,14 +63,11 @@ const Post = ({
 			<Stack direction="row" spacing="4">
 				<Button
 					colorScheme="primary"
-					leftIcon={<FaThumbsUp />}
 					size="sm"
 					variant="solid"
 					onClick={() => dispatch(likePost(_id))}
 				>
-					<Text>
-						{likeCount} {likeCount !== 1 ? "Likes" : "Like"}
-					</Text>
+					<Likes likes={likes} />
 				</Button>
 				<Button
 					colorScheme="primary"
