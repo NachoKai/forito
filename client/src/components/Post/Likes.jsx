@@ -1,7 +1,8 @@
 import { FaRegThumbsUp, FaThumbsUp } from "react-icons/fa"
+import { getUser } from "../../utils/getUser"
 
 const Likes = ({ likes }) => {
-	const user = JSON.parse(localStorage.getItem("forito-profile"))
+	const user = getUser()
 	const likesQuantity = likes?.length
 
 	if (likesQuantity > 0) {

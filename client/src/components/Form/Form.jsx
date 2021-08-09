@@ -7,6 +7,7 @@ import { FaExclamationCircle } from "react-icons/fa"
 import { createPost, updatePost } from "../../redux/posts"
 import FormInput from "../common/FormInput"
 import FormTextArea from "../common/FormTextArea"
+import { getUser } from "../../utils/getUser"
 
 const initialState = {
 	title: "",
@@ -22,7 +23,7 @@ const Form = ({ currentId, setCurrentId }) => {
 	const post = useSelector(state =>
 		currentId ? state.posts.find(post => post._id === currentId) : null
 	)
-	const user = JSON.parse(localStorage.getItem("forito-profile"))
+	const user = getUser()
 
 	const handleSubmit = e => {
 		e.preventDefault()
