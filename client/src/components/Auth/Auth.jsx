@@ -146,13 +146,14 @@ const Auth = () => {
 						<Button
 							colorScheme="primary"
 							disabled={
-								!(
-									formData.firstName.trim().length > 0 &&
-									formData.lastName.trim().length > 0 &&
-									formData.email.trim().length > 0 &&
-									formData.password.trim().length > 0 &&
-									formData.confirmPassword.trim().length > 0
-								)
+								!(isSignup
+									? formData.firstName.trim().length > 0 &&
+									  formData.lastName.trim().length > 0 &&
+									  formData.email.trim().length > 0 &&
+									  formData.password.trim().length > 0 &&
+									  formData.confirmPassword.trim().length > 0
+									: formData.email.trim().length > 0 &&
+									  formData.password.trim().length > 0)
 							}
 							type="submit"
 							variant="solid"
