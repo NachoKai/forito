@@ -21,7 +21,7 @@ const Posts = ({ setCurrentId }) => {
 					</Text>
 				</Flex>
 			) : (
-				<Stack direction="column" spacing={8} w="100%">
+				<Stack direction="column-reverse" spacing={8} w="100%">
 					{posts?.map(post => (
 						<Post key={post._id} post={post} setCurrentId={setCurrentId} />
 					))}
