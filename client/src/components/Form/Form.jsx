@@ -122,7 +122,9 @@ const Form = ({ currentId, setCurrentId }) => {
 				<Stack spacing="4">
 					<Button
 						colorScheme="primary"
-						disabled={!(postData.title.length > 0 && postData.message.length > 0)}
+						disabled={
+							!(postData.title.trim().length > 0 && postData.message.trim().length > 0)
+						}
 						type="submit"
 					>
 						Submit

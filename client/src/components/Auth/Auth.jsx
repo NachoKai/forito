@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { GoogleLogin } from "react-google-login"
 import { Button, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react"
-import { FaGoogle } from "react-icons/fa"
+import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa"
 
 import { refreshTokenSetup } from "../../utils/refreshTokenSetup"
 import FormInput from "../common/FormInput"
@@ -27,6 +27,7 @@ const Auth = () => {
 	const history = useHistory()
 	const [isSignup, setIsSignup] = useState(false)
 	const [formData, setFormData] = useState(initialState)
+	const [showPassword, setShowPassword] = useState(false)
 
 	const onSuccess = res => {
 		const result = res?.profileObj
@@ -64,6 +65,8 @@ const Auth = () => {
 	}
 
 	const handleSwitch = () => setIsSignup(prevIsSignup => !prevIsSignup)
+
+	const handleShowPassword = () => setShowPassword(!showPassword)
 
 	return (
 		<Flex align="center" h={isSignup ? "90%" : "80%"} justify="center" w="100%">
@@ -118,7 +121,14 @@ const Auth = () => {
 							label="Password"
 							maxLength="55"
 							name="password"
-							type="password"
+							rightIcon={
+								showPassword ? (
+									<FaEye onClick={handleShowPassword} />
+								) : (
+									<FaEyeSlash onClick={handleShowPassword} />
+								)
+							}
+							type={showPassword ? "text" : "password"}
 							value={formData.password}
 							onChange={handleChange}
 						/>

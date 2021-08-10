@@ -1,4 +1,12 @@
-import { FormControl, FormHelperText, FormLabel, Input } from "@chakra-ui/react"
+import {
+	FormControl,
+	FormHelperText,
+	FormLabel,
+	Input,
+	InputGroup,
+	InputLeftElement,
+	InputRightElement,
+} from "@chakra-ui/react"
 
 const FormInput = ({
 	label,
@@ -11,6 +19,8 @@ const FormInput = ({
 	onChange,
 	child,
 	type,
+	leftIcon,
+	rightIcon,
 }) => {
 	return (
 		<FormControl isRequired={isRequired}>
@@ -19,21 +29,33 @@ const FormInput = ({
 			{child ? (
 				child
 			) : (
-				<Input
-					_placeholder={{ color: "gray" }}
-					autoFocus={autoFocus}
-					bg="white"
-					color="black"
-					errorBorderColor="red.300"
-					focusBorderColor="primary.200"
-					maxLength={maxLength}
-					name={name}
-					placeholder={label}
-					type={type}
-					value={value}
-					variant="outline"
-					onChange={onChange}
-				/>
+				<InputGroup>
+					{leftIcon && (
+						<InputLeftElement color="gray.300" fontSize="1.2em">
+							{leftIcon}
+						</InputLeftElement>
+					)}
+					<Input
+						_placeholder={{ color: "gray" }}
+						autoFocus={autoFocus}
+						bg="white"
+						color="black"
+						errorBorderColor="red.300"
+						focusBorderColor="primary.200"
+						maxLength={maxLength}
+						name={name}
+						placeholder={label}
+						type={type}
+						value={value}
+						variant="outline"
+						onChange={onChange}
+					/>
+					{rightIcon && (
+						<InputRightElement color="gray.300" fontSize="1.2em">
+							{rightIcon}
+						</InputRightElement>
+					)}
+				</InputGroup>
 			)}
 		</FormControl>
 	)
