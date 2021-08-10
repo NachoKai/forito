@@ -143,7 +143,20 @@ const Auth = () => {
 								onChange={handleChange}
 							/>
 						)}
-						<Button colorScheme="primary" type="submit" variant="solid">
+						<Button
+							colorScheme="primary"
+							disabled={
+								!(
+									formData.firstName.trim().length > 0 &&
+									formData.lastName.trim().length > 0 &&
+									formData.email.trim().length > 0 &&
+									formData.password.trim().length > 0 &&
+									formData.confirmPassword.trim().length > 0
+								)
+							}
+							type="submit"
+							variant="solid"
+						>
 							{isSignup ? "Sign Up" : "Login"}
 						</Button>
 					</Stack>
