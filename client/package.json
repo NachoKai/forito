@@ -25,6 +25,7 @@
 		"react-redux": "^7.2.4",
 		"react-router-dom": "^5.2.0",
 		"react-scripts": "^4.0.3",
+		"react-toastify": "^7.0.4",
 		"redux": "^4.1.1",
 		"redux-devtools-extension": "^2.13.9",
 		"redux-promise-middleware": "^6.1.2",
@@ -34,7 +35,8 @@
 		"web-vitals": "^2.1.0"
 	},
 	"scripts": {
-		"start": "react-scripts start",
+		"start": "NODE_ENV=production react-scripts start",
+		"dev": "NODE_ENV=development react-scripts start",
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"eject": "react-scripts eject"
