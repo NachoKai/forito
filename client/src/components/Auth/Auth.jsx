@@ -9,6 +9,8 @@ import { refreshTokenSetup } from "../../utils/refreshTokenSetup"
 import FormInput from "../common/FormInput"
 import { AUTH } from "../../redux/auth"
 import { login, signup } from "../../redux/auth"
+import showError from "../../utils/showError"
+import showSuccess from "../../utils/showSuccess"
 
 const initialState = {
 	firstName: "",
@@ -33,7 +35,9 @@ const Auth = () => {
 		try {
 			dispatch({ type: AUTH, data: { result, token } })
 			history.push("/")
+			showSuccess("Successfully logged in.")
 		} catch (err) {
+			showError("Something went wrong. Please try again.")
 			console.error(err)
 		}
 
@@ -41,8 +45,8 @@ const Auth = () => {
 	}
 
 	const onFailure = res => {
-		console.error("Google Sign In was unsuccessful. Please try again.")
-		console.error("Login failed: ", res)
+		showError("Something went wrong. Please try again.")
+		console.error("Google Sign In was unsuccessful. Login failed: ", res)
 	}
 
 	const handleSubmit = e => {

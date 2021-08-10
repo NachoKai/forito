@@ -1,4 +1,6 @@
 import { BrowserRouter, Route, Switch } from "react-router-dom"
+import { ToastContainer } from "react-toastify"
+import "react-toastify/dist/ReactToastify.css"
 
 import ErrorPage from "./components/ErrorPage/ErrorPage"
 import Navbar from "./components/Navbar/Navbar"
@@ -14,6 +16,7 @@ const App = () => {
 				<Route component={Auth} path="/auth" />
 				<Route component={ErrorPage} path="*" />
 			</Switch>
+			<ToastContainer />
 		</BrowserRouter>
 	)
 }
