@@ -5,6 +5,7 @@ import cors from "cors";
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
 import mongoSanitize from "express-mongo-sanitize";
+import filter from "content-filter";
 
 const app = express();
 
@@ -20,6 +21,8 @@ const CONNECTION_URL = process.env.MONGODB_URI;
 
 app.use(express.json({ limit: "", extended: true }));
 app.use(express.urlencoded({ limit: "5mb", extended: true }));
+app.use(cors());
+app.use(filter());
 app.use(mongoSanitize());
 app.use(
 	mongoSanitize({
@@ -28,7 +31,6 @@ app.use(
 		},
 	})
 );
-app.use(cors());
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
 
