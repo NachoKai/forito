@@ -5,7 +5,6 @@ import cors from "cors";
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
 import mongoSanitize from "express-mongo-sanitize";
-import xss from "express-xss";
 
 const app = express();
 
@@ -23,7 +22,6 @@ app.use(express.json({ limit: "", extended: true }));
 app.use(express.urlencoded({ limit: "5mb", extended: true }));
 app.use(cors());
 app.use(mongoSanitize());
-app.use(xss());
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
 
