@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux"
-import { Flex, Stack, Text } from "@chakra-ui/react"
+import { Flex, Skeleton, Stack, Text } from "@chakra-ui/react"
 import { FaPencilAlt } from "react-icons/fa"
 
 import { getAllPosts } from "../../redux/posts"
 import Post from "../Post/Post"
+import { getRandomId } from "../../utils/getRandomId"
 
 const Posts = ({ setCurrentId }) => {
 	const posts = useSelector(getAllPosts)
@@ -22,9 +23,13 @@ const Posts = ({ setCurrentId }) => {
 				</Flex>
 			) : (
 				<Stack direction="column-reverse" spacing={8} w="100%">
-					{posts?.map(post => (
-						<Post key={post._id} post={post} setCurrentId={setCurrentId} />
-					))}
+					{posts?.map(post =>
+						post ? (
+							<Post key={post._id} post={post} setCurrentId={setCurrentId} />
+						) : (
+							<Skeleton key={getRandomId()} borderRadius="lg" h="250px" />
+						)
+					)}
 				</Stack>
 			)}
 		</Flex>

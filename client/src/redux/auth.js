@@ -27,8 +27,8 @@ export const signup = (formData, router) => async dispatch => {
 		const { data } = await api.signup(formData)
 
 		dispatch({ type: AUTH, data })
-		showSuccess("Successfully signed up.")
 		router.push("/")
+		showSuccess("Successfully signed up.")
 	} catch (err) {
 		showError("Something went wrong. Please try again.")
 		console.error(err)

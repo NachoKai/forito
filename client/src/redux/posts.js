@@ -1,6 +1,7 @@
 import { createSelector } from "reselect"
 
 import * as api from "../api"
+import { getUser } from "../utils/getUser"
 import showError from "../utils/showError"
 import showSuccess from "../utils/showSuccess"
 
@@ -61,8 +62,10 @@ export const deletePost = id => async dispatch => {
 }
 
 export const likePost = id => async dispatch => {
+	const user = getUser()
+
 	try {
-		const { data } = await api.likePost(id)
+		const { data } = await api.likePost(id, user?.token)
 
 		dispatch({ type: LIKE_POST, payload: data })
 	} catch (err) {
