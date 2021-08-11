@@ -1,6 +1,7 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
+import sanitize from "mongo-sanitize";
 
 import User from "../models/user.js";
 
@@ -13,7 +14,8 @@ const secret = process.env.SECRET;
 const salt = process.env.SALT;
 
 export const login = async (req, res) => {
-	const { email, password } = req.body;
+	const email = sanitize(req.body.email);
+	const password = sanitize(req.body.password);
 
 	try {
 		const existingUser = await User.findOne({ email });
@@ -40,7 +42,11 @@ export const login = async (req, res) => {
 };
 
 export const signup = async (req, res) => {
-	const { email, password, confirmPassword, firstName, lastName } = req.body;
+	const email = sanitize(req.body.email);
+	const password = sanitize(req.body.password);
+	const firstName = sanitize(req.body.firstName);
+	const lastName = sanitize(req.body.lastName);
+	const confirmPassword = sanitize(req.body.confirmPassword);
 
 	try {
 		const existingUser = await User.findOne({ email });
@@ -58,7 +64,9 @@ export const signup = async (req, res) => {
 			password: hashedPassword,
 			name: `${firstName} ${lastName}`,
 		});
-		const token = jwt.sign({ email: result.email, id: result._id }, secret, { expiresIn: "1h" });
+		const token = jwt.sign({ email: result.email, id: result._id }, secret, {
+			expiresIn: "1h",
+		});
 
 		res.status(201).json({ result, token });
 	} catch (err) {

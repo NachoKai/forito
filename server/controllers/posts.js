@@ -1,5 +1,6 @@
 import express from "express";
 import mongoose from "mongoose";
+import sanitize from "mongo-sanitize";
 
 import PostMessage from "../models/postMessage.js";
 
@@ -16,7 +17,7 @@ export const getPosts = async (req, res) => {
 };
 
 export const getPost = async (req, res) => {
-	const { id } = req.params;
+	const id = sanitize(req.params.id);
 
 	try {
 		const post = await PostMessage.findById(id);
@@ -28,7 +29,7 @@ export const getPost = async (req, res) => {
 };
 
 export const createPost = async (req, res) => {
-	const post = req.body;
+	const post = sanitize(req.body.post);
 
 	const newPostMessage = new PostMessage({
 		...post,
@@ -45,8 +46,12 @@ export const createPost = async (req, res) => {
 };
 
 export const updatePost = async (req, res) => {
-	const { id } = req.params;
-	const { title, message, creator, selectedFile, tags } = req.body;
+	const id = sanitize(req.params.id);
+	const title = sanitize(req.body.title);
+	const message = sanitize(req.body.message);
+	const creator = sanitize(req.body.creator);
+	const selectedFile = sanitize(req.body.selectedFile);
+	const tags = sanitize(req.body.tags);
 
 	if (!mongoose.Types.ObjectId.isValid(id))
 		return res.status(404).send(`No post with id: ${id}`);
@@ -59,7 +64,7 @@ export const updatePost = async (req, res) => {
 };
 
 export const deletePost = async (req, res) => {
-	const { id } = req.params;
+	const id = sanitize(req.params.id);
 
 	if (!mongoose.Types.ObjectId.isValid(id))
 		return res.status(404).send(`No post with id: ${id}`);
@@ -69,7 +74,7 @@ export const deletePost = async (req, res) => {
 };
 
 export const likePost = async (req, res) => {
-	const { id } = req.params;
+	const id = sanitize(req.params.id);
 
 	if (!req.userId) {
 		return res.status(401).send("Unauthorized");
