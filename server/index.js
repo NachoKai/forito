@@ -8,6 +8,11 @@ import mongoSanitize from "express-mongo-sanitize";
 import filter from "content-filter";
 
 const app = express();
+const blackList = ["$", "{", "&&", "||"];
+const options = {
+	urlBlackList: blackList,
+	bodyBlackList: blackList,
+};
 
 app.get("env");
 
@@ -22,7 +27,7 @@ const CONNECTION_URL = process.env.MONGODB_URI;
 app.use(express.json({ limit: "", extended: true }));
 app.use(express.urlencoded({ limit: "5mb", extended: true }));
 app.use(cors());
-app.use(filter());
+app.use(filter(options));
 app.use(mongoSanitize());
 app.use(
 	mongoSanitize({
