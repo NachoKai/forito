@@ -14,7 +14,6 @@
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
 		"body-parser": "^1.19.0",
-		"content-filter": "^1.1.2",
 		"cors": "^2.8.5",
 		"dotenv": "^10.0.0",
 		"express": "^4.17.1",
@@ -22,7 +21,8 @@
 		"jsonwebtoken": "^8.5.1",
 		"mongo-sanitize": "^1.1.0",
 		"mongoose": "^5.13.6",
-		"nodemon": "^2.0.12"
+		"nodemon": "^2.0.12",
+		"xss-clean": "^0.1.1"
 	},
 	"devDependencies": {
 		"eslint": "^7.32.0",
