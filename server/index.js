@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
+import mongoSanitize from "express-mongo-sanitize";
 
 const app = express();
 
@@ -19,6 +20,14 @@ const CONNECTION_URL = process.env.MONGODB_URI;
 
 app.use(express.json({ limit: "", extended: true }));
 app.use(express.urlencoded({ limit: "5mb", extended: true }));
+app.use(mongoSanitize());
+app.use(
+	mongoSanitize({
+		onSanitize: ({ req, key }) => {
+			console.warn(`This request[${key}] is sanitized`, req);
+		},
+	})
+);
 app.use(cors());
 app.use("/posts", postRoutes);
 app.use("/user", userRoutes);
