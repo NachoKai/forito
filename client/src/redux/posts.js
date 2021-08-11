@@ -1,5 +1,3 @@
-import { createSelector } from "reselect"
-
 import * as api from "../api"
 import { getUser } from "../utils/getUser"
 import showError from "../utils/showError"
@@ -76,25 +74,23 @@ export const likePost = id => async dispatch => {
 
 /* ==========  REDUCERS  =========== */
 
-export const postsReducer = (posts = [], action) => {
+const initialState = {
+	posts: [],
+}
+
+export const postsReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case FETCH_ALL_POSTS:
 			return action.payload
 		case CREATE_POST:
-			return [...posts, action.payload]
+			return [...state, action.payload]
 		case DELETE_POST:
-			return posts.filter(post => post._id !== action.payload)
+			return state.filter(post => post._id !== action.payload)
 		case UPDATE_POST:
-			return posts.map(post => (post._id === action.payload._id ? action.payload : post))
+			return state.map(post => (post._id === action.payload._id ? action.payload : post))
 		case LIKE_POST:
-			return posts.map(post => (post._id === action.payload._id ? action.payload : post))
+			return state.map(post => (post._id === action.payload._id ? action.payload : post))
 		default:
-			return posts
+			return state
 	}
 }
-
-/* ==========  SELECTORS  =========== */
-
-const getPostsState = state => state.posts
-
-export const getAllPosts = createSelector(getPostsState, posts => posts)

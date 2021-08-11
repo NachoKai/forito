@@ -17,14 +17,14 @@ const initialState = {
 }
 
 const Form = ({ currentId, setCurrentId }) => {
+	const [postData, setPostData] = useState(initialState)
 	const dispatch = useDispatch()
+	const user = getUser()
 	const bg = useColorModeValue("primary.100", "primary.900")
 	const color = useColorModeValue("primary.600", "primary.100")
-	const [postData, setPostData] = useState(initialState)
 	const post = useSelector(state =>
-		currentId ? state.posts.find(post => post._id === currentId) : null
+		currentId ? state.posts.find(message => message._id === currentId) : null
 	)
-	const user = getUser()
 
 	const handleSubmit = e => {
 		e.preventDefault()
@@ -34,12 +34,11 @@ const Form = ({ currentId, setCurrentId }) => {
 		} else {
 			dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }))
 		}
-
 		handleClear()
 	}
 
 	const handleClear = () => {
-		setCurrentId(null)
+		setCurrentId(0)
 		setPostData(initialState)
 	}
 

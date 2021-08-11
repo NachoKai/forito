@@ -2,7 +2,8 @@
 	"env": {
 		"browser": true,
 		"node": true,
-		"es2021": true
+		"es2021": true,
+		"jest": true
 	},
 	"extends": ["plugin:react/recommended", "plugin:prettier/recommended", "eslint:recommended"],
 	"parserOptions": {
@@ -68,5 +69,10 @@
 				"proseWrap": "always"
 			}
 		]
+	},
+	"settings": {
+		"react": {
+			"version": "detect"
+		}
 	}
 }

@@ -5,8 +5,10 @@
 	"main": "index.js",
 	"type": "module",
 	"scripts": {
-		"start": "NODE_ENV=production node index.js",
-		"dev": "NODE_ENV=development nodemon index.js"
+		"lint": "eslint \"**/*.js\"",
+		"test": "npm run lint && jest --coverage",
+		"start": "npm run test && NODE_ENV=production node index.js",
+		"dev": "npm run test && NODE_ENV=development nodemon index.js"
 	},
 	"keywords": [],
 	"author": "Nacho Caiafa",
@@ -30,6 +32,7 @@
 		"eslint-plugin-import": "^2.24.0",
 		"eslint-plugin-node": "^11.1.0",
 		"eslint-plugin-prettier": "^3.4.0",
-		"eslint-plugin-promise": "^5.1.0"
+		"eslint-plugin-promise": "^5.1.0",
+		"jest": "^27.0.6"
 	}
 }

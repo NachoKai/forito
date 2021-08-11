@@ -37,7 +37,11 @@ export const signup = (formData, router) => async dispatch => {
 
 /* ==========  REDUCERS  =========== */
 
-export const authReducer = (state = { authData: null }, action) => {
+const initialState = {
+	authData: null,
+}
+
+export const authReducer = (state = initialState, action) => {
 	switch (action.type) {
 		case AUTH:
 			localStorage.setItem("forito-profile", JSON.stringify({ ...action?.data }))
@@ -51,5 +55,3 @@ export const authReducer = (state = { authData: null }, action) => {
 			return state
 	}
 }
-
-/* ==========  SELECTORS  =========== */

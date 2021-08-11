@@ -8,7 +8,6 @@ const isDev = process.env.NODE_ENV !== "production";
 const envFile = isDev ? `.env.${process.env.NODE_ENV}` : ".env";
 
 dotenv.config({ path: envFile });
-
 const secret = process.env.SECRET;
 const salt = process.env.SALT;
 
