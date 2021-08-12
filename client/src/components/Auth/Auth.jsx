@@ -123,9 +123,9 @@ const Auth = () => {
 							name="password"
 							rightIcon={
 								showPassword ? (
-									<FaEye onClick={handleShowPassword} />
-								) : (
 									<FaEyeSlash onClick={handleShowPassword} />
+								) : (
+									<FaEye onClick={handleShowPassword} />
 								)
 							}
 							type={showPassword ? "text" : "password"}
