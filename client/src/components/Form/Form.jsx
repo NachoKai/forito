@@ -107,7 +107,7 @@ const Form = ({ currentId, setCurrentId }) => {
 						onChange={e => {
 							setPostData({
 								...postData,
-								tags: e.target.value.split(","),
+								tags: e.target.value.trim().split(","),
 							})
 						}}
 					/>
