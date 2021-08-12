@@ -15,7 +15,6 @@ export const login = (formData, router) => async dispatch => {
 
 		dispatch({ type: AUTH, data })
 		router.push("/")
-		showSuccess("Successfully logged in.")
 	} catch (err) {
 		showError("Something went wrong. Please try again.")
 		console.error(err)
