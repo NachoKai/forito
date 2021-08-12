@@ -61,7 +61,7 @@ const Navbar = () => {
 
 			<Stack align="center" direction="row" spacing="2">
 				{user?.result ? (
-					<Stack align="center" direction="row" spacing="4">
+					<Stack align="center" direction="row" spacing="2">
 						{user?.result.imageUrl && (
 							<Image
 								alt={user?.result?.name}
@@ -71,7 +71,19 @@ const Navbar = () => {
 								src={user?.result?.imageUrl}
 							/>
 						)}
-						{user?.result.name && <Text isTruncated>{user.result.name}</Text>}
+						{user?.result.name && (
+							<Text
+								isTruncated
+								display={{
+									sm: "none",
+									md: "flex",
+									lg: "flex",
+									xl: "flex",
+								}}
+							>
+								{user.result.name}
+							</Text>
+						)}
 						<Button colorScheme="primary" size="sm" variant="outline" onClick={logout}>
 							Logout
 						</Button>

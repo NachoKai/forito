@@ -91,7 +91,7 @@ const Auth = () => {
 										autoFocus
 										isRequired
 										label="First Name"
-										maxLength="55"
+										maxLength="25"
 										name="firstName"
 										value={formData.firstName}
 										onChange={handleChange}
@@ -99,7 +99,7 @@ const Auth = () => {
 									<FormInput
 										isRequired
 										label="Last Name"
-										maxLength="55"
+										maxLength="25"
 										name="lastName"
 										value={formData.lastName}
 										onChange={handleChange}
@@ -110,7 +110,7 @@ const Auth = () => {
 						<FormInput
 							isRequired
 							label="Email"
-							maxLength="55"
+							maxLength="35"
 							name="email"
 							type="email"
 							value={formData.email}
@@ -119,7 +119,7 @@ const Auth = () => {
 						<FormInput
 							isRequired
 							label="Password"
-							maxLength="55"
+							maxLength="35"
 							name="password"
 							rightIcon={
 								showPassword ? (
@@ -136,7 +136,7 @@ const Auth = () => {
 							<FormInput
 								isRequired
 								label="Repeat Password"
-								maxLength="55"
+								maxLength="35"
 								name="confirmPassword"
 								type="password"
 								value={formData.confirmPassword}
