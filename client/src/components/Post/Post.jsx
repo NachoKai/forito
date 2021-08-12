@@ -44,14 +44,14 @@ const Post = ({
 			)}
 			<Stack direction="row" spacing="2">
 				<Flex direction="column">
-					<Image
+					{/* <Image
 						alt={user?.result?.name}
 						borderRadius="full"
 						boxSize="50px"
 						fallback={" "}
 						objectFit="cover"
 						src={user?.result?.imageUrl}
-					/>
+					/> */}
 				</Flex>
 				<Flex direction="column">
 					<Text fontSize="lg">{name}</Text>
