@@ -77,7 +77,11 @@ const Post = ({
 					colorScheme="primary"
 					disabled={!user?.result}
 					size="sm"
-					variant="outline"
+					variant={
+						likes.find(like => like === (user?.result?.googleId || user?.result?._id))
+							? "ghost"
+							: "outline"
+					}
 					onClick={() => dispatch(likePost(_id))}
 				>
 					<Likes likes={likes} />
