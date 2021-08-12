@@ -1,12 +1,10 @@
 import { FaRegThumbsUp, FaThumbsUp } from "react-icons/fa"
-import { getUser } from "../../utils/getUser"
 
-const Likes = ({ likes }) => {
-	const user = getUser()
+const Likes = ({ likes, isUserLike }) => {
 	const likesQuantity = likes?.length
 
 	if (likesQuantity > 0) {
-		return likes.find(like => like === (user?.result?.googleId || user?.result?._id)) ? (
+		return isUserLike ? (
 			<>
 				<FaThumbsUp fontSize="small" />
 				&nbsp;

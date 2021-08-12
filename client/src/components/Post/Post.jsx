@@ -27,6 +27,8 @@ const Post = ({
 	const user = getUser()
 	const isPostCreator =
 		user?.result?.googleId === creator || user?.result?._id === creator
+	const isUserLike =
+		likes && likes.find(like => like === (user?.result?.googleId || user?.result?._id))
 
 	return (
 		<Stack bg={bg} borderRadius="lg" direction="column" p="8" spacing={4} w="100%">
@@ -42,16 +44,18 @@ const Post = ({
 					w="100%"
 				/>
 			)}
-			<Stack direction="row" spacing="2">
+			<Stack direction="row" spacing="4">
 				<Flex direction="column">
-					{/* <Image
-						alt={user?.result?.name}
-						borderRadius="full"
-						boxSize="50px"
-						fallback={" "}
-						objectFit="cover"
-						src={user?.result?.imageUrl}
-					/> */}
+					{/* {avatar && (
+						<Image
+							alt={user?.result?.name}
+							borderRadius="full"
+							boxSize="50px"
+							fallback={" "}
+							objectFit="cover"
+							src={avatar}
+						/>
+					)} */}
 				</Flex>
 				<Flex direction="column">
 					<Text fontSize="lg">{name}</Text>
@@ -77,14 +81,10 @@ const Post = ({
 					colorScheme="primary"
 					disabled={!user?.result}
 					size="sm"
-					variant={
-						likes.find(like => like === (user?.result?.googleId || user?.result?._id))
-							? "ghost"
-							: "outline"
-					}
+					variant={isUserLike ? "ghost" : "outline"}
 					onClick={() => dispatch(likePost(_id))}
 				>
-					<Likes likes={likes} />
+					<Likes isUserLike={isUserLike} likes={likes} />
 				</Button>
 				{isPostCreator && (
 					<Button
