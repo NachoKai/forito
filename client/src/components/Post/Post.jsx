@@ -36,21 +36,23 @@ const Post = ({
 					borderRadius="lg"
 					boxSize="320px"
 					fallback={<CircularProgress isIndeterminate color="primary.200" />}
+					maxHeight="350px"
 					objectFit="cover"
 					src={selectedFile}
+					w="100%"
 				/>
 			)}
 			<Stack direction="row" spacing="2">
-				{/* <Flex direction="column">
+				<Flex direction="column">
 					<Image
 						alt={user?.result?.name}
 						borderRadius="full"
 						boxSize="50px"
-						fallback={""}
+						fallback={" "}
 						objectFit="cover"
 						src={user?.result?.imageUrl}
 					/>
-				</Flex> */}
+				</Flex>
 				<Flex direction="column">
 					<Text fontSize="lg">{name}</Text>
 					<Text fontSize="sm">

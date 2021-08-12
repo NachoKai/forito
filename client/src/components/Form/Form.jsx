@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Stack, Text, useColorModeValue } from "@chakra-ui/react"
-// import FileBase from "react-file-base64"
+import { Button, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react"
+import FileBase from "react-file-base64"
 import { FaExclamationCircle } from "react-icons/fa"
 
 import { createPost, updatePost } from "../../redux/posts"
@@ -71,69 +71,77 @@ const Form = ({ currentId, setCurrentId }) => {
 	}
 
 	return (
-		<form noValidate autoComplete="off" onSubmit={handleSubmit}>
-			<Stack bg={bg} borderRadius="lg" minWidth="320px" p="8" spacing={4}>
-				<Text fontSize="xl" fontWeight="bold">
-					{currentId ? "Edit" : "Create"} Post
-				</Text>
-				<FormInput
-					isRequired
-					label="Title"
-					maxLength="105"
-					name="title"
-					value={postData.title}
-					onChange={handleChange}
-				/>
-				<FormTextArea
-					isRequired
-					label="Message"
-					maxLength="5000"
-					name="message"
-					value={postData.message}
-					onChange={handleChange}
-				/>
-				<FormInput
-					helper="Separated by commas."
-					label="Tags"
-					maxLength="55"
-					name="tags"
-					value={postData.tags}
-					onChange={e => {
-						setPostData({
-							...postData,
-							tags: e.target.value.split(","),
-						})
-					}}
-				/>
-				{/* <FormInput
-					child={
-						<FileBase
-							multiple={false}
-							type="file"
-							onDone={({ base64 }) => {
-								setPostData({ ...postData, selectedFile: base64 })
-							}}
-						/>
-					}
-					label="Upload image"
-				/> */}
-
-				<Stack spacing="4">
-					<Button
-						colorScheme="primary"
-						disabled={
-							!(postData.title.trim().length > 0 && postData.message.trim().length > 0)
+		<Flex position="sticky" top="61px" w="100%">
+			<form
+				noValidate
+				autoComplete="off"
+				style={{ width: "100%" }}
+				onSubmit={handleSubmit}
+			>
+				<Stack bg={bg} borderRadius="lg" minWidth="320px" p="8" spacing={4}>
+					<Text fontSize="xl" fontWeight="bold">
+						{currentId ? "Edit" : "Create"} Post ✏️
+					</Text>
+					<FormInput
+						isRequired
+						label="Title"
+						maxLength="105"
+						name="title"
+						value={postData.title}
+						onChange={handleChange}
+					/>
+					<FormTextArea
+						isRequired
+						label="Message"
+						maxLength="5000"
+						name="message"
+						value={postData.message}
+						onChange={handleChange}
+					/>
+					<FormInput
+						helper="Separated by commas"
+						label="Tags"
+						maxLength="55"
+						name="tags"
+						value={postData.tags}
+						onChange={e => {
+							setPostData({
+								...postData,
+								tags: e.target.value.split(","),
+							})
+						}}
+					/>
+					<FormInput
+						child={
+							<FileBase
+								multiple={false}
+								type="file"
+								onDone={({ base64 }) => {
+									setPostData({ ...postData, selectedFile: base64 })
+								}}
+							/>
 						}
-						type="submit"
-					>
-						Submit
-					</Button>
-					<Button colorScheme="primary" variant="outline" onClick={handleClear}>
-						Clear
-					</Button>
+						helper="Max: 5mb"
+						label="Upload image"
+					/>
+
+					<Stack spacing="4">
+						<Button
+							colorScheme="primary"
+							disabled={
+								!(postData.title.trim().length > 0 && postData.message.trim().length > 0)
+							}
+							type="submit"
+						>
+							Submit
+						</Button>
+						<Button colorScheme="primary" variant="outline" onClick={handleClear}>
+							Clear
+						</Button>
+					</Stack>
 				</Stack>
-			</Stack>
-		</form>
+			</form>
+		</Flex>
 	)
 }
 

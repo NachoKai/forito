@@ -19,7 +19,7 @@ const PORT = process.env.PORT || 5000;
 const CONNECTION_URL = process.env.MONGODB_URI;
 
 app.use(express.json({ limit: "", extended: true }));
-app.use(express.urlencoded({ limit: "5mb", extended: true }));
+app.use(express.urlencoded({ limit: "20mb", extended: true }));
 app.use(cors());
 app.use(mongoSanitize());
 app.use("/posts", postRoutes);

@@ -55,7 +55,7 @@ const Navbar = () => {
 		>
 			<Stack align="center" direction="row" spacing="2">
 				<Text color={color} fontSize="xl" fontWeight="bold">
-					<Link to="/">Forito</Link>
+					<Link to="/">Forito ✨</Link>
 				</Text>
 			</Stack>
 
