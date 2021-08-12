@@ -7,7 +7,7 @@
 	"scripts": {
 		"lint": "eslint \"**/*.js\"",
 		"test": "npm run lint && jest --coverage",
-		"start": "npm run test && NODE_ENV=production node index.js",
+		"start": "NODE_ENV=production node index.js",
 		"dev": "npm run test && NODE_ENV=development nodemon index.js"
 	},
 	"keywords": [],
