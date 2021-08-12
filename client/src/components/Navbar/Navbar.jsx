@@ -61,7 +61,7 @@ const Navbar = () => {
 
 			<Stack align="center" direction="row" spacing="2">
 				{user?.result ? (
-					<Stack align="center" direction="row" spacing="2">
+					<Stack align="center" direction="row" spacing="4">
 						{user?.result.imageUrl && (
 							<Image
 								alt={user?.result?.name}
