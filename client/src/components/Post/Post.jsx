@@ -65,13 +65,13 @@ const Post = ({
 				{title}
 			</Text>
 			<Text fontSize="md">{message}</Text>
-			<Flex>
+			<Stack direction="row" overflow="hidden" spacing="2">
 				{tags?.map(tag => (
-					<Badge key={getRandomId()} bg="primary.400" color="white" marginX="0.5">
+					<Badge key={getRandomId()} bg="primary.400" color="white">
 						{tag}
 					</Badge>
 				))}
-			</Flex>
+			</Stack>
 			<Stack direction="row" spacing="4">
 				<Button
 					colorScheme="primary"
