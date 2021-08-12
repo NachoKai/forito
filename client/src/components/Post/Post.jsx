@@ -36,9 +36,8 @@ const Post = ({
 				<Image
 					alt={title}
 					borderRadius="lg"
-					boxSize="320px"
+					boxSize="400px"
 					fallback={<CircularProgress isIndeterminate color="primary.200" />}
-					maxHeight="350px"
 					objectFit="cover"
 					src={selectedFile}
 					w="100%"
@@ -69,7 +68,7 @@ const Post = ({
 				{title}
 			</Text>
 			<Text fontSize="md">{message}</Text>
-			<Stack direction="row" overflow="hidden" spacing="2">
+			<Stack direction="row" overflow="auto" spacing="2">
 				{tags?.map(tag => (
 					<Badge key={getRandomId()} bg="primary.400" color="white">
 						{tag}
