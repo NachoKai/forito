@@ -1,4 +1,11 @@
+import { useRef, useState } from "react"
 import {
+	AlertDialog,
+	AlertDialogBody,
+	AlertDialogContent,
+	AlertDialogFooter,
+	AlertDialogHeader,
+	AlertDialogOverlay,
 	Badge,
 	Button,
 	Flex,
@@ -31,6 +38,37 @@ const Post = ({
 	const isUserLike =
 		likes && likes.find(like => like === (user?.result?.googleId || user?.result?._id))
 	const avatar = false
+	const [isOpen, setIsOpen] = useState(false)
+
+	const Dialog = () => {
+		const cancelRef = useRef()
+		const onCancel = () => setIsOpen(false)
+		const onAccept = () => {
+			dispatch(deletePost(_id))
+			setIsOpen(false)
+		}
+
+		return (
+			<AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onCancel}>
+				<AlertDialogOverlay>
+					<AlertDialogContent>
+						<AlertDialogHeader fontSize="lg" fontWeight="bold">
+							Delete Post
+						</AlertDialogHeader>
+						<AlertDialogBody>Are you sure you want to delete this post?</AlertDialogBody>
+						<AlertDialogFooter>
+							<Button ref={cancelRef} onClick={onCancel}>
+								Cancel
+							</Button>
+							<Button colorScheme="red" ml={3} onClick={onAccept}>
+								Delete
+							</Button>
+						</AlertDialogFooter>
+					</AlertDialogContent>
+				</AlertDialogOverlay>
+			</AlertDialog>
+		)
+	}
 
 	return (
 		<Stack bg={bg} borderRadius="lg" direction="column" p="8" spacing={4} w="100%">
@@ -105,12 +143,13 @@ const Post = ({
 						leftIcon={<FaEraser />}
 						size="sm"
 						variant="solid"
-						onClick={() => dispatch(deletePost(_id))}
+						onClick={() => setIsOpen(true)}
 					>
 						Delete
 					</Button>
 				)}
 			</Stack>
+			<Dialog />
 		</Stack>
 	)
 }
