@@ -1,9 +1,10 @@
 import {
 	Badge,
 	Button,
-	CircularProgress,
 	Flex,
 	Image,
+	Skeleton,
+	SkeletonCircle,
 	Stack,
 	Text,
 	useColorModeValue,
@@ -29,6 +30,7 @@ const Post = ({
 		user?.result?.googleId === creator || user?.result?._id === creator
 	const isUserLike =
 		likes && likes.find(like => like === (user?.result?.googleId || user?.result?._id))
+	const avatar = true
 
 	return (
 		<Stack bg={bg} borderRadius="lg" direction="column" p="8" spacing={4} w="100%">
@@ -37,24 +39,24 @@ const Post = ({
 					alt={title}
 					borderRadius="lg"
 					boxSize="400px"
-					fallback={<CircularProgress isIndeterminate color="primary.200" />}
-					objectFit="cover"
+					fallback={<Skeleton borderRadius="lg" h="400px" />}
+					fit="cover"
 					src={selectedFile}
 					w="100%"
 				/>
 			)}
 			<Stack direction="row" spacing="4">
 				<Flex direction="column">
-					{/* {avatar && (
+					{avatar && (
 						<Image
 							alt={user?.result?.name}
 							borderRadius="full"
 							boxSize="50px"
-							fallback={" "}
+							fallback={<SkeletonCircle size="50" />}
 							objectFit="cover"
 							src={avatar}
 						/>
-					)} */}
+					)}
 				</Flex>
 				<Flex direction="column">
 					<Text fontSize="lg">{name}</Text>
