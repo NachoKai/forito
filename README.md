@@ -1,8 +1,5 @@
 # forito  
   
-Client: https://forito.vercel.app/  
-Server: https://forito-app.herokuapp.com/  
-  
 Add:  
 *Sections  
 -Forum  
@@ -49,3 +46,13 @@ E.g.
 -------Post a Global  
 -------Post b  
 -------Post c  
+  
+# Env variables  
+## Client  
+REACT_APP_GOOGLE_CLIENT_ID=  
+## Server
+PORT=  
+MONGODB_URI=  
+SECRET=  
+SALT=  
+  
