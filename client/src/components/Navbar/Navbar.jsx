@@ -19,8 +19,8 @@ import { getUser } from "../../utils/getUser"
 const Navbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode()
 	const gradColor = useColorModeValue(
-		"linear(to-l, primary.400,primary.900)",
-		"linear(to-l, primary.600,primary.100)"
+		"linear(to-l, primary.600,primary.900)",
+		"linear(to-l, primary.400,primary.100)"
 	)
 	const dispatch = useDispatch()
 	const location = useLocation()

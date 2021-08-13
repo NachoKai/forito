@@ -30,7 +30,7 @@ const Post = ({
 		user?.result?.googleId === creator || user?.result?._id === creator
 	const isUserLike =
 		likes && likes.find(like => like === (user?.result?.googleId || user?.result?._id))
-	const avatar = true
+	const avatar = false
 
 	return (
 		<Stack bg={bg} borderRadius="lg" direction="column" p="8" spacing={4} w="100%">
