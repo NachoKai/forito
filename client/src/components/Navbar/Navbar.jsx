@@ -18,7 +18,10 @@ import { getUser } from "../../utils/getUser"
 
 const Navbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode()
-	const color = useColorModeValue("primary.600", "primary.100")
+	const gradColor = useColorModeValue(
+		"linear(to-l, primary.400,primary.900)",
+		"linear(to-l, primary.600,primary.100)"
+	)
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const history = useHistory()
@@ -54,7 +57,7 @@ const Navbar = () => {
 			zIndex="3"
 		>
 			<Stack align="center" direction="row" spacing="2">
-				<Text color={color} fontSize="xl" fontWeight="bold">
+				<Text bgClip="text" bgGradient={gradColor} fontSize="xl" fontWeight="bold">
 					<Link to="/">Forito ✨</Link>
 				</Text>
 			</Stack>

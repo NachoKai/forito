@@ -25,6 +25,10 @@ const Form = ({ currentId, setCurrentId }) => {
 	const post = useSelector(state =>
 		currentId ? state.posts.find(message => message._id === currentId) : null
 	)
+	const gradColor = useColorModeValue(
+		"linear(to-l, primary.600,primary.900)",
+		"linear(to-l, primary.100,primary.400)"
+	)
 
 	const handleSubmit = e => {
 		e.preventDefault()
@@ -128,6 +132,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 					<Stack spacing="4">
 						<Button
+							bgGradient={gradColor}
 							colorScheme="primary"
 							disabled={
 								!(postData.title.trim().length > 0 && postData.message.trim().length > 0)
