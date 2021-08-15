@@ -5,6 +5,7 @@
 	"private": true,
 	"proxy": "http://localhost:5000",
 	"dependencies": {
+		"@ajna/pagination": "^1.4.13",
 		"@chakra-ui/react": "^1.6.6",
 		"@emotion/react": "^11.4.1",
 		"@emotion/styled": "^11.3.0",
