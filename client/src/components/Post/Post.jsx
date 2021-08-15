@@ -1,11 +1,5 @@
-import { useRef, useState } from "react"
+import { useState } from "react"
 import {
-	AlertDialog,
-	AlertDialogBody,
-	AlertDialogContent,
-	AlertDialogFooter,
-	AlertDialogHeader,
-	AlertDialogOverlay,
 	Badge,
 	Button,
 	Flex,
@@ -24,6 +18,7 @@ import { getRandomId } from "../../utils/getRandomId"
 import { deletePost, likePost } from "../../redux/posts"
 import Likes from "./Likes"
 import { getUser } from "../../utils/getUser"
+import Dialog from "../common/Dialog"
 
 const Post = ({
 	setCurrentId,
@@ -38,37 +33,7 @@ const Post = ({
 	const isUserLike =
 		likes && likes.find(like => like === (user?.result?.googleId || user?.result?._id))
 	const avatar = false
-	const [isOpen, setIsOpen] = useState(false)
-
-	const Dialog = () => {
-		const cancelRef = useRef()
-		const onCancel = () => setIsOpen(false)
-		const onAccept = () => {
-			dispatch(deletePost(_id))
-			setIsOpen(false)
-		}
-
-		return (
-			<AlertDialog isOpen={isOpen} leastDestructiveRef={cancelRef} onClose={onCancel}>
-				<AlertDialogOverlay>
-					<AlertDialogContent>
-						<AlertDialogHeader fontSize="lg" fontWeight="bold">
-							Delete Post
-						</AlertDialogHeader>
-						<AlertDialogBody>Are you sure you want to delete this post?</AlertDialogBody>
-						<AlertDialogFooter>
-							<Button ref={cancelRef} onClick={onCancel}>
-								Cancel
-							</Button>
-							<Button colorScheme="red" ml={3} onClick={onAccept}>
-								Delete
-							</Button>
-						</AlertDialogFooter>
-					</AlertDialogContent>
-				</AlertDialogOverlay>
-			</AlertDialog>
-		)
-	}
+	const [isDialogOpen, setIsDialogOpen] = useState(false)
 
 	return (
 		<Stack bg={bg} borderRadius="lg" direction="column" p="8" spacing={4} w="100%">
@@ -143,13 +108,21 @@ const Post = ({
 						leftIcon={<FaEraser />}
 						size="sm"
 						variant="solid"
-						onClick={() => setIsOpen(true)}
+						onClick={() => setIsDialogOpen(true)}
 					>
 						Delete
 					</Button>
 				)}
 			</Stack>
-			<Dialog />
+			<Dialog
+				_id={_id}
+				action={() => dispatch(deletePost(_id))}
+				button="Delete"
+				isDialogOpen={isDialogOpen}
+				message="Are you sure you want to delete this post?"
+				setIsDialogOpen={setIsDialogOpen}
+				title="Delete Post"
+			/>
 		</Stack>
 	)
 }
