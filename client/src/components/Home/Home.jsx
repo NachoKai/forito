@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
-import { Stack } from "@chakra-ui/react"
+import { Flex, Stack } from "@chakra-ui/react"
 
 import Posts from "../Posts/Posts"
 import Form from "../Form/Form"
 import { getPosts } from "../../redux/posts"
+import Pagination from "../Paginate/Pagination"
 
 const Home = () => {
 	const dispatch = useDispatch()
@@ -25,6 +26,7 @@ const Home = () => {
 			</Stack>
 			<Stack>
 				<Form currentId={currentId} setCurrentId={setCurrentId} />
+				<Flex>{/* <Pagination /> */}</Flex>
 			</Stack>
 		</Stack>
 	)
