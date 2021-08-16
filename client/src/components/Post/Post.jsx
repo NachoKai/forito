@@ -83,7 +83,9 @@ const Post = ({
 			>
 				{title}
 			</Text>
-			<Text fontSize="md">{message}</Text>
+			<Text fontSize="md" noOfLines={[2, 4, 6]}>
+				{message}
+			</Text>
 			<Stack direction="row" overflow="auto" spacing="2">
 				{tags?.map(tag => (
 					<Badge key={getRandomId()} bg="primary.400" color="white">
