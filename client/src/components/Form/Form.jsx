@@ -119,7 +119,6 @@ const Form = ({ currentId, setCurrentId }) => {
 						child={
 							<FileBase
 								multiple={false}
-								style="background:red"
 								type="file"
 								onDone={({ base64 }) => {
 									setPostData({ ...postData, selectedFile: base64 })

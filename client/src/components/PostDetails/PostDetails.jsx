@@ -1,6 +1,15 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Badge, Divider, Heading, Image, Skeleton, Stack, Text } from "@chakra-ui/react"
+import {
+	Badge,
+	Divider,
+	Heading,
+	Image,
+	Skeleton,
+	Stack,
+	Text,
+	useColorModeValue,
+} from "@chakra-ui/react"
 import { formatDistance } from "date-fns"
 import { useHistory, useParams } from "react-router-dom"
 import { getPost, getPostsBySearch } from "../../redux/posts"
@@ -11,6 +20,8 @@ const PostDetails = () => {
 	const dispatch = useDispatch()
 	const history = useHistory()
 	const { id } = useParams()
+	const bg = useColorModeValue("primary.100", "primary.900")
+	const color = useColorModeValue("primary.600", "primary.100")
 
 	useEffect(() => {
 		dispatch(getPost(id))
@@ -86,40 +97,46 @@ const PostDetails = () => {
 						) + " ago"}
 					</Text>
 				</Stack>
-
 				<Divider />
-
 				<Text fontSize="lg" fontWeight="bold">
 					Comments
 				</Text>
-
 				<Divider />
 			</Stack>
 
 			{!!recommendedPosts?.length && (
-				<Stack>
-					<Text gutterBottom>You might also like:</Text>
-					<Divider />
-					<Stack>
+				<Stack spacing="8">
+					<Text fontWeight="bold">You might also like:</Text>
+					<Stack direction="row" spacing="8">
 						{recommendedPosts?.map(
 							({ title, name, message, likes, selectedFile, _id }) => (
 								<Stack
 									key={_id}
-									style={{ margin: "20px", cursor: "pointer" }}
+									bg={bg}
+									borderRadius="lg"
+									color={color}
+									cursor="pointer"
+									p="8"
+									spacing="2"
+									w="300px"
 									onClick={() => openPost(_id)}
 								>
-									<Text gutterBottom>{title}</Text>
-									<Text gutterBottom>{name}</Text>
-									<Text gutterBottom>{message}</Text>
-									<Text gutterBottom>Likes: {likes.length}</Text>
-									<Image
-										alt={post?.title}
-										borderRadius="lg"
-										boxSize="200px"
-										fallback={<Skeleton borderRadius="lg" h="200px" />}
-										fit="cover"
-										src={selectedFile}
-									/>
+									<Text fontSize="lg" fontWeight="bold">
+										{title}
+									</Text>
+									<Text>{name}</Text>
+									<Text>{message}</Text>
+									<Text>Likes: {likes.length}</Text>
+									{selectedFile && (
+										<Image
+											alt={post?.title}
+											borderRadius="lg"
+											fallback={<Skeleton borderRadius="lg" h="200px" />}
+											fit="cover"
+											p="8px 0 0 0"
+											src={selectedFile}
+										/>
+									)}
 								</Stack>
 							)
 						)}
