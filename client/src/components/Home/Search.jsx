@@ -75,6 +75,8 @@ const Search = () => {
 								<TagsContainer>
 									<ChipInput
 										disableUnderline
+										placeholder="Search Tags"
+										style={{ margin: "0 8px", padding: "8px 8px 0 0" }}
 										value={searchTags}
 										onAdd={tag => handleAddTag(tag)}
 										onDelete={tag => handleDeleteTag(tag)}
@@ -83,7 +85,6 @@ const Search = () => {
 							}
 							label="Search Tags"
 							maxLength="105"
-							placeholder="Search Tags"
 						/>
 						{/* <TagsInput searchTags={searchTags} setSearchTags={setSearchTags} /> */}
 						<Button colorScheme="primary" onClick={searchPost}>
@@ -103,7 +104,5 @@ const TagsContainer = styled(Flex)`
 	color: black;
 	display: flex;
 	align-items: center;
-	height: 100%;
-	padding: 4px;
 	border-radius: 8px;
 `

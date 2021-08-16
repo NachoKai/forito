@@ -17,8 +17,6 @@ const Home = () => {
 	const page = query.get("page") || 1
 	const searchQuery = query.get("searchQuery")
 
-	console.log("searchQuery", searchQuery)
-
 	return (
 		<Stack
 			direction={{ sm: "column-reverse", md: "column-reverse", lg: "row", xl: "row" }}

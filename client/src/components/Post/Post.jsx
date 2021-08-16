@@ -13,6 +13,7 @@ import {
 import { FaEraser, FaPen } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
+import { useHistory } from "react-router-dom"
 
 import { getRandomId } from "../../utils/getRandomId"
 import { deletePost, likePost } from "../../redux/posts"
@@ -34,6 +35,11 @@ const Post = ({
 		likes && likes.find(like => like === (user?.result?.googleId || user?.result?._id))
 	const avatar = false
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
+	const history = useHistory()
+
+	const openPost = () => {
+		history.push(`/posts/${_id}`)
+	}
 
 	return (
 		<Stack bg={bg} borderRadius="lg" direction="column" p="8" spacing={4} w="100%">
@@ -69,7 +75,12 @@ const Post = ({
 					</Text>
 				</Flex>
 			</Stack>
-			<Text fontSize="3xl" marginBottom="2">
+			<Text
+				_hover={{ cursor: "pointer", textDecoration: "underline" }}
+				fontSize="3xl"
+				marginBottom="2"
+				onClick={openPost}
+			>
 				{title}
 			</Text>
 			<Text fontSize="md">{message}</Text>

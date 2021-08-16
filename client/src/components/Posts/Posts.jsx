@@ -17,7 +17,7 @@ const Posts = ({ setCurrentId }) => {
 					<Skeleton borderRadius="lg" h="250px" />
 				</Stack>
 			) : (
-				<Stack direction="column-reverse" spacing={8} w="100%">
+				<Stack direction="column" spacing={8} w="100%">
 					{!havePosts ? (
 						<Flex align="center" direction="column" marginY="64px">
 							<Text color="primary.400" fontSize="6xl">
