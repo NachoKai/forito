@@ -12,8 +12,6 @@ const PostDetails = () => {
 	const history = useHistory()
 	const { id } = useParams()
 
-	if (!post) return null
-
 	useEffect(() => {
 		dispatch(getPost(id))
 	}, [id])
@@ -35,6 +33,8 @@ const PostDetails = () => {
 	}
 
 	const recommendedPosts = posts?.filter(({ _id }) => _id !== post?._id)
+
+	if (!post) return null
 
 	return (
 		<Stack borderRadius="lg" p="24px" spacing="8">
