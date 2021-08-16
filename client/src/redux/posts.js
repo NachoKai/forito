@@ -6,36 +6,52 @@ import showSuccess from "../utils/showSuccess"
 /* ==========  CONSTANTS  =========== */
 
 const FETCH_ALL_POSTS = "FETCH_ALL_POSTS"
+const FETCH_POST = "FETCH_POST"
 const CREATE_POST = "CREATE_POST"
 const UPDATE_POST = "UPDATE_POST"
 const DELETE_POST = "DELETE_POST"
 const LIKE_POST = "LIKE_POST"
-const START_LOADING_POST = "START_LOADING_POST"
-const FETCH_POST_BY_SEARCH = "FETCH_POST_BY_SEARCH"
-const END_LOADING_POST = "END_LOADING_POST"
+const START_LOADING_POSTS = "START_LOADING_POSTS"
+const FETCH_POSTS_BY_SEARCH = "FETCH_POSTS_BY_SEARCH"
+const END_LOADING_POSTS = "END_LOADING_POSTS"
 
 /* ==========  ACTIONS  =========== */
 
-export const getPosts = () => async dispatch => {
+export const getPost = id => async dispatch => {
 	try {
-		const { data } = await api.fetchPosts()
+		dispatch({ type: START_LOADING_POSTS })
+		const { data } = await api.fetchPost(id)
 
-		dispatch({ type: FETCH_ALL_POSTS, payload: data })
+		dispatch({ type: FETCH_POST, payload: { post: data } })
 	} catch (err) {
-		showError("Something went wrong. Please try again.")
+		console.error(err)
+	}
+}
+
+export const getPosts = page => async dispatch => {
+	try {
+		dispatch({ type: START_LOADING_POSTS })
+
+		const {
+			data: { data, currentPage, numberOfPages },
+		} = await api.fetchPosts(page)
+
+		dispatch({ type: FETCH_ALL_POSTS, payload: { data, currentPage, numberOfPages } })
+		dispatch({ type: END_LOADING_POSTS })
+	} catch (err) {
 		console.error(err)
 	}
 }
 
 export const getPostsBySearch = searchQuery => async dispatch => {
 	try {
-		dispatch({ type: START_LOADING_POST })
+		dispatch({ type: START_LOADING_POSTS })
 		const {
 			data: { data },
 		} = await api.fetchPostsBySearch(searchQuery)
 
-		dispatch({ type: FETCH_POST_BY_SEARCH, payload: { data } })
-		dispatch({ type: END_LOADING_POST })
+		dispatch({ type: FETCH_POSTS_BY_SEARCH, payload: { data } })
+		dispatch({ type: END_LOADING_POSTS })
 	} catch (err) {
 		console.error(err)
 	}
@@ -92,21 +108,43 @@ export const likePost = id => async dispatch => {
 /* ==========  REDUCERS  =========== */
 
 const initialState = {
-	posts: [],
+	state: [],
+	isLoading: true,
 }
 
 export const postsReducer = (state = initialState, action) => {
-	switch (action.type) {
+	const { type, payload } = action
+
+	switch (type) {
+		case START_LOADING_POSTS:
+			return { ...state, isLoading: true }
+		case END_LOADING_POSTS:
+			return { ...state, isLoading: false }
 		case FETCH_ALL_POSTS:
-			return action.payload
+			return {
+				...state,
+				posts: payload.data,
+				currentPage: payload.currentPage,
+				numberOfPages: payload.numberOfPages,
+			}
+		case FETCH_POSTS_BY_SEARCH:
+			return { ...state, posts: payload.data }
+		case FETCH_POST:
+			return { ...state, post: payload.post }
 		case CREATE_POST:
-			return [...state, action.payload]
+			return { ...state, posts: [...state.posts, payload] }
 		case DELETE_POST:
-			return state.filter(post => post._id !== action.payload)
+			return { ...state, posts: state.posts.filter(post => post._id !== payload) }
 		case UPDATE_POST:
-			return state.map(post => (post._id === action.payload._id ? action.payload : post))
+			return {
+				...state,
+				posts: state.posts.map(post => (post._id === payload._id ? payload : post)),
+			}
 		case LIKE_POST:
-			return state.map(post => (post._id === action.payload._id ? action.payload : post))
+			return {
+				...state,
+				posts: state.posts.map(post => (post._id === payload._id ? payload : post)),
+			}
 		default:
 			return state
 	}

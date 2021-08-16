@@ -75,7 +75,7 @@ const Form = ({ currentId, setCurrentId }) => {
 	}
 
 	return (
-		<Flex position="sticky" top="61px" w="100%">
+		<Flex w="100%">
 			<form
 				noValidate
 				autoComplete="off"

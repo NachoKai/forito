@@ -6,7 +6,7 @@ import Post from "../Post/Post"
 import { getRandomId } from "../../utils/getRandomId"
 
 const Posts = ({ setCurrentId }) => {
-	const posts = useSelector(state => state.posts)
+	const { posts } = useSelector(state => state.posts)
 	const havePosts = posts?.length > 0
 
 	return (

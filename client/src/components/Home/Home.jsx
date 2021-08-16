@@ -11,27 +11,23 @@ import { getPosts, getPostsBySearch } from "../../redux/posts"
 import Pagination from "../Paginate/Pagination"
 import FormInput from "../common/FormInput"
 
-// function useQuery() {
-// 	return new URLSearchParams(useLocation().search)
-// }
+function useQuery() {
+	return new URLSearchParams(useLocation().search)
+}
 
 const Home = () => {
 	const dispatch = useDispatch()
 	const [currentId, setCurrentId] = useState(0)
-	// const query = useQuery()
+	const query = useQuery()
 	const history = useHistory()
-	// const page = query.get("page") || 1
-	// const searchQuery = query.get("searchQuery")
+	const page = query.get("page") || 1
+	const searchQuery = query.get("searchQuery")
 	const [searchValue, setSearchValue] = useState("")
 	const [searchTags, setSearchTags] = useState([])
 
-	useEffect(() => {
-		dispatch(getPosts())
-	}, [currentId, dispatch])
-
 	const searchPost = () => {
 		if (searchValue.trim() || searchTags) {
-			dispatch(getPostsBySearch({ searchValue, tags: searchTags.join(",") }))
+			dispatch(getPostsBySearch({ search: searchValue, tags: searchTags.join(",") }))
 			history.push(
 				`/posts/search?searchQuery=${searchValue || "none"}&tags=${searchTags.join(",")}`
 			)
@@ -41,7 +37,7 @@ const Home = () => {
 	}
 
 	const handleKeyPress = e => {
-		if (e.keyCode === 13) {
+		if (e.keyCode === 188 || e.keyCode === 13) {
 			searchPost()
 		}
 	}
@@ -61,7 +57,7 @@ const Home = () => {
 			</Stack>
 
 			<Stack>
-				{/* <FormInput
+				<FormInput
 					label="Search Posts"
 					maxLength="105"
 					name="search"
@@ -81,10 +77,12 @@ const Home = () => {
 				</TagsContainer>
 				<Button colorScheme="primary" onClick={searchPost}>
 					Search
-				</Button> */}
+				</Button>
 
 				<Form currentId={currentId} setCurrentId={setCurrentId} />
-				<Flex>{/* <Pagination /> */}</Flex>
+				<Flex>
+					<Pagination page={page} />
+				</Flex>
 			</Stack>
 		</Stack>
 	)
