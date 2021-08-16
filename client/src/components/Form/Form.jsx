@@ -23,7 +23,7 @@ const Form = ({ currentId, setCurrentId }) => {
 	const bg = useColorModeValue("primary.100", "primary.900")
 	const color = useColorModeValue("primary.600", "primary.100")
 	const post = useSelector(state =>
-		currentId ? state.posts.find(message => message._id === currentId) : null
+		currentId ? state.posts?.posts?.find(message => message._id === currentId) : null
 	)
 	const gradColor = useColorModeValue(
 		"linear(to-l, primary.600,primary.900)",
@@ -75,14 +75,14 @@ const Form = ({ currentId, setCurrentId }) => {
 	}
 
 	return (
-		<Flex w="100%">
+		<Flex minWidth="320px" w="100%">
 			<form
 				noValidate
 				autoComplete="off"
 				style={{ width: "100%" }}
 				onSubmit={handleSubmit}
 			>
-				<Stack bg={bg} borderRadius="lg" minWidth="320px" p="8" spacing={4}>
+				<Stack bg={bg} borderRadius="lg" p="8" spacing={4}>
 					<Text fontSize="xl" fontWeight="bold">
 						{currentId ? "Edit" : "Create"} Post ✏️
 					</Text>

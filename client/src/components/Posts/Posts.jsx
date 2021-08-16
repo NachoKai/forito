@@ -1,38 +1,36 @@
 import { useSelector } from "react-redux"
-import { Flex, Skeleton, Stack } from "@chakra-ui/react"
-// import { FaPencilAlt } from "react-icons/fa"
+import { Flex, Skeleton, Stack, Text } from "@chakra-ui/react"
+import { FaPencilAlt } from "react-icons/fa"
 
 import Post from "../Post/Post"
-import { getRandomId } from "../../utils/getRandomId"
 
 const Posts = ({ setCurrentId }) => {
-	const { posts } = useSelector(state => state.posts)
+	const { posts, isLoading } = useSelector(state => state.posts)
 	const havePosts = posts?.length > 0
 
 	return (
 		<Flex flexGrow w="100%">
-			{!havePosts ? (
-				<>
-					<Stack spacing={8} w="100%">
-						<Skeleton borderRadius="lg" h="250px" />
-						<Skeleton borderRadius="lg" h="250px" />
-						<Skeleton borderRadius="lg" h="250px" />
-					</Stack>
-					{/* <Text color="primary.400" fontSize="6xl">
-							<FaPencilAlt />
-						</Text>
-						<Text color="primary.400" fontSize="6xl">
-							No posts yet
-						</Text> */}
-				</>
+			{isLoading ? (
+				<Stack spacing={8} w="100%">
+					<Skeleton borderRadius="lg" h="250px" />
+					<Skeleton borderRadius="lg" h="250px" />
+					<Skeleton borderRadius="lg" h="250px" />
+				</Stack>
 			) : (
 				<Stack direction="column-reverse" spacing={8} w="100%">
-					{posts.map(post =>
-						post ? (
+					{!havePosts ? (
+						<Flex align="center" direction="column" marginY="64px">
+							<Text color="primary.400" fontSize="6xl">
+								<FaPencilAlt />
+							</Text>
+							<Text color="primary.400" fontSize="6xl">
+								No posts yet
+							</Text>
+						</Flex>
+					) : (
+						posts?.map(post => (
 							<Post key={post._id} post={post} setCurrentId={setCurrentId} />
-						) : (
-							<Skeleton key={getRandomId()} borderRadius="lg" h="250px" />
-						)
+						))
 					)}
 				</Stack>
 			)}

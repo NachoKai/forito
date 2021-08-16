@@ -18,6 +18,7 @@ import styled from "styled-components"
 
 import { getPostsBySearch } from "../../redux/posts"
 import FormInput from "../common/FormInput"
+// import TagsInput from "../common/TagsInput"
 
 const Search = () => {
 	const dispatch = useDispatch()
@@ -48,44 +49,43 @@ const Search = () => {
 		setSearchTags(searchTags.filter(tag => tag !== tagToDelete))
 
 	return (
-		<>
-			<Accordion allowToggle bg={bg} borderRadius="lg" colorScheme="primary">
-				<AccordionItem>
-					<AccordionButton>
-						<Text fontSize="lg" fontWeight="bold">
-							Search
-						</Text>
-						<AccordionIcon />
-					</AccordionButton>
-					<AccordionPanel>
-						<Stack>
-							<FormInput
-								label="Search Posts"
-								maxLength="105"
-								name="search"
-								placeholder="Search Posts"
-								value={searchValue}
-								onChange={e => {
-									setSearchValue(e.target.value)
-								}}
-								onKeyPress={handleKeyPress}
+		<Accordion allowToggle bg={bg} borderRadius="lg" colorScheme="primary">
+			<AccordionItem>
+				<AccordionButton>
+					<Text fontSize="lg" fontWeight="bold">
+						Search
+					</Text>
+					<AccordionIcon />
+				</AccordionButton>
+				<AccordionPanel>
+					<Stack>
+						<FormInput
+							label="Search Posts"
+							maxLength="105"
+							name="search"
+							placeholder="Search Posts"
+							value={searchValue}
+							onChange={e => {
+								setSearchValue(e.target.value)
+							}}
+							onKeyPress={handleKeyPress}
+						/>
+						{/* <TagsInput searchTags={searchTags} setSearchTags={setSearchTags} /> */}
+						<TagsContainer>
+							<ChipInput
+								label="Search Tags"
+								value={searchTags}
+								onAdd={tag => handleAddTag(tag)}
+								onDelete={tag => handleDeleteTag(tag)}
 							/>
-							<TagsContainer>
-								<ChipInput
-									label="Search Tags"
-									value={searchTags}
-									onAdd={tag => handleAddTag(tag)}
-									onDelete={tag => handleDeleteTag(tag)}
-								/>
-							</TagsContainer>
-							<Button colorScheme="primary" onClick={searchPost}>
-								Search
-							</Button>
-						</Stack>
-					</AccordionPanel>
-				</AccordionItem>
-			</Accordion>
-		</>
+						</TagsContainer>
+						<Button colorScheme="primary" onClick={searchPost}>
+							Search
+						</Button>
+					</Stack>
+				</AccordionPanel>
+			</AccordionItem>
+		</Accordion>
 	)
 }
 

@@ -15,7 +15,9 @@ const Home = () => {
 	const [currentId, setCurrentId] = useState(0)
 	const query = useQuery()
 	const page = query.get("page") || 1
-	// const searchQuery = query.get("searchQuery")
+	const searchQuery = query.get("searchQuery")
+
+	console.log("searchQuery", searchQuery)
 
 	return (
 		<Stack
@@ -29,7 +31,7 @@ const Home = () => {
 			<Stack spacing="4">
 				<Form currentId={currentId} setCurrentId={setCurrentId} />
 				<Stack spacing="4">
-					<Pagination page={page} />
+					{!searchQuery && <Pagination page={page} />}
 					<Search />
 				</Stack>
 			</Stack>
