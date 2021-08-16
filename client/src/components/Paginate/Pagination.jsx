@@ -19,14 +19,16 @@ const Paginate = ({ page }) => {
 
 	return (
 		<Container bg={bg} borderRadius="lg" color={color}>
-			<Pagination
-				count={numberOfPages}
-				page={Number(page) || 1}
-				renderItem={item => (
-					<PaginationItem {...item} component={Link} to={`/posts?page=${item.page}`} />
-				)}
-				shape="rounded"
-			/>
+			{numberOfPages > 1 && (
+				<Pagination
+					count={numberOfPages}
+					page={Number(page) || 1}
+					renderItem={item => (
+						<PaginationItem {...item} component={Link} to={`/posts?page=${item.page}`} />
+					)}
+					shape="rounded"
+				/>
+			)}
 		</Container>
 	)
 }
