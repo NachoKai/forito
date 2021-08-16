@@ -87,11 +87,13 @@ const Post = ({
 				{message}
 			</Text>
 			<Stack direction="row" overflow="auto" spacing="2">
-				{tags?.map(tag => (
-					<Badge key={getRandomId()} bg="primary.400" color="white">
-						{tag}
-					</Badge>
-				))}
+				{[...new Set(tags)]
+					.filter(e => e)
+					.map(tag => (
+						<Badge key={getRandomId()} bg="primary.400" color="white">
+							{tag}
+						</Badge>
+					))}
 			</Stack>
 			<Stack direction="row" spacing="4">
 				<Button

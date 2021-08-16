@@ -107,7 +107,7 @@ const Form = ({ currentId, setCurrentId }) => {
 						label="Tags"
 						maxLength="55"
 						name="tags"
-						value={postData.tags}
+						value={[...new Set(postData.tags)]}
 						onChange={e => {
 							setPostData({
 								...postData,
