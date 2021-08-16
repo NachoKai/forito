@@ -29,7 +29,7 @@ const Posts = ({ setCurrentId }) => {
 						</Flex>
 					) : (
 						posts?.map(post => (
-							<Post key={post._id} post={post} setCurrentId={setCurrentId} />
+							<Post key={post?._id} post={post} setCurrentId={setCurrentId} />
 						))
 					)}
 				</Stack>

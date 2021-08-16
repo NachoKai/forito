@@ -79,7 +79,7 @@ export const updatePost = async (req, res) => {
 
 	await Post.findByIdAndUpdate(id, updatedPost, { new: true });
 
-	res.json(updatedPost);
+	res.status(200).json(updatedPost);
 };
 
 export const deletePost = async (req, res) => {
@@ -89,7 +89,7 @@ export const deletePost = async (req, res) => {
 		return res.status(404).send(`No post with id: ${escape(id)}`);
 
 	await Post.findByIdAndRemove(id);
-	res.json({ message: "Post deleted successfully." });
+	res.status(200).json({ message: "Post deleted successfully." });
 };
 
 export const likePost = async (req, res) => {
@@ -113,7 +113,7 @@ export const likePost = async (req, res) => {
 
 	const updatedPost = await Post.findByIdAndUpdate(id, post, { new: true });
 
-	res.json(updatedPost);
+	res.status(200).json(updatedPost);
 };
 
 export default router;

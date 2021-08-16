@@ -1,6 +1,6 @@
 // this is just a test for a chakra ui paginator
 import { useEffect, useState } from "react"
-import { Link } from "react-router-dom"
+// import { Link } from "react-router-dom"
 import { Center, Flex, Select, Stack } from "@chakra-ui/react"
 import {
 	PaginationContainer as Container,
@@ -47,8 +47,8 @@ const Paginate = () => {
 	useEffect(() => {
 		fetchPosts(pageSize, offset)
 			.then(posts => {
-				setPostsTotal(posts.count)
-				setPosts(posts.results)
+				setPostsTotal(posts?.count)
+				setPosts(posts?.results)
 			})
 			.catch(err => console.error(err))
 	}, [currentPage, pageSize, offset])

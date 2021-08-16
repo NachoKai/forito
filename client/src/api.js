@@ -14,6 +14,7 @@ API.interceptors.request.use(req => {
 	return req
 })
 
+//Posts
 export const fetchPost = id => API.get(`/posts/${id}`)
 export const fetchPosts = page => API.get(`/posts?page=${page}`)
 export const fetchPostsBySearch = searchQuery =>
@@ -25,5 +26,6 @@ export const likePost = id => API.patch(`/posts/${id}/likePost`)
 export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost)
 export const deletePost = id => API.delete(`/posts/${id}`)
 
+//User
 export const login = formData => API.post("/user/login", formData)
 export const signup = formData => API.post("/user/signup", formData)

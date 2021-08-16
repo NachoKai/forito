@@ -140,16 +140,16 @@ export const postsReducer = (state = initialState, action) => {
 		case CREATE_POST:
 			return { ...state, posts: [...state.posts, payload] }
 		case DELETE_POST:
-			return { ...state, posts: state.posts.filter(post => post._id !== payload) }
+			return { ...state, posts: state.posts?.filter(post => post?._id !== payload) }
 		case UPDATE_POST:
 			return {
 				...state,
-				posts: state.posts.map(post => (post._id === payload._id ? payload : post)),
+				posts: state.posts?.map(post => (post?._id === payload._id ? payload : post)),
 			}
 		case LIKE_POST:
 			return {
 				...state,
-				posts: state.posts.map(post => (post._id === payload._id ? payload : post)),
+				posts: state.posts?.map(post => (post?._id === payload._id ? payload : post)),
 			}
 		default:
 			return state

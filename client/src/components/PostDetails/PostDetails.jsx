@@ -43,7 +43,7 @@ const PostDetails = () => {
 		)
 	}
 
-	const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id)
+	const recommendedPosts = posts?.filter(({ _id }) => _id !== post?._id)
 
 	return (
 		<Stack borderRadius="lg" p="24px" spacing="8">
@@ -80,7 +80,10 @@ const PostDetails = () => {
 				)}
 
 				<Stack direction="row" spacing="2">
-					<Text fontSize="lg">Created by: {post?.name}</Text>
+					<Text fontSize="lg">Created by: </Text>
+					<Text fontSize="lg" fontWeight="bold">
+						{post?.name} &#183;
+					</Text>
 					<Text fontSize="lg">
 						{formatDistance(
 							new Date(),
@@ -98,12 +101,12 @@ const PostDetails = () => {
 				<Divider />
 			</Stack>
 
-			{!!recommendedPosts.length && (
+			{!!recommendedPosts?.length && (
 				<Stack>
 					<Text gutterBottom>You might also like:</Text>
 					<Divider />
 					<Stack>
-						{recommendedPosts.map(
+						{recommendedPosts?.map(
 							({ title, name, message, likes, selectedFile, _id }) => (
 								<Stack
 									key={_id}
