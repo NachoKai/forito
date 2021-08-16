@@ -19,7 +19,7 @@ const Home = () => {
 
 	return (
 		<Stack
-			direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
+			direction={{ sm: "column-reverse", md: "column-reverse", lg: "row", xl: "row" }}
 			p={{ sm: "0", md: "0", lg: "8", xl: "8" }}
 			spacing={8}
 		>
