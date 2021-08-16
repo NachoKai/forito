@@ -1,6 +1,15 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Badge, Divider, Heading, Image, Skeleton, Stack, Text } from "@chakra-ui/react"
+import {
+	Badge,
+	Center,
+	Divider,
+	Heading,
+	Image,
+	Skeleton,
+	Stack,
+	Text,
+} from "@chakra-ui/react"
 import { formatDistance } from "date-fns"
 import { useHistory, useParams } from "react-router-dom"
 import { getPost, getPostsBySearch } from "../../redux/posts"
@@ -63,18 +72,20 @@ const PostDetails = () => {
 					</Text>
 				</Stack>
 				{post?.selectedFile && (
-					<Image
-						alt={post?.title}
-						borderRadius="lg"
-						boxSize="400px"
-						fallback={<Skeleton borderRadius="lg" h="400px" />}
-						fit="cover"
-						src={
-							post?.selectedFile ||
-							"https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
-						}
-						w="100%"
-					/>
+					<Center>
+						<Image
+							alt={post?.title}
+							borderRadius="lg"
+							boxSize="100%"
+							fallback={<Skeleton borderRadius="lg" h="400px" />}
+							fit="cover"
+							maxWidth="1000px"
+							src={
+								post?.selectedFile ||
+								"https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
+							}
+						/>
+					</Center>
 				)}
 
 				<Divider />
