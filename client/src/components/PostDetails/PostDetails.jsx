@@ -56,15 +56,6 @@ const PostDetails = () => {
 				>
 					<Stack spacing="8" w="100%">
 						<Heading size="xl">{post?.title}</Heading>
-						{post?.tags && (
-							<Stack direction="row" spacing="2">
-								{post?.tags.map(tag => (
-									<Badge key={getRandomId()} bg="primary.400" color="white">
-										{tag}
-									</Badge>
-								))}
-							</Stack>
-						)}
 						<Text fontSize="md">{post?.message}</Text>
 					</Stack>
 
@@ -86,16 +77,29 @@ const PostDetails = () => {
 				</Stack>
 
 				<Stack direction="row" spacing="2">
-					<Text fontSize="lg">Created by: </Text>
-					<Text fontSize="lg" fontWeight="bold">
-						{post?.name} &#183;
-					</Text>
-					<Text fontSize="lg">
-						{formatDistance(
-							new Date(),
-							post?.createdAt ? new Date(post?.createdAt) : new Date()
-						) + " ago"}
-					</Text>
+					<Stack spacing="4">
+						{post?.tags && (
+							<Stack direction="row" spacing="2">
+								{post?.tags.map(tag => (
+									<Badge key={getRandomId()} bg="primary.400" color="white">
+										{tag}
+									</Badge>
+								))}
+							</Stack>
+						)}
+						<Stack direction="row" spacing="2">
+							<Text fontSize="lg">Created by: </Text>
+							<Text fontSize="lg" fontWeight="bold">
+								{post?.name} &#183;
+							</Text>
+							<Text fontSize="lg">
+								{formatDistance(
+									new Date(),
+									post?.createdAt ? new Date(post?.createdAt) : new Date()
+								) + " ago"}
+							</Text>
+						</Stack>
+					</Stack>
 				</Stack>
 				<Divider />
 				<Text fontSize="lg" fontWeight="bold">
