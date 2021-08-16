@@ -125,7 +125,7 @@ const PostDetails = () => {
 										{title}
 									</Text>
 									<Text>{name}</Text>
-									<Text>{message}</Text>
+									<Text noOfLines={[2, 4, 6]}>{message}</Text>
 									<Text>Likes: {likes.length}</Text>
 									{selectedFile && (
 										<Image
