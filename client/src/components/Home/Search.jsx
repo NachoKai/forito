@@ -1,24 +1,17 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { Button, Flex } from "@chakra-ui/react"
-import { useHistory, useLocation } from "react-router-dom"
+import { useHistory } from "react-router-dom"
 import ChipInput from "material-ui-chip-input"
 import styled from "styled-components"
 
 import { getPostsBySearch } from "../../redux/posts"
 import FormInput from "../common/FormInput"
 
-function useQuery() {
-	return new URLSearchParams(useLocation().search)
-}
-
-const Search = () => {
+const Search = ({ searchTags, setSearchTags }) => {
 	const dispatch = useDispatch()
 	const history = useHistory()
 	const [searchValue, setSearchValue] = useState("")
-	const [searchTags, setSearchTags] = useState([])
-	const query = useQuery()
-	const searchQuery = query.get("searchQuery")
 
 	const searchPost = () => {
 		if (searchValue.trim() || searchTags) {

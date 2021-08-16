@@ -1,15 +1,10 @@
-import { useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import { Button, Flex, Stack } from "@chakra-ui/react"
-import { useHistory, useLocation } from "react-router-dom"
-import ChipInput from "material-ui-chip-input"
-import styled from "styled-components"
+import { useState } from "react"
+import { Flex, Stack } from "@chakra-ui/react"
+import { useLocation } from "react-router-dom"
 
 import Posts from "../Posts/Posts"
 import Form from "../Form/Form"
-import { getPosts, getPostsBySearch } from "../../redux/posts"
 import Pagination from "../Paginate/Pagination"
-import FormInput from "../common/FormInput"
 import Search from "./Search"
 
 function useQuery() {
@@ -21,6 +16,7 @@ const Home = () => {
 	const query = useQuery()
 	const page = query.get("page") || 1
 	const searchQuery = query.get("searchQuery")
+	const [searchTags, setSearchTags] = useState([])
 
 	return (
 		<Stack
@@ -34,8 +30,15 @@ const Home = () => {
 			<Stack>
 				<Search />
 				<Form currentId={currentId} setCurrentId={setCurrentId} />
+
 				<Flex>
-					<Pagination page={page} />
+					{!searchQuery && !searchTags.length && (
+						<Pagination
+							page={page}
+							searchTags={searchTags}
+							setSearchTags={setSearchTags}
+						/>
+					)}
 				</Flex>
 			</Stack>
 		</Stack>
