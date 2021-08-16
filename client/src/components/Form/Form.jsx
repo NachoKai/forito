@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Button, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react"
 import FileBase from "react-file-base64"
 import { FaExclamationCircle } from "react-icons/fa"
+import { useHistory } from "react-router-dom"
 
 import { createPost, updatePost } from "../../redux/posts"
 import FormInput from "../common/FormInput"
@@ -20,6 +21,7 @@ const Form = ({ currentId, setCurrentId }) => {
 	const [postData, setPostData] = useState(initialState)
 	const dispatch = useDispatch()
 	const user = getUser()
+	const history = useHistory()
 	const bg = useColorModeValue("primary.100", "primary.900")
 	const color = useColorModeValue("primary.600", "primary.100")
 	const post = useSelector(state =>
@@ -34,7 +36,7 @@ const Form = ({ currentId, setCurrentId }) => {
 		e.preventDefault()
 
 		if (currentId === 0) {
-			dispatch(createPost({ ...postData, name: user?.result?.name }))
+			dispatch(createPost({ ...postData, name: user?.result?.name }, history))
 		} else {
 			dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }))
 		}

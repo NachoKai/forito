@@ -57,7 +57,7 @@ export const getPostsBySearch = searchQuery => async dispatch => {
 	}
 }
 
-export const createPost = post => async dispatch => {
+export const createPost = (post, history) => async dispatch => {
 	try {
 		dispatch({ type: START_LOADING })
 		const { data } = await api.createPost(post)
@@ -65,6 +65,7 @@ export const createPost = post => async dispatch => {
 		dispatch({ type: CREATE_POST, payload: data })
 		dispatch({ type: END_LOADING })
 		showSuccess("Successfully created post.")
+		history.push(`/posts/${data._id}`)
 	} catch (err) {
 		showError("Something went wrong. Please try again.")
 		console.error(err)
