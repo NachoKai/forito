@@ -62,15 +62,6 @@ const PostDetails = () => {
 
 				<Text fontSize="md">{post?.message}</Text>
 
-				<Stack direction="row" spacing="2">
-					<Text fontSize="lg">Created by: {post?.name}</Text>
-					<Text fontSize="lg">
-						{formatDistance(
-							new Date(),
-							post?.createdAt ? new Date(post?.createdAt) : new Date()
-						) + " ago"}
-					</Text>
-				</Stack>
 				{post?.selectedFile && (
 					<Center>
 						<Image
@@ -87,6 +78,16 @@ const PostDetails = () => {
 						/>
 					</Center>
 				)}
+
+				<Stack direction="row" spacing="2">
+					<Text fontSize="lg">Created by: {post?.name}</Text>
+					<Text fontSize="lg">
+						{formatDistance(
+							new Date(),
+							post?.createdAt ? new Date(post?.createdAt) : new Date()
+						) + " ago"}
+					</Text>
+				</Stack>
 
 				<Divider />
 
