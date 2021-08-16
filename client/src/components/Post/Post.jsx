@@ -29,13 +29,26 @@ const Post = ({
 	const bg = useColorModeValue("primary.50", "primary.800")
 	const bgDelete = useColorModeValue("red.500", "red.200")
 	const user = getUser()
+	const userId = user?.result.googleId || user?.result?._id
 	const isPostCreator =
 		user?.result?.googleId === creator || user?.result?._id === creator
 	const isUserLike =
 		likes && likes.find(like => like === (user?.result?.googleId || user?.result?._id))
+	const hasLikedPost = likes.find(like => like === userId)
 	const avatar = false
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
 	const history = useHistory()
+	const [likesMock, setLikesMock] = useState(likes)
+
+	const handleLike = async () => {
+		dispatch(likePost(_id))
+
+		if (hasLikedPost) {
+			setLikesMock(likes.filter(id => id !== userId))
+		} else {
+			setLikesMock([...likes, userId])
+		}
+	}
 
 	const openPost = () => {
 		history.push(`/posts/${_id}`)
@@ -101,9 +114,9 @@ const Post = ({
 					disabled={!user?.result}
 					size="sm"
 					variant={isUserLike ? "ghost" : "outline"}
-					onClick={() => dispatch(likePost(_id))}
+					onClick={handleLike}
 				>
-					<Likes isUserLike={isUserLike} likes={likes} />
+					<Likes isUserLike={isUserLike} likes={likesMock} />
 				</Button>
 				{isPostCreator && (
 					<Button
