@@ -47,8 +47,8 @@ const Post = ({
 				<Image
 					alt={title}
 					borderRadius="lg"
-					boxSize="400px"
-					fallback={<Skeleton borderRadius="lg" h="400px" />}
+					boxSize="300px"
+					fallback={<Skeleton borderRadius="lg" h="300px" />}
 					fit="cover"
 					src={selectedFile}
 					w="100%"
