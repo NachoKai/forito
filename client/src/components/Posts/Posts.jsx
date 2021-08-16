@@ -24,7 +24,7 @@ const Posts = ({ setCurrentId }) => {
 								<FaPencilAlt />
 							</Text>
 							<Text color="primary.400" fontSize="6xl">
-								No posts yet
+								No posts found
 							</Text>
 						</Flex>
 					) : (

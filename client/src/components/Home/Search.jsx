@@ -70,15 +70,22 @@ const Search = () => {
 							}}
 							onKeyPress={handleKeyPress}
 						/>
+						<FormInput
+							child={
+								<TagsContainer>
+									<ChipInput
+										disableUnderline
+										value={searchTags}
+										onAdd={tag => handleAddTag(tag)}
+										onDelete={tag => handleDeleteTag(tag)}
+									/>
+								</TagsContainer>
+							}
+							label="Search Tags"
+							maxLength="105"
+							placeholder="Search Tags"
+						/>
 						{/* <TagsInput searchTags={searchTags} setSearchTags={setSearchTags} /> */}
-						<TagsContainer>
-							<ChipInput
-								label="Search Tags"
-								value={searchTags}
-								onAdd={tag => handleAddTag(tag)}
-								onDelete={tag => handleDeleteTag(tag)}
-							/>
-						</TagsContainer>
 						<Button colorScheme="primary" onClick={searchPost}>
 							Search
 						</Button>
@@ -94,5 +101,9 @@ export default Search
 const TagsContainer = styled(Flex)`
 	background: white;
 	color: black;
+	display: flex;
+	align-items: center;
+	height: 100%;
+	padding: 4px;
 	border-radius: 8px;
 `
