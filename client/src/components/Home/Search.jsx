@@ -29,6 +29,8 @@ const Search = () => {
 
 	const searchPost = () => {
 		if (searchValue.trim() || searchTags) {
+			setSearchValue("")
+			setSearchTags([])
 			dispatch(getPostsBySearch({ search: searchValue, tags: searchTags.join(",") }))
 			history.push(
 				`/posts/search?searchQuery=${searchValue || "none"}&tags=${searchTags.join(",")}`
