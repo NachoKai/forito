@@ -105,20 +105,27 @@ const PostDetails = () => {
 			</Stack>
 
 			{!!recommendedPosts?.length && (
-				<Stack spacing="8">
+				<Stack overflow="auto" spacing="8">
 					<Text fontWeight="bold">You might also like:</Text>
-					<Stack direction="row" spacing="8">
+					<Stack
+						className="recommended-posts"
+						direction="row"
+						overflow="auto"
+						spacing="8"
+					>
 						{recommendedPosts?.map(
 							({ title, name, message, likes, selectedFile, _id }) => (
 								<Stack
 									key={_id}
 									bg={bg}
 									borderRadius="lg"
+									className="recommended-post"
 									color={color}
 									cursor="pointer"
+									h="100%"
+									minWidth="300px"
 									p="8"
 									spacing="2"
-									w="300px"
 									onClick={() => openPost(_id)}
 								>
 									<Text fontSize="lg" fontWeight="bold">
@@ -126,7 +133,7 @@ const PostDetails = () => {
 									</Text>
 									<Text>{name}</Text>
 									<Text noOfLines={[2, 4, 6]}>{message}</Text>
-									<Text>Likes: {likes.length}</Text>
+									<Text>Likes: {likes?.length}</Text>
 									{selectedFile && (
 										<Image
 											alt={post?.title}

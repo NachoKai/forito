@@ -36,7 +36,7 @@ const TagsInput = ({ setSearchTags, searchTags }) => {
 				<FormHelperText>Separated by commas.</FormHelperText>
 				<InputGroup bg="white" borderRadius="lg" overflow="auto">
 					<HStack spacing={4}>
-						{searchTags.length > 0 &&
+						{searchTags?.length > 0 &&
 							searchTags.map(tag => (
 								<Tag
 									key={tag}
