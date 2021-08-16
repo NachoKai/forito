@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { Flex, Stack } from "@chakra-ui/react"
+import { Stack } from "@chakra-ui/react"
 import { useLocation } from "react-router-dom"
 
 import Posts from "../Posts/Posts"
@@ -26,12 +26,12 @@ const Home = () => {
 			<Stack w="100%">
 				<Posts setCurrentId={setCurrentId} />
 			</Stack>
-			<Stack>
-				<Search />
+			<Stack spacing="4">
 				<Form currentId={currentId} setCurrentId={setCurrentId} />
-				<Flex>
+				<Stack spacing="4">
 					<Pagination page={page} />
-				</Flex>
+					<Search />
+				</Stack>
 			</Stack>
 		</Stack>
 	)

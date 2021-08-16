@@ -21,6 +21,7 @@ const FormInput = ({
 	type,
 	leftIcon,
 	rightIcon,
+	placeholder,
 }) => {
 	return (
 		<FormControl isRequired={isRequired}>
@@ -44,7 +45,7 @@ const FormInput = ({
 						focusBorderColor="primary.200"
 						maxLength={maxLength}
 						name={name}
-						placeholder={label}
+						placeholder={placeholder || label}
 						type={type}
 						value={value}
 						variant="outline"

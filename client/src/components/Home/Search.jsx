@@ -1,6 +1,17 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { Button, Flex } from "@chakra-ui/react"
+import {
+	Accordion,
+	AccordionButton,
+	AccordionIcon,
+	AccordionItem,
+	AccordionPanel,
+	Button,
+	Flex,
+	Stack,
+	Text,
+	useColorModeValue,
+} from "@chakra-ui/react"
 import { useHistory } from "react-router-dom"
 import ChipInput from "material-ui-chip-input"
 import styled from "styled-components"
@@ -13,6 +24,7 @@ const Search = () => {
 	const history = useHistory()
 	const [searchValue, setSearchValue] = useState("")
 	const [searchTags, setSearchTags] = useState([])
+	const bg = useColorModeValue("primary.100", "primary.900")
 
 	const searchPost = () => {
 		if (searchValue.trim() || searchTags) {
@@ -37,27 +49,42 @@ const Search = () => {
 
 	return (
 		<>
-			<FormInput
-				label="Search Posts"
-				maxLength="105"
-				name="search"
-				value={searchValue}
-				onChange={e => {
-					setSearchValue(e.target.value)
-				}}
-				onKeyPress={handleKeyPress}
-			/>
-			<TagsContainer>
-				<ChipInput
-					label="Search Tags"
-					value={searchTags}
-					onAdd={tag => handleAddTag(tag)}
-					onDelete={tag => handleDeleteTag(tag)}
-				/>
-			</TagsContainer>
-			<Button colorScheme="primary" onClick={searchPost}>
-				Search
-			</Button>
+			<Accordion allowToggle bg={bg} borderRadius="lg" colorScheme="primary">
+				<AccordionItem>
+					<AccordionButton>
+						<Text fontSize="lg" fontWeight="bold">
+							Search
+						</Text>
+						<AccordionIcon />
+					</AccordionButton>
+					<AccordionPanel>
+						<Stack>
+							<FormInput
+								label="Search Posts"
+								maxLength="105"
+								name="search"
+								placeholder="Search Posts"
+								value={searchValue}
+								onChange={e => {
+									setSearchValue(e.target.value)
+								}}
+								onKeyPress={handleKeyPress}
+							/>
+							<TagsContainer>
+								<ChipInput
+									label="Search Tags"
+									value={searchTags}
+									onAdd={tag => handleAddTag(tag)}
+									onDelete={tag => handleDeleteTag(tag)}
+								/>
+							</TagsContainer>
+							<Button colorScheme="primary" onClick={searchPost}>
+								Search
+							</Button>
+						</Stack>
+					</AccordionPanel>
+				</AccordionItem>
+			</Accordion>
 		</>
 	)
 }
@@ -67,4 +94,5 @@ export default Search
 const TagsContainer = styled(Flex)`
 	background: white;
 	color: black;
+	border-radius: 8px;
 `
