@@ -48,7 +48,7 @@ const PostDetails = () => {
 	if (!post) return null
 
 	return (
-		<Stack borderRadius="lg" p="24px" spacing="8">
+		<Stack borderRadius="lg" p="32px" spacing="8">
 			<Stack spacing="8">
 				<Stack
 					direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
