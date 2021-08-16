@@ -123,6 +123,7 @@ const PostDetails = () => {
 									color={color}
 									cursor="pointer"
 									h="100%"
+									maxWidth="300px"
 									minWidth="300px"
 									p="8"
 									spacing="2"
