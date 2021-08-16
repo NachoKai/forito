@@ -10,6 +10,9 @@ const CREATE_POST = "CREATE_POST"
 const UPDATE_POST = "UPDATE_POST"
 const DELETE_POST = "DELETE_POST"
 const LIKE_POST = "LIKE_POST"
+const START_LOADING_POST = "START_LOADING_POST"
+const FETCH_POST_BY_SEARCH = "FETCH_POST_BY_SEARCH"
+const END_LOADING_POST = "END_LOADING_POST"
 
 /* ==========  ACTIONS  =========== */
 
@@ -20,6 +23,20 @@ export const getPosts = () => async dispatch => {
 		dispatch({ type: FETCH_ALL_POSTS, payload: data })
 	} catch (err) {
 		showError("Something went wrong. Please try again.")
+		console.error(err)
+	}
+}
+
+export const getPostsBySearch = searchQuery => async dispatch => {
+	try {
+		dispatch({ type: START_LOADING_POST })
+		const {
+			data: { data },
+		} = await api.fetchPostsBySearch(searchQuery)
+
+		dispatch({ type: FETCH_POST_BY_SEARCH, payload: { data } })
+		dispatch({ type: END_LOADING_POST })
+	} catch (err) {
 		console.error(err)
 	}
 }
