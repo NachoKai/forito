@@ -63,6 +63,7 @@ const Post = ({
 					boxSize="250"
 					fallback={<Skeleton borderRadius="lg" h="250" />}
 					fit="cover"
+					loading="lazy"
 					src={selectedFile}
 					w="100%"
 				/>
@@ -75,6 +76,7 @@ const Post = ({
 							borderRadius="full"
 							boxSize="50px"
 							fallback={<SkeletonCircle size="50" />}
+							loading="lazy"
 							objectFit="cover"
 							src={avatar}
 						/>

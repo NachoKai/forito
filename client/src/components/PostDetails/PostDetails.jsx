@@ -66,6 +66,7 @@ const PostDetails = () => {
 							boxSize="100%"
 							fallback={<Skeleton borderRadius="lg" h="400px" />}
 							fit="cover"
+							loading="lazy"
 							maxWidth="1000px"
 							src={
 								post?.selectedFile ||
@@ -148,6 +149,7 @@ const PostDetails = () => {
 											borderRadius="lg"
 											fallback={<Skeleton borderRadius="lg" h="200px" />}
 											fit="cover"
+											loading="lazy"
 											p="8px 0 0 0"
 											src={selectedFile}
 										/>

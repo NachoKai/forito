@@ -70,6 +70,7 @@ const Navbar = () => {
 								alt={user?.result?.name}
 								borderRadius="full"
 								boxSize="25px"
+								loading="lazy"
 								objectFit="cover"
 								src={user?.result?.imageUrl}
 							/>
