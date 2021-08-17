@@ -87,10 +87,13 @@ const PostDetails = () => {
 								))}
 							</Stack>
 						)}
-						<Stack direction="row" spacing="2">
+						<Stack
+							direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
+							spacing="2"
+						>
 							<Text fontSize="lg">Created by: </Text>
 							<Text fontSize="lg" fontWeight="bold">
-								{post?.name} &#183;
+								{post?.name}
 							</Text>
 							<Text fontSize="lg">
 								{formatDistance(
