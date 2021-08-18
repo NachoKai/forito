@@ -2,7 +2,6 @@ import { useState } from "react"
 import {
 	Badge,
 	Button,
-	Flex,
 	Image,
 	Skeleton,
 	SkeletonCircle,
@@ -64,89 +63,92 @@ const Post = ({
 			}}
 			h="100%"
 			p="8"
-			spacing={4}
+			spacing={8}
 			w="100%"
 		>
-			<Stack h="100%" spacing="4" w="100%">
-				<Stack direction="row" spacing="2">
-					{avatar && (
-						<Image
-							alt={user?.result?.name}
-							borderRadius="full"
-							boxSize="50px"
-							fallback={<SkeletonCircle size="50" />}
-							loading="lazy"
-							objectFit="cover"
-							src={avatar}
-						/>
-					)}
-					<Stack direction="column">
-						<Text fontSize="lg">{name}</Text>
-						<Text fontSize="sm">
-							{formatDistance(new Date(), createdAt ? new Date(createdAt) : new Date()) +
-								" ago"}
-						</Text>
+			<Stack h="100%" justify="space-between" spacing="4" w="100%">
+				<Stack direction="column" spacing="4">
+					<Stack direction="row" spacing="2">
+						{avatar && (
+							<Image
+								alt={user?.result?.name}
+								borderRadius="full"
+								boxSize="50px"
+								fallback={<SkeletonCircle size="50" />}
+								loading="lazy"
+								objectFit="cover"
+								src={avatar}
+							/>
+						)}
+						<Stack direction="column">
+							<Text fontSize="lg">{name}</Text>
+							<Text fontSize="sm">
+								{formatDistance(
+									new Date(),
+									createdAt ? new Date(createdAt) : new Date()
+								) + " ago"}
+							</Text>
+						</Stack>
 					</Stack>
-				</Stack>
 
-				<Text
-					_hover={{ cursor: "pointer" }}
-					fontSize="3xl"
-					marginBottom="2"
-					onClick={openPost}
-				>
-					{title}
-				</Text>
+					<Text
+						_hover={{ cursor: "pointer" }}
+						fontSize="3xl"
+						marginBottom="2"
+						onClick={openPost}
+					>
+						{title}
+					</Text>
 
-				<Flex grow="1">
 					<Text fontSize="md" noOfLines={[2, 4, 6]}>
 						{message}
 					</Text>
-				</Flex>
-
-				<Stack direction="row" overflow="auto" spacing="2">
-					{[...new Set(tags)]
-						.filter(e => e)
-						.map(tag => (
-							<Badge key={getRandomId()} bg="primary.400" color="white">
-								{tag}
-							</Badge>
-						))}
 				</Stack>
 
-				<Stack direction="row" spacing="4">
-					<Button
-						colorScheme="primary"
-						disabled={!user?.result}
-						size="sm"
-						variant={isUserLike ? "ghost" : "outline"}
-						onClick={handleLike}
-					>
-						<Likes isUserLike={isUserLike} likes={likesMock} />
-					</Button>
-					{isPostCreator && (
+				<Stack direction="column" spacing="4">
+					<Stack direction="row" overflow="auto" spacing="2">
+						{[...new Set(tags)]
+							.filter(e => e)
+							.map(tag => (
+								<Badge key={getRandomId()} bg="primary.400" color="white">
+									{tag}
+								</Badge>
+							))}
+					</Stack>
+					<Stack direction="row" spacing="4">
 						<Button
 							colorScheme="primary"
-							leftIcon={<FaPen />}
+							disabled={!user?.result}
 							size="sm"
-							variant="outline"
-							onClick={() => setCurrentId(_id)}
+							variant={isUserLike ? "ghost" : "outline"}
+							onClick={handleLike}
 						>
-							Edit
+							<Likes isUserLike={isUserLike} likes={likesMock} />
 						</Button>
-					)}
-					{isPostCreator && (
-						<Button
-							bg={bgDelete}
-							colorScheme="primary"
-							leftIcon={<FaEraser />}
-							size="sm"
-							variant="solid"
-							onClick={() => setIsDialogOpen(true)}
-						>
-							Delete
-						</Button>
-					)}
+						{isPostCreator && (
+							<Button
+								colorScheme="primary"
+								leftIcon={<FaPen />}
+								size="sm"
+								variant="outline"
+								onClick={() => setCurrentId(_id)}
+							>
+								Edit
+							</Button>
+						)}
+						{isPostCreator && (
+							<Button
+								bg={bgDelete}
+								colorScheme="primary"
+								leftIcon={<FaEraser />}
+								size="sm"
+								variant="solid"
+								onClick={() => setIsDialogOpen(true)}
+							>
+								Delete
+							</Button>
+						)}
+					</Stack>
 				</Stack>
 			</Stack>
 
