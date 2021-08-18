@@ -131,8 +131,8 @@ const PostDetails = () => {
 									color={color}
 									cursor="pointer"
 									h="100%"
-									maxWidth="300px"
-									minWidth="300px"
+									maxWidth="320px"
+									minWidth="320px"
 									p="8"
 									spacing="2"
 									onClick={() => openPost(_id)}
