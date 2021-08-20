@@ -1,4 +1,4 @@
-import { Flex, Text } from "@chakra-ui/react"
+import { Flex, Heading, Text } from "@chakra-ui/react"
 import { FaExclamationCircle } from "react-icons/fa"
 
 const ErrorPage = () => {
@@ -7,12 +7,12 @@ const ErrorPage = () => {
 			<Text color="primary.400" fontSize="6xl">
 				<FaExclamationCircle />
 			</Text>
-			<Text color="primary.400" fontSize="6xl">
+			<Heading color="primary.400" fontSize="6xl">
 				404
-			</Text>
-			<Text color="primary.400" fontSize="3xl">
+			</Heading>
+			<Heading color="primary.400" fontSize="3xl">
 				Page not found
-			</Text>
+			</Heading>
 		</Flex>
 	)
 }

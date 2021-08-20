@@ -2,6 +2,7 @@ import { useState } from "react"
 import {
 	Badge,
 	Button,
+	Heading,
 	Image,
 	Skeleton,
 	SkeletonCircle,
@@ -91,14 +92,15 @@ const Post = ({
 						</Stack>
 					</Stack>
 
-					<Text
+					<Heading
 						_hover={{ cursor: "pointer" }}
+						as="h3"
 						fontSize="3xl"
 						marginBottom="2"
 						onClick={openPost}
 					>
 						{title}
-					</Text>
+					</Heading>
 
 					<Text fontSize="md" noOfLines={[2, 4, 6]}>
 						{message}

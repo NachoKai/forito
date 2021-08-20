@@ -4,6 +4,7 @@ import { FaMoon, FaSun } from "react-icons/fa"
 import {
 	Button,
 	Flex,
+	Heading,
 	Image,
 	Stack,
 	Text,
@@ -57,9 +58,15 @@ const Navbar = () => {
 			zIndex="3"
 		>
 			<Stack align="center" direction="row" spacing="2">
-				<Text bgClip="text" bgGradient={gradColor} fontSize="xl" fontWeight="bold">
+				<Heading
+					as="h2"
+					bgClip="text"
+					bgGradient={gradColor}
+					fontSize="2xl"
+					fontWeight="bold"
+				>
 					<Link to="/">Forito ✨</Link>
-				</Text>
+				</Heading>
 			</Stack>
 
 			<Stack align="center" direction="row" spacing="2">

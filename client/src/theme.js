@@ -7,7 +7,7 @@ const colors = {
 
 const fonts = {
 	body: "system-ui, sans-serif",
-	heading: "Georgia, serif",
+	heading: "system-ui, sans-serif",
 	mono: "Menlo, monospace",
 }
 

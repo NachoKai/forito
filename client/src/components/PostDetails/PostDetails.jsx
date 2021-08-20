@@ -55,7 +55,9 @@ const PostDetails = () => {
 					spacing="8"
 				>
 					<Stack spacing="8" w="100%">
-						<Heading size="xl">{post?.title}</Heading>
+						<Heading as="h2" size="xl">
+							{post?.title}
+						</Heading>
 						<Text fontSize="md">{post?.message}</Text>
 					</Stack>
 
@@ -137,9 +139,9 @@ const PostDetails = () => {
 									spacing="2"
 									onClick={() => openPost(_id)}
 								>
-									<Text fontSize="lg" fontWeight="bold">
+									<Heading as="h3" fontSize="lg" fontWeight="bold">
 										{title}
-									</Text>
+									</Heading>
 									<Text>{name}</Text>
 									<Text noOfLines={[2, 4, 6]}>{message}</Text>
 									<Text>Likes: {likes?.length}</Text>
