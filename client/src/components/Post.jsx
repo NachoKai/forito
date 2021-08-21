@@ -15,11 +15,11 @@ import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 
-import { getRandomId } from "../../utils/getRandomId"
-import { deletePost, likePost } from "../../redux/posts"
+import { getRandomId } from "../utils/getRandomId"
+import { deletePost, likePost } from "../redux/posts"
 import Likes from "./Likes"
-import { getUser } from "../../utils/getUser"
-import Dialog from "../common/Dialog"
+import { getUser } from "../utils/getUser"
+import Dialog from "./common/Dialog"
 
 const Post = ({
 	setCurrentId,

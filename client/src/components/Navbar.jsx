@@ -14,8 +14,8 @@ import {
 import { Link, useHistory, useLocation } from "react-router-dom"
 import decode from "jwt-decode"
 
-import { LOGOUT } from "../../redux/auth"
-import { getUser } from "../../utils/getUser"
+import { LOGOUT } from "../redux/auth"
+import { getUser } from "../utils/getUser"
 
 const Navbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode()

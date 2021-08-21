@@ -5,10 +5,10 @@ import FileBase from "react-file-base64"
 import { FaExclamationCircle } from "react-icons/fa"
 import { useHistory } from "react-router-dom"
 
-import { createPost, updatePost } from "../../redux/posts"
-import FormInput from "../common/FormInput"
-import FormTextArea from "../common/FormTextArea"
-import { getUser } from "../../utils/getUser"
+import { createPost, updatePost } from "../redux/posts"
+import FormInput from "./common/FormInput"
+import FormTextArea from "./common/FormTextArea"
+import { getUser } from "../utils/getUser"
 
 const initialState = {
 	title: "",

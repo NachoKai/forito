@@ -2,12 +2,12 @@ import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
 
-import ErrorPage from "./components/ErrorPage/ErrorPage"
-import Navbar from "./components/Navbar/Navbar"
-import Home from "./components/Home/Home"
-import Auth from "./components/Auth/Auth"
-import About from "./components/About/About"
-import PostDetails from "./components/PostDetails/PostDetails"
+import ErrorPage from "./components/ErrorPage"
+import Navbar from "./components/Navbar"
+import Home from "./components/Home"
+import Auth from "./components/Auth"
+import About from "./components/About"
+import PostDetails from "./components/PostDetails"
 import { getUser } from "./utils/getUser"
 
 const App = () => {

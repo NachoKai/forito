@@ -2,14 +2,12 @@ import { useState } from "react"
 import { Stack } from "@chakra-ui/react"
 import { useLocation } from "react-router-dom"
 
-import Posts from "../Posts/Posts"
-import Form from "../Form/Form"
-import Pagination from "../Paginate/Pagination"
+import Posts from "./Posts"
+import Form from "../components/Form"
+import Pagination from "./Pagination"
 import Search from "./Search"
 
-function useQuery() {
-	return new URLSearchParams(useLocation().search)
-}
+const useQuery = () => new URLSearchParams(useLocation().search)
 
 const Home = () => {
 	const [currentId, setCurrentId] = useState(0)

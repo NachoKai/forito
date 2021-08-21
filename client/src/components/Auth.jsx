@@ -5,12 +5,12 @@ import { GoogleLogin } from "react-google-login"
 import { Button, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react"
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa"
 
-import { refreshTokenSetup } from "../../utils/refreshTokenSetup"
-import FormInput from "../common/FormInput"
-import { AUTH } from "../../redux/auth"
-import { login, signup } from "../../redux/auth"
-import showError from "../../utils/showError"
-import showSuccess from "../../utils/showSuccess"
+import { refreshTokenSetup } from "../utils/refreshTokenSetup"
+import FormInput from "./common/FormInput"
+import { AUTH } from "../redux/auth"
+import { login, signup } from "../redux/auth"
+import showError from "../utils/showError"
+import showSuccess from "../utils/showSuccess"
 
 const initialState = {
 	firstName: "",

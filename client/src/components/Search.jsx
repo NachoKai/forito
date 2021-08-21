@@ -16,8 +16,8 @@ import { useHistory } from "react-router-dom"
 import ChipInput from "material-ui-chip-input"
 import styled from "styled-components"
 
-import { getPostsBySearch } from "../../redux/posts"
-import FormInput from "../common/FormInput"
+import { getPostsBySearch } from "../redux/posts"
+import FormInput from "./common/FormInput"
 // import TagsInput from "../common/TagsInput"
 
 const Search = () => {

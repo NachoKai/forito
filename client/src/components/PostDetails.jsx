@@ -12,9 +12,10 @@ import {
 } from "@chakra-ui/react"
 import { formatDistance } from "date-fns"
 import { useHistory, useParams } from "react-router-dom"
-import { getPost, getPostsBySearch } from "../../redux/posts"
-import { getRandomId } from "../../utils/getRandomId"
-import Comments from "../Comments/Comments"
+
+import { getPost, getPostsBySearch } from "../redux/posts"
+import { getRandomId } from "../utils/getRandomId"
+import Comments from "../components/Comments"
 
 const PostDetails = () => {
 	const { post, posts, isLoading } = useSelector(state => state.posts)

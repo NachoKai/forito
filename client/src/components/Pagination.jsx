@@ -5,7 +5,7 @@ import { Link } from "react-router-dom"
 import styled from "styled-components"
 import { Flex, useColorModeValue } from "@chakra-ui/react"
 
-import { getPosts } from "../../redux/posts"
+import { getPosts } from "../redux/posts"
 
 const Paginate = ({ page }) => {
 	const { numberOfPages } = useSelector(state => state.posts)

@@ -2,7 +2,7 @@ import { useSelector } from "react-redux"
 import { Flex, Skeleton, Stack, Text } from "@chakra-ui/react"
 import { FaPencilAlt } from "react-icons/fa"
 
-import Post from "../Post/Post"
+import Post from "./Post"
 
 const Posts = ({ setCurrentId }) => {
 	const { posts, isLoading } = useSelector(state => state.posts)

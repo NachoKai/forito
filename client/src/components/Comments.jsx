@@ -3,10 +3,10 @@ import { useDispatch } from "react-redux"
 import { Button, Stack, Text, useColorModeValue } from "@chakra-ui/react"
 import { FaExclamationCircle } from "react-icons/fa"
 
-import { getRandomId } from "../../utils/getRandomId"
-import FormTextArea from "../common/FormTextArea"
-import { getUser } from "../../utils/getUser"
-import { addComment } from "../../redux/posts"
+import { getRandomId } from "../utils/getRandomId"
+import FormTextArea from "./common/FormTextArea"
+import { getUser } from "../utils/getUser"
+import { addComment } from "../redux/posts"
 
 const Comments = ({ post }) => {
 	const dispatch = useDispatch()
