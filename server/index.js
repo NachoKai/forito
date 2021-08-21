@@ -6,7 +6,6 @@ import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
 import mongoSanitize from "express-mongo-sanitize";
 import compression from "compression";
-import setCache from "./utils/setCache.js";
 
 const app = express();
 
@@ -23,7 +22,6 @@ const CONNECTION_URL = process.env.MONGODB_URI;
 
 app.use(express.json({ limit: "5mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
-app.use(setCache);
 app.use(cors());
 app.use(mongoSanitize());
 app.use("/posts", postRoutes);
