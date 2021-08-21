@@ -116,4 +116,21 @@ export const likePost = async (req, res) => {
 	res.status(200).json(updatedPost);
 };
 
+export const commentPost = async (req, res) => {
+	const { id } = req.params;
+	const { value } = req.body;
+
+	// const comment = {
+	// 	value,
+	// 	creator: req.userId,
+	// 	createdAt: new Date().toISOString(),
+	// };
+	const post = await Post.findById(id);
+
+	post.comments.push(value);
+	const updatedPost = await Post.findByIdAndUpdate(id, post, { new: true });
+
+	res.status(200).json(updatedPost);
+};
+
 export default router;

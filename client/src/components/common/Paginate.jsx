@@ -73,7 +73,7 @@ const Paginate = () => {
 				<Container align="center" justify="space-between" p={4} w="full">
 					<Previous colorScheme="primary">Previous</Previous>
 					<PageGroup isInline align="center" separator={<Separator w={7} />}>
-						{pages.map(page => (
+						{pages?.map(page => (
 							<Page
 								key={`pagination_page_${page}`}
 								colorScheme="primary"

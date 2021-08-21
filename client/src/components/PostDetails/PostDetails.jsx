@@ -14,6 +14,7 @@ import { formatDistance } from "date-fns"
 import { useHistory, useParams } from "react-router-dom"
 import { getPost, getPostsBySearch } from "../../redux/posts"
 import { getRandomId } from "../../utils/getRandomId"
+import Comments from "../Comments/Comments"
 
 const PostDetails = () => {
 	const { post, posts, isLoading } = useSelector(state => state.posts)
@@ -111,6 +112,7 @@ const PostDetails = () => {
 				<Text fontSize="lg" fontWeight="bold">
 					Comments
 				</Text>
+				<Comments post={post} />
 				<Divider />
 			</Stack>
 

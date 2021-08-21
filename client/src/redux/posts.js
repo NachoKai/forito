@@ -14,6 +14,7 @@ const LIKE_POST = "LIKE_POST"
 const START_LOADING = "START_LOADING"
 const FETCH_POSTS_BY_SEARCH = "FETCH_POSTS_BY_SEARCH"
 const END_LOADING = "END_LOADING"
+const ADD_COMMENT = "ADD_COMMENT"
 
 /* ==========  ACTIONS  =========== */
 
@@ -112,6 +113,20 @@ export const likePost = id => async dispatch => {
 	}
 }
 
+export const addComment = (comment, id) => async dispatch => {
+	try {
+		const { data } = await api.addComment(comment, id)
+
+		dispatch({ type: ADD_COMMENT, payload: data })
+		showSuccess("Successfully added comment.")
+
+		return data.comments
+	} catch (err) {
+		showError("Something went wrong. Please try again.")
+		console.error(err)
+	}
+}
+
 /* ==========  REDUCERS  =========== */
 
 const initialState = {
@@ -151,6 +166,15 @@ export const postsReducer = (state = initialState, action) => {
 			return {
 				...state,
 				posts: state.posts?.map(post => (post?._id === payload._id ? payload : post)),
+			}
+		case ADD_COMMENT:
+			return {
+				...state,
+				posts: state.posts?.map(post => {
+					if (post._id === payload._id) return payload
+
+					return post
+				}),
 			}
 		default:
 			return state
