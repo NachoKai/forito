@@ -66,16 +66,17 @@ const PostDetails = () => {
 						<Image
 							alt={post?.title}
 							borderRadius="lg"
-							boxSize="100%"
 							fallback={<Skeleton borderRadius="lg" h="600px" />}
 							fit="contain"
+							h="600px"
 							loading="lazy"
-							maxHeight="650px"
+							maxHeight="600px"
+							maxWidth="800"
 							src={
 								post?.selectedFile ||
 								"https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
 							}
-							w="100%"
+							w="800"
 						/>
 					)}
 				</Stack>
@@ -151,12 +152,14 @@ const PostDetails = () => {
 										<Image
 											alt={post?.title}
 											borderRadius="lg"
-											fallback={<Skeleton borderRadius="lg" h="200px" />}
-											fit="contain"
+											fallback={<Skeleton borderRadius="lg" h="300px" />}
+											fit="cover"
+											h="300px"
 											loading="lazy"
 											maxHeight="300px"
 											p="8px 0 0 0"
 											src={selectedFile}
+											w="300px"
 										/>
 									)}
 								</Stack>

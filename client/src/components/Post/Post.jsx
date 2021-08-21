@@ -74,11 +74,12 @@ const Post = ({
 							<Image
 								alt={user?.result?.name}
 								borderRadius="full"
-								boxSize="50px"
 								fallback={<SkeletonCircle size="50" />}
+								h="50px"
 								loading="lazy"
 								objectFit="cover"
 								src={avatar}
+								w="50px"
 							/>
 						)}
 						<Stack direction="column">
@@ -161,11 +162,12 @@ const Post = ({
 					borderRadius="lg"
 					fallback={<Skeleton borderRadius="lg" h="400" />}
 					fit="cover"
+					h="400px"
 					loading="lazy"
 					maxHeight="400px"
 					maxWidth="600px"
 					src={selectedFile}
-					w="100%"
+					w="600px"
 					onClick={openPost}
 				/>
 			)}

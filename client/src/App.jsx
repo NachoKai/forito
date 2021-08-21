@@ -23,7 +23,7 @@ const App = () => {
 				<Route component={PostDetails} path="/posts/:id" />
 				<Route
 					exact
-					component={() => (!user ? <Auth /> : <Redirect to="/posts" />)}
+					component={() => (!user?.result ? <Auth /> : <Redirect to="/posts" />)}
 					path="/auth"
 				/>
 				<Route exact component={About} path="/about" />
