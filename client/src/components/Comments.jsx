@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { Button, Stack, Text, useColorModeValue } from "@chakra-ui/react"
 import { FaExclamationCircle } from "react-icons/fa"
@@ -14,7 +14,7 @@ const Comments = ({ post }) => {
 	const [comment, setComment] = useState("")
 	const color = useColorModeValue("primary.600", "primary.100")
 	const user = getUser()
-	// const commentsRef = useRef(null)
+	const commentsRef = useRef(null)
 
 	const handleClick = async () => {
 		const commentContent = `${user?.result?.name}: ${comment}`
@@ -23,12 +23,10 @@ const Comments = ({ post }) => {
 		setComments(newComments)
 		setComment("")
 
-		// commentsRef.current.scrollIntoView({ behavior: "smooth" })
+		commentsRef.current.scrollIntoView({ behavior: "smooth" })
 	}
 
-	const handleClear = () => {
-		setComment("")
-	}
+	const handleClear = () => setComment("")
 
 	return (
 		<Stack direction={{ sm: "column", md: "column", lg: "row", xl: "row" }} spacing="4">
@@ -39,7 +37,7 @@ const Comments = ({ post }) => {
 						{comment?.split(": ")[1]}
 					</Text>
 				))}
-				{/* <div ref={commentsRef} /> */}
+				<div ref={commentsRef} />
 			</Stack>
 			{user?.result?.name ? (
 				<Stack spacing="4" width="100%">

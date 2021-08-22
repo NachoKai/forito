@@ -68,7 +68,7 @@ export const createPost = (post, history) => async dispatch => {
 		showSuccess("Successfully created post.")
 		history.push(`/posts/${data._id}`)
 	} catch (err) {
-		showError("Something went wrong. Please try again.")
+		showError("Something went wrong when trying to create post. Please try again.")
 		console.error(err)
 	}
 }
@@ -82,7 +82,7 @@ export const updatePost = (id, post) => async dispatch => {
 		dispatch({ type: END_LOADING })
 		showSuccess("Successfully edited post.")
 	} catch (err) {
-		showError("Something went wrong. Please try again.")
+		showError("Something went wrong when trying to update post. Please try again.")
 		console.error(err)
 	}
 }
@@ -95,7 +95,7 @@ export const deletePost = id => async dispatch => {
 		dispatch({ type: END_LOADING })
 		showSuccess("Successfully deleted post.")
 	} catch (err) {
-		showError("Something went wrong. Please try again.")
+		showError("Something went wrong when trying to delete post. Please try again.")
 		console.error(err)
 	}
 }
@@ -108,7 +108,7 @@ export const likePost = id => async dispatch => {
 
 		dispatch({ type: LIKE_POST, payload: data })
 	} catch (err) {
-		showError("Something went wrong. Please try again.")
+		showError("Something went wrong when trying to like post. Please try again.")
 		console.error(err)
 	}
 }
@@ -122,7 +122,7 @@ export const addComment = (comment, id) => async dispatch => {
 
 		return data.comments
 	} catch (err) {
-		showError("Something went wrong. Please try again.")
+		showError("Something went wrong when trying to add comment. Please try again.")
 		console.error(err)
 	}
 }

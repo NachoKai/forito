@@ -16,7 +16,7 @@ export const login = (formData, router) => async dispatch => {
 		dispatch({ type: AUTH, data })
 		router.push("/")
 	} catch (err) {
-		showError("Something went wrong. Please try again.")
+		showError("Something went wrong when trying to log in. Please try again.")
 		console.error(err)
 	}
 }
@@ -29,7 +29,7 @@ export const signup = (formData, router) => async dispatch => {
 		router.push("/")
 		showSuccess("Successfully signed up.")
 	} catch (err) {
-		showError("Something went wrong. Please try again.")
+		showError("Something went wrong when trying to sign up. Please try again.")
 		console.error(err)
 	}
 }

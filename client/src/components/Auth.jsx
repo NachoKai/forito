@@ -5,7 +5,6 @@ import { GoogleLogin } from "react-google-login"
 import { Button, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react"
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa"
 
-import { refreshTokenSetup } from "../utils/refreshTokenSetup"
 import FormInput from "./common/FormInput"
 import { AUTH } from "../redux/auth"
 import { login, signup } from "../redux/auth"
@@ -21,33 +20,32 @@ const initialState = {
 }
 
 const Auth = () => {
-	const bg = useColorModeValue("primary.100", "primary.600")
-	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID
+	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
 	const dispatch = useDispatch()
 	const history = useHistory()
 	const [isSignup, setIsSignup] = useState(false)
 	const [formData, setFormData] = useState(initialState)
 	const [showPassword, setShowPassword] = useState(false)
+	const bg = useColorModeValue("primary.100", "primary.600")
 
-	const onSuccess = res => {
+	const onSuccess = async res => {
 		const result = res?.profileObj
 		const token = res?.tokenId
 
 		try {
 			dispatch({ type: AUTH, data: { result, token } })
+
 			history.push("/")
 			showSuccess("Successfully logged in.")
 		} catch (err) {
-			showError("Something went wrong. Please try again.")
+			showError("Something went wrong when trying to log in. Please try again.")
 			console.error(err)
 		}
-
-		refreshTokenSetup(res)
 	}
 
 	const onFailure = res => {
-		showError("Something went wrong. Please try again.")
-		console.error("Google Sign In was unsuccessful. Login failed: ", res)
+		showError("Something went wrong when trying to log in. Please try again.")
+		console.error("Google login was unsuccessful: ", res)
 	}
 
 	const handleSubmit = e => {
@@ -60,9 +58,7 @@ const Auth = () => {
 		}
 	}
 
-	const handleChange = e => {
-		setFormData({ ...formData, [e.target.name]: e.target.value })
-	}
+	const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
 	const handleSwitch = () => setIsSignup(prevIsSignup => !prevIsSignup)
 

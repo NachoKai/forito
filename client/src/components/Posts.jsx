@@ -4,7 +4,7 @@ import { FaPencilAlt } from "react-icons/fa"
 
 import Post from "./Post"
 
-const Posts = ({ setCurrentId }) => {
+const Posts = ({ setCurrentId, handleClick }) => {
 	const { posts, isLoading } = useSelector(state => state.posts)
 	const havePosts = posts?.length > 0
 
@@ -29,7 +29,12 @@ const Posts = ({ setCurrentId }) => {
 						</Flex>
 					) : (
 						posts?.map(post => (
-							<Post key={post?._id} post={post} setCurrentId={setCurrentId} />
+							<Post
+								key={post?._id}
+								handleClick={handleClick}
+								post={post}
+								setCurrentId={setCurrentId}
+							/>
 						))
 					)}
 				</Stack>

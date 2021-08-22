@@ -5,7 +5,7 @@ import {
 	Heading,
 	Image,
 	Skeleton,
-	SkeletonCircle,
+	// SkeletonCircle,
 	Stack,
 	Text,
 	useColorModeValue,
@@ -24,6 +24,7 @@ import Dialog from "./common/Dialog"
 const Post = ({
 	setCurrentId,
 	post: { _id, title, name, creator, message, likes, createdAt, tags, selectedFile },
+	handleClick,
 }) => {
 	const dispatch = useDispatch()
 	const history = useHistory()
@@ -36,7 +37,7 @@ const Post = ({
 	const [likesMock, setLikesMock] = useState(likes)
 	const isPostCreator =
 		user?.result?.googleId === creator || user?.result?._id === creator
-	const avatar = false
+	// const avatar = false
 
 	const handleLike = async () => {
 		dispatch(likePost(_id))
@@ -50,6 +51,11 @@ const Post = ({
 
 	const openPost = () => {
 		history.push(`/posts/${_id}`)
+	}
+
+	const handleEdit = () => {
+		setCurrentId(_id)
+		handleClick()
 	}
 
 	return (
@@ -70,7 +76,7 @@ const Post = ({
 			<Stack h="100%" justify="space-between" spacing="4" w="100%">
 				<Stack direction="column" spacing="4">
 					<Stack direction="row" spacing="2">
-						{avatar && (
+						{/* {avatar && (
 							<Image
 								alt={user?.result?.name}
 								borderRadius="full"
@@ -81,7 +87,7 @@ const Post = ({
 								src={avatar}
 								w="50px"
 							/>
-						)}
+						)} */}
 						<Stack direction="column">
 							<Text fontSize="lg">{name}</Text>
 							<Text fontSize="sm">
@@ -134,7 +140,7 @@ const Post = ({
 								leftIcon={<FaPen />}
 								size="sm"
 								variant="outline"
-								onClick={() => setCurrentId(_id)}
+								onClick={handleEdit}
 							>
 								Edit
 							</Button>

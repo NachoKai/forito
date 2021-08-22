@@ -24,12 +24,12 @@ const Form = ({ currentId, setCurrentId }) => {
 	const history = useHistory()
 	const bg = useColorModeValue("primary.100", "primary.900")
 	const color = useColorModeValue("primary.600", "primary.100")
-	const post = useSelector(state =>
-		currentId ? state.posts?.posts?.find(message => message._id === currentId) : null
-	)
 	const gradColor = useColorModeValue(
 		"linear(to-l, primary.600,primary.900)",
 		"linear(to-l, primary.100,primary.400)"
+	)
+	const post = useSelector(state =>
+		currentId ? state.posts?.posts?.find(message => message._id === currentId) : null
 	)
 
 	const handleSubmit = e => {

@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useRef, useState } from "react"
 import { Stack } from "@chakra-ui/react"
 import { useLocation } from "react-router-dom"
 
@@ -14,6 +14,9 @@ const Home = () => {
 	const query = useQuery()
 	const page = query.get("page") || 1
 	const searchQuery = query.get("searchQuery")
+	const formRef = useRef(null)
+
+	const handleClick = async () => formRef.current.scrollIntoView({ behavior: "smooth" })
 
 	return (
 		<Stack
@@ -22,9 +25,10 @@ const Home = () => {
 			spacing={8}
 		>
 			<Stack w="100%">
-				<Posts setCurrentId={setCurrentId} />
+				<Posts handleClick={handleClick} setCurrentId={setCurrentId} />
 			</Stack>
 			<Stack spacing="4">
+				<div ref={formRef} />
 				<Form currentId={currentId} setCurrentId={setCurrentId} />
 				<Stack spacing="4">
 					{!searchQuery && <Pagination page={page} />}
