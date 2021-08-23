@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react"
-import FileBase from "react-file-base64"
+import { Button, Divider, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react"
 import { FaExclamationCircle } from "react-icons/fa"
 import { useHistory } from "react-router-dom"
+import ImageUploading from "react-images-uploading"
 
 import { createPost, updatePost } from "../redux/posts"
 import FormInput from "./common/FormInput"
@@ -18,6 +18,15 @@ const initialState = {
 }
 
 const Form = ({ currentId, setCurrentId }) => {
+	const [images, setImages] = useState([])
+	const maxNumber = 69
+
+	const onChange = imageList => {
+		console.log("imageList", imageList)
+		setPostData({ ...postData, selectedFile: imageList && imageList[0]?.data_url })
+		setImages(imageList)
+	}
+
 	const [postData, setPostData] = useState(initialState)
 	const dispatch = useDispatch()
 	const user = getUser()
@@ -32,6 +41,7 @@ const Form = ({ currentId, setCurrentId }) => {
 		currentId ? state.posts?.posts?.find(message => message._id === currentId) : null
 	)
 
+	console.log("postData.selectedFile", postData.selectedFile)
 	const handleSubmit = e => {
 		e.preventDefault()
 
@@ -119,17 +129,66 @@ const Form = ({ currentId, setCurrentId }) => {
 					/>
 					<FormInput
 						child={
-							<FileBase
+							<ImageUploading
+								dataURLKey="data_url"
+								maxNumber={maxNumber}
 								multiple={false}
-								type="file"
-								onDone={({ base64 }) => {
-									setPostData({ ...postData, selectedFile: base64 })
-								}}
-							/>
+								value={images}
+								onChange={onChange}
+							>
+								{({
+									imageList,
+									onImageUpload,
+									onImageUpdate,
+									onImageRemove,
+									isDragging,
+									dragProps,
+								}) => (
+									<Stack className="upload__image-wrapper" spacing="2">
+										<Button
+											colorScheme="primary"
+											style={isDragging ? { color: "red" } : undefined}
+											variant="ghost"
+											onClick={onImageUpload}
+											{...dragProps}
+										>
+											Upload Image
+										</Button>
+										{imageList.map((image, index) => (
+											<Stack
+												key={index}
+												className="image-item"
+												direction="row"
+												spacing="2"
+											>
+												<img alt="" src={image["data_url"]} width="100" />
+												<Flex align="center" direction="column" justify="center">
+													<Button
+														colorScheme="primary"
+														variant="ghost"
+														onClick={() => onImageUpdate(index)}
+													>
+														Update
+													</Button>
+													<Button
+														colorScheme="primary"
+														variant="ghost"
+														onClick={() => onImageRemove(index)}
+													>
+														Remove
+													</Button>
+												</Flex>
+											</Stack>
+										))}
+									</Stack>
+								)}
+							</ImageUploading>
 						}
 						helper="Max: 5mb"
 						label="Upload image"
 					/>
+
+					<Divider />
 
 					<Stack spacing="4">
 						<Button
