@@ -55,6 +55,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	const handleClear = () => {
 		setCurrentId(0)
+		setImages([])
 		setPostData(initialState)
 	}
 
@@ -145,15 +146,17 @@ const Form = ({ currentId, setCurrentId }) => {
 									dragProps,
 								}) => (
 									<Stack className="upload__image-wrapper" spacing="2">
-										<Button
-											colorScheme="primary"
-											style={isDragging ? { color: "red" } : undefined}
-											variant="ghost"
-											onClick={onImageUpload}
-											{...dragProps}
-										>
-											Upload Image
-										</Button>
+										{!postData.selectedFile && (
+											<Button
+												colorScheme="primary"
+												style={isDragging ? { color: "red" } : undefined}
+												variant="ghost"
+												onClick={onImageUpload}
+												{...dragProps}
+											>
+												Upload Image
+											</Button>
+										)}
 										{imageList.map((image, index) => (
 											<Stack
 												key={index}
