@@ -1,15 +1,5 @@
 import { useState } from "react"
-import {
-	Badge,
-	Button,
-	Heading,
-	Image,
-	Skeleton,
-	// SkeletonCircle,
-	Stack,
-	Text,
-	useColorModeValue,
-} from "@chakra-ui/react"
+import { Badge, Button, Heading, Stack, Text, useColorModeValue } from "@chakra-ui/react"
 import { FaEraser, FaPen } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
@@ -77,7 +67,7 @@ const Post = ({
 				<Stack direction="column" spacing="4">
 					<Stack direction="row" spacing="2">
 						{/* {avatar && (
-							<Image
+							<img
 								alt={user?.result?.name}
 								borderRadius="full"
 								fallback={<SkeletonCircle size="50" />}
@@ -162,18 +152,13 @@ const Post = ({
 			</Stack>
 
 			{selectedFile && (
-				<Image
-					_hover={{ cursor: "pointer" }}
+				<img
 					alt={title}
-					borderRadius="lg"
-					fallback={<Skeleton borderRadius="lg" h="400" />}
-					fit="cover"
-					h="400px"
+					height="450px"
 					loading="lazy"
-					maxHeight="400px"
-					maxWidth="600px"
 					src={selectedFile}
-					w="600px"
+					style={{ borderRadius: "16px" }}
+					width="450px"
 					onClick={openPost}
 				/>
 			)}

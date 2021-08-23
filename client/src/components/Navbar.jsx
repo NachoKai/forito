@@ -5,7 +5,6 @@ import {
 	Button,
 	Flex,
 	Heading,
-	Image,
 	Stack,
 	Text,
 	useColorMode,
@@ -73,14 +72,13 @@ const Navbar = () => {
 				{user?.result ? (
 					<Stack align="center" direction="row" spacing="4">
 						{user?.result.imageUrl && (
-							<Image
+							<img
 								alt={user?.result?.name}
-								borderRadius="full"
-								h="25px"
+								height="25px"
 								loading="lazy"
-								objectFit="cover"
 								src={user?.result?.imageUrl}
-								w="25px"
+								style={{ borderRadius: "100%" }}
+								width="25px"
 							/>
 						)}
 						{user?.result.name && (
