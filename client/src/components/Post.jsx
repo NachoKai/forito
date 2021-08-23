@@ -90,8 +90,8 @@ const Post = ({
 					</Stack>
 
 					<Heading
-						_hover={{ cursor: "pointer" }}
 						as="h3"
+						className="pointer"
 						fontSize="3xl"
 						marginBottom="2"
 						onClick={openPost}
@@ -154,6 +154,7 @@ const Post = ({
 			{selectedFile && (
 				<img
 					alt={title}
+					className="pointer"
 					height="450px"
 					loading="lazy"
 					src={selectedFile}
