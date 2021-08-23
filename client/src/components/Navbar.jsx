@@ -28,9 +28,9 @@ const Navbar = () => {
 	const [user, setUser] = useState(getUser())
 
 	const logout = () => {
+		setUser(null)
 		dispatch({ type: LOGOUT })
 		history.push("/auth")
-		setUser(null)
 	}
 
 	useEffect(() => {
