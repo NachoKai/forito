@@ -11,9 +11,11 @@ import {
 const FormInput = ({
 	label,
 	name,
+	isInvalid,
 	value,
 	isRequired,
 	helper,
+	validation,
 	autoFocus,
 	maxLength,
 	onChange,
@@ -26,7 +28,11 @@ const FormInput = ({
 	return (
 		<FormControl isRequired={isRequired}>
 			<FormLabel>{label}</FormLabel>
-			{helper && <FormHelperText marginBottom="2px">{helper}</FormHelperText>}
+			{validation && (
+				<FormHelperText color="red.400" fontWeight="bold" marginBottom="4px">
+					{validation}
+				</FormHelperText>
+			)}
 			{child ? (
 				child
 			) : (
@@ -41,8 +47,9 @@ const FormInput = ({
 						autoFocus={autoFocus}
 						bg="white"
 						color="black"
-						errorBorderColor="red.300"
+						errorBorderColor="red.400"
 						focusBorderColor="primary.200"
+						isInvalid={isInvalid}
 						maxLength={maxLength}
 						name={name}
 						placeholder={placeholder || label}
@@ -58,6 +65,7 @@ const FormInput = ({
 					)}
 				</InputGroup>
 			)}
+			{helper && <FormHelperText>{helper}</FormHelperText>}
 		</FormControl>
 	)
 }

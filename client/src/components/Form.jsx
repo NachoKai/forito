@@ -46,6 +46,10 @@ const Form = ({ currentId, setCurrentId }) => {
 		"linear(to-l, primary.600,primary.900)",
 		"linear(to-l, primary.100,primary.400)"
 	)
+	const areValidTags = ![...new Set(postData.tags)].every(tag =>
+		/^[a-zA-Z0-9_.-]*$/.test(tag)
+	)
+
 	const post = useSelector(state =>
 		currentId ? state.posts?.posts?.find(message => message._id === currentId) : null
 	)
@@ -125,9 +129,11 @@ const Form = ({ currentId, setCurrentId }) => {
 					/>
 					<FormInput
 						helper="Separated by commas"
+						isInvalid={areValidTags}
 						label="Tags"
 						maxLength="55"
 						name="tags"
+						validation={areValidTags && "Insert only letters and numbers."}
 						value={[...new Set(postData.tags)]}
 						onChange={e => {
 							setPostData({
@@ -245,7 +251,10 @@ const Form = ({ currentId, setCurrentId }) => {
 							bgGradient={gradColor}
 							colorScheme="primary"
 							disabled={
-								!(postData.title.trim().length > 0 && postData.message.trim().length > 0)
+								!(
+									postData.title.trim().length > 0 && postData.message.trim().length > 0
+								) ||
+								![...new Set(postData.tags)].every(tag => /^[a-zA-Z0-9_.-]*$/.test(tag))
 							}
 							type="submit"
 						>
