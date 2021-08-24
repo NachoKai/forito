@@ -60,12 +60,12 @@ const Search = () => {
 					<AccordionIcon />
 				</AccordionButton>
 				<AccordionPanel>
-					<Stack>
+					<Stack spacing="4">
 						<FormInput
-							label="Search Posts"
+							label="Search Posts Title"
 							maxLength="105"
 							name="search"
-							placeholder="Search Posts"
+							placeholder="Search Posts Title"
 							value={searchValue}
 							onChange={e => {
 								setSearchValue(e.target.value)
@@ -85,6 +85,7 @@ const Search = () => {
 									/>
 								</TagsContainer>
 							}
+							helper="Insert tag with enter/return."
 							label="Search Tags"
 							maxLength="105"
 						/>
