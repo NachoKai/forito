@@ -80,7 +80,7 @@ const PostDetails = () => {
 									<Stack direction="row" spacing="2">
 										{post?.tags.map(tag => (
 											<Badge key={getRandomId()} bg="primary.400" color="white">
-												{tag}
+												<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
 											</Badge>
 										))}
 									</Stack>

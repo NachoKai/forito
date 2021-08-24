@@ -107,7 +107,7 @@ const Post = ({
 							.filter(e => e)
 							.map(tag => (
 								<Badge key={getRandomId()} bg="primary.400" color="white">
-									{tag}
+									<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
 								</Badge>
 							))}
 					</Stack>

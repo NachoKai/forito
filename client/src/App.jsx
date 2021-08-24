@@ -10,6 +10,7 @@ import About from "./components/About"
 import PostDetails from "./components/PostDetails"
 import { getUser } from "./utils/getUser"
 import Creator from "./components/Creator"
+import Tags from "./components/Tags"
 
 const App = () => {
 	const user = getUser()
@@ -23,6 +24,7 @@ const App = () => {
 				<Route exact component={Home} path="/posts/search" />
 				<Route exact component={PostDetails} path="/posts/:id" />
 				<Route exact component={Creator} path="/creators/:name" />
+				<Route exact component={Tags} path="/tags/:name" />
 				<Route
 					exact
 					component={() => (!user?.result ? <Auth /> : <Redirect to="/posts" />)}
