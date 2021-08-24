@@ -1,6 +1,14 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Divider, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react"
+import {
+	Button,
+	Divider,
+	Flex,
+	Image,
+	Stack,
+	Text,
+	useColorModeValue,
+} from "@chakra-ui/react"
 import { FaExclamationCircle } from "react-icons/fa"
 import { useHistory } from "react-router-dom"
 import ImageUploading from "react-images-uploading"
@@ -131,7 +139,7 @@ const Form = ({ currentId, setCurrentId }) => {
 					<FormInput
 						child={
 							<ImageUploading
-								acceptType={["jpg", "gif", "png"]}
+								acceptType={["jpg", "jpeg", "gif", "png"]}
 								dataURLKey="data_url"
 								maxFileSize={1024 * 1024 * 5.1}
 								maxNumber={1}
@@ -198,7 +206,12 @@ const Form = ({ currentId, setCurrentId }) => {
 												direction="row"
 												spacing="2"
 											>
-												<img alt="" src={image["data_url"]} width="100" />
+												<Image
+													alt=""
+													boxSize="100px"
+													objectFit="cover"
+													src={image["data_url"]}
+												/>
 												<Flex align="center" direction="column" justify="center">
 													<Button
 														colorScheme="primary"
@@ -221,7 +234,7 @@ const Form = ({ currentId, setCurrentId }) => {
 								)}
 							</ImageUploading>
 						}
-						helper="Max: 5mb. Formats: jpg, png, gif."
+						helper="Max: 5mb. Formats: jpg, jpeg, png, gif."
 						label="Upload image"
 					/>
 

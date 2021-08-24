@@ -4,6 +4,7 @@ import {
 	Badge,
 	Divider,
 	Heading,
+	Image,
 	Skeleton,
 	Stack,
 	Text,
@@ -59,16 +60,16 @@ const PostDetails = () => {
 							</Stack>
 
 							{post?.selectedFile && (
-								<img
+								<Image
 									alt={post?.title}
-									height="650px"
+									borderRadius="lg"
+									boxSize="650px"
 									loading="lazy"
+									objectFit="cover"
 									src={
 										post?.selectedFile ||
 										"https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
 									}
-									style={{ borderRadius: "16px" }}
-									width="650px"
 								/>
 							)}
 						</Stack>
@@ -141,13 +142,13 @@ const PostDetails = () => {
 											<Text noOfLines={[2, 4, 6]}>{message}</Text>
 											<Text>Likes: {likes?.length}</Text>
 											{selectedFile && (
-												<img
+												<Image
 													alt={post?.title}
-													height="300px"
+													borderRadius="lg"
+													boxSize="300px"
 													loading="lazy"
+													objectFit="cover"
 													src={selectedFile}
-													style={{ borderRadius: "16px" }}
-													width="300px"
 												/>
 											)}
 										</Stack>
