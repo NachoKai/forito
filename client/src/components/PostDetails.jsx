@@ -64,6 +64,7 @@ const PostDetails = () => {
 									alt={post?.title}
 									borderRadius="lg"
 									boxSize="650px"
+									h="100%"
 									loading="lazy"
 									objectFit="contain"
 									src={
