@@ -13,6 +13,7 @@ const DELETE_POST = "DELETE_POST"
 const LIKE_POST = "LIKE_POST"
 const START_LOADING = "START_LOADING"
 const FETCH_POSTS_BY_SEARCH = "FETCH_POSTS_BY_SEARCH"
+const FETCH_BY_CREATOR = "FETCH_BY_CREATOR"
 const END_LOADING = "END_LOADING"
 const ADD_COMMENT = "ADD_COMMENT"
 
@@ -127,6 +128,23 @@ export const addComment = (comment, id) => async dispatch => {
 	}
 }
 
+export const getPostsByCreator = name => async dispatch => {
+	try {
+		dispatch({ type: START_LOADING })
+		const {
+			data: { data },
+		} = await api.fetchPostsByCreator(name)
+
+		dispatch({ type: FETCH_BY_CREATOR, payload: { data } })
+		dispatch({ type: END_LOADING })
+	} catch (err) {
+		showError(
+			"Something went wrong when trying to get posts by creator. Please try again."
+		)
+		console.error(err)
+	}
+}
+
 /* ==========  REDUCERS  =========== */
 
 const initialState = {
@@ -150,6 +168,8 @@ export const postsReducer = (state = initialState, action) => {
 				numberOfPages: payload.numberOfPages,
 			}
 		case FETCH_POSTS_BY_SEARCH:
+			return { ...state, posts: payload.data }
+		case FETCH_BY_CREATOR:
 			return { ...state, posts: payload.data }
 		case FETCH_POST:
 			return { ...state, post: payload.post }

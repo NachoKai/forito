@@ -134,4 +134,16 @@ export const commentPost = async (req, res) => {
 	res.status(200).json(updatedPost);
 };
 
+export const getPostsByCreator = async (req, res) => {
+	const { name } = req.query;
+
+	try {
+		const posts = await Post.find({ name });
+
+		res.json({ data: posts });
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+};
+
 export default router;
