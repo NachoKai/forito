@@ -31,7 +31,9 @@ const Form = ({ currentId, setCurrentId }) => {
 	const user = getUser()
 	const history = useHistory()
 	const bg = useColorModeValue("primary.100", "primary.900")
+	const grayBg = useColorModeValue("gray.200", "gray.700")
 	const color = useColorModeValue("primary.600", "primary.100")
+	const grayColor = useColorModeValue("gray.700", "gray.200")
 	const gradColor = useColorModeValue(
 		"linear(to-l, primary.600,primary.900)",
 		"linear(to-l, primary.100,primary.400)"
@@ -171,15 +173,23 @@ const Form = ({ currentId, setCurrentId }) => {
 											</Stack>
 										)}
 										{!postData.selectedFile && (
-											<Button
-												colorScheme="primary"
-												style={isDragging ? { color: "purple" } : undefined}
-												variant="ghost"
-												onClick={onImageUpload}
-												{...dragProps}
+											<Stack
+												borderColor={isDragging ? grayColor : color}
+												borderRadius="lg"
+												borderStyle="dashed"
+												borderWidth="2px"
 											>
-												Upload Image
-											</Button>
+												<Button
+													bg={isDragging ? grayBg : undefined}
+													color={isDragging ? grayColor : color}
+													variant="ghost"
+													onClick={onImageUpload}
+													{...dragProps}
+													p="8"
+												>
+													Upload Image
+												</Button>
+											</Stack>
 										)}
 										{imageList.map((image, index) => (
 											<Stack

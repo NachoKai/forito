@@ -26,7 +26,7 @@ const FormInput = ({
 	return (
 		<FormControl isRequired={isRequired}>
 			<FormLabel>{label}</FormLabel>
-			{helper && <FormHelperText>{helper}</FormHelperText>}
+			{helper && <FormHelperText marginBottom="2px">{helper}</FormHelperText>}
 			{child ? (
 				child
 			) : (
