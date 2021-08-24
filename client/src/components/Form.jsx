@@ -220,7 +220,7 @@ const Form = ({ currentId, setCurrentId }) => {
 												<Image
 													alt=""
 													boxSize="100px"
-													objectFit="cover"
+													objectFit="contain"
 													src={image["data_url"]}
 												/>
 												<Flex align="center" direction="column" justify="center">
