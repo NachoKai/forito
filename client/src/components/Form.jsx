@@ -27,14 +27,8 @@ const initialState = {
 }
 
 const Form = ({ currentId, setCurrentId }) => {
-	const [images, setImages] = useState([])
-
-	const onChange = imageList => {
-		setPostData({ ...postData, selectedFile: imageList && imageList[0]?.data_url })
-		setImages(imageList)
-	}
-
 	const [postData, setPostData] = useState(initialState)
+	const [images, setImages] = useState([])
 	const dispatch = useDispatch()
 	const user = getUser()
 	const history = useHistory()
@@ -53,6 +47,11 @@ const Form = ({ currentId, setCurrentId }) => {
 	const post = useSelector(state =>
 		currentId ? state.posts?.posts?.find(message => message._id === currentId) : null
 	)
+
+	const onChange = imageList => {
+		setPostData({ ...postData, selectedFile: imageList && imageList[0]?.data_url })
+		setImages(imageList)
+	}
 
 	const handleSubmit = e => {
 		e.preventDefault()
@@ -128,7 +127,7 @@ const Form = ({ currentId, setCurrentId }) => {
 						onChange={handleChange}
 					/>
 					<FormInput
-						helper="Separated by commas"
+						helper="Separated by commas."
 						isInvalid={areValidTags}
 						label="Tags"
 						maxLength="55"
@@ -171,18 +170,24 @@ const Form = ({ currentId, setCurrentId }) => {
 										{errors && (
 											<Stack m="4px 0" spacing="2">
 												{errors.maxNumber && (
-													<span>&#8226; Number of selected images exceed maxNumber</span>
+													<Flex color="red.400" fontWeight="bold" marginBottom="4px">
+														Number of selected images exceed maxNumber.
+													</Flex>
 												)}
 												{errors.acceptType && (
-													<span>&#8226; Your selected file type is not allow</span>
+													<Flex color="red.400" fontWeight="bold" marginBottom="4px">
+														Your selected file type is not allow.
+													</Flex>
 												)}
 												{errors.maxFileSize && (
-													<span>&#8226; Selected file size exceed maxFileSize</span>
+													<Flex color="red.400" fontWeight="bold" marginBottom="4px">
+														Selected file size exceed maxFileSize.
+													</Flex>
 												)}
 												{errors.resolution && (
-													<span>
-														&#8226; Selected file is not match your desired resolution
-													</span>
+													<Flex color="red.400" fontWeight="bold" marginBottom="4px">
+														Selected file is not match your desired resolution.
+													</Flex>
 												)}
 											</Stack>
 										)}
