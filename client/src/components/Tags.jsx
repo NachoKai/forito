@@ -1,7 +1,7 @@
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { Divider, Skeleton, Stack, Text } from "@chakra-ui/react"
+import { Divider, Flex, Skeleton, Stack, Text } from "@chakra-ui/react"
 
 import { getPostsBySearch } from "../redux/posts"
 import Post from "./Post"
@@ -15,7 +15,15 @@ const Tags = () => {
 		dispatch(getPostsBySearch({ tags: name }))
 	}, [])
 
-	if (!posts.length && !isLoading) return "No posts"
+	if (!posts.length && !isLoading) {
+		return (
+			<Flex align="center" direction="column" marginY="64px">
+				<Text color="primary.400" fontSize="6xl">
+					No posts found for &quot;#{name}&quot;
+				</Text>
+			</Flex>
+		)
+	}
 
 	return (
 		<Stack borderRadius="lg" p="32px" spacing="8">
