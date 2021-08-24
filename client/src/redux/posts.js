@@ -168,7 +168,6 @@ export const postsReducer = (state = initialState, action) => {
 				numberOfPages: payload.numberOfPages,
 			}
 		case FETCH_POSTS_BY_SEARCH:
-			return { ...state, posts: payload.data }
 		case FETCH_BY_CREATOR:
 			return { ...state, posts: payload.data }
 		case FETCH_POST:
