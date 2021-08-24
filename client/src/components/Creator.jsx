@@ -21,7 +21,9 @@ const Creator = () => {
 		<Stack borderRadius="lg" p="32px" spacing="8">
 			<Stack spacing="2">
 				<Text fontSize="2xl">{name}</Text>
-				<Text fontSize="md">{posts.length} Posts</Text>
+				<Text fontSize="md">
+					{posts.length ? posts.length : "..."} {posts.length !== 1 ? "Posts" : "Post"}
+				</Text>
 			</Stack>
 			<Divider />
 			{isLoading ? (
