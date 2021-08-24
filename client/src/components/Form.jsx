@@ -9,6 +9,7 @@ import { createPost, updatePost } from "../redux/posts"
 import FormInput from "./common/FormInput"
 import FormTextArea from "./common/FormTextArea"
 import { getUser } from "../utils/getUser"
+import showError from "../utils/showError"
 
 const initialState = {
 	title: "",
@@ -19,10 +20,8 @@ const initialState = {
 
 const Form = ({ currentId, setCurrentId }) => {
 	const [images, setImages] = useState([])
-	const maxNumber = 69
 
 	const onChange = imageList => {
-		console.log("imageList", imageList)
 		setPostData({ ...postData, selectedFile: imageList && imageList[0]?.data_url })
 		setImages(imageList)
 	}
@@ -41,7 +40,6 @@ const Form = ({ currentId, setCurrentId }) => {
 		currentId ? state.posts?.posts?.find(message => message._id === currentId) : null
 	)
 
-	console.log("postData.selectedFile", postData.selectedFile)
 	const handleSubmit = e => {
 		e.preventDefault()
 
@@ -131,11 +129,18 @@ const Form = ({ currentId, setCurrentId }) => {
 					<FormInput
 						child={
 							<ImageUploading
+								acceptType={["jpg", "gif", "png"]}
 								dataURLKey="data_url"
-								maxNumber={maxNumber}
+								maxFileSize={1024 * 1024 * 5.1}
+								maxNumber={1}
 								multiple={false}
 								value={images}
 								onChange={onChange}
+								onError={() =>
+									showError(
+										"Something went wrong when trying to upload image. Please try again."
+									)
+								}
 							>
 								{({
 									imageList,
@@ -144,12 +149,31 @@ const Form = ({ currentId, setCurrentId }) => {
 									onImageRemove,
 									isDragging,
 									dragProps,
+									errors,
 								}) => (
 									<Stack className="upload__image-wrapper" spacing="2">
+										{errors && (
+											<Stack m="4px 0" spacing="2">
+												{errors.maxNumber && (
+													<span>&#8226; Number of selected images exceed maxNumber</span>
+												)}
+												{errors.acceptType && (
+													<span>&#8226; Your selected file type is not allow</span>
+												)}
+												{errors.maxFileSize && (
+													<span>&#8226; Selected file size exceed maxFileSize</span>
+												)}
+												{errors.resolution && (
+													<span>
+														&#8226; Selected file is not match your desired resolution
+													</span>
+												)}
+											</Stack>
+										)}
 										{!postData.selectedFile && (
 											<Button
 												colorScheme="primary"
-												style={isDragging ? { color: "red" } : undefined}
+												style={isDragging ? { color: "purple" } : undefined}
 												variant="ghost"
 												onClick={onImageUpload}
 												{...dragProps}
@@ -187,7 +211,7 @@ const Form = ({ currentId, setCurrentId }) => {
 								)}
 							</ImageUploading>
 						}
-						helper="Max: 5mb"
+						helper="Max: 5mb. Formats: jpg, png, gif."
 						label="Upload image"
 					/>
 
