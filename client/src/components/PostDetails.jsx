@@ -10,7 +10,7 @@ import {
 	useColorModeValue,
 } from "@chakra-ui/react"
 import { formatDistance } from "date-fns"
-import { useHistory, useParams } from "react-router-dom"
+import { Link, useHistory, useParams } from "react-router-dom"
 
 import { getPost, getPostsBySearch } from "../redux/posts"
 import { getRandomId } from "../utils/getRandomId"
@@ -88,9 +88,9 @@ const PostDetails = () => {
 									direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
 									spacing="2"
 								>
-									<Text fontSize="lg">Created by: </Text>
+									<Text fontSize="lg">Created by:</Text>
 									<Text fontSize="lg" fontWeight="bold">
-										{post?.name}
+										<Link to={`/creators/${post.name}`}>{` ${post.name}`}</Link>
 									</Text>
 									<Text fontSize="lg">
 										{formatDistance(
@@ -145,7 +145,6 @@ const PostDetails = () => {
 													alt={post?.title}
 													height="300px"
 													loading="lazy"
-													maxHeight="300px"
 													src={selectedFile}
 													style={{ borderRadius: "16px" }}
 													width="300px"

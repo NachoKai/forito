@@ -9,6 +9,7 @@ import Auth from "./components/Auth"
 import About from "./components/About"
 import PostDetails from "./components/PostDetails"
 import { getUser } from "./utils/getUser"
+import Creator from "./components/Creator"
 
 const App = () => {
 	const user = getUser()
@@ -20,7 +21,8 @@ const App = () => {
 				<Route exact component={() => <Redirect to="/posts" />} path="/" />
 				<Route exact component={Home} path="/posts" />
 				<Route exact component={Home} path="/posts/search" />
-				<Route component={PostDetails} path="/posts/:id" />
+				<Route exact component={PostDetails} path="/posts/:id" />
+				<Route exact component={Creator} path="/creators/:name" />
 				<Route
 					exact
 					component={() => (!user?.result ? <Auth /> : <Redirect to="/posts" />)}
