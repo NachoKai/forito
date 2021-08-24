@@ -2,6 +2,7 @@ import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
 import { Divider, Flex, Skeleton, Stack, Text } from "@chakra-ui/react"
+import { FaSearch } from "react-icons/fa"
 
 import { getPostsBySearch } from "../redux/posts"
 import Post from "./Post"
@@ -18,7 +19,10 @@ const Tags = () => {
 	if (!posts.length && !isLoading) {
 		return (
 			<Flex align="center" direction="column" marginY="64px">
-				<Text color="primary.400" fontSize="6xl">
+				<Text color="primary.400" fontSize="6xl" marginBottom="16px">
+					<FaSearch />
+				</Text>
+				<Text color="primary.400" fontSize="4xl">
 					No posts found for &quot;#{name}&quot;
 				</Text>
 			</Flex>
