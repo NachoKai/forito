@@ -70,7 +70,7 @@ const Post = ({
 			spacing={8}
 			w="100%"
 		>
-			<Stack h="100%" justify="space-between" spacing="4" w="100%">
+			<Stack justify="space-between" spacing="4" w="100%">
 				<Stack direction="column" spacing="4">
 					<Stack direction="row" spacing="2">
 						<Stack direction="column">
