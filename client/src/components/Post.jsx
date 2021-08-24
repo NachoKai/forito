@@ -11,7 +11,7 @@ import {
 import { FaEraser, FaPen } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { Link, useHistory } from "react-router-dom"
 
 import { getRandomId } from "../utils/getRandomId"
 import { deletePost, likePost } from "../redux/posts"
@@ -35,7 +35,6 @@ const Post = ({
 	const [likesMock, setLikesMock] = useState(likes)
 	const isPostCreator =
 		user?.result?.googleId === creator || user?.result?._id === creator
-	// const avatar = false
 
 	const handleLike = async () => {
 		dispatch(likePost(_id))
@@ -74,20 +73,10 @@ const Post = ({
 			<Stack h="100%" justify="space-between" spacing="4" w="100%">
 				<Stack direction="column" spacing="4">
 					<Stack direction="row" spacing="2">
-						{/* {avatar && (
-							<Image
-								alt={user?.result?.name}
-								borderRadius="full"
-								fallback={<SkeletonCircle size="50" />}
-								h="50px"
-								loading="lazy"
-								objectFit="cover"
-								src={avatar}
-								w="50px"
-							/>
-						)} */}
 						<Stack direction="column">
-							<Text fontSize="lg">{name}</Text>
+							<Text fontSize="lg" fontWeight="bold">
+								<Link to={`/creators/${name}`}>{` ${name}`}</Link>
+							</Text>
 							<Text fontSize="sm">
 								{formatDistance(
 									new Date(),
