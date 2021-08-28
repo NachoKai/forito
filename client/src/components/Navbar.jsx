@@ -25,9 +25,7 @@ const Navbar = () => {
 		const token = user?.token
 
 		if (token) {
-			const decodedToken = decode(token)
-
-			if (decodedToken.exp * 1000 < new Date().getTime()) handleLogout()
+			if (decode(token).exp * 1000 < new Date().getTime()) handleLogout()
 		}
 		setUser(getUser())
 	}, [location])
