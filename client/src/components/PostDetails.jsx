@@ -56,7 +56,9 @@ const PostDetails = () => {
 								<Heading as="h2" size="xl">
 									{post?.title}
 								</Heading>
-								<Text fontSize="md">{post?.message}</Text>
+								<Text fontSize="md" whiteSpace="pre-wrap">
+									{post?.message}
+								</Text>
 							</Stack>
 
 							{post?.selectedFile && (

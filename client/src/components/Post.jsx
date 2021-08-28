@@ -96,7 +96,7 @@ const Post = ({
 						{title}
 					</Heading>
 
-					<Text fontSize="md" noOfLines={[2, 4, 6]}>
+					<Text fontSize="md" noOfLines={[2, 4, 6]} whiteSpace="pre-wrap">
 						{message}
 					</Text>
 				</Stack>

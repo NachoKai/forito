@@ -32,6 +32,7 @@ const FormTextArea = ({
 					type={type}
 					value={value}
 					variant="outline"
+					whiteSpace="pre-wrap"
 					onChange={onChange}
 				/>
 			)}
