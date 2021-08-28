@@ -12,10 +12,10 @@ import { checkEmpty } from "../utils/checkEmpty"
 
 const Comments = ({ post }) => {
 	const dispatch = useDispatch()
-	const [comments, setComments] = useState(post?.comments)
-	const [comment, setComment] = useState("")
 	const user = getUser()
 	const commentsRef = useRef(null)
+	const [comments, setComments] = useState(post?.comments)
+	const [comment, setComment] = useState("")
 
 	const handleClick = async () => {
 		const commentContent = `${user?.result?.name}: ${comment}`

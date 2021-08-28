@@ -10,11 +10,11 @@ import { getUser } from "../utils/getUser"
 import { createGradColor } from "../theme"
 
 const Navbar = () => {
-	const [user, setUser] = useState(getUser())
-	const { colorMode, toggleColorMode } = useColorMode()
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const history = useHistory()
+	const [user, setUser] = useState(getUser())
+	const { colorMode, toggleColorMode } = useColorMode()
 
 	const logout = () => {
 		dispatch({ type: LOGOUT })

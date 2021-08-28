@@ -10,8 +10,8 @@ import Comments from "../components/Comments"
 import { createBg, createColor } from "../theme"
 
 const PostDetails = () => {
-	const { post, posts, isLoading } = useSelector(state => state.posts)
 	const dispatch = useDispatch()
+	const { post, posts, isLoading } = useSelector(state => state.posts)
 	const history = useHistory()
 	const { id } = useParams()
 

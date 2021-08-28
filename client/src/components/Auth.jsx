@@ -21,9 +21,9 @@ const initialState = {
 }
 
 const Auth = () => {
-	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
 	const dispatch = useDispatch()
 	const history = useHistory()
+	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
 	const [isSignup, setIsSignup] = useState(false)
 	const [formData, setFormData] = useState(initialState)
 	const [showPassword, setShowPassword] = useState(false)

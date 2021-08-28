@@ -8,8 +8,8 @@ import { getPostsBySearch } from "../redux/posts"
 import Post from "./Post"
 
 const Tags = () => {
-	const { name } = useParams()
 	const dispatch = useDispatch()
+	const { name } = useParams()
 	const { posts, isLoading } = useSelector(state => state.posts)
 
 	useEffect(() => {

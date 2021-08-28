@@ -9,8 +9,8 @@ import { getPosts } from "../redux/posts"
 import { createBg } from "../theme"
 
 const Paginate = ({ page }) => {
-	const { numberOfPages } = useSelector(state => state.posts)
 	const dispatch = useDispatch()
+	const { numberOfPages } = useSelector(state => state.posts)
 
 	useEffect(() => {
 		if (page) dispatch(getPosts(page))
