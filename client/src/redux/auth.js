@@ -1,6 +1,5 @@
 import * as api from "../api"
 import showError from "../utils/showError"
-import showSuccess from "../utils/showSuccess"
 
 /* ==========  CONSTANTS  =========== */
 
@@ -27,7 +26,6 @@ export const signup = (formData, router) => async dispatch => {
 
 		dispatch({ type: AUTH, data })
 		router.push("/")
-		showSuccess("Successfully signed up.")
 	} catch (err) {
 		showError("Something went wrong when trying to sign up. Please try again.")
 		console.error(err)

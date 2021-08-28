@@ -15,7 +15,6 @@ const FormTextArea = ({
 	return (
 		<FormControl isRequired={isRequired}>
 			<FormLabel>{label}</FormLabel>
-			{helper && <FormHelperText>{helper}</FormHelperText>}
 			{child ? (
 				child
 			) : (
@@ -36,6 +35,7 @@ const FormTextArea = ({
 					onChange={onChange}
 				/>
 			)}
+			{helper && <FormHelperText>{helper}</FormHelperText>}
 		</FormControl>
 	)
 }

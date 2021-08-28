@@ -11,7 +11,9 @@ import {
 
 const Dialog = ({ title, message, button, action, isDialogOpen, setIsDialogOpen }) => {
 	const cancelRef = useRef()
+
 	const onCancel = () => setIsDialogOpen(false)
+
 	const onAccept = () => {
 		action()
 		setIsDialogOpen(false)

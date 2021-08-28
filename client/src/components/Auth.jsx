@@ -9,7 +9,6 @@ import FormInput from "./common/FormInput"
 import { AUTH } from "../redux/auth"
 import { login, signup } from "../redux/auth"
 import showError from "../utils/showError"
-import showSuccess from "../utils/showSuccess"
 import { createBg } from "../theme"
 
 const initialState = {
@@ -36,7 +35,6 @@ const Auth = () => {
 			dispatch({ type: AUTH, data: { result, token } })
 
 			history.push("/")
-			showSuccess("Successfully logged in.")
 		} catch (err) {
 			showError("Something went wrong when trying to log in. Please try again.")
 			console.error(err)
