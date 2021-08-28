@@ -95,60 +95,65 @@ const PostDetails = () => {
 								</Stack>
 							</Stack>
 						</Stack>
+
 						<Divider />
+
 						<Text fontSize="lg" fontWeight="bold">
 							Comments
 						</Text>
 						<Comments post={post} />
-						<Divider />
 					</Stack>
 
 					{!!recommendedPosts?.length && (
-						<Stack overflow="auto" spacing="8">
-							<Text fontWeight="bold">You might also like:</Text>
-							<Stack
-								className="recommended-posts"
-								direction="row"
-								overflow="auto"
-								spacing="8"
-							>
-								{recommendedPosts?.map(
-									({ title, name, message, likes, selectedFile, _id }) => (
-										<Stack
-											key={_id}
-											bg={createBg("primary", 100, 900)}
-											borderRadius="lg"
-											className="recommended-post"
-											color={createColor("primary", 600, 100)}
-											cursor="pointer"
-											h="100%"
-											maxWidth="320px"
-											minWidth="320px"
-											p="8"
-											spacing="2"
-											onClick={() => openPost(_id)}
-										>
-											<Heading as="h3" fontSize="lg" fontWeight="bold">
-												{title}
-											</Heading>
-											<Text>{name}</Text>
-											<Text noOfLines={[2, 4, 6]}>{message}</Text>
-											<Text>Likes: {likes?.length}</Text>
-											{selectedFile && (
-												<Image
-													alt={post?.title}
-													borderRadius="lg"
-													boxSize="300px"
-													loading="lazy"
-													objectFit="cover"
-													src={selectedFile}
-												/>
-											)}
-										</Stack>
-									)
-								)}
+						<>
+							<Divider />
+
+							<Stack overflow="auto" spacing="8">
+								<Text fontWeight="bold">You might also like:</Text>
+								<Stack
+									className="recommended-posts"
+									direction="row"
+									overflow="auto"
+									spacing="8"
+								>
+									{recommendedPosts?.map(
+										({ title, name, message, likes, selectedFile, _id }) => (
+											<Stack
+												key={_id}
+												bg={createBg("primary", 100, 900)}
+												borderRadius="lg"
+												className="recommended-post"
+												color={createColor("primary", 600, 100)}
+												cursor="pointer"
+												h="100%"
+												maxWidth="320px"
+												minWidth="320px"
+												p="8"
+												spacing="2"
+												onClick={() => openPost(_id)}
+											>
+												<Heading as="h3" fontSize="lg" fontWeight="bold">
+													{title}
+												</Heading>
+												<Text>{name}</Text>
+												<Text noOfLines={[2, 4, 6]}>{message}</Text>
+												<Text>Likes: {likes?.length}</Text>
+												{selectedFile && (
+													<Image
+														alt={post?.title}
+														borderRadius="lg"
+														boxSize="300px"
+														loading="lazy"
+														objectFit="cover"
+														src={selectedFile}
+													/>
+												)}
+											</Stack>
+										)
+									)}
+								</Stack>
 							</Stack>
-						</Stack>
+						</>
 					)}
 				</Stack>
 			)}

@@ -41,7 +41,9 @@ const Creator = () => {
 						: ""}
 				</Text>
 			</Stack>
+
 			<Divider />
+
 			{isLoading ? (
 				<Skeleton borderRadius="lg" h="500px" />
 			) : (
