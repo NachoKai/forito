@@ -1,5 +1,6 @@
-import { Button, Link, Stack, Text } from "@chakra-ui/react"
+import { Button, Stack, Text } from "@chakra-ui/react"
 import { FaGithub, FaHandSpock } from "react-icons/fa"
+import { Link } from "react-router-dom"
 
 const About = () => {
 	return (
@@ -14,7 +15,11 @@ const About = () => {
 				And this is Forito✨
 			</Text>
 			<Button colorScheme="primary" leftIcon={<FaGithub />} variant="outline">
-				<Link fontSize="xl" to="https://github.com/NachoKai/forito">
+				<Link
+					fontSize="xl"
+					target="_blank"
+					to={{ pathname: "https://github.com/NachoKai/forito" }}
+				>
 					Github
 				</Link>
 			</Button>
