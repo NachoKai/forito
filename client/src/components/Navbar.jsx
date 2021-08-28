@@ -17,8 +17,8 @@ const Navbar = () => {
 	const { colorMode, toggleColorMode } = useColorMode()
 
 	const handleLogout = () => {
-		dispatch(logout(history))
 		setUser(null)
+		dispatch(logout(history))
 	}
 
 	useEffect(() => {
