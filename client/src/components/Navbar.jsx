@@ -65,7 +65,10 @@ const Navbar = () => {
 					fontSize="2xl"
 					fontWeight="bold"
 				>
-					<Link to="/">Forito ✨</Link>
+					<Flex>
+						<Link to="/">Forito </Link>
+						<Link to="/about">✨</Link>
+					</Flex>
 				</Heading>
 			</Stack>
 
