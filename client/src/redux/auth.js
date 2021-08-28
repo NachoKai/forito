@@ -23,6 +23,7 @@ export const login = (formData, history) => async dispatch => {
 export const logout = history => async dispatch => {
 	try {
 		dispatch({ type: LOGOUT })
+		history.push("/")
 		history.push("/auth")
 	} catch (err) {
 		showError("Something went wrong when trying to log out. Please try again.")
