@@ -27,7 +27,7 @@ const App = () => {
 				<Route exact component={Tags} path="/tags/:name" />
 				<Route
 					exact
-					component={() => (!user?.result ? <Auth /> : <Redirect to="/posts" />)}
+					component={() => (!user ? <Auth /> : <Redirect to="/posts" />)}
 					path="/auth"
 				/>
 				<Route exact component={About} path="/about" />
