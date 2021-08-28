@@ -1,18 +1,18 @@
 import { useRef, useState } from "react"
 import { useDispatch } from "react-redux"
-import { Button, Stack, Text, useColorModeValue } from "@chakra-ui/react"
+import { Button, Stack, Text } from "@chakra-ui/react"
 import { FaExclamationCircle } from "react-icons/fa"
 
 import { getRandomId } from "../utils/getRandomId"
 import FormTextArea from "./common/FormTextArea"
 import { getUser } from "../utils/getUser"
 import { addComment } from "../redux/posts"
+import { createColor } from "../theme"
 
 const Comments = ({ post }) => {
 	const dispatch = useDispatch()
 	const [comments, setComments] = useState(post?.comments)
 	const [comment, setComment] = useState("")
-	const color = useColorModeValue("primary.600", "primary.100")
 	const user = getUser()
 	const commentsRef = useRef(null)
 
@@ -62,7 +62,7 @@ const Comments = ({ post }) => {
 			) : (
 				<Stack
 					align="center"
-					color={color}
+					color={createColor(600, 100)}
 					direction="column"
 					minWidth="320px"
 					p="8"

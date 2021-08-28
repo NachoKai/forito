@@ -6,11 +6,11 @@ import styled from "styled-components"
 import { Flex, useColorModeValue } from "@chakra-ui/react"
 
 import { getPosts } from "../redux/posts"
+import { createBg } from "../theme"
 
 const Paginate = ({ page }) => {
 	const { numberOfPages } = useSelector(state => state.posts)
 	const dispatch = useDispatch()
-	const bg = useColorModeValue("primary.100", "primary.900")
 	const color = useColorModeValue("black", "white")
 
 	useEffect(() => {
@@ -18,7 +18,7 @@ const Paginate = ({ page }) => {
 	}, [dispatch, page])
 
 	return (
-		<Container bg={bg} borderRadius="lg" color={color}>
+		<Container bg={createBg(100, 900)} borderRadius="lg" color={color}>
 			{numberOfPages > 1 && (
 				<Pagination
 					count={numberOfPages}

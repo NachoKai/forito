@@ -1,4 +1,4 @@
-import { extendTheme, theme } from "@chakra-ui/react"
+import { extendTheme, theme, useColorModeValue } from "@chakra-ui/react"
 import { createBreakpoints } from "@chakra-ui/theme-tools"
 
 const colors = {
@@ -29,3 +29,11 @@ export default extendTheme({
 	breakpoints,
 	config,
 })
+
+export const createBg = (firstValue, secondValue) => {
+	return useColorModeValue(`primary.${firstValue}`, `primary.${secondValue}`)
+}
+
+export const createColor = (firstValue, secondValue) => {
+	return useColorModeValue(`primary.${firstValue}`, `primary.${secondValue}`)
+}

@@ -18,6 +18,7 @@ import FormInput from "./common/FormInput"
 import FormTextArea from "./common/FormTextArea"
 import { getUser } from "../utils/getUser"
 import showError from "../utils/showError"
+import { createBg, createColor } from "../theme"
 
 const initialState = {
 	title: "",
@@ -32,9 +33,7 @@ const Form = ({ currentId, setCurrentId }) => {
 	const dispatch = useDispatch()
 	const user = getUser()
 	const history = useHistory()
-	const bg = useColorModeValue("primary.100", "primary.900")
 	const grayBg = useColorModeValue("gray.200", "gray.700")
-	const color = useColorModeValue("primary.600", "primary.100")
 	const grayColor = useColorModeValue("gray.700", "gray.200")
 	const gradColor = useColorModeValue(
 		"linear(to-l, primary.600,primary.900)",
@@ -82,7 +81,7 @@ const Form = ({ currentId, setCurrentId }) => {
 		return (
 			<Stack
 				align="center"
-				color={color}
+				color={createColor(600, 100)}
 				direction="column"
 				minWidth="320px"
 				p="8"
@@ -106,7 +105,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				style={{ width: "100%" }}
 				onSubmit={handleSubmit}
 			>
-				<Stack bg={bg} borderRadius="lg" p="8" spacing={4}>
+				<Stack bg={createBg(100, 900)} borderRadius="lg" p="8" spacing={4}>
 					<Text fontSize="xl" fontWeight="bold">
 						{currentId ? "Edit" : "Create"} Post ✏️
 					</Text>
@@ -193,14 +192,14 @@ const Form = ({ currentId, setCurrentId }) => {
 										)}
 										{!postData.selectedFile && (
 											<Stack
-												borderColor={isDragging ? grayColor : color}
+												borderColor={isDragging ? grayColor : createColor(600, 100)}
 												borderRadius="lg"
 												borderStyle="dashed"
 												borderWidth="2px"
 											>
 												<Button
 													bg={isDragging ? grayBg : undefined}
-													color={isDragging ? grayColor : color}
+													color={isDragging ? grayColor : createColor(600, 100)}
 													variant="ghost"
 													onClick={onImageUpload}
 													{...dragProps}

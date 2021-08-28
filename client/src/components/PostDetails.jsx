@@ -1,29 +1,19 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import {
-	Badge,
-	Divider,
-	Heading,
-	Image,
-	Skeleton,
-	Stack,
-	Text,
-	useColorModeValue,
-} from "@chakra-ui/react"
+import { Badge, Divider, Heading, Image, Skeleton, Stack, Text } from "@chakra-ui/react"
 import { formatDistance } from "date-fns"
 import { Link, useHistory, useParams } from "react-router-dom"
 
 import { getPost, getPostsBySearch } from "../redux/posts"
 import { getRandomId } from "../utils/getRandomId"
 import Comments from "../components/Comments"
+import { createBg, createColor } from "../theme"
 
 const PostDetails = () => {
 	const { post, posts, isLoading } = useSelector(state => state.posts)
 	const dispatch = useDispatch()
 	const history = useHistory()
 	const { id } = useParams()
-	const bg = useColorModeValue("primary.100", "primary.900")
-	const color = useColorModeValue("primary.600", "primary.100")
 
 	useEffect(() => {
 		dispatch(getPost(id))
@@ -126,10 +116,10 @@ const PostDetails = () => {
 									({ title, name, message, likes, selectedFile, _id }) => (
 										<Stack
 											key={_id}
-											bg={bg}
+											bg={createBg(100, 900)}
 											borderRadius="lg"
 											className="recommended-post"
-											color={color}
+											color={createColor(600, 100)}
 											cursor="pointer"
 											h="100%"
 											maxWidth="320px"

@@ -10,7 +10,6 @@ import {
 	Flex,
 	Stack,
 	Text,
-	useColorModeValue,
 } from "@chakra-ui/react"
 import { useHistory } from "react-router-dom"
 import ChipInput from "material-ui-chip-input"
@@ -18,14 +17,13 @@ import styled from "styled-components"
 
 import { getPostsBySearch } from "../redux/posts"
 import FormInput from "./common/FormInput"
-// import TagsInput from "../common/TagsInput"
+import { createBg } from "../theme"
 
 const Search = () => {
 	const dispatch = useDispatch()
 	const history = useHistory()
 	const [searchValue, setSearchValue] = useState("")
 	const [searchTags, setSearchTags] = useState([])
-	const bg = useColorModeValue("primary.100", "primary.900")
 
 	const searchPost = () => {
 		if (searchValue.trim() || searchTags) {
@@ -51,7 +49,12 @@ const Search = () => {
 		setSearchTags(searchTags.filter(tag => tag !== tagToDelete))
 
 	return (
-		<Accordion allowToggle bg={bg} borderRadius="lg" colorScheme="primary">
+		<Accordion
+			allowToggle
+			bg={createBg(100, 900)}
+			borderRadius="lg"
+			colorScheme="primary"
+		>
 			<AccordionItem>
 				<AccordionButton>
 					<Text fontSize="lg" fontWeight="bold">
@@ -89,7 +92,6 @@ const Search = () => {
 							label="Search Tags"
 							maxLength="105"
 						/>
-						{/* <TagsInput searchTags={searchTags} setSearchTags={setSearchTags} /> */}
 						<Button colorScheme="primary" onClick={searchPost}>
 							Search
 						</Button>

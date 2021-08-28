@@ -18,6 +18,7 @@ import { LOGOUT } from "../redux/auth"
 import { getUser } from "../utils/getUser"
 
 const Navbar = () => {
+	const [user, setUser] = useState(getUser())
 	const { colorMode, toggleColorMode } = useColorMode()
 	const gradColor = useColorModeValue(
 		"linear(to-l, primary.600,primary.900)",
@@ -26,12 +27,11 @@ const Navbar = () => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const history = useHistory()
-	const [user, setUser] = useState(getUser())
 
 	const logout = () => {
 		dispatch({ type: LOGOUT })
-		history.push("/auth")
 		setUser(null)
+		history.push("/auth")
 	}
 
 	useEffect(() => {

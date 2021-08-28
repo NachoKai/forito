@@ -18,6 +18,7 @@ import { deletePost, likePost } from "../redux/posts"
 import Likes from "./Likes"
 import { getUser } from "../utils/getUser"
 import Dialog from "./common/Dialog"
+import { createBg } from "../theme"
 
 const Post = ({
 	setCurrentId,
@@ -27,7 +28,6 @@ const Post = ({
 	const dispatch = useDispatch()
 	const history = useHistory()
 	const user = getUser()
-	const bg = useColorModeValue("primary.50", "primary.800")
 	const bgDelete = useColorModeValue("red.500", "red.200")
 	const userId = user?.result?.googleId || user?.result?._id
 	const isUserLike = likes?.find(like => like === userId)
@@ -57,7 +57,7 @@ const Post = ({
 
 	return (
 		<Stack
-			bg={bg}
+			bg={createBg(50, 800)}
 			borderRadius="lg"
 			direction={{
 				sm: "column-reverse",

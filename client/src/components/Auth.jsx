@@ -2,7 +2,7 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { GoogleLogin } from "react-google-login"
-import { Button, Flex, Stack, Text, useColorModeValue } from "@chakra-ui/react"
+import { Button, Flex, Stack, Text } from "@chakra-ui/react"
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa"
 
 import FormInput from "./common/FormInput"
@@ -10,6 +10,7 @@ import { AUTH } from "../redux/auth"
 import { login, signup } from "../redux/auth"
 import showError from "../utils/showError"
 import showSuccess from "../utils/showSuccess"
+import { createBg } from "../theme"
 
 const initialState = {
 	firstName: "",
@@ -26,7 +27,6 @@ const Auth = () => {
 	const [isSignup, setIsSignup] = useState(false)
 	const [formData, setFormData] = useState(initialState)
 	const [showPassword, setShowPassword] = useState(false)
-	const bg = useColorModeValue("primary.100", "primary.600")
 
 	const onSuccess = async res => {
 		const result = res?.profileObj
@@ -67,7 +67,7 @@ const Auth = () => {
 	return (
 		<Flex align="center" h={isSignup ? "90%" : "80%"} justify="center" w="100%">
 			<Stack
-				bg={bg}
+				bg={createBg(100, 600)}
 				borderRadius="lg"
 				maxWidth="450px"
 				minWidth="320px"
