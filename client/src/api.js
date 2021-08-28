@@ -14,7 +14,8 @@ API.interceptors.request.use(req => {
 	return req
 })
 
-//Posts
+/* ==========  POSTS  ========== */
+
 export const fetchPost = id => API.get(`/posts/${id}`)
 export const fetchPosts = page => API.get(`/posts?page=${page}`)
 export const fetchPostsBySearch = searchQuery =>
@@ -28,6 +29,7 @@ export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updated
 export const deletePost = id => API.delete(`/posts/${id}`)
 export const addComment = (value, id) => API.post(`/posts/${id}/commentPost`, { value })
 
-//User
+/* ==========  USER  ========== */
+
 export const login = formData => API.post("/user/login", formData)
 export const signup = formData => API.post("/user/signup", formData)

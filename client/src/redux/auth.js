@@ -1,12 +1,12 @@
 import * as api from "../api"
 import showError from "../utils/showError"
 
-/* ==========  CONSTANTS  =========== */
+/* ==========  CONSTANTS  ========== */
 
 export const AUTH = "AUTH"
 export const LOGOUT = "LOGOUT"
 
-/* ==========  ACTIONS  =========== */
+/* ==========  ACTIONS  ========== */
 
 export const login = (formData, history) => async dispatch => {
 	try {
@@ -42,7 +42,7 @@ export const signup = (formData, history) => async dispatch => {
 	}
 }
 
-/* ==========  REDUCERS  =========== */
+/* ==========  REDUCERS  ========== */
 
 const initialState = {
 	authData: null,
