@@ -36,7 +36,9 @@ const Posts = ({ setCurrentId, handleClick, searchQuery }) => {
 							/>
 						))
 					)}
-					{!searchQuery && <Pagination />}
+					<Stack paddingBottom={{ sm: "32px", md: "32px", lg: "0", xl: "0" }}>
+						{!searchQuery && <Pagination />}
+					</Stack>
 				</Stack>
 			)}
 		</Flex>
