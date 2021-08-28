@@ -16,7 +16,7 @@ const Creator = () => {
 		dispatch(getPostsByCreator(name))
 	}, [])
 
-	if (!posts.length && !isLoading) {
+	if (!posts?.length && !isLoading) {
 		return (
 			<Flex align="center" direction="column" marginY="64px">
 				<Text color="primary.400" fontSize="6xl" marginBottom="16px">
@@ -34,7 +34,11 @@ const Creator = () => {
 			<Stack spacing="2">
 				<Text fontSize="2xl">{name}</Text>
 				<Text fontSize="md">
-					{posts.length ? posts.length : "..."} {posts.length !== 1 ? "Posts" : "Post"}
+					{posts?.length
+						? posts.length !== 1
+							? `${posts.length} Posts`
+							: `${posts.length}  Post`
+						: ""}
 				</Text>
 			</Stack>
 			<Divider />

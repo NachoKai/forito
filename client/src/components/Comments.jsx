@@ -19,11 +19,10 @@ const Comments = ({ post }) => {
 
 	const handleClick = async () => {
 		const commentContent = `${user?.result?.name}: ${comment}`
-		const newComments = await dispatch(addComment(commentContent, post._id))
+		const newComments = await dispatch(addComment(commentContent, post?._id))
 
 		setComments(newComments)
 		setComment("")
-
 		commentsRef.current.scrollIntoView({ behavior: "smooth" })
 	}
 
@@ -40,6 +39,7 @@ const Comments = ({ post }) => {
 				))}
 				<div ref={commentsRef} />
 			</Stack>
+
 			{user?.result?.name ? (
 				<Stack spacing="4" width="100%">
 					<FormTextArea
