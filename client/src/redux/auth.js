@@ -8,24 +8,24 @@ export const LOGOUT = "LOGOUT"
 
 /* ==========  ACTIONS  =========== */
 
-export const login = (formData, router) => async dispatch => {
+export const login = (formData, history) => async dispatch => {
 	try {
 		const { data } = await api.login(formData)
 
 		dispatch({ type: AUTH, data })
-		router.push("/")
+		history.push("/")
 	} catch (err) {
 		showError("Something went wrong when trying to log in. Please try again.")
 		console.error(err)
 	}
 }
 
-export const signup = (formData, router) => async dispatch => {
+export const signup = (formData, history) => async dispatch => {
 	try {
 		const { data } = await api.signup(formData)
 
 		dispatch({ type: AUTH, data })
-		router.push("/")
+		history.push("/")
 	} catch (err) {
 		showError("Something went wrong when trying to sign up. Please try again.")
 		console.error(err)

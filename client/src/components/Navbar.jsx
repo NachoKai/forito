@@ -18,8 +18,8 @@ const Navbar = () => {
 
 	const logout = () => {
 		dispatch({ type: LOGOUT })
-		setUser(null)
 		history.push("/auth")
+		setUser(null)
 	}
 
 	useEffect(() => {
