@@ -11,14 +11,17 @@ import { createBg } from "../theme"
 const Paginate = ({ page }) => {
 	const { numberOfPages } = useSelector(state => state.posts)
 	const dispatch = useDispatch()
-	const color = useColorModeValue("black", "white")
 
 	useEffect(() => {
 		if (page) dispatch(getPosts(page))
 	}, [dispatch, page])
 
 	return (
-		<Container bg={createBg(100, 900)} borderRadius="lg" color={color}>
+		<Container
+			bg={createBg(100, 900)}
+			borderRadius="lg"
+			color={useColorModeValue("black", "white")}
+		>
 			{numberOfPages > 1 && (
 				<Pagination
 					count={numberOfPages}
