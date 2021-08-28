@@ -1,18 +1,24 @@
-import { Flex, Link, Text } from "@chakra-ui/react"
+import { Button, Link, Stack, Text } from "@chakra-ui/react"
+import { FaGithub, FaHandSpock } from "react-icons/fa"
 
 const About = () => {
 	return (
-		<Flex flexGrow align="center" direction="column" h="50%" justify="center" p="8">
+		<Stack flexGrow align="center" h="50%" spacing="4">
+			<Text color="primary.400" fontSize="6xl">
+				<FaHandSpock />
+			</Text>
 			<Text color="primary.400" fontSize="6xl">
 				Hi, I&apos;m Nacho!
 			</Text>
 			<Text color="primary.400" fontSize="3xl">
-				This is forito
+				And this is Forito✨
 			</Text>
-			<Link color="primary.400" fontSize="3xl" to="https://github.com/NachoKai/forito">
-				Github
-			</Link>
-		</Flex>
+			<Button colorScheme="primary" leftIcon={<FaGithub />} variant="outline">
+				<Link fontSize="xl" to="https://github.com/NachoKai/forito">
+					Github
+				</Link>
+			</Button>
+		</Stack>
 	)
 }
 
