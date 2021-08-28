@@ -25,7 +25,11 @@ const Home = () => {
 			spacing={8}
 		>
 			<Stack w="100%">
-				<Posts handleClick={handleClick} setCurrentId={setCurrentId} />
+				<Posts
+					handleClick={handleClick}
+					searchQuery={searchQuery}
+					setCurrentId={setCurrentId}
+				/>
 			</Stack>
 			<Stack spacing="4">
 				<div ref={formRef} />

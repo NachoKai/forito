@@ -3,8 +3,9 @@ import { Flex, Skeleton, Stack, Text } from "@chakra-ui/react"
 import { FaPencilAlt } from "react-icons/fa"
 
 import Post from "./Post"
+import Pagination from "./Pagination"
 
-const Posts = ({ setCurrentId, handleClick }) => {
+const Posts = ({ setCurrentId, handleClick, searchQuery }) => {
 	const { posts, isLoading } = useSelector(state => state.posts)
 	const havePosts = posts?.length > 0
 
@@ -35,6 +36,7 @@ const Posts = ({ setCurrentId, handleClick }) => {
 							/>
 						))
 					)}
+					{!searchQuery && <Pagination />}
 				</Stack>
 			)}
 		</Flex>
