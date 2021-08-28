@@ -62,7 +62,7 @@ const Comments = ({ post }) => {
 			) : (
 				<Stack
 					align="center"
-					color={createColor(600, 100)}
+					color={createColor("primary", 600, 100)}
 					direction="column"
 					minWidth="320px"
 					p="8"

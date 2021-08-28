@@ -18,7 +18,7 @@ const Paginate = ({ page }) => {
 
 	return (
 		<Container
-			bg={createBg(100, 900)}
+			bg={createBg("primary", 100, 900)}
 			borderRadius="lg"
 			color={useColorModeValue("black", "white")}
 		>

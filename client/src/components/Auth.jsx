@@ -59,15 +59,13 @@ const Auth = () => {
 	}
 
 	const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
-
 	const handleSwitch = () => setIsSignup(prevIsSignup => !prevIsSignup)
-
 	const handleShowPassword = () => setShowPassword(!showPassword)
 
 	return (
 		<Flex align="center" h={isSignup ? "90%" : "80%"} justify="center" w="100%">
 			<Stack
-				bg={createBg(100, 600)}
+				bg={createBg("primary", 100, 600)}
 				borderRadius="lg"
 				maxWidth="450px"
 				minWidth="320px"

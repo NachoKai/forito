@@ -1,14 +1,6 @@
 import { useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import {
-	Button,
-	Divider,
-	Flex,
-	Image,
-	Stack,
-	Text,
-	useColorModeValue,
-} from "@chakra-ui/react"
+import { Button, Divider, Flex, Image, Stack, Text } from "@chakra-ui/react"
 import { FaExclamationCircle } from "react-icons/fa"
 import { useHistory } from "react-router-dom"
 import ImageUploading from "react-images-uploading"
@@ -18,7 +10,7 @@ import FormInput from "./common/FormInput"
 import FormTextArea from "./common/FormTextArea"
 import { getUser } from "../utils/getUser"
 import showError from "../utils/showError"
-import { createBg, createColor } from "../theme"
+import { createBg, createColor, createGradColor } from "../theme"
 
 const initialState = {
 	title: "",
@@ -33,12 +25,6 @@ const Form = ({ currentId, setCurrentId }) => {
 	const dispatch = useDispatch()
 	const user = getUser()
 	const history = useHistory()
-	const grayBg = useColorModeValue("gray.200", "gray.700")
-	const grayColor = useColorModeValue("gray.700", "gray.200")
-	const gradColor = useColorModeValue(
-		"linear(to-l, primary.600,primary.900)",
-		"linear(to-l, primary.100,primary.400)"
-	)
 	const areValidTags = ![...new Set(postData.tags)].every(tag =>
 		/^[a-zA-Z0-9_.-]*$/.test(tag)
 	)
@@ -81,7 +67,7 @@ const Form = ({ currentId, setCurrentId }) => {
 		return (
 			<Stack
 				align="center"
-				color={createColor(600, 100)}
+				color={createColor("primary", 600, 100)}
 				direction="column"
 				minWidth="320px"
 				p="8"
@@ -105,7 +91,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				style={{ width: "100%" }}
 				onSubmit={handleSubmit}
 			>
-				<Stack bg={createBg(100, 900)} borderRadius="lg" p="8" spacing={4}>
+				<Stack bg={createBg("primary", 100, 900)} borderRadius="lg" p="8" spacing={4}>
 					<Text fontSize="xl" fontWeight="bold">
 						{currentId ? "Edit" : "Create"} Post ✏️
 					</Text>
@@ -192,14 +178,22 @@ const Form = ({ currentId, setCurrentId }) => {
 										)}
 										{!postData.selectedFile && (
 											<Stack
-												borderColor={isDragging ? grayColor : createColor(600, 100)}
+												borderColor={
+													isDragging
+														? createColor("gray", 700, 200)
+														: createColor("primary", 600, 100)
+												}
 												borderRadius="lg"
 												borderStyle="dashed"
 												borderWidth="2px"
 											>
 												<Button
-													bg={isDragging ? grayBg : undefined}
-													color={isDragging ? grayColor : createColor(600, 100)}
+													bg={isDragging ? createColor("gray", 200, 700) : undefined}
+													color={
+														isDragging
+															? createColor("gray", 700, 200)
+															: createColor("primary", 600, 100)
+													}
 													variant="ghost"
 													onClick={onImageUpload}
 													{...dragProps}
@@ -252,7 +246,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 					<Stack spacing="4">
 						<Button
-							bgGradient={gradColor}
+							bgGradient={createGradColor(600, 900, 100, 400)}
 							colorScheme="primary"
 							disabled={
 								!(

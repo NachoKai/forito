@@ -1,29 +1,17 @@
 import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { FaMoon, FaSun } from "react-icons/fa"
-import {
-	Button,
-	Flex,
-	Heading,
-	Image,
-	Stack,
-	Text,
-	useColorMode,
-	useColorModeValue,
-} from "@chakra-ui/react"
+import { Button, Flex, Heading, Image, Stack, Text, useColorMode } from "@chakra-ui/react"
 import { Link, useHistory, useLocation } from "react-router-dom"
 import decode from "jwt-decode"
 
 import { LOGOUT } from "../redux/auth"
 import { getUser } from "../utils/getUser"
+import { createGradColor } from "../theme"
 
 const Navbar = () => {
 	const [user, setUser] = useState(getUser())
 	const { colorMode, toggleColorMode } = useColorMode()
-	const gradColor = useColorModeValue(
-		"linear(to-l, primary.600,primary.900)",
-		"linear(to-l, primary.400,primary.100)"
-	)
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const history = useHistory()
@@ -61,7 +49,7 @@ const Navbar = () => {
 				<Heading
 					as="h2"
 					bgClip="text"
-					bgGradient={gradColor}
+					bgGradient={createGradColor(600, 900, 400, 100)}
 					fontSize="2xl"
 					fontWeight="bold"
 				>

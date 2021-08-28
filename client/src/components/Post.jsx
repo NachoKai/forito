@@ -1,13 +1,5 @@
 import { useState } from "react"
-import {
-	Badge,
-	Button,
-	Heading,
-	Image,
-	Stack,
-	Text,
-	useColorModeValue,
-} from "@chakra-ui/react"
+import { Badge, Button, Heading, Image, Stack, Text } from "@chakra-ui/react"
 import { FaEraser, FaPen } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
@@ -28,7 +20,6 @@ const Post = ({
 	const dispatch = useDispatch()
 	const history = useHistory()
 	const user = getUser()
-	const bgDelete = useColorModeValue("red.500", "red.200")
 	const userId = user?.result?.googleId || user?.result?._id
 	const isUserLike = likes?.find(like => like === userId)
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
@@ -57,7 +48,7 @@ const Post = ({
 
 	return (
 		<Stack
-			bg={createBg(50, 800)}
+			bg={createBg("primary", 50, 800)}
 			borderRadius="lg"
 			direction={{
 				sm: "column-reverse",
@@ -134,7 +125,7 @@ const Post = ({
 						)}
 						{isPostCreator && (
 							<Button
-								bg={bgDelete}
+								bg={createBg("red", 500, 200)}
 								colorScheme="primary"
 								leftIcon={<FaEraser />}
 								size="sm"

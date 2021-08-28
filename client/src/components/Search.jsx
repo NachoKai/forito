@@ -51,7 +51,7 @@ const Search = () => {
 	return (
 		<Accordion
 			allowToggle
-			bg={createBg(100, 900)}
+			bg={createBg("primary", 100, 900)}
 			borderRadius="lg"
 			colorScheme="primary"
 		>

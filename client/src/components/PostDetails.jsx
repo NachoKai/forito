@@ -116,10 +116,10 @@ const PostDetails = () => {
 									({ title, name, message, likes, selectedFile, _id }) => (
 										<Stack
 											key={_id}
-											bg={createBg(100, 900)}
+											bg={createBg("primary", 100, 900)}
 											borderRadius="lg"
 											className="recommended-post"
-											color={createColor(600, 100)}
+											color={createColor("primary", 600, 100)}
 											cursor="pointer"
 											h="100%"
 											maxWidth="320px"
