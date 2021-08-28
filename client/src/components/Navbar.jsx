@@ -5,7 +5,7 @@ import { Button, Flex, Heading, Image, Stack, Text, useColorMode } from "@chakra
 import { Link, useHistory, useLocation } from "react-router-dom"
 import decode from "jwt-decode"
 
-import { LOGOUT } from "../redux/auth"
+import { logout } from "../redux/auth"
 import { getUser } from "../utils/getUser"
 import { createGradColor } from "../theme"
 
@@ -16,9 +16,8 @@ const Navbar = () => {
 	const [user, setUser] = useState(getUser())
 	const { colorMode, toggleColorMode } = useColorMode()
 
-	const logout = () => {
-		dispatch({ type: LOGOUT })
-		history.push("/auth")
+	const handleLogout = () => {
+		dispatch(logout(history))
 		setUser(null)
 	}
 
@@ -28,7 +27,7 @@ const Navbar = () => {
 		if (token) {
 			const decodedToken = decode(token)
 
-			if (decodedToken.exp * 1000 < new Date().getTime()) logout()
+			if (decodedToken.exp * 1000 < new Date().getTime()) handleLogout()
 		}
 		setUser(getUser())
 	}, [location])
@@ -86,7 +85,12 @@ const Navbar = () => {
 								{user.result.name}
 							</Text>
 						)}
-						<Button colorScheme="primary" size="sm" variant="outline" onClick={logout}>
+						<Button
+							colorScheme="primary"
+							size="sm"
+							variant="outline"
+							onClick={handleLogout}
+						>
 							Logout
 						</Button>
 					</Stack>

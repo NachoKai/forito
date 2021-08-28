@@ -20,6 +20,16 @@ export const login = (formData, history) => async dispatch => {
 	}
 }
 
+export const logout = history => async dispatch => {
+	try {
+		dispatch({ type: LOGOUT })
+		history.push("/auth")
+	} catch (err) {
+		showError("Something went wrong when trying to log out. Please try again.")
+		console.error(err)
+	}
+}
+
 export const signup = (formData, history) => async dispatch => {
 	try {
 		const { data } = await api.signup(formData)
