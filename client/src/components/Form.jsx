@@ -11,6 +11,7 @@ import FormTextArea from "./common/FormTextArea"
 import { getUser } from "../utils/getUser"
 import showError from "../utils/showError"
 import { createBg, createColor, createGradColor } from "../theme"
+import { checkEmpty } from "../utils/checkEmpty"
 
 const initialState = {
 	title: "",
@@ -249,9 +250,7 @@ const Form = ({ currentId, setCurrentId }) => {
 							bgGradient={createGradColor("primary", 600, 900, 100, 400)}
 							colorScheme="primary"
 							disabled={
-								!(
-									postData.title.trim().length > 0 && postData.message.trim().length > 0
-								) ||
+								!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) ||
 								![...new Set(postData.tags)].every(tag => /^[a-zA-Z0-9_.-]*$/.test(tag))
 							}
 							type="submit"

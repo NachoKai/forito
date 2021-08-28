@@ -10,6 +10,7 @@ import { AUTH } from "../redux/auth"
 import { login, signup } from "../redux/auth"
 import showError from "../utils/showError"
 import { createBg } from "../theme"
+import { checkEmpty } from "../utils/checkEmpty"
 
 const initialState = {
 	firstName: "",
@@ -85,7 +86,7 @@ const Auth = () => {
 										label="First Name"
 										maxLength="25"
 										name="firstName"
-										value={formData.firstName}
+										value={formData?.firstName}
 										onChange={handleChange}
 									/>
 									<FormInput
@@ -93,7 +94,7 @@ const Auth = () => {
 										label="Last Name"
 										maxLength="25"
 										name="lastName"
-										value={formData.lastName}
+										value={formData?.lastName}
 										onChange={handleChange}
 									/>
 								</Stack>
@@ -105,7 +106,7 @@ const Auth = () => {
 							maxLength="35"
 							name="email"
 							type="email"
-							value={formData.email}
+							value={formData?.email}
 							onChange={handleChange}
 						/>
 						<FormInput
@@ -121,7 +122,7 @@ const Auth = () => {
 								)
 							}
 							type={showPassword ? "text" : "password"}
-							value={formData.password}
+							value={formData?.password}
 							onChange={handleChange}
 						/>
 						{isSignup && (
@@ -131,7 +132,7 @@ const Auth = () => {
 								maxLength="35"
 								name="confirmPassword"
 								type="password"
-								value={formData.confirmPassword}
+								value={formData?.confirmPassword}
 								onChange={handleChange}
 							/>
 						)}
@@ -139,13 +140,12 @@ const Auth = () => {
 							colorScheme="primary"
 							disabled={
 								!(isSignup
-									? formData.firstName.trim().length > 0 &&
-									  formData.lastName.trim().length > 0 &&
-									  formData.email.trim().length > 0 &&
-									  formData.password.trim().length > 0 &&
-									  formData.confirmPassword.trim().length > 0
-									: formData.email.trim().length > 0 &&
-									  formData.password.trim().length > 0)
+									? checkEmpty(formData?.firstName) &&
+									  checkEmpty(formData?.lastName) &&
+									  checkEmpty(formData?.email) &&
+									  checkEmpty(formData?.password) &&
+									  checkEmpty(formData?.confirmPassword)
+									: checkEmpty(formData?.email) && checkEmpty(formData?.password))
 							}
 							type="submit"
 							variant="solid"

@@ -8,6 +8,7 @@ import FormTextArea from "./common/FormTextArea"
 import { getUser } from "../utils/getUser"
 import { addComment } from "../redux/posts"
 import { createColor } from "../theme"
+import { checkEmpty } from "../utils/checkEmpty"
 
 const Comments = ({ post }) => {
 	const dispatch = useDispatch()
@@ -50,7 +51,7 @@ const Comments = ({ post }) => {
 					/>
 					<Button
 						colorScheme="primary"
-						disabled={!comment.trim().length > 0}
+						disabled={!checkEmpty(comment)}
 						onClick={handleClick}
 					>
 						Comment
