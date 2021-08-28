@@ -12,9 +12,7 @@ const Posts = ({ setCurrentId, handleClick }) => {
 		<Flex flexGrow w="100%">
 			{isLoading ? (
 				<Stack spacing={8} w="100%">
-					<Skeleton borderRadius="lg" h="250px" />
-					<Skeleton borderRadius="lg" h="250px" />
-					<Skeleton borderRadius="lg" h="250px" />
+					<Skeleton borderRadius="lg" h="500px" />
 				</Stack>
 			) : (
 				<Stack direction="column" spacing={8} w="100%">
