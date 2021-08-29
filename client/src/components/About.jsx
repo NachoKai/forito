@@ -1,10 +1,10 @@
-import { Button, Stack, Text } from "@chakra-ui/react"
+import { Button, Flex, Text } from "@chakra-ui/react"
 import { FaGithub, FaHandSpock } from "react-icons/fa"
 import { Link } from "react-router-dom"
 
 const About = () => {
 	return (
-		<Stack align="center" h="100%" spacing="4">
+		<Flex flexGrow align="center" direction="column" h="100%" justify="center" p="8">
 			<Text color="primary.400" fontSize="6xl">
 				<FaHandSpock />
 			</Text>
@@ -23,7 +23,7 @@ const About = () => {
 					Github
 				</Link>
 			</Button>
-		</Stack>
+		</Flex>
 	)
 }
 
