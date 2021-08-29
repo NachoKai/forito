@@ -8,11 +8,14 @@ import Home from "./components/Home"
 import Auth from "./components/Auth"
 import About from "./components/About"
 import PostDetails from "./components/PostDetails"
+import { getUser } from "./utils/getUser"
 import Creator from "./components/Creator"
 import Tags from "./components/Tags"
 import Footer from "./components/Footer"
 
 const App = () => {
+	const user = getUser()
+
 	return (
 		<BrowserRouter>
 			<Navbar />
@@ -23,7 +26,11 @@ const App = () => {
 				<Route exact component={PostDetails} path="/posts/:id" />
 				<Route exact component={Creator} path="/creators/:name" />
 				<Route exact component={Tags} path="/tags/:name" />
-				<Route exact component={Auth} path="/auth" />
+				<Route
+					exact
+					component={() => (!user?.result ? <Auth /> : <Redirect to="/posts" />)}
+					path="/auth"
+				/>
 				<Route exact component={About} path="/about" />
 				<Route exact component={ErrorPage} path="*" />
 			</Switch>
