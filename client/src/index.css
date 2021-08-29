@@ -40,12 +40,12 @@ html {
 
 body {
   width: 100%;
-  height: calc(100% - 60px);
+  height: 100%;
   margin: 0;
 }
 
 #root {
-  height: calc(100% - 60px - 174px);
+  height: calc(100% - 70px);
 }
 
 /**

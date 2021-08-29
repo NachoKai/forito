@@ -62,7 +62,7 @@ const Auth = () => {
 	const handleShowPassword = () => setShowPassword(!showPassword)
 
 	return (
-		<Flex align="center" h="100%" justify="center" w="100%">
+		<Stack align="center" h="100%" justify="center">
 			<Stack
 				bg={createBg("primary", 100, 600)}
 				borderRadius="lg"
@@ -186,7 +186,7 @@ const Auth = () => {
 					</Button>
 				</Flex>
 			</Stack>
-		</Flex>
+		</Stack>
 	)
 }
 
