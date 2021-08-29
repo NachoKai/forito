@@ -62,7 +62,7 @@ const Auth = () => {
 	const handleShowPassword = () => setShowPassword(!showPassword)
 
 	return (
-		<Flex align="center" h={isSignup ? "90%" : "80%"} justify="center" w="100%">
+		<Flex align="center" h="100%" justify="center" w="100%">
 			<Stack
 				bg={createBg("primary", 100, 600)}
 				borderRadius="lg"
