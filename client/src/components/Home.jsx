@@ -1,4 +1,4 @@
-import { Fragment, useRef, useState } from "react"
+import { useRef, useState } from "react"
 import { Stack } from "@chakra-ui/react"
 
 import Posts from "./Posts"
@@ -31,7 +31,7 @@ const Home = () => {
 					/>
 				</Stack>
 				<Stack spacing="4">
-					<Fragment ref={formRef} />
+					<Stack ref={formRef} marginTop="-4" />
 					<Form currentId={currentId} setCurrentId={setCurrentId} />
 					<Search />
 					{!searchQuery && <Pagination page={page} />}
