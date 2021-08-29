@@ -1,9 +1,10 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { GoogleLogin } from "react-google-login"
 import { Button, Flex, Stack, Text } from "@chakra-ui/react"
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa"
+import { Redirect } from "react-router-dom"
 
 import FormInput from "./common/FormInput"
 import { AUTH } from "../redux/auth"
@@ -11,6 +12,7 @@ import { login, signup } from "../redux/auth"
 import showError from "../utils/showError"
 import { createBg } from "../theme"
 import { checkEmpty } from "../utils/checkEmpty"
+import { getUser } from "../utils/getUser"
 
 const initialState = {
 	firstName: "",
@@ -21,12 +23,19 @@ const initialState = {
 }
 
 const Auth = () => {
+	const user = getUser()
 	const dispatch = useDispatch()
 	const history = useHistory()
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
 	const [isSignup, setIsSignup] = useState(false)
 	const [formData, setFormData] = useState(initialState)
 	const [showPassword, setShowPassword] = useState(false)
+
+	useEffect(() => {
+		if (!user?.result) {
+			return <Redirect to="/posts" />
+		}
+	}, [user])
 
 	const onSuccess = async res => {
 		const result = res?.profileObj
