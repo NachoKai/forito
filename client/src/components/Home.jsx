@@ -17,7 +17,7 @@ const Home = () => {
 	const handleClick = async () => formRef.current.scrollIntoView({ behavior: "smooth" })
 
 	return (
-		<>
+		<Stack paddingBottom="4">
 			<Stack
 				direction={{ sm: "column-reverse", md: "column-reverse", lg: "row", xl: "row" }}
 				p={{ sm: "0", md: "0", lg: "8", xl: "8" }}
@@ -38,7 +38,7 @@ const Home = () => {
 				</Stack>
 			</Stack>
 			{!searchQuery && <Pagination page={page} />}
-		</>
+		</Stack>
 	)
 }
 
