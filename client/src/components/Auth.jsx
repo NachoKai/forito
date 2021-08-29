@@ -69,7 +69,7 @@ const Auth = () => {
 				maxWidth="450px"
 				minWidth="320px"
 				p="8"
-				spacing={4}
+				spacing="4"
 				w="100%"
 			>
 				<Text fontSize="xl" fontWeight="bold">

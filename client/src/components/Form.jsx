@@ -92,7 +92,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				style={{ width: "100%" }}
 				onSubmit={handleSubmit}
 			>
-				<Stack bg={createBg("primary", 100, 900)} borderRadius="lg" p="8" spacing={4}>
+				<Stack bg={createBg("primary", 100, 900)} borderRadius="lg" p="8" spacing="4">
 					<Text fontSize="xl" fontWeight="bold">
 						{currentId ? "Edit" : "Create"} Post ✏️
 					</Text>

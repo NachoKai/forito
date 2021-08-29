@@ -17,27 +17,30 @@ const Home = () => {
 	const handleClick = async () => formRef.current.scrollIntoView({ behavior: "smooth" })
 
 	return (
-		<Stack
-			direction={{ sm: "column-reverse", md: "column-reverse", lg: "row", xl: "row" }}
-			p={{ sm: "0", md: "0", lg: "8", xl: "8" }}
-			spacing={8}
-		>
-			<Stack w="100%">
-				<Posts
-					handleClick={handleClick}
-					searchQuery={searchQuery}
-					setCurrentId={setCurrentId}
-				/>
-			</Stack>
-			<Stack spacing="4">
-				<div ref={formRef} />
-				<Form currentId={currentId} setCurrentId={setCurrentId} />
+		<>
+			<Stack>{!searchQuery && <Pagination page={page} />}</Stack>
+			<Stack
+				direction={{ sm: "column-reverse", md: "column-reverse", lg: "row", xl: "row" }}
+				p={{ sm: "0", md: "0", lg: "8", xl: "8" }}
+				spacing="8"
+			>
+				<Stack w="100%">
+					<Posts
+						handleClick={handleClick}
+						searchQuery={searchQuery}
+						setCurrentId={setCurrentId}
+					/>
+				</Stack>
 				<Stack spacing="4">
-					{!searchQuery && <Pagination page={page} />}
-					<Search />
+					<div ref={formRef} />
+					<Form currentId={currentId} setCurrentId={setCurrentId} />
+					<Stack spacing="4">
+						<Search />
+					</Stack>
 				</Stack>
 			</Stack>
-		</Stack>
+			<Stack>{!searchQuery && <Pagination page={page} />}</Stack>
+		</>
 	)
 }
 

@@ -35,7 +35,7 @@ const Navbar = () => {
 			flexGrow
 			align="center"
 			background={colorMode === "light" ? "white" : "gray.800"}
-			h="60px"
+			h="70px"
 			justify="space-between"
 			paddingX="8"
 			position="sticky"

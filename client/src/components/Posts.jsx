@@ -3,20 +3,19 @@ import { Flex, Skeleton, Stack, Text } from "@chakra-ui/react"
 import { FaPencilAlt } from "react-icons/fa"
 
 import Post from "./Post"
-import Pagination from "./Pagination"
 
-const Posts = ({ setCurrentId, handleClick, searchQuery }) => {
+const Posts = ({ setCurrentId, handleClick }) => {
 	const { posts, isLoading } = useSelector(state => state.posts)
 	const havePosts = posts?.length > 0
 
 	return (
 		<Flex flexGrow w="100%">
 			{isLoading ? (
-				<Stack spacing={8} w="100%">
+				<Stack spacing="8" w="100%">
 					<Skeleton borderRadius="lg" h="500px" />
 				</Stack>
 			) : (
-				<Stack direction="column" spacing={8} w="100%">
+				<Stack direction="column" spacing="8" w="100%">
 					{!havePosts ? (
 						<Flex align="center" direction="column" marginY="64px">
 							<Text color="primary.400" fontSize="6xl">
@@ -36,9 +35,6 @@ const Posts = ({ setCurrentId, handleClick, searchQuery }) => {
 							/>
 						))
 					)}
-					<Stack paddingBottom={{ sm: "32px", md: "32px", lg: "0", xl: "0" }}>
-						{!searchQuery && <Pagination />}
-					</Stack>
 				</Stack>
 			)}
 		</Flex>

@@ -58,7 +58,7 @@ const Post = ({
 			}}
 			h="100%"
 			p="8"
-			spacing={8}
+			spacing="8"
 			w="100%"
 		>
 			<Stack justify="space-between" spacing="4" w="100%">

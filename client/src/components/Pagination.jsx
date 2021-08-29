@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux"
 import { Pagination, PaginationItem } from "@material-ui/lab"
 import { Link } from "react-router-dom"
 import styled from "styled-components"
-import { Flex, useColorModeValue } from "@chakra-ui/react"
+import { Stack, useColorModeValue } from "@chakra-ui/react"
 
 import { getPosts } from "../redux/posts"
 import { createBg } from "../theme"
@@ -38,7 +38,7 @@ const Paginate = ({ page }) => {
 
 export default Paginate
 
-const Container = styled(Flex)`
+const Container = styled(Stack)`
 	a {
 		color: ${p => p.color};
 	}

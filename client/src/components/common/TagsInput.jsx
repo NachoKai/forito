@@ -35,7 +35,7 @@
 // 				<FormLabel>Search Tags</FormLabel>
 // 				<FormHelperText>Separated by commas.</FormHelperText>
 // 				<InputGroup bg="white" borderRadius="lg" overflow="auto">
-// 					<HStack spacing={4}>
+// 					<HStack spacing="4">
 // 						{searchTags?.length > 0 &&
 // 							searchTags.map(tag => (
 // 								<Tag
