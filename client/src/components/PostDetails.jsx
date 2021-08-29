@@ -96,7 +96,7 @@ const PostDetails = () => {
 							</Stack>
 						</Stack>
 
-						<Divider />
+						<Divider colorScheme="primary" />
 
 						<Text fontSize="lg" fontWeight="bold">
 							Comments
@@ -106,7 +106,7 @@ const PostDetails = () => {
 
 					{!!recommendedPosts?.length && (
 						<>
-							<Divider />
+							<Divider colorScheme="primary" />
 
 							<Stack overflow="auto" spacing="8">
 								<Text fontWeight="bold">You might also like:</Text>

@@ -11,6 +11,7 @@ import PostDetails from "./components/PostDetails"
 import { getUser } from "./utils/getUser"
 import Creator from "./components/Creator"
 import Tags from "./components/Tags"
+import Footer from "./components/Footer"
 
 const App = () => {
 	const user = getUser()
@@ -33,6 +34,7 @@ const App = () => {
 				<Route exact component={About} path="/about" />
 				<Route exact component={ErrorPage} path="*" />
 			</Switch>
+			<Footer />
 			<ToastContainer />
 		</BrowserRouter>
 	)

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom"
 
 const About = () => {
 	return (
-		<Stack flexGrow align="center" h="50%" spacing="4">
+		<Stack align="center" h="100%" spacing="4">
 			<Text color="primary.400" fontSize="6xl">
 				<FaHandSpock />
 			</Text>

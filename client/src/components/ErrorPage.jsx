@@ -3,7 +3,7 @@ import { FaExclamationCircle } from "react-icons/fa"
 
 const ErrorPage = () => {
 	return (
-		<Flex flexGrow align="center" direction="column" h="50%" justify="center" p="8">
+		<Flex flexGrow align="center" direction="column" h="100%" justify="center" p="8">
 			<Text color="primary.400" fontSize="6xl">
 				<FaExclamationCircle />
 			</Text>

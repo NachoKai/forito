@@ -243,7 +243,7 @@ const Form = ({ currentId, setCurrentId }) => {
 						label="Upload image"
 					/>
 
-					<Divider />
+					<Divider colorScheme="primary" />
 
 					<Stack spacing="4">
 						<Button
