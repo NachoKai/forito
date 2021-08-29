@@ -18,7 +18,6 @@ const Home = () => {
 
 	return (
 		<>
-			<Stack>{!searchQuery && <Pagination page={page} />}</Stack>
 			<Stack
 				direction={{ sm: "column-reverse", md: "column-reverse", lg: "row", xl: "row" }}
 				p={{ sm: "0", md: "0", lg: "8", xl: "8" }}
@@ -34,12 +33,11 @@ const Home = () => {
 				<Stack spacing="4">
 					<div ref={formRef} />
 					<Form currentId={currentId} setCurrentId={setCurrentId} />
-					<Stack spacing="4">
-						<Search />
-					</Stack>
+					<Search />
+					{!searchQuery && <Pagination page={page} />}
 				</Stack>
 			</Stack>
-			<Stack>{!searchQuery && <Pagination page={page} />}</Stack>
+			{!searchQuery && <Pagination page={page} />}
 		</>
 	)
 }
