@@ -45,7 +45,7 @@ body {
 }
 
 #root {
-  height: calc(100% - 60px);
+  height: calc(100% - 60px - 174px);
 }
 
 /**
