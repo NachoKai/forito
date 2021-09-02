@@ -123,48 +123,55 @@ const Post = ({
 								</Badge>
 							))}
 					</Stack>
-					<Stack direction="row" spacing="4">
-						<Button
-							colorScheme="primary"
-							disabled={!user?.result}
-							size="sm"
-							variant={isUserLike ? "ghost" : "outline"}
-							onClick={handleLike}
-						>
-							<Likes isUserLike={isUserLike} likes={likesMock} />
-						</Button>
-						<Button
-							colorScheme="primary"
-							leftIcon={<FaRegComments />}
-							size="sm"
-							variant={"outline"}
-							onClick={openComments}
-						>
-							{comments?.length} {comments?.length === 1 ? "Comment" : "Comments"}
-						</Button>
-						{(isPostCreator || isAdmin) && (
+					<Stack
+						direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
+						spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}
+					>
+						<Stack direction="row" spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}>
 							<Button
 								colorScheme="primary"
-								leftIcon={<FaPen />}
+								disabled={!user?.result}
 								size="sm"
-								variant="outline"
-								onClick={handleEdit}
+								variant={isUserLike ? "ghost" : "outline"}
+								onClick={handleLike}
 							>
-								Edit
+								<Likes isUserLike={isUserLike} likes={likesMock} />
 							</Button>
-						)}
-						{(isPostCreator || isAdmin) && (
 							<Button
-								bg={createBg("red", 500, 200)}
 								colorScheme="primary"
-								leftIcon={<FaEraser />}
+								leftIcon={<FaRegComments />}
 								size="sm"
-								variant="solid"
-								onClick={() => setIsDialogOpen(true)}
+								variant={"outline"}
+								onClick={openComments}
 							>
-								Delete
+								{comments?.length} {comments?.length === 1 ? "Comment" : "Comments"}
 							</Button>
-						)}
+						</Stack>
+						<Stack direction="row" spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}>
+							{(isPostCreator || isAdmin) && (
+								<Button
+									colorScheme="primary"
+									leftIcon={<FaPen />}
+									size="sm"
+									variant="outline"
+									onClick={handleEdit}
+								>
+									Edit
+								</Button>
+							)}
+							{(isPostCreator || isAdmin) && (
+								<Button
+									bg={createBg("red", 500, 200)}
+									colorScheme="primary"
+									leftIcon={<FaEraser />}
+									size="sm"
+									variant="solid"
+									onClick={() => setIsDialogOpen(true)}
+								>
+									Delete
+								</Button>
+							)}
+						</Stack>
 					</Stack>
 				</Stack>
 			</Stack>
