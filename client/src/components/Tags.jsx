@@ -18,7 +18,7 @@ const Tags = () => {
 
 	if (!posts.length && !isLoading) {
 		return (
-			<Flex align="center" direction="column" marginY="64px">
+			<Flex align="center" direction="column" h="100%" marginY="64px">
 				<Text color="primary.400" fontSize="6xl" marginBottom="16px">
 					<FaSearch />
 				</Text>
@@ -30,7 +30,7 @@ const Tags = () => {
 	}
 
 	return (
-		<Stack borderRadius="lg" p="32px" spacing="8">
+		<Stack borderRadius="lg" h="100%" p="32px" spacing="8">
 			<Stack spacing="2">
 				<Text fontSize="2xl">#{name?.toUpperCase()}</Text>
 				<Text fontSize="md">
