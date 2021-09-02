@@ -24,8 +24,14 @@ const Post = ({
 	const isUserLike = likes?.find(like => like === userId)
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
 	const [likesMock, setLikesMock] = useState(likes)
-	const isPostCreator =
-		user?.result?.googleId === creator || user?.result?._id === creator
+	const isPostCreator = user?.result?.googleId
+		? user?.result?.googleId === creator
+		: false || user?.result?._id
+		? user?.result?._id === creator
+		: false
+	const isAdmin = user?.result?.email
+		? process.env.REACT_APP_ADMIN === user?.result?.email
+		: false
 
 	const handleLike = async () => {
 		dispatch(likePost(_id))
@@ -112,7 +118,7 @@ const Post = ({
 						>
 							<Likes isUserLike={isUserLike} likes={likesMock} />
 						</Button>
-						{isPostCreator && (
+						{(isPostCreator || isAdmin) && (
 							<Button
 								colorScheme="primary"
 								leftIcon={<FaPen />}
@@ -123,7 +129,7 @@ const Post = ({
 								Edit
 							</Button>
 						)}
-						{isPostCreator && (
+						{(isPostCreator || isAdmin) && (
 							<Button
 								bg={createBg("red", 500, 200)}
 								colorScheme="primary"
