@@ -9,9 +9,9 @@ const Posts = ({ setCurrentId, handleClick }) => {
 	const havePosts = posts?.length > 0
 
 	return (
-		<Flex flexGrow w="100%">
+		<Flex flexGrow minHeight="100vh" w="100%">
 			{isLoading ? (
-				<Stack spacing="8" w="100%">
+				<Stack minHeight="100vh" spacing="8" w="100%">
 					<Skeleton borderRadius="lg" h="500px" />
 				</Stack>
 			) : (
