@@ -62,7 +62,7 @@ const Auth = () => {
 	const handleShowPassword = () => setShowPassword(!showPassword)
 
 	return (
-		<Stack align="center" justify="center" minHeight="100vh">
+		<Stack align="center" justify="center" minHeight="100vh" p="8">
 			<Stack
 				bg={createBg("primary", 100, 600)}
 				borderRadius="lg"
