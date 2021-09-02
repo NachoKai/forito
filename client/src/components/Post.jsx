@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Badge, Button, Heading, Image, Stack, Text } from "@chakra-ui/react"
-import { FaEraser, FaPen } from "react-icons/fa"
+import { FaEraser, FaPen, FaRegComments } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
 import { Link, useHistory } from "react-router-dom"
@@ -14,7 +14,18 @@ import { createBg } from "../theme"
 
 const Post = ({
 	setCurrentId,
-	post: { _id, title, name, creator, message, likes, createdAt, tags, selectedFile },
+	post: {
+		_id,
+		title,
+		name,
+		creator,
+		message,
+		likes,
+		createdAt,
+		tags,
+		selectedFile,
+		comments,
+	},
 	handleClick,
 }) => {
 	const dispatch = useDispatch()
@@ -45,6 +56,10 @@ const Post = ({
 
 	const openPost = () => {
 		history.push(`/posts/${_id}`)
+	}
+
+	const openComments = () => {
+		history.push(`/posts/${_id}#comments`)
 	}
 
 	const handleEdit = () => {
@@ -117,6 +132,15 @@ const Post = ({
 							onClick={handleLike}
 						>
 							<Likes isUserLike={isUserLike} likes={likesMock} />
+						</Button>
+						<Button
+							colorScheme="primary"
+							leftIcon={<FaRegComments />}
+							size="sm"
+							variant={"outline"}
+							onClick={openComments}
+						>
+							{comments?.length} {comments?.length === 1 ? "Comment" : "Comments"}
 						</Button>
 						{(isPostCreator || isAdmin) && (
 							<Button

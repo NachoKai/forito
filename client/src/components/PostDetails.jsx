@@ -98,7 +98,7 @@ const PostDetails = () => {
 
 						<Divider colorScheme="primary" />
 
-						<Text fontSize="lg" fontWeight="bold">
+						<Text fontSize="lg" fontWeight="bold" id="comments">
 							Comments
 						</Text>
 						<Comments post={post} />
