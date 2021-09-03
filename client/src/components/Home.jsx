@@ -37,7 +37,9 @@ const Home = () => {
 					{!searchQuery && <Pagination page={page} />}
 				</Stack>
 			</Stack>
-			{!searchQuery && <Pagination page={page} />}
+			<Stack paddingX={{ sm: "0", md: "0", lg: "32px", xl: "32px" }}>
+				{!searchQuery && <Pagination page={page} />}
+			</Stack>
 		</Stack>
 	)
 }
