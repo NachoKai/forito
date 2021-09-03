@@ -4,7 +4,15 @@ import { Link } from "react-router-dom"
 
 const About = () => {
 	return (
-		<Flex flexGrow align="center" direction="column" h="100%" justify="center" p="8">
+		<Flex
+			flexGrow
+			align="center"
+			direction="column"
+			h="100%"
+			justify="flex-start"
+			minHeight="100vh"
+			p="8"
+		>
 			<Stack spacing="4">
 				<Flex justify="center">
 					<Text color="primary.400" fontSize="6xl">
