@@ -1,6 +1,8 @@
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import "react-toastify/dist/ReactToastify.css"
+import { Button } from "@chakra-ui/react"
+import { FaChevronUp } from "react-icons/fa"
 
 import ErrorPage from "./components/ErrorPage"
 import Navbar from "./components/Navbar"
@@ -12,9 +14,25 @@ import { getUser } from "./utils/getUser"
 import Creator from "./components/Creator"
 import Tags from "./components/Tags"
 import Footer from "./components/Footer"
+import { useState } from "react"
 
 const App = () => {
+	const [showScroll, setShowScroll] = useState(false)
 	const user = getUser()
+
+	const checkScrollTop = () => {
+		if (!showScroll && window.pageYOffset > 400) {
+			setShowScroll(true)
+		} else if (showScroll && window.pageYOffset <= 400) {
+			setShowScroll(false)
+		}
+	}
+
+	const scrollTop = () => {
+		window.scrollTo({ top: 0, behavior: "smooth" })
+	}
+
+	window.addEventListener("scroll", checkScrollTop)
 
 	return (
 		<BrowserRouter>
@@ -34,6 +52,19 @@ const App = () => {
 				<Route exact component={About} path="/about" />
 				<Route exact component={ErrorPage} path="*" />
 			</Switch>
+			<Button
+				bottom={["16px", "32px"]}
+				colorScheme="primary"
+				display={showScroll ? "flex" : "none"}
+				position="fixed"
+				right={["16px", "32px"]}
+				size="sm"
+				variant="solid"
+				zIndex={1}
+				onClick={scrollTop}
+			>
+				<FaChevronUp />
+			</Button>
 			<Footer />
 			<ToastContainer />
 		</BrowserRouter>
