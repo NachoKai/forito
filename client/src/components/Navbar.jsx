@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { FaMoon, FaSun } from "react-icons/fa"
 import { Button, Flex, Heading, Image, Stack, Text, useColorMode } from "@chakra-ui/react"
@@ -7,7 +7,7 @@ import decode from "jwt-decode"
 
 import { logout } from "../redux/auth"
 import { getUser } from "../utils/getUser"
-import { createGradColor } from "../theme"
+import { CreateGradColor } from "../theme"
 
 const Navbar = () => {
 	const dispatch = useDispatch()
@@ -16,10 +16,10 @@ const Navbar = () => {
 	const [user, setUser] = useState(getUser())
 	const { colorMode, toggleColorMode } = useColorMode()
 
-	const handleLogout = () => {
+	const handleLogout = useCallback(() => {
 		setUser(null)
 		dispatch(logout(history))
-	}
+	}, [dispatch, history])
 
 	useEffect(() => {
 		const token = user?.token
@@ -28,7 +28,7 @@ const Navbar = () => {
 			if (decode(token).exp * 1000 < new Date().getTime()) handleLogout()
 		}
 		setUser(getUser())
-	}, [location])
+	}, [handleLogout, location, user?.token])
 
 	return (
 		<Flex
@@ -46,7 +46,7 @@ const Navbar = () => {
 				<Heading
 					as="h2"
 					bgClip="text"
-					bgGradient={createGradColor("primary", 600, 900, 400, 100)}
+					bgGradient={CreateGradColor("primary", 600, 900, 400, 100)}
 					fontSize="2xl"
 					fontWeight="bold"
 				>

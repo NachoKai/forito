@@ -10,7 +10,7 @@ import FormInput from "./common/FormInput"
 import FormTextArea from "./common/FormTextArea"
 import { getUser } from "../utils/getUser"
 import showError from "../utils/showError"
-import { createBg, createColor, createGradColor } from "../theme"
+import { CreateBg, CreateColor, CreateGradColor } from "../theme"
 import { checkEmpty } from "../utils/checkEmpty"
 
 const initialState = {
@@ -68,7 +68,7 @@ const Form = ({ currentId, setCurrentId }) => {
 		return (
 			<Stack
 				align="center"
-				color={createColor("primary", 600, 100)}
+				color={CreateColor("primary", 600, 100)}
 				direction="column"
 				minWidth="320px"
 				p="8"
@@ -92,7 +92,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				style={{ width: "100%" }}
 				onSubmit={handleSubmit}
 			>
-				<Stack bg={createBg("primary", 100, 900)} borderRadius="lg" p="8" spacing="4">
+				<Stack bg={CreateBg("primary", 100, 900)} borderRadius="lg" p="8" spacing="4">
 					<Text fontSize="xl" fontWeight="bold">
 						{currentId ? "Edit" : "Create"} Post ✏️
 					</Text>
@@ -181,19 +181,19 @@ const Form = ({ currentId, setCurrentId }) => {
 											<Stack
 												borderColor={
 													isDragging
-														? createColor("gray", 700, 200)
-														: createColor("primary", 600, 100)
+														? CreateColor("gray", 700, 200)
+														: CreateColor("primary", 600, 100)
 												}
 												borderRadius="lg"
 												borderStyle="dashed"
 												borderWidth="2px"
 											>
 												<Button
-													bg={isDragging ? createColor("gray", 200, 700) : undefined}
+													bg={isDragging ? CreateColor("gray", 200, 700) : undefined}
 													color={
 														isDragging
-															? createColor("gray", 700, 200)
-															: createColor("primary", 600, 100)
+															? CreateColor("gray", 700, 200)
+															: CreateColor("primary", 600, 100)
 													}
 													variant="ghost"
 													onClick={onImageUpload}
@@ -247,7 +247,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 					<Stack spacing="4">
 						<Button
-							bgGradient={createGradColor("primary", 600, 900, 100, 400)}
+							bgGradient={CreateGradColor("primary", 600, 900, 100, 400)}
 							colorScheme="primary"
 							disabled={
 								!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) ||

@@ -14,18 +14,11 @@ const Tags = () => {
 
 	useEffect(() => {
 		dispatch(getPostsBySearch({ tags: name }))
-	}, [])
+	}, [dispatch, name])
 
 	if (!posts.length && !isLoading) {
 		return (
-			<Flex
-				grow
-				align="center"
-				direction="column"
-				h="100%"
-				marginY="64px"
-				minHeight="100vh"
-			>
+			<Flex align="center" direction="column" h="100%" marginY="64px" minHeight="100vh">
 				<Text color="primary.400" fontSize="6xl" marginBottom="16px">
 					<FaSearch />
 				</Text>
@@ -37,7 +30,7 @@ const Tags = () => {
 	}
 
 	return (
-		<Stack grow borderRadius="lg" h="100%" minHeight="100vh" p="32px" spacing="8">
+		<Stack borderRadius="lg" h="100%" minHeight="100vh" p="32px" spacing="8">
 			<Stack spacing="2">
 				<Text fontSize="2xl">#{name?.toUpperCase()}</Text>
 				<Text fontSize="md">

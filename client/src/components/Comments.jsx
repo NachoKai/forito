@@ -7,7 +7,7 @@ import { getRandomId } from "../utils/getRandomId"
 import FormTextArea from "./common/FormTextArea"
 import { getUser } from "../utils/getUser"
 import { addComment } from "../redux/posts"
-import { createColor } from "../theme"
+import { CreateColor } from "../theme"
 import { checkEmpty } from "../utils/checkEmpty"
 
 const Comments = ({ post }) => {
@@ -63,7 +63,7 @@ const Comments = ({ post }) => {
 			) : (
 				<Stack
 					align="center"
-					color={createColor("primary", 600, 100)}
+					color={CreateColor("primary", 600, 100)}
 					direction="column"
 					minWidth="320px"
 					p="8"

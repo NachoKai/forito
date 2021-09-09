@@ -9,7 +9,7 @@ import FormInput from "./common/FormInput"
 import { AUTH } from "../redux/auth"
 import { login, signup } from "../redux/auth"
 import showError from "../utils/showError"
-import { createBg } from "../theme"
+import { CreateBg } from "../theme"
 import { checkEmpty } from "../utils/checkEmpty"
 
 const initialState = {
@@ -64,7 +64,7 @@ const Auth = () => {
 	return (
 		<Stack align="center" justify="flex-start" minHeight="100vh" p="8">
 			<Stack
-				bg={createBg("primary", 100, 600)}
+				bg={CreateBg("primary", 100, 600)}
 				borderRadius="lg"
 				maxWidth="450px"
 				minWidth="320px"

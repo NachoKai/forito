@@ -30,15 +30,15 @@ export default extendTheme({
 	config,
 })
 
-export const createBg = (scheme, firstValue, secondValue) => {
+export const CreateBg = (scheme, firstValue, secondValue) => {
 	return useColorModeValue(`${scheme}.${firstValue}`, `${scheme}.${secondValue}`)
 }
 
-export const createColor = (scheme, firstValue, secondValue) => {
+export const CreateColor = (scheme, firstValue, secondValue) => {
 	return useColorModeValue(`${scheme}.${firstValue}`, `${scheme}.${secondValue}`)
 }
 
-export const createGradColor = (
+export const CreateGradColor = (
 	scheme,
 	firstValue,
 	secondValue,

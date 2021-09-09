@@ -7,27 +7,25 @@ import { Link, useHistory, useParams } from "react-router-dom"
 import { getPost, getPostsBySearch } from "../redux/posts"
 import { getRandomId } from "../utils/getRandomId"
 import Comments from "../components/Comments"
-import { createBg, createColor } from "../theme"
+import { CreateBg, CreateColor } from "../theme"
 
 const PostDetails = () => {
 	const dispatch = useDispatch()
 	const { post, posts, isLoading } = useSelector(state => state.posts)
 	const history = useHistory()
 	const { id } = useParams()
+	const openPost = _id => history.push(`/posts/${_id}`)
+	const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id)
 
 	useEffect(() => {
 		dispatch(getPost(id))
-	}, [id])
+	}, [dispatch, id])
 
 	useEffect(() => {
-		if (post) dispatch(getPostsBySearch({ search: "none", tags: post?.tags.join(",") }))
-	}, [post])
-
-	const openPost = _id => history.push(`/posts/${_id}`)
-
-	const recommendedPosts = posts?.filter(({ _id }) => _id !== post?._id)
-
-	if (!post) return null
+		if (post) {
+			dispatch(getPostsBySearch({ search: "none", tags: post?.tags.join(",") }))
+		}
+	}, [dispatch, post])
 
 	return (
 		<>
@@ -59,10 +57,7 @@ const PostDetails = () => {
 									h="100%"
 									loading="lazy"
 									objectFit="contain"
-									src={
-										post?.selectedFile ||
-										"https://user-images.githubusercontent.com/194400/49531010-48dad180-f8b1-11e8-8d89-1e61320e1d82.png"
-									}
+									src={post?.selectedFile}
 								/>
 							)}
 						</Stack>
@@ -84,7 +79,7 @@ const PostDetails = () => {
 								>
 									<Text fontSize="lg">Created by:</Text>
 									<Text fontSize="lg" fontWeight="bold">
-										<Link to={`/creators/${post.name}`}>{` ${post.name}`}</Link>
+										<Link to={`/creators/${post?.name}`}>{` ${post?.name}`}</Link>
 									</Text>
 									<Text fontSize="lg">
 										{formatDistance(
@@ -117,13 +112,13 @@ const PostDetails = () => {
 									spacing="8"
 								>
 									{recommendedPosts?.map(
-										({ title, name, message, likes, selectedFile, _id }) => (
+										({ title, name, message, selectedFile, _id }) => (
 											<Stack
 												key={_id}
-												bg={createBg("primary", 100, 900)}
+												bg={CreateBg("primary", 100, 900)}
 												borderRadius="lg"
 												className="recommended-post"
-												color={createColor("primary", 600, 100)}
+												color={CreateColor("primary", 600, 100)}
 												cursor="pointer"
 												h="100%"
 												maxWidth="320px"
@@ -136,18 +131,19 @@ const PostDetails = () => {
 													{title}
 												</Heading>
 												<Text>{name}</Text>
-												<Text noOfLines={[2, 4, 6]}>{message}</Text>
-												<Text>Likes: {likes?.length}</Text>
-												{selectedFile && (
-													<Image
-														alt={post?.title}
-														borderRadius="lg"
-														boxSize="300px"
-														loading="lazy"
-														objectFit="cover"
-														src={selectedFile}
-													/>
-												)}
+												<Stack spacing="4">
+													<Text noOfLines={[2, 4, 6]}>{message}</Text>
+													{selectedFile && (
+														<Image
+															alt={post?.title}
+															borderRadius="lg"
+															boxSize="300px"
+															loading="lazy"
+															objectFit="cover"
+															src={selectedFile}
+														/>
+													)}
+												</Stack>
 											</Stack>
 										)
 									)}

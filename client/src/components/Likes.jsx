@@ -6,7 +6,7 @@ const Likes = ({ likes, isUserLike }) => {
 
 	if (likesQuantity > 0) {
 		return isUserLike ? (
-			<Stack direction="row" spacing="2">
+			<Stack align="center" direction="row" spacing="2">
 				<FaThumbsUp fontSize="small" />
 				<Text>
 					{likesQuantity > 2
@@ -15,7 +15,7 @@ const Likes = ({ likes, isUserLike }) => {
 				</Text>
 			</Stack>
 		) : (
-			<Stack direction="row" spacing="2">
+			<Stack align="center" direction="row" spacing="2">
 				<FaRegThumbsUp fontSize="small" />
 				<Text>
 					{likesQuantity} {likesQuantity === 1 ? "Like" : "Likes"}

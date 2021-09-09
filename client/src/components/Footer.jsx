@@ -2,13 +2,13 @@ import { Divider, Stack, Text } from "@chakra-ui/react"
 import { Link } from "react-router-dom"
 import { FaGithub } from "react-icons/fa"
 
-import { createBg, createColor } from "../theme"
+import { CreateBg, CreateColor } from "../theme"
 
 const Footer = () => {
 	return (
 		<Stack
-			bg={createBg("primary", 100, 900)}
-			color={createColor("primary", 600, 100)}
+			bg={CreateBg("primary", 100, 900)}
+			color={CreateColor("primary", 600, 100)}
 			p="8"
 			spacing="8"
 		>
