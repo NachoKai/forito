@@ -24,6 +24,7 @@ const Footer = () => {
 				<Stack direction="row">
 					<Link
 						fontSize="xl"
+						rel="noreferrer"
 						target="_blank"
 						to={{ pathname: "https://github.com/NachoKai/forito" }}
 					>
@@ -45,7 +46,11 @@ const Footer = () => {
 				</Text>
 				<Text fontSize="sm">
 					Made with &#10084; by{" "}
-					<Link target="_blank" to={{ pathname: "https://github.com/NachoKai/" }}>
+					<Link
+						rel="noreferrer"
+						target="_blank"
+						to={{ pathname: "https://github.com/NachoKai/" }}
+					>
 						Nacho Caiafa
 					</Link>
 				</Text>

@@ -27,6 +27,7 @@ const About = () => {
 				</Text>
 				<Link
 					fontSize="xl"
+					rel="noreferrer"
 					target="_blank"
 					to={{ pathname: "https://github.com/NachoKai/forito" }}
 				>
