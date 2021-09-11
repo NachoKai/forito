@@ -25,15 +25,20 @@ const About = () => {
 				<Text color="primary.400" fontSize="3xl">
 					And this is Forito✨
 				</Text>
-				<Button colorScheme="primary" leftIcon={<FaGithub />} variant="outline">
-					<Link
-						fontSize="xl"
-						target="_blank"
-						to={{ pathname: "https://github.com/NachoKai/forito" }}
+				<Link
+					fontSize="xl"
+					target="_blank"
+					to={{ pathname: "https://github.com/NachoKai/forito" }}
+				>
+					<Button
+						colorScheme="primary"
+						leftIcon={<FaGithub />}
+						variant="outline"
+						w="100%"
 					>
 						Github
-					</Link>
-				</Button>
+					</Button>
+				</Link>
 			</Stack>
 		</Flex>
 	)
