@@ -37,5 +37,3 @@ mongoose
 	.catch(err => {
 		console.error(err);
 	});
-
-mongoose.set("useFindAndModify", false);
