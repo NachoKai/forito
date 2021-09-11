@@ -130,8 +130,8 @@ const PostDetails = () => {
 												<Heading as="h3" fontSize="lg" fontWeight="bold">
 													{title}
 												</Heading>
-												<Text>{name}</Text>
-												<Text fontSize="12px">
+												<Text>
+													{name}{" "}
 													{formatDistance(
 														new Date(),
 														post?.createdAt ? new Date(post?.createdAt) : new Date()
