@@ -43,7 +43,12 @@ const Footer = () => {
 				<Text fontSize="sm">
 					&#169; {new Date().getFullYear()} Forito. All rights reserved.
 				</Text>
-				<Text fontSize="sm">Made with &#10084; by Nacho Caiafa</Text>
+				<Text fontSize="sm">
+					Made with &#10084; by{" "}
+					<Link target="_blank" to={{ pathname: "https://github.com/NachoKai/" }}>
+						Nacho Caiafa
+					</Link>
+				</Text>
 			</Stack>
 		</Stack>
 	)
