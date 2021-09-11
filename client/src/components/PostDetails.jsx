@@ -1,8 +1,19 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Badge, Divider, Heading, Image, Skeleton, Stack, Text } from "@chakra-ui/react"
+import {
+	Badge,
+	Button,
+	Divider,
+	Flex,
+	Heading,
+	Image,
+	Skeleton,
+	Stack,
+	Text,
+} from "@chakra-ui/react"
 import { formatDistance } from "date-fns"
 import { Link, useHistory, useParams } from "react-router-dom"
+import { FaTwitter } from "react-icons/fa"
 
 import { getPost, getPostsBySearch } from "../redux/posts"
 import { getRandomId } from "../utils/getRandomId"
@@ -16,6 +27,23 @@ const PostDetails = () => {
 	const { id } = useParams()
 	const openPost = _id => history.push(`/posts/${_id}`)
 	const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id)
+
+	const isDev = process.env.NODE_ENV !== "production"
+	const baseURL = isDev
+		? "http://localhost:3000/posts"
+		: "https://forito.vercel.app/posts"
+
+	const shareOnTwitter = () => {
+		const linkToGo = `${baseURL}/${id}`
+
+		window.open(
+			`https://twitter.com/intent/tweet?text=${linkToGo}`,
+			"targetWindow",
+			"toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250"
+		)
+
+		return false
+	}
 
 	useEffect(() => {
 		dispatch(getPost(id))
@@ -63,7 +91,7 @@ const PostDetails = () => {
 						</Stack>
 
 						<Stack direction="row" spacing="2">
-							<Stack spacing="4">
+							<Stack spacing="4" w="100%">
 								{post?.tags && (
 									<Stack direction="row" spacing="2">
 										{post?.tags.map(tag => (
@@ -73,21 +101,31 @@ const PostDetails = () => {
 										))}
 									</Stack>
 								)}
-								<Stack
-									direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
-									spacing="2"
-								>
-									<Text fontSize="lg">Created by:</Text>
-									<Text fontSize="lg" fontWeight="bold">
-										<Link to={`/creators/${post?.name}`}>{` ${post?.name}`}</Link>
-									</Text>
-									<Text fontSize="lg">
-										{formatDistance(
-											new Date(),
-											post?.createdAt ? new Date(post?.createdAt) : new Date()
-										) + " ago"}
-									</Text>
-								</Stack>
+								<Flex align="center" justify="space-between" w="100%">
+									<Stack
+										direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
+										spacing="2"
+									>
+										<Text fontSize="lg">Created by:</Text>
+										<Text fontSize="lg" fontWeight="bold">
+											<Link to={`/creators/${post?.name}`}>{` ${post?.name}`}</Link>
+										</Text>
+										<Text fontSize="lg">
+											{formatDistance(
+												new Date(),
+												post?.createdAt ? new Date(post?.createdAt) : new Date()
+											) + " ago"}
+										</Text>
+									</Stack>
+									<Button
+										colorScheme="primary"
+										rightIcon={<FaTwitter />}
+										size="xs"
+										onClick={() => shareOnTwitter()}
+									>
+										Share
+									</Button>
+								</Flex>
 							</Stack>
 						</Stack>
 
