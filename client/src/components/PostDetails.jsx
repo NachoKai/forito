@@ -131,6 +131,12 @@ const PostDetails = () => {
 													{title}
 												</Heading>
 												<Text>{name}</Text>
+												<Text fontSize="12px">
+													{formatDistance(
+														new Date(),
+														post?.createdAt ? new Date(post?.createdAt) : new Date()
+													) + " ago"}
+												</Text>
 												<Stack spacing="4">
 													<Text noOfLines={[2, 4, 6]}>{message}</Text>
 													{selectedFile && (
