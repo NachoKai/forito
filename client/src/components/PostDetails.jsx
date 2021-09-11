@@ -39,7 +39,7 @@ const PostDetails = () => {
 		window.open(
 			`https://twitter.com/intent/tweet?text=${linkToGo}`,
 			"targetWindow",
-			"toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=250"
+			"toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=300"
 		)
 
 		return false
