@@ -36,6 +36,7 @@ const Auth = () => {
 			dispatch({ type: AUTH, data: { result, token } })
 
 			history.push("/")
+			history.go(0)
 		} catch (err) {
 			showError("Something went wrong when trying to log in. Please try again.")
 			console.error(err)

@@ -33,8 +33,10 @@ const Search = () => {
 			history.push(
 				`/posts/search?searchQuery=${searchValue || "none"}&tags=${searchTags.join(",")}`
 			)
+			history.go(0)
 		} else {
 			history.push("/")
+			history.go(0)
 		}
 	}
 

@@ -14,6 +14,7 @@ export const login = (formData, history) => async dispatch => {
 
 		dispatch({ type: AUTH, data })
 		history.push("/")
+		history.go(0)
 	} catch (err) {
 		showError("Something went wrong when trying to log in. Please try again.")
 		console.error(err)
@@ -24,6 +25,7 @@ export const logout = history => async dispatch => {
 	try {
 		dispatch({ type: LOGOUT })
 		history.push("/")
+		history.go(0)
 		history.push("/auth")
 	} catch (err) {
 		showError("Something went wrong when trying to log out. Please try again.")
@@ -37,6 +39,7 @@ export const signup = (formData, history) => async dispatch => {
 
 		dispatch({ type: AUTH, data })
 		history.push("/")
+		history.go(0)
 	} catch (err) {
 		showError("Something went wrong when trying to sign up. Please try again.")
 		console.error(err)

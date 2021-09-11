@@ -56,10 +56,12 @@ const Post = ({
 
 	const openPost = () => {
 		history.push(`/posts/${_id}`)
+		history.go(0)
 	}
 
 	const openComments = () => {
 		history.push(`/posts/${_id}#comments`)
+		history.go(0)
 	}
 
 	const handleEdit = () => {

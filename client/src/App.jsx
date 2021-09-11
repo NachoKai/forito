@@ -1,8 +1,9 @@
+import { useState } from "react"
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
-import "react-toastify/dist/ReactToastify.css"
 import { Button } from "@chakra-ui/react"
 import { FaChevronUp } from "react-icons/fa"
+import "react-toastify/dist/ReactToastify.css"
 
 import ErrorPage from "./components/ErrorPage"
 import Navbar from "./components/Navbar"
@@ -10,11 +11,10 @@ import Home from "./components/Home"
 import Auth from "./components/Auth"
 import About from "./components/About"
 import PostDetails from "./components/PostDetails"
-import { getUser } from "./utils/getUser"
 import Creator from "./components/Creator"
 import Tags from "./components/Tags"
 import Footer from "./components/Footer"
-import { useState } from "react"
+import { getUser } from "./utils/getUser"
 
 const App = () => {
 	const [showScroll, setShowScroll] = useState(false)
@@ -46,7 +46,7 @@ const App = () => {
 				<Route exact component={Tags} path="/tags/:name" />
 				<Route
 					exact
-					component={() => (!user?.result ? <Auth /> : <Redirect to="/posts" />)}
+					component={() => (!user?.result?.email ? <Auth /> : <Redirect to="/posts" />)}
 					path="/auth"
 				/>
 				<Route exact component={About} path="/about" />

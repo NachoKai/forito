@@ -27,6 +27,7 @@ export const getPost = id => async dispatch => {
 		dispatch({ type: FETCH_POST, payload: { post: data } })
 		dispatch({ type: END_LOADING })
 	} catch (err) {
+		showError("Something went wrong when trying to get post. Please try again.")
 		console.error(err)
 	}
 }
@@ -41,6 +42,7 @@ export const getPosts = page => async dispatch => {
 		dispatch({ type: FETCH_ALL_POSTS, payload: { data, currentPage, numberOfPages } })
 		dispatch({ type: END_LOADING })
 	} catch (err) {
+		showError("Something went wrong when trying to get posts. Please try again.")
 		console.error(err)
 	}
 }
@@ -55,6 +57,7 @@ export const getPostsBySearch = searchQuery => async dispatch => {
 		dispatch({ type: FETCH_POSTS_BY_SEARCH, payload: { data } })
 		dispatch({ type: END_LOADING })
 	} catch (err) {
+		showError("Something went wrong when trying to get post by search. Please try again.")
 		console.error(err)
 	}
 }
@@ -68,6 +71,7 @@ export const createPost = (post, history) => async dispatch => {
 		dispatch({ type: END_LOADING })
 		showSuccess("Successfully created post.")
 		history.push(`/posts/${data._id}`)
+		history.go(0)
 	} catch (err) {
 		showError("Something went wrong when trying to create post. Please try again.")
 		console.error(err)
