@@ -31,7 +31,7 @@ const PostDetails = () => {
 		<>
 			{isLoading ? (
 				<Stack minHeight="100vh" p="8">
-					<Skeleton borderRadius="lg" h="500px" />
+					<Skeleton borderRadius="lg" h="600px" />
 				</Stack>
 			) : (
 				<Stack borderRadius="lg" p="32px" spacing="8">

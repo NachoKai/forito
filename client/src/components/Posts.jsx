@@ -12,7 +12,11 @@ const Posts = ({ setCurrentId, handleClick }) => {
 		<Flex flexGrow minHeight="100vh" w="100%">
 			{isLoading ? (
 				<Stack minHeight="100vh" spacing="8" w="100%">
-					<Skeleton borderRadius="lg" h="500px" />
+					<Skeleton borderRadius="lg" h="250px" />
+					<Skeleton borderRadius="lg" h="250px" />
+					<Skeleton borderRadius="lg" h="250px" />
+					<Skeleton borderRadius="lg" h="250px" />
+					<Skeleton borderRadius="lg" h="250px" />
 				</Stack>
 			) : (
 				<Stack direction="column" spacing="8" w="100%">

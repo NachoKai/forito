@@ -45,7 +45,13 @@ const Creator = () => {
 			<Divider colorScheme="primary" />
 
 			{isLoading ? (
-				<Skeleton borderRadius="lg" h="500px" />
+				<>
+					<Skeleton borderRadius="lg" h="250px" />
+					<Skeleton borderRadius="lg" h="250px" />
+					<Skeleton borderRadius="lg" h="250px" />
+					<Skeleton borderRadius="lg" h="250px" />
+					<Skeleton borderRadius="lg" h="250px" />
+				</>
 			) : (
 				<Stack spacing="3">
 					{posts?.map(post => (
