@@ -4,6 +4,7 @@ import { FaEraser, FaPen, FaRegComments } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
 import { Link, useHistory } from "react-router-dom"
+// import { FaBookmark, FaRegBookmark } from "react-icons/fa"
 
 import { getRandomId } from "../utils/getRandomId"
 import { deletePost, likePost } from "../redux/posts"
@@ -11,6 +12,7 @@ import Likes from "./Likes"
 import { getUser } from "../utils/getUser"
 import Dialog from "./common/Dialog"
 import { CreateBg } from "../theme"
+// import { savePost } from "../redux/auth"
 
 const Post = ({
 	setCurrentId,
@@ -33,13 +35,16 @@ const Post = ({
 	const user = getUser()
 	const userId = user?.result?.googleId || user?.result?._id
 	const isUserLike = likes?.find(like => like === userId)
+	// const hasUserSaved = user?.result?.savedPosts
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
 	const [likesMock, setLikesMock] = useState(likes)
+
 	const isPostCreator = user?.result?.googleId
 		? user?.result?.googleId === creator
 		: false || user?.result?._id
 		? user?.result?._id === creator
 		: false
+
 	const isAdmin = user?.result?.email
 		? process.env.REACT_APP_ADMIN === user?.result?.email
 		: false
@@ -53,6 +58,10 @@ const Post = ({
 			setLikesMock([...likes, userId])
 		}
 	}
+
+	// const handleSave = async () => {
+	// 	dispatch(savePost(_id))
+	// }
 
 	const openPost = () => {
 		history.push(`/posts/${_id}`)
@@ -148,6 +157,16 @@ const Post = ({
 							>
 								{comments?.length} {comments?.length === 1 ? "Comment" : "Comments"}
 							</Button>
+							{/* <Button
+								colorScheme="primary"
+								disabled={!user?.result}
+								leftIcon={hasUserSaved ? <FaRegBookmark /> : <FaBookmark />}
+								size="sm"
+								variant={hasUserSaved ? "ghost" : "outline"}
+								onClick={handleSave}
+							>
+								Save
+							</Button> */}
 						</Stack>
 						<Stack direction="row" spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}>
 							{(isPostCreator || isAdmin) && (

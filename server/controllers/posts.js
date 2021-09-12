@@ -28,7 +28,7 @@ export const getPostsBySearch = async (req, res) => {
 	const { searchQuery, tags } = req.query;
 
 	try {
-		const title = new RegExp(escape(searchQuery), "i");
+		const title = new RegExp(searchQuery, "i");
 		const posts = await Post.find({
 			$or: [{ title }, { tags: { $in: tags.split(",") } }],
 		});
@@ -73,7 +73,7 @@ export const updatePost = async (req, res) => {
 	const { title, message, creator, selectedFile, tags } = req.body;
 
 	if (!mongoose.Types.ObjectId.isValid(id))
-		return res.status(404).send(`No post with id: ${escape(id)}`);
+		return res.status(404).send(`No post with id: ${id}`);
 
 	const updatedPost = { creator, title, message, tags, selectedFile, _id: id };
 
@@ -86,7 +86,7 @@ export const deletePost = async (req, res) => {
 	const { id } = req.params;
 
 	if (!mongoose.Types.ObjectId.isValid(id)) {
-		return res.status(404).send(`No post with id: ${escape(id)}`);
+		return res.status(404).send(`No post with id: ${id}`);
 	}
 
 	await Post.findByIdAndRemove(id);
@@ -100,7 +100,7 @@ export const likePost = async (req, res) => {
 		return res.status(401).send("Unauthorized");
 	}
 	if (!mongoose.Types.ObjectId.isValid(id)) {
-		return res.status(404).send(`No post with id: ${escape(id)}`);
+		return res.status(404).send(`No post with id: ${id}`);
 	}
 
 	const post = await Post.findById(id);

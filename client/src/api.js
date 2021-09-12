@@ -25,6 +25,7 @@ export const fetchPostsBySearch = searchQuery =>
 export const fetchPostsByCreator = name => API.get(`/posts/creator?name=${name}`)
 export const createPost = newPost => API.post("/posts", newPost)
 export const likePost = id => API.patch(`/posts/${id}/likePost`)
+// export const savePost = id => API.patch(`/posts/${id}/savePost`)
 export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost)
 export const deletePost = id => API.delete(`/posts/${id}`)
 export const addComment = (value, id) => API.post(`/posts/${id}/commentPost`, { value })

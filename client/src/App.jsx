@@ -14,6 +14,7 @@ import PostDetails from "./components/PostDetails"
 import Creator from "./components/Creator"
 import Tags from "./components/Tags"
 import Footer from "./components/Footer"
+// import SavedPosts from "./components/SavedPosts"
 import { getUser } from "./utils/getUser"
 
 const App = () => {
@@ -44,6 +45,7 @@ const App = () => {
 				<Route exact component={PostDetails} path="/posts/:id" />
 				<Route exact component={Creator} path="/creators/:name" />
 				<Route exact component={Tags} path="/tags/:name" />
+				{/* <Route exact component={SavedPosts} path="/saved" /> */}
 				<Route
 					exact
 					component={() => (!user?.result?.email ? <Auth /> : <Redirect to="/posts" />)}
