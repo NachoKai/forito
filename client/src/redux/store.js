@@ -5,10 +5,18 @@ import promiseMiddleware from "redux-promise-middleware"
 import composeWithDevTools from "./devTools"
 import rootReducer from "./index"
 
+const persistedState = localStorage.getItem("forito")
+	? JSON.parse(localStorage.getItem("forito"))
+	: {}
+
 export const store = createStore(
 	rootReducer,
-	undefined,
+	persistedState,
 	composeWithDevTools(applyMiddleware(thunkMiddleware, promiseMiddleware))
 )
+
+store.subscribe(() => {
+	localStorage.setItem("forito", JSON.stringify(store.getState()))
+})
 
 window._reduxStore = store
