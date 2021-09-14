@@ -5,8 +5,8 @@ import promiseMiddleware from "redux-promise-middleware"
 import composeWithDevTools from "./devTools"
 import rootReducer from "./index"
 
-const persistedState = localStorage.getItem("forito")
-	? JSON.parse(localStorage.getItem("forito"))
+const persistedState = sessionStorage.getItem("forito")
+	? JSON.parse(sessionStorage.getItem("forito"))
 	: {}
 
 export const store = createStore(
@@ -16,7 +16,7 @@ export const store = createStore(
 )
 
 store.subscribe(() => {
-	localStorage.setItem("forito", JSON.stringify(store.getState()))
+	sessionStorage.setItem("forito", JSON.stringify(store.getState()))
 })
 
 window._reduxStore = store
