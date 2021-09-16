@@ -71,7 +71,6 @@ export const createPost = (post, history) => async dispatch => {
 		dispatch({ type: END_LOADING })
 		showSuccess("Successfully created post.")
 		history.push(`/posts/${data._id}`)
-		history.go(0)
 	} catch (err) {
 		showError("Something went wrong when trying to create post. Please try again.")
 		console.error(err)
