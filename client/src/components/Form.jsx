@@ -34,7 +34,7 @@ const Form = ({ currentId, setCurrentId }) => {
 		currentId ? state.posts?.posts?.find(message => message._id === currentId) : null
 	)
 
-	const onChange = imageList => {
+	const onImageUpload = imageList => {
 		setPostData({ ...postData, selectedFile: imageList && imageList[0]?.data_url })
 		setImages(imageList)
 	}
@@ -136,7 +136,7 @@ const Form = ({ currentId, setCurrentId }) => {
 								maxNumber={1}
 								multiple={false}
 								value={images}
-								onChange={onChange}
+								onChange={onImageUpload}
 								onError={() =>
 									showError(
 										"Something went wrong when trying to upload image. Please try again."
