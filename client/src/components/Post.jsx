@@ -172,12 +172,14 @@ const Post = ({
 						<Stack
 							direction="row"
 							display={location?.pathname.includes("/posts") ? "flex" : "none"}
+							flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
 							spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}
 						>
 							{userEmail && (
 								<Button
 									colorScheme="primary"
 									disabled={!user?.result}
+									flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
 									leftIcon={hasUserSaved ? <FaRegBookmark /> : <FaBookmark />}
 									minWidth="80px"
 									size="sm"
@@ -190,6 +192,7 @@ const Post = ({
 							{(isPostCreator || isAdmin) && (
 								<Button
 									colorScheme="primary"
+									flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
 									leftIcon={<FaPen />}
 									size="sm"
 									variant="outline"
@@ -202,6 +205,7 @@ const Post = ({
 								<Button
 									bg={CreateBg("red", 500, 200)}
 									colorScheme="primary"
+									flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
 									leftIcon={<FaEraser />}
 									size="sm"
 									variant="solid"

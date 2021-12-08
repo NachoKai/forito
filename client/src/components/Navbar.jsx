@@ -86,7 +86,7 @@ const Navbar = () => {
 									<Stack align="center" cursor="pointer" direction="row">
 										{user?.result.imageUrl && (
 											<Image
-												alt={user?.result?.name}
+												alt=""
 												borderRadius="full"
 												boxSize="30px"
 												loading="lazy"
