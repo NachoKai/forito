@@ -17,7 +17,7 @@ import styled from "styled-components"
 
 import { getPostsBySearch } from "../redux/posts"
 import FormInput from "./common/FormInput"
-import { CreateBg } from "../theme"
+import { CreateGradColor } from "../theme"
 
 const Search = () => {
 	const dispatch = useDispatch()
@@ -51,8 +51,9 @@ const Search = () => {
 	return (
 		<Accordion
 			allowToggle
-			bg={CreateBg("primary", 100, 900)}
+			bgGradient={CreateGradColor("primary", 100, 50, 900, 600, "135deg")}
 			borderRadius="lg"
+			boxShadow="md"
 			colorScheme="primary"
 		>
 			<AccordionItem>

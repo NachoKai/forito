@@ -10,7 +10,7 @@ import FormInput from "./common/FormInput"
 import FormTextArea from "./common/FormTextArea"
 import { getUser } from "../utils/getUser"
 import showError from "../utils/showError"
-import { CreateBg, CreateColor, CreateGradColor } from "../theme"
+import { CreateColor, CreateGradColor } from "../theme"
 import { checkEmpty } from "../utils/checkEmpty"
 
 const initialState = {
@@ -68,6 +68,7 @@ const Form = ({ currentId, setCurrentId }) => {
 		return (
 			<Stack
 				align="center"
+				boxShadow="lg"
 				color={CreateColor("primary", 600, 100)}
 				direction="column"
 				minWidth="320px"
@@ -92,7 +93,13 @@ const Form = ({ currentId, setCurrentId }) => {
 				style={{ width: "100%" }}
 				onSubmit={handleSubmit}
 			>
-				<Stack bg={CreateBg("primary", 100, 900)} borderRadius="lg" p="8" spacing="4">
+				<Stack
+					bgGradient={CreateGradColor("primary", 100, 50, 900, 600, "135deg")}
+					borderRadius="lg"
+					boxShadow="md"
+					p="8"
+					spacing="4"
+				>
 					<Text fontSize="xl" fontWeight="bold">
 						{currentId ? "Edit" : "Create"} Post ✏️
 					</Text>

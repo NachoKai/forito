@@ -62,7 +62,7 @@ const Navbar = () => {
 				<Heading
 					as="h2"
 					bgClip="text"
-					bgGradient={CreateGradColor("primary", 600, 900, 400, 100)}
+					bgGradient={CreateGradColor("primary", 300, 900, 50, 400)}
 					fontSize="2xl"
 					fontWeight="bold"
 				>

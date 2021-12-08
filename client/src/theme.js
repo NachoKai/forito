@@ -43,10 +43,11 @@ export const CreateGradColor = (
 	firstValue,
 	secondValue,
 	thirdValue,
-	fourthValue
+	fourthValue,
+	angle = "to-l"
 ) => {
 	return useColorModeValue(
-		`linear(to-l, ${scheme}.${firstValue},${scheme}.${secondValue})`,
-		`linear(to-l, ${scheme}.${thirdValue},${scheme}.${fourthValue})`
+		`linear(${angle}, ${scheme}.${firstValue},${scheme}.${secondValue})`,
+		`linear(${angle}, ${scheme}.${thirdValue},${scheme}.${fourthValue})`
 	)
 }

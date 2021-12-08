@@ -1,5 +1,13 @@
 import { useState } from "react"
-import { Badge, Button, Heading, Image, Stack, Text } from "@chakra-ui/react"
+import {
+	Badge,
+	Button,
+	Heading,
+	Image,
+	Stack,
+	Text,
+	useColorModeValue,
+} from "@chakra-ui/react"
 import { FaEraser, FaPen, FaRegComments } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
@@ -81,6 +89,7 @@ const Post = ({
 		<Stack
 			bg={CreateBg("primary", 50, 800)}
 			borderRadius="lg"
+			boxShadow="lg"
 			direction={{
 				sm: "column-reverse",
 				md: "column-reverse",
@@ -113,6 +122,10 @@ const Post = ({
 						className="pointer"
 						fontSize="3xl"
 						marginBottom="2"
+						textShadow={useColorModeValue(
+							`0 0 3px rgba(0,0,0,0.3)`,
+							`0 0 3px rgba(255,255,255,0.3)`
+						)}
 						onClick={openPost}
 					>
 						{title}
