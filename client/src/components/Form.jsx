@@ -59,7 +59,7 @@ const Form = ({ currentId, setCurrentId }) => {
 			}
 			handleClear()
 		},
-		[currentId, dispatch, handleClear, history, postData, user?.result?.name]
+		[currentId, dispatch, handleClear, history, postData, user]
 	)
 
 	const handleChange = useCallback(
