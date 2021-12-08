@@ -84,16 +84,16 @@ const Navbar = () => {
 							>
 								<PopoverTrigger>
 									<Stack align="center" cursor="pointer" direction="row">
-										{user?.result.imageUrl && (
-											<Image
-												alt=""
-												borderRadius="full"
-												boxSize="30px"
-												loading="lazy"
-												objectFit="cover"
-												src={user?.result?.imageUrl}
-											/>
-										)}
+										<Image
+											alt=""
+											borderRadius="full"
+											boxSize="30px"
+											fallbackSrc="https://picsum.photos/30"
+											loading="lazy"
+											objectFit="cover"
+											src={user?.result?.imageUrl}
+										/>
+
 										<Text
 											isTruncated
 											display={{
