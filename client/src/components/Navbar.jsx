@@ -58,7 +58,7 @@ const Navbar = () => {
 			top="0"
 			zIndex="3"
 		>
-			<Stack align="center" direction="row" spacing="2">
+			<Stack align="center" direction="row" spacing="4">
 				<Heading
 					as="h2"
 					bgClip="text"
@@ -70,9 +70,9 @@ const Navbar = () => {
 				</Heading>
 			</Stack>
 
-			<Stack align="center" direction="row" spacing="2">
+			<Stack align="center" direction="row" spacing="4">
 				{user?.result ? (
-					<Stack align="center" direction="row" spacing="4">
+					<Stack align="center" direction="row" spacing="8">
 						{user?.result.name && (
 							<Popover
 								isLazy
