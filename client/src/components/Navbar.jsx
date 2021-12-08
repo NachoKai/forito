@@ -83,12 +83,12 @@ const Navbar = () => {
 								onOpen={open}
 							>
 								<PopoverTrigger>
-									<Stack cursor="pointer" direction="row">
+									<Stack align="center" cursor="pointer" direction="row">
 										{user?.result.imageUrl && (
 											<Image
 												alt={user?.result?.name}
 												borderRadius="full"
-												boxSize="25px"
+												boxSize="30px"
 												loading="lazy"
 												objectFit="cover"
 												src={user?.result?.imageUrl}
