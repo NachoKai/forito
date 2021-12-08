@@ -45,7 +45,13 @@ const App = () => {
 				<Route exact component={PostDetails} path="/posts/:id" />
 				<Route exact component={Creator} path="/creators/:name" />
 				<Route exact component={Tags} path="/tags/:name" />
-				<Route exact component={SavedPosts} path="/saved" />
+				<Route
+					exact
+					component={() =>
+						user?.result?.email ? <SavedPosts /> : <Redirect to="/posts" />
+					}
+					path="/saved"
+				/>
 				<Route
 					exact
 					component={() => (!user?.result?.email ? <Auth /> : <Redirect to="/posts" />)}
