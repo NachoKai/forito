@@ -73,16 +73,6 @@ const Navbar = () => {
 			<Stack align="center" direction="row" spacing="2">
 				{user?.result ? (
 					<Stack align="center" direction="row" spacing="4">
-						{user?.result.imageUrl && (
-							<Image
-								alt={user?.result?.name}
-								borderRadius="full"
-								boxSize="25px"
-								loading="lazy"
-								objectFit="cover"
-								src={user?.result?.imageUrl}
-							/>
-						)}
 						{user?.result.name && (
 							<Popover
 								isLazy
@@ -93,18 +83,29 @@ const Navbar = () => {
 								onOpen={open}
 							>
 								<PopoverTrigger>
-									<Text
-										isTruncated
-										cursor="pointer"
-										display={{
-											sm: "none",
-											md: "flex",
-											lg: "flex",
-											xl: "flex",
-										}}
-									>
-										{user.result.name}
-									</Text>
+									<Stack cursor="pointer" direction="row">
+										{user?.result.imageUrl && (
+											<Image
+												alt={user?.result?.name}
+												borderRadius="full"
+												boxSize="25px"
+												loading="lazy"
+												objectFit="cover"
+												src={user?.result?.imageUrl}
+											/>
+										)}
+										<Text
+											isTruncated
+											display={{
+												sm: "none",
+												md: "flex",
+												lg: "flex",
+												xl: "flex",
+											}}
+										>
+											{user.result.name}
+										</Text>
+									</Stack>
 								</PopoverTrigger>
 								<PopoverContent>
 									<PopoverArrow />
@@ -123,6 +124,7 @@ const Navbar = () => {
 								</PopoverContent>
 							</Popover>
 						)}
+
 						<Button
 							colorScheme="primary"
 							size="sm"
@@ -141,6 +143,7 @@ const Navbar = () => {
 						</Link>
 					</Flex>
 				)}
+
 				<Button colorScheme="primary" size="sm" variant="ghost" onClick={toggleColorMode}>
 					{colorMode === "light" ? (
 						<FaMoon aria-label="Dark Mode" />
