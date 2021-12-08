@@ -108,7 +108,12 @@ const Form = ({ currentId, setCurrentId }) => {
 					p="8"
 					spacing="4"
 				>
-					<Text fontSize="xl" fontWeight="bold">
+					<Text
+						bgClip="text"
+						bgGradient={CreateGradColor("primary", 700, 900, 50, 200)}
+						fontSize="xl"
+						fontWeight="bold"
+					>
 						{currentId ? "Edit" : "Create"} Post ✏️
 					</Text>
 					<FormInput
