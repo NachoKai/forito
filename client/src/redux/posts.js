@@ -5,6 +5,7 @@ import showSuccess from "../utils/showSuccess"
 
 /* ==========  CONSTANTS  ========== */
 
+const FETCH_ALL = "FETCH_ALL"
 const FETCH_ALL_POSTS = "FETCH_ALL_POSTS"
 const FETCH_POST = "FETCH_POST"
 const CREATE_POST = "CREATE_POST"
@@ -44,6 +45,16 @@ export const getPosts = page => async dispatch => {
 	} catch (err) {
 		showError("Something went wrong when trying to get posts. Please try again.")
 		console.error(err)
+	}
+}
+
+export const getAllPosts = () => async dispatch => {
+	try {
+		const { data } = await api.fetchPosts()
+
+		dispatch({ type: FETCH_ALL, payload: data })
+	} catch (error) {
+		console.log(error.message)
 	}
 }
 
@@ -163,6 +174,8 @@ export const postsReducer = (state = initialState, action) => {
 			return { ...state, isLoading: true }
 		case END_LOADING:
 			return { ...state, isLoading: false }
+		case FETCH_ALL:
+			return payload
 		case FETCH_ALL_POSTS:
 			return {
 				...state,

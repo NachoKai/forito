@@ -4,6 +4,7 @@ import {
 	commentPost,
 	createPost,
 	deletePost,
+	getAllPosts,
 	getPost,
 	getPosts,
 	getPostsByCreator,
@@ -19,6 +20,7 @@ const router = express.Router();
 router.get("/search", getPostsBySearch);
 router.get("/creator", getPostsByCreator);
 router.get("/", getPosts);
+router.get("/", getAllPosts);
 router.get("/:id", getPost);
 router.post("/", auth, createPost);
 router.patch("/:id", auth, updatePost);
