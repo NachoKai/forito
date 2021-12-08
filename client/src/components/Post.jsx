@@ -103,8 +103,8 @@ const Post = ({
 		>
 			<Stack justify="space-between" spacing="4" w="100%">
 				<Stack direction="column" spacing="4">
-					<Stack direction="row" spacing="2">
-						<Stack direction="column">
+					<Stack direction="row">
+						<Stack direction="column" spacing="0">
 							<Text fontSize="lg" fontWeight="bold">
 								<Link to={`/creators/${name}`}>{` ${name}`}</Link>
 							</Text>
