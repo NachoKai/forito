@@ -20,9 +20,9 @@ const Footer = () => {
 					<Text fontWeight="bold">
 						<Link to="/about">About</Link>
 					</Text>
-					<Text fontWeight="bold">
+					{/* <Text fontWeight="bold">
 						<Link to="/top">Top Posts</Link>
-					</Text>
+					</Text> */}
 				</Stack>
 				<Stack direction="row">
 					<Link

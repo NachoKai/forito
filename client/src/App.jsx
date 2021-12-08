@@ -16,7 +16,7 @@ import Tags from "./components/Tags"
 import Footer from "./components/Footer"
 import SavedPosts from "./components/SavedPosts"
 import { getUser } from "./utils/getUser"
-import TopPosts from "./components/TopPosts"
+// import TopPosts from "./components/TopPosts"
 
 const App = () => {
 	const [showScroll, setShowScroll] = useState(false)
@@ -58,7 +58,7 @@ const App = () => {
 					path="/auth"
 				/>
 				<Route exact component={About} path="/about" />
-				<Route exact component={TopPosts} path="/top" />
+				{/* <Route exact component={TopPosts} path="/top" /> */}
 				<Route exact component={ErrorPage} path="*" />
 			</Switch>
 			<Button
