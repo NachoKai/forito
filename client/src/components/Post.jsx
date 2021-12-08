@@ -133,33 +133,27 @@ const Post = ({
 								</Badge>
 							))}
 					</Stack>
-					<Stack
-						direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
-						justify="space-between"
-						spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}
-					>
-						<Stack direction="row" spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}>
-							<Button
-								colorScheme="primary"
-								disabled={!user?.result}
-								minWidth="80px"
-								size="sm"
-								variant={isUserLike ? "ghost" : "outline"}
-								onClick={handleLike}
-							>
-								<Likes isUserLike={isUserLike} likes={likesMock} />
-							</Button>
-							<Button
-								colorScheme="primary"
-								leftIcon={<FaRegComments />}
-								size="sm"
-								variant={"outline"}
-								onClick={openComments}
-							>
-								{comments?.length} {comments?.length === 1 ? "Comment" : "Comments"}
-							</Button>
-						</Stack>
 
+					<Stack direction="row" spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}>
+						<Button
+							colorScheme="primary"
+							disabled={!user?.result}
+							minWidth="80px"
+							size="sm"
+							variant={isUserLike ? "ghost" : "outline"}
+							onClick={handleLike}
+						>
+							<Likes isUserLike={isUserLike} likes={likesMock} />
+						</Button>
+						<Button
+							colorScheme="primary"
+							leftIcon={<FaRegComments />}
+							size="sm"
+							variant={"outline"}
+							onClick={openComments}
+						>
+							{comments?.length} {comments?.length === 1 ? "Comment" : "Comments"}
+						</Button>
 						<Stack
 							direction="row"
 							display={location?.pathname.includes("/posts") ? "flex" : "none"}
