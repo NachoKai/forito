@@ -4,7 +4,7 @@ import { FaEraser, FaPen, FaRegComments } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
 import { Link, useHistory } from "react-router-dom"
-// import { FaBookmark, FaRegBookmark } from "react-icons/fa"
+import { FaBookmark, FaRegBookmark } from "react-icons/fa"
 
 import { getRandomId } from "../utils/getRandomId"
 import { deletePost, likePost } from "../redux/posts"
@@ -12,7 +12,7 @@ import Likes from "./Likes"
 import { getUser } from "../utils/getUser"
 import Dialog from "./common/Dialog"
 import { CreateBg } from "../theme"
-// import { savePost } from "../redux/auth"
+import { savePost } from "../redux/auth"
 
 const Post = ({
 	setCurrentId,
@@ -35,7 +35,7 @@ const Post = ({
 	const user = getUser()
 	const userId = user?.result?.googleId || user?.result?._id
 	const isUserLike = likes?.find(like => like === userId)
-	// const hasUserSaved = user?.result?.savedPosts
+	const hasUserSaved = user?.result?.savedPosts
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
 	const [likesMock, setLikesMock] = useState(likes)
 
@@ -59,9 +59,9 @@ const Post = ({
 		}
 	}
 
-	// const handleSave = async () => {
-	// 	dispatch(savePost(_id))
-	// }
+	const handleSave = async () => {
+		dispatch(savePost(_id))
+	}
 
 	const openPost = () => {
 		history.push(`/posts/${_id}`)
@@ -134,12 +134,14 @@ const Post = ({
 					</Stack>
 					<Stack
 						direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
+						justify="space-between"
 						spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}
 					>
 						<Stack direction="row" spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}>
 							<Button
 								colorScheme="primary"
 								disabled={!user?.result}
+								minWidth="80px"
 								size="sm"
 								variant={isUserLike ? "ghost" : "outline"}
 								onClick={handleLike}
@@ -155,18 +157,20 @@ const Post = ({
 							>
 								{comments?.length} {comments?.length === 1 ? "Comment" : "Comments"}
 							</Button>
-							{/* <Button
+						</Stack>
+
+						<Stack direction="row" spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}>
+							<Button
 								colorScheme="primary"
 								disabled={!user?.result}
 								leftIcon={hasUserSaved ? <FaRegBookmark /> : <FaBookmark />}
+								minWidth="80px"
 								size="sm"
 								variant={hasUserSaved ? "ghost" : "outline"}
 								onClick={handleSave}
 							>
 								Save
-							</Button> */}
-						</Stack>
-						<Stack direction="row" spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}>
+							</Button>
 							{(isPostCreator || isAdmin) && (
 								<Button
 									colorScheme="primary"

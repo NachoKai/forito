@@ -79,27 +79,25 @@ const Auth = () => {
 				<form onSubmit={handleSubmit}>
 					<Stack spacing="2">
 						{isSignup && (
-							<>
-								<Stack direction="row" spacing="2">
-									<FormInput
-										autoFocus
-										isRequired
-										label="First Name"
-										maxLength="25"
-										name="firstName"
-										value={formData?.firstName}
-										onChange={handleChange}
-									/>
-									<FormInput
-										isRequired
-										label="Last Name"
-										maxLength="25"
-										name="lastName"
-										value={formData?.lastName}
-										onChange={handleChange}
-									/>
-								</Stack>
-							</>
+							<Stack direction="row" spacing="2">
+								<FormInput
+									autoFocus
+									isRequired
+									label="First Name"
+									maxLength="25"
+									name="firstName"
+									value={formData?.firstName}
+									onChange={handleChange}
+								/>
+								<FormInput
+									isRequired
+									label="Last Name"
+									maxLength="25"
+									name="lastName"
+									value={formData?.lastName}
+									onChange={handleChange}
+								/>
+							</Stack>
 						)}
 						<FormInput
 							isRequired

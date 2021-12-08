@@ -215,7 +215,7 @@ const Form = ({ currentId, setCurrentId }) => {
 													alt=""
 													boxSize="100px"
 													objectFit="contain"
-													src={image["data_url"]}
+													src={image.data_url}
 												/>
 												<Flex align="center" direction="column" justify="center">
 													<Button

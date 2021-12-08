@@ -13,12 +13,13 @@ import {
 } from "@chakra-ui/react"
 import { formatDistance } from "date-fns"
 import { Link, useHistory, useParams } from "react-router-dom"
-import { FaTwitter } from "react-icons/fa"
+import { FaBookmark, FaTwitter } from "react-icons/fa"
 
 import { getPost, getPostsBySearch } from "../redux/posts"
 import { getRandomId } from "../utils/getRandomId"
 import Comments from "../components/Comments"
 import { CreateBg, CreateColor } from "../theme"
+import { savePost } from "../redux/auth"
 
 const PostDetails = () => {
 	const dispatch = useDispatch()
@@ -43,6 +44,10 @@ const PostDetails = () => {
 		)
 
 		return false
+	}
+
+	const handleSave = async () => {
+		dispatch(savePost(id))
 	}
 
 	useEffect(() => {
@@ -117,14 +122,30 @@ const PostDetails = () => {
 											) + " ago"}
 										</Text>
 									</Stack>
-									<Button
-										colorScheme="primary"
-										rightIcon={<FaTwitter />}
-										size="xs"
-										onClick={() => shareOnTwitter()}
+									<Stack
+										align="flex-start"
+										direction="row"
+										h="100%"
+										justify="flex-end"
+										spacing="8px"
 									>
-										Share
-									</Button>
+										<Button
+											colorScheme="primary"
+											rightIcon={<FaBookmark />}
+											size="xs"
+											onClick={handleSave}
+										>
+											Save
+										</Button>
+										<Button
+											colorScheme="primary"
+											rightIcon={<FaTwitter />}
+											size="xs"
+											onClick={() => shareOnTwitter()}
+										>
+											Share
+										</Button>
+									</Stack>
 								</Flex>
 							</Stack>
 						</Stack>

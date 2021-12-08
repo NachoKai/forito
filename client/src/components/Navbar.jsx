@@ -1,7 +1,22 @@
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch } from "react-redux"
 import { FaMoon, FaSun } from "react-icons/fa"
-import { Button, Flex, Heading, Image, Stack, Text, useColorMode } from "@chakra-ui/react"
+import {
+	Button,
+	Flex,
+	Heading,
+	Image,
+	Popover,
+	PopoverArrow,
+	PopoverBody,
+	PopoverCloseButton,
+	PopoverContent,
+	PopoverHeader,
+	PopoverTrigger,
+	Stack,
+	Text,
+	useColorMode,
+} from "@chakra-ui/react"
 import { Link, useHistory, useLocation } from "react-router-dom"
 import decode from "jwt-decode"
 
@@ -15,6 +30,9 @@ const Navbar = () => {
 	const history = useHistory()
 	const [user, setUser] = useState(getUser())
 	const { colorMode, toggleColorMode } = useColorMode()
+	const [isOpen, setIsOpen] = useState(false)
+	const open = () => setIsOpen(!isOpen)
+	const close = () => setIsOpen(false)
 
 	const handleLogout = useCallback(() => {
 		setUser(null)
@@ -24,9 +42,7 @@ const Navbar = () => {
 	useEffect(() => {
 		const token = user?.token
 
-		if (token) {
-			if (decode(token).exp * 1000 < new Date().getTime()) handleLogout()
-		}
+		if (token && decode(token).exp * 1000 < new Date().getTime()) handleLogout()
 		setUser(getUser())
 	}, [handleLogout, location, user?.token])
 
@@ -68,17 +84,44 @@ const Navbar = () => {
 							/>
 						)}
 						{user?.result.name && (
-							<Text
-								isTruncated
-								display={{
-									sm: "none",
-									md: "flex",
-									lg: "flex",
-									xl: "flex",
-								}}
+							<Popover
+								isLazy
+								closeOnBlur={true}
+								isOpen={isOpen}
+								returnFocusOnClose={false}
+								onClose={close}
+								onOpen={open}
 							>
-								{user.result.name}
-							</Text>
+								<PopoverTrigger>
+									<Text
+										isTruncated
+										cursor="pointer"
+										display={{
+											sm: "none",
+											md: "flex",
+											lg: "flex",
+											xl: "flex",
+										}}
+									>
+										{user.result.name}
+									</Text>
+								</PopoverTrigger>
+								<PopoverContent>
+									<PopoverArrow />
+									<PopoverCloseButton />
+									<PopoverHeader>{user.result.name}</PopoverHeader>
+									<PopoverBody cursor="pointer" fontWeight="bold">
+										<Link to={`/creators/${user.result.name}`} onClick={close}>
+											My Posts
+										</Link>
+									</PopoverBody>
+									<PopoverBody cursor="pointer" fontWeight="bold">
+										<Link to={`/saved`} onClick={close}>
+											Saved Posts
+										</Link>
+									</PopoverBody>
+								</PopoverContent>
+							</Popover>
 						)}
 						<Button
 							colorScheme="primary"
