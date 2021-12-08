@@ -20,6 +20,7 @@ import { getUser } from "./utils/getUser"
 const App = () => {
 	const [showScroll, setShowScroll] = useState(false)
 	const user = getUser()
+	const userEmail = user?.result?.email
 
 	const checkScrollTop = () => {
 		if (!showScroll && window.pageYOffset > 400) {
@@ -47,14 +48,12 @@ const App = () => {
 				<Route exact component={Tags} path="/tags/:name" />
 				<Route
 					exact
-					component={() =>
-						user?.result?.email ? <SavedPosts /> : <Redirect to="/posts" />
-					}
+					component={() => (userEmail ? <SavedPosts /> : <Redirect to="/posts" />)}
 					path="/saved"
 				/>
 				<Route
 					exact
-					component={() => (!user?.result?.email ? <Auth /> : <Redirect to="/posts" />)}
+					component={() => (!userEmail ? <Auth /> : <Redirect to="/posts" />)}
 					path="/auth"
 				/>
 				<Route exact component={About} path="/about" />

@@ -77,7 +77,6 @@ const Form = ({ currentId, setCurrentId }) => {
 		return (
 			<Stack
 				align="center"
-				boxShadow="md"
 				color={CreateColor("primary", 600, 100)}
 				direction="column"
 				minWidth="320px"

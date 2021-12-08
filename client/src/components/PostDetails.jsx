@@ -20,12 +20,15 @@ import { getRandomId } from "../utils/getRandomId"
 import Comments from "../components/Comments"
 import { CreateBg, CreateColor } from "../theme"
 import { savePost } from "../redux/auth"
+import { getUser } from "../utils/getUser"
 
 const PostDetails = () => {
 	const dispatch = useDispatch()
 	const { post, posts, isLoading } = useSelector(state => state.posts)
 	const history = useHistory()
 	const { id } = useParams()
+	const user = getUser()
+	const userEmail = user?.result?.email
 	const openPost = _id => history.push(`/posts/${_id}`)
 	const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id)
 
@@ -129,14 +132,16 @@ const PostDetails = () => {
 										justify="flex-end"
 										spacing="8px"
 									>
-										<Button
-											colorScheme="primary"
-											rightIcon={<FaBookmark />}
-											size="xs"
-											onClick={handleSave}
-										>
-											Save
-										</Button>
+										{userEmail && (
+											<Button
+												colorScheme="primary"
+												rightIcon={<FaBookmark />}
+												size="xs"
+												onClick={handleSave}
+											>
+												Save
+											</Button>
+										)}
 										<Button
 											colorScheme="primary"
 											rightIcon={<FaTwitter />}

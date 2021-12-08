@@ -36,7 +36,7 @@ const Post = ({
 		selectedFile,
 		comments,
 	},
-	handleScroll,
+	handleClick,
 }) => {
 	const dispatch = useDispatch()
 	const history = useHistory()
@@ -47,6 +47,7 @@ const Post = ({
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
 	const [likesMock, setLikesMock] = useState(likes)
 	const location = useLocation()
+	const userEmail = user?.result?.email
 
 	const isPostCreator = user?.result?.googleId
 		? user?.result?.googleId === creator
@@ -54,9 +55,7 @@ const Post = ({
 		? user?.result?._id === creator
 		: false
 
-	const isAdmin = user?.result?.email
-		? process.env.REACT_APP_ADMIN === user?.result?.email
-		: false
+	const isAdmin = userEmail ? process.env.REACT_APP_ADMIN === userEmail : false
 
 	const handleLike = useCallback(async () => {
 		dispatch(likePost(_id))
@@ -82,8 +81,8 @@ const Post = ({
 
 	const handleEdit = useCallback(() => {
 		setCurrentId(_id)
-		handleScroll()
-	}, [_id, handleScroll, setCurrentId])
+		handleClick()
+	}, [_id, handleClick, setCurrentId])
 
 	return (
 		<Stack
@@ -172,17 +171,19 @@ const Post = ({
 							display={location?.pathname.includes("/posts") ? "flex" : "none"}
 							spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}
 						>
-							<Button
-								colorScheme="primary"
-								disabled={!user?.result}
-								leftIcon={hasUserSaved ? <FaRegBookmark /> : <FaBookmark />}
-								minWidth="80px"
-								size="sm"
-								variant={hasUserSaved ? "ghost" : "outline"}
-								onClick={handleSave}
-							>
-								Save
-							</Button>
+							{userEmail && (
+								<Button
+									colorScheme="primary"
+									disabled={!user?.result}
+									leftIcon={hasUserSaved ? <FaRegBookmark /> : <FaBookmark />}
+									minWidth="80px"
+									size="sm"
+									variant={hasUserSaved ? "ghost" : "outline"}
+									onClick={handleSave}
+								>
+									Save
+								</Button>
+							)}
 							{(isPostCreator || isAdmin) && (
 								<Button
 									colorScheme="primary"

@@ -39,7 +39,7 @@
 				"semi": true,
 				"arrowParens": "avoid",
 				"bracketSpacing": true,
-				"jsxBracketSameLine": false,
+				"bracketSameLine": false,
 				"singleQuote": false,
 				"trailingComma": "es5",
 				"endOfLine": "lf",
