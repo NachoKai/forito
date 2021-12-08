@@ -182,7 +182,7 @@ const PostDetails = () => {
 												bg={CreateBg("primary", 100, 900)}
 												borderRadius="lg"
 												className="recommended-post"
-												color={CreateColor("primary", 600, 100)}
+												color={CreateColor("primary", 800, 100)}
 												cursor="pointer"
 												h="100%"
 												maxWidth="320px"

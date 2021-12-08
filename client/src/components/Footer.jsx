@@ -8,7 +8,7 @@ const Footer = () => {
 	return (
 		<Stack
 			bg={CreateBg("primary", 100, 900)}
-			color={CreateColor("primary", 600, 100)}
+			color={CreateColor("primary", 800, 100)}
 			p="8"
 			spacing="8"
 		>
