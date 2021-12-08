@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useCallback, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
 	Badge,
@@ -46,9 +46,9 @@ const PostDetails = () => {
 		return false
 	}
 
-	const handleSave = async () => {
+	const handleSave = useCallback(async () => {
 		dispatch(savePost(id))
-	}
+	}, [dispatch, id])
 
 	useEffect(() => {
 		dispatch(getPost(id))

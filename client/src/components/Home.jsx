@@ -14,7 +14,7 @@ const Home = () => {
 	const searchQuery = query.get("searchQuery")
 	const formRef = useRef(null)
 
-	const handleClick = async () => formRef.current.scrollIntoView({ behavior: "smooth" })
+	const handleScroll = async () => formRef.current.scrollIntoView({ behavior: "smooth" })
 
 	return (
 		<Stack paddingBottom="4">
@@ -25,7 +25,7 @@ const Home = () => {
 			>
 				<Stack w="100%">
 					<Posts
-						handleClick={handleClick}
+						handleScroll={handleScroll}
 						searchQuery={searchQuery}
 						setCurrentId={setCurrentId}
 					/>

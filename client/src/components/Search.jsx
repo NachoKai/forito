@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import { useDispatch } from "react-redux"
 import {
 	Accordion,
@@ -25,7 +25,7 @@ const Search = () => {
 	const [searchValue, setSearchValue] = useState("")
 	const [searchTags, setSearchTags] = useState([])
 
-	const searchPost = () => {
+	const searchPost = useCallback(() => {
 		if (searchValue.trim() || searchTags) {
 			setSearchValue("")
 			setSearchTags([])
@@ -36,7 +36,7 @@ const Search = () => {
 		} else {
 			history.push("/")
 		}
-	}
+	}, [dispatch, history, searchTags, searchValue])
 
 	const handleKeyPress = e => {
 		if (e.keyCode === 13) {
@@ -44,9 +44,19 @@ const Search = () => {
 		}
 	}
 
-	const handleAddTag = tag => setSearchTags([...searchTags, tag])
-	const handleDeleteTag = tagToDelete =>
-		setSearchTags(searchTags.filter(tag => tag !== tagToDelete))
+	const handleAddTag = useCallback(
+		tag => {
+			setSearchTags([...searchTags, tag])
+		},
+		[searchTags]
+	)
+
+	const handleDeleteTag = useCallback(
+		tagToDelete => {
+			setSearchTags(searchTags.filter(tag => tag !== tagToDelete))
+		},
+		[searchTags]
+	)
 
 	return (
 		<Accordion
