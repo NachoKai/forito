@@ -3,11 +3,19 @@ import { FaExclamationCircle } from "react-icons/fa"
 
 const ErrorPage = () => {
 	return (
-		<Flex flexGrow align="center" direction="column" h="100%" justify="center" p="8">
+		<Flex
+			flexGrow
+			align="center"
+			direction="column"
+			h="100%"
+			justify="flex-start"
+			minHeight="100vh"
+			p="8"
+		>
 			<Text color="primary.400" fontSize="6xl">
 				<FaExclamationCircle />
 			</Text>
-			<Heading color="primary.400" fontSize="6xl">
+			<Heading color="primary.400" fontSize="8xl">
 				404
 			</Heading>
 			<Heading color="primary.400" fontSize="3xl">
