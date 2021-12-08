@@ -146,7 +146,10 @@ const Post = ({
 							))}
 					</Stack>
 
-					<Stack direction="row" spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}>
+					<Stack
+						direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
+						spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}
+					>
 						<Button
 							colorScheme="primary"
 							disabled={!user?.result}
