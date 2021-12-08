@@ -7,7 +7,7 @@ import { getRandomId } from "../utils/getRandomId"
 import FormTextArea from "./common/FormTextArea"
 import { getUser } from "../utils/getUser"
 import { addComment } from "../redux/posts"
-import { CreateColor } from "../theme"
+import { CreateColor, CreateGradColor } from "../theme"
 import { checkEmpty } from "../utils/checkEmpty"
 
 const Comments = ({ post }) => {
@@ -41,7 +41,14 @@ const Comments = ({ post }) => {
 			</Stack>
 
 			{user?.result?.name ? (
-				<Stack spacing="4" width="100%">
+				<Stack
+					bgGradient={CreateGradColor("primary", 100, 50, 900, 600, "135deg")}
+					borderRadius="lg"
+					boxShadow="md"
+					p="8"
+					spacing="4"
+					width="100%"
+				>
 					<FormTextArea
 						label="Write a comment"
 						maxLength="500"
