@@ -45,7 +45,7 @@ const Comments = ({ post }) => {
 					bgGradient={CreateGradColor("primary", 100, 50, 900, 600, "135deg")}
 					borderRadius="lg"
 					boxShadow="md"
-					p="8"
+					p="4"
 					spacing="4"
 					width="100%"
 				>
