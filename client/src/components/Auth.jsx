@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useCallback, useState } from "react"
 import { useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom"
 import { GoogleLogin } from "react-google-login"
@@ -28,39 +28,54 @@ const Auth = () => {
 	const [formData, setFormData] = useState(initialState)
 	const [showPassword, setShowPassword] = useState(false)
 
-	const onSuccess = async res => {
-		const result = res?.profileObj
-		const token = res?.tokenId
+	const onSuccess = useCallback(
+		async res => {
+			const result = res?.profileObj
+			const token = res?.tokenId
 
-		try {
-			dispatch({ type: AUTH, data: { result, token } })
+			try {
+				dispatch({ type: AUTH, data: { result, token } })
 
-			history.push("/")
-			history.go(0)
-		} catch (err) {
-			showError("Something went wrong when trying to log in. Please try again.")
-			console.error(err)
-		}
-	}
+				history.push("/")
+				history.go(0)
+			} catch (err) {
+				showError("Something went wrong when trying to log in. Please try again.")
+				console.error(err)
+			}
+		},
+		[dispatch, history]
+	)
 
 	const onFailure = res => {
 		showError("Something went wrong when trying to log in. Please try again.")
 		console.error("Google login was unsuccessful: ", res)
 	}
 
-	const handleSubmit = e => {
-		e.preventDefault()
+	const handleSubmit = useCallback(
+		e => {
+			e.preventDefault()
 
-		if (isSignup) {
-			dispatch(signup(formData, history))
-		} else {
-			dispatch(login(formData, history))
-		}
-	}
+			if (isSignup) {
+				dispatch(signup(formData, history))
+			} else {
+				dispatch(login(formData, history))
+			}
+		},
+		[dispatch, formData, history, isSignup]
+	)
 
-	const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
+	const handleChange = useCallback(
+		e => {
+			setFormData({ ...formData, [e.target.name]: e.target.value })
+		},
+		[formData]
+	)
+
 	const handleSwitch = () => setIsSignup(prevIsSignup => !prevIsSignup)
-	const handleShowPassword = () => setShowPassword(!showPassword)
+
+	const handleShowPassword = useCallback(() => {
+		setShowPassword(!showPassword)
+	}, [showPassword])
 
 	return (
 		<Stack align="center" justify="flex-start" minHeight="100vh" p="8">

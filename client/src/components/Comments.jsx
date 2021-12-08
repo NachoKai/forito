@@ -1,4 +1,4 @@
-import { useRef, useState } from "react"
+import { useCallback, useRef, useState } from "react"
 import { useDispatch } from "react-redux"
 import { Button, Stack, Text } from "@chakra-ui/react"
 import { FaExclamationCircle } from "react-icons/fa"
@@ -17,14 +17,14 @@ const Comments = ({ post }) => {
 	const [comments, setComments] = useState(post?.comments)
 	const [comment, setComment] = useState("")
 
-	const handleClick = async () => {
+	const handleComment = useCallback(async () => {
 		const commentContent = `${user?.result?.name}: ${comment}`
 		const newComments = await dispatch(addComment(commentContent, post?._id))
 
 		setComments(newComments)
 		setComment("")
 		commentsRef.current.scrollIntoView({ behavior: "smooth" })
-	}
+	}, [comment, dispatch, post?._id, user?.result?.name])
 
 	const handleClear = () => setComment("")
 
@@ -52,7 +52,7 @@ const Comments = ({ post }) => {
 					<Button
 						colorScheme="primary"
 						disabled={!checkEmpty(comment)}
-						onClick={handleClick}
+						onClick={handleComment}
 					>
 						Comment
 					</Button>

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Divider, Flex, Image, Stack, Text } from "@chakra-ui/react"
 import { FaExclamationCircle } from "react-icons/fa"
@@ -34,35 +34,44 @@ const Form = ({ currentId, setCurrentId }) => {
 		currentId ? state.posts?.posts?.find(message => message._id === currentId) : null
 	)
 
-	const onImageUpload = imageList => {
-		setPostData({ ...postData, selectedFile: imageList && imageList[0]?.data_url })
-		setImages(imageList)
-	}
+	const onImageUpload = useCallback(
+		imageList => {
+			setPostData({ ...postData, selectedFile: imageList && imageList[0]?.data_url })
+			setImages(imageList)
+		},
+		[postData]
+	)
 
-	const handleSubmit = e => {
-		e.preventDefault()
-
-		if (currentId === 0) {
-			dispatch(createPost({ ...postData, name: user?.result?.name }, history))
-		} else {
-			dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }))
-		}
-		handleClear()
-	}
-
-	const handleClear = () => {
+	const handleClear = useCallback(() => {
 		setCurrentId(0)
 		setImages([])
 		setPostData(initialState)
-	}
+	}, [setCurrentId])
+
+	const handleSubmit = useCallback(
+		e => {
+			e.preventDefault()
+
+			if (currentId === 0) {
+				dispatch(createPost({ ...postData, name: user?.result?.name }, history))
+			} else {
+				dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }))
+			}
+			handleClear()
+		},
+		[currentId, dispatch, handleClear, history, postData, user?.result?.name]
+	)
+
+	const handleChange = useCallback(
+		e => {
+			setPostData({ ...postData, [e.target.name]: e.target.value })
+		},
+		[postData]
+	)
 
 	useEffect(() => {
 		if (post) setPostData(post)
 	}, [post])
-
-	const handleChange = e => {
-		setPostData({ ...postData, [e.target.name]: e.target.value })
-	}
 
 	if (!user?.result?.name) {
 		return (

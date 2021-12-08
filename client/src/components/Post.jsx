@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { memo, useCallback, useState } from "react"
 import {
 	Badge,
 	Button,
@@ -58,7 +58,7 @@ const Post = ({
 		? process.env.REACT_APP_ADMIN === user?.result?.email
 		: false
 
-	const handleLike = async () => {
+	const handleLike = useCallback(async () => {
 		dispatch(likePost(_id))
 
 		if (isUserLike) {
@@ -66,24 +66,24 @@ const Post = ({
 		} else {
 			setLikesMock([...likes, userId])
 		}
-	}
+	}, [_id, dispatch, isUserLike, likes, userId])
 
-	const handleSave = async () => {
+	const handleSave = useCallback(async () => {
 		dispatch(savePost(_id))
-	}
+	}, [_id, dispatch])
 
-	const openPost = () => {
+	const openPost = useCallback(() => {
 		history.push(`/posts/${_id}`)
-	}
+	}, [_id, history])
 
-	const openComments = () => {
+	const openComments = useCallback(() => {
 		history.push(`/posts/${_id}#comments`)
-	}
+	}, [_id, history])
 
-	const handleEdit = () => {
+	const handleEdit = useCallback(() => {
 		setCurrentId(_id)
 		handleClick()
-	}
+	}, [_id, handleClick, setCurrentId])
 
 	return (
 		<Stack
@@ -237,4 +237,4 @@ const Post = ({
 	)
 }
 
-export default Post
+export default memo(Post)
