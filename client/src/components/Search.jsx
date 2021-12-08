@@ -17,7 +17,7 @@ import styled from "styled-components"
 
 import { getPostsBySearch } from "../redux/posts"
 import FormInput from "./common/FormInput"
-import { CreateBg } from "../theme"
+import { CreateBg, CreateGradColor } from "../theme"
 
 const Search = () => {
 	const dispatch = useDispatch()
@@ -93,7 +93,11 @@ const Search = () => {
 							label="Search Tags"
 							maxLength="105"
 						/>
-						<Button colorScheme="primary" onClick={searchPost}>
+						<Button
+							bgGradient={CreateGradColor("primary", 400, 800, 100, 400)}
+							colorScheme="primary"
+							onClick={searchPost}
+						>
 							Search
 						</Button>
 					</Stack>

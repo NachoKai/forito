@@ -254,7 +254,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 					<Stack spacing="4">
 						<Button
-							bgGradient={CreateGradColor("primary", 600, 900, 100, 400)}
+							bgGradient={CreateGradColor("primary", 400, 800, 100, 400)}
 							colorScheme="primary"
 							disabled={
 								!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) ||
