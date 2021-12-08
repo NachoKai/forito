@@ -150,25 +150,35 @@ const Post = ({
 						direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
 						spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}
 					>
-						<Button
-							colorScheme="primary"
-							disabled={!user?.result}
-							minWidth="80px"
-							size="sm"
-							variant={isUserLike ? "ghost" : "outline"}
-							onClick={handleLike}
+						<Stack
+							direction="row"
+							display={location?.pathname.includes("/posts") ? "flex" : "none"}
+							flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
+							spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}
 						>
-							<Likes isUserLike={isUserLike} likes={likesMock} />
-						</Button>
-						<Button
-							colorScheme="primary"
-							leftIcon={<FaRegComments />}
-							size="sm"
-							variant={"outline"}
-							onClick={openComments}
-						>
-							{comments?.length} {comments?.length === 1 ? "Comment" : "Comments"}
-						</Button>
+							<Button
+								colorScheme="primary"
+								disabled={!user?.result}
+								flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
+								minWidth="80px"
+								size="sm"
+								variant={isUserLike ? "ghost" : "outline"}
+								onClick={handleLike}
+							>
+								<Likes isUserLike={isUserLike} likes={likesMock} />
+							</Button>
+							<Button
+								colorScheme="primary"
+								flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
+								leftIcon={<FaRegComments />}
+								size="sm"
+								variant={"outline"}
+								onClick={openComments}
+							>
+								{comments?.length} {comments?.length === 1 ? "Comment" : "Comments"}
+							</Button>
+						</Stack>
+
 						<Stack
 							direction="row"
 							display={location?.pathname.includes("/posts") ? "flex" : "none"}
