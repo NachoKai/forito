@@ -96,6 +96,7 @@ const Search = () => {
 						<Button
 							bgGradient={CreateGradColor("primary", 400, 800, 100, 400)}
 							colorScheme="primary"
+							disabled={!searchValue && !searchTags?.length}
 							onClick={searchPost}
 						>
 							Search
