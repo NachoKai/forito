@@ -49,16 +49,24 @@ const Comments = ({ post }) => {
 						value={comment}
 						onChange={e => setComment(e.target.value)}
 					/>
-					<Button
-						colorScheme="primary"
-						disabled={!checkEmpty(comment)}
-						onClick={handleComment}
-					>
-						Comment
-					</Button>
-					<Button colorScheme="primary" variant="outline" onClick={handleClear}>
-						Clear
-					</Button>
+					<Stack direction="row" spacing="4">
+						<Button
+							colorScheme="primary"
+							disabled={!checkEmpty(comment)}
+							flexGrow="1"
+							onClick={handleComment}
+						>
+							Comment
+						</Button>
+						<Button
+							colorScheme="primary"
+							flexGrow="1"
+							variant="outline"
+							onClick={handleClear}
+						>
+							Clear
+						</Button>
+					</Stack>
 				</Stack>
 			) : (
 				<Stack
