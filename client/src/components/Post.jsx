@@ -3,7 +3,7 @@ import { Badge, Button, Heading, Image, Stack, Text } from "@chakra-ui/react"
 import { FaEraser, FaPen, FaRegComments } from "react-icons/fa"
 import { formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
-import { Link, useHistory } from "react-router-dom"
+import { Link, useHistory, useLocation } from "react-router-dom"
 import { FaBookmark, FaRegBookmark } from "react-icons/fa"
 
 import { getRandomId } from "../utils/getRandomId"
@@ -38,6 +38,7 @@ const Post = ({
 	const hasUserSaved = user?.result?.savedPosts
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
 	const [likesMock, setLikesMock] = useState(likes)
+	const location = useLocation()
 
 	const isPostCreator = user?.result?.googleId
 		? user?.result?.googleId === creator
@@ -159,7 +160,11 @@ const Post = ({
 							</Button>
 						</Stack>
 
-						<Stack direction="row" spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}>
+						<Stack
+							direction="row"
+							display={location?.pathname.includes("/posts") ? "flex" : "none"}
+							spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}
+						>
 							<Button
 								colorScheme="primary"
 								disabled={!user?.result}
