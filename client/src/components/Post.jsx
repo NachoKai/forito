@@ -36,7 +36,7 @@ const Post = ({
 		selectedFile,
 		comments,
 	},
-	handleClick,
+	handleScroll,
 }) => {
 	const dispatch = useDispatch()
 	const history = useHistory()
@@ -81,8 +81,8 @@ const Post = ({
 
 	const handleEdit = useCallback(() => {
 		setCurrentId(_id)
-		handleClick()
-	}, [_id, handleClick, setCurrentId])
+		handleScroll()
+	}, [_id, handleScroll, setCurrentId])
 
 	return (
 		<Stack
