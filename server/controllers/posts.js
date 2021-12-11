@@ -89,8 +89,9 @@ export const updatePost = async (req, res) => {
 		return res.status(404).send(`No post with id: ${id}`);
 
 	const updatedPost = { creator, name, title, message, tags, selectedFile, _id: id };
+	const cleanUpdatedPost = sanitize(updatedPost);
 
-	await Post.findByIdAndUpdate(id, updatedPost, { new: true });
+	await Post.findByIdAndUpdate(id, cleanUpdatedPost, { new: true });
 
 	res.status(200).json(updatedPost);
 };
