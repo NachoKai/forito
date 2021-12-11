@@ -1,4 +1,6 @@
 import express from "express";
+import escapeRegExp from "lodash";
+import sanitize from "mongo-sanitize";
 import mongoose from "mongoose";
 
 import Post from "../models/post.js";
@@ -36,9 +38,10 @@ export const getPosts = async (req, res) => {
 
 export const getPostsBySearch = async (req, res) => {
 	const { searchQuery, tags } = req.query;
+	const safeSearchQuery = escapeRegExp(searchQuery);
 
 	try {
-		const title = new RegExp(searchQuery, "i");
+		const title = new RegExp(safeSearchQuery, "i");
 		const posts = await Post.find({
 			$or: [{ title }, { tags: { $in: tags.split(",") } }],
 		});
@@ -146,9 +149,10 @@ export const commentPost = async (req, res) => {
 
 export const getPostsByCreator = async (req, res) => {
 	const { name } = req.query;
+	const cleanName = sanitize(name);
 
 	try {
-		const posts = await Post.find({ name });
+		const posts = await Post.find({ cleanName });
 
 		res.json({ data: posts });
 	} catch (error) {
