@@ -11,7 +11,7 @@ import {
 	useColorModeValue,
 } from "@chakra-ui/react"
 import { FaEraser, FaPen, FaRegComments } from "react-icons/fa"
-import { format, formatDistance } from "date-fns"
+import { format, formatDistance, isValid } from "date-fns"
 import { useDispatch } from "react-redux"
 import { Link, useHistory, useLocation } from "react-router-dom"
 import { FaBookmark, FaRegBookmark } from "react-icons/fa"
@@ -112,7 +112,10 @@ const Post = ({
 							<Tooltip
 								hasArrow
 								colorScheme="primary"
-								label={format(new Date(createdAt), "dd MMM yyyy - HH:mm")}
+								label={format(
+									isValid(new Date(createdAt)) ? new Date(createdAt) : new Date(),
+									"dd MMM yyyy - HH:mm"
+								)}
 								openDelay={200}
 								placement="top"
 							>

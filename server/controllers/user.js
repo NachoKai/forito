@@ -15,10 +15,10 @@ const salt = process.env.SALT;
 
 export const login = async (req, res) => {
 	const { email, password } = req.body;
-	const cleanEmail = sanitize(email);
+	// const cleanEmail = sanitize(email);
 
 	try {
-		const existingUser = await User.findOne({ cleanEmail });
+		const existingUser = await User.findOne({ email });
 
 		if (!existingUser) {
 			return res.status(404).json({ message: "User doesn't exist." });
@@ -43,10 +43,10 @@ export const login = async (req, res) => {
 
 export const signup = async (req, res) => {
 	const { email, password, confirmPassword, firstName, lastName } = req.body;
-	const cleanEmail = sanitize(email);
+	// const cleanEmail = sanitize(email);
 
 	try {
-		const existingUser = await User.findOne({ cleanEmail });
+		const existingUser = await User.findOne({ email });
 
 		if (existingUser) {
 			return res.status(400).json({ message: "User already exists." });
