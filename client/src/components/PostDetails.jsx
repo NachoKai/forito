@@ -87,18 +87,16 @@ const PostDetails = () => {
 							</Stack>
 
 							{post?.selectedFile && (
-								<AspectRatio maxH="80vh" ratio={1} w="100%">
-									<Image
-										alt={post?.title}
-										borderRadius="lg"
-										flexGrow="1"
-										h="100%"
-										loading="lazy"
-										objectFit="cover"
-										src={post?.selectedFile}
-										w="100%"
-									/>
-								</AspectRatio>
+								<Image
+									alt={post?.title}
+									flexGrow="1"
+									loading="lazy"
+									maxH="90vh"
+									maxW={{ sm: "100vw", md: "100vw", lg: "50vw", xl: "50vw" }}
+									objectFit="contain"
+									src={post?.selectedFile}
+									w="100%"
+								/>
 							)}
 						</Stack>
 
