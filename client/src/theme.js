@@ -2,7 +2,7 @@ import { extendTheme, theme, useColorModeValue } from "@chakra-ui/react"
 import { createBreakpoints } from "@chakra-ui/theme-tools"
 
 const colors = {
-	primary: theme.colors.purple,
+	primary: theme.colors.blue,
 }
 
 const fonts = {
