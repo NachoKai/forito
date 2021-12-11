@@ -1,20 +1,16 @@
-import { useEffect } from "react"
-import { useParams } from "react-router-dom"
-import { useDispatch, useSelector } from "react-redux"
-import { Divider, Flex, Skeleton, Stack, Text } from "@chakra-ui/react"
+// import { useEffect } from "react"
+// import { useParams } from "react-router-dom"
+// import { useDispatch, useSelector } from "react-redux"
+import { Divider, Flex, Heading, Skeleton, Stack, Text } from "@chakra-ui/react"
 import { FaSearch } from "react-icons/fa"
+import { CreateGradColor } from "../theme"
 
-import { getPostsByCreator } from "../redux/posts"
+// import { getPostsByCreator } from "../redux/posts"
 import Post from "./Post"
 
 const SavedPosts = () => {
-	const dispatch = useDispatch()
-	const { name } = useParams()
-	const { posts, isLoading } = useSelector(state => state.posts)
-
-	useEffect(() => {
-		dispatch(getPostsByCreator(name))
-	}, [dispatch, name])
+	const posts = []
+	const isLoading = false
 
 	if (!posts?.length && !isLoading) {
 		return (
@@ -22,9 +18,15 @@ const SavedPosts = () => {
 				<Text color="primary.400" fontSize="6xl" marginBottom="16px">
 					<FaSearch />
 				</Text>
-				<Text color="primary.400" fontSize="4xl">
+				<Heading
+					as="h2"
+					bgClip="text"
+					bgGradient={CreateGradColor("primary", 300, 900, 50, 400)}
+					fontSize="4xl"
+					fontWeight="bold"
+				>
 					No saved posts
-				</Text>
+				</Heading>
 			</Flex>
 		)
 	}

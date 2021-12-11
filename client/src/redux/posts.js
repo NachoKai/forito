@@ -48,16 +48,6 @@ export const getPosts = page => async dispatch => {
 	}
 }
 
-export const getAllPosts = () => async dispatch => {
-	try {
-		const { data } = await api.fetchPosts()
-
-		dispatch({ type: FETCH_ALL, payload: data })
-	} catch (error) {
-		console.log(error.message)
-	}
-}
-
 export const getPostsBySearch = searchQuery => async dispatch => {
 	try {
 		dispatch({ type: START_LOADING })
