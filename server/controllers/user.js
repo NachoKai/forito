@@ -79,7 +79,7 @@ export const signup = async (req, res) => {
 // 		return res.status(401).send("Unauthorized");
 // 	}
 // 	if (!mongoose.Types.ObjectId.isValid(id)) {
-// 		return res.status(404).send(`No post with id: ${id}`);
+// 		return res.status(404).send(`No post found.`);
 // 	}
 
 // 	const user = await User.findById(id);
