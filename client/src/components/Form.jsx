@@ -121,6 +121,7 @@ const Form = ({ currentId, setCurrentId }) => {
 						label="Title"
 						maxLength="105"
 						name="title"
+						tooltip="Required"
 						value={postData.title}
 						onChange={handleChange}
 					/>
@@ -129,6 +130,7 @@ const Form = ({ currentId, setCurrentId }) => {
 						label="Message"
 						maxLength="5000"
 						name="message"
+						tooltip="Required"
 						value={postData.message}
 						onChange={handleChange}
 					/>

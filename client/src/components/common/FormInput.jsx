@@ -1,4 +1,5 @@
 import {
+	Flex,
 	FormControl,
 	FormHelperText,
 	FormLabel,
@@ -6,6 +7,7 @@ import {
 	InputGroup,
 	InputLeftElement,
 	InputRightElement,
+	Tooltip,
 } from "@chakra-ui/react"
 
 const FormInput = ({
@@ -24,10 +26,25 @@ const FormInput = ({
 	leftIcon,
 	rightIcon,
 	placeholder,
+	tooltip,
 }) => {
 	return (
 		<FormControl isRequired={isRequired}>
-			<FormLabel>{label}</FormLabel>
+			<Flex>
+				{tooltip ? (
+					<Tooltip
+						hasArrow
+						colorScheme="primary"
+						label={tooltip}
+						openDelay={200}
+						placement="top"
+					>
+						<FormLabel>{label}</FormLabel>
+					</Tooltip>
+				) : (
+					<FormLabel>{label}</FormLabel>
+				)}
+			</Flex>
 			{validation && (
 				<FormHelperText color="red.400" fontWeight="bold" marginBottom="4px">
 					{validation}

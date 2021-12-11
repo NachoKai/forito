@@ -7,10 +7,11 @@ import {
 	Image,
 	Stack,
 	Text,
+	Tooltip,
 	useColorModeValue,
 } from "@chakra-ui/react"
 import { FaEraser, FaPen, FaRegComments } from "react-icons/fa"
-import { formatDistance } from "date-fns"
+import { format, formatDistance } from "date-fns"
 import { useDispatch } from "react-redux"
 import { Link, useHistory, useLocation } from "react-router-dom"
 import { FaBookmark, FaRegBookmark } from "react-icons/fa"
@@ -108,12 +109,20 @@ const Post = ({
 							<Text fontSize="lg" fontWeight="bold">
 								<Link to={`/creators/${name}`}>{` ${name}`}</Link>
 							</Text>
-							<Text fontSize="sm">
-								{formatDistance(
-									new Date(),
-									createdAt ? new Date(createdAt) : new Date()
-								) + " ago"}
-							</Text>
+							<Tooltip
+								hasArrow
+								colorScheme="primary"
+								label={format(new Date(createdAt), "dd MMM yyyy - HH:mm")}
+								openDelay={200}
+								placement="top"
+							>
+								<Text fontSize="sm">
+									{formatDistance(
+										new Date(),
+										createdAt ? new Date(createdAt) : new Date()
+									) + " ago"}
+								</Text>
+							</Tooltip>
 						</Stack>
 					</Stack>
 

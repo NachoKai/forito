@@ -1,4 +1,11 @@
-import { FormControl, FormHelperText, FormLabel, Textarea } from "@chakra-ui/react"
+import {
+	Flex,
+	FormControl,
+	FormHelperText,
+	FormLabel,
+	Textarea,
+	Tooltip,
+} from "@chakra-ui/react"
 
 const FormTextArea = ({
 	label,
@@ -11,10 +18,25 @@ const FormTextArea = ({
 	onChange,
 	child,
 	type,
+	tooltip,
 }) => {
 	return (
 		<FormControl isRequired={isRequired}>
-			<FormLabel>{label}</FormLabel>
+			<Flex>
+				{tooltip ? (
+					<Tooltip
+						hasArrow
+						colorScheme="primary"
+						label={tooltip}
+						openDelay={200}
+						placement="top"
+					>
+						<FormLabel>{label}</FormLabel>
+					</Tooltip>
+				) : (
+					<FormLabel>{label}</FormLabel>
+				)}
+			</Flex>
 			{child ? (
 				child
 			) : (
