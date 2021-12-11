@@ -149,10 +149,10 @@ export const commentPost = async (req, res) => {
 
 export const getPostsByCreator = async (req, res) => {
 	const { name } = req.query;
-	const cleanName = sanitize(name);
+	// const cleanName = sanitize(name);
 
 	try {
-		const posts = await Post.find({ cleanName });
+		const posts = await Post.find({ name });
 
 		res.json({ data: posts });
 	} catch (error) {
