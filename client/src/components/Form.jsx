@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { Button, Divider, Flex, Image, Stack, Text } from "@chakra-ui/react"
+import { Button, Flex, Image, Stack, Text } from "@chakra-ui/react"
 import { FaExclamationCircle } from "react-icons/fa"
 import { useHistory } from "react-router-dom"
 import ImageUploading from "react-images-uploading"
@@ -262,8 +262,6 @@ const Form = ({ currentId, setCurrentId }) => {
 						helper="Max: 5mb. Formats: jpg, jpeg, png, gif."
 						label="Upload image"
 					/>
-
-					<Divider colorScheme="primary" />
 
 					<Stack spacing="4">
 						<Button

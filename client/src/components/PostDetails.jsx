@@ -1,6 +1,7 @@
 import { useCallback, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
+	AspectRatio,
 	Badge,
 	Button,
 	Divider,
@@ -86,15 +87,18 @@ const PostDetails = () => {
 							</Stack>
 
 							{post?.selectedFile && (
-								<Image
-									alt={post?.title}
-									borderRadius="lg"
-									boxSize="650px"
-									h="100%"
-									loading="lazy"
-									objectFit="contain"
-									src={post?.selectedFile}
-								/>
+								<AspectRatio maxH="80vh" ratio={1} w="100%">
+									<Image
+										alt={post?.title}
+										borderRadius="lg"
+										flexGrow="1"
+										h="100%"
+										loading="lazy"
+										objectFit="cover"
+										src={post?.selectedFile}
+										w="100%"
+									/>
+								</AspectRatio>
 							)}
 						</Stack>
 
@@ -204,14 +208,17 @@ const PostDetails = () => {
 												<Stack spacing="4">
 													<Text noOfLines={[2, 4, 6]}>{message}</Text>
 													{selectedFile && (
-														<Image
-															alt={post?.title}
-															borderRadius="lg"
-															boxSize="300px"
-															loading="lazy"
-															objectFit="cover"
-															src={selectedFile}
-														/>
+														<AspectRatio maxH="80vh" ratio={1} w="100%">
+															<Image
+																alt={post?.title}
+																borderRadius="lg"
+																flexGrow="1"
+																loading="lazy"
+																objectFit="cover"
+																src={selectedFile}
+																w="100%"
+															/>
+														</AspectRatio>
 													)}
 												</Stack>
 											</Stack>

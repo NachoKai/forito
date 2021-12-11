@@ -1,5 +1,6 @@
 import { memo, useCallback, useState } from "react"
 import {
+	AspectRatio,
 	Badge,
 	Button,
 	Heading,
@@ -230,16 +231,19 @@ const Post = ({
 			</Stack>
 
 			{selectedFile && (
-				<Image
-					alt={title}
-					borderRadius="lg"
-					boxSize="450px"
-					className="pointer"
-					loading="lazy"
-					objectFit="cover"
-					src={selectedFile}
-					onClick={openPost}
-				/>
+				<AspectRatio maxH="80vh" ratio={1} w="100%">
+					<Image
+						alt={title}
+						borderRadius="lg"
+						className="pointer"
+						flexGrow="1"
+						loading="lazy"
+						objectFit="cover"
+						src={selectedFile}
+						w="100%"
+						onClick={openPost}
+					/>
+				</AspectRatio>
 			)}
 
 			<Dialog
