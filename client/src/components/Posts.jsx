@@ -1,8 +1,9 @@
 import { useSelector } from "react-redux"
-import { Flex, Skeleton, Stack, Text } from "@chakra-ui/react"
+import { Flex, Heading, Skeleton, Stack, Text } from "@chakra-ui/react"
 import { FaPencilAlt } from "react-icons/fa"
 
 import Post from "./Post"
+import { CreateGradColor } from "../theme"
 
 const Posts = ({ setCurrentId, handleScroll }) => {
 	const { posts, isLoading } = useSelector(state => state.posts)
@@ -21,14 +22,20 @@ const Posts = ({ setCurrentId, handleScroll }) => {
 			) : (
 				<Stack direction="column" spacing="8" w="100%">
 					{!havePosts ? (
-						<Flex align="center" direction="column" marginY="64px">
+						<Stack align="center" direction="column" marginY="64px" spacing="4">
 							<Text color="primary.400" fontSize="6xl">
 								<FaPencilAlt />
 							</Text>
-							<Text color="primary.400" fontSize="6xl">
+							<Heading
+								as="h2"
+								bgClip="text"
+								bgGradient={CreateGradColor("primary", 300, 900, 50, 400)}
+								fontSize="4xl"
+								fontWeight="bold"
+							>
 								No posts found
-							</Text>
-						</Flex>
+							</Heading>
+						</Stack>
 					) : (
 						posts?.map(post => (
 							<Post
