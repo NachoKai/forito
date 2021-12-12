@@ -65,6 +65,7 @@ const Search = () => {
 			borderRadius="lg"
 			boxShadow="md"
 			colorScheme="primary"
+			maxW={{ sm: "100vw", md: "100vw", lg: "322px", xl: "322px" }}
 		>
 			<AccordionItem>
 				<AccordionButton>

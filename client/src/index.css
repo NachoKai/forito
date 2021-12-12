@@ -19,16 +19,12 @@ input[type="file"] {
   cursor: pointer;
 }
 
-.chakra-accordion {
-  max-width: 322px;
-}
-
 .WAMuiChipInput-chip-16 {
   padding: 4px !important;
   margin: 4px !important;
 }
 
-.WAMuiChipInput-chipContainer-4{
+.WAMuiChipInput-chipContainer-4 {
   align-items: center;
 }
 
