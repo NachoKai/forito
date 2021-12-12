@@ -1,12 +1,10 @@
 import * as api from "../api"
 import showError from "../utils/showError"
-import { getUser } from "../utils/getUser"
 
 /* ==========  CONSTANTS  ========== */
 
 export const AUTH = "AUTH"
 export const LOGOUT = "LOGOUT"
-const SAVE_POST = "SAVE_POST"
 
 /* ==========  ACTIONS  ========== */
 
@@ -48,24 +46,10 @@ export const signup = (formData, history) => async dispatch => {
 	}
 }
 
-export const savePost = id => async dispatch => {
-	const user = getUser()
-
-	try {
-		const { data } = await api.savePost(id, user?.token)
-
-		dispatch({ type: SAVE_POST, payload: data })
-	} catch (err) {
-		showError("Something went wrong when trying to save post. Please try again.")
-		console.error(err)
-	}
-}
-
 /* ==========  REDUCERS  ========== */
 
 const initialState = {
 	authData: null,
-	savedPosts: [],
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -80,11 +64,6 @@ export const authReducer = (state = initialState, action) => {
 			localStorage.removeItem("forito-profile")
 
 			return { ...state, authData: null, loading: false, errors: null }
-		case SAVE_POST:
-			return {
-				...state,
-				savedPosts: [...state.savedPosts, data],
-			}
 		default:
 			return state
 	}

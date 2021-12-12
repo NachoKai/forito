@@ -118,6 +118,30 @@ export const likePost = async (req, res) => {
 	res.status(200).json(updatedPost);
 };
 
+export const savePost = async (req, res) => {
+	const { id } = req.params;
+
+	if (!req.userId) {
+		return res.status(401).send("Unauthorized");
+	}
+	if (!mongoose.Types.ObjectId.isValid(id)) {
+		return res.status(404).send(`No post found.`);
+	}
+
+	const post = await Post.findById(id);
+	const index = post.saves.findIndex(id => id === String(req.userId));
+
+	if (index === -1) {
+		post.saves.push(req.userId);
+	} else {
+		post.saves = post.saves.filter(id => id !== String(req.userId));
+	}
+
+	const updatedPost = await Post.findByIdAndUpdate(id, post, { new: true });
+
+	res.status(200).json(updatedPost);
+};
+
 export const commentPost = async (req, res) => {
 	const { id } = req.params;
 	const { value } = req.body;
@@ -131,6 +155,20 @@ export const commentPost = async (req, res) => {
 
 export const getPostsByCreator = async (req, res) => {
 	const { id } = req.query;
+
+	try {
+		const posts = await Post.find({ creator: { $eq: id } });
+
+		res.json({ data: posts });
+	} catch (error) {
+		res.status(404).json({ message: error.message });
+	}
+};
+
+export const getSavedPosts = async (req, res) => {
+	const { id } = req.query;
+
+	console.log("req.query", req.query);
 
 	try {
 		const posts = await Post.find({ creator: { $eq: id } });

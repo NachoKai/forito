@@ -20,8 +20,8 @@ import { getPost, getPostsBySearch } from "../redux/posts"
 import { getRandomId } from "../utils/getRandomId"
 import Comments from "../components/Comments"
 import { CreateBg, CreateColor } from "../theme"
-import { savePost } from "../redux/auth"
 import { getUser } from "../utils/getUser"
+import { savePost } from "../api"
 
 const PostDetails = () => {
 	const dispatch = useDispatch()

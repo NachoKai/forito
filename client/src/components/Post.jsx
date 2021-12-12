@@ -17,12 +17,11 @@ import { Link, useHistory, useLocation } from "react-router-dom"
 import { FaBookmark, FaRegBookmark } from "react-icons/fa"
 
 import { getRandomId } from "../utils/getRandomId"
-import { deletePost, likePost } from "../redux/posts"
+import { deletePost, likePost, savePost } from "../redux/posts"
 import Likes from "./Likes"
 import { getUser } from "../utils/getUser"
 import Dialog from "./common/Dialog"
 import { CreateBg } from "../theme"
-import { savePost } from "../redux/auth"
 
 const Post = ({
 	setCurrentId,
@@ -33,6 +32,7 @@ const Post = ({
 		creator,
 		message,
 		likes,
+		saves,
 		createdAt,
 		tags,
 		selectedFile,
@@ -45,7 +45,7 @@ const Post = ({
 	const user = getUser()
 	const userId = user?.result?.googleId || user?.result?._id
 	const isUserLike = likes?.find(like => like === userId)
-	const hasUserSaved = user?.result?.savedPosts
+	const hasUserSaved = saves?.find(save => save === userId)
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
 	const [likesMock, setLikesMock] = useState(likes)
 	const location = useLocation()
@@ -203,7 +203,7 @@ const Post = ({
 									colorScheme="primary"
 									disabled={!user?.result}
 									flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
-									leftIcon={hasUserSaved ? <FaRegBookmark /> : <FaBookmark />}
+									leftIcon={hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
 									minWidth="80px"
 									size="sm"
 									variant={hasUserSaved ? "ghost" : "outline"}

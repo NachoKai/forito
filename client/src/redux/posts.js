@@ -12,6 +12,7 @@ const CREATE_POST = "CREATE_POST"
 const UPDATE_POST = "UPDATE_POST"
 const DELETE_POST = "DELETE_POST"
 const LIKE_POST = "LIKE_POST"
+const SAVE_POST = "SAVE_POST"
 const FETCH_POSTS_BY_SEARCH = "FETCH_POSTS_BY_SEARCH"
 const FETCH_BY_CREATOR = "FETCH_BY_CREATOR"
 const START_LOADING = "START_LOADING"
@@ -118,6 +119,19 @@ export const likePost = id => async dispatch => {
 	}
 }
 
+export const savePost = id => async dispatch => {
+	const user = getUser()
+
+	try {
+		const { data } = await api.savePost(id, user?.token)
+
+		dispatch({ type: SAVE_POST, payload: data })
+	} catch (err) {
+		showError("Something went wrong when trying to save post. Please try again.")
+		console.error(err)
+	}
+}
+
 export const addComment = (comment, id) => async dispatch => {
 	try {
 		const { data } = await api.addComment(comment, id)
@@ -188,6 +202,11 @@ export const postsReducer = (state = initialState, action) => {
 				posts: state.posts?.map(post => (post?._id === payload._id ? payload : post)),
 			}
 		case LIKE_POST:
+			return {
+				...state,
+				posts: state.posts?.map(post => (post?._id === payload._id ? payload : post)),
+			}
+		case SAVE_POST:
 			return {
 				...state,
 				posts: state.posts?.map(post => (post?._id === payload._id ? payload : post)),
