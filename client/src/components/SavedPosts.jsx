@@ -13,11 +13,9 @@ const SavedPosts = () => {
 	const { id } = useParams()
 	const { posts, isLoading } = useSelector(state => state.posts)
 
-	console.log("useParams()", useParams())
 	useEffect(() => {
 		dispatch(getSavedPosts(id))
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+	}, [dispatch, id])
 
 	if (!posts?.length && !isLoading) {
 		return (
