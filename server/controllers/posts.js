@@ -168,8 +168,6 @@ export const getPostsByCreator = async (req, res) => {
 export const getSavedPosts = async (req, res) => {
 	const { id } = req.query;
 
-	console.log("req.query", req.query);
-
 	try {
 		const posts = await Post.find({ creator: { $eq: id } });
 

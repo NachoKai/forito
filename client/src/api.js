@@ -23,6 +23,7 @@ export const fetchPostsBySearch = searchQuery =>
 		`/posts/search?searchQuery=${searchQuery.search || "none"}&tags=${searchQuery.tags}`
 	)
 export const fetchPostsByCreator = id => API.get(`/posts/creator?id=${id}`)
+export const fetchSavedPosts = id => API.get(`/posts/saved?id=${id}`)
 export const createPost = newPost => API.post("/posts", newPost)
 export const likePost = id => API.patch(`/posts/${id}/likePost`)
 export const savePost = id => API.patch(`/posts/${id}/savePost`)

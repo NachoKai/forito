@@ -1,4 +1,4 @@
-import { useCallback, useEffect } from "react"
+import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
 	AspectRatio,
@@ -14,22 +14,18 @@ import {
 } from "@chakra-ui/react"
 import { formatDistance } from "date-fns"
 import { Link, useHistory, useParams } from "react-router-dom"
-import { FaBookmark, FaTwitter } from "react-icons/fa"
+import { FaTwitter } from "react-icons/fa"
 
 import { getPost, getPostsBySearch } from "../redux/posts"
 import { getRandomId } from "../utils/getRandomId"
 import Comments from "../components/Comments"
 import { CreateBg, CreateColor } from "../theme"
-import { getUser } from "../utils/getUser"
-import { savePost } from "../api"
 
 const PostDetails = () => {
 	const dispatch = useDispatch()
 	const { post, posts, isLoading } = useSelector(state => state.posts)
 	const history = useHistory()
 	const { id } = useParams()
-	const user = getUser()
-	const userEmail = user?.result?.email
 	const openPost = _id => history.push(`/posts/${_id}`)
 	const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id)
 
@@ -49,10 +45,6 @@ const PostDetails = () => {
 
 		return false
 	}
-
-	const handleSave = useCallback(async () => {
-		dispatch(savePost(id))
-	}, [dispatch, id])
 
 	useEffect(() => {
 		dispatch(getPost(id))
@@ -134,16 +126,6 @@ const PostDetails = () => {
 										justify="flex-end"
 										spacing="8px"
 									>
-										{userEmail && (
-											<Button
-												colorScheme="primary"
-												rightIcon={<FaBookmark />}
-												size="xs"
-												onClick={handleSave}
-											>
-												Save
-											</Button>
-										)}
 										<Button
 											colorScheme="primary"
 											rightIcon={<FaTwitter />}

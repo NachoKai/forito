@@ -8,6 +8,7 @@ import {
 	getPosts,
 	getPostsByCreator,
 	getPostsBySearch,
+	getSavedPosts,
 	likePost,
 	savePost,
 	updatePost,
@@ -18,6 +19,7 @@ const router = express.Router();
 
 router.get("/search", getPostsBySearch);
 router.get("/creator", getPostsByCreator);
+router.get("/saved", getSavedPosts);
 router.get("/", getPosts);
 router.get("/:id", getPost);
 router.post("/", auth, createPost);

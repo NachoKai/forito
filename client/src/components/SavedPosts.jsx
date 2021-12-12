@@ -1,12 +1,21 @@
+import { useEffect } from "react"
+import { useParams } from "react-router-dom"
+import { useDispatch, useSelector } from "react-redux"
 import { Divider, Flex, Heading, Skeleton, Stack, Text } from "@chakra-ui/react"
 import { FaSearch } from "react-icons/fa"
+
+import { getSavedPosts } from "../redux/posts"
+import Post from "./Post"
 import { CreateGradColor } from "../theme"
 
-import Post from "./Post"
-
 const SavedPosts = () => {
-	const posts = []
-	const isLoading = false
+	const dispatch = useDispatch()
+	const { id, name } = useParams()
+	const { posts, isLoading } = useSelector(state => state.posts)
+
+	useEffect(() => {
+		dispatch(getSavedPosts(id))
+	}, [dispatch, id])
 
 	if (!posts?.length && !isLoading) {
 		return (
@@ -21,7 +30,7 @@ const SavedPosts = () => {
 					fontSize="4xl"
 					fontWeight="bold"
 				>
-					No saved posts
+					No saved posts were found
 				</Heading>
 			</Flex>
 		)
@@ -34,8 +43,8 @@ const SavedPosts = () => {
 				<Text fontSize="md">
 					{posts?.length
 						? posts.length !== 1
-							? `${posts.length} Posts saved`
-							: `${posts.length} Post saved`
+							? `${posts.length} Posts`
+							: `${posts.length} Post`
 						: ""}
 				</Text>
 			</Stack>

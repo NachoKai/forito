@@ -15,6 +15,7 @@ const LIKE_POST = "LIKE_POST"
 const SAVE_POST = "SAVE_POST"
 const FETCH_POSTS_BY_SEARCH = "FETCH_POSTS_BY_SEARCH"
 const FETCH_BY_CREATOR = "FETCH_BY_CREATOR"
+const FETCH_SAVED_POSTS = "FETCH_SAVED_POSTS"
 const START_LOADING = "START_LOADING"
 const END_LOADING = "END_LOADING"
 const ADD_COMMENT = "ADD_COMMENT"
@@ -119,11 +120,11 @@ export const likePost = id => async dispatch => {
 	}
 }
 
-export const savePost = id => async dispatch => {
+export const savePost = saves => async dispatch => {
 	const user = getUser()
 
 	try {
-		const { data } = await api.savePost(id, user?.token)
+		const { data } = await api.savePost(saves, user?.token)
 
 		dispatch({ type: SAVE_POST, payload: data })
 	} catch (err) {
@@ -163,6 +164,23 @@ export const getPostsByCreator = id => async dispatch => {
 	}
 }
 
+export const getSavedPosts = id => async dispatch => {
+	try {
+		dispatch({ type: START_LOADING })
+		const {
+			data: { data },
+		} = await api.fetchSavedPosts(id)
+
+		dispatch({ type: FETCH_SAVED_POSTS, payload: { data } })
+		dispatch({ type: END_LOADING })
+	} catch (err) {
+		showError(
+			"Something went wrong when trying to get posts by creator. Please try again."
+		)
+		console.error(err)
+	}
+}
+
 /* ==========  REDUCERS  =========== */
 
 const initialState = {
@@ -189,6 +207,8 @@ export const postsReducer = (state = initialState, action) => {
 			}
 		case FETCH_POSTS_BY_SEARCH:
 		case FETCH_BY_CREATOR:
+			return { ...state, posts: payload.data }
+		case FETCH_SAVED_POSTS:
 			return { ...state, posts: payload.data }
 		case FETCH_POST:
 			return { ...state, post: payload.post }
