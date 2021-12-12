@@ -90,7 +90,7 @@ const Post = ({
 		<Stack
 			bg={CreateBg("primary", 50, 800)}
 			borderRadius="lg"
-			boxShadow="md"
+			boxShadow="lg"
 			direction={{
 				sm: "column-reverse",
 				md: "column-reverse",

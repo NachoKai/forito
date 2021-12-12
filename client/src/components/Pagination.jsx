@@ -25,7 +25,10 @@ const Paginate = ({ page }) => {
 		>
 			{numberOfPages > 1 && (
 				<Pagination
+					hideNextButton
+					hidePrevButton
 					count={numberOfPages}
+					defaultPage={1}
 					page={Number(page) || 1}
 					renderItem={item => (
 						<PaginationItem {...item} component={Link} to={`/posts?page=${item.page}`} />
