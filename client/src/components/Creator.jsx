@@ -10,12 +10,12 @@ import { CreateGradColor } from "../theme"
 
 const Creator = () => {
 	const dispatch = useDispatch()
-	const { _id, name } = useParams()
+	const { name } = useParams()
 	const { posts, isLoading } = useSelector(state => state.posts)
 
 	useEffect(() => {
-		dispatch(getPostsByCreator(_id))
-	}, [dispatch, _id])
+		dispatch(getPostsByCreator(name))
+	}, [dispatch, name])
 
 	if (!posts?.length && !isLoading) {
 		return (

@@ -61,8 +61,8 @@ const FormInput = ({
 					)}
 					<Input
 						_placeholder={{ color: "gray" }}
-						autoComplete="off"
 						autoFocus={autoFocus}
+						autocomplete="off"
 						bg="white"
 						color="black"
 						errorBorderColor="red.400"
