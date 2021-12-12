@@ -29,6 +29,10 @@ input[type="file"] {
   height: 26px !important;
 }
 
+.MuiChip-label {
+  max-width: 220px !important;
+}
+
 /**
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
