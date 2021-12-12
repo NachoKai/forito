@@ -38,7 +38,6 @@ const Post = ({
 		selectedFile,
 		comments,
 	},
-	post,
 	handleScroll,
 }) => {
 	const dispatch = useDispatch()
