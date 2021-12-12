@@ -117,7 +117,7 @@ const Navbar = () => {
 										</Link>
 									</PopoverBody>
 									<PopoverBody cursor="pointer" fontWeight="bold">
-										<Link to={`/saved`} onClick={close}>
+										<Link to={`/saved/${user?.result?._id}`} onClick={close}>
 											Saved Posts
 										</Link>
 									</PopoverBody>

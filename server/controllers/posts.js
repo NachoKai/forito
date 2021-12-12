@@ -169,7 +169,7 @@ export const getSavedPosts = async (req, res) => {
 	const { id } = req.query;
 
 	try {
-		const posts = await Post.find({ creator: { $eq: id } });
+		const posts = await Post.find({ saves: { $eq: id } });
 
 		res.json({ data: posts });
 	} catch (error) {

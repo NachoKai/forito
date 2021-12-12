@@ -50,7 +50,7 @@ const App = () => {
 				<Route
 					exact
 					component={() => (userEmail ? <SavedPosts /> : <Redirect to="/posts" />)}
-					path="/saved"
+					path="/saved/:id"
 				/>
 				<Route
 					exact
