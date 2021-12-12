@@ -1,7 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-import sanitize from "mongo-sanitize";
 // import mongoose from "mongoose";
 
 import User from "../models/user.js";
@@ -15,10 +14,9 @@ const salt = process.env.SALT;
 
 export const login = async (req, res) => {
 	const { email, password } = req.body;
-	// const cleanEmail = sanitize(email);
 
 	try {
-		const existingUser = await User.findOne({ email });
+		const existingUser = await User.findOne({ email: { $eq: email } });
 
 		if (!existingUser) {
 			return res.status(404).json({ message: "User doesn't exist." });
@@ -43,10 +41,9 @@ export const login = async (req, res) => {
 
 export const signup = async (req, res) => {
 	const { email, password, confirmPassword, firstName, lastName } = req.body;
-	// const cleanEmail = sanitize(email);
 
 	try {
-		const existingUser = await User.findOne({ email });
+		const existingUser = await User.findOne({ email: { $eq: email } });
 
 		if (existingUser) {
 			return res.status(400).json({ message: "User already exists." });

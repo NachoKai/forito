@@ -1,6 +1,5 @@
 import express from "express";
 import escapeRegExp from "lodash";
-import sanitize from "mongo-sanitize";
 import mongoose from "mongoose";
 
 import Post from "../models/post.js";
@@ -88,9 +87,8 @@ export const updatePost = async (req, res) => {
 	if (!mongoose.Types.ObjectId.isValid(id)) return res.status(404).send(`No post found.`);
 
 	const updatedPost = { creator, name, title, message, tags, selectedFile, _id: id };
-	// const cleanUpdatedPost = sanitize(updatedPost);
 
-	await Post.findByIdAndUpdate(id, updatedPost, { new: true });
+	await Post.findByIdAndUpdate(id, { updatedPost: { $eq: updatedPost } }, { new: true });
 
 	res.status(200).json(updatedPost);
 };
@@ -149,10 +147,9 @@ export const commentPost = async (req, res) => {
 
 export const getPostsByCreator = async (req, res) => {
 	const { name } = req.query;
-	// const cleanName = sanitize(name);
 
 	try {
-		const posts = await Post.find({ name });
+		const posts = await Post.find({ name: { $eq: name } });
 
 		res.json({ data: posts });
 	} catch (error) {

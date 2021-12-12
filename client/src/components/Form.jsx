@@ -156,7 +156,6 @@ const Form = ({ currentId, setCurrentId }) => {
 								dataURLKey="data_url"
 								maxFileSize={1024 * 1024 * 5.1}
 								maxNumber={1}
-								multiple={false}
 								value={images}
 								onChange={onImageUpload}
 								onError={() =>
