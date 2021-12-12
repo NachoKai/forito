@@ -92,7 +92,7 @@ const Search = () => {
 									<ChipInput
 										disableUnderline
 										placeholder="Search Posts Tags"
-										style={{ margin: "0 8px 0 16px" }}
+										style={{ margin: "0 0 0 16px" }}
 										value={searchTags}
 										onAdd={tag => handleAddTag(tag)}
 										onDelete={tag => handleDeleteTag(tag)}

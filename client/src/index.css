@@ -19,17 +19,14 @@ input[type="file"] {
   cursor: pointer;
 }
 
-.WAMuiChipInput-chip-16 {
+.MuiButtonBase-root {
   padding: 4px !important;
   margin: 4px !important;
-}
-
-.WAMuiChipInput-chipContainer-4 {
   align-items: center;
 }
 
 .MuiChip-clickable {
-  height: 26px;
+  height: 26px !important;
 }
 
 /**
