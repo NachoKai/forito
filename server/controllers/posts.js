@@ -25,16 +25,6 @@ export const getPosts = async (req, res) => {
 	}
 };
 
-// export const getAllPosts = async (req, res) => {
-// 	try {
-// 		const allPosts = await Post.find();
-
-// 		res.status(200).json(allPosts);
-// 	} catch (error) {
-// 		res.status(404).json({ message: error.message });
-// 	}
-// };
-
 export const getPostsBySearch = async (req, res) => {
 	const { searchQuery, tags } = req.query;
 	const safeSearchQuery = escapeRegExp(searchQuery);
@@ -131,12 +121,6 @@ export const likePost = async (req, res) => {
 export const commentPost = async (req, res) => {
 	const { id } = req.params;
 	const { value } = req.body;
-
-	// const comment = {
-	// 	value,
-	// 	creator: req.userId,
-	// 	createdAt: new Date().toISOString(),
-	// };
 	const post = await Post.findById(id);
 
 	post.comments.push(value);

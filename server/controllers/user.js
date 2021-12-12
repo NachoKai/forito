@@ -1,7 +1,6 @@
 import bcrypt from "bcryptjs";
 import jwt from "jsonwebtoken";
 import dotenv from "dotenv";
-// import mongoose from "mongoose";
 
 import User from "../models/user.js";
 
@@ -68,27 +67,3 @@ export const signup = async (req, res) => {
 		console.error(err);
 	}
 };
-
-// export const savePost = async (req, res) => {
-// 	const { id } = req.params;
-
-// 	if (!req.userId) {
-// 		return res.status(401).send("Unauthorized");
-// 	}
-// 	if (!mongoose.Types.ObjectId.isValid(id)) {
-// 		return res.status(404).send(`No post found.`);
-// 	}
-
-// 	const user = await User.findById(id);
-// 	const index = user.savedPosts.findIndex(id => id === String(req.userId));
-
-// 	if (index === -1) {
-// 		user.savedPosts.push(req.userId);
-// 	} else {
-// 		user.savedPosts = user.savedPosts.filter(id => id !== String(req.userId));
-// 	}
-
-// 	const updatedPost = await User.findByIdAndUpdate(id, user, { new: true });
-
-// 	res.status(200).json(updatedPost);
-// };

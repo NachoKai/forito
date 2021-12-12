@@ -1,23 +1,23 @@
-// export const loadState = () => {
-// 	try {
-// 		const serializedState = sessionStorage.getItem("forito")
+export const loadState = () => {
+	try {
+		const serializedState = sessionStorage.getItem("forito")
 
-// 		if (serializedState === null) {
-// 			return undefined
-// 		}
+		if (serializedState === null) {
+			return undefined
+		}
 
-// 		return JSON.parse(serializedState)
-// 	} catch (error) {
-// 		return undefined
-// 	}
-// }
+		return JSON.parse(serializedState)
+	} catch (error) {
+		return undefined
+	}
+}
 
-// export const saveState = state => {
-// 	try {
-// 		const serializedState = JSON.stringify(state)
+export const saveState = state => {
+	try {
+		const serializedState = JSON.stringify(state)
 
-// 		sessionStorage.setItem("forito", serializedState)
-// 	} catch (error) {
-// 		console.error(error)
-// 	}
-// }
+		sessionStorage.setItem("forito", serializedState)
+	} catch (error) {
+		console.error(error)
+	}
+}
