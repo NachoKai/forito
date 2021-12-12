@@ -132,12 +132,12 @@ export const addComment = (comment, id) => async dispatch => {
 	}
 }
 
-export const getPostsByCreator = name => async dispatch => {
+export const getPostsByCreator = id => async dispatch => {
 	try {
 		dispatch({ type: START_LOADING })
 		const {
 			data: { data },
-		} = await api.fetchPostsByCreator(name)
+		} = await api.fetchPostsByCreator(id)
 
 		dispatch({ type: FETCH_BY_CREATOR, payload: { data } })
 		dispatch({ type: END_LOADING })

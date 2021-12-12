@@ -107,7 +107,7 @@ const Post = ({
 					<Stack direction="row">
 						<Stack direction="column" spacing="0">
 							<Text fontSize="lg" fontWeight="bold">
-								<Link to={`/creator/${name}`}>{` ${name}`}</Link>
+								<Link to={`/creator/${_id}`}>{` ${name}`}</Link>
 							</Text>
 							<Tooltip
 								hasArrow
