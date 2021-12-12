@@ -38,6 +38,7 @@ const Post = ({
 		selectedFile,
 		comments,
 	},
+	post,
 	handleScroll,
 }) => {
 	const dispatch = useDispatch()
@@ -86,6 +87,8 @@ const Post = ({
 		handleScroll()
 	}, [_id, handleScroll, setCurrentId])
 
+	console.log("post Post", post)
+
 	return (
 		<Stack
 			bg={CreateBg("primary", 50, 800)}
@@ -107,7 +110,7 @@ const Post = ({
 					<Stack direction="row">
 						<Stack direction="column" spacing="0">
 							<Text fontSize="lg" fontWeight="bold">
-								<Link to={`/creator/${name}`}>{` ${name}`}</Link>
+								<Link to={`/creator/${creator}`}>{` ${name}`}</Link>
 							</Text>
 							<Tooltip
 								hasArrow

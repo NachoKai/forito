@@ -45,6 +45,7 @@ const Navbar = () => {
 		if (token && decode(token).exp * 1000 < new Date().getTime()) handleLogout()
 		setUser(getUser())
 	}, [handleLogout, location, user?.token])
+	console.log("user Navbar", user)
 
 	return (
 		<Flex
@@ -112,7 +113,7 @@ const Navbar = () => {
 									<PopoverCloseButton />
 									<PopoverHeader>{user.result.name}</PopoverHeader>
 									<PopoverBody cursor="pointer" fontWeight="bold">
-										<Link to={`/creator/${user.result.name}`} onClick={close}>
+										<Link to={`/creator/${user?.result?._id}`} onClick={close}>
 											My Posts
 										</Link>
 									</PopoverBody>

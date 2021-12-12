@@ -63,6 +63,7 @@ const PostDetails = () => {
 			dispatch(getPostsBySearch({ search: "none", tags: post?.tags.join(",") }))
 		}
 	}, [dispatch, post])
+	console.log("post postdetails", post)
 
 	return (
 		<>
@@ -118,7 +119,7 @@ const PostDetails = () => {
 									>
 										<Text fontSize="lg">Created by:</Text>
 										<Text fontSize="lg" fontWeight="bold">
-											<Link to={`/creator/${post?.name}`}>{` ${post?.name}`}</Link>
+											<Link to={`/creator/${post?.creator}`}>{` ${post?.name}`}</Link>
 										</Text>
 										<Text fontSize="lg">
 											{formatDistance(

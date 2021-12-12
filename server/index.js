@@ -31,7 +31,7 @@ mongoose
 	.connect(CONNECTION_URL, { useNewUrlParser: true, useUnifiedTopology: true })
 	.then(() =>
 		app.listen(PORT, () => {
-			console.log(`Forito listening on port ${PORT}`);
+			console.info(`Forito listening on port ${PORT}`);
 		})
 	)
 	.catch(err => {

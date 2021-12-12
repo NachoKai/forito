@@ -146,10 +146,10 @@ export const commentPost = async (req, res) => {
 };
 
 export const getPostsByCreator = async (req, res) => {
-	const { name } = req.query;
+	const { id } = req.query;
 
 	try {
-		const posts = await Post.find({ name: { $eq: name } });
+		const posts = await Post.find({ creator: { $eq: id } });
 
 		res.json({ data: posts });
 	} catch (error) {
