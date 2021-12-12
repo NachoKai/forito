@@ -63,7 +63,6 @@ const PostDetails = () => {
 			dispatch(getPostsBySearch({ search: "none", tags: post?.tags.join(",") }))
 		}
 	}, [dispatch, post])
-	console.log("post postdetails", post)
 
 	return (
 		<>

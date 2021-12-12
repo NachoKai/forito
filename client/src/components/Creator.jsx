@@ -11,8 +11,6 @@ import { CreateGradColor } from "../theme"
 const Creator = () => {
 	const dispatch = useDispatch()
 	const { id, name } = useParams()
-
-	console.log("useParams", useParams())
 	const { posts, isLoading } = useSelector(state => state.posts)
 
 	useEffect(() => {

@@ -45,7 +45,6 @@ const Navbar = () => {
 		if (token && decode(token).exp * 1000 < new Date().getTime()) handleLogout()
 		setUser(getUser())
 	}, [handleLogout, location, user?.token])
-	console.log("user Navbar", user)
 
 	return (
 		<Flex

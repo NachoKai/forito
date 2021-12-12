@@ -87,8 +87,6 @@ const Post = ({
 		handleScroll()
 	}, [_id, handleScroll, setCurrentId])
 
-	console.log("post Post", post)
-
 	return (
 		<Stack
 			bg={CreateBg("primary", 50, 800)}
