@@ -10,12 +10,14 @@ import { CreateGradColor } from "../theme"
 
 const SavedPosts = () => {
 	const dispatch = useDispatch()
-	const { id, name } = useParams()
+	const { id } = useParams()
 	const { posts, isLoading } = useSelector(state => state.posts)
 
+	console.log("useParams()", useParams())
 	useEffect(() => {
 		dispatch(getSavedPosts(id))
-	}, [dispatch, id])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [])
 
 	if (!posts?.length && !isLoading) {
 		return (
@@ -39,7 +41,7 @@ const SavedPosts = () => {
 	return (
 		<Stack borderRadius="lg" h="100%" minHeight="100vh" p="32px" spacing="8">
 			<Stack spacing="2">
-				<Text fontSize="2xl">{name}</Text>
+				<Text fontSize="2xl">Saved Posts</Text>
 				<Text fontSize="md">
 					{posts?.length
 						? posts.length !== 1
