@@ -209,7 +209,7 @@ const Post = ({
 									variant={hasUserSaved ? "ghost" : "outline"}
 									onClick={handleSave}
 								>
-									Save
+									{hasUserSaved ? "Saved" : "Save"}
 								</Button>
 							)}
 							{(isPostCreator || isAdmin) && (
