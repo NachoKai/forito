@@ -79,7 +79,6 @@ const Search = () => {
 							label="Search Posts Title"
 							maxLength="105"
 							name="search"
-							placeholder="Search Posts Title"
 							value={searchValue}
 							onChange={e => {
 								setSearchValue(e.target.value)
@@ -91,8 +90,8 @@ const Search = () => {
 								<TagsContainer>
 									<ChipInput
 										disableUnderline
-										placeholder="Search Tags"
-										style={{ margin: "0 8px 0 16px", padding: "8px 8px 0 0" }}
+										placeholder="Search Posts Tags"
+										style={{ margin: "0 8px 0 16px" }}
 										value={searchTags}
 										onAdd={tag => handleAddTag(tag)}
 										onDelete={tag => handleDeleteTag(tag)}

@@ -23,6 +23,15 @@ input[type="file"] {
   max-width: 322px;
 }
 
+.WAMuiChipInput-chip-16 {
+  padding: 4px !important;
+  margin: 4px !important;
+}
+
+.WAMuiChipInput-chipContainer-4{
+  align-items: center;
+}
+
 /**
  * 1. Correct the line height in all browsers.
  * 2. Prevent adjustments of font size after orientation changes in iOS.
