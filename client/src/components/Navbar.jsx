@@ -112,7 +112,7 @@ const Navbar = () => {
 									<PopoverCloseButton />
 									<PopoverHeader>{user.result.name}</PopoverHeader>
 									<PopoverBody cursor="pointer" fontWeight="bold">
-										<Link to={`/creators/${user.result.name}`} onClick={close}>
+										<Link to={`/creator/${user.result.name}`} onClick={close}>
 											My Posts
 										</Link>
 									</PopoverBody>

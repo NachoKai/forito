@@ -118,7 +118,7 @@ const PostDetails = () => {
 									>
 										<Text fontSize="lg">Created by:</Text>
 										<Text fontSize="lg" fontWeight="bold">
-											<Link to={`/creators/${post?.name}`}>{` ${post?.name}`}</Link>
+											<Link to={`/creator/${post?.name}`}>{` ${post?.name}`}</Link>
 										</Text>
 										<Text fontSize="lg">
 											{formatDistance(
