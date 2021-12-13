@@ -1,6 +1,6 @@
 export const loadState = () => {
 	try {
-		const serializedState = sessionStorage.getItem("forito")
+		const serializedState = localStorage.getItem("forito")
 
 		if (serializedState === null) {
 			return undefined
@@ -16,7 +16,7 @@ export const saveState = state => {
 	try {
 		const serializedState = JSON.stringify(state)
 
-		sessionStorage.setItem("forito", serializedState)
+		localStorage.setItem("forito", serializedState)
 	} catch (error) {
 		console.error(error)
 	}
