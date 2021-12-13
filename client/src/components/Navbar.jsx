@@ -33,6 +33,7 @@ const Navbar = () => {
 	const [isOpen, setIsOpen] = useState(false)
 	const open = () => setIsOpen(!isOpen)
 	const close = () => setIsOpen(false)
+	const userId = user?.result?.googleId || user?.result?._id
 
 	const handleLogout = useCallback(() => {
 		setUser(null)
@@ -112,12 +113,12 @@ const Navbar = () => {
 									<PopoverCloseButton />
 									<PopoverHeader>{user.result.name}</PopoverHeader>
 									<PopoverBody cursor="pointer" fontWeight="bold">
-										<Link to={`/creator/${user?.result?._id}`} onClick={close}>
+										<Link to={`/creator/${userId}`} onClick={close}>
 											My Posts
 										</Link>
 									</PopoverBody>
 									<PopoverBody cursor="pointer" fontWeight="bold">
-										<Link to={`/saved/${user?.result?._id}`} onClick={close}>
+										<Link to={`/saved/${userId}`} onClick={close}>
 											Saved Posts
 										</Link>
 									</PopoverBody>

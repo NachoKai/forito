@@ -13,6 +13,7 @@ const SavedPosts = () => {
 	const { id } = useParams()
 	const { posts, isLoading } = useSelector(state => state.posts)
 
+	console.log("useParams()", useParams())
 	useEffect(() => {
 		dispatch(getSavedPosts(id))
 	}, [dispatch, id])
