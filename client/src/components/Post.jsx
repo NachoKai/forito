@@ -161,13 +161,13 @@ const Post = ({
 
 					<Stack
 						direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
-						spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}
+						spacing="2"
 					>
 						<Stack
 							direction="row"
 							display={location?.pathname.includes("/posts") ? "flex" : "none"}
 							flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
-							spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}
+							spacing="2"
 						>
 							<Button
 								colorScheme="primary"
@@ -196,7 +196,7 @@ const Post = ({
 							direction="row"
 							display={location?.pathname.includes("/posts") ? "flex" : "none"}
 							flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
-							spacing={{ sm: "2", md: "2", lg: "4", xl: "4" }}
+							spacing="2"
 						>
 							{userEmail && (
 								<Button
