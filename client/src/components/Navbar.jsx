@@ -112,16 +112,16 @@ const Navbar = () => {
 									<PopoverArrow />
 									<PopoverCloseButton />
 									<PopoverHeader>{user.result.name}</PopoverHeader>
-									<PopoverBody cursor="pointer" fontWeight="bold">
-										<Link to={`/creator/${userId}`} onClick={close}>
+									<Link to={`/creator/${userId}`} onClick={close}>
+										<PopoverBody cursor="pointer" fontWeight="bold">
 											My Posts
-										</Link>
-									</PopoverBody>
-									<PopoverBody cursor="pointer" fontWeight="bold">
-										<Link to={`/saved/${userId}`} onClick={close}>
+										</PopoverBody>
+									</Link>
+									<Link to={`/saved/${userId}`} onClick={close}>
+										<PopoverBody cursor="pointer" fontWeight="bold">
 											Saved Posts
-										</Link>
-									</PopoverBody>
+										</PopoverBody>
+									</Link>
 								</PopoverContent>
 							</Popover>
 						)}
