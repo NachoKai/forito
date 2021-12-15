@@ -6,6 +6,7 @@ import showError from "../utils/showError"
 export const AUTH = "AUTH"
 export const LOGOUT = "LOGOUT"
 export const FETCH_USER = "FETCH_USER"
+export const CLEAN_UP = "CLEAN_UP"
 
 /* ==========  ACTIONS  ========== */
 
@@ -45,14 +46,17 @@ export const signup = (formData, navigate) => async dispatch => {
 
 export const getUser = id => async dispatch => {
 	try {
+		dispatch(cleanUp())
 		const { data } = await api.fetchUser(id)
 
 		dispatch({ type: FETCH_USER, data: { user: data } })
 	} catch (err) {
-		showError("Something went wrong when trying to get user. Please try again.")
+		// showError("Something went wrong when trying to get user. Please try again.")
 		console.error(err)
 	}
 }
+
+const cleanUp = () => ({ type: CLEAN_UP })
 
 /* ==========  REDUCERS  ========== */
 
@@ -65,6 +69,8 @@ export const authReducer = (state = initialState, action) => {
 	const { type, data } = action
 
 	switch (type) {
+		case CLEAN_UP:
+			return initialState
 		case AUTH:
 			localStorage.setItem("forito-profile", JSON.stringify({ ...data }))
 

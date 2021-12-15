@@ -36,7 +36,7 @@ const Creator = () => {
 					fontSize="4xl"
 					fontWeight="bold"
 				>
-					No posts created by {user?.name} were found
+					No posts created by {user?.name || `ID: ${id}`} were found
 				</Heading>
 			</Flex>
 		)
@@ -45,7 +45,7 @@ const Creator = () => {
 	return (
 		<Stack borderRadius="lg" h="100%" minHeight="100vh" p="32px" spacing="8">
 			<Stack spacing="2">
-				<Text fontSize="2xl">{user?.name}</Text>
+				<Text fontSize="2xl">{user?.name || `ID: ${id}`}</Text>
 				<Text fontSize="md">
 					{!isLoading && posts?.length
 						? posts.length !== 1
