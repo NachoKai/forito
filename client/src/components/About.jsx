@@ -1,6 +1,7 @@
 import { Button, Flex, Heading, Stack, Text } from "@chakra-ui/react"
 import { FaGithub, FaHandSpock } from "react-icons/fa"
-import { Link } from "react-router-dom"
+import { Link as ChakraLink } from "@chakra-ui/react"
+
 import { CreateGradColor } from "../theme"
 
 const About = () => {
@@ -38,12 +39,7 @@ const About = () => {
 				>
 					And this is Forito ✨
 				</Heading>
-				<Link
-					fontSize="xl"
-					rel="noreferrer"
-					target="_blank"
-					to={{ pathname: "https://github.com/NachoKai/forito" }}
-				>
+				<ChakraLink isExternal href="https://github.com/NachoKai/forito">
 					<Button
 						colorScheme="primary"
 						leftIcon={<FaGithub />}
@@ -52,7 +48,7 @@ const About = () => {
 					>
 						Github
 					</Button>
-				</Link>
+				</ChakraLink>
 			</Stack>
 		</Flex>
 	)

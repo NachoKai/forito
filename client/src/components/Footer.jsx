@@ -1,6 +1,7 @@
 import { Divider, Stack, Text } from "@chakra-ui/react"
-import { Link } from "react-router-dom"
 import { FaGithub } from "react-icons/fa"
+import { Link as ChakraLink } from "@chakra-ui/react"
+import { Link } from "react-router-dom"
 
 import { CreateBg, CreateColor } from "../theme"
 
@@ -25,16 +26,11 @@ const Footer = () => {
 					</Text> */}
 				</Stack>
 				<Stack direction="row">
-					<Link
-						fontSize="xl"
-						rel="noreferrer"
-						target="_blank"
-						to={{ pathname: "https://github.com/NachoKai/forito" }}
-					>
+					<ChakraLink isExternal fontSize="xl" href="https://github.com/NachoKai/forito">
 						<Text fontSize="xl">
 							<FaGithub />
 						</Text>
-					</Link>
+					</ChakraLink>
 				</Stack>
 			</Stack>
 
@@ -49,13 +45,9 @@ const Footer = () => {
 				</Text>
 				<Text fontSize="sm">
 					Made with &#10084; by{" "}
-					<Link
-						rel="noreferrer"
-						target="_blank"
-						to={{ pathname: "https://github.com/NachoKai/" }}
-					>
+					<ChakraLink isExternal href="https://github.com/NachoKai/forito">
 						Nacho Caiafa
-					</Link>
+					</ChakraLink>
 				</Text>
 			</Stack>
 		</Stack>
