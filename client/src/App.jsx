@@ -47,8 +47,14 @@ const App = () => {
 				<Route element={<PostDetails />} path="/posts/:id" />
 				<Route element={<Creator />} path="/creator/:id" />
 				<Route element={<Tags />} path="/tags/:name" />
-				<Route element={userEmail ? <SavedPosts /> : <Home />} path="/saved/:id" />
-				<Route element={!userEmail ? <Auth /> : <Home />} path="/auth" />
+				<Route
+					element={userEmail ? <SavedPosts /> : <Navigate replace to="/posts" />}
+					path="/saved/:id"
+				/>
+				<Route
+					element={!userEmail ? <Auth /> : <Navigate replace to="/posts" />}
+					path="/auth"
+				/>
 				<Route element={<About />} path="/about" />
 				{/* <Route  element={<TopPosts />} path="/top" /> */}
 				<Route element={<ErrorPage />} path="*" />
