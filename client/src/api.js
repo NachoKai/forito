@@ -35,3 +35,4 @@ export const addComment = (value, id) => API.post(`/posts/${id}/commentPost`, { 
 
 export const login = formData => API.post("/user/login", formData)
 export const signup = formData => API.post("/user/signup", formData)
+export const fetchUser = id => API.get(`/user/${id}`)

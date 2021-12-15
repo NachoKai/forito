@@ -17,7 +17,7 @@ import {
 	Text,
 	useColorMode,
 } from "@chakra-ui/react"
-import { Link, useHistory, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import decode from "jwt-decode"
 
 import { logout } from "../redux/auth"
@@ -27,7 +27,7 @@ import { CreateGradColor } from "../theme"
 const Navbar = () => {
 	const dispatch = useDispatch()
 	const location = useLocation()
-	const history = useHistory()
+	const navigate = useNavigate()
 	const [user, setUser] = useState(getUser())
 	const { colorMode, toggleColorMode } = useColorMode()
 	const [isOpen, setIsOpen] = useState(false)
@@ -37,8 +37,8 @@ const Navbar = () => {
 
 	const handleLogout = useCallback(() => {
 		setUser(null)
-		dispatch(logout(history))
-	}, [dispatch, history])
+		dispatch(logout(navigate))
+	}, [dispatch, navigate])
 
 	useEffect(() => {
 		const token = user?.token

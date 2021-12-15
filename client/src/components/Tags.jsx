@@ -41,7 +41,7 @@ const Tags = () => {
 			<Stack spacing="2">
 				<Text fontSize="2xl">#{name?.toUpperCase()}</Text>
 				<Text fontSize="md">
-					{posts?.length
+					{!isLoading && posts?.length
 						? posts.length !== 1
 							? `${posts.length} Posts`
 							: `${posts.length} Post`

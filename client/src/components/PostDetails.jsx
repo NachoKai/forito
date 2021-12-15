@@ -13,7 +13,7 @@ import {
 	Text,
 } from "@chakra-ui/react"
 import { formatDistance } from "date-fns"
-import { Link, useHistory, useParams } from "react-router-dom"
+import { Link, useNavigate, useParams } from "react-router-dom"
 import { FaTwitter } from "react-icons/fa"
 
 import { getPost, getPostsBySearch } from "../redux/posts"
@@ -24,9 +24,9 @@ import { CreateBg, CreateColor } from "../theme"
 const PostDetails = () => {
 	const dispatch = useDispatch()
 	const { post, posts, isLoading } = useSelector(state => state.posts)
-	const history = useHistory()
+	const navigate = useNavigate()
 	const { id } = useParams()
-	const openPost = _id => history.push(`/posts/${_id}`)
+	const openPost = _id => navigate(`/posts/${_id}`)
 	const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id)
 
 	const isDev = process.env.NODE_ENV !== "production"

@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { Button, Flex, Image, Stack, Text } from "@chakra-ui/react"
 import { FaExclamationCircle } from "react-icons/fa"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import ImageUploading from "react-images-uploading"
 
 import { createPost, updatePost } from "../redux/posts"
@@ -23,7 +23,7 @@ const initialState = {
 const Form = ({ currentId, setCurrentId }) => {
 	const dispatch = useDispatch()
 	const user = getUser()
-	const history = useHistory()
+	const navigate = useNavigate()
 	const [postData, setPostData] = useState(initialState)
 	const [images, setImages] = useState([])
 	const areValidTags = ![...new Set(postData.tags)].every(tag =>
@@ -53,13 +53,13 @@ const Form = ({ currentId, setCurrentId }) => {
 			e.preventDefault()
 
 			if (currentId === 0) {
-				dispatch(createPost({ ...postData, name: user?.result?.name }, history))
+				dispatch(createPost({ ...postData, name: user?.result?.name }, navigate))
 			} else {
 				dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }))
 			}
 			handleClear()
 		},
-		[currentId, dispatch, handleClear, history, postData, user]
+		[currentId, dispatch, handleClear, navigate, postData, user]
 	)
 
 	const handleChange = useCallback(

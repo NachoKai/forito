@@ -13,7 +13,7 @@ import {
 import { FaEraser, FaPen, FaRegComments } from "react-icons/fa"
 import { format, formatDistance, isValid } from "date-fns"
 import { useDispatch } from "react-redux"
-import { Link, useHistory, useLocation } from "react-router-dom"
+import { Link, useLocation, useNavigate } from "react-router-dom"
 import { FaBookmark, FaRegBookmark } from "react-icons/fa"
 
 import { getRandomId } from "../utils/getRandomId"
@@ -41,7 +41,7 @@ const Post = ({
 	handleScroll,
 }) => {
 	const dispatch = useDispatch()
-	const history = useHistory()
+	const navigate = useNavigate()
 	const user = getUser()
 	const userId = user?.result?.googleId || user?.result?._id
 	const isUserLike = likes?.find(like => like === userId)
@@ -74,12 +74,12 @@ const Post = ({
 	}, [_id, dispatch])
 
 	const openPost = useCallback(() => {
-		history.push(`/posts/${_id}`)
-	}, [_id, history])
+		navigate(`/posts/${_id}`)
+	}, [_id, navigate])
 
 	const openComments = useCallback(() => {
-		history.push(`/posts/${_id}#comments`)
-	}, [_id, history])
+		navigate(`/posts/${_id}#comments`)
+	}, [_id, navigate])
 
 	const handleEdit = useCallback(() => {
 		setCurrentId(_id)

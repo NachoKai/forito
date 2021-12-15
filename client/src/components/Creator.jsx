@@ -7,14 +7,20 @@ import { FaSearch } from "react-icons/fa"
 import { getPostsByCreator } from "../redux/posts"
 import Post from "./Post"
 import { CreateGradColor } from "../theme"
+import { getUser } from "../redux/auth"
 
 const Creator = () => {
 	const dispatch = useDispatch()
-	const { id, name } = useParams()
+	const { id } = useParams()
 	const { posts, isLoading } = useSelector(state => state.posts)
+	const { user } = useSelector(state => state.auth)
 
 	useEffect(() => {
 		dispatch(getPostsByCreator(id))
+	}, [dispatch, id])
+
+	useEffect(() => {
+		dispatch(getUser(id))
 	}, [dispatch, id])
 
 	if (!posts?.length && !isLoading) {
@@ -30,7 +36,7 @@ const Creator = () => {
 					fontSize="4xl"
 					fontWeight="bold"
 				>
-					No posts created by {name} were found
+					No posts created by {user?.name} were found
 				</Heading>
 			</Flex>
 		)
@@ -39,9 +45,9 @@ const Creator = () => {
 	return (
 		<Stack borderRadius="lg" h="100%" minHeight="100vh" p="32px" spacing="8">
 			<Stack spacing="2">
-				<Text fontSize="2xl">{name}</Text>
+				<Text fontSize="2xl">{user?.name}</Text>
 				<Text fontSize="md">
-					{posts?.length
+					{!isLoading && posts?.length
 						? posts.length !== 1
 							? `${posts.length} Posts`
 							: `${posts.length} Post`

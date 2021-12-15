@@ -1,5 +1,5 @@
 import { useState } from "react"
-import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom"
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom"
 import { ToastContainer } from "react-toastify"
 import { Button } from "@chakra-ui/react"
 import { FaChevronUp } from "react-icons/fa"
@@ -40,27 +40,20 @@ const App = () => {
 	return (
 		<BrowserRouter>
 			<Navbar />
-			<Switch>
-				<Route exact component={() => <Redirect to="/posts" />} path="/" />
-				<Route exact component={Home} path="/posts" />
-				<Route exact component={Home} path="/posts/search" />
-				<Route exact component={PostDetails} path="/posts/:id" />
-				<Route exact component={Creator} path="/creator/:id" />
-				<Route exact component={Tags} path="/tags/:name" />
-				<Route
-					exact
-					component={() => (userEmail ? <SavedPosts /> : <Redirect to="/posts" />)}
-					path="/saved/:id"
-				/>
-				<Route
-					exact
-					component={() => (!userEmail ? <Auth /> : <Redirect to="/posts" />)}
-					path="/auth"
-				/>
-				<Route exact component={About} path="/about" />
-				{/* <Route exact component={TopPosts} path="/top" /> */}
-				<Route exact component={ErrorPage} path="*" />
-			</Switch>
+			<Routes>
+				<Route element={<Home />} path="/posts" />
+				<Route element={<Navigate replace to="/posts" />} path="/" />
+				<Route element={<Home />} path="/posts/search" />
+				<Route element={<PostDetails />} path="/posts/:id" />
+				<Route element={<Creator />} path="/creator/:id" />
+				<Route element={<Tags />} path="/tags/:name" />
+				<Route element={userEmail ? <SavedPosts /> : <Home />} path="/saved/:id" />
+				<Route element={!userEmail ? <Auth /> : <Home />} path="/auth" />
+				<Route element={<About />} path="/about" />
+				{/* <Route  element={<TopPosts />} path="/top" /> */}
+				<Route element={<ErrorPage />} path="*" />
+			</Routes>
+
 			<Button
 				bottom={["16px", "32px"]}
 				colorScheme="primary"

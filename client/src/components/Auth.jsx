@@ -1,6 +1,6 @@
 import { useCallback, useState } from "react"
 import { useDispatch } from "react-redux"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import { GoogleLogin } from "react-google-login"
 import { Button, Flex, Stack, Text } from "@chakra-ui/react"
 import { FaEye, FaEyeSlash, FaGoogle } from "react-icons/fa"
@@ -22,7 +22,7 @@ const initialState = {
 
 const Auth = () => {
 	const dispatch = useDispatch()
-	const history = useHistory()
+	const navigate = useNavigate()
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
 	const [isSignup, setIsSignup] = useState(false)
 	const [formData, setFormData] = useState(initialState)
@@ -36,14 +36,13 @@ const Auth = () => {
 			try {
 				dispatch({ type: AUTH, data: { result, token } })
 
-				history.push("/")
-				history.go(0)
+				navigate("/posts")
 			} catch (err) {
 				showError("Something went wrong when trying to log in. Please try again.")
 				console.error(err)
 			}
 		},
-		[dispatch, history]
+		[dispatch, navigate]
 	)
 
 	const onFailure = res => {
@@ -56,12 +55,12 @@ const Auth = () => {
 			e.preventDefault()
 
 			if (isSignup) {
-				dispatch(signup(formData, history))
+				dispatch(signup(formData, navigate))
 			} else {
-				dispatch(login(formData, history))
+				dispatch(login(formData, navigate))
 			}
 		},
-		[dispatch, formData, history, isSignup]
+		[dispatch, formData, navigate, isSignup]
 	)
 
 	const handleChange = useCallback(

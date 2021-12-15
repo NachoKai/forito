@@ -11,7 +11,7 @@ import {
 	Stack,
 	Text,
 } from "@chakra-ui/react"
-import { useHistory } from "react-router-dom"
+import { useNavigate } from "react-router-dom"
 import ChipInput from "material-ui-chip-input"
 import styled from "styled-components"
 
@@ -21,7 +21,7 @@ import { CreateGradColor } from "../theme"
 
 const Search = () => {
 	const dispatch = useDispatch()
-	const history = useHistory()
+	const navigate = useNavigate()
 	const [searchValue, setSearchValue] = useState("")
 	const [searchTags, setSearchTags] = useState([])
 
@@ -30,13 +30,13 @@ const Search = () => {
 			setSearchValue("")
 			setSearchTags([])
 			dispatch(getPostsBySearch({ search: searchValue, tags: searchTags.join(",") }))
-			history.push(
+			navigate(
 				`/posts/search?searchQuery=${searchValue || "none"}&tags=${searchTags.join(",")}`
 			)
 		} else {
-			history.push("/")
+			navigate("/")
 		}
-	}, [dispatch, history, searchTags, searchValue])
+	}, [dispatch, navigate, searchTags, searchValue])
 
 	const handleKeyPress = e => {
 		if (e.keyCode === 13) {
