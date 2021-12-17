@@ -30,9 +30,7 @@ const Search = () => {
 			setSearchValue("")
 			setSearchTags([])
 			dispatch(getPostsBySearch({ search: searchValue, tags: searchTags.join(",") }))
-			navigate(
-				`/posts/search?searchQuery=${searchValue || "none"}&tags=${searchTags.join(",")}`
-			)
+			navigate(`search?searchQuery=${searchValue || "none"}&tags=${searchTags.join(",")}`)
 		} else {
 			navigate("/")
 		}

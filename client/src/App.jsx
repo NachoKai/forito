@@ -41,22 +41,22 @@ const App = () => {
 		<BrowserRouter>
 			<Navbar />
 			<Routes>
-				<Route element={<Home />} path="/posts" />
 				<Route element={<Navigate replace to="/posts" />} path="/" />
-				<Route element={<Home />} path="/posts/search" />
-				<Route element={<PostDetails />} path="/posts/:id" />
-				<Route element={<Creator />} path="/creator/:id" />
-				<Route element={<Tags />} path="/tags/:name" />
+				<Route element={<Home />} path="posts" />
+				<Route element={<Home />} path="posts/search" />
+				<Route element={<PostDetails />} path="posts/:id" />
+				<Route element={<Creator />} path="creator/:id" />
+				<Route element={<Tags />} path="tags/:name" />
 				<Route
 					element={userEmail ? <SavedPosts /> : <Navigate replace to="/posts" />}
-					path="/saved/:id"
+					path="saved/:id"
 				/>
 				<Route
 					element={!userEmail ? <Auth /> : <Navigate replace to="/posts" />}
-					path="/auth"
+					path="auth"
 				/>
-				<Route element={<About />} path="/about" />
-				{/* <Route  element={<TopPosts />} path="/top" /> */}
+				<Route element={<About />} path="about" />
+				{/* <Route element={<TopPosts />} path="top" /> */}
 				<Route element={<ErrorPage />} path="*" />
 			</Routes>
 

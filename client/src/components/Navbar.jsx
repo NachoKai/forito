@@ -137,7 +137,7 @@ const Navbar = () => {
 					</Stack>
 				) : (
 					<Flex>
-						<Link to="/auth">
+						<Link to="auth">
 							<Button colorScheme="primary" size="sm" variant="solid">
 								Login
 							</Button>
