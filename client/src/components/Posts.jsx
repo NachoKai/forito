@@ -1,9 +1,10 @@
 import { useSelector } from "react-redux"
-import { Flex, Heading, Skeleton, Stack, Text } from "@chakra-ui/react"
+import { Flex, Heading, Stack, Text } from "@chakra-ui/react"
 import { FaPencilAlt } from "react-icons/fa"
 
 import Post from "./Post"
 import { CreateGradColor } from "../theme"
+import Loading from "./Loading"
 
 const Posts = ({ setCurrentId, handleScroll }) => {
 	const { posts, isLoading } = useSelector(state => state.posts)
@@ -13,11 +14,11 @@ const Posts = ({ setCurrentId, handleScroll }) => {
 		<Flex flexGrow minHeight="100vh" w="100%">
 			{isLoading ? (
 				<Stack minHeight="100vh" spacing="8" w="100%">
-					<Skeleton borderRadius="lg" h="250px" />
-					<Skeleton borderRadius="lg" h="250px" />
-					<Skeleton borderRadius="lg" h="250px" />
-					<Skeleton borderRadius="lg" h="250px" />
-					<Skeleton borderRadius="lg" h="250px" />
+					<Loading />
+					<Loading />
+					<Loading />
+					<Loading />
+					<Loading />
 				</Stack>
 			) : (
 				<Stack direction="column" spacing="8" w="100%">

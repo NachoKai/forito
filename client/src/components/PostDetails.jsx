@@ -8,7 +8,6 @@ import {
 	Flex,
 	Heading,
 	Image,
-	Skeleton,
 	Stack,
 	Text,
 } from "@chakra-ui/react"
@@ -20,6 +19,7 @@ import { getPost, getPostsBySearch } from "../redux/posts"
 import { getRandomId } from "../utils/getRandomId"
 import Comments from "../components/Comments"
 import { CreateBg, CreateColor } from "../theme"
+import Loading from "./Loading"
 
 const PostDetails = () => {
 	const dispatch = useDispatch()
@@ -60,7 +60,7 @@ const PostDetails = () => {
 		<>
 			{isLoading ? (
 				<Stack minHeight="100vh" p="8">
-					<Skeleton borderRadius="lg" h="600px" />
+					<Loading height="600px" />
 				</Stack>
 			) : (
 				<Stack borderRadius="lg" p="32px" spacing="8">

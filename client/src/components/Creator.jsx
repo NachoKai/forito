@@ -1,13 +1,14 @@
 import { useEffect } from "react"
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from "react-redux"
-import { Divider, Flex, Heading, Skeleton, Stack, Text } from "@chakra-ui/react"
+import { Divider, Flex, Heading, Stack, Text } from "@chakra-ui/react"
 import { FaSearch } from "react-icons/fa"
 
 import { getPostsByCreator } from "../redux/posts"
 import Post from "./Post"
 import { CreateGradColor } from "../theme"
 import { getUser } from "../redux/auth"
+import Loading from "./Loading"
 
 const Creator = () => {
 	const dispatch = useDispatch()
@@ -61,11 +62,11 @@ const Creator = () => {
 
 			{isLoading ? (
 				<>
-					<Skeleton borderRadius="lg" h="250px" />
-					<Skeleton borderRadius="lg" h="250px" />
-					<Skeleton borderRadius="lg" h="250px" />
-					<Skeleton borderRadius="lg" h="250px" />
-					<Skeleton borderRadius="lg" h="250px" />
+					<Loading />
+					<Loading />
+					<Loading />
+					<Loading />
+					<Loading />
 				</>
 			) : (
 				<Stack spacing="3">

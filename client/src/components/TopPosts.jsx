@@ -1,5 +1,5 @@
 // import { useSelector } from "react-redux"
-// import { Flex, Skeleton, Stack, Text } from "@chakra-ui/react"
+// import { Flex, Stack, Text } from "@chakra-ui/react"
 // import { FaPencilAlt } from "react-icons/fa"
 
 // import Post from "./Post"
@@ -27,11 +27,11 @@
 
 // 			{isLoading ? (
 // 				<Stack minHeight="100vh" spacing="8" w="100%">
-// 					<Skeleton borderRadius="lg" h="250px" />
-// 					<Skeleton borderRadius="lg" h="250px" />
-// 					<Skeleton borderRadius="lg" h="250px" />
-// 					<Skeleton borderRadius="lg" h="250px" />
-// 					<Skeleton borderRadius="lg" h="250px" />
+// 										<Loading />
+// <Loading />
+// <Loading />
+// <Loading />
+// <Loading />
 // 				</Stack>
 // 			) : (
 // 				<Stack direction="column" spacing="8" w="100%">
