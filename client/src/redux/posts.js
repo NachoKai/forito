@@ -73,7 +73,6 @@ export const createPost = (post, navigate) => async dispatch => {
 		dispatch({ type: CREATE_POST, payload: data })
 		dispatch({ type: END_LOADING })
 		showSuccess("Successfully created post.")
-		navigate("/")
 		navigate(`/posts/${data._id}`)
 	} catch (err) {
 		showError("Something went wrong when trying to create post. Please try again.")
