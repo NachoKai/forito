@@ -7,7 +7,12 @@ const Loading = ({ height = "250px" }) => {
 			bg={CreateBg("primary", 50, 800)}
 			borderRadius="lg"
 			boxShadow="lg"
-			direction="row"
+			direction={{
+				sm: "column-reverse",
+				md: "column-reverse",
+				lg: "column-reverse",
+				xl: "row",
+			}}
 			h="100%"
 			p="8"
 			spacing="16px"
