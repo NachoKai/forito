@@ -16,6 +16,7 @@ export const login = (formData, navigate) => async dispatch => {
 
 		dispatch({ type: AUTH, data })
 		navigate("/")
+		navigate("/posts")
 	} catch (err) {
 		showError("Something went wrong when trying to log in. Please try again.")
 		console.error(err)
@@ -25,6 +26,7 @@ export const login = (formData, navigate) => async dispatch => {
 export const logout = navigate => async dispatch => {
 	try {
 		dispatch({ type: LOGOUT })
+		navigate("/")
 		navigate("/auth")
 	} catch (err) {
 		showError("Something went wrong when trying to log out. Please try again.")
@@ -38,6 +40,7 @@ export const signup = (formData, navigate) => async dispatch => {
 
 		dispatch({ type: AUTH, data })
 		navigate("/")
+		navigate("/posts")
 	} catch (err) {
 		showError("Something went wrong when trying to sign up. Please try again.")
 		console.error(err)

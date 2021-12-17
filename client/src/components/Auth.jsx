@@ -36,6 +36,7 @@ const Auth = () => {
 			try {
 				dispatch({ type: AUTH, data: { result, token } })
 
+				navigate("/")
 				navigate("/posts")
 			} catch (err) {
 				showError("Something went wrong when trying to log in. Please try again.")
