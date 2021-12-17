@@ -39,7 +39,11 @@ const About = () => {
 				>
 					And this is Forito ✨
 				</Heading>
-				<ChakraLink isExternal href="https://github.com/NachoKai/forito">
+				<ChakraLink
+					isExternal
+					colorScheme="primary"
+					href="https://github.com/NachoKai/forito"
+				>
 					<Button
 						colorScheme="primary"
 						leftIcon={<FaGithub />}

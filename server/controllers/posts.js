@@ -78,8 +78,7 @@ export const updatePost = async (req, res) => {
 
 	const updatedPost = { creator, name, title, message, tags, selectedFile, _id: id };
 
-	await Post.findByIdAndUpdate(id, { updatedPost: { $eq: updatedPost } }, { new: true });
-
+	await Post.findByIdAndUpdate(id, updatedPost, { new: true });
 	res.status(200).json(updatedPost);
 };
 
