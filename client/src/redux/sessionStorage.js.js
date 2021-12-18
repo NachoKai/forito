@@ -2,13 +2,9 @@ export const loadState = () => {
 	try {
 		const serializedState = localStorage.getItem('forito')
 
-		console.log('serializedState', serializedState.length)
-		if (serializedState === null) {
-			return undefined
-		}
-		if (serializedState?.length < 5_200_000) {
-			return JSON.parse(serializedState)
-		}
+		if (serializedState === null) return undefined
+		if (serializedState?.length < 5_200_000) return JSON.parse(serializedState)
+		localStorage.removeItem('forito')
 	} catch (err) {
 		console.error(err)
 
