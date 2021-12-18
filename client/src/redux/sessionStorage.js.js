@@ -18,6 +18,7 @@ export const saveState = state => {
 
 		localStorage.setItem('forito', serializedState)
 	} catch (error) {
+		localStorage.removeItem('forito')
 		console.error(error)
 	}
 }
