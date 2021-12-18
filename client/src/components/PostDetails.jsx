@@ -23,10 +23,14 @@ import Loading from "./Loading"
 
 const PostDetails = () => {
 	const dispatch = useDispatch()
-	const { post, posts, isLoading } = useSelector(state => state.posts)
 	const navigate = useNavigate()
 	const { id } = useParams()
-	const openPost = _id => navigate(`/posts/${_id}`)
+	const { post, posts, isLoading } = useSelector(state => state.posts)
+
+	const openPost = _id => {
+		navigate(`/posts/${_id}`)
+	}
+
 	const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id)
 
 	const isDev = process.env.NODE_ENV !== "production"
@@ -35,10 +39,10 @@ const PostDetails = () => {
 		: "https://forito.vercel.app/posts"
 
 	const shareOnTwitter = () => {
-		const linkToGo = `${baseURL}/${id}`
+		const url = `${baseURL}/${id}`
 
 		window.open(
-			`https://twitter.com/intent/tweet?text=${linkToGo}`,
+			`https://twitter.com/intent/tweet?text=${url}`,
 			"targetWindow",
 			"toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=300"
 		)
@@ -50,6 +54,7 @@ const PostDetails = () => {
 		dispatch(getPost(id))
 	}, [dispatch, id])
 
+	// Recommended Posts search
 	useEffect(() => {
 		if (post) {
 			dispatch(getPostsBySearch({ search: "none", tags: post?.tags.join(",") }))
@@ -94,15 +99,16 @@ const PostDetails = () => {
 
 						<Stack direction="row" spacing="2">
 							<Stack spacing="4" w="100%">
-								{post?.tags && (
-									<Stack direction="row" spacing="2">
-										{post?.tags.map(tag => (
-											<Badge key={getRandomId()} bg="primary.400" color="white">
-												<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
-											</Badge>
-										))}
-									</Stack>
-								)}
+								<Stack direction="row" spacing="2">
+									{post?.tags &&
+										[...new Set(post?.tags)]
+											.filter(e => e)
+											.map(tag => (
+												<Badge key={getRandomId()} bg="primary.400" color="white">
+													<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
+												</Badge>
+											))}
+								</Stack>
 								<Flex align="center" justify="space-between" w="100%">
 									<Stack
 										direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}

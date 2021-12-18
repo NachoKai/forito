@@ -19,8 +19,11 @@ const FETCH_SAVED_POSTS = "FETCH_SAVED_POSTS"
 const START_LOADING = "START_LOADING"
 const END_LOADING = "END_LOADING"
 const ADD_COMMENT = "ADD_COMMENT"
+const CLEAN_UP = "CLEAN_UP"
 
 /* ==========  ACTIONS  ========== */
+
+export const cleanUp = () => ({ type: CLEAN_UP })
 
 export const getPost = id => async dispatch => {
 	try {
@@ -192,6 +195,8 @@ export const postsReducer = (state = initialState, action) => {
 	const { type, payload } = action
 
 	switch (type) {
+		case CLEAN_UP:
+			return initialState
 		case START_LOADING:
 			return { ...state, isLoading: true }
 		case END_LOADING:
@@ -207,7 +212,6 @@ export const postsReducer = (state = initialState, action) => {
 			}
 		case FETCH_POSTS_BY_SEARCH:
 		case FETCH_BY_CREATOR:
-			return { ...state, posts: payload.data }
 		case FETCH_SAVED_POSTS:
 			return { ...state, posts: payload.data }
 		case FETCH_POST:
@@ -217,15 +221,7 @@ export const postsReducer = (state = initialState, action) => {
 		case DELETE_POST:
 			return { ...state, posts: state.posts?.filter(post => post?._id !== payload) }
 		case UPDATE_POST:
-			return {
-				...state,
-				posts: state.posts?.map(post => (post?._id === payload._id ? payload : post)),
-			}
 		case LIKE_POST:
-			return {
-				...state,
-				posts: state.posts?.map(post => (post?._id === payload._id ? payload : post)),
-			}
 		case SAVE_POST:
 			return {
 				...state,

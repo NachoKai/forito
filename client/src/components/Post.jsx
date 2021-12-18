@@ -74,12 +74,10 @@ const Post = ({
 	}, [_id, dispatch])
 
 	const openPost = useCallback(() => {
-		navigate("/")
 		navigate(`/posts/${_id}`)
 	}, [_id, navigate])
 
 	const openComments = useCallback(() => {
-		navigate("/")
 		navigate(`/posts/${_id}#comments`)
 	}, [_id, navigate])
 

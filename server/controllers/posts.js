@@ -29,6 +29,8 @@ export const getPostsBySearch = async (req, res) => {
 	const { searchQuery, tags } = req.query;
 	const safeSearchQuery = escapeRegExp(searchQuery);
 
+	if (!searchQuery && !tags) return;
+
 	try {
 		const title = new RegExp(safeSearchQuery, "i");
 		const posts = await Post.find({
