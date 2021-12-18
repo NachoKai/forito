@@ -1,4 +1,4 @@
-import { useRef } from "react"
+import { useRef } from 'react'
 import {
 	AlertDialog,
 	AlertDialogBody,
@@ -7,7 +7,7 @@ import {
 	AlertDialogHeader,
 	AlertDialogOverlay,
 	Button,
-} from "@chakra-ui/react"
+} from '@chakra-ui/react'
 
 const Dialog = ({ title, message, button, action, isDialogOpen, setIsDialogOpen }) => {
 	const cancelRef = useRef()
@@ -23,7 +23,7 @@ const Dialog = ({ title, message, button, action, isDialogOpen, setIsDialogOpen 
 		<AlertDialog isOpen={isDialogOpen} leastDestructiveRef={cancelRef} onClose={onCancel}>
 			<AlertDialogOverlay>
 				<AlertDialogContent>
-					<AlertDialogHeader fontSize="lg" fontWeight="bold">
+					<AlertDialogHeader fontSize='lg' fontWeight='bold'>
 						{title}
 					</AlertDialogHeader>
 					<AlertDialogBody>{message}</AlertDialogBody>
@@ -31,7 +31,7 @@ const Dialog = ({ title, message, button, action, isDialogOpen, setIsDialogOpen 
 						<Button ref={cancelRef} onClick={onCancel}>
 							Cancel
 						</Button>
-						<Button colorScheme="red" ml={3} onClick={onAccept}>
+						<Button colorScheme='red' ml={3} onClick={onAccept}>
 							{button}
 						</Button>
 					</AlertDialogFooter>

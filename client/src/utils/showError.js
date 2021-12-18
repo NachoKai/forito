@@ -1,8 +1,8 @@
-import { toast } from "react-toastify"
+import { toast } from 'react-toastify'
 
-const showError = message => {
-	return toast.error(message, {
-		position: "bottom-right",
+const showError = message =>
+	toast.error(message, {
+		position: 'bottom-right',
 		autoClose: 3000,
 		hideProgressBar: false,
 		closeOnClick: true,
@@ -10,6 +10,5 @@ const showError = message => {
 		draggable: true,
 		progress: undefined,
 	})
-}
 
 export default showError

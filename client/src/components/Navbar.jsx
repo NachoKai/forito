@@ -1,6 +1,6 @@
-import { useCallback, useEffect, useState } from "react"
-import { useDispatch } from "react-redux"
-import { FaMoon, FaSun } from "react-icons/fa"
+import { useCallback, useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux'
+import { FaMoon, FaSun } from 'react-icons/fa'
 import {
 	Button,
 	Flex,
@@ -16,13 +16,13 @@ import {
 	Stack,
 	Text,
 	useColorMode,
-} from "@chakra-ui/react"
-import { Link, useLocation, useNavigate } from "react-router-dom"
-import decode from "jwt-decode"
+} from '@chakra-ui/react'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import decode from 'jwt-decode'
 
-import { logout } from "../redux/auth"
-import { getUser } from "../utils/getUser"
-import { CreateGradColor } from "../theme"
+import { logout } from '../redux/auth'
+import { getUser } from '../utils/getUser'
+import { CreateGradColor } from '../theme'
 
 const Navbar = () => {
 	const dispatch = useDispatch()
@@ -50,30 +50,30 @@ const Navbar = () => {
 	return (
 		<Flex
 			flexGrow
-			align="center"
-			background={colorMode === "light" ? "white" : "gray.800"}
-			h="70px"
-			justify="space-between"
-			paddingX="8"
-			position="sticky"
-			top="0"
-			zIndex="3"
+			align='center'
+			background={colorMode === 'light' ? 'white' : 'gray.800'}
+			h='70px'
+			justify='space-between'
+			paddingX='8'
+			position='sticky'
+			top='0'
+			zIndex='3'
 		>
-			<Stack align="center" direction="row" spacing="4">
+			<Stack align='center' direction='row' spacing='4'>
 				<Heading
-					as="h2"
-					bgClip="text"
-					bgGradient={CreateGradColor("primary", 300, 900, 50, 400)}
-					fontSize="2xl"
-					fontWeight="bold"
+					as='h2'
+					bgClip='text'
+					bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
+					fontSize='2xl'
+					fontWeight='bold'
 				>
-					<Link to="/">Forito ✨</Link>
+					<Link to='/'>Forito ✨</Link>
 				</Heading>
 			</Stack>
 
-			<Stack align="center" direction="row" spacing="4">
+			<Stack align='center' direction='row' spacing='4'>
 				{user?.result ? (
-					<Stack align="center" direction="row" spacing="8">
+					<Stack align='center' direction='row' spacing='8'>
 						{user?.result.name && (
 							<Popover
 								isLazy
@@ -84,24 +84,24 @@ const Navbar = () => {
 								onOpen={open}
 							>
 								<PopoverTrigger>
-									<Stack align="center" cursor="pointer" direction="row">
+									<Stack align='center' cursor='pointer' direction='row'>
 										<Image
-											alt=""
-											borderRadius="full"
-											boxSize="30px"
-											fallbackSrc="https://picsum.photos/30"
-											loading="lazy"
-											objectFit="cover"
+											alt=''
+											borderRadius='full'
+											boxSize='30px'
+											fallbackSrc='https://picsum.photos/30'
+											loading='lazy'
+											objectFit='cover'
 											src={user?.result?.imageUrl}
 										/>
 
 										<Text
 											isTruncated
 											display={{
-												sm: "none",
-												md: "flex",
-												lg: "flex",
-												xl: "flex",
+												sm: 'none',
+												md: 'flex',
+												lg: 'flex',
+												xl: 'flex',
 											}}
 										>
 											{user.result.name}
@@ -113,12 +113,12 @@ const Navbar = () => {
 									<PopoverCloseButton />
 									<PopoverHeader>{user.result.name}</PopoverHeader>
 									<Link to={`/creator/${userId}`} onClick={close}>
-										<PopoverBody cursor="pointer" fontWeight="bold">
+										<PopoverBody cursor='pointer' fontWeight='bold'>
 											My Posts
 										</PopoverBody>
 									</Link>
 									<Link to={`/saved/${userId}`} onClick={close}>
-										<PopoverBody cursor="pointer" fontWeight="bold">
+										<PopoverBody cursor='pointer' fontWeight='bold'>
 											Saved Posts
 										</PopoverBody>
 									</Link>
@@ -127,9 +127,9 @@ const Navbar = () => {
 						)}
 
 						<Button
-							colorScheme="primary"
-							size="sm"
-							variant="outline"
+							colorScheme='primary'
+							size='sm'
+							variant='outline'
 							onClick={handleLogout}
 						>
 							Logout
@@ -137,19 +137,19 @@ const Navbar = () => {
 					</Stack>
 				) : (
 					<Flex>
-						<Link to="auth">
-							<Button colorScheme="primary" size="sm" variant="solid">
+						<Link to='auth'>
+							<Button colorScheme='primary' size='sm' variant='solid'>
 								Login
 							</Button>
 						</Link>
 					</Flex>
 				)}
 
-				<Button colorScheme="primary" size="sm" variant="ghost" onClick={toggleColorMode}>
-					{colorMode === "light" ? (
-						<FaMoon aria-label="Dark Mode" />
+				<Button colorScheme='primary' size='sm' variant='ghost' onClick={toggleColorMode}>
+					{colorMode === 'light' ? (
+						<FaMoon aria-label='Dark Mode' />
 					) : (
-						<FaSun aria-label="Light Mode" />
+						<FaSun aria-label='Light Mode' />
 					)}
 				</Button>
 			</Stack>

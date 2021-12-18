@@ -1,5 +1,5 @@
-import { useCallback, useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
+import { useCallback, useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import {
 	AspectRatio,
 	Badge,
@@ -10,16 +10,16 @@ import {
 	Image,
 	Stack,
 	Text,
-} from "@chakra-ui/react"
-import { formatDistance } from "date-fns"
-import { Link, useNavigate, useParams } from "react-router-dom"
-import { FaTwitter } from "react-icons/fa"
+} from '@chakra-ui/react'
+import { formatDistance } from 'date-fns'
+import { Link, useNavigate, useParams } from 'react-router-dom'
+import { FaTwitter } from 'react-icons/fa'
 
-import { cleanUp, getPost, getPostsBySearch } from "../redux/posts"
-import { getRandomId } from "../utils/getRandomId"
-import Comments from "../components/Comments"
-import { CreateBg, CreateColor } from "../theme"
-import Loading from "./Loading"
+import { getPost, getPostsBySearch } from '../redux/posts'
+import { getRandomId } from '../utils/getRandomId'
+import Comments from '../components/Comments'
+import { CreateBg, CreateColor } from '../theme'
+import Loading from './Loading'
 
 const PostDetails = () => {
 	const dispatch = useDispatch()
@@ -30,25 +30,24 @@ const PostDetails = () => {
 	const openPost = useCallback(
 		_id => {
 			navigate(`/posts/${_id}`)
-			dispatch(cleanUp())
 		},
-		[dispatch, navigate]
+		[navigate]
 	)
 
 	const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id)
 
-	const isDev = process.env.NODE_ENV !== "production"
+	const isDev = process.env.NODE_ENV !== 'production'
 	const baseURL = isDev
-		? "http://localhost:3000/posts"
-		: "https://forito.vercel.app/posts"
+		? 'http://localhost:3000/posts'
+		: 'https://forito.vercel.app/posts'
 
 	const shareOnTwitter = () => {
 		const url = `${baseURL}/${id}`
 
 		window.open(
 			`https://twitter.com/intent/tweet?text=${url}`,
-			"targetWindow",
-			"toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=300"
+			'targetWindow',
+			'toolbar=no,location=0,status=no,menubar=no,scrollbars=yes,resizable=yes,width=600,height=300'
 		)
 
 		return false
@@ -56,33 +55,35 @@ const PostDetails = () => {
 
 	useEffect(() => {
 		dispatch(getPost(id))
-	}, [dispatch, id])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [id])
 
 	// Recommended Posts search
 	useEffect(() => {
 		if (post) {
-			dispatch(getPostsBySearch({ search: "none", tags: post?.tags.join(",") }))
+			dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }))
 		}
-	}, [dispatch, post])
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [post])
 
 	return (
 		<>
 			{isLoading ? (
-				<Stack minHeight="100vh" p="8">
-					<Loading height={{ sm: "300px", md: "400px", lg: "500px", xl: "600px" }} />
+				<Stack minHeight='100vh' p='8'>
+					<Loading height={{ sm: '300px', md: '400px', lg: '500px', xl: '600px' }} />
 				</Stack>
 			) : (
-				<Stack borderRadius="lg" p="32px" spacing="8">
-					<Stack spacing="8">
+				<Stack borderRadius='lg' p='32px' spacing='8'>
+					<Stack spacing='8'>
 						<Stack
-							direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
-							spacing="8"
+							direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }}
+							spacing='8'
 						>
-							<Stack spacing="8" w="100%">
-								<Heading as="h2" size="xl">
+							<Stack spacing='8' w='100%'>
+								<Heading as='h2' size='xl'>
 									{post?.title}
 								</Heading>
-								<Text fontSize="md" whiteSpace="pre-wrap">
+								<Text fontSize='md' whiteSpace='pre-wrap'>
 									{post?.message}
 								</Text>
 							</Stack>
@@ -90,56 +91,56 @@ const PostDetails = () => {
 							{post?.selectedFile && (
 								<Image
 									alt={post?.title}
-									flexGrow="1"
-									loading="lazy"
-									maxH="90vh"
-									maxW={{ sm: "100vw", md: "100vw", lg: "50vw", xl: "50vw" }}
-									objectFit="contain"
+									flexGrow='1'
+									loading='lazy'
+									maxH='90vh'
+									maxW={{ sm: '100vw', md: '100vw', lg: '50vw', xl: '50vw' }}
+									objectFit='contain'
 									src={post?.selectedFile}
-									w="100%"
+									w='100%'
 								/>
 							)}
 						</Stack>
 
-						<Stack direction="row" spacing="2">
-							<Stack spacing="4" w="100%">
-								<Stack direction="row" spacing="2">
+						<Stack direction='row' spacing='2'>
+							<Stack spacing='4' w='100%'>
+								<Stack direction='row' spacing='2'>
 									{post?.tags &&
 										[...new Set(post?.tags)]
 											.filter(e => e)
 											.map(tag => (
-												<Badge key={getRandomId()} bg="primary.400" color="white">
+												<Badge key={getRandomId()} bg='primary.400' color='white'>
 													<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
 												</Badge>
 											))}
 								</Stack>
-								<Flex align="center" justify="space-between" w="100%">
+								<Flex align='center' justify='space-between' w='100%'>
 									<Stack
-										direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
-										spacing="2"
+										direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }}
+										spacing='2'
 									>
-										<Text fontSize="lg">Created by:</Text>
-										<Text fontSize="lg" fontWeight="bold">
+										<Text fontSize='lg'>Created by:</Text>
+										<Text fontSize='lg' fontWeight='bold'>
 											<Link to={`/creator/${post?.creator}`}>{` ${post?.name}`}</Link>
 										</Text>
-										<Text fontSize="lg">
+										<Text fontSize='lg'>
 											{formatDistance(
 												new Date(),
 												post?.createdAt ? new Date(post?.createdAt) : new Date()
-											) + " ago"}
+											) + ' ago'}
 										</Text>
 									</Stack>
 									<Stack
-										align="flex-start"
-										direction="row"
-										h="100%"
-										justify="flex-end"
-										spacing="8px"
+										align='flex-start'
+										direction='row'
+										h='100%'
+										justify='flex-end'
+										spacing='8px'
 									>
 										<Button
-											colorScheme="primary"
+											colorScheme='primary'
 											rightIcon={<FaTwitter />}
-											size="xs"
+											size='xs'
 											onClick={() => shareOnTwitter()}
 										>
 											Share
@@ -149,9 +150,9 @@ const PostDetails = () => {
 							</Stack>
 						</Stack>
 
-						<Divider colorScheme="primary" />
+						<Divider colorScheme='primary' />
 
-						<Text fontSize="lg" fontWeight="bold" id="comments">
+						<Text fontSize='lg' fontWeight='bold' id='comments'>
 							Comments
 						</Text>
 						<Comments post={post} />
@@ -159,54 +160,54 @@ const PostDetails = () => {
 
 					{!!recommendedPosts?.length && (
 						<>
-							<Divider colorScheme="primary" />
+							<Divider colorScheme='primary' />
 
-							<Stack overflow="auto" spacing="8">
-								<Text fontWeight="bold">You might also like:</Text>
+							<Stack overflow='auto' spacing='8'>
+								<Text fontWeight='bold'>You might also like:</Text>
 								<Stack
-									className="recommended-posts"
-									direction="row"
-									overflow="auto"
-									spacing="8"
+									className='recommended-posts'
+									direction='row'
+									overflow='auto'
+									spacing='8'
 								>
 									{recommendedPosts?.map(
 										({ title, name, message, selectedFile, _id }) => (
 											<Stack
 												key={_id}
-												bg={CreateBg("primary", 100, 900)}
-												borderRadius="lg"
-												className="recommended-post"
-												color={CreateColor("primary", 800, 100)}
-												cursor="pointer"
-												h="100%"
-												maxWidth="320px"
-												minWidth="320px"
-												p="8"
-												spacing="2"
+												bg={CreateBg('primary', 100, 900)}
+												borderRadius='lg'
+												className='recommended-post'
+												color={CreateColor('primary', 800, 100)}
+												cursor='pointer'
+												h='100%'
+												maxWidth='320px'
+												minWidth='320px'
+												p='8'
+												spacing='2'
 												onClick={() => openPost(_id)}
 											>
-												<Heading as="h3" fontSize="lg" fontWeight="bold">
+												<Heading as='h3' fontSize='lg' fontWeight='bold'>
 													{title}
 												</Heading>
 												<Text>
-													{name}{" "}
+													{name}{' '}
 													{formatDistance(
 														new Date(),
 														post?.createdAt ? new Date(post?.createdAt) : new Date()
-													) + " ago"}
+													) + ' ago'}
 												</Text>
-												<Stack spacing="4">
+												<Stack spacing='4'>
 													<Text noOfLines={[2, 4, 6]}>{message}</Text>
 													{selectedFile && (
-														<AspectRatio maxH="80vh" ratio={1} w="100%">
+														<AspectRatio maxH='80vh' ratio={1} w='100%'>
 															<Image
 																alt={post?.title}
-																borderRadius="lg"
-																flexGrow="1"
-																loading="lazy"
-																objectFit="cover"
+																borderRadius='lg'
+																flexGrow='1'
+																loading='lazy'
+																objectFit='cover'
 																src={selectedFile}
-																w="100%"
+																w='100%'
 															/>
 														</AspectRatio>
 													)}

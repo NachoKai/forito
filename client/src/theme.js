@@ -1,25 +1,25 @@
-import { extendTheme, theme, useColorModeValue } from "@chakra-ui/react"
-import { createBreakpoints } from "@chakra-ui/theme-tools"
+import { extendTheme, theme, useColorModeValue } from '@chakra-ui/react'
+import { createBreakpoints } from '@chakra-ui/theme-tools'
 
 const colors = {
 	primary: theme.colors.blue,
 }
 
 const fonts = {
-	body: "system-ui, sans-serif",
-	heading: "system-ui, sans-serif",
-	mono: "Menlo, monospace",
+	body: 'system-ui, sans-serif',
+	heading: 'system-ui, sans-serif',
+	mono: 'Menlo, monospace',
 }
 
 const breakpoints = createBreakpoints({
-	sm: "320px",
-	md: "768px",
-	lg: "960px",
-	xl: "1200px",
+	sm: '320px',
+	md: '768px',
+	lg: '960px',
+	xl: '1200px',
 })
 
 const config = {
-	initialColorMode: "light",
+	initialColorMode: 'light',
 	useSystemColorMode: false,
 }
 
@@ -44,7 +44,7 @@ export const CreateGradColor = (
 	secondValue,
 	thirdValue,
 	fourthValue,
-	angle = "to-l"
+	angle = 'to-l'
 ) => {
 	return useColorModeValue(
 		`linear(${angle}, ${scheme}.${firstValue},${scheme}.${secondValue})`,

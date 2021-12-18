@@ -1,12 +1,12 @@
-import { useEffect } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Pagination, PaginationItem } from "@material-ui/lab"
-import { Link } from "react-router-dom"
-import styled from "styled-components"
-import { Stack, useColorModeValue } from "@chakra-ui/react"
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Pagination, PaginationItem } from '@material-ui/lab'
+import { Link } from 'react-router-dom'
+import styled from 'styled-components'
+import { Stack, useColorModeValue } from '@chakra-ui/react'
 
-import { getPosts } from "../redux/posts"
-import { CreateBg } from "../theme"
+import { getPosts } from '../redux/posts'
+import { CreateBg } from '../theme'
 
 const Paginate = ({ page }) => {
 	const dispatch = useDispatch()
@@ -18,10 +18,10 @@ const Paginate = ({ page }) => {
 
 	return (
 		<Container
-			bg={CreateBg("primary", 50, 800)}
-			borderRadius="lg"
-			boxShadow="base"
-			color={useColorModeValue("black", "white")}
+			bg={CreateBg('primary', 50, 800)}
+			borderRadius='lg'
+			boxShadow='base'
+			color={useColorModeValue('black', 'white')}
 		>
 			{numberOfPages > 1 && (
 				<Pagination
@@ -33,7 +33,7 @@ const Paginate = ({ page }) => {
 					renderItem={item => (
 						<PaginationItem {...item} component={Link} to={`/posts?page=${item.page}`} />
 					)}
-					shape="rounded"
+					shape='rounded'
 				/>
 			)}
 		</Container>

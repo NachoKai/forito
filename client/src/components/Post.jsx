@@ -1,4 +1,4 @@
-import { memo, useCallback, useState } from "react"
+import { memo, useCallback, useState } from 'react'
 import {
 	AspectRatio,
 	Badge,
@@ -9,19 +9,19 @@ import {
 	Text,
 	Tooltip,
 	useColorModeValue,
-} from "@chakra-ui/react"
-import { FaEraser, FaPen, FaRegComments } from "react-icons/fa"
-import { format, formatDistance, isValid } from "date-fns"
-import { useDispatch } from "react-redux"
-import { Link, useLocation, useNavigate } from "react-router-dom"
-import { FaBookmark, FaRegBookmark } from "react-icons/fa"
+} from '@chakra-ui/react'
+import { FaEraser, FaPen, FaRegComments } from 'react-icons/fa'
+import { format, formatDistance, isValid } from 'date-fns'
+import { useDispatch } from 'react-redux'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { FaBookmark, FaRegBookmark } from 'react-icons/fa'
 
-import { getRandomId } from "../utils/getRandomId"
-import { cleanUp, deletePost, likePost, savePost } from "../redux/posts"
-import Likes from "./Likes"
-import { getUser } from "../utils/getUser"
-import Dialog from "./common/Dialog"
-import { CreateBg } from "../theme"
+import { getRandomId } from '../utils/getRandomId'
+import { deletePost, likePost, savePost } from '../redux/posts'
+import Likes from './Likes'
+import { getUser } from '../utils/getUser'
+import Dialog from './common/Dialog'
+import { CreateBg } from '../theme'
 
 const Post = ({
 	setCurrentId,
@@ -75,8 +75,7 @@ const Post = ({
 
 	const openPost = useCallback(() => {
 		navigate(`/posts/${_id}`)
-		dispatch(cleanUp())
-	}, [_id, dispatch, navigate])
+	}, [_id, navigate])
 
 	const openComments = useCallback(() => {
 		navigate(`/posts/${_id}#comments`)
@@ -89,52 +88,52 @@ const Post = ({
 
 	return (
 		<Stack
-			bg={CreateBg("primary", 50, 800)}
-			borderRadius="lg"
-			boxShadow="lg"
+			bg={CreateBg('primary', 50, 800)}
+			borderRadius='lg'
+			boxShadow='lg'
 			direction={{
-				sm: "column-reverse",
-				md: "column-reverse",
-				lg: "column-reverse",
-				xl: "row",
+				sm: 'column-reverse',
+				md: 'column-reverse',
+				lg: 'column-reverse',
+				xl: 'row',
 			}}
-			h="100%"
-			p="8"
-			spacing="8"
-			w="100%"
+			h='100%'
+			p='8'
+			spacing='8'
+			w='100%'
 		>
-			<Stack justify="space-between" spacing="4" w="100%">
-				<Stack direction="column" spacing="4">
-					<Stack direction="row">
-						<Stack direction="column" spacing="0">
-							<Text fontSize="lg" fontWeight="bold">
+			<Stack justify='space-between' spacing='4' w='100%'>
+				<Stack direction='column' spacing='4'>
+					<Stack direction='row'>
+						<Stack direction='column' spacing='0'>
+							<Text fontSize='lg' fontWeight='bold'>
 								<Link to={`/creator/${creator}`}>{` ${name}`}</Link>
 							</Text>
 							<Tooltip
 								hasArrow
-								colorScheme="primary"
+								colorScheme='primary'
 								label={format(
 									isValid(new Date(createdAt)) ? new Date(createdAt) : new Date(),
-									"dd MMM yyyy - HH:mm"
+									'dd MMM yyyy - HH:mm'
 								)}
 								openDelay={200}
-								placement="top"
+								placement='top'
 							>
-								<Text fontSize="sm">
+								<Text fontSize='sm'>
 									{formatDistance(
 										new Date(),
 										createdAt ? new Date(createdAt) : new Date()
-									) + " ago"}
+									) + ' ago'}
 								</Text>
 							</Tooltip>
 						</Stack>
 					</Stack>
 
 					<Heading
-						as="h3"
-						className="pointer"
-						fontSize="3xl"
-						marginBottom="2"
+						as='h3'
+						className='pointer'
+						fontSize='3xl'
+						marginBottom='2'
 						textShadow={useColorModeValue(
 							`0 0 2px rgba(0,0,0,0.2)`,
 							`0 0 2px rgba(255,255,255,0.2)`
@@ -144,83 +143,83 @@ const Post = ({
 						{title}
 					</Heading>
 
-					<Text fontSize="md" noOfLines={[2, 4, 6]} whiteSpace="pre-wrap">
+					<Text fontSize='md' noOfLines={[2, 4, 6]} whiteSpace='pre-wrap'>
 						{message}
 					</Text>
 				</Stack>
 
-				<Stack direction="column" spacing="4">
-					<Stack direction="row" overflow="auto" spacing="2">
+				<Stack direction='column' spacing='4'>
+					<Stack direction='row' overflow='auto' spacing='2'>
 						{[...new Set(tags)]
 							.filter(e => e)
 							.map(tag => (
-								<Badge key={getRandomId()} bg="primary.400" color="white">
+								<Badge key={getRandomId()} bg='primary.400' color='white'>
 									<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
 								</Badge>
 							))}
 					</Stack>
 
 					<Stack
-						direction={{ sm: "column", md: "column", lg: "row", xl: "row" }}
-						spacing="2"
+						direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }}
+						spacing='2'
 					>
 						<Stack
-							direction="row"
-							display={location?.pathname.includes("/posts") ? "flex" : "none"}
-							flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
-							spacing="2"
+							direction='row'
+							display={location?.pathname.includes('/posts') ? 'flex' : 'none'}
+							flexGrow={{ sm: '1', md: '1', lg: '0', xl: '0' }}
+							spacing='2'
 						>
 							<Button
-								colorScheme="primary"
+								colorScheme='primary'
 								disabled={!user?.result}
-								flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
-								minWidth="80px"
-								size="sm"
-								variant={isUserLike ? "ghost" : "outline"}
+								flexGrow={{ sm: '1', md: '1', lg: '0', xl: '0' }}
+								minWidth='80px'
+								size='sm'
+								variant={isUserLike ? 'ghost' : 'outline'}
 								onClick={handleLike}
 							>
 								<Likes isUserLike={isUserLike} likes={likesMock} />
 							</Button>
 							<Button
-								colorScheme="primary"
-								flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
+								colorScheme='primary'
+								flexGrow={{ sm: '1', md: '1', lg: '0', xl: '0' }}
 								leftIcon={<FaRegComments />}
-								size="sm"
-								variant={"outline"}
+								size='sm'
+								variant={'outline'}
 								onClick={openComments}
 							>
-								{comments?.length} {comments?.length === 1 ? "Comment" : "Comments"}
+								{comments?.length} {comments?.length === 1 ? 'Comment' : 'Comments'}
 							</Button>
 						</Stack>
 
 						<Stack
-							direction="row"
-							display={location?.pathname.includes("/posts") ? "flex" : "none"}
-							flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
-							spacing="2"
+							direction='row'
+							display={location?.pathname.includes('/posts') ? 'flex' : 'none'}
+							flexGrow={{ sm: '1', md: '1', lg: '0', xl: '0' }}
+							spacing='2'
 						>
 							{userEmail && (
 								<Button
-									colorScheme="primary"
+									colorScheme='primary'
 									disabled={!user?.result}
-									flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
+									flexGrow={{ sm: '1', md: '1', lg: '0', xl: '0' }}
 									leftIcon={hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
-									minWidth="88px"
-									size="sm"
-									variant={hasUserSaved ? "ghost" : "outline"}
+									minWidth='88px'
+									size='sm'
+									variant={hasUserSaved ? 'ghost' : 'outline'}
 									onClick={handleSave}
 								>
-									{hasUserSaved ? "Saved" : "Save"}
+									{hasUserSaved ? 'Saved' : 'Save'}
 								</Button>
 							)}
 							{(isPostCreator || isAdmin) && (
 								<Button
-									colorScheme="primary"
-									flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
+									colorScheme='primary'
+									flexGrow={{ sm: '1', md: '1', lg: '0', xl: '0' }}
 									leftIcon={<FaPen />}
-									minWidth="88px"
-									size="sm"
-									variant="outline"
+									minWidth='88px'
+									size='sm'
+									variant='outline'
 									onClick={handleEdit}
 								>
 									Edit
@@ -228,13 +227,13 @@ const Post = ({
 							)}
 							{(isPostCreator || isAdmin) && (
 								<Button
-									bg={CreateBg("red", 500, 200)}
-									colorScheme="primary"
-									flexGrow={{ sm: "1", md: "1", lg: "0", xl: "0" }}
+									bg={CreateBg('red', 500, 200)}
+									colorScheme='primary'
+									flexGrow={{ sm: '1', md: '1', lg: '0', xl: '0' }}
 									leftIcon={<FaEraser />}
-									minWidth="88px"
-									size="sm"
-									variant="solid"
+									minWidth='88px'
+									size='sm'
+									variant='solid'
 									onClick={() => setIsDialogOpen(true)}
 								>
 									Delete
@@ -246,16 +245,16 @@ const Post = ({
 			</Stack>
 
 			{selectedFile && (
-				<AspectRatio maxH="80vh" ratio={1} w="100%">
+				<AspectRatio maxH='80vh' ratio={1} w='100%'>
 					<Image
 						alt={title}
-						borderRadius="lg"
-						className="pointer"
-						flexGrow="1"
-						loading="lazy"
-						objectFit="cover"
+						borderRadius='lg'
+						className='pointer'
+						flexGrow='1'
+						loading='lazy'
+						objectFit='cover'
 						src={selectedFile}
-						w="100%"
+						w='100%'
 						onClick={openPost}
 					/>
 				</AspectRatio>
@@ -264,11 +263,11 @@ const Post = ({
 			<Dialog
 				_id={_id}
 				action={() => dispatch(deletePost(_id))}
-				button="Delete"
+				button='Delete'
 				isDialogOpen={isDialogOpen}
-				message="Are you sure you want to delete this post?"
+				message='Are you sure you want to delete this post?'
 				setIsDialogOpen={setIsDialogOpen}
-				title="Delete Post"
+				title='Delete Post'
 			/>
 		</Stack>
 	)

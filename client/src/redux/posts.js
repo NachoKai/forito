@@ -1,25 +1,25 @@
-import * as api from "../api"
-import { getUser } from "../utils/getUser"
-import showError from "../utils/showError"
-import showSuccess from "../utils/showSuccess"
+import * as api from '../api'
+import { getUser } from '../utils/getUser'
+import showError from '../utils/showError'
+import showSuccess from '../utils/showSuccess'
 
 /* ==========  CONSTANTS  ========== */
 
-const FETCH_ALL = "FETCH_ALL"
-const FETCH_ALL_POSTS = "FETCH_ALL_POSTS"
-const FETCH_POST = "FETCH_POST"
-const CREATE_POST = "CREATE_POST"
-const UPDATE_POST = "UPDATE_POST"
-const DELETE_POST = "DELETE_POST"
-const LIKE_POST = "LIKE_POST"
-const SAVE_POST = "SAVE_POST"
-const FETCH_POSTS_BY_SEARCH = "FETCH_POSTS_BY_SEARCH"
-const FETCH_BY_CREATOR = "FETCH_BY_CREATOR"
-const FETCH_SAVED_POSTS = "FETCH_SAVED_POSTS"
-const START_LOADING = "START_LOADING"
-const END_LOADING = "END_LOADING"
-const ADD_COMMENT = "ADD_COMMENT"
-const CLEAN_UP = "CLEAN_UP"
+const FETCH_ALL = 'FETCH_ALL'
+const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS'
+const FETCH_POST = 'FETCH_POST'
+const CREATE_POST = 'CREATE_POST'
+const UPDATE_POST = 'UPDATE_POST'
+const DELETE_POST = 'DELETE_POST'
+const LIKE_POST = 'LIKE_POST'
+const SAVE_POST = 'SAVE_POST'
+const FETCH_POSTS_BY_SEARCH = 'FETCH_POSTS_BY_SEARCH'
+const FETCH_BY_CREATOR = 'FETCH_BY_CREATOR'
+const FETCH_SAVED_POSTS = 'FETCH_SAVED_POSTS'
+const START_LOADING = 'START_LOADING'
+const END_LOADING = 'END_LOADING'
+const ADD_COMMENT = 'ADD_COMMENT'
+const CLEAN_UP = 'CLEAN_UP'
 
 /* ==========  ACTIONS  ========== */
 
@@ -33,7 +33,7 @@ export const getPost = id => async dispatch => {
 		dispatch({ type: FETCH_POST, payload: { post: data } })
 		dispatch({ type: END_LOADING })
 	} catch (err) {
-		showError("Something went wrong when trying to get post. Please try again.")
+		showError('Something went wrong when trying to get post. Please try again.')
 		console.error(err)
 	}
 }
@@ -48,7 +48,7 @@ export const getPosts = page => async dispatch => {
 		dispatch({ type: FETCH_ALL_POSTS, payload: { data, currentPage, numberOfPages } })
 		dispatch({ type: END_LOADING })
 	} catch (err) {
-		showError("Something went wrong when trying to get posts. Please try again.")
+		showError('Something went wrong when trying to get posts. Please try again.')
 		console.error(err)
 	}
 }
@@ -63,7 +63,7 @@ export const getPostsBySearch = searchQuery => async dispatch => {
 		dispatch({ type: FETCH_POSTS_BY_SEARCH, payload: { data } })
 		dispatch({ type: END_LOADING })
 	} catch (err) {
-		showError("Something went wrong when trying to get post by search. Please try again.")
+		showError('Something went wrong when trying to get post by search. Please try again.')
 		console.error(err)
 	}
 }
@@ -75,10 +75,10 @@ export const createPost = (post, navigate) => async dispatch => {
 
 		dispatch({ type: CREATE_POST, payload: data })
 		dispatch({ type: END_LOADING })
-		showSuccess("Successfully created post.")
+		showSuccess('Successfully created post.')
 		navigate(`/posts/${data._id}`)
 	} catch (err) {
-		showError("Something went wrong when trying to create post. Please try again.")
+		showError('Something went wrong when trying to create post. Please try again.')
 		console.error(err)
 	}
 }
@@ -90,9 +90,9 @@ export const updatePost = (id, post) => async dispatch => {
 
 		dispatch({ type: UPDATE_POST, payload: data })
 		dispatch({ type: END_LOADING })
-		showSuccess("Successfully edited post.")
+		showSuccess('Successfully edited post.')
 	} catch (err) {
-		showError("Something went wrong when trying to update post. Please try again.")
+		showError('Something went wrong when trying to update post. Please try again.')
 		console.error(err)
 	}
 }
@@ -103,9 +103,9 @@ export const deletePost = id => async dispatch => {
 		await api.deletePost(id)
 		dispatch({ type: DELETE_POST, payload: id })
 		dispatch({ type: END_LOADING })
-		showSuccess("Successfully deleted post.")
+		showSuccess('Successfully deleted post.')
 	} catch (err) {
-		showError("Something went wrong when trying to delete post. Please try again.")
+		showError('Something went wrong when trying to delete post. Please try again.')
 		console.error(err)
 	}
 }
@@ -118,7 +118,7 @@ export const likePost = id => async dispatch => {
 
 		dispatch({ type: LIKE_POST, payload: data })
 	} catch (err) {
-		showError("Something went wrong when trying to like post. Please try again.")
+		showError('Something went wrong when trying to like post. Please try again.')
 		console.error(err)
 	}
 }
@@ -131,7 +131,7 @@ export const savePost = saves => async dispatch => {
 
 		dispatch({ type: SAVE_POST, payload: data })
 	} catch (err) {
-		showError("Something went wrong when trying to save post. Please try again.")
+		showError('Something went wrong when trying to save post. Please try again.')
 		console.error(err)
 	}
 }
@@ -141,11 +141,11 @@ export const addComment = (comment, id) => async dispatch => {
 		const { data } = await api.addComment(comment, id)
 
 		dispatch({ type: ADD_COMMENT, payload: data })
-		showSuccess("Successfully added comment.")
+		showSuccess('Successfully added comment.')
 
 		return data.comments
 	} catch (err) {
-		showError("Something went wrong when trying to add comment. Please try again.")
+		showError('Something went wrong when trying to add comment. Please try again.')
 		console.error(err)
 	}
 }
@@ -161,7 +161,7 @@ export const getPostsByCreator = id => async dispatch => {
 		dispatch({ type: END_LOADING })
 	} catch (err) {
 		showError(
-			"Something went wrong when trying to get posts by creator. Please try again."
+			'Something went wrong when trying to get posts by creator. Please try again.'
 		)
 		console.error(err)
 	}
@@ -178,7 +178,7 @@ export const getSavedPosts = id => async dispatch => {
 		dispatch({ type: END_LOADING })
 	} catch (err) {
 		showError(
-			"Something went wrong when trying to get posts by creator. Please try again."
+			'Something went wrong when trying to get posts by creator. Please try again.'
 		)
 		console.error(err)
 	}

@@ -1,5 +1,5 @@
-import { useCallback, useState } from "react"
-import { useDispatch } from "react-redux"
+import { useCallback, useState } from 'react'
+import { useDispatch } from 'react-redux'
 import {
 	Accordion,
 	AccordionButton,
@@ -10,29 +10,29 @@ import {
 	Flex,
 	Stack,
 	Text,
-} from "@chakra-ui/react"
-import { useNavigate } from "react-router-dom"
-import ChipInput from "material-ui-chip-input"
-import styled from "styled-components"
+} from '@chakra-ui/react'
+import { useNavigate } from 'react-router-dom'
+import ChipInput from 'material-ui-chip-input'
+import styled from 'styled-components'
 
-import { getPostsBySearch } from "../redux/posts"
-import FormInput from "./common/FormInput"
-import { CreateGradColor } from "../theme"
+import { getPostsBySearch } from '../redux/posts'
+import FormInput from './common/FormInput'
+import { CreateGradColor } from '../theme'
 
 const Search = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const [searchValue, setSearchValue] = useState("")
+	const [searchValue, setSearchValue] = useState('')
 	const [searchTags, setSearchTags] = useState([])
 
 	const searchPost = useCallback(() => {
 		if (searchValue.trim() || searchTags) {
-			setSearchValue("")
+			setSearchValue('')
 			setSearchTags([])
-			dispatch(getPostsBySearch({ search: searchValue, tags: searchTags.join(",") }))
-			navigate(`search?searchQuery=${searchValue || "none"}&tags=${searchTags.join(",")}`)
+			dispatch(getPostsBySearch({ search: searchValue, tags: searchTags.join(',') }))
+			navigate(`search?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`)
 		} else {
-			navigate("/")
+			navigate('/')
 		}
 	}, [dispatch, navigate, searchTags, searchValue])
 
@@ -59,25 +59,25 @@ const Search = () => {
 	return (
 		<Accordion
 			allowToggle
-			bgGradient={CreateGradColor("primary", 100, 50, 900, 600, "135deg")}
-			borderRadius="lg"
-			boxShadow="md"
-			colorScheme="primary"
-			maxW={{ sm: "100vw", md: "100vw", lg: "322px", xl: "322px" }}
+			bgGradient={CreateGradColor('primary', 100, 50, 900, 600, '135deg')}
+			borderRadius='lg'
+			boxShadow='md'
+			colorScheme='primary'
+			maxW={{ sm: '100vw', md: '100vw', lg: '322px', xl: '322px' }}
 		>
 			<AccordionItem>
 				<AccordionButton>
-					<Text fontSize="lg" fontWeight="bold">
+					<Text fontSize='lg' fontWeight='bold'>
 						Search
 					</Text>
 					<AccordionIcon />
 				</AccordionButton>
 				<AccordionPanel>
-					<Stack spacing="4">
+					<Stack spacing='4'>
 						<FormInput
-							label="Search Posts Title"
-							maxLength="105"
-							name="search"
+							label='Search Posts Title'
+							maxLength='105'
+							name='search'
 							value={searchValue}
 							onChange={e => {
 								setSearchValue(e.target.value)
@@ -89,21 +89,21 @@ const Search = () => {
 								<TagsContainer>
 									<ChipInput
 										disableUnderline
-										placeholder="Search Posts Tags"
-										style={{ margin: "0 0 0 16px" }}
+										placeholder='Search Posts Tags'
+										style={{ margin: '0 0 0 16px' }}
 										value={searchTags}
 										onAdd={tag => handleAddTag(tag)}
 										onDelete={tag => handleDeleteTag(tag)}
 									/>
 								</TagsContainer>
 							}
-							helper="Insert tag with enter/return."
-							label="Search Tags"
-							maxLength="105"
+							helper='Insert tag with enter/return.'
+							label='Search Tags'
+							maxLength='105'
 						/>
 						<Button
-							bgGradient={CreateGradColor("primary", 400, 800, 100, 400)}
-							colorScheme="primary"
+							bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
+							colorScheme='primary'
 							disabled={!searchValue && !searchTags?.length}
 							onClick={searchPost}
 						>

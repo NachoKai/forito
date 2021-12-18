@@ -5,7 +5,7 @@ import {
 	FormLabel,
 	Textarea,
 	Tooltip,
-} from "@chakra-ui/react"
+} from '@chakra-ui/react'
 
 const FormTextArea = ({
 	label,
@@ -19,47 +19,45 @@ const FormTextArea = ({
 	child,
 	type,
 	tooltip,
-}) => {
-	return (
-		<FormControl isRequired={isRequired}>
-			<Flex>
-				{tooltip ? (
-					<Tooltip
-						hasArrow
-						colorScheme="primary"
-						label={tooltip}
-						openDelay={200}
-						placement="top"
-					>
-						<FormLabel>{label}</FormLabel>
-					</Tooltip>
-				) : (
+}) => (
+	<FormControl isRequired={isRequired}>
+		<Flex>
+			{tooltip ? (
+				<Tooltip
+					hasArrow
+					colorScheme='primary'
+					label={tooltip}
+					openDelay={200}
+					placement='top'
+				>
 					<FormLabel>{label}</FormLabel>
-				)}
-			</Flex>
-			{child ? (
-				child
+				</Tooltip>
 			) : (
-				<Textarea
-					_placeholder={{ color: "gray" }}
-					autoFocus={autoFocus}
-					bg="white"
-					color="black"
-					errorBorderColor="red.300"
-					focusBorderColor="primary.200"
-					maxLength={maxLength}
-					name={name}
-					placeholder={label}
-					type={type}
-					value={value}
-					variant="outline"
-					whiteSpace="pre-wrap"
-					onChange={onChange}
-				/>
+				<FormLabel>{label}</FormLabel>
 			)}
-			{helper && <FormHelperText>{helper}</FormHelperText>}
-		</FormControl>
-	)
-}
+		</Flex>
+		{child ? (
+			child
+		) : (
+			<Textarea
+				_placeholder={{ color: 'gray' }}
+				autoFocus={autoFocus}
+				bg='white'
+				color='black'
+				errorBorderColor='red.300'
+				focusBorderColor='primary.200'
+				maxLength={maxLength}
+				name={name}
+				placeholder={label}
+				type={type}
+				value={value}
+				variant='outline'
+				whiteSpace='pre-wrap'
+				onChange={onChange}
+			/>
+		)}
+		{helper && <FormHelperText>{helper}</FormHelperText>}
+	</FormControl>
+)
 
 export default FormTextArea

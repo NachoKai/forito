@@ -1,8 +1,8 @@
-import { toast } from "react-toastify"
+import { toast } from 'react-toastify'
 
-const showSuccess = message => {
-	return toast.success(message, {
-		position: "bottom-right",
+const showSuccess = message =>
+	toast.success(message, {
+		position: 'bottom-right',
 		autoClose: 3000,
 		hideProgressBar: false,
 		closeOnClick: true,
@@ -10,6 +10,5 @@ const showSuccess = message => {
 		draggable: true,
 		progress: undefined,
 	})
-}
 
 export default showSuccess

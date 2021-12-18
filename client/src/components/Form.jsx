@@ -1,23 +1,24 @@
-import { useCallback, useEffect, useState } from "react"
-import { useDispatch, useSelector } from "react-redux"
-import { Button, Flex, Image, Stack, Text } from "@chakra-ui/react"
-import { FaExclamationCircle } from "react-icons/fa"
-import { useNavigate } from "react-router-dom"
-import ImageUploading from "react-images-uploading"
+import { useCallback, useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Button, Flex, Image, Stack, Text } from '@chakra-ui/react'
+import { FaExclamationCircle } from 'react-icons/fa'
+import { useNavigate } from 'react-router-dom'
+import ImageUploading from 'react-images-uploading'
 
-import { createPost, updatePost } from "../redux/posts"
-import FormInput from "./common/FormInput"
-import FormTextArea from "./common/FormTextArea"
-import { getUser } from "../utils/getUser"
-import showError from "../utils/showError"
-import { CreateColor, CreateGradColor } from "../theme"
-import { checkEmpty } from "../utils/checkEmpty"
+import { createPost, updatePost } from '../redux/posts'
+import FormInput from './common/FormInput'
+import FormTextArea from './common/FormTextArea'
+import { getUser } from '../utils/getUser'
+import showError from '../utils/showError'
+import { CreateColor, CreateGradColor } from '../theme'
+import { checkEmpty } from '../utils/checkEmpty'
 
 const initialState = {
-	title: "",
-	message: "",
+	title: '',
+	message: '',
 	tags: [],
-	selectedFile: "",
+	selectedFile: '',
+	privacy: 'public',
 }
 
 const Form = ({ currentId, setCurrentId }) => {
@@ -26,6 +27,7 @@ const Form = ({ currentId, setCurrentId }) => {
 	const navigate = useNavigate()
 	const [postData, setPostData] = useState(initialState)
 	const [images, setImages] = useState([])
+	// const [privacy, setPrivacy] = useState('public')
 	const areValidTags = ![...new Set(postData.tags)].every(tag =>
 		/^[a-zA-Z0-9_.-]*$/.test(tag)
 	)
@@ -42,9 +44,18 @@ const Form = ({ currentId, setCurrentId }) => {
 		[postData]
 	)
 
+	// const handlePrivacy = useCallback(
+	// 	privacy => {
+	// 		setPostData({ ...postData, privacy })
+	// 		setPrivacy(privacy)
+	// 	},
+	// 	[postData]
+	// )
+
 	const handleClear = useCallback(() => {
 		setCurrentId(0)
 		setImages([])
+		// setPrivacy('public')
 		setPostData(initialState)
 	}, [setCurrentId])
 
@@ -76,17 +87,17 @@ const Form = ({ currentId, setCurrentId }) => {
 	if (!user?.result?.name) {
 		return (
 			<Stack
-				align="center"
-				color={CreateColor("primary", 600, 100)}
-				direction="column"
-				minWidth="320px"
-				p="8"
-				spacing="4"
+				align='center'
+				color={CreateColor('primary', 600, 100)}
+				direction='column'
+				minWidth='320px'
+				p='8'
+				spacing='4'
 			>
-				<Text fontSize="4xl" fontWeight="bold">
+				<Text fontSize='4xl' fontWeight='bold'>
 					<FaExclamationCircle />
 				</Text>
-				<Text fontSize="lg" fontWeight="bold">
+				<Text fontSize='lg' fontWeight='bold'>
 					Please login to create a Post.
 				</Text>
 			</Stack>
@@ -94,73 +105,77 @@ const Form = ({ currentId, setCurrentId }) => {
 	}
 
 	return (
-		<Flex minWidth="320px" w="100%">
+		<Flex minWidth='320px' w='100%'>
 			<form
 				noValidate
-				autoComplete="off"
-				style={{ width: "100%" }}
+				autoComplete='off'
+				style={{ width: '100%' }}
 				onSubmit={handleSubmit}
 			>
 				<Stack
-					bgGradient={CreateGradColor("primary", 100, 50, 900, 600, "135deg")}
-					borderRadius="lg"
-					boxShadow="md"
-					p="8"
-					spacing="4"
+					bgGradient={CreateGradColor('primary', 100, 50, 900, 600, '135deg')}
+					borderRadius='lg'
+					boxShadow='md'
+					p='8'
+					spacing='4'
 				>
 					<Text
-						bgClip="text"
-						bgGradient={CreateGradColor("primary", 700, 900, 50, 200)}
-						fontSize="xl"
-						fontWeight="bold"
+						bgClip='text'
+						bgGradient={CreateGradColor('primary', 700, 900, 50, 200)}
+						fontSize='xl'
+						fontWeight='bold'
 					>
-						{currentId ? "Edit" : "Create"} Post ✏️
+						{currentId ? 'Edit' : 'Create'} Post ✏️
 					</Text>
+
 					<FormInput
 						isRequired
-						label="Title"
-						maxLength="105"
-						name="title"
-						tooltip="Required"
-						value={postData.title}
+						label='Title'
+						maxLength='105'
+						name='title'
+						tooltip='Required'
+						value={postData?.title}
 						onChange={handleChange}
 					/>
+
 					<FormTextArea
 						isRequired
-						label="Message"
-						maxLength="5000"
-						name="message"
-						tooltip="Required"
-						value={postData.message}
+						label='Message'
+						maxLength='5000'
+						name='message'
+						tooltip='Required'
+						value={postData?.message}
 						onChange={handleChange}
 					/>
+
 					<FormInput
-						helper="Separated by commas."
+						helper='Separated by commas.'
 						isInvalid={areValidTags}
-						label="Tags"
-						maxLength="55"
-						name="tags"
-						validation={areValidTags && "Insert only letters and numbers."}
-						value={[...new Set(postData.tags)]}
+						label='Tags'
+						maxLength='55'
+						name='tags'
+						validation={areValidTags && 'Insert only letters and numbers.'}
+						value={[...new Set(postData?.tags)]}
 						onChange={e => {
 							setPostData({
 								...postData,
-								tags: e.target.value.trim().split(","),
+								tags: e.target.value.trim().split(','),
 							})
 						}}
 					/>
+
 					<FormInput
 						child={
 							<ImageUploading
-								acceptType={["jpg", "jpeg", "gif", "png"]}
-								dataURLKey="data_url"
+								acceptType={['jpg', 'jpeg', 'gif', 'png']}
+								dataURLKey='data_url'
 								maxFileSize={1024 * 1024 * 5.1}
 								maxNumber={1}
 								value={images}
 								onChange={onImageUpload}
 								onError={() =>
 									showError(
-										"Something went wrong when trying to upload image. Please try again."
+										'Something went wrong when trying to upload image. Please try again.'
 									)
 								}
 							>
@@ -173,26 +188,26 @@ const Form = ({ currentId, setCurrentId }) => {
 									dragProps,
 									errors,
 								}) => (
-									<Stack className="upload__image-wrapper" spacing="2">
+									<Stack className='upload__image-wrapper' spacing='2'>
 										{errors && (
-											<Stack m="4px 0" spacing="2">
+											<Stack m='4px 0' spacing='2'>
 												{errors.maxNumber && (
-													<Flex color="red.400" fontWeight="bold" marginBottom="4px">
+													<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
 														Number of selected images exceed maxNumber.
 													</Flex>
 												)}
 												{errors.acceptType && (
-													<Flex color="red.400" fontWeight="bold" marginBottom="4px">
+													<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
 														Your selected file type is not allow.
 													</Flex>
 												)}
 												{errors.maxFileSize && (
-													<Flex color="red.400" fontWeight="bold" marginBottom="4px">
+													<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
 														Selected file size exceed maxFileSize.
 													</Flex>
 												)}
 												{errors.resolution && (
-													<Flex color="red.400" fontWeight="bold" marginBottom="4px">
+													<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
 														Selected file is not match your desired resolution.
 													</Flex>
 												)}
@@ -202,24 +217,24 @@ const Form = ({ currentId, setCurrentId }) => {
 											<Stack
 												borderColor={
 													isDragging
-														? CreateColor("gray", 700, 200)
-														: CreateColor("primary", 600, 100)
+														? CreateColor('gray', 700, 200)
+														: CreateColor('primary', 600, 100)
 												}
-												borderRadius="lg"
-												borderStyle="dashed"
-												borderWidth="2px"
+												borderRadius='lg'
+												borderStyle='dashed'
+												borderWidth='2px'
 											>
 												<Button
-													bg={isDragging ? CreateColor("gray", 200, 700) : undefined}
+													bg={isDragging ? CreateColor('gray', 200, 700) : undefined}
 													color={
 														isDragging
-															? CreateColor("gray", 700, 200)
-															: CreateColor("primary", 600, 100)
+															? CreateColor('gray', 700, 200)
+															: CreateColor('primary', 600, 100)
 													}
-													variant="ghost"
+													variant='ghost'
 													onClick={onImageUpload}
 													{...dragProps}
-													p="8"
+													p='8'
 												>
 													Upload Image
 												</Button>
@@ -228,27 +243,27 @@ const Form = ({ currentId, setCurrentId }) => {
 										{imageList.map((image, index) => (
 											<Stack
 												key={index}
-												className="image-item"
-												direction="row"
-												spacing="2"
+												className='image-item'
+												direction='row'
+												spacing='2'
 											>
 												<Image
-													alt=""
-													boxSize="100px"
-													objectFit="contain"
+													alt=''
+													boxSize='100px'
+													objectFit='contain'
 													src={image.data_url}
 												/>
-												<Flex align="center" direction="column" justify="center">
+												<Flex align='center' direction='column' justify='center'>
 													<Button
-														colorScheme="primary"
-														variant="ghost"
+														colorScheme='primary'
+														variant='ghost'
 														onClick={() => onImageUpdate(index)}
 													>
 														Update
 													</Button>
 													<Button
-														colorScheme="primary"
-														variant="ghost"
+														colorScheme='primary'
+														variant='ghost'
 														onClick={() => onImageRemove(index)}
 													>
 														Remove
@@ -260,23 +275,46 @@ const Form = ({ currentId, setCurrentId }) => {
 								)}
 							</ImageUploading>
 						}
-						helper="Max: 5mb. Formats: jpg, jpeg, png, gif."
-						label="Upload image"
+						helper='Max: 5mb. Formats: jpg, jpeg, png, gif.'
+						label='Upload image'
 					/>
 
-					<Stack spacing="4">
+					{/* <FormInput
+						isRequired
+						child={
+							<RadioGroup
+								name='private'
+								value={privacy}
+								onChange={privacy => handlePrivacy(privacy)}
+							>
+								<Stack direction='row'>
+									<Radio colorScheme='primary' value={'public'}>
+										Public
+									</Radio>
+									<Radio colorScheme='primary' value={'private'}>
+										Private
+									</Radio>
+								</Stack>
+							</RadioGroup>
+						}
+						label='Privacy'
+						name='privacy'
+						tooltip='Private Posts will only be visible to their creator'
+					/> */}
+
+					<Stack spacing='4'>
 						<Button
-							bgGradient={CreateGradColor("primary", 400, 800, 100, 400)}
-							colorScheme="primary"
+							bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
+							colorScheme='primary'
 							disabled={
 								!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) ||
 								![...new Set(postData.tags)].every(tag => /^[a-zA-Z0-9_.-]*$/.test(tag))
 							}
-							type="submit"
+							type='submit'
 						>
 							Submit
 						</Button>
-						<Button colorScheme="primary" variant="outline" onClick={handleClear}>
+						<Button colorScheme='primary' variant='outline' onClick={handleClear}>
 							Clear
 						</Button>
 					</Stack>
