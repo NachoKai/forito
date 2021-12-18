@@ -17,7 +17,7 @@ import { Link, useLocation, useNavigate } from "react-router-dom"
 import { FaBookmark, FaRegBookmark } from "react-icons/fa"
 
 import { getRandomId } from "../utils/getRandomId"
-import { deletePost, likePost, savePost } from "../redux/posts"
+import { cleanUp, deletePost, likePost, savePost } from "../redux/posts"
 import Likes from "./Likes"
 import { getUser } from "../utils/getUser"
 import Dialog from "./common/Dialog"
@@ -75,7 +75,8 @@ const Post = ({
 
 	const openPost = useCallback(() => {
 		navigate(`/posts/${_id}`)
-	}, [_id, navigate])
+		dispatch(cleanUp())
+	}, [_id, dispatch, navigate])
 
 	const openComments = useCallback(() => {
 		navigate(`/posts/${_id}#comments`)

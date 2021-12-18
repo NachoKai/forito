@@ -1,4 +1,4 @@
-import { useEffect } from "react"
+import { useCallback, useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import {
 	AspectRatio,
@@ -15,7 +15,7 @@ import { formatDistance } from "date-fns"
 import { Link, useNavigate, useParams } from "react-router-dom"
 import { FaTwitter } from "react-icons/fa"
 
-import { getPost, getPostsBySearch } from "../redux/posts"
+import { cleanUp, getPost, getPostsBySearch } from "../redux/posts"
 import { getRandomId } from "../utils/getRandomId"
 import Comments from "../components/Comments"
 import { CreateBg, CreateColor } from "../theme"
@@ -27,9 +27,13 @@ const PostDetails = () => {
 	const { id } = useParams()
 	const { post, posts, isLoading } = useSelector(state => state.posts)
 
-	const openPost = _id => {
-		navigate(`/posts/${_id}`)
-	}
+	const openPost = useCallback(
+		_id => {
+			navigate(`/posts/${_id}`)
+			dispatch(cleanUp())
+		},
+		[dispatch, navigate]
+	)
 
 	const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id)
 
