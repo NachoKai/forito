@@ -2,12 +2,16 @@ export const loadState = () => {
 	try {
 		const serializedState = localStorage.getItem('forito')
 
+		console.log('serializedState', serializedState.length)
 		if (serializedState === null) {
 			return undefined
 		}
+		if (serializedState?.length < 5_200_000) {
+			return JSON.parse(serializedState)
+		}
+	} catch (err) {
+		console.error(err)
 
-		return JSON.parse(serializedState)
-	} catch (error) {
 		return undefined
 	}
 }
@@ -17,8 +21,8 @@ export const saveState = state => {
 		const serializedState = JSON.stringify(state)
 
 		localStorage.setItem('forito', serializedState)
-	} catch (error) {
+	} catch (err) {
 		localStorage.removeItem('forito')
-		console.error(error)
+		console.error(err)
 	}
 }
