@@ -51,7 +51,7 @@ const Navbar = () => {
 		<Flex
 			flexGrow
 			align='center'
-			background={colorMode === 'light' ? 'white' : 'gray.800'}
+			className={colorMode === 'light' ? 'glassmorphism-light' : 'glassmorphism-dark'}
 			h='70px'
 			justify='space-between'
 			paddingX='8'

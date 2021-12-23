@@ -3,6 +3,12 @@
 /* Document
    ========================================================================== */
 
+*,
+*:after,
+*:before {
+  box-sizing: border-box;
+}
+
 input[type="file"] {
   cursor: pointer;
   max-width: 250px;
@@ -31,6 +37,20 @@ input[type="file"] {
 
 .MuiChip-label {
   max-width: 220px !important;
+}
+
+.glassmorphism-light {
+  border: 2px solid rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
+}
+
+.glassmorphism-dark {
+  border: 2px solid rgba(0, 0, 0, 0.2);
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(5px);
+  -webkit-backdrop-filter: blur(5px);
 }
 
 /**
