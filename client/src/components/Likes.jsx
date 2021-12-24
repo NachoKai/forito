@@ -7,7 +7,7 @@ const Likes = ({ likes, isUserLike }) => {
 	if (likesQuantity > 0) {
 		return isUserLike ? (
 			<Stack align='center' direction='row' spacing='2'>
-				<FaThumbsUp fontSize='small' />
+				<FaThumbsUp fontSize='small' h='13px' w='13px' />
 				<Text>
 					{likesQuantity > 2
 						? `You and ${likesQuantity - 1} others`
@@ -16,7 +16,7 @@ const Likes = ({ likes, isUserLike }) => {
 			</Stack>
 		) : (
 			<Stack align='center' direction='row' spacing='2'>
-				<FaRegThumbsUp fontSize='small' />
+				<FaRegThumbsUp fontSize='small' h='13px' w='13px' />
 				<Text>
 					{likesQuantity} {likesQuantity === 1 ? 'Like' : 'Likes'}
 				</Text>
@@ -25,8 +25,8 @@ const Likes = ({ likes, isUserLike }) => {
 	}
 
 	return (
-		<Stack direction='row' spacing='2'>
-			<FaRegThumbsUp fontSize='small' />
+		<Stack align='center' direction='row' spacing='2'>
+			<FaRegThumbsUp fontSize='small' h='13px' w='13px' />
 			<Text>Like</Text>
 		</Stack>
 	)
