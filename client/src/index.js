@@ -12,7 +12,7 @@ ReactDOM.render(
 	<React.StrictMode>
 		<Provider store={store}>
 			<ChakraProvider theme={theme}>
-				<ColorModeScript initialColorMode={theme.config.initialColorMode} />
+				<ColorModeScript initialColorMode={theme?.config?.initialColorMode} />
 				<App />
 			</ChakraProvider>
 		</Provider>
