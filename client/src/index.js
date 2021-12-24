@@ -9,15 +9,13 @@ import App from './App.jsx'
 import theme from './theme'
 
 ReactDOM.render(
-	<>
-		<ColorModeScript initialColorMode={theme.config.initialColorMode} />
-		<React.StrictMode>
-			<Provider store={store}>
-				<ChakraProvider theme={theme}>
-					<App />
-				</ChakraProvider>
-			</Provider>
-		</React.StrictMode>
-	</>,
+	<React.StrictMode>
+		<Provider store={store}>
+			<ChakraProvider theme={theme}>
+				<ColorModeScript initialColorMode={theme.config.initialColorMode} />
+				<App />
+			</ChakraProvider>
+		</Provider>
+	</React.StrictMode>,
 	document.getElementById('root')
 )
