@@ -115,7 +115,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				<Stack
 					bgGradient={CreateGradColor('primary', 100, 50, 900, 600, '135deg')}
 					borderRadius='lg'
-					boxShadow='md'
+					boxShadow='base'
 					p='8'
 					spacing='4'
 				>

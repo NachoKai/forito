@@ -61,7 +61,7 @@ const Search = () => {
 			allowToggle
 			bgGradient={CreateGradColor('primary', 100, 50, 900, 600, '135deg')}
 			borderRadius='lg'
-			boxShadow='md'
+			boxShadow='base'
 			colorScheme='primary'
 			maxW={{ sm: '100vw', md: '100vw', lg: '322px', xl: '322px' }}
 		>
