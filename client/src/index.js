@@ -10,12 +10,12 @@ import theme from './theme'
 
 ReactDOM.render(
 	<React.StrictMode>
-		<Provider store={store}>
-			<ChakraProvider theme={theme}>
+		<ChakraProvider theme={theme}>
+			<Provider store={store}>
 				<ColorModeScript initialColorMode={theme?.config?.initialColorMode} />
 				<App />
-			</ChakraProvider>
-		</Provider>
+			</Provider>
+		</ChakraProvider>
 	</React.StrictMode>,
 	document.getElementById('root')
 )

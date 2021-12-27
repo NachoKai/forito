@@ -28,7 +28,7 @@ const Navbar = () => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const navigate = useNavigate()
-	const [user, setUser] = useState(getUser())
+	const [user, setUser] = useState(() => getUser())
 	const { colorMode, toggleColorMode } = useColorMode()
 	const [isOpen, setIsOpen] = useState(false)
 	const open = () => setIsOpen(!isOpen)

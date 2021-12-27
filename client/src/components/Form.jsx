@@ -81,7 +81,10 @@ const Form = ({ currentId, setCurrentId }) => {
 	)
 
 	useEffect(() => {
-		if (post) setPostData(post)
+		if (post) {
+			setImages(post.selectedFile ? [{ data_url: post.selectedFile }] : [])
+			setPostData(post)
+		}
 	}, [post])
 
 	if (!user?.result?.name) {
@@ -213,33 +216,33 @@ const Form = ({ currentId, setCurrentId }) => {
 												)}
 											</Stack>
 										)}
-										{!postData.selectedFile && (
-											<Stack
-												borderColor={
+										{/* {!postData.selectedFile && ( */}
+										<Stack
+											borderColor={
+												isDragging
+													? CreateColor('gray', 700, 200)
+													: CreateColor('primary', 600, 100)
+											}
+											borderRadius='lg'
+											borderStyle='dashed'
+											borderWidth='2px'
+										>
+											<Button
+												bg={isDragging ? CreateColor('gray', 200, 700) : undefined}
+												color={
 													isDragging
 														? CreateColor('gray', 700, 200)
 														: CreateColor('primary', 600, 100)
 												}
-												borderRadius='lg'
-												borderStyle='dashed'
-												borderWidth='2px'
+												variant='ghost'
+												onClick={onImageUpload}
+												{...dragProps}
+												p='8'
 											>
-												<Button
-													bg={isDragging ? CreateColor('gray', 200, 700) : undefined}
-													color={
-														isDragging
-															? CreateColor('gray', 700, 200)
-															: CreateColor('primary', 600, 100)
-													}
-													variant='ghost'
-													onClick={onImageUpload}
-													{...dragProps}
-													p='8'
-												>
-													Upload Image
-												</Button>
-											</Stack>
-										)}
+												Upload Image
+											</Button>
+										</Stack>
+										{/* // )} */}
 										{imageList.map((image, index) => (
 											<Stack
 												key={index}
