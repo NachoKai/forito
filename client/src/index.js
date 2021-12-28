@@ -17,5 +17,5 @@ ReactDOM.render(
 			</Provider>
 		</ChakraProvider>
 	</React.StrictMode>,
-	document.getElementById('root')
+	document.getElementById('root') || document.createElement('div')
 )
