@@ -172,7 +172,7 @@ const Form = ({ currentId, setCurrentId }) => {
 							<ImageUploading
 								acceptType={['jpg', 'jpeg', 'gif', 'png']}
 								dataURLKey='data_url'
-								maxFileSize={1024 * 1024 * 5.1}
+								maxFileSize={1024 * 1024 * 2.1}
 								maxNumber={1}
 								value={images}
 								onChange={onImageUpload}
@@ -278,7 +278,7 @@ const Form = ({ currentId, setCurrentId }) => {
 								)}
 							</ImageUploading>
 						}
-						helper='Max: 5mb. Formats: jpg, jpeg, png, gif.'
+						helper='Max: 2mb. Formats: jpg, jpeg, png, gif.'
 						label='Upload image'
 					/>
 
