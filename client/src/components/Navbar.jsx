@@ -88,10 +88,10 @@ const Navbar = () => {
 										<Image
 											alt=''
 											borderRadius='full'
-											boxSize='30px'
-											fallbackSrc='https://picsum.photos/30'
+											h='30px'
 											objectFit='cover'
 											src={user?.result?.imageUrl}
+											w='30px'
 										/>
 
 										<Text

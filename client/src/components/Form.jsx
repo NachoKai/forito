@@ -252,9 +252,10 @@ const Form = ({ currentId, setCurrentId }) => {
 											>
 												<Image
 													alt=''
-													boxSize='100px'
+													h='100px'
 													objectFit='contain'
 													src={image.data_url}
+													w='100px'
 												/>
 												<Flex align='center' direction='column' justify='center'>
 													<Button
