@@ -38,8 +38,8 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	const onImageUpload = useCallback(
 		imageList => {
-			setPostData({ ...postData, selectedFile: imageList && imageList[0]?.data_url })
 			setImages(imageList)
+			setPostData({ ...postData, selectedFile: imageList && imageList[0]?.data_url })
 		},
 		[postData]
 	)
@@ -216,33 +216,33 @@ const Form = ({ currentId, setCurrentId }) => {
 												)}
 											</Stack>
 										)}
-										{/* {!postData.selectedFile && ( */}
-										<Stack
-											borderColor={
-												isDragging
-													? CreateColor('gray', 700, 200)
-													: CreateColor('primary', 600, 100)
-											}
-											borderRadius='lg'
-											borderStyle='dashed'
-											borderWidth='2px'
-										>
-											<Button
-												bg={isDragging ? CreateColor('gray', 200, 700) : undefined}
-												color={
+										{(!postData.selectedFile || !images) && (
+											<Stack
+												borderColor={
 													isDragging
 														? CreateColor('gray', 700, 200)
 														: CreateColor('primary', 600, 100)
 												}
-												variant='ghost'
-												onClick={onImageUpload}
-												{...dragProps}
-												p='8'
+												borderRadius='lg'
+												borderStyle='dashed'
+												borderWidth='2px'
 											>
-												Upload Image
-											</Button>
-										</Stack>
-										{/* // )} */}
+												<Button
+													bg={isDragging ? CreateColor('gray', 200, 700) : undefined}
+													color={
+														isDragging
+															? CreateColor('gray', 700, 200)
+															: CreateColor('primary', 600, 100)
+													}
+													variant='ghost'
+													onClick={onImageUpload}
+													{...dragProps}
+													p='8'
+												>
+													Upload Image
+												</Button>
+											</Stack>
+										)}
 										{imageList.map((image, index) => (
 											<Stack
 												key={index}
