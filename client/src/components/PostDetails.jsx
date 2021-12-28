@@ -92,7 +92,6 @@ const PostDetails = () => {
 								<Image
 									alt={post?.title}
 									flexGrow='1'
-									loading='lazy'
 									maxH='90vh'
 									maxW={{ sm: '100vw', md: '100vw', lg: '50vw', xl: '50vw' }}
 									objectFit='contain'
@@ -204,7 +203,6 @@ const PostDetails = () => {
 																alt={post?.title}
 																borderRadius='lg'
 																flexGrow='1'
-																loading='lazy'
 																objectFit='cover'
 																src={selectedFile}
 																w='100%'

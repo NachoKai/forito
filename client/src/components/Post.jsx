@@ -251,7 +251,6 @@ const Post = ({
 						borderRadius='lg'
 						className='pointer'
 						flexGrow='1'
-						loading='lazy'
 						objectFit='cover'
 						src={selectedFile}
 						w='100%'

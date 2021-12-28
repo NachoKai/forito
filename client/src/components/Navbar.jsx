@@ -90,7 +90,6 @@ const Navbar = () => {
 											borderRadius='full'
 											boxSize='30px'
 											fallbackSrc='https://picsum.photos/30'
-											loading='lazy'
 											objectFit='cover'
 											src={user?.result?.imageUrl}
 										/>
