@@ -188,8 +188,8 @@ const Auth = () => {
 							Google Login
 						</Button>
 					)}
-					onFailure={() => onFailure}
-					onSuccess={() => onSuccess}
+					onFailure={onFailure}
+					onSuccess={onSuccess}
 				/>
 
 				<Flex justify='flex-end'>
