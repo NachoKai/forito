@@ -16,7 +16,7 @@ import Tags from './components/Tags'
 import Footer from './components/Footer'
 import SavedPosts from './components/SavedPosts'
 import { getUser } from './utils/getUser'
-// import TopPosts from "./components/TopPosts"
+import TopPosts from './components/TopPosts'
 
 const App = () => {
 	const [showScroll, setShowScroll] = useState(false)
@@ -56,7 +56,7 @@ const App = () => {
 					path='auth'
 				/>
 				<Route element={<About />} path='about' />
-				{/* <Route element={<TopPosts />} path="top" /> */}
+				<Route element={<TopPosts />} path='top' />
 				<Route element={<ErrorPage />} path='*' />
 			</Routes>
 

@@ -1,21 +1,16 @@
-import { applyMiddleware, createStore } from 'redux'
-import thunkMiddleware from 'redux-thunk'
-import promiseMiddleware from 'redux-promise-middleware'
+import { configureStore } from '@reduxjs/toolkit'
 
-import composeWithDevTools from './devTools'
-import rootReducer from './rootReducer'
-import { loadState, saveState } from './sessionStorage.js'
+import { postsReducer as posts } from './posts'
+import { authReducer as auth } from './auth'
 
-const persistedState = loadState()
+const reducers = {
+	posts,
+	auth,
+}
 
-export const store = createStore(
-	rootReducer,
-	persistedState,
-	composeWithDevTools(applyMiddleware(thunkMiddleware, promiseMiddleware))
-)
-
-store.subscribe(() => {
-	saveState(store.getState())
+const store = configureStore({
+	reducer: reducers,
+	devTools: process.env.NODE_ENV !== 'production',
 })
 
-window._reduxStore = store
+export default store
