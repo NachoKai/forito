@@ -46,10 +46,10 @@ const Auth = () => {
 		[dispatch, navigate]
 	)
 
-	const onFailure = res => {
+	const onFailure = useCallback(res => {
 		showError('Something went wrong when trying to log in. Please try again.')
 		console.error('Google login was unsuccessful: ', res)
-	}
+	}, [])
 
 	const handleSubmit = useCallback(
 		e => {
