@@ -1,0 +1,7 @@
+{
+  "_id": { "$oid": "testid" },
+  "name": "Test Name",
+  "email": "testmail@mail.com",
+  "password": "testpass",
+  "__v": { "$numberInt": "0" }
+}

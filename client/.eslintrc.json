@@ -1,80 +1,130 @@
 {
-	"env": {
-		"browser": true,
-		"node": true,
-		"es2021": true,
-		"jest": true
-	},
-	"extends": ["plugin:react/recommended", "plugin:prettier/recommended", "eslint:recommended", "plugin:react-hooks/recommended"],
-	"parserOptions": {
-		"ecmaFeatures": {
-			"jsx": true
-		},
-		"ecmaVersion": 12,
-		"sourceType": "module"
-	},
-	"plugins": ["react"],
-	"rules": {
+  "env": {
+    "browser": true,
+    "node": true,
+    "es2021": true,
+    "jest": true,
+    "cypress/globals": true
+  },
+  "extends": [
+    "plugin:react/recommended",
+    "plugin:prettier/recommended",
+    "eslint:recommended",
+    "plugin:react-hooks/recommended",
+    "plugin:cypress/recommended"
+  ],
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    },
+    "ecmaVersion": 12,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "react",
+    "cypress",
+    "react-hooks"
+  ],
+  "rules": {
+    "cypress/no-assigning-return-values": "error",
+    "cypress/no-unnecessary-waiting": "error",
+    "cypress/assertion-before-screenshot": "warn",
+    "cypress/no-force": "warn",
+    "cypress/no-async-tests": "error",
+    "cypress/no-pause": "error",
     "react-hooks/rules-of-hooks": "warn",
     "react-hooks/exhaustive-deps": "warn",
-		"no-mixed-spaces-and-tabs": 0,
-		"sort-imports": [
-			"warn",
-			{
-				"ignoreCase": false,
-				"ignoreDeclarationSort": true,
-				"ignoreMemberSort": false,
-				"memberSyntaxSortOrder": ["none", "all", "multiple", "single"],
-				"allowSeparatedGroups": false
-			}
-		],
-		"no-unused-vars": [
-			"warn",
-			{ "vars": "all", "args": "after-used", "ignoreRestSiblings": false }
-		],
-		"padding-line-between-statements": [
-			"warn",
-			{ "blankLine": "always", "prev": "*", "next": "return" },
-			{ "blankLine": "always", "prev": ["const", "let", "var"], "next": "*" },
-			{ "blankLine": "any", "prev": ["const", "let", "var"], "next": ["const", "let", "var"] }
-		],
-		"react/jsx-sort-props": [
-			"warn",
-			{
-				"callbacksLast": true,
-				"shorthandFirst": true,
-				"noSortAlphabetically": false,
-				"reservedFirst": true
-			}
-		],
-		"react/self-closing-comp": "warn",
-		"react/prop-types": "off",
-		"react/react-in-jsx-scope": "off",
-		"prettier/prettier": [
-			"warn",
-			{
-				"printWidth": 90,
-				"tabWidth": 2,
-				"useTabs": true,
-				"semi": false,
-				"arrowParens": "avoid",
-				"bracketSpacing": true,
-				"bracketSameLine": false,
-				"singleQuote": true,
-				"trailingComma": "es5",
-				"endOfLine": "lf",
-				"htmlWhitespaceSensitivity": "css",
-				"jsxSingleQuote": true,
-				"quoteProps": "as-needed",
-				"requirePragma": false,
-				"insertPragma": false,
-				"proseWrap": "always"
-			}
-		]
-	},
-	"settings": {
-		"react": {
-			"version": "detect"
-		}
-	}
+    "no-mixed-spaces-and-tabs": 0,
+    "sort-imports": [
+      "warn",
+      {
+        "ignoreCase": false,
+        "ignoreDeclarationSort": true,
+        "ignoreMemberSort": false,
+        "memberSyntaxSortOrder": [
+          "none",
+          "all",
+          "multiple",
+          "single"
+        ],
+        "allowSeparatedGroups": false
+      }
+    ],
+    "no-unused-vars": [
+      "warn",
+      {
+        "vars": "all",
+        "args": "after-used",
+        "ignoreRestSiblings": false
+      }
+    ],
+    "padding-line-between-statements": [
+      "warn",
+      {
+        "blankLine": "always",
+        "prev": "*",
+        "next": "return"
+      },
+      {
+        "blankLine": "always",
+        "prev": [
+          "const",
+          "let",
+          "var"
+        ],
+        "next": "*"
+      },
+      {
+        "blankLine": "any",
+        "prev": [
+          "const",
+          "let",
+          "var"
+        ],
+        "next": [
+          "const",
+          "let",
+          "var"
+        ]
+      }
+    ],
+    "react/jsx-sort-props": [
+      "warn",
+      {
+        "callbacksLast": true,
+        "shorthandFirst": true,
+        "noSortAlphabetically": false,
+        "reservedFirst": true
+      }
+    ],
+    "react/self-closing-comp": "warn",
+    "react/prop-types": "off",
+    "react/react-in-jsx-scope": "off",
+    "prettier/prettier": [
+      "warn",
+      {
+        "printWidth": 90,
+        "tabWidth": 2,
+        "useTabs": true,
+        "semi": false,
+        "arrowParens": "avoid",
+        "bracketSpacing": true,
+        "bracketSameLine": false,
+        "singleQuote": true,
+        "trailingComma": "es5",
+        "endOfLine": "lf",
+        "htmlWhitespaceSensitivity": "css",
+        "jsxSingleQuote": true,
+        "quoteProps": "as-needed",
+        "requirePragma": false,
+        "insertPragma": false,
+        "proseWrap": "always"
+      }
+    ]
+  },
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  }
 }

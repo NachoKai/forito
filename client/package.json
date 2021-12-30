@@ -48,7 +48,8 @@
 		"build": "react-scripts build",
 		"test": "react-scripts test",
 		"test:coverage": "npm run test -- --watchAll=false",
-		"eject": "react-scripts eject"
+		"eject": "react-scripts eject",
+		"cypress": "cypress open"
 	},
 	"eslintConfig": {
 		"extends": [
@@ -72,9 +73,11 @@
 		"@redux-devtools/core": "^3.9.1",
 		"@testing-library/dom": "^8.11.1",
 		"@testing-library/user-event": "^13.5.0",
+		"cypress": "^9.2.0",
 		"eslint": "^7.32.0",
 		"eslint-config-prettier": "^8.3.0",
 		"eslint-config-standard": "^16.0.3",
+		"eslint-plugin-cypress": "^2.12.1",
 		"eslint-plugin-import": "^2.25.3",
 		"eslint-plugin-node": "^11.1.0",
 		"eslint-plugin-prettier": "^4.0.0",
