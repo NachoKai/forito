@@ -5,3 +5,9 @@ describe('The Home Page', () => {
 		cy.visit('/')
 	})
 })
+
+describe('Post Form', () => {
+	it('create a new post', () => {
+		cy.visit('/')
+	})
+})

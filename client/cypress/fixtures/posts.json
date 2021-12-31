@@ -1,0 +1,81 @@
+{
+  "data": [
+    {
+      "_id": "61cdc068e0cc66b756ae8a6e",
+      "title": "111",
+      "message": "111",
+      "name": "Nacho Caiafa",
+      "privacy": "public",
+      "creator": "112337831971871939334",
+      "tags": ["111"],
+      "selectedFile": "",
+      "likes": [],
+      "saves": [],
+      "comments": [],
+      "createdAt": "2021-12-30T14:21:28.964Z",
+      "__v": 0
+    },
+    {
+      "_id": "61cdbf1fe0cc66b756ae8a61",
+      "title": "222",
+      "message": "222",
+      "name": "Nacho Caiafa",
+      "privacy": "public",
+      "creator": "112337831971871939334",
+      "tags": ["222"],
+      "selectedFile": "",
+      "likes": [],
+      "saves": [],
+      "comments": [],
+      "createdAt": "2021-12-30T14:15:59.551Z",
+      "__v": 0
+    },
+    {
+      "_id": "61ccca2e18c9b383c42965ec",
+      "title": "333",
+      "message": "333",
+      "name": "Nacho Caiafa",
+      "privacy": "public",
+      "creator": "112337831971871939334",
+      "tags": ["333"],
+      "selectedFile": "",
+      "likes": ["112337831971871939334"],
+      "saves": [],
+      "comments": [],
+      "createdAt": "2021-12-29T20:50:54.256Z",
+      "__v": 0
+    },
+    {
+      "_id": "61ca67ff24bb837e3c4efab1",
+      "title": "444",
+      "message": "444",
+      "name": "Nacho Caiafa",
+      "privacy": "public",
+      "creator": "112337831971871939334",
+      "tags": ["444"],
+      "selectedFile": "",
+      "likes": [],
+      "saves": ["112337831971871939334"],
+      "comments": [],
+      "createdAt": "2021-12-28T01:27:27.670Z",
+      "__v": 0
+    },
+    {
+      "_id": "61ca4d4224bb837e3c4efa58",
+      "title": "555",
+      "message": "555",
+      "name": "Nacho Caiafa",
+      "privacy": "public",
+      "creator": "112337831971871939334",
+      "tags": ["555"],
+      "selectedFile": "",
+      "likes": [],
+      "saves": ["112337831971871939334"],
+      "comments": [],
+      "createdAt": "2021-12-27T23:33:22.184Z",
+      "__v": 0
+    }
+  ],
+  "currentPage": 1,
+  "numberOfPages": 2
+}
