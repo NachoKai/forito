@@ -96,6 +96,7 @@ const Navbar = () => {
 
 										<Text
 											isTruncated
+											data-cy='navbar-username'
 											display={{
 												sm: 'none',
 												md: 'flex',
@@ -127,6 +128,7 @@ const Navbar = () => {
 
 						<Button
 							colorScheme='primary'
+							data-cy='navbar-logout-button'
 							size='sm'
 							variant='outline'
 							onClick={handleLogout}
@@ -137,7 +139,12 @@ const Navbar = () => {
 				) : (
 					<Flex>
 						<Link to='auth'>
-							<Button colorScheme='primary' size='sm' variant='solid'>
+							<Button
+								colorScheme='primary'
+								data-cy='navbar-login-button'
+								size='sm'
+								variant='solid'
+							>
 								Login
 							</Button>
 						</Link>

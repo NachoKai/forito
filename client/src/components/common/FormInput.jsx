@@ -27,6 +27,7 @@ const FormInput = ({
 	rightIcon,
 	placeholder,
 	tooltip,
+	dataCy,
 }) => (
 	<FormControl isRequired={isRequired}>
 		<Flex>
@@ -64,6 +65,7 @@ const FormInput = ({
 					autoFocus={autoFocus}
 					bg='white'
 					color='black'
+					data-cy={dataCy}
 					errorBorderColor='red.400'
 					focusBorderColor='primary.200'
 					isInvalid={isInvalid}

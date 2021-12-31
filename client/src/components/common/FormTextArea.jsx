@@ -18,6 +18,7 @@ const FormTextArea = ({
 	onChange,
 	child,
 	type,
+	dataCy,
 	tooltip,
 }) => (
 	<FormControl isRequired={isRequired}>
@@ -44,6 +45,7 @@ const FormTextArea = ({
 				autoFocus={autoFocus}
 				bg='white'
 				color='black'
+				data-cy={dataCy}
 				errorBorderColor='red.300'
 				focusBorderColor='primary.200'
 				maxLength={maxLength}

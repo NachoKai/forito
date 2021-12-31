@@ -100,7 +100,11 @@ const Form = ({ currentId, setCurrentId }) => {
 				<Text fontSize='4xl' fontWeight='bold'>
 					<FaExclamationCircle />
 				</Text>
-				<Text fontSize='lg' fontWeight='bold'>
+				<Text
+					data-cy='form-login-to-create-a-post-message'
+					fontSize='lg'
+					fontWeight='bold'
+				>
 					Please login to create a Post.
 				</Text>
 			</Stack>

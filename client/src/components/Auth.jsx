@@ -98,6 +98,7 @@ const Auth = () => {
 								<FormInput
 									autoFocus
 									isRequired
+									dataCy='auth-first-name'
 									label='First Name'
 									maxLength='25'
 									name='firstName'
@@ -106,6 +107,7 @@ const Auth = () => {
 								/>
 								<FormInput
 									isRequired
+									dataCy='auth-last-name'
 									label='Last Name'
 									maxLength='25'
 									name='lastName'
@@ -116,6 +118,7 @@ const Auth = () => {
 						)}
 						<FormInput
 							isRequired
+							dataCy='auth-email'
 							label='Email'
 							maxLength='35'
 							name='email'
@@ -125,6 +128,7 @@ const Auth = () => {
 						/>
 						<FormInput
 							isRequired
+							dataCy='auth-password'
 							label='Password'
 							maxLength='35'
 							name='password'
@@ -142,6 +146,7 @@ const Auth = () => {
 						{isSignup && (
 							<FormInput
 								isRequired
+								dataCy='auth-confirm-password'
 								label='Repeat Password'
 								maxLength='35'
 								name='confirmPassword'
@@ -152,6 +157,7 @@ const Auth = () => {
 						)}
 						<Button
 							colorScheme='primary'
+							data-cy='auth-login-signup-button'
 							disabled={
 								!(isSignup
 									? checkEmpty(formData?.firstName) &&
@@ -179,6 +185,7 @@ const Auth = () => {
 					render={({ disabled, onClick }) => (
 						<Button
 							colorScheme='primary'
+							data-cy='auth-google-login-signup'
 							disabled={disabled}
 							leftIcon={<FaGoogle />}
 							size='lg'
