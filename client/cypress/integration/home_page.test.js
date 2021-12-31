@@ -16,7 +16,6 @@ describe('Post Form', () => {
 		cy.get('[data-cy="auth-email"]').type('tester@mail.com')
 		cy.get('[data-cy="auth-password"]').type('123123')
 		cy.get('[data-cy="auth-login-signup-button"]').click()
-		cy.wait('@getPosts')
 		cy.url().should('include', '/posts')
 		cy.get('[data-cy="form-title"]').type('Test Title')
 		cy.get('[data-cy="form-message"]').type('Test Message')
