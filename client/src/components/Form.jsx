@@ -137,6 +137,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 					<FormInput
 						isRequired
+						dataCy='form-title'
 						label='Title'
 						maxLength='105'
 						name='title'
@@ -147,6 +148,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 					<FormTextArea
 						isRequired
+						dataCy='form-message'
 						label='Message'
 						maxLength='5000'
 						name='message'
@@ -156,6 +158,7 @@ const Form = ({ currentId, setCurrentId }) => {
 					/>
 
 					<FormInput
+						dataCy='form-tags'
 						helper='Separated by commas.'
 						isInvalid={areValidTags}
 						label='Tags'
@@ -314,6 +317,7 @@ const Form = ({ currentId, setCurrentId }) => {
 						<Button
 							bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
 							colorScheme='primary'
+							data-cy='form-submit-button'
 							disabled={
 								!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) ||
 								![...new Set(postData.tags)].every(tag => /^[a-zA-Z0-9_.-]*$/.test(tag))
@@ -322,7 +326,12 @@ const Form = ({ currentId, setCurrentId }) => {
 						>
 							Submit
 						</Button>
-						<Button colorScheme='primary' variant='outline' onClick={handleClear}>
+						<Button
+							colorScheme='primary'
+							data-cy='form-clear-button'
+							variant='outline'
+							onClick={handleClear}
+						>
 							Clear
 						</Button>
 					</Stack>

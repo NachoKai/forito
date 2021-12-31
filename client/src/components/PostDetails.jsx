@@ -80,10 +80,10 @@ const PostDetails = () => {
 							spacing='8'
 						>
 							<Stack spacing='8' w='100%'>
-								<Heading as='h2' size='xl'>
+								<Heading as='h2' data-cy='post-details-title' size='xl'>
 									{post?.title}
 								</Heading>
-								<Text fontSize='md' whiteSpace='pre-wrap'>
+								<Text data-cy='post-details-message' fontSize='md' whiteSpace='pre-wrap'>
 									{post?.message}
 								</Text>
 							</Stack>
@@ -108,7 +108,12 @@ const PostDetails = () => {
 										[...new Set(post?.tags)]
 											.filter(e => e)
 											.map(tag => (
-												<Badge key={getRandomId()} bg='primary.400' color='white'>
+												<Badge
+													key={getRandomId()}
+													bg='primary.400'
+													color='white'
+													data-cy='post-details-tags'
+												>
 													<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
 												</Badge>
 											))}
