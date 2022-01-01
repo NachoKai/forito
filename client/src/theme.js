@@ -1,13 +1,15 @@
 import { extendTheme, theme, useColorModeValue } from '@chakra-ui/react'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
+import '@fontsource/roboto'
+import '@fontsource/roboto-slab'
 
 const colors = {
 	primary: theme.colors.blue,
 }
 
 const fonts = {
-	body: 'system-ui, sans-serif',
-	heading: 'system-ui, sans-serif',
+	body: 'Roboto, sans-serif',
+	heading: 'Roboto Slab, serif',
 	mono: 'Menlo, monospace',
 }
 
