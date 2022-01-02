@@ -83,7 +83,7 @@ const PostDetails = () => {
 								<Heading as='h2' data-cy='post-details-title' size='xl'>
 									{post?.title}
 								</Heading>
-								<Text data-cy='post-details-message' fontSize='md' whiteSpace='pre-wrap'>
+								<Text data-cy='post-details-message' fontSize='lg' whiteSpace='pre-wrap'>
 									{post?.message}
 								</Text>
 							</Stack>
@@ -123,11 +123,11 @@ const PostDetails = () => {
 										direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }}
 										spacing='2'
 									>
-										<Text fontSize='lg'>Created by:</Text>
-										<Text fontSize='lg' fontWeight='bold'>
+										<Text fontSize='md'>Created by:</Text>
+										<Text fontSize='md' fontWeight='bold'>
 											<Link to={`/creator/${post?.creator}`}>{` ${post?.name}`}</Link>
 										</Text>
-										<Text fontSize='lg'>
+										<Text fontSize='md'>
 											{formatDistance(
 												new Date(),
 												post?.createdAt ? new Date(post?.createdAt) : new Date()
@@ -156,7 +156,7 @@ const PostDetails = () => {
 
 						<Divider colorScheme='primary' />
 
-						<Text fontSize='lg' fontWeight='bold' id='comments'>
+						<Text fontSize='md' fontWeight='bold' id='comments'>
 							Comments
 						</Text>
 						<Comments post={post} />
@@ -190,7 +190,7 @@ const PostDetails = () => {
 												spacing='2'
 												onClick={() => openPost(_id)}
 											>
-												<Heading as='h3' fontSize='lg' fontWeight='bold'>
+												<Heading as='h3' fontSize='3xl' fontWeight='bold'>
 													{title}
 												</Heading>
 												<Text>
@@ -201,7 +201,9 @@ const PostDetails = () => {
 													) + ' ago'}
 												</Text>
 												<Stack spacing='4'>
-													<Text noOfLines={[2, 4, 6]}>{message}</Text>
+													<Text fontSize='lg' noOfLines={[2, 4, 6]}>
+														{message}
+													</Text>
 													{selectedFile && (
 														<AspectRatio maxH='80vh' ratio={1} w='100%'>
 															<Image

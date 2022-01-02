@@ -106,7 +106,7 @@ const Post = ({
 				<Stack direction='column' spacing='4'>
 					<Stack direction='row'>
 						<Stack direction='column' spacing='0'>
-							<Text fontSize='lg' fontWeight='bold'>
+							<Text fontSize='md' fontWeight='bold'>
 								<Link to={`/creator/${creator}`}>{` ${name}`}</Link>
 							</Text>
 							<Tooltip
@@ -143,7 +143,7 @@ const Post = ({
 						{title}
 					</Heading>
 
-					<Text fontSize='md' noOfLines={[2, 4, 6]} p='8px 0' whiteSpace='pre-wrap'>
+					<Text fontSize='lg' noOfLines={[2, 4, 6]} p='8px 0' whiteSpace='pre-wrap'>
 						{message}
 					</Text>
 				</Stack>
