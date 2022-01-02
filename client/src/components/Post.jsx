@@ -132,7 +132,7 @@ const Post = ({
 					<Heading
 						as='h3'
 						className='pointer'
-						fontSize='3xl'
+						fontSize='2xl'
 						marginBottom='2'
 						textShadow={useColorModeValue(
 							`0 0 2px rgba(0,0,0,0.2)`,
@@ -143,7 +143,7 @@ const Post = ({
 						{title}
 					</Heading>
 
-					<Text fontSize='lg' noOfLines={[2, 4, 6]} p='8px 0' whiteSpace='pre-wrap'>
+					<Text fontSize='md' noOfLines={[2, 4, 6]} p='8px 0' whiteSpace='pre-wrap'>
 						{message}
 					</Text>
 				</Stack>
