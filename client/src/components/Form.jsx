@@ -246,7 +246,7 @@ const Form = ({ currentId, setCurrentId }) => {
 													{...dragProps}
 													p='8'
 												>
-													Upload Image
+													Click or drag & drop image here
 												</Button>
 											</Stack>
 										)}
