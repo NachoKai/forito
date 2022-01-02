@@ -251,9 +251,10 @@ const Post = ({
 						borderRadius='lg'
 						className='pointer'
 						flexGrow='1'
+						maxHeight='500px'
+						maxWidth='543px'
 						objectFit='cover'
 						src={selectedFile}
-						w='100%'
 						onClick={openPost}
 					/>
 				</AspectRatio>

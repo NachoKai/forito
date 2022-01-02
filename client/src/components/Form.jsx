@@ -112,7 +112,7 @@ const Form = ({ currentId, setCurrentId }) => {
 	}
 
 	return (
-		<Flex minWidth='320px' w='100%'>
+		<Flex maxW={{ sm: '100vw', md: '100vw', lg: '322px', xl: '322px' }} w='100%'>
 			<form
 				noValidate
 				autoComplete='off'
