@@ -70,7 +70,10 @@ const PostDetails = () => {
 		<>
 			{isLoading ? (
 				<Stack minHeight='100vh' p='8'>
-					<Loading height={{ sm: '300px', md: '400px', lg: '500px', xl: '600px' }} />
+					<Loading
+						invert
+						height={{ sm: '300px', md: '400px', lg: '500px', xl: '600px' }}
+					/>
 				</Stack>
 			) : (
 				<Stack borderRadius='lg' p='32px' spacing='8'>
