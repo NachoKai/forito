@@ -21,7 +21,12 @@ const Home = () => {
 			<Stack
 				direction={{ sm: 'column-reverse', md: 'column-reverse', lg: 'row', xl: 'row' }}
 				p={{ sm: '0', md: '0', lg: '8', xl: '8' }}
-				spacing='8'
+				spacing={{
+					sm: '6',
+					md: '8',
+					lg: '8',
+					xl: '8',
+				}}
 			>
 				<Stack w='100%'>
 					<Posts

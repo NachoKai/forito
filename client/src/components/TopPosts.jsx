@@ -21,13 +21,33 @@ const TopPosts = () => {
 	const topPosts = getTopPosts(5)
 
 	return (
-		<Flex flexGrow direction='column' minHeight='100vh' p='8' w='100%'>
+		<Flex
+			flexGrow
+			direction='column'
+			minHeight='100vh'
+			p={{
+				sm: '6',
+				md: '8',
+				lg: '8',
+				xl: '8',
+			}}
+			w='100%'
+		>
 			<Text color='primary.400' fontSize='4xl' marginBottom='16px'>
 				Top Posts
 			</Text>
 
 			{isLoading ? (
-				<Stack minHeight='100vh' spacing='8' w='100%'>
+				<Stack
+					minHeight='100vh'
+					spacing={{
+						sm: '6',
+						md: '8',
+						lg: '8',
+						xl: '8',
+					}}
+					w='100%'
+				>
 					<Loading />
 					<Loading />
 					<Loading />
@@ -35,7 +55,16 @@ const TopPosts = () => {
 					<Loading />
 				</Stack>
 			) : (
-				<Stack direction='column' spacing='8' w='100%'>
+				<Stack
+					direction='column'
+					spacing={{
+						sm: '6',
+						md: '8',
+						lg: '8',
+						xl: '8',
+					}}
+					w='100%'
+				>
 					{!havePosts ? (
 						<Flex align='center' direction='column' marginY='64px'>
 							<Text color='primary.400' fontSize='6xl'>

@@ -45,7 +45,12 @@ const Comments = ({ post }) => {
 					bgGradient={CreateGradColor('primary', 100, 50, 900, 600, '135deg')}
 					borderRadius='lg'
 					boxShadow='md'
-					p='8'
+					p={{
+						sm: '6',
+						md: '8',
+						lg: '8',
+						xl: '8',
+					}}
 					spacing='4'
 					width='100%'
 				>
@@ -81,7 +86,12 @@ const Comments = ({ post }) => {
 					color={CreateColor('primary', 600, 100)}
 					direction='column'
 					minWidth='320px'
-					p='8'
+					p={{
+						sm: '6',
+						md: '8',
+						lg: '8',
+						xl: '8',
+					}}
 					spacing='4'
 				>
 					<Text fontSize='4xl' fontWeight='bold'>

@@ -69,20 +69,57 @@ const PostDetails = () => {
 	return (
 		<>
 			{isLoading ? (
-				<Stack minHeight='100vh' p='8'>
+				<Stack
+					minHeight='100vh'
+					p={{
+						sm: '6',
+						md: '8',
+						lg: '8',
+						xl: '8',
+					}}
+				>
 					<Loading
 						invert
 						height={{ sm: '300px', md: '400px', lg: '500px', xl: '600px' }}
 					/>
 				</Stack>
 			) : (
-				<Stack borderRadius='lg' p='32px' spacing='8'>
-					<Stack spacing='8'>
+				<Stack
+					borderRadius='lg'
+					p='32px'
+					spacing={{
+						sm: '6',
+						md: '8',
+						lg: '8',
+						xl: '8',
+					}}
+				>
+					<Stack
+						spacing={{
+							sm: '6',
+							md: '8',
+							lg: '8',
+							xl: '8',
+						}}
+					>
 						<Stack
 							direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }}
-							spacing='8'
+							spacing={{
+								sm: '6',
+								md: '8',
+								lg: '8',
+								xl: '8',
+							}}
 						>
-							<Stack spacing='8' w='100%'>
+							<Stack
+								spacing={{
+									sm: '6',
+									md: '8',
+									lg: '8',
+									xl: '8',
+								}}
+								w='100%'
+							>
 								<Heading as='h2' data-cy='post-details-title' size='xl'>
 									{post?.title}
 								</Heading>
@@ -169,13 +206,26 @@ const PostDetails = () => {
 						<>
 							<Divider colorScheme='primary' />
 
-							<Stack overflow='auto' spacing='8'>
+							<Stack
+								overflow='auto'
+								spacing={{
+									sm: '6',
+									md: '8',
+									lg: '8',
+									xl: '8',
+								}}
+							>
 								<Text fontWeight='bold'>You might also like:</Text>
 								<Stack
 									className='recommended-posts'
 									direction='row'
 									overflow='auto'
-									spacing='8'
+									spacing={{
+										sm: '6',
+										md: '8',
+										lg: '8',
+										xl: '8',
+									}}
 								>
 									{recommendedPosts?.map(
 										({ title, name, message, selectedFile, _id }) => (
@@ -189,7 +239,12 @@ const PostDetails = () => {
 												h='100%'
 												maxWidth='320px'
 												minWidth='320px'
-												p='8'
+												p={{
+													sm: '6',
+													md: '8',
+													lg: '8',
+													xl: '8',
+												}}
 												spacing='2'
 												onClick={() => openPost(_id)}
 											>

@@ -94,7 +94,12 @@ const Form = ({ currentId, setCurrentId }) => {
 				color={CreateColor('primary', 600, 100)}
 				direction='column'
 				minWidth='320px'
-				p='8'
+				p={{
+					sm: '6',
+					md: '8',
+					lg: '8',
+					xl: '8',
+				}}
 				spacing='4'
 			>
 				<Text fontSize='4xl' fontWeight='bold'>
@@ -123,7 +128,12 @@ const Form = ({ currentId, setCurrentId }) => {
 					bgGradient={CreateGradColor('primary', 100, 50, 900, 600, '135deg')}
 					borderRadius='lg'
 					boxShadow='base'
-					p='8'
+					p={{
+						sm: '6',
+						md: '8',
+						lg: '8',
+						xl: '8',
+					}}
 					spacing='4'
 				>
 					<Text
@@ -244,7 +254,12 @@ const Form = ({ currentId, setCurrentId }) => {
 													variant='ghost'
 													onClick={onImageUpload}
 													{...dragProps}
-													p='8'
+													p={{
+														sm: '6',
+														md: '8',
+														lg: '8',
+														xl: '8',
+													}}
 												>
 													Click or drag & drop image here
 												</Button>

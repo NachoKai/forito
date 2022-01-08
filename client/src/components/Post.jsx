@@ -98,8 +98,18 @@ const Post = ({
 				xl: 'row',
 			}}
 			h='100%'
-			p='8'
-			spacing='8'
+			p={{
+				sm: '6',
+				md: '8',
+				lg: '8',
+				xl: '8',
+			}}
+			spacing={{
+				sm: '6',
+				md: '8',
+				lg: '8',
+				xl: '8',
+			}}
 			w='100%'
 		>
 			<Stack justify='space-between' spacing='4' w='100%'>

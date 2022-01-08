@@ -78,13 +78,28 @@ const Auth = () => {
 	}, [showPassword])
 
 	return (
-		<Stack align='center' justify='flex-start' minHeight='100vh' p='8'>
+		<Stack
+			align='center'
+			justify='flex-start'
+			minHeight='100vh'
+			p={{
+				sm: '6',
+				md: '8',
+				lg: '8',
+				xl: '8',
+			}}
+		>
 			<Stack
 				bg={CreateBg('primary', 100, 600)}
 				borderRadius='lg'
 				maxWidth='450px'
 				minWidth='320px'
-				p='8'
+				p={{
+					sm: '6',
+					md: '8',
+					lg: '8',
+					xl: '8',
+				}}
 				spacing='4'
 				w='100%'
 			>

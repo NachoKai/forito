@@ -12,7 +12,12 @@ const About = () => (
 		h='100%'
 		justify='flex-start'
 		minHeight='100vh'
-		p='8'
+		p={{
+			sm: '6',
+			md: '8',
+			lg: '8',
+			xl: '8',
+		}}
 	>
 		<Stack spacing='4'>
 			<Flex justify='center'>

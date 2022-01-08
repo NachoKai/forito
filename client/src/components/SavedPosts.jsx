@@ -39,7 +39,18 @@ const SavedPosts = () => {
 	}
 
 	return (
-		<Stack borderRadius='lg' h='100%' minHeight='100vh' p='32px' spacing='8'>
+		<Stack
+			borderRadius='lg'
+			h='100%'
+			minHeight='100vh'
+			p='32px'
+			spacing={{
+				sm: '6',
+				md: '8',
+				lg: '8',
+				xl: '8',
+			}}
+		>
 			<Stack spacing='2'>
 				<Text fontSize='2xl'>Saved Posts</Text>
 				<Text fontSize='md'>

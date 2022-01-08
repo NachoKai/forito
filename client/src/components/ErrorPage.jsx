@@ -9,7 +9,12 @@ const ErrorPage = () => (
 		h='100%'
 		justify='flex-start'
 		minHeight='100vh'
-		p='8'
+		p={{
+			sm: '6',
+			md: '8',
+			lg: '8',
+			xl: '8',
+		}}
 	>
 		<Text color='primary.400' fontSize='6xl'>
 			<FaExclamationCircle />
