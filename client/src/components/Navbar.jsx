@@ -54,7 +54,7 @@ const Navbar = () => {
 			className={colorMode === 'light' ? 'glassmorphism-light' : 'glassmorphism-dark'}
 			h='70px'
 			justify='space-between'
-			paddingX='8'
+			paddingX={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 			position='sticky'
 			top='0'
 			zIndex='3'
