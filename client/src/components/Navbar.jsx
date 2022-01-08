@@ -64,7 +64,7 @@ const Navbar = () => {
 					as='h2'
 					bgClip='text'
 					bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
-					fontSize='2xl'
+					fontSize={{ sm: 'xl', md: '2xl', lg: '2xl', xl: '2xl' }}
 					fontWeight='bold'
 				>
 					<Link to='/'>Forito ✨</Link>
@@ -73,7 +73,11 @@ const Navbar = () => {
 
 			<Stack align='center' direction='row' spacing='4'>
 				{user?.result ? (
-					<Stack align='center' direction='row' spacing='8'>
+					<Stack
+						align='center'
+						direction='row'
+						spacing={{ sm: '4', md: '8', lg: '8', xl: '8' }}
+					>
 						{user?.result.name && (
 							<Popover
 								isLazy
