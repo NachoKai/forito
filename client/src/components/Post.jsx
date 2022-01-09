@@ -153,7 +153,17 @@ const Post = ({
 						{title}
 					</Heading>
 
-					<Text fontSize='md' noOfLines={[2, 4, 6]} p='8px 0 0 0' whiteSpace='pre-wrap'>
+					<Text
+						fontSize='md'
+						m={{
+							sm: '6',
+							md: '8',
+							lg: '8',
+							xl: '8',
+						}}
+						noOfLines={[2, 4, 6]}
+						whiteSpace='pre-wrap'
+					>
 						{message}
 					</Text>
 				</Stack>
