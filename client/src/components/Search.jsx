@@ -64,6 +64,8 @@ const Search = () => {
 			boxShadow='base'
 			colorScheme='primary'
 			maxW={{ sm: '100vw', md: '100vw', lg: '322px', xl: '322px' }}
+			minWidth='320px'
+			w='100%'
 		>
 			<AccordionItem>
 				<AccordionButton>
