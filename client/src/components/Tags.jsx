@@ -69,7 +69,6 @@ const Tags = () => {
 					<Loading />
 					<Loading />
 					<Loading />
-					<Loading />
 				</>
 			) : (
 				<Stack spacing='3'>

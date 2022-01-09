@@ -42,7 +42,6 @@ const App = () => {
 			<Navbar />
 			<Routes>
 				<Route element={<Navigate replace to='/posts' />} path='/' />
-				<Route element={<Navigate replace to='/posts' />} path='/posts?page=1' />
 				<Route element={<Home />} path='posts' />
 				<Route element={<Home />} path='posts/search' />
 				<Route element={<PostDetails />} path='posts/:id' />

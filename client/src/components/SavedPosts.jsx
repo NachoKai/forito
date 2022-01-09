@@ -70,7 +70,6 @@ const SavedPosts = () => {
 					<Loading />
 					<Loading />
 					<Loading />
-					<Loading />
 				</>
 			) : (
 				<Stack spacing='3'>
