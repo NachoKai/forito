@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Flex, Image, Stack, Text } from '@chakra-ui/react'
 import { FaExclamationCircle } from 'react-icons/fa'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import ImageUploading from 'react-images-uploading'
 
 import { createPost, updatePost } from '../redux/posts'
@@ -24,7 +24,6 @@ const initialState = {
 const Form = ({ currentId, setCurrentId }) => {
 	const dispatch = useDispatch()
 	const user = getUser()
-	const location = useLocation()
 	const navigate = useNavigate()
 	const [postData, setPostData] = useState(initialState)
 	const [images, setImages] = useState([])
@@ -119,7 +118,6 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	return (
 		<Flex
-			display={!location?.pathname.includes('/search') ? 'flex' : 'none'}
 			maxW={{ sm: '100vw', md: '100vw', lg: '322px', xl: '322px' }}
 			minWidth='320px'
 			w='100%'

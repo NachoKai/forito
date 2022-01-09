@@ -11,7 +11,7 @@ import {
 	Stack,
 	Text,
 } from '@chakra-ui/react'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import ChipInput from 'material-ui-chip-input'
 import styled from 'styled-components'
 
@@ -24,17 +24,23 @@ const Search = () => {
 	const navigate = useNavigate()
 	const [searchValue, setSearchValue] = useState('')
 	const [searchTags, setSearchTags] = useState([])
+	const location = useLocation()
 
 	const searchPost = useCallback(() => {
+		console.log('location.pathname', location?.pathname)
 		if (searchValue.trim() || searchTags) {
 			setSearchValue('')
 			setSearchTags([])
 			dispatch(getPostsBySearch({ search: searchValue, tags: searchTags.join(',') }))
-			navigate(`search?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`)
+			navigate(
+				`${location?.pathname}?searchQuery=${
+					searchValue || 'none'
+				}&tags=${searchTags.join(',')}`
+			)
 		} else {
 			navigate('/')
 		}
-	}, [dispatch, navigate, searchTags, searchValue])
+	}, [dispatch, location, navigate, searchTags, searchValue])
 
 	const handleKeyPress = e => {
 		if (e.keyCode === 13) {

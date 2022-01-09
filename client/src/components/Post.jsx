@@ -145,8 +145,8 @@ const Post = ({
 						fontSize='2xl'
 						marginBottom='2'
 						textShadow={useColorModeValue(
-							`0 0 2px rgba(0,0,0,0.2)`,
-							`0 0 2px rgba(255,255,255,0.2)`
+							`0 0 2px rgba(0,0,0,0.3)`,
+							`0 0 2px rgba(255,255,255,0.3)`
 						)}
 						onClick={openPost}
 					>
