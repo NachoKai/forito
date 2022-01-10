@@ -1,6 +1,6 @@
 input[type="file"] {
-  cursor: pointer;
   max-width: 250px;
+  cursor: pointer;
 }
 
 .recommended-posts {
@@ -16,9 +16,9 @@ input[type="file"] {
 }
 
 .MuiButtonBase-root {
+  align-items: center;
   padding: 4px !important;
   margin: 4px !important;
-  align-items: center;
 }
 
 .MuiChip-clickable {
@@ -30,17 +30,15 @@ input[type="file"] {
 }
 
 .glassmorphism-light {
-  border: 2px solid rgba(255, 255, 255, 0.2);
-  background: rgba(255, 255, 255, 0.4);
+  background: rgb(255 255 255 / 40%);
+  border: 2px solid rgb(255 255 255 / 20%);
   backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
 }
 
 .glassmorphism-dark {
-  border: 2px solid rgba(0, 0, 0, 0.2);
-  background: rgba(0, 0, 0, 0.4);
+  background: rgb(0 0 0 / 40%);
+  border: 2px solid rgb(0 0 0 / 20%);
   backdrop-filter: blur(5px);
-  -webkit-backdrop-filter: blur(5px);
 }
 
 .chakra-accordion__item {
