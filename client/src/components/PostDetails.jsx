@@ -248,10 +248,15 @@ const PostDetails = () => {
 												spacing='2'
 												onClick={() => openPost(_id)}
 											>
-												<Heading as='h3' fontSize='3xl' fontWeight='bold'>
+												<Heading
+													as='h3'
+													fontSize='lg'
+													fontWeight='bold'
+													noOfLines={[1, 1, 2]}
+												>
 													{title}
 												</Heading>
-												<Text>
+												<Text fontSize='sm'>
 													{name}{' '}
 													{formatDistance(
 														new Date(),
@@ -259,7 +264,7 @@ const PostDetails = () => {
 													) + ' ago'}
 												</Text>
 												<Stack spacing='4'>
-													<Text fontSize='lg' noOfLines={[2, 4, 6]}>
+													<Text fontSize='md' noOfLines={[1, 2, 4]}>
 														{message}
 													</Text>
 													{selectedFile && (
