@@ -47,9 +47,10 @@ const Post = ({
 	const isUserLike = likes?.find(like => like === userId)
 	const hasUserSaved = saves?.find(save => save === userId)
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
-	const [likesMock, setLikesMock] = useState(likes)
 	const location = useLocation()
 	const userEmail = user?.result?.email
+	const [saveLoading, setSaveLoading] = useState(false)
+	const [likeLoading, setLikeLoading] = useState(false)
 
 	const isPostCreator = user?.result?.googleId
 		? user?.result?.googleId === creator
@@ -60,17 +61,15 @@ const Post = ({
 	const isAdmin = userEmail ? process.env.REACT_APP_ADMIN === userEmail : false
 
 	const handleLike = useCallback(async () => {
-		dispatch(likePost(_id))
-
-		if (isUserLike) {
-			setLikesMock(likes.filter(id => id !== userId))
-		} else {
-			setLikesMock([...likes, userId])
-		}
-	}, [_id, dispatch, isUserLike, likes, userId])
+		await setLikeLoading(true)
+		await dispatch(likePost(_id))
+		await setLikeLoading(false)
+	}, [_id, dispatch])
 
 	const handleSave = useCallback(async () => {
-		dispatch(savePost(_id))
+		await setSaveLoading(true)
+		await dispatch(savePost(_id))
+		await setSaveLoading(false)
 	}, [_id, dispatch])
 
 	const openPost = useCallback(() => {
@@ -200,18 +199,22 @@ const Post = ({
 							<Button
 								colorScheme='primary'
 								disabled={!user?.result}
+								isLoading={!!likeLoading}
+								loadingText='Loading...'
 								minWidth='80px'
 								size='sm'
 								variant={isUserLike ? 'ghost' : 'outline'}
 								onClick={handleLike}
 							>
-								<Likes isUserLike={isUserLike} likes={likesMock} />
+								<Likes isUserLike={isUserLike} likes={likes} />
 							</Button>
 							{userEmail && (
 								<Button
 									colorScheme='primary'
 									disabled={!user?.result}
+									isLoading={!!saveLoading}
 									leftIcon={hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
+									loadingText='Loading...'
 									minWidth='88px'
 									size='sm'
 									variant={hasUserSaved ? 'ghost' : 'outline'}
