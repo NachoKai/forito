@@ -190,6 +190,15 @@ const Post = ({
 						>
 							<Button
 								colorScheme='primary'
+								leftIcon={<FaRegComments />}
+								size='sm'
+								variant='ghost'
+								onClick={openComments}
+							>
+								{comments?.length} {comments?.length === 1 ? 'Comment' : 'Comments'}
+							</Button>
+							<Button
+								colorScheme='primary'
 								disabled={!user?.result}
 								minWidth='80px'
 								size='sm'
@@ -197,15 +206,6 @@ const Post = ({
 								onClick={handleLike}
 							>
 								<Likes isUserLike={isUserLike} likes={likesMock} />
-							</Button>
-							<Button
-								colorScheme='primary'
-								leftIcon={<FaRegComments />}
-								size='sm'
-								variant={'outline'}
-								onClick={openComments}
-							>
-								{comments?.length} {comments?.length === 1 ? 'Comment' : 'Comments'}
 							</Button>
 							{userEmail && (
 								<Button
