@@ -186,13 +186,11 @@ const Post = ({
 						<Stack
 							direction='row'
 							display={location?.pathname.includes('/posts') ? 'flex' : 'none'}
-							flexGrow={{ sm: '1', md: '1', lg: '0', xl: '0' }}
 							spacing='2'
 						>
 							<Button
 								colorScheme='primary'
 								disabled={!user?.result}
-								flexGrow={{ sm: '1', md: '1', lg: '0', xl: '0' }}
 								minWidth='80px'
 								size='sm'
 								variant={isUserLike ? 'ghost' : 'outline'}
@@ -202,7 +200,6 @@ const Post = ({
 							</Button>
 							<Button
 								colorScheme='primary'
-								flexGrow={{ sm: '1', md: '1', lg: '0', xl: '0' }}
 								leftIcon={<FaRegComments />}
 								size='sm'
 								variant={'outline'}
@@ -210,19 +207,10 @@ const Post = ({
 							>
 								{comments?.length} {comments?.length === 1 ? 'Comment' : 'Comments'}
 							</Button>
-						</Stack>
-
-						<Stack
-							direction='row'
-							display={location?.pathname.includes('/posts') ? 'flex' : 'none'}
-							flexGrow={{ sm: '1', md: '1', lg: '0', xl: '0' }}
-							spacing='2'
-						>
 							{userEmail && (
 								<Button
 									colorScheme='primary'
 									disabled={!user?.result}
-									flexGrow={{ sm: '1', md: '1', lg: '0', xl: '0' }}
 									leftIcon={hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
 									minWidth='88px'
 									size='sm'
@@ -232,10 +220,16 @@ const Post = ({
 									{hasUserSaved ? 'Saved' : 'Save'}
 								</Button>
 							)}
+						</Stack>
+
+						<Stack
+							direction='row'
+							display={location?.pathname.includes('/posts') ? 'flex' : 'none'}
+							spacing='2'
+						>
 							{(isPostCreator || isAdmin) && (
 								<Button
 									colorScheme='primary'
-									flexGrow={{ sm: '1', md: '1', lg: '0', xl: '0' }}
 									leftIcon={<FaPen />}
 									minWidth='88px'
 									size='sm'
@@ -249,7 +243,6 @@ const Post = ({
 								<Button
 									bg={CreateBg('red', 500, 200)}
 									colorScheme='primary'
-									flexGrow={{ sm: '1', md: '1', lg: '0', xl: '0' }}
 									leftIcon={<FaEraser />}
 									minWidth='88px'
 									size='sm'
