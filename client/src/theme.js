@@ -25,11 +25,17 @@ const config = {
 	useSystemColorMode: false,
 }
 
+const shadows = {
+	blue: '0 10px 15px -3px #60a5faB3, 0 4px 6px -4px #60a5faB3',
+	red: '0 10px 15px -3px #f87171B3, 0 4px 6px -4px #f87171B3',
+}
+
 export default extendTheme({
 	colors,
 	fonts,
 	breakpoints,
 	config,
+	shadows,
 })
 
 export const CreateBg = (scheme, firstValue, secondValue) => {

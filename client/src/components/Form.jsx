@@ -335,6 +335,7 @@ const Form = ({ currentId, setCurrentId }) => {
 					<Stack spacing='4'>
 						<Button
 							bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
+							boxShadow='blue'
 							colorScheme='primary'
 							data-cy='form-submit-button'
 							disabled={

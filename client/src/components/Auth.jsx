@@ -171,6 +171,7 @@ const Auth = () => {
 							/>
 						)}
 						<Button
+							boxShadow='blue'
 							colorScheme='primary'
 							data-cy='auth-login-signup-button'
 							disabled={

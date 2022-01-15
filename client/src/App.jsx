@@ -62,6 +62,7 @@ const App = () => {
 
 			<Button
 				bottom={['16px', '32px']}
+				boxShadow='blue'
 				colorScheme='primary'
 				display={showScroll ? 'flex' : 'none'}
 				position='fixed'

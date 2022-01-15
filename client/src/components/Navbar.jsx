@@ -144,6 +144,7 @@ const Navbar = () => {
 					<Flex>
 						<Link to='auth'>
 							<Button
+								boxShadow='blue'
 								colorScheme='primary'
 								data-cy='navbar-login-button'
 								size='sm'
