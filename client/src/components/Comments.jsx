@@ -63,6 +63,7 @@ const Comments = ({ post }) => {
 					/>
 					<Stack direction='row' spacing='4'>
 						<Button
+							boxShadow='blue'
 							colorScheme='primary'
 							disabled={!checkEmpty(comment)}
 							flexGrow='1'
