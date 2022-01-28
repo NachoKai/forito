@@ -6,7 +6,6 @@ import styled from 'styled-components'
 import { Stack, useColorModeValue } from '@chakra-ui/react'
 
 import { getPosts } from '../redux/posts'
-import { CreateBg } from '../theme'
 
 const Paginate = ({ page }) => {
 	const dispatch = useDispatch()
@@ -18,7 +17,7 @@ const Paginate = ({ page }) => {
 
 	return (
 		<Container
-			bg={CreateBg('primary', 50, 800)}
+			bg='primary_50_800'
 			borderRadius='lg'
 			boxShadow='base'
 			color={useColorModeValue('black', 'white')}

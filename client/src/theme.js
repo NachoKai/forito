@@ -30,21 +30,51 @@ const shadows = {
 	red: '0 10px 15px -3px #f87171B3, 0 4px 6px -4px #f87171B3',
 }
 
+const semanticTokens = {
+	colors: {
+		primary_100_600: {
+			_light: 'primary.100',
+			_dark: 'primary.600',
+		},
+		primary_100_900: {
+			_light: 'primary.100',
+			_dark: 'primary.900',
+		},
+		primary_50_800: {
+			_light: 'primary.50',
+			_dark: 'primary.800',
+		},
+		red_500_200: {
+			_light: 'red.500',
+			_dark: 'red.200',
+		},
+		primary_600_100: {
+			_light: 'primary.600',
+			_dark: 'primary.100',
+		},
+		primary_800_100: {
+			_light: 'primary.800',
+			_dark: 'primary.100',
+		},
+		gray_700_200: {
+			_light: 'gray.700',
+			_dark: 'gray.200',
+		},
+		gray_200_700: {
+			_light: 'gray.200',
+			_dark: 'gray.700',
+		},
+	},
+}
+
 export default extendTheme({
 	colors,
 	fonts,
 	breakpoints,
 	config,
 	shadows,
+	semanticTokens,
 })
-
-export const CreateBg = (scheme, firstValue, secondValue) => {
-	return useColorModeValue(`${scheme}.${firstValue}`, `${scheme}.${secondValue}`)
-}
-
-export const CreateColor = (scheme, firstValue, secondValue) => {
-	return useColorModeValue(`${scheme}.${firstValue}`, `${scheme}.${secondValue}`)
-}
 
 export const CreateGradColor = (
 	scheme,
@@ -53,9 +83,8 @@ export const CreateGradColor = (
 	thirdValue,
 	fourthValue,
 	angle = 'to-l'
-) => {
-	return useColorModeValue(
+) =>
+	useColorModeValue(
 		`linear(${angle}, ${scheme}.${firstValue},${scheme}.${secondValue})`,
 		`linear(${angle}, ${scheme}.${thirdValue},${scheme}.${fourthValue})`
 	)
-}

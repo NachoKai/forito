@@ -1,9 +1,8 @@
 import { Skeleton, SkeletonText, Stack } from '@chakra-ui/react'
-import { CreateBg } from '../theme'
 
 const Loading = ({ height = '250px', invert }) => (
 	<Stack
-		bg={CreateBg('primary', 50, 800)}
+		bg='primary_50_800'
 		borderRadius='lg'
 		boxShadow='lg'
 		direction={

@@ -3,12 +3,10 @@ import { FaGithub } from 'react-icons/fa'
 import { Link as ChakraLink } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
-import { CreateBg, CreateColor } from '../theme'
-
 const Footer = () => (
 	<Stack
-		bg={CreateBg('primary', 100, 900)}
-		color={CreateColor('primary', 800, 100)}
+		bg='primary_100_900'
+		color='primary_800_100'
 		p={{
 			sm: '6',
 			md: '8',

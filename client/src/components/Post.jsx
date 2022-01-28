@@ -21,7 +21,6 @@ import { deletePost, likePost, savePost } from '../redux/posts'
 import Likes from './Likes'
 import { getUser } from '../utils/getUser'
 import Dialog from './common/Dialog'
-import { CreateBg } from '../theme'
 
 const Post = ({
 	setCurrentId,
@@ -87,7 +86,7 @@ const Post = ({
 
 	return (
 		<Stack
-			bg={CreateBg('primary', 50, 800)}
+			bg='primary_50_800'
 			borderRadius='lg'
 			boxShadow='lg'
 			direction={{
@@ -244,7 +243,7 @@ const Post = ({
 							)}
 							{(isPostCreator || isAdmin) && (
 								<Button
-									bg={CreateBg('red', 500, 200)}
+									bg='red_500_200'
 									colorScheme='primary'
 									leftIcon={<FaEraser />}
 									minWidth='88px'

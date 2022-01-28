@@ -10,7 +10,7 @@ import FormInput from './common/FormInput'
 import FormTextArea from './common/FormTextArea'
 import { getUser } from '../utils/getUser'
 import showError from '../utils/showError'
-import { CreateColor, CreateGradColor } from '../theme'
+import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
 
 const initialState = {
@@ -91,7 +91,7 @@ const Form = ({ currentId, setCurrentId }) => {
 		return (
 			<Stack
 				align='center'
-				color={CreateColor('primary', 600, 100)}
+				color='primary_600_100'
 				direction='column'
 				minWidth='320px'
 				p={{
@@ -239,22 +239,14 @@ const Form = ({ currentId, setCurrentId }) => {
 										)}
 										{(!postData.selectedFile || !images) && (
 											<Stack
-												borderColor={
-													isDragging
-														? CreateColor('gray', 700, 200)
-														: CreateColor('primary', 600, 100)
-												}
+												borderColor={isDragging ? 'gray_700_200' : 'primary_600_100'}
 												borderRadius='lg'
 												borderStyle='dashed'
 												borderWidth='2px'
 											>
 												<Button
-													bg={isDragging ? CreateColor('gray', 200, 700) : undefined}
-													color={
-														isDragging
-															? CreateColor('gray', 700, 200)
-															: CreateColor('primary', 600, 100)
-													}
+													bg={isDragging ? 'gray_200_700' : undefined}
+													color={isDragging ? 'gray_700_200' : 'primary_600_100'}
 													variant='ghost'
 													onClick={onImageUpload}
 													{...dragProps}

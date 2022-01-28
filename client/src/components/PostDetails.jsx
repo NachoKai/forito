@@ -18,7 +18,6 @@ import { FaTwitter } from 'react-icons/fa'
 import { getPost, getPostsBySearch } from '../redux/posts'
 import { getRandomId } from '../utils/getRandomId'
 import Comments from '../components/Comments'
-import { CreateBg, CreateColor } from '../theme'
 import Loading from './Loading'
 
 const PostDetails = () => {
@@ -231,10 +230,10 @@ const PostDetails = () => {
 										({ title, name, message, selectedFile, _id }) => (
 											<Stack
 												key={_id}
-												bg={CreateBg('primary', 100, 900)}
+												bg='primary_100_900'
 												borderRadius='lg'
 												className='recommended-post'
-												color={CreateColor('primary', 800, 100)}
+												color='primary_800_100'
 												cursor='pointer'
 												h='100%'
 												maxWidth='320px'
