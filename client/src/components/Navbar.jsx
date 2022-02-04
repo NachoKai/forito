@@ -64,7 +64,7 @@ const Navbar = () => {
 					as='h2'
 					bgClip='text'
 					bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
-					fontSize={{ sm: 'xl', md: '2xl', lg: '2xl', xl: '2xl' }}
+					fontSize={{ sm: 'xl', md: '2xl', lg: '2xl', xl: '3xl' }}
 					fontWeight='bold'
 				>
 					<Link to='/'>Forito ✨</Link>
