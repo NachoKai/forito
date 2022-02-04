@@ -131,7 +131,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				<Stack
 					bg='primary_100_900'
 					borderRadius='lg'
-					boxShadow='base'
+					boxShadow='md'
 					p={{
 						sm: '6',
 						md: '8',

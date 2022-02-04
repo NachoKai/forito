@@ -19,7 +19,7 @@ const Paginate = ({ page }) => {
 		<Container
 			bg='primary_100_900'
 			borderRadius='lg'
-			boxShadow='base'
+			boxShadow='md'
 			color={useColorModeValue('black', 'white')}
 		>
 			{numberOfPages > 1 && (
