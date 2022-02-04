@@ -2,7 +2,7 @@ import { Skeleton, SkeletonText, Stack } from '@chakra-ui/react'
 
 const Loading = ({ height = '250px', invert }) => (
 	<Stack
-		bg='primary_50_800'
+		bg='primary_100_900'
 		borderRadius='lg'
 		boxShadow='lg'
 		direction={

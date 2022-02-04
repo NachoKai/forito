@@ -86,7 +86,7 @@ const Post = ({
 
 	return (
 		<Stack
-			bg='primary_50_800'
+			bg='primary_100_900'
 			borderRadius='lg'
 			boxShadow='lg'
 			direction={{

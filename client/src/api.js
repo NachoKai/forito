@@ -4,7 +4,7 @@ import { getUser } from './utils/getUser'
 const isDev = process.env.NODE_ENV !== 'production'
 const API = axios.create({
 	baseURL: isDev ? 'http://localhost:5000' : 'https://forito-app.herokuapp.com',
-	timeout: 15_000,
+	timeout: 20_000,
 })
 
 API.interceptors.request.use(req => {

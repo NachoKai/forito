@@ -33,36 +33,36 @@ const shadows = {
 const semanticTokens = {
 	colors: {
 		primary_100_600: {
-			_light: 'primary.100',
+			default: 'primary.100',
 			_dark: 'primary.600',
 		},
 		primary_100_900: {
-			_light: 'primary.100',
+			default: 'primary.100',
 			_dark: 'primary.900',
 		},
-		primary_50_800: {
-			_light: 'primary.50',
-			_dark: 'primary.800',
-		},
 		red_500_200: {
-			_light: 'red.500',
+			default: 'red.500',
 			_dark: 'red.200',
 		},
 		primary_600_100: {
-			_light: 'primary.600',
+			default: 'primary.600',
 			_dark: 'primary.100',
 		},
 		primary_800_100: {
-			_light: 'primary.800',
+			default: 'primary.800',
 			_dark: 'primary.100',
 		},
 		gray_700_200: {
-			_light: 'gray.700',
+			default: 'gray.700',
 			_dark: 'gray.200',
 		},
 		gray_200_700: {
-			_light: 'gray.200',
+			default: 'gray.200',
 			_dark: 'gray.700',
+		},
+		primary_300_900_50_400: {
+			default: 'linear(to-l, primary.300, primary.900)',
+			_dark: 'linear(to-l, primary.50, primary.400)',
 		},
 	},
 }
