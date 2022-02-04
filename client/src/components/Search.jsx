@@ -65,7 +65,7 @@ const Search = () => {
 	return (
 		<Accordion
 			allowToggle
-			bgGradient={CreateGradColor('primary', 100, 50, 900, 600, '135deg')}
+			bg='primary_100_900'
 			borderRadius='lg'
 			boxShadow='base'
 			colorScheme='primary'

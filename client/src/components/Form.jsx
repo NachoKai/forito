@@ -129,7 +129,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				onSubmit={handleSubmit}
 			>
 				<Stack
-					bgGradient={CreateGradColor('primary', 100, 50, 900, 600, '135deg')}
+					bg='primary_100_900'
 					borderRadius='lg'
 					boxShadow='base'
 					p={{
