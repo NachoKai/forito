@@ -116,6 +116,7 @@ const Auth = () => {
 									label='First Name'
 									maxLength='25'
 									name='firstName'
+									tooltip='Required'
 									value={formData?.firstName}
 									onChange={handleChange}
 								/>
@@ -125,6 +126,7 @@ const Auth = () => {
 									label='Last Name'
 									maxLength='25'
 									name='lastName'
+									tooltip='Required'
 									value={formData?.lastName}
 									onChange={handleChange}
 								/>
@@ -136,6 +138,7 @@ const Auth = () => {
 							label='Email'
 							maxLength='35'
 							name='email'
+							tooltip='Required'
 							type='email'
 							value={formData?.email}
 							onChange={handleChange}
@@ -153,6 +156,7 @@ const Auth = () => {
 									<FaEye onClick={handleShowPassword} />
 								)
 							}
+							tooltip='Required'
 							type={showPassword ? 'text' : 'password'}
 							value={formData?.password}
 							onChange={handleChange}
@@ -164,6 +168,7 @@ const Auth = () => {
 								label='Repeat Password'
 								maxLength='35'
 								name='confirmPassword'
+								tooltip='Required'
 								type='password'
 								value={formData?.confirmPassword}
 								onChange={handleChange}
