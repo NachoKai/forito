@@ -20,7 +20,7 @@ const Home = () => {
 		<Stack paddingBottom='4'>
 			<Stack
 				direction={{ sm: 'column-reverse', md: 'column-reverse', lg: 'row', xl: 'row' }}
-				p={{ sm: '0', md: '0', lg: '8', xl: '8' }}
+				p={{ sm: '0', md: '6', lg: '8', xl: '8' }}
 				spacing={{
 					sm: '6',
 					md: '8',
