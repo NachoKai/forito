@@ -121,12 +121,10 @@ const Auth = () => {
 									onChange={handleChange}
 								/>
 								<FormInput
-									isRequired
 									dataCy='auth-last-name'
 									label='Last Name'
 									maxLength='25'
 									name='lastName'
-									tooltip='Required'
 									value={formData?.lastName}
 									onChange={handleChange}
 								/>
@@ -181,7 +179,6 @@ const Auth = () => {
 							disabled={
 								!(isSignup
 									? checkEmpty(formData?.firstName) &&
-									  checkEmpty(formData?.lastName) &&
 									  checkEmpty(formData?.email) &&
 									  checkEmpty(formData?.password) &&
 									  checkEmpty(formData?.confirmPassword)

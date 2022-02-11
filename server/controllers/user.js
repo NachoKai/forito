@@ -55,7 +55,7 @@ export const signup = async (req, res) => {
 		const result = await User.create({
 			email,
 			password: hashedPassword,
-			name: `${firstName} ${lastName}`,
+			name: lastName ? `${firstName} ${lastName}` : firstName,
 		});
 		const token = jwt.sign({ email: result.email, id: result._id }, secret, {
 			expiresIn: "12h",
