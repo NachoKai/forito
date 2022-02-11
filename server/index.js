@@ -6,6 +6,14 @@ import postRoutes from "./routes/posts.js";
 import userRoutes from "./routes/users.js";
 import compression from "compression";
 import mongoSanitize from "express-mongo-sanitize";
+import rateLimit from "express-rate-limit";
+
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000, // 15 minutes
+	max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+});
 
 const app = express();
 
@@ -21,6 +29,7 @@ const CONNECTION_URL = process.env.MONGODB_URI;
 
 app.use(express.json({ limit: "5mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
+app.use(limiter);
 app.use(compression());
 app.use(mongoSanitize());
 app.use(cors());
