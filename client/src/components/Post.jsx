@@ -260,7 +260,17 @@ const Post = ({
 			</Stack>
 
 			{selectedFile && (
-				<AspectRatio maxH='80vh' maxW='500px' ratio={1} w='100%'>
+				<AspectRatio
+					maxH='80vh'
+					maxW={{
+						sm: '100%',
+						md: '100%',
+						lg: '100%',
+						xl: '500px',
+					}}
+					ratio={1}
+					w='100%'
+				>
 					<Image
 						alt={title}
 						borderRadius='lg'
