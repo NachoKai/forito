@@ -4,6 +4,7 @@ import { FaPencilAlt } from 'react-icons/fa'
 
 import Post from './Post'
 import Loading from './Loading'
+import StaggeredSlideFade from './common/StaggeredSlideFade'
 
 const TopPosts = () => {
 	const { posts, isLoading } = useSelector(state => state.posts)
@@ -21,7 +22,7 @@ const TopPosts = () => {
 	const topPosts = getTopPosts(5)
 
 	return (
-		<Flex
+		<StaggeredSlideFade
 			flexGrow
 			direction='column'
 			minHeight='100vh'
@@ -54,7 +55,7 @@ const TopPosts = () => {
 					<Loading />
 				</Stack>
 			) : (
-				<Stack
+				<StaggeredSlideFade
 					direction='column'
 					spacing={{
 						sm: '6',
@@ -76,9 +77,9 @@ const TopPosts = () => {
 					) : (
 						topPosts?.map(post => <Post key={post?._id} post={post} />)
 					)}
-				</Stack>
+				</StaggeredSlideFade>
 			)}
-		</Flex>
+		</StaggeredSlideFade>
 	)
 }
 

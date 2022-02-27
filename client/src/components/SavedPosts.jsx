@@ -1,13 +1,14 @@
 import { useEffect } from 'react'
 import { useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
-import { Divider, Flex, Heading, Stack, Text } from '@chakra-ui/react'
+import { Divider, Heading, Stack, Text } from '@chakra-ui/react'
 import { FaSearch } from 'react-icons/fa'
 
 import { getSavedPosts } from '../redux/posts'
 import Post from './Post'
 import { CreateGradColor } from '../theme'
 import Loading from './Loading'
+import StaggeredSlideFade from './common/StaggeredSlideFade'
 
 const SavedPosts = () => {
 	const dispatch = useDispatch()
@@ -21,7 +22,19 @@ const SavedPosts = () => {
 
 	if (!posts?.length && !isLoading) {
 		return (
-			<Flex align='center' direction='column' h='100%' marginY='64px' minHeight='100vh'>
+			<StaggeredSlideFade
+				align='center'
+				direction='column'
+				h='100%'
+				marginY='64px'
+				minHeight='100vh'
+				p={{
+					sm: '6',
+					md: '8',
+					lg: '8',
+					xl: '8',
+				}}
+			>
 				<Text color='primary.400' fontSize='6xl' marginBottom='16px'>
 					<FaSearch />
 				</Text>
@@ -32,14 +45,14 @@ const SavedPosts = () => {
 					fontSize='4xl'
 					fontWeight='bold'
 				>
-					No saved posts were found
+					No saved posts were found.
 				</Heading>
-			</Flex>
+			</StaggeredSlideFade>
 		)
 	}
 
 	return (
-		<Stack
+		<StaggeredSlideFade
 			borderRadius='lg'
 			h='100%'
 			minHeight='100vh'
@@ -72,15 +85,15 @@ const SavedPosts = () => {
 					<Loading />
 				</>
 			) : (
-				<Stack spacing='3'>
+				<StaggeredSlideFade spacing='3'>
 					{posts?.map(post => (
 						<Stack key={post._id}>
 							<Post post={post} />
 						</Stack>
 					))}
-				</Stack>
+				</StaggeredSlideFade>
 			)}
-		</Stack>
+		</StaggeredSlideFade>
 	)
 }
 

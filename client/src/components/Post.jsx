@@ -5,6 +5,7 @@ import {
 	Button,
 	Heading,
 	Image,
+	Skeleton,
 	Stack,
 	Text,
 	Tooltip,
@@ -71,13 +72,12 @@ const Post = ({
 		await setSaveLoading(false)
 	}, [_id, dispatch])
 
-	const openPost = useCallback(() => {
-		navigate(`/posts/${_id}`)
-	}, [_id, navigate])
+	const openPost = useCallback(() => navigate(`/posts/${_id}`), [_id, navigate])
 
-	const openComments = useCallback(() => {
-		navigate(`/posts/${_id}#comments`)
-	}, [_id, navigate])
+	const openComments = useCallback(
+		() => navigate(`/posts/${_id}#comments`),
+		[_id, navigate]
+	)
 
 	const handleEdit = useCallback(() => {
 		setCurrentId(_id)
@@ -259,7 +259,7 @@ const Post = ({
 				</Stack>
 			</Stack>
 
-			{selectedFile && (
+			{selectedFile?.url && (
 				<AspectRatio
 					maxH='80vh'
 					maxW={{
@@ -275,9 +275,10 @@ const Post = ({
 						alt={title}
 						borderRadius='lg'
 						className='pointer'
+						fallback={<Skeleton flexGrow='1' />}
 						flexGrow='1'
 						objectFit='cover'
-						src={selectedFile}
+						src={selectedFile.url}
 						onClick={openPost}
 					/>
 				</AspectRatio>

@@ -1,25 +1,16 @@
 import { Skeleton, SkeletonText, Stack } from '@chakra-ui/react'
 
-const Loading = ({ height = '250px', invert }) => (
+const Loading = ({ height = '250px' }) => (
 	<Stack
 		bg='primary_100_900'
 		borderRadius='lg'
 		boxShadow='lg'
-		direction={
-			invert
-				? {
-						sm: 'column',
-						md: 'column',
-						lg: 'column',
-						xl: 'row',
-				  }
-				: {
-						sm: 'column-reverse',
-						md: 'column-reverse',
-						lg: 'column-reverse',
-						xl: 'row',
-				  }
-		}
+		direction={{
+			sm: 'column-reverse',
+			md: 'column-reverse',
+			lg: 'column-reverse',
+			xl: 'row',
+		}}
 		h='100%'
 		p={{
 			sm: '6',

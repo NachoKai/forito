@@ -89,6 +89,7 @@ export const updatePost = async (req, res) => {
 		_id: id,
 	};
 
+	console.log("updatedPost>>>", updatedPost);
 	await Post.findByIdAndUpdate(id, updatedPost, { new: true });
 	res.status(200).json(updatedPost);
 };

@@ -1,4 +1,5 @@
 import * as api from '../api'
+import { hideLoading, showLoading } from './loading'
 import { getUser } from '../utils/getUser'
 import showError from '../utils/showError'
 import showSuccess from '../utils/showSuccess'
@@ -28,6 +29,7 @@ export const cleanUp = () => ({ type: CLEAN_UP })
 export const getPost = id => async dispatch => {
 	try {
 		dispatch({ type: START_LOADING })
+
 		const { data } = await api.fetchPost(id)
 
 		dispatch({ type: FETCH_POST, payload: { post: data } })
@@ -71,6 +73,7 @@ export const getPostsBySearch = searchQuery => async dispatch => {
 export const createPost = (post, navigate) => async dispatch => {
 	try {
 		dispatch({ type: START_LOADING })
+		dispatch(showLoading())
 		const { data } = await api.createPost(post)
 
 		dispatch({ type: CREATE_POST, payload: data })
@@ -80,26 +83,33 @@ export const createPost = (post, navigate) => async dispatch => {
 	} catch (err) {
 		showError('Something went wrong when trying to create post. Please try again.')
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 
 export const updatePost = (id, post) => async dispatch => {
 	try {
 		dispatch({ type: START_LOADING })
+		dispatch(showLoading())
 		const { data } = await api.updatePost(id, post)
 
 		dispatch({ type: UPDATE_POST, payload: data })
 		dispatch({ type: END_LOADING })
+
 		showSuccess('Successfully edited post.')
 	} catch (err) {
 		showError('Something went wrong when trying to update post. Please try again.')
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 
 export const deletePost = id => async dispatch => {
 	try {
 		dispatch({ type: START_LOADING })
+		dispatch(showLoading())
 		await api.deletePost(id)
 		dispatch({ type: DELETE_POST, payload: id })
 		dispatch({ type: END_LOADING })
@@ -107,6 +117,8 @@ export const deletePost = id => async dispatch => {
 	} catch (err) {
 		showError('Something went wrong when trying to delete post. Please try again.')
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 
@@ -153,6 +165,7 @@ export const addComment = (comment, id) => async dispatch => {
 export const getPostsByCreator = id => async dispatch => {
 	try {
 		dispatch({ type: START_LOADING })
+		dispatch(showLoading())
 		const {
 			data: { data },
 		} = await api.fetchPostsByCreator(id)
@@ -164,12 +177,15 @@ export const getPostsByCreator = id => async dispatch => {
 			'Something went wrong when trying to get posts by creator. Please try again.'
 		)
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 
 export const getSavedPosts = id => async dispatch => {
 	try {
 		dispatch({ type: START_LOADING })
+		dispatch(showLoading())
 		const {
 			data: { data },
 		} = await api.fetchSavedPosts(id)
@@ -181,6 +197,8 @@ export const getSavedPosts = id => async dispatch => {
 			'Something went wrong when trying to get posts by creator. Please try again.'
 		)
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 

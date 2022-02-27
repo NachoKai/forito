@@ -34,7 +34,6 @@ const Auth = () => {
 
 			try {
 				dispatch({ type: AUTH, data: { result, token } })
-
 				navigate('/')
 				navigate('/posts')
 			} catch (err) {
@@ -53,28 +52,23 @@ const Auth = () => {
 	const handleSubmit = useCallback(
 		e => {
 			e.preventDefault()
-
-			if (isSignup) {
-				dispatch(signup(formData, navigate))
-			} else {
-				dispatch(login(formData, navigate))
-			}
+			if (isSignup) dispatch(signup(formData, navigate))
+			else dispatch(login(formData, navigate))
 		},
 		[dispatch, formData, navigate, isSignup]
 	)
 
 	const handleChange = useCallback(
-		e => {
-			setFormData({ ...formData, [e.target.name]: e.target.value })
-		},
+		e => setFormData({ ...formData, [e.target.name]: e.target.value }),
 		[formData]
 	)
 
 	const handleSwitch = () => setIsSignup(prevIsSignup => !prevIsSignup)
 
-	const handleShowPassword = useCallback(() => {
-		setShowPassword(!showPassword)
-	}, [showPassword])
+	const handleShowPassword = useCallback(
+		() => setShowPassword(!showPassword),
+		[showPassword]
+	)
 
 	return (
 		<Stack
@@ -217,7 +211,7 @@ const Auth = () => {
 				/>
 
 				<Flex justify='flex-end'>
-					<Button colorScheme='primary' size='xs' variant='ghost' onClick={handleSwitch}>
+					<Button colorScheme='primary' size='sm' variant='ghost' onClick={handleSwitch}>
 						{isSignup
 							? 'Already have an account? Login'
 							: "Don't have an account? Sign up"}

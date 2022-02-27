@@ -7,7 +7,7 @@ const postSchema = mongoose.Schema({
 	privacy: { type: String },
 	creator: { type: String },
 	tags: { type: [String] },
-	selectedFile: { type: String },
+	selectedFile: { url: String, name: String, id: String },
 	likes: {
 		type: [String],
 		default: [],

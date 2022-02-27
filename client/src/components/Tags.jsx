@@ -8,15 +8,14 @@ import { getPostsBySearch } from '../redux/posts'
 import Post from './Post'
 import { CreateGradColor } from '../theme'
 import Loading from './Loading'
+import StaggeredSlideFade from './common/StaggeredSlideFade'
 
 const Tags = () => {
 	const dispatch = useDispatch()
 	const { name } = useParams()
 	const { posts, isLoading } = useSelector(state => state.posts)
 
-	useEffect(() => {
-		dispatch(getPostsBySearch({ tags: name }))
-	}, [dispatch, name])
+	useEffect(() => dispatch(getPostsBySearch({ tags: name })), [dispatch, name])
 
 	if (!posts.length && !isLoading) {
 		return (
@@ -38,7 +37,7 @@ const Tags = () => {
 	}
 
 	return (
-		<Stack
+		<StaggeredSlideFade
 			borderRadius='lg'
 			h='100%'
 			minHeight='100vh'
@@ -71,15 +70,15 @@ const Tags = () => {
 					<Loading />
 				</>
 			) : (
-				<Stack spacing='3'>
+				<StaggeredSlideFade spacing='3'>
 					{posts?.map(post => (
 						<Stack key={post._id}>
 							<Post post={post} />
 						</Stack>
 					))}
-				</Stack>
+				</StaggeredSlideFade>
 			)}
-		</Stack>
+		</StaggeredSlideFade>
 	)
 }
 

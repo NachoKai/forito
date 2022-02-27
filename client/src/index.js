@@ -7,13 +7,16 @@ import store from './redux/store'
 import './index.css'
 import App from './App.jsx'
 import theme from './theme'
+import { LoadingContextProvider } from './components/common/LoadingScreen/LoadingContext'
 
 ReactDOM.render(
 	<React.StrictMode>
 		<ChakraProvider theme={theme}>
 			<Provider store={store}>
 				<ColorModeScript initialColorMode={theme?.config?.initialColorMode} />
-				<App />
+				<LoadingContextProvider>
+					<App />
+				</LoadingContextProvider>
 			</Provider>
 		</ChakraProvider>
 	</React.StrictMode>,
