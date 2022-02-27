@@ -26,7 +26,19 @@ const Creator = () => {
 
 	if (!posts?.length && !isLoading) {
 		return (
-			<Flex align='center' direction='column' h='100%' marginY='64px' minHeight='100vh'>
+			<Flex
+				align='center'
+				direction='column'
+				h='100%'
+				marginY='64px'
+				minHeight='100vh'
+				p={{
+					sm: '6',
+					md: '8',
+					lg: '8',
+					xl: '8',
+				}}
+			>
 				<Text color='primary.400' fontSize='6xl' marginBottom='16px'>
 					<FaSearch />
 				</Text>

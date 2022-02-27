@@ -217,7 +217,7 @@ const Auth = () => {
 				/>
 
 				<Flex justify='flex-end'>
-					<Button colorScheme='primary' size='xs' variant='ghost' onClick={handleSwitch}>
+					<Button colorScheme='primary' size='sm' variant='ghost' onClick={handleSwitch}>
 						{isSignup
 							? 'Already have an account? Login'
 							: "Don't have an account? Sign up"}

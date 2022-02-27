@@ -90,11 +90,17 @@ const Navbar = () => {
 								<PopoverTrigger>
 									<Stack align='center' cursor='pointer' direction='row'>
 										<Image
-											alt=''
+											alt={`${user?.result.name}'s profile picture`}
+											border='1px'
+											borderColor='primary'
 											borderRadius='full'
 											h='30px'
 											objectFit='cover'
-											src={user?.result?.imageUrl}
+											src={
+												user?.result?.imageUrl
+													? user?.result?.imageUrl
+													: `${process.env.PUBLIC_URL}/images/avatar.png`
+											}
 											w='30px'
 										/>
 
