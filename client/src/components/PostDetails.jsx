@@ -19,6 +19,7 @@ import { getPost, getPostsBySearch } from '../redux/posts'
 import { getRandomId } from '../utils/getRandomId'
 import Comments from '../components/Comments'
 import Loading from './Loading'
+import { CreateGradColor } from '../theme'
 
 const PostDetails = () => {
 	const dispatch = useDispatch()
@@ -195,7 +196,13 @@ const PostDetails = () => {
 
 						<Divider colorScheme='primary' />
 
-						<Text fontSize='md' fontWeight='bold' id='comments'>
+						<Text
+							bgClip='text'
+							bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
+							fontSize='lg'
+							fontWeight='bold'
+							id='comments'
+						>
 							Comments
 						</Text>
 						<Comments post={post} />
