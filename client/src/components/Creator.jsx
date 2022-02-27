@@ -50,8 +50,8 @@ const Creator = () => {
 					fontWeight='bold'
 				>
 					{user?.name
-						? `No posts created by ${user?.name} were found`
-						: 'No posts created were found'}
+						? `No posts created by ${user?.name} were found.`
+						: 'No posts created were found.'}
 				</Heading>
 			</Flex>
 		)

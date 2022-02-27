@@ -44,7 +44,7 @@ const SavedPosts = () => {
 					fontSize='4xl'
 					fontWeight='bold'
 				>
-					No saved posts were found
+					No saved posts were found.
 				</Heading>
 			</Flex>
 		)
