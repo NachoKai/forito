@@ -162,7 +162,12 @@ const Navbar = () => {
 					</Flex>
 				)}
 
-				<Button colorScheme='primary' size='sm' variant='ghost' onClick={toggleColorMode}>
+				<Button
+					colorScheme='primary'
+					size='sm'
+					variant='outline'
+					onClick={toggleColorMode}
+				>
 					{colorMode === 'light' ? (
 						<FaMoon aria-label='Dark Mode' />
 					) : (
