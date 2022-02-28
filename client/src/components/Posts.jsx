@@ -5,6 +5,7 @@ import { FaPencilAlt } from 'react-icons/fa'
 import Post from './Post'
 import { CreateGradColor } from '../theme'
 import Loading from './Loading'
+import StaggeredSlideFade from './common/StaggeredSlideFade'
 
 const Posts = ({ setCurrentId, handleScroll }) => {
 	const { posts, isLoading } = useSelector(state => state.posts)
@@ -13,7 +14,7 @@ const Posts = ({ setCurrentId, handleScroll }) => {
 	return (
 		<Flex flexGrow minHeight='100vh' w='100%'>
 			{isLoading ? (
-				<Stack
+				<StaggeredSlideFade
 					minHeight='100vh'
 					spacing={{
 						sm: '6',
@@ -27,9 +28,9 @@ const Posts = ({ setCurrentId, handleScroll }) => {
 					<Loading />
 					<Loading />
 					<Loading />
-				</Stack>
+				</StaggeredSlideFade>
 			) : (
-				<Stack
+				<StaggeredSlideFade
 					direction='column'
 					spacing={{
 						sm: '6',
@@ -55,16 +56,27 @@ const Posts = ({ setCurrentId, handleScroll }) => {
 							</Heading>
 						</Stack>
 					) : (
-						posts?.map(post => (
-							<Post
-								key={post?._id}
-								handleScroll={handleScroll}
-								post={post}
-								setCurrentId={setCurrentId}
-							/>
-						))
+						<StaggeredSlideFade
+							direction='column'
+							spacing={{
+								sm: '6',
+								md: '8',
+								lg: '8',
+								xl: '8',
+							}}
+							w='100%'
+						>
+							{posts?.map(post => (
+								<Post
+									key={post?._id}
+									handleScroll={handleScroll}
+									post={post}
+									setCurrentId={setCurrentId}
+								/>
+							))}
+						</StaggeredSlideFade>
 					)}
-				</Stack>
+				</StaggeredSlideFade>
 			)}
 		</Flex>
 	)

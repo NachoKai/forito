@@ -20,6 +20,7 @@ import { getRandomId } from '../utils/getRandomId'
 import Comments from '../components/Comments'
 import Loading from './Loading'
 import { CreateGradColor } from '../theme'
+import StaggeredSlideFade from './common/StaggeredSlideFade'
 
 const PostDetails = () => {
 	const dispatch = useDispatch()
@@ -69,7 +70,7 @@ const PostDetails = () => {
 	return (
 		<>
 			{isLoading ? (
-				<Stack
+				<StaggeredSlideFade
 					minHeight='100vh'
 					p={{
 						sm: '6',
@@ -82,7 +83,7 @@ const PostDetails = () => {
 						invert
 						height={{ sm: '300px', md: '400px', lg: '500px', xl: '600px' }}
 					/>
-				</Stack>
+				</StaggeredSlideFade>
 			) : (
 				<Stack
 					borderRadius='lg'
@@ -94,7 +95,7 @@ const PostDetails = () => {
 						xl: '8',
 					}}
 				>
-					<Stack
+					<StaggeredSlideFade
 						spacing={{
 							sm: '6',
 							md: '8',
@@ -140,6 +141,8 @@ const PostDetails = () => {
 								/>
 							)}
 						</Stack>
+
+						<Divider colorScheme='primary' />
 
 						<Stack direction='row' spacing='2'>
 							<Stack spacing='4' w='100%'>
@@ -206,7 +209,7 @@ const PostDetails = () => {
 							Comments
 						</Text>
 						<Comments post={post} />
-					</Stack>
+					</StaggeredSlideFade>
 
 					{!!recommendedPosts?.length && (
 						<>
