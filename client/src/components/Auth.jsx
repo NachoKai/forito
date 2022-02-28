@@ -34,7 +34,6 @@ const Auth = () => {
 
 			try {
 				dispatch({ type: AUTH, data: { result, token } })
-
 				navigate('/')
 				navigate('/posts')
 			} catch (err) {
@@ -53,28 +52,23 @@ const Auth = () => {
 	const handleSubmit = useCallback(
 		e => {
 			e.preventDefault()
-
-			if (isSignup) {
-				dispatch(signup(formData, navigate))
-			} else {
-				dispatch(login(formData, navigate))
-			}
+			if (isSignup) dispatch(signup(formData, navigate))
+			else dispatch(login(formData, navigate))
 		},
 		[dispatch, formData, navigate, isSignup]
 	)
 
 	const handleChange = useCallback(
-		e => {
-			setFormData({ ...formData, [e.target.name]: e.target.value })
-		},
+		e => setFormData({ ...formData, [e.target.name]: e.target.value }),
 		[formData]
 	)
 
 	const handleSwitch = () => setIsSignup(prevIsSignup => !prevIsSignup)
 
-	const handleShowPassword = useCallback(() => {
-		setShowPassword(!showPassword)
-	}, [showPassword])
+	const handleShowPassword = useCallback(
+		() => setShowPassword(!showPassword),
+		[showPassword]
+	)
 
 	return (
 		<Stack

@@ -27,20 +27,13 @@ const PostDetails = () => {
 	const navigate = useNavigate()
 	const { id } = useParams()
 	const { post, posts, isLoading } = useSelector(state => state.posts)
-
-	const openPost = useCallback(
-		_id => {
-			navigate(`/posts/${_id}`)
-		},
-		[navigate]
-	)
-
 	const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id)
-
 	const isDev = process.env.NODE_ENV !== 'production'
 	const baseURL = isDev
 		? 'http://localhost:3000/posts'
 		: 'https://forito.vercel.app/posts'
+
+	const openPost = useCallback(_id => navigate(`/posts/${_id}`), [navigate])
 
 	const shareOnTwitter = () => {
 		const url = `${baseURL}/${id}`
@@ -61,9 +54,7 @@ const PostDetails = () => {
 
 	// Recommended Posts search
 	useEffect(() => {
-		if (post) {
-			dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }))
-		}
+		post && dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }))
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [post])
 

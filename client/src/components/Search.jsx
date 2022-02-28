@@ -25,9 +25,9 @@ const Search = () => {
 	const [searchValue, setSearchValue] = useState('')
 	const [searchTags, setSearchTags] = useState([])
 	const location = useLocation()
+	const ENTER_KEYCODE = 13
 
 	const searchPost = useCallback(() => {
-		console.log('location.pathname', location?.pathname)
 		if (searchValue.trim() || searchTags) {
 			setSearchValue('')
 			setSearchTags([])
@@ -42,23 +42,15 @@ const Search = () => {
 		}
 	}, [dispatch, location, navigate, searchTags, searchValue])
 
-	const handleKeyPress = e => {
-		if (e.keyCode === 13) {
-			searchPost()
-		}
-	}
+	const handleKeyPress = e => e.keyCode === ENTER_KEYCODE && searchPost()
 
 	const handleAddTag = useCallback(
-		tag => {
-			setSearchTags([...searchTags, tag])
-		},
+		tag => setSearchTags([...searchTags, tag]),
 		[searchTags]
 	)
 
 	const handleDeleteTag = useCallback(
-		tagToDelete => {
-			setSearchTags(searchTags.filter(tag => tag !== tagToDelete))
-		},
+		tagToDelete => setSearchTags(searchTags.filter(tag => tag !== tagToDelete)),
 		[searchTags]
 	)
 

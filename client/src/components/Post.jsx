@@ -71,13 +71,12 @@ const Post = ({
 		await setSaveLoading(false)
 	}, [_id, dispatch])
 
-	const openPost = useCallback(() => {
-		navigate(`/posts/${_id}`)
-	}, [_id, navigate])
+	const openPost = useCallback(() => navigate(`/posts/${_id}`), [_id, navigate])
 
-	const openComments = useCallback(() => {
-		navigate(`/posts/${_id}#comments`)
-	}, [_id, navigate])
+	const openComments = useCallback(
+		() => navigate(`/posts/${_id}#comments`),
+		[_id, navigate]
+	)
 
 	const handleEdit = useCallback(() => {
 		setCurrentId(_id)

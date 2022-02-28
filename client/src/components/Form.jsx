@@ -74,9 +74,7 @@ const Form = ({ currentId, setCurrentId }) => {
 	)
 
 	const handleChange = useCallback(
-		e => {
-			setPostData({ ...postData, [e.target.name]: e.target.value })
-		},
+		e => setPostData({ ...postData, [e.target.name]: e.target.value }),
 		[postData]
 	)
 

@@ -15,9 +15,7 @@ const Tags = () => {
 	const { name } = useParams()
 	const { posts, isLoading } = useSelector(state => state.posts)
 
-	useEffect(() => {
-		dispatch(getPostsBySearch({ tags: name }))
-	}, [dispatch, name])
+	useEffect(() => dispatch(getPostsBySearch({ tags: name })), [dispatch, name])
 
 	if (!posts.length && !isLoading) {
 		return (
