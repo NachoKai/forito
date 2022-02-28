@@ -98,7 +98,7 @@ const Search = () => {
 								</TagsContainer>
 							}
 							helper='Insert tag with enter/return.'
-							label='Search Tags'
+							label='Search Posts Tags'
 							maxLength='105'
 						/>
 						<Button
