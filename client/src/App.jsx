@@ -17,6 +17,7 @@ import Footer from './components/Footer'
 import SavedPosts from './components/SavedPosts'
 import { getUser } from './utils/getUser'
 import TopPosts from './components/TopPosts'
+import ScrollToTop from './components/common/ScrollToTop'
 
 const App = () => {
 	const [showScroll, setShowScroll] = useState(false)
@@ -37,6 +38,7 @@ const App = () => {
 
 	return (
 		<BrowserRouter>
+			<ScrollToTop />
 			<Navbar />
 			<Routes>
 				<Route element={<Navigate replace to='/posts' />} path='/' />
