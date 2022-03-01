@@ -20,6 +20,7 @@
 		"axios": "0.21.4",
 		"babel-preset-react-app": "7.0.0",
 		"date-fns": "2.27.0",
+		"firebase": "^9.6.7",
 		"framer-motion": "4.1.17",
 		"jwt-decode": "3.1.2",
 		"lodash": "4.17.21",

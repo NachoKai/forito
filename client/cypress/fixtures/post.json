@@ -8,7 +8,7 @@
   "createdAt": { "$date": { "$numberLong": "testid" } },
   "title": "Test Title",
   "message": "Test Message",
-  "selectedFile": "",
+  "selectedFile": { "url": "", "name": "" },
   "name": "Test Name",
   "creator": "testid",
   "__v": { "$numberInt": "0" },
