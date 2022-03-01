@@ -20,7 +20,7 @@ const initialState = {
 	title: '',
 	message: '',
 	tags: [],
-	selectedFile: { url: '', name: '', id: '' },
+	selectedFile: { url: null, name: null, id: null },
 	privacy: 'public',
 }
 
@@ -57,7 +57,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				selectedFile: {
 					url: imageURL,
 					name: imageName,
-					id: postData?.selectedFile?.id?.length ? postData?.selectedFile?.id : uuid(),
+					id: postData?.selectedFile?.id ? postData?.selectedFile?.id : uuid(),
 				},
 			})
 			dispatch(hideLoading())
@@ -126,7 +126,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	useEffect(() => {
 		if (post) {
-			setImages(post.selectedFile ? [{ data_url: post?.selectedFile?.url }] : [])
+			setImages(post?.selectedFile?.url ? [{ data_url: post?.selectedFile?.url }] : [])
 			setPostData(post)
 		}
 	}, [post])
@@ -251,7 +251,6 @@ const Form = ({ currentId, setCurrentId }) => {
 									imageList,
 									onImageUpload,
 									onImageUpdate,
-									onImageRemove,
 									isDragging,
 									dragProps,
 									errors,
@@ -305,7 +304,7 @@ const Form = ({ currentId, setCurrentId }) => {
 												</Button>
 											</Stack>
 										)}
-										{imageList.map((image, index) => (
+										{imageList?.map((image, index) => (
 											<Stack
 												key={index}
 												className='image-item'
@@ -316,7 +315,7 @@ const Form = ({ currentId, setCurrentId }) => {
 													alt=''
 													h='100px'
 													objectFit='contain'
-													src={image.data_url}
+													src={image?.data_url}
 													w='100px'
 												/>
 												<Flex align='center' direction='column' justify='center'>
@@ -330,7 +329,17 @@ const Form = ({ currentId, setCurrentId }) => {
 													<Button
 														colorScheme='primary'
 														variant='ghost'
-														onClick={() => onImageRemove(index)}
+														onClick={() => {
+															setPostData({
+																...postData,
+																selectedFile: {
+																	url: null,
+																	name: null,
+																	id: null,
+																},
+															})
+															setImages([])
+														}}
 													>
 														Remove
 													</Button>
