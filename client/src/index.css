@@ -65,7 +65,7 @@ input[type="file"] {
   background: #555;
 } */
 
-.loading-background {
+.loading-background-dark {
   position: fixed;
   left: 0;
   top: 0;
@@ -77,29 +77,22 @@ input[type="file"] {
   backdrop-filter: blur(15px);
   pointer-events: none;
 }
-.loading-background .loading-bar {
-  position: absolute;
-  left: 50%;
-  top: 50%;
-  width: 50px;
-  height: 50px;
-  transform: translate(-50%, -50%);
-  pointer-events: none;
-}
-.loading-background .loading-bar .loading-circle-1,
-.loading-background .loading-bar .loading-circle-2 {
-  content: " ";
+
+.loading-background-light {
+  position: fixed;
+  left: 0;
+  top: 0;
   width: 100%;
   height: 100%;
-  border-radius: 50%;
-  opacity: 0.6;
-  position: absolute;
-  top: 0;
-  left: 0;
+  z-index: 99;
+  cursor: progress;
+  background: rgb(255 255 255 / 40%);
+  backdrop-filter: blur(15px);
   pointer-events: none;
 }
-.loading-background .loading-bar .loading-circle-2 {
-  -webkit-animation-delay: -1s;
-  animation-delay: -1s;
+.loading-bar .loading-circle {
+  position: absolute;
+  top: 40%;
+  left: 50%;
   pointer-events: none;
 }
