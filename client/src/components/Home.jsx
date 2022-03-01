@@ -1,4 +1,4 @@
-import { useContext, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { Stack } from '@chakra-ui/react'
 
 import Posts from './Posts'
@@ -6,7 +6,6 @@ import Form from '../components/Form'
 import Pagination from './Pagination'
 import Search from './Search'
 import { useQuery } from '../utils/useQuery'
-import { LoadingContext } from '../components/common/LoadingScreen/LoadingContext.js'
 
 const Home = () => {
 	const [currentId, setCurrentId] = useState(0)
@@ -14,20 +13,11 @@ const Home = () => {
 	const page = query.get('page') || 1
 	const searchQuery = query.get('searchQuery')
 	const formRef = useRef(null)
-	const { isLoading } = useContext(LoadingContext)
 
 	const handleScroll = async () => formRef.current.scrollIntoView({ behavior: 'smooth' })
 
-	const handleClick = e => {
-		if (isLoading) {
-			e.preventDefault()
-			e.stopPropagation()
-			console.log('clicked')
-		}
-	}
-
 	return (
-		<Stack paddingBottom='4' onClick={handleClick}>
+		<Stack paddingBottom='4'>
 			<Stack
 				direction={{ sm: 'column-reverse', md: 'column-reverse', lg: 'row', xl: 'row' }}
 				p={{ sm: '0', md: '6', lg: '8', xl: '8' }}
