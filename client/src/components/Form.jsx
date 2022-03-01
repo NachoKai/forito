@@ -5,19 +5,22 @@ import { FaExclamationCircle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import ImageUploading from 'react-images-uploading'
 
+import { firebaseApp } from '../firebaseApp'
 import { createPost, updatePost } from '../redux/posts'
 import FormInput from './common/FormInput'
 import FormTextArea from './common/FormTextArea'
 import { getUser } from '../utils/getUser'
 import showError from '../utils/showError'
+import uuid from '../utils/uuid'
 import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
+import { hideLoading, showLoading } from '../redux/loading'
 
 const initialState = {
 	title: '',
 	message: '',
 	tags: [],
-	selectedFile: '',
+	selectedFile: { url: null, name: null, id: null },
 	privacy: 'public',
 }
 
@@ -37,11 +40,36 @@ const Form = ({ currentId, setCurrentId }) => {
 	)
 
 	const onImageUpload = useCallback(
-		imageList => {
-			setImages(imageList)
-			setPostData({ ...postData, selectedFile: imageList && imageList[0]?.data_url })
+		async imageList => {
+			try {
+				dispatch(showLoading())
+				setImages(imageList)
+
+				const imageFile = imageList && imageList[0]?.file
+				const imageName = imageFile ? imageFile.name : ''
+				const storageRef = firebaseApp.storage().ref()
+				const imagePath = storageRef.child(imageFile?.name)
+
+				await imagePath.put(imageFile)
+				const imageURL = imagePath ? await imagePath.getDownloadURL() : ''
+
+				setPostData({
+					...postData,
+					selectedFile: {
+						url: imageURL,
+						name: imageName,
+						id: postData?.selectedFile?.id ? postData?.selectedFile?.id : uuid(),
+					},
+				})
+			} catch (error) {
+				showError('Something went wrong when trying to upload image. Please try again.')
+				console.error(error)
+				throw error
+			} finally {
+				dispatch(hideLoading())
+			}
 		},
-		[postData]
+		[dispatch, postData]
 	)
 
 	// const handlePrivacy = useCallback(
@@ -60,17 +88,50 @@ const Form = ({ currentId, setCurrentId }) => {
 	}, [setCurrentId])
 
 	const handleSubmit = useCallback(
-		e => {
+		async e => {
 			e.preventDefault()
 
-			if (currentId === 0) {
-				dispatch(createPost({ ...postData, name: user?.result?.name }, navigate))
-			} else {
-				dispatch(updatePost(currentId, { ...postData, name: user?.result?.name }))
+			try {
+				dispatch(showLoading())
+
+				if (postData?.selectedFile?.id) {
+					const imageCollectionRef = firebaseApp.firestore().collection('images')
+
+					await imageCollectionRef.doc(postData?.selectedFile?.id).set({
+						url: postData?.selectedFile?.url,
+						name: postData?.selectedFile?.name,
+						id: postData?.selectedFile?.id,
+					})
+				}
+
+				if (currentId === 0) {
+					dispatch(
+						createPost(
+							{
+								...postData,
+								name: user?.result?.name,
+							},
+							navigate
+						)
+					)
+				} else {
+					dispatch(
+						updatePost(currentId, {
+							...postData,
+							name: user?.result?.name,
+						})
+					)
+				}
+				handleClear()
+			} catch (error) {
+				showError('Something went wrong when trying to submit Post. Please try again.')
+				console.error(error)
+				throw error
+			} finally {
+				dispatch(hideLoading())
 			}
-			handleClear()
 		},
-		[currentId, dispatch, handleClear, navigate, postData, user]
+		[currentId, dispatch, handleClear, navigate, postData, user?.result?.name]
 	)
 
 	const handleChange = useCallback(
@@ -80,7 +141,7 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	useEffect(() => {
 		if (post) {
-			setImages(post.selectedFile ? [{ data_url: post.selectedFile }] : [])
+			setImages(post?.selectedFile?.url ? [{ data_url: post?.selectedFile?.url }] : [])
 			setPostData(post)
 		}
 	}, [post])
@@ -205,7 +266,6 @@ const Form = ({ currentId, setCurrentId }) => {
 									imageList,
 									onImageUpload,
 									onImageUpdate,
-									onImageRemove,
 									isDragging,
 									dragProps,
 									errors,
@@ -235,7 +295,7 @@ const Form = ({ currentId, setCurrentId }) => {
 												)}
 											</Stack>
 										)}
-										{(!postData.selectedFile || !images) && (
+										{(!postData?.selectedFile?.url || !images.length) && (
 											<Stack
 												borderColor={isDragging ? 'gray_700_200' : 'primary_600_100'}
 												borderRadius='lg'
@@ -259,7 +319,7 @@ const Form = ({ currentId, setCurrentId }) => {
 												</Button>
 											</Stack>
 										)}
-										{imageList.map((image, index) => (
+										{imageList?.map((image, index) => (
 											<Stack
 												key={index}
 												className='image-item'
@@ -270,7 +330,7 @@ const Form = ({ currentId, setCurrentId }) => {
 													alt=''
 													h='100px'
 													objectFit='contain'
-													src={image.data_url}
+													src={image?.data_url}
 													w='100px'
 												/>
 												<Flex align='center' direction='column' justify='center'>
@@ -284,7 +344,17 @@ const Form = ({ currentId, setCurrentId }) => {
 													<Button
 														colorScheme='primary'
 														variant='ghost'
-														onClick={() => onImageRemove(index)}
+														onClick={() => {
+															setPostData({
+																...postData,
+																selectedFile: {
+																	url: null,
+																	name: null,
+																	id: null,
+																},
+															})
+															setImages([])
+														}}
 													>
 														Remove
 													</Button>

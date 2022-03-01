@@ -18,6 +18,8 @@ import SavedPosts from './components/SavedPosts'
 import { getUser } from './utils/getUser'
 import TopPosts from './components/TopPosts'
 import ScrollToTop from './components/common/ScrollToTop'
+import LoadingScreen from './components/common/LoadingScreen/LoadingScreen'
+import LoadingSync from './components/common/LoadingScreen/LoadingSync'
 
 const App = () => {
 	const [showScroll, setShowScroll] = useState(false)
@@ -76,6 +78,8 @@ const App = () => {
 			</Button>
 			<Footer />
 			<ToastContainer />
+			<LoadingScreen />
+			<LoadingSync />
 		</BrowserRouter>
 	)
 }

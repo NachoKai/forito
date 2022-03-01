@@ -120,14 +120,14 @@ const PostDetails = () => {
 								</Text>
 							</Stack>
 
-							{post?.selectedFile && (
+							{post?.selectedFile?.url && (
 								<Image
 									alt={post?.title}
 									flexGrow='1'
 									maxH='90vh'
 									maxW={{ sm: '100vw', md: '100vw', lg: '50vw', xl: '50vw' }}
 									objectFit='contain'
-									src={post?.selectedFile}
+									src={post?.selectedFile?.url}
 									w='100%'
 								/>
 							)}
@@ -267,14 +267,14 @@ const PostDetails = () => {
 													<Text fontSize='md' noOfLines={[1, 2, 4]}>
 														{message}
 													</Text>
-													{selectedFile && (
+													{selectedFile?.url && (
 														<AspectRatio maxH='80vh' ratio={1} w='100%'>
 															<Image
 																alt={post?.title}
 																borderRadius='lg'
 																flexGrow='1'
 																objectFit='cover'
-																src={selectedFile}
+																src={selectedFile.url}
 																w='100%'
 															/>
 														</AspectRatio>

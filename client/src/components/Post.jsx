@@ -258,7 +258,7 @@ const Post = ({
 				</Stack>
 			</Stack>
 
-			{selectedFile && (
+			{selectedFile?.url && (
 				<AspectRatio
 					maxH='80vh'
 					maxW={{
@@ -276,7 +276,7 @@ const Post = ({
 						className='pointer'
 						flexGrow='1'
 						objectFit='cover'
-						src={selectedFile}
+						src={selectedFile.url}
 						onClick={openPost}
 					/>
 				</AspectRatio>
