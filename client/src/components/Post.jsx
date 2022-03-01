@@ -5,6 +5,7 @@ import {
 	Button,
 	Heading,
 	Image,
+	Skeleton,
 	Stack,
 	Text,
 	Tooltip,
@@ -274,6 +275,7 @@ const Post = ({
 						alt={title}
 						borderRadius='lg'
 						className='pointer'
+						fallback={<Skeleton flexGrow='1' />}
 						flexGrow='1'
 						objectFit='cover'
 						src={selectedFile.url}

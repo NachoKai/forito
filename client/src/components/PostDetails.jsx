@@ -8,6 +8,7 @@ import {
 	Flex,
 	Heading,
 	Image,
+	Skeleton,
 	Stack,
 	Text,
 } from '@chakra-ui/react'
@@ -123,6 +124,15 @@ const PostDetails = () => {
 							{post?.selectedFile?.url && (
 								<Image
 									alt={post?.title}
+									fallback={
+										<Skeleton
+											flexGrow='1'
+											maxH='90vh'
+											maxW={{ sm: '100vw', md: '100vw', lg: '50vw', xl: '50vw' }}
+											objectFit='contain'
+											w='100%'
+										/>
+									}
 									flexGrow='1'
 									maxH='90vh'
 									maxW={{ sm: '100vw', md: '100vw', lg: '50vw', xl: '50vw' }}
@@ -272,6 +282,9 @@ const PostDetails = () => {
 															<Image
 																alt={post?.title}
 																borderRadius='lg'
+																fallback={
+																	<Skeleton flexGrow='1' objectFit='cover' w='100%' />
+																}
 																flexGrow='1'
 																objectFit='cover'
 																src={selectedFile.url}
