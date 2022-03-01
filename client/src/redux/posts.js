@@ -78,12 +78,13 @@ export const createPost = (post, navigate) => async dispatch => {
 
 		dispatch({ type: CREATE_POST, payload: data })
 		dispatch({ type: END_LOADING })
-		dispatch(hideLoading())
 		showSuccess('Successfully created post.')
 		navigate(`/posts/${data._id}`)
 	} catch (err) {
 		showError('Something went wrong when trying to create post. Please try again.')
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 
@@ -95,11 +96,13 @@ export const updatePost = (id, post) => async dispatch => {
 
 		dispatch({ type: UPDATE_POST, payload: data })
 		dispatch({ type: END_LOADING })
-		dispatch(hideLoading())
+
 		showSuccess('Successfully edited post.')
 	} catch (err) {
 		showError('Something went wrong when trying to update post. Please try again.')
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 
@@ -110,11 +113,12 @@ export const deletePost = id => async dispatch => {
 		await api.deletePost(id)
 		dispatch({ type: DELETE_POST, payload: id })
 		dispatch({ type: END_LOADING })
-		dispatch(hideLoading())
 		showSuccess('Successfully deleted post.')
 	} catch (err) {
 		showError('Something went wrong when trying to delete post. Please try again.')
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 
@@ -168,12 +172,13 @@ export const getPostsByCreator = id => async dispatch => {
 
 		dispatch({ type: FETCH_BY_CREATOR, payload: { data } })
 		dispatch({ type: END_LOADING })
-		dispatch(hideLoading())
 	} catch (err) {
 		showError(
 			'Something went wrong when trying to get posts by creator. Please try again.'
 		)
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 
@@ -187,12 +192,13 @@ export const getSavedPosts = id => async dispatch => {
 
 		dispatch({ type: FETCH_SAVED_POSTS, payload: { data } })
 		dispatch({ type: END_LOADING })
-		dispatch(hideLoading())
 	} catch (err) {
 		showError(
 			'Something went wrong when trying to get posts by creator. Please try again.'
 		)
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 

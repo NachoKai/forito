@@ -64,6 +64,7 @@ export const createPost = async (req, res) => {
 		createdAt: new Date().toISOString(),
 	});
 
+	console.log("newPost>>>", newPost);
 	try {
 		await newPost.save();
 		res.status(201).json(newPost);
@@ -89,6 +90,7 @@ export const updatePost = async (req, res) => {
 		_id: id,
 	};
 
+	console.log("updatedPost>>>", updatedPost);
 	await Post.findByIdAndUpdate(id, updatedPost, { new: true });
 	res.status(200).json(updatedPost);
 };

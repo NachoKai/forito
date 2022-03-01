@@ -41,26 +41,33 @@ const Form = ({ currentId, setCurrentId }) => {
 
 	const onImageUpload = useCallback(
 		async imageList => {
-			dispatch(showLoading())
-			setImages(imageList)
+			try {
+				dispatch(showLoading())
+				setImages(imageList)
 
-			const imageFile = imageList && imageList[0]?.file
-			const imageName = imageFile ? imageFile.name : ''
-			const storageRef = firebaseApp.storage().ref()
-			const imagePath = storageRef.child(imageFile?.name)
+				const imageFile = imageList && imageList[0]?.file
+				const imageName = imageFile ? imageFile.name : ''
+				const storageRef = firebaseApp.storage().ref()
+				const imagePath = storageRef.child(imageFile?.name)
 
-			await imagePath.put(imageFile)
-			const imageURL = imagePath ? await imagePath.getDownloadURL() : ''
+				await imagePath.put(imageFile)
+				const imageURL = imagePath ? await imagePath.getDownloadURL() : ''
 
-			setPostData({
-				...postData,
-				selectedFile: {
-					url: imageURL,
-					name: imageName,
-					id: postData?.selectedFile?.id ? postData?.selectedFile?.id : uuid(),
-				},
-			})
-			dispatch(hideLoading())
+				setPostData({
+					...postData,
+					selectedFile: {
+						url: imageURL,
+						name: imageName,
+						id: postData?.selectedFile?.id ? postData?.selectedFile?.id : uuid(),
+					},
+				})
+			} catch (error) {
+				showError('Something went wrong when trying to upload image. Please try again.')
+				console.error(error)
+				throw error
+			} finally {
+				dispatch(hideLoading())
+			}
 		},
 		[dispatch, postData]
 	)
@@ -83,38 +90,46 @@ const Form = ({ currentId, setCurrentId }) => {
 	const handleSubmit = useCallback(
 		async e => {
 			e.preventDefault()
-			dispatch(showLoading())
 
-			if (postData?.selectedFile?.id) {
-				const imageCollectionRef = firebaseApp.firestore().collection('images')
+			try {
+				dispatch(showLoading())
 
-				await imageCollectionRef.doc(postData?.selectedFile?.id).set({
-					url: postData?.selectedFile?.url,
-					name: postData?.selectedFile?.name,
-					id: postData?.selectedFile?.id,
-				})
-			}
+				if (postData?.selectedFile?.id) {
+					const imageCollectionRef = firebaseApp.firestore().collection('images')
 
-			if (currentId === 0) {
-				dispatch(
-					createPost(
-						{
+					await imageCollectionRef.doc(postData?.selectedFile?.id).set({
+						url: postData?.selectedFile?.url,
+						name: postData?.selectedFile?.name,
+						id: postData?.selectedFile?.id,
+					})
+				}
+
+				if (currentId === 0) {
+					dispatch(
+						createPost(
+							{
+								...postData,
+								name: user?.result?.name,
+							},
+							navigate
+						)
+					)
+				} else {
+					dispatch(
+						updatePost(currentId, {
 							...postData,
 							name: user?.result?.name,
-						},
-						navigate
+						})
 					)
-				)
-			} else {
-				dispatch(
-					updatePost(currentId, {
-						...postData,
-						name: user?.result?.name,
-					})
-				)
+				}
+				handleClear()
+			} catch (error) {
+				showError('Something went wrong when trying to submit Post. Please try again.')
+				console.error(error)
+				throw error
+			} finally {
+				dispatch(hideLoading())
 			}
-			handleClear()
-			dispatch(hideLoading())
 		},
 		[currentId, dispatch, handleClear, navigate, postData, user?.result?.name]
 	)
