@@ -57,7 +57,7 @@ const Form = ({ currentId, setCurrentId }) => {
 				selectedFile: {
 					url: imageURL,
 					name: imageName,
-					id: uuid(),
+					id: postData?.selectedFile?.id?.length ? postData?.selectedFile?.id : uuid(),
 				},
 			})
 			dispatch(hideLoading())
