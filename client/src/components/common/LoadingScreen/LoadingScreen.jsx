@@ -1,13 +1,20 @@
+import { useContext, useEffect, useRef } from 'react'
 import { Spinner, useColorMode } from '@chakra-ui/react'
-import { useContext } from 'react'
+
 import { LoadingContext } from './LoadingContext'
 
 const LoadingScreen = () => {
 	const { isLoading } = useContext(LoadingContext)
 	const { colorMode } = useColorMode()
+	const loadingRef = useRef(null)
+
+	useEffect(() => {
+		isLoading && loadingRef.current.focus()
+	}, [isLoading])
 
 	return isLoading ? (
 		<div
+			ref={loadingRef}
 			className={
 				colorMode === 'light' ? 'loading-background-light' : 'loading-background-dark'
 			}

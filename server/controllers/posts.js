@@ -64,7 +64,6 @@ export const createPost = async (req, res) => {
 		createdAt: new Date().toISOString(),
 	});
 
-	console.log("newPost>>>", newPost);
 	try {
 		await newPost.save();
 		res.status(201).json(newPost);

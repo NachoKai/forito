@@ -1,14 +1,12 @@
 {
   "_id": { "$oid": "testid" },
   "tags": ["testtag"],
-  "likes": [
-    "testid1"
-  ],
+  "likes": ["testid1"],
   "comments": ["TestUser: Test comment"],
   "createdAt": { "$date": { "$numberLong": "testid" } },
   "title": "Test Title",
   "message": "Test Message",
-  "selectedFile": { "url": "", "name": "" },
+  "selectedFile": { "url": "", "name": "", "id": "" },
   "name": "Test Name",
   "creator": "testid",
   "__v": { "$numberInt": "0" },

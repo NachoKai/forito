@@ -6,7 +6,6 @@ input[type="file"] {
 .recommended-posts {
   scroll-snap-type: x mandatory;
 }
-
 .recommended-post {
   scroll-snap-align: start;
 }
@@ -20,11 +19,9 @@ input[type="file"] {
   padding: 4px !important;
   margin: 4px !important;
 }
-
 .MuiChip-clickable {
   height: 26px !important;
 }
-
 .MuiChip-label {
   max-width: 220px !important;
 }
@@ -34,7 +31,6 @@ input[type="file"] {
   border: 2px solid rgb(255 255 255 / 20%);
   backdrop-filter: blur(5px);
 }
-
 .glassmorphism-dark {
   background: rgb(0 0 0 / 40%);
   border: 2px solid rgb(0 0 0 / 20%);
@@ -44,7 +40,6 @@ input[type="file"] {
 .chakra-accordion__item {
   border-radius: 6px;
 }
-
 .chakra-skeleton {
   width: 100% !important;
 }
@@ -52,47 +47,40 @@ input[type="file"] {
 /* ::-webkit-scrollbar {
   width: 8px;
 }
-
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
-
 ::-webkit-scrollbar-thumb {
   background: #888;
 }
-
 ::-webkit-scrollbar-thumb:hover {
   background: #555;
 } */
 
-.loading-background-dark {
-  position: fixed;
-  left: 0;
-  top: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 99;
-  cursor: progress;
-  background: rgb(0 0 0 / 40%);
-  backdrop-filter: blur(15px);
-  pointer-events: none;
-}
-
+.loading-background-dark,
 .loading-background-light {
   position: fixed;
-  left: 0;
   top: 0;
+  left: 0;
+  z-index: 99;
   width: 100%;
   height: 100%;
-  z-index: 99;
-  cursor: progress;
-  background: rgb(255 255 255 / 40%);
-  backdrop-filter: blur(15px);
   pointer-events: none;
+  cursor: progress;
+  backdrop-filter: blur(15px);
+}
+.loading-background-light {
+  pointer-events: none;
+  background: rgb(255 255 255 / 40%);
+}
+.loading-background-dark {
+  pointer-events: none;
+  background: rgb(0 0 0 / 40%);
 }
 .loading-bar .loading-circle {
   position: absolute;
   top: 40%;
   left: 50%;
   pointer-events: none;
+  cursor: progress;
 }
