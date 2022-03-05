@@ -67,7 +67,6 @@ const Tags = () => {
 					<Loading />
 					<Loading />
 					<Loading />
-					<Loading />
 				</>
 			) : (
 				<StaggeredSlideFade spacing='3'>

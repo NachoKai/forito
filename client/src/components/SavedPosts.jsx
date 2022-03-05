@@ -82,7 +82,6 @@ const SavedPosts = () => {
 					<Loading />
 					<Loading />
 					<Loading />
-					<Loading />
 				</>
 			) : (
 				<StaggeredSlideFade spacing='3'>

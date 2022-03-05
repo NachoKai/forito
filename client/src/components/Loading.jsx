@@ -1,6 +1,6 @@
 import { Skeleton, SkeletonText, Stack } from '@chakra-ui/react'
 
-const Loading = ({ height = '250px' }) => (
+const Loading = ({ height = '500px' }) => (
 	<Stack
 		bg='primary_100_900'
 		borderRadius='lg'
@@ -24,7 +24,7 @@ const Loading = ({ height = '250px' }) => (
 		<SkeletonText
 			endColor='gray.200'
 			mt='4'
-			noOfLines={Math.floor(Math.random() * 7) + 2}
+			noOfLines={Math.floor(Math.random() * 7) + 3}
 			spacing='4'
 			startColor='gray.600'
 			w='100%'

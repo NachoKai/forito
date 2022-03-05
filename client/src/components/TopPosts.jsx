@@ -52,7 +52,6 @@ const TopPosts = () => {
 					<Loading />
 					<Loading />
 					<Loading />
-					<Loading />
 				</Stack>
 			) : (
 				<StaggeredSlideFade

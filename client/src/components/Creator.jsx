@@ -84,7 +84,6 @@ const Creator = () => {
 					<Loading />
 					<Loading />
 					<Loading />
-					<Loading />
 				</>
 			) : (
 				<StaggeredSlideFade spacing='3'>

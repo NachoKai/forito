@@ -239,7 +239,12 @@ const PostDetails = () => {
 									spacing='2'
 									onClick={() => openPost(_id)}
 								>
-									<Heading as='h3' fontSize='lg' fontWeight='bold' noOfLines={[1, 1, 2]}>
+									<Heading
+										as='h3'
+										fontSize='lg'
+										fontWeight='bold'
+										noOfLines={[1, 1, 2, 2]}
+									>
 										{title}
 									</Heading>
 									<Text fontSize='sm'>
@@ -250,7 +255,7 @@ const PostDetails = () => {
 										) + ' ago'}
 									</Text>
 									<Stack spacing='4'>
-										<Text fontSize='md' noOfLines={[1, 2, 4]}>
+										<Text fontSize='md' noOfLines={[1, 2, 4, 5]}>
 											{message}
 										</Text>
 										{selectedFile?.url && (

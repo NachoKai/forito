@@ -159,7 +159,7 @@ const Post = ({
 							lg: '8',
 							xl: '8',
 						}}
-						noOfLines={[2, 4, 6]}
+						noOfLines={[4, 6, 8, 10]}
 						whiteSpace='pre-wrap'
 					>
 						{message}

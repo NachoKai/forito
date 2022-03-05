@@ -27,7 +27,6 @@ const Posts = ({ setCurrentId, handleScroll }) => {
 					<Loading />
 					<Loading />
 					<Loading />
-					<Loading />
 				</StaggeredSlideFade>
 			) : (
 				<StaggeredSlideFade
