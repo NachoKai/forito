@@ -1,4 +1,4 @@
-import { useCallback, useRef, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Button, Stack, Text } from '@chakra-ui/react'
 import { FaExclamationCircle } from 'react-icons/fa'
@@ -14,7 +14,7 @@ const Comments = ({ post }) => {
 	const dispatch = useDispatch()
 	const user = getUser()
 	const commentsRef = useRef(null)
-	const [comments, setComments] = useState(post?.comments)
+	const [comments, setComments] = useState([])
 	const [comment, setComment] = useState('')
 
 	const handleComment = useCallback(async () => {
@@ -27,6 +27,10 @@ const Comments = ({ post }) => {
 	}, [comment, dispatch, post?._id, user?.result?.name])
 
 	const handleClear = () => setComment('')
+
+	useEffect(() => {
+		setComments(post?.comments)
+	}, [post])
 
 	return (
 		<Stack direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }} spacing='4'>
