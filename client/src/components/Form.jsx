@@ -11,10 +11,10 @@ import FormInput from './common/FormInput'
 import FormTextArea from './common/FormTextArea'
 import { getUser } from '../utils/getUser'
 import showError from '../utils/showError'
-import uuid from '../utils/uuid'
 import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
 import { hideLoading, showLoading } from '../redux/loading'
+import { getRandomId } from '../utils/getRandomId'
 
 const initialState = {
 	title: '',
@@ -58,7 +58,7 @@ const Form = ({ currentId, setCurrentId }) => {
 					selectedFile: {
 						url: imageURL,
 						name: imageName,
-						id: postData?.selectedFile?.id ? postData?.selectedFile?.id : uuid(),
+						id: postData?.selectedFile?.id ? postData?.selectedFile?.id : getRandomId(),
 					},
 				})
 			} catch (error) {

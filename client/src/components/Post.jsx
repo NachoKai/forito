@@ -22,6 +22,7 @@ import { deletePost, likePost, savePost } from '../redux/posts'
 import Likes from './Likes'
 import { getUser } from '../utils/getUser'
 import Dialog from './common/Dialog'
+import getUserId from '../utils/getUserId'
 
 const Post = ({
 	setCurrentId,
@@ -43,7 +44,7 @@ const Post = ({
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const user = getUser()
-	const userId = user?.result?.googleId || user?.result?._id
+	const userId = getUserId(user)
 	const isUserLike = likes?.find(like => like === userId)
 	const hasUserSaved = saves?.find(save => save === userId)
 	const [isDialogOpen, setIsDialogOpen] = useState(false)

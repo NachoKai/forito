@@ -10,14 +10,15 @@ import { addComment } from '../redux/posts'
 import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
 import { Link } from 'react-router-dom'
+import getUserId from '../utils/getUserId'
 
 const Comments = ({ post }) => {
 	const dispatch = useDispatch()
 	const user = getUser()
+	const userId = getUserId(user)
 	const commentsRef = useRef(null)
 	const [comments, setComments] = useState([])
 	const [comment, setComment] = useState('')
-	const userId = user?.result?.googleId || user?.result?._id
 
 	const handleComment = useCallback(async () => {
 		const commentContent = { id: userId, name: user?.result?.name, comment }
