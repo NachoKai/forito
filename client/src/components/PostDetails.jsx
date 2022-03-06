@@ -14,7 +14,7 @@ import {
 } from '@chakra-ui/react'
 import { formatDistance } from 'date-fns'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import { FaTwitter } from 'react-icons/fa'
+import { FaSearch, FaTwitter } from 'react-icons/fa'
 
 import { getPost, getPostsBySearch } from '../redux/posts'
 import { getRandomId } from '../utils/getRandomId'
@@ -33,6 +33,7 @@ const PostDetails = () => {
 		? 'http://localhost:3000/posts'
 		: 'https://forito.vercel.app/posts'
 
+	console.log('post', post)
 	const openPost = useCallback(_id => navigate(`/posts/${_id}`), [navigate])
 
 	const shareOnTwitter = () => {
@@ -58,7 +59,7 @@ const PostDetails = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [post])
 
-	return (
+	return post ? (
 		<Stack
 			borderRadius='lg'
 			p='32px'
@@ -279,6 +280,33 @@ const PostDetails = () => {
 				</>
 			)}
 		</Stack>
+	) : (
+		<StaggeredSlideFade
+			align='center'
+			direction='column'
+			h='100%'
+			marginY='64px'
+			minHeight='100vh'
+			p={{
+				sm: '6',
+				md: '8',
+				lg: '8',
+				xl: '8',
+			}}
+		>
+			<Text color='primary.400' fontSize='6xl' marginBottom='16px'>
+				<FaSearch />
+			</Text>
+			<Heading
+				as='h2'
+				bgClip='text'
+				bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
+				fontSize='4xl'
+				fontWeight='bold'
+			>
+				Post not found.
+			</Heading>
+		</StaggeredSlideFade>
 	)
 }
 
