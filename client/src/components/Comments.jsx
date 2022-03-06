@@ -9,6 +9,7 @@ import { getUser } from '../utils/getUser'
 import { addComment } from '../redux/posts'
 import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
+import { Link } from 'react-router-dom'
 
 const Comments = ({ post }) => {
 	const dispatch = useDispatch()
@@ -18,13 +19,13 @@ const Comments = ({ post }) => {
 	const [comment, setComment] = useState('')
 
 	const handleComment = useCallback(async () => {
-		const commentContent = `${user?.result?.name}: ${comment}`
+		const commentContent = { id: user?.result?._id, name: user?.result?.name, comment }
 		const newComments = await dispatch(addComment(commentContent, post?._id))
 
 		setComments(newComments)
 		setComment('')
 		commentsRef.current.scrollIntoView({ behavior: 'smooth' })
-	}, [comment, dispatch, post?._id, user?.result?.name])
+	}, [comment, dispatch, post?._id, user?.result?._id, user?.result?.name])
 
 	const handleClear = () => setComment('')
 
@@ -37,8 +38,10 @@ const Comments = ({ post }) => {
 			<Stack maxHeight='230px' overflow='auto' spacing='4' width='100%'>
 				{comments?.map(comment => (
 					<Text key={getRandomId()}>
-						<strong>{comment?.split(': ')[0]}: </strong>
-						{comment?.split(': ')[1]}
+						<Link to={`/creator/${comment.id}`}>
+							<strong>{comment.name}: </strong>
+						</Link>
+						{comment.comment}
 					</Text>
 				))}
 				<div ref={commentsRef} />
