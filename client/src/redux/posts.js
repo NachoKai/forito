@@ -28,6 +28,7 @@ export const cleanUp = () => ({ type: CLEAN_UP })
 
 export const getPost = id => async dispatch => {
 	try {
+		dispatch(showLoading())
 		dispatch({ type: START_LOADING })
 
 		const { data } = await api.fetchPost(id)
@@ -37,6 +38,8 @@ export const getPost = id => async dispatch => {
 	} catch (err) {
 		showError('Something went wrong when trying to get post. Please try again.')
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 
