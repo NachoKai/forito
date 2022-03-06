@@ -17,15 +17,16 @@ const Comments = ({ post }) => {
 	const commentsRef = useRef(null)
 	const [comments, setComments] = useState([])
 	const [comment, setComment] = useState('')
+	const userId = user?.result?.googleId || user?.result?._id
 
 	const handleComment = useCallback(async () => {
-		const commentContent = { id: user?.result?._id, name: user?.result?.name, comment }
+		const commentContent = { id: userId, name: user?.result?.name, comment }
 		const newComments = await dispatch(addComment(commentContent, post?._id))
 
 		setComments(newComments)
 		setComment('')
 		commentsRef.current.scrollIntoView({ behavior: 'smooth' })
-	}, [comment, dispatch, post?._id, user?.result?._id, user?.result?.name])
+	}, [comment, dispatch, post?._id, user?.result?.name, userId])
 
 	const handleClear = () => setComment('')
 
