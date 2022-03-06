@@ -33,7 +33,6 @@ const PostDetails = () => {
 		? 'http://localhost:3000/posts'
 		: 'https://forito.vercel.app/posts'
 
-	console.log('post', post)
 	const openPost = useCallback(_id => navigate(`/posts/${_id}`), [navigate])
 
 	const shareOnTwitter = () => {
