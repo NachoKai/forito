@@ -1,5 +1,5 @@
 
-# Forito
+# Forito ✨
 
 Forito it's a place where you can spit out your ideas ✍️ 
 
