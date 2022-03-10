@@ -96,7 +96,7 @@ If you have any feedback, please reach out to me at ignacio.caiafa@gmail.com
 
 ## Contributing
 
-Contributions are always welcome!
+Contributions are always welcome! [Project Kanban Board](https://github.com/NachoKai/forito/projects/1) 
 ## Authors
 
 - [@NachoKai](https://www.github.com/NachoKai)
