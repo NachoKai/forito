@@ -302,7 +302,7 @@ const Post = ({
 export default memo(Post)
 
 Post.propTypes = {
-	setCurrentId: PropTypes.func.isRequired,
+	setCurrentId: PropTypes.func,
 	post: PropTypes.shape({
 		_id: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired,
@@ -318,5 +318,5 @@ Post.propTypes = {
 		}).isRequired,
 		comments: PropTypes.arrayOf(PropTypes.object).isRequired,
 	}).isRequired,
-	handleScroll: PropTypes.func.isRequired,
+	handleScroll: PropTypes.func,
 }
