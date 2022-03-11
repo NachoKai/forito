@@ -1,4 +1,5 @@
 import { createContext, useCallback, useState } from 'react'
+import PropTypes from 'prop-types'
 
 export const LoadingContext = createContext()
 
@@ -22,3 +23,7 @@ export function LoadingContextProvider({ children }) {
 }
 
 export const LoadingContextConsumer = LoadingContext.Consumer
+
+LoadingContextProvider.propTypes = {
+	children: PropTypes.node.isRequired,
+}

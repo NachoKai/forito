@@ -4,6 +4,7 @@ import { Button, Flex, Image, Stack, Text } from '@chakra-ui/react'
 import { FaExclamationCircle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import ImageUploading from 'react-images-uploading'
+import PropTypes from 'prop-types'
 
 import { firebaseApp } from '../firebaseApp'
 import { createPost, updatePost } from '../redux/posts'
@@ -422,3 +423,8 @@ const Form = ({ currentId, setCurrentId }) => {
 }
 
 export default Form
+
+Form.propTypes = {
+	currentId: PropTypes.number,
+	setCurrentId: PropTypes.func,
+}

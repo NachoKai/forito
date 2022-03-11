@@ -16,6 +16,7 @@ import { format, formatDistance, isValid } from 'date-fns'
 import { useDispatch } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { FaBookmark, FaRegBookmark } from 'react-icons/fa'
+import PropTypes from 'prop-types'
 
 import { getRandomId } from '../utils/getRandomId'
 import { deletePost, likePost, savePost } from '../redux/posts'
@@ -299,3 +300,23 @@ const Post = ({
 }
 
 export default memo(Post)
+
+Post.propTypes = {
+	setCurrentId: PropTypes.func.isRequired,
+	post: PropTypes.shape({
+		_id: PropTypes.string.isRequired,
+		title: PropTypes.string.isRequired,
+		name: PropTypes.string.isRequired,
+		creator: PropTypes.string.isRequired,
+		message: PropTypes.string.isRequired,
+		likes: PropTypes.arrayOf(PropTypes.string).isRequired,
+		saves: PropTypes.arrayOf(PropTypes.string).isRequired,
+		createdAt: PropTypes.string.isRequired,
+		tags: PropTypes.arrayOf(PropTypes.string).isRequired,
+		selectedFile: PropTypes.shape({
+			url: PropTypes.string,
+		}).isRequired,
+		comments: PropTypes.arrayOf(PropTypes.object).isRequired,
+	}).isRequired,
+	handleScroll: PropTypes.func.isRequired,
+}

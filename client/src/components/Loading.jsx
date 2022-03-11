@@ -1,4 +1,5 @@
 import { Skeleton, SkeletonText, Stack } from '@chakra-ui/react'
+import PropTypes from 'prop-types'
 
 const Loading = ({ height = '500px' }) => (
 	<Stack
@@ -40,3 +41,7 @@ const Loading = ({ height = '500px' }) => (
 )
 
 export default Loading
+
+Loading.propTypes = {
+	height: PropTypes.string,
+}

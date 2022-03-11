@@ -1,5 +1,6 @@
-import { SlideFade, Stack } from '@chakra-ui/react'
 import { Children, isValidElement } from 'react'
+import { SlideFade, Stack } from '@chakra-ui/react'
+import PropTypes from 'prop-types'
 
 const StaggeredSlideFade = ({ children, ...props }) => {
 	return (
@@ -22,3 +23,7 @@ const StaggeredSlideFade = ({ children, ...props }) => {
 }
 
 export default StaggeredSlideFade
+
+StaggeredSlideFade.propTypes = {
+	children: PropTypes.node.isRequired,
+}

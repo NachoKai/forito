@@ -8,6 +8,7 @@ import {
 	AlertDialogOverlay,
 	Button,
 } from '@chakra-ui/react'
+import PropTypes from 'prop-types'
 
 const Dialog = ({ title, message, button, action, isDialogOpen, setIsDialogOpen }) => {
 	const cancelRef = useRef()
@@ -42,3 +43,12 @@ const Dialog = ({ title, message, button, action, isDialogOpen, setIsDialogOpen 
 }
 
 export default Dialog
+
+Dialog.propTypes = {
+	title: PropTypes.string.isRequired,
+	message: PropTypes.string.isRequired,
+	button: PropTypes.string.isRequired,
+	action: PropTypes.func.isRequired,
+	isDialogOpen: PropTypes.bool.isRequired,
+	setIsDialogOpen: PropTypes.func.isRequired,
+}

@@ -1,6 +1,7 @@
 import { useSelector } from 'react-redux'
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { FaPencilAlt } from 'react-icons/fa'
+import PropTypes from 'prop-types'
 
 import Post from './Post'
 import { CreateGradColor } from '../theme'
@@ -82,3 +83,8 @@ const Posts = ({ setCurrentId, handleScroll }) => {
 }
 
 export default Posts
+
+Posts.propTypes = {
+	setCurrentId: PropTypes.func.isRequired,
+	handleScroll: PropTypes.func.isRequired,
+}

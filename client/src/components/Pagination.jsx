@@ -4,6 +4,7 @@ import { Pagination, PaginationItem } from '@material-ui/lab'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import { Stack, useColorModeValue } from '@chakra-ui/react'
+import PropTypes from 'prop-types'
 
 import { getPosts } from '../redux/posts'
 
@@ -44,3 +45,7 @@ const Container = styled(Stack)`
 		color: ${p => p.color};
 	}
 `
+
+Paginate.propTypes = {
+	page: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+}

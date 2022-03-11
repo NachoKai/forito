@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Button, Stack, Text } from '@chakra-ui/react'
 import { FaExclamationCircle } from 'react-icons/fa'
+import PropTypes from 'prop-types'
 
 import { getRandomId } from '../utils/getRandomId'
 import FormTextArea from './common/FormTextArea'
@@ -117,3 +118,7 @@ const Comments = ({ post }) => {
 }
 
 export default Comments
+
+Comments.propTypes = {
+	post: PropTypes.object.isRequired,
+}

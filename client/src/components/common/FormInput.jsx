@@ -9,6 +9,7 @@ import {
 	InputRightElement,
 	Tooltip,
 } from '@chakra-ui/react'
+import PropTypes from 'prop-types'
 
 const FormInput = ({
 	label,
@@ -89,3 +90,23 @@ const FormInput = ({
 )
 
 export default FormInput
+
+FormInput.propTypes = {
+	label: PropTypes.string.isRequired,
+	name: PropTypes.string,
+	isInvalid: PropTypes.bool,
+	value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
+	isRequired: PropTypes.bool,
+	helper: PropTypes.string,
+	validation: PropTypes.bool,
+	autoFocus: PropTypes.bool,
+	maxLength: PropTypes.string,
+	onChange: PropTypes.func,
+	child: PropTypes.node,
+	type: PropTypes.string,
+	leftIcon: PropTypes.node,
+	rightIcon: PropTypes.node,
+	placeholder: PropTypes.string,
+	tooltip: PropTypes.string,
+	dataCy: PropTypes.string,
+}

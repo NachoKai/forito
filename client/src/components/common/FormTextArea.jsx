@@ -6,6 +6,7 @@ import {
 	Textarea,
 	Tooltip,
 } from '@chakra-ui/react'
+import PropTypes from 'prop-types'
 
 const FormTextArea = ({
 	label,
@@ -63,3 +64,18 @@ const FormTextArea = ({
 )
 
 export default FormTextArea
+
+FormTextArea.propTypes = {
+	label: PropTypes.string.isRequired,
+	name: PropTypes.string.isRequired,
+	value: PropTypes.string.isRequired,
+	isRequired: PropTypes.bool,
+	helper: PropTypes.string,
+	autoFocus: PropTypes.bool,
+	maxLength: PropTypes.string,
+	onChange: PropTypes.func.isRequired,
+	child: PropTypes.node,
+	type: PropTypes.string,
+	dataCy: PropTypes.string,
+	tooltip: PropTypes.string,
+}
