@@ -7,7 +7,7 @@ import PropTypes from 'prop-types'
 
 import { getRandomId } from '../utils/getRandomId'
 import FormTextArea from './common/FormTextArea'
-import { getUser } from '../utils/getUser'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { addComment } from '../redux/posts'
 import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
@@ -15,7 +15,7 @@ import getUserId from '../utils/getUserId'
 
 const Comments = ({ post }) => {
 	const dispatch = useDispatch()
-	const user = getUser()
+	const user = getUserLocalStorage()
 	const userId = getUserId(user)
 	const commentsRef = useRef(null)
 	const [comments, setComments] = useState([])

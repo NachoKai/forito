@@ -11,6 +11,7 @@ import { getPosts } from '../redux/posts'
 const Paginate = ({ page }) => {
 	const dispatch = useDispatch()
 	const { numberOfPages } = useSelector(state => state.posts)
+	const containerColor = useColorModeValue('black', 'white')
 
 	useEffect(() => page && dispatch(getPosts(page)), [dispatch, page])
 
@@ -19,7 +20,7 @@ const Paginate = ({ page }) => {
 			bg='primary_100_900'
 			borderRadius='lg'
 			boxShadow='md'
-			color={useColorModeValue('black', 'white')}
+			color={containerColor}
 		>
 			{numberOfPages > 1 && (
 				<Pagination

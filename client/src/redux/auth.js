@@ -54,7 +54,7 @@ export const getUser = id => async dispatch => {
 
 		dispatch({ type: FETCH_USER, data: { user: data } })
 	} catch (err) {
-		// showError("Something went wrong when trying to get user. Please try again.")
+		showError('Something went wrong when trying to get user. Please try again.')
 		console.error(err)
 	}
 }

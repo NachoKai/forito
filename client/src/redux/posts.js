@@ -1,6 +1,6 @@
 import * as api from '../api'
 import { hideLoading, showLoading } from './loading'
-import { getUser } from '../utils/getUser'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import showError from '../utils/showError'
 import showSuccess from '../utils/showSuccess'
 
@@ -126,7 +126,7 @@ export const deletePost = id => async dispatch => {
 }
 
 export const likePost = id => async dispatch => {
-	const user = getUser()
+	const user = getUserLocalStorage()
 
 	try {
 		const { data } = await api.likePost(id, user?.token)
@@ -139,7 +139,7 @@ export const likePost = id => async dispatch => {
 }
 
 export const savePost = saves => async dispatch => {
-	const user = getUser()
+	const user = getUserLocalStorage()
 
 	try {
 		const { data } = await api.savePost(saves, user?.token)

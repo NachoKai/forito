@@ -21,7 +21,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import decode from 'jwt-decode'
 
 import { logout } from '../redux/auth'
-import { getUser } from '../utils/getUser'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { CreateGradColor } from '../theme'
 import getUserId from '../utils/getUserId'
 
@@ -29,7 +29,7 @@ const Navbar = () => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const navigate = useNavigate()
-	const [user, setUser] = useState(() => getUser())
+	const [user, setUser] = useState(() => getUserLocalStorage())
 	const userId = getUserId(user)
 	const { colorMode, toggleColorMode } = useColorMode()
 	const [isOpen, setIsOpen] = useState(false)
@@ -46,7 +46,7 @@ const Navbar = () => {
 		const token = user?.token
 
 		if (token && decode(token).exp * 1000 < new Date().getTime()) handleLogout()
-		setUser(getUser())
+		setUser(getUserLocalStorage())
 	}, [handleLogout, location, user?.token])
 
 	return (

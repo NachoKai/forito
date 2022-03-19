@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Flex, Image, Stack, Text } from '@chakra-ui/react'
+import { Button, Flex, Image, Radio, RadioGroup, Stack, Text } from '@chakra-ui/react'
 import { FaExclamationCircle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 import ImageUploading from 'react-images-uploading'
@@ -10,7 +10,7 @@ import { firebaseApp } from '../firebaseApp'
 import { createPost, updatePost } from '../redux/posts'
 import FormInput from './common/FormInput'
 import FormTextArea from './common/FormTextArea'
-import { getUser } from '../utils/getUser'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import showError from '../utils/showError'
 import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
@@ -27,14 +27,14 @@ const initialState = {
 
 const Form = ({ currentId, setCurrentId }) => {
 	const dispatch = useDispatch()
-	const user = getUser()
+	const user = getUserLocalStorage()
 	const navigate = useNavigate()
 	const [postData, setPostData] = useState(initialState)
 	const [images, setImages] = useState([])
 	const areValidTags = ![...new Set(postData.tags)].every(tag =>
 		/^[a-zA-Z0-9_.-]*$/.test(tag)
 	)
-	// const [privacy, setPrivacy] = useState('public')
+	const [privacy, setPrivacy] = useState('public')
 
 	const post = useSelector(state =>
 		currentId ? state.posts?.posts?.find(message => message._id === currentId) : null
@@ -73,18 +73,18 @@ const Form = ({ currentId, setCurrentId }) => {
 		[dispatch, postData]
 	)
 
-	// const handlePrivacy = useCallback(
-	// 	privacy => {
-	// 		setPostData({ ...postData, privacy })
-	// 		setPrivacy(privacy)
-	// 	},
-	// 	[postData]
-	// )
+	const handlePrivacy = useCallback(
+		privacy => {
+			setPostData({ ...postData, privacy })
+			setPrivacy(privacy)
+		},
+		[postData]
+	)
 
 	const handleClear = useCallback(() => {
 		setCurrentId(0)
 		setImages([])
-		// setPrivacy('public')
+		setPrivacy('public')
 		setPostData(initialState)
 	}, [setCurrentId])
 
@@ -370,7 +370,7 @@ const Form = ({ currentId, setCurrentId }) => {
 						label='Upload image'
 					/>
 
-					{/* <FormInput
+					<FormInput
 						isRequired
 						child={
 							<RadioGroup
@@ -391,7 +391,7 @@ const Form = ({ currentId, setCurrentId }) => {
 						label='Privacy'
 						name='privacy'
 						tooltip='Private Posts will only be visible to their creator'
-					/> */}
+					/>
 
 					<Stack spacing='4'>
 						<Button

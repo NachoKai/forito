@@ -11,16 +11,22 @@ import {
 	Skeleton,
 	Stack,
 	Text,
+	Tooltip,
 } from '@chakra-ui/react'
 import { formatDistance } from 'date-fns'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { FaSearch, FaTwitter } from 'react-icons/fa'
+import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 
 import { getPost, getPostsBySearch } from '../redux/posts'
 import { getRandomId } from '../utils/getRandomId'
 import Comments from '../components/Comments'
 import { CreateGradColor } from '../theme'
 import StaggeredSlideFade from './common/StaggeredSlideFade'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import checkIsPostCreator from '../utils/checkIsPostCreator'
+import checkIsAdmin from '../utils/checkIsAdmin'
+import { isDev } from '../utils/checkIsDev'
 
 const PostDetails = () => {
 	const dispatch = useDispatch()
@@ -28,10 +34,15 @@ const PostDetails = () => {
 	const { id } = useParams()
 	const { post, posts } = useSelector(state => state.posts)
 	const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id)
-	const isDev = process.env.NODE_ENV !== 'production'
 	const baseURL = isDev
 		? 'http://localhost:3000/posts'
 		: 'https://forito.vercel.app/posts'
+	const user = getUserLocalStorage()
+	const userEmail = user?.result?.email
+	const isPrivate = post?.privacy === 'private'
+	const isPostCreator = checkIsPostCreator(user, post?.creator)
+	const isAdmin = checkIsAdmin(userEmail)
+	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
 
 	const openPost = useCallback(_id => navigate(`/posts/${_id}`), [navigate])
 
@@ -58,9 +69,10 @@ const PostDetails = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [post])
 
-	return post ? (
+	return post && showPost ? (
 		<Stack
 			borderRadius='lg'
+			display={showPost ? 'block' : 'none'}
 			p='32px'
 			spacing={{
 				sm: '6',
@@ -95,9 +107,25 @@ const PostDetails = () => {
 						}}
 						w='100%'
 					>
-						<Heading as='h2' data-cy='post-details-title' size='xl'>
-							{post?.title}
-						</Heading>
+						<Stack align='center' direction='row' justify='space-between' w='100%'>
+							<Heading as='h2' data-cy='post-details-title' size='xl'>
+								{post?.title}
+							</Heading>
+							{isPrivate && (
+								<Tooltip
+									hasArrow
+									colorScheme='primary'
+									label='Post only visible to you'
+									openDelay={200}
+									placement='top'
+								>
+									<span>
+										<RiGitRepositoryPrivateFill />
+									</span>
+								</Tooltip>
+							)}
+						</Stack>
+
 						<Text data-cy='post-details-message' fontSize='lg' whiteSpace='pre-wrap'>
 							{post?.message}
 						</Text>

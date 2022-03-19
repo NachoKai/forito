@@ -7,10 +7,24 @@ import Post from './Post'
 import { CreateGradColor } from '../theme'
 import Loading from './Loading'
 import StaggeredSlideFade from './common/StaggeredSlideFade'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import checkIsPostCreator from '../utils/checkIsPostCreator'
+import checkIsAdmin from '../utils/checkIsAdmin'
 
 const Posts = ({ setCurrentId, handleScroll }) => {
 	const { posts, isLoading } = useSelector(state => state.posts)
 	const havePosts = posts?.length > 0
+	const user = getUserLocalStorage()
+	const userEmail = user?.result?.email
+	const isAdmin = checkIsAdmin(userEmail)
+
+	const publicPosts = posts?.filter(post => {
+		const isPrivate = post?.privacy === 'private'
+		const creator = post?.creator
+		const isPostCreator = checkIsPostCreator(user, creator)
+
+		return !isPrivate || (isPrivate && isPostCreator) || isAdmin
+	})
 
 	return (
 		<Flex flexGrow minHeight='100vh' w='100%'>
@@ -66,7 +80,7 @@ const Posts = ({ setCurrentId, handleScroll }) => {
 							}}
 							w='100%'
 						>
-							{posts?.map(post => (
+							{publicPosts?.map(post => (
 								<Post
 									key={post?._id}
 									handleScroll={handleScroll}

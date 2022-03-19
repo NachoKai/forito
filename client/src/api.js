@@ -1,7 +1,8 @@
 import axios from 'axios'
-import { getUser } from './utils/getUser'
 
-const isDev = process.env.NODE_ENV !== 'production'
+import { isDev } from './utils/checkIsDev'
+import { getUserLocalStorage } from './utils/getUserLocalStorage'
+
 const API = axios.create({
 	baseURL: isDev ? 'http://localhost:5000' : 'https://forito-app.herokuapp.com',
 	timeout: 20_000,
@@ -9,7 +10,7 @@ const API = axios.create({
 
 API.interceptors.request.use(req => {
 	if (localStorage.getItem('forito-profile')) {
-		req.headers.authorization = `Bearer ${getUser().token}`
+		req.headers.authorization = `Bearer ${getUserLocalStorage().token}`
 	}
 
 	return req

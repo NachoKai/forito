@@ -5,7 +5,7 @@ import { Button } from '@chakra-ui/react'
 import { FaChevronUp } from 'react-icons/fa'
 import 'react-toastify/dist/ReactToastify.css'
 
-import { getUser } from './utils/getUser'
+import { getUserLocalStorage } from './utils/getUserLocalStorage'
 import ErrorPage from './components/ErrorPage'
 import Navbar from './components/Navbar'
 import Home from './components/Home'
@@ -23,7 +23,7 @@ import LoadingSync from './components/common/LoadingScreen/LoadingSync'
 
 const App = () => {
 	const [showScroll, setShowScroll] = useState(false)
-	const user = getUser()
+	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
 
 	const checkScrollTop = () => {
