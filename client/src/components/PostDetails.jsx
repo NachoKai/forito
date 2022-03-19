@@ -191,22 +191,24 @@ const PostDetails = () => {
 									</Text>
 								</Stack>
 							</Stack>
-							<Stack
-								align='flex-start'
-								direction='row'
-								h='100%'
-								justify='flex-end'
-								spacing='8px'
-							>
-								<Button
-									colorScheme='primary'
-									rightIcon={<FaTwitter />}
-									size='xs'
-									onClick={() => shareOnTwitter()}
+							{!isPrivate && (
+								<Stack
+									align='flex-start'
+									direction='row'
+									h='100%'
+									justify='flex-end'
+									spacing='8px'
 								>
-									Share
-								</Button>
-							</Stack>
+									<Button
+										colorScheme='primary'
+										rightIcon={<FaTwitter />}
+										size='xs'
+										onClick={() => shareOnTwitter()}
+									>
+										Share
+									</Button>
+								</Stack>
+							)}
 						</Flex>
 					</Stack>
 				</Stack>
