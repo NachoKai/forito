@@ -7,7 +7,6 @@ import Post from "../models/post.js";
 const router = express.Router();
 
 export const getPosts = async (req, res) => {
-	const user = req.user;
 	const { page } = req.query;
 
 	try {
@@ -16,8 +15,6 @@ export const getPosts = async (req, res) => {
 		const total = await Post.countDocuments({});
 		const posts = await Post.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
 
-		console.log("user", user);
-		// console.log("posts", posts);
 		res.status(200).json({
 			data: posts,
 			currentPage: Number(page),

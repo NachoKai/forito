@@ -2,12 +2,11 @@ import dotenv from "dotenv";
 import express from "express";
 import mongoose from "mongoose";
 import cors from "cors";
+import postRoutes from "./routes/posts.js";
+import userRoutes from "./routes/users.js";
 import compression from "compression";
 import mongoSanitize from "express-mongo-sanitize";
 import rateLimit from "express-rate-limit";
-
-import postRoutes from "./routes/posts.js";
-import userRoutes from "./routes/users.js";
 
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
