@@ -178,15 +178,18 @@ const PostDetails = () => {
 								spacing='2'
 							>
 								<Text fontSize='md'>Created by:</Text>
-								<Text fontSize='md' fontWeight='bold'>
-									<Link to={`/creator/${post?.creator}`}>{` ${post?.name}`}</Link>
-								</Text>
-								<Text fontSize='md'>
-									{formatDistance(
-										new Date(),
-										post?.createdAt ? new Date(post?.createdAt) : new Date()
-									) + ' ago'}
-								</Text>
+								<Stack direction='row'>
+									<Text fontSize='md' fontWeight='bold'>
+										<Link to={`/creator/${post?.creator}`}>{` ${post?.name}`}</Link>
+									</Text>
+									<span>•</span>
+									<Text fontSize='md'>
+										{formatDistance(
+											new Date(),
+											post?.createdAt ? new Date(post?.createdAt) : new Date()
+										) + ' ago'}
+									</Text>
+								</Stack>
 							</Stack>
 							<Stack
 								align='flex-start'

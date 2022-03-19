@@ -126,6 +126,7 @@ const Post = ({
 										<Text fontSize='md' fontWeight='bold'>
 											<Link to={`/creator/${creator}`}>{` ${name}`}</Link>
 										</Text>
+										<span>•</span>
 										<Tooltip
 											hasArrow
 											colorScheme='primary'
