@@ -102,7 +102,7 @@ const Post = ({
 						lg: 'column-reverse',
 						xl: 'row',
 					}}
-					display={showPost ? 'block' : 'none'}
+					display={showPost ? 'flex' : 'none'}
 					h='100%'
 					p={{
 						sm: '6',
