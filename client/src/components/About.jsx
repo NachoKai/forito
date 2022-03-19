@@ -1,6 +1,5 @@
-import { Button, Flex, Heading, Stack, Text } from '@chakra-ui/react'
+import { Button, Link as ChakraLink, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { FaGithub, FaHandSpock } from 'react-icons/fa'
-import { Link as ChakraLink } from '@chakra-ui/react'
 
 import { CreateGradColor } from '../theme'
 

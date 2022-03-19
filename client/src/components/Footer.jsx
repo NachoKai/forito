@@ -1,6 +1,5 @@
-import { Divider, Stack, Text } from '@chakra-ui/react'
+import { Link as ChakraLink, Divider, Stack, Text } from '@chakra-ui/react'
 import { FaGithub } from 'react-icons/fa'
-import { Link as ChakraLink } from '@chakra-ui/react'
 import { Link } from 'react-router-dom'
 
 const Footer = () => (

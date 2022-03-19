@@ -6,8 +6,7 @@ import { Button, Flex, Stack, Text } from '@chakra-ui/react'
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa'
 
 import FormInput from './common/FormInput'
-import { AUTH } from '../redux/auth'
-import { login, signup } from '../redux/auth'
+import { AUTH, login, signup } from '../redux/auth'
 import showError from '../utils/showError'
 import { checkEmpty } from '../utils/checkEmpty'
 

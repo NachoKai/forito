@@ -11,11 +11,10 @@ import {
 	Tooltip,
 	useColorModeValue,
 } from '@chakra-ui/react'
-import { FaEraser, FaPen, FaRegComments } from 'react-icons/fa'
+import { FaBookmark, FaEraser, FaPen, FaRegBookmark, FaRegComments } from 'react-icons/fa'
 import { format, formatDistance, isValid } from 'date-fns'
 import { useDispatch } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { FaBookmark, FaRegBookmark } from 'react-icons/fa'
 import PropTypes from 'prop-types'
 
 import { getRandomId } from '../utils/getRandomId'
@@ -56,7 +55,7 @@ const Post = ({
 
 	const isPostCreator = user?.result?.googleId
 		? user?.result?.googleId === creator
-		: false || user?.result?._id
+		: user?.result?._id
 		? user?.result?._id === creator
 		: false
 

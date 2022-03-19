@@ -2,6 +2,7 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Button, Stack, Text } from '@chakra-ui/react'
 import { FaExclamationCircle } from 'react-icons/fa'
+import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { getRandomId } from '../utils/getRandomId'
@@ -10,7 +11,6 @@ import { getUser } from '../utils/getUser'
 import { addComment } from '../redux/posts'
 import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
-import { Link } from 'react-router-dom'
 import getUserId from '../utils/getUserId'
 
 const Comments = ({ post }) => {
