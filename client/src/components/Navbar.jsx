@@ -23,14 +23,13 @@ import decode from 'jwt-decode'
 import { logout } from '../redux/auth'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { CreateGradColor } from '../theme'
-import getUserId from '../utils/getUserId'
 
 const Navbar = () => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const navigate = useNavigate()
 	const [user, setUser] = useState(() => getUserLocalStorage())
-	const userId = getUserId(user)
+	const userId = user?.result?.googleId || user?.result?._id
 	const { colorMode, toggleColorMode } = useColorMode()
 	const [isOpen, setIsOpen] = useState(false)
 

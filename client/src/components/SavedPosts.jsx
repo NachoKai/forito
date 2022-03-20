@@ -9,18 +9,33 @@ import Post from './Post'
 import { CreateGradColor } from '../theme'
 import Loading from './Loading'
 import StaggeredSlideFade from './common/StaggeredSlideFade'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import checkIsAdmin from '../utils/checkIsAdmin'
+import checkIsPostCreator from '../utils/checkIsPostCreator'
 
 const SavedPosts = () => {
 	const dispatch = useDispatch()
 	const { id } = useParams()
 	const { posts, isLoading } = useSelector(state => state.posts)
+	const user = getUserLocalStorage()
+	const userEmail = user?.result?.email
+	const userId = user?.result?.googleId || user?.result?._id
+	const isAdmin = checkIsAdmin(userEmail)
+
+	const publicPosts = posts?.filter(post => {
+		const isPrivate = post?.privacy === 'private'
+		const creator = post?.creator
+		const isPostCreator = checkIsPostCreator(user, creator)
+
+		return !isPrivate || (isPrivate && isPostCreator) || isAdmin
+	})
 
 	useEffect(() => {
 		dispatch(getSavedPosts(id))
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-	if (!posts?.length && !isLoading) {
+	if ((!publicPosts?.length && !isLoading) || userId !== id) {
 		return (
 			<StaggeredSlideFade
 				align='center'

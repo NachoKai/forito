@@ -23,7 +23,6 @@ import { deletePost, likePost, savePost } from '../redux/posts'
 import Likes from './Likes'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import Dialog from './common/Dialog'
-import getUserId from '../utils/getUserId'
 import checkIsPostCreator from '../utils/checkIsPostCreator'
 import checkIsAdmin from '../utils/checkIsAdmin'
 
@@ -48,7 +47,7 @@ const Post = ({
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const user = getUserLocalStorage()
-	const userId = getUserId(user)
+	const userId = user?.result?.googleId || user?.result?._id
 	const isUserLike = likes?.find(like => like === userId)
 	const hasUserSaved = saves?.find(save => save === userId)
 	const [isDialogOpen, setIsDialogOpen] = useState(false)

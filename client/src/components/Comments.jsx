@@ -11,12 +11,11 @@ import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { addComment } from '../redux/posts'
 import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
-import getUserId from '../utils/getUserId'
 
 const Comments = ({ post }) => {
 	const dispatch = useDispatch()
 	const user = getUserLocalStorage()
-	const userId = getUserId(user)
+	const userId = user?.result?.googleId || user?.result?._id
 	const commentsRef = useRef(null)
 	const [comments, setComments] = useState([])
 	const [comment, setComment] = useState('')
