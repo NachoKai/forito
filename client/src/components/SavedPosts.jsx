@@ -31,7 +31,7 @@ const SavedPosts = () => {
 	})
 
 	useEffect(() => {
-		dispatch(getSavedPosts(id))
+		if (userId === id) dispatch(getSavedPosts(id))
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
