@@ -257,6 +257,7 @@ const PostDetails = () => {
 									key={_id}
 									bg='primary_100_900'
 									borderRadius='lg'
+									boxShadow='md'
 									className='recommended-post'
 									color='primary_800_100'
 									cursor='pointer'
