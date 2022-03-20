@@ -29,7 +29,11 @@ const CONNECTION_URL = process.env.MONGODB_URI;
 
 app.use(express.json({ limit: "5mb", extended: true }));
 app.use(express.urlencoded({ limit: "30mb", extended: true }));
-app.use(limiter);
+
+if (!isDev) {
+	app.use(limiter);
+}
+
 app.use(compression());
 app.use(mongoSanitize());
 app.use(cors());
