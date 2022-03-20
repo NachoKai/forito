@@ -8,7 +8,7 @@ import Search from './Search'
 import { useQuery } from '../utils/useQuery'
 
 const Home = () => {
-	const [currentId, setCurrentId] = useState(0)
+	const [currentId, setCurrentId] = useState(null)
 	const query = useQuery()
 	const page = query.get('page') || 1
 	const searchQuery = query.get('searchQuery')

@@ -34,11 +34,10 @@ const Form = ({ currentId, setCurrentId }) => {
 	const areValidTags = ![...new Set(postData.tags)].every(tag =>
 		/^[a-zA-Z0-9_.-]*$/.test(tag)
 	)
-	const [privacy, setPrivacy] = useState('public')
-
 	const post = useSelector(state =>
 		currentId ? state.posts?.posts?.find(message => message._id === currentId) : null
 	)
+	const [privacy, setPrivacy] = useState(post?.privacy)
 
 	const onImageUpload = useCallback(
 		async imageList => {
@@ -80,9 +79,8 @@ const Form = ({ currentId, setCurrentId }) => {
 		},
 		[postData]
 	)
-
 	const handleClear = useCallback(() => {
-		setCurrentId(0)
+		setCurrentId(null)
 		setImages([])
 		setPrivacy('public')
 		setPostData(initialState)
@@ -105,7 +103,7 @@ const Form = ({ currentId, setCurrentId }) => {
 					})
 				}
 
-				if (currentId === 0) {
+				if (currentId === null) {
 					dispatch(
 						createPost(
 							{
@@ -143,6 +141,7 @@ const Form = ({ currentId, setCurrentId }) => {
 	useEffect(() => {
 		if (post) {
 			setImages(post?.selectedFile?.url ? [{ data_url: post?.selectedFile?.url }] : [])
+			setPrivacy(post?.privacy)
 			setPostData(post)
 		}
 	}, [post])
@@ -374,15 +373,16 @@ const Form = ({ currentId, setCurrentId }) => {
 						isRequired
 						child={
 							<RadioGroup
-								name='private'
+								defaultValue='public'
+								name='privacy'
 								value={privacy}
 								onChange={privacy => handlePrivacy(privacy)}
 							>
 								<Stack direction='row'>
-									<Radio colorScheme='primary' value={'public'}>
+									<Radio colorScheme='primary' value='public'>
 										Public
 									</Radio>
-									<Radio colorScheme='primary' value={'private'}>
+									<Radio colorScheme='primary' value='private'>
 										Private
 									</Radio>
 								</Stack>
@@ -425,6 +425,6 @@ const Form = ({ currentId, setCurrentId }) => {
 export default Form
 
 Form.propTypes = {
-	currentId: PropTypes.number,
+	currentId: PropTypes.string,
 	setCurrentId: PropTypes.func,
 }
