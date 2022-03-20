@@ -243,7 +243,7 @@ const Form = ({ currentId, setCurrentId }) => {
 						onChange={e => {
 							setPostData({
 								...postData,
-								tags: e.target.value.trim().split(','),
+								tags: e.target.value.toLowerCase().trim().split(','),
 							})
 						}}
 					/>
