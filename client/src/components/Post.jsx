@@ -233,43 +233,53 @@ const Post = ({
 									>
 										<Likes isUserLike={isUserLike} likes={likes} />
 									</Button>
-									<Menu>
-										<MenuButton
-											as={Button}
-											colorScheme='primary'
-											display={{
-												sm: 'flex',
-												md: 'flex',
-												lg: 'none',
-												xl: 'none',
-											}}
-											rightIcon={<ChevronDownIcon />}
-											size='sm'
-											variant='ghost'
-										>
-											<FiMoreHorizontal />
-											<VisuallyHidden>More Options</VisuallyHidden>
-										</MenuButton>
-										<MenuList>
-											<MenuItem onClick={handleSave}>
-												<Stack align='center' direction='row' spacing='2'>
-													<Text fontWeight='bold'>{hasUserSaved ? 'Saved' : 'Save'}</Text>
-													{hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
-												</Stack>
-											</MenuItem>
-											<MenuItem onClick={handleEdit}>
-												<Stack align='center' direction='row' spacing='2'>
-													<Text fontWeight='bold'>Edit</Text> <FaPen />
-												</Stack>
-											</MenuItem>
-											<MenuItem onClick={() => setIsDialogOpen(true)}>
-												<Stack align='center' direction='row' spacing='2'>
-													<Text fontWeight='bold'>Delete</Text>
-													<FaEraser />
-												</Stack>
-											</MenuItem>
-										</MenuList>
-									</Menu>
+									{(isPostCreator || isAdmin || userEmail) && (
+										<Menu>
+											<MenuButton
+												as={Button}
+												colorScheme='primary'
+												display={{
+													sm: 'flex',
+													md: 'flex',
+													lg: 'none',
+													xl: 'none',
+												}}
+												rightIcon={<ChevronDownIcon />}
+												size='sm'
+												variant='ghost'
+											>
+												<FiMoreHorizontal />
+												<VisuallyHidden>More Options</VisuallyHidden>
+											</MenuButton>
+											<MenuList>
+												{userEmail && (
+													<MenuItem onClick={handleSave}>
+														<Stack align='center' direction='row' spacing='2'>
+															<Text fontWeight='bold'>
+																{hasUserSaved ? 'Saved' : 'Save'}
+															</Text>
+															{hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
+														</Stack>
+													</MenuItem>
+												)}
+												{(isPostCreator || isAdmin) && (
+													<MenuItem onClick={handleEdit}>
+														<Stack align='center' direction='row' spacing='2'>
+															<Text fontWeight='bold'>Edit</Text> <FaPen />
+														</Stack>
+													</MenuItem>
+												)}
+												{(isPostCreator || isAdmin) && (
+													<MenuItem onClick={() => setIsDialogOpen(true)}>
+														<Stack align='center' direction='row' spacing='2'>
+															<Text fontWeight='bold'>Delete</Text>
+															<FaEraser />
+														</Stack>
+													</MenuItem>
+												)}
+											</MenuList>
+										</Menu>
+									)}
 									{userEmail && (
 										<Button
 											colorScheme='primary'
