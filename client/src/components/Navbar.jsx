@@ -25,6 +25,7 @@ import { logout } from '../redux/auth'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { CreateGradColor } from '../theme'
 import Form from './Form'
+import SearchNavbar from './SearchNavbar'
 
 const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const dispatch = useDispatch()
@@ -75,6 +76,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 			</Stack>
 
 			<Stack align='center' direction='row' spacing='4'>
+				<SearchNavbar />
 				<Form isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
 				{user?.result ? (
 					<Stack
@@ -160,7 +162,13 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 					</Flex>
 				)}
 
-				<Button colorScheme='primary' size='sm' variant='ghost' onClick={toggleColorMode}>
+				<Button
+					colorScheme='primary'
+					p='1'
+					size='sm'
+					variant='ghost'
+					onClick={toggleColorMode}
+				>
 					{colorMode === 'light' ? (
 						<FaMoon aria-label='Dark Mode' />
 					) : (

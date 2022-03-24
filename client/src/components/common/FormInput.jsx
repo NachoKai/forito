@@ -43,7 +43,7 @@ const FormInput = ({
 					<FormLabel>{label}</FormLabel>
 				</Tooltip>
 			) : (
-				<FormLabel>{label}</FormLabel>
+				label && <FormLabel>{label}</FormLabel>
 			)}
 		</Flex>
 		{validation && (
