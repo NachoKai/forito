@@ -2,6 +2,7 @@ import { useCallback, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Button, Stack } from '@chakra-ui/react'
 import { useLocation, useNavigate } from 'react-router-dom'
+import { FaSearch } from 'react-icons/fa'
 
 import { getPostsBySearch } from '../redux/posts'
 import FormInput from './common/FormInput'
@@ -34,32 +35,35 @@ const SearchNavbar = () => {
 	return (
 		<Stack
 			align='center'
-			direction='row'
 			display={{
 				sm: 'none',
 				md: 'none',
 				lg: 'flex',
 				xl: 'flex',
 			}}
-			spacing='2'
 		>
 			<FormInput
 				maxLength='105'
 				name='search'
 				placeholder='Search...'
+				rightIcon={
+					<Button
+						colorScheme='primary'
+						data-cy='navbar-search-button'
+						disabled={!searchValue && !searchTags?.length}
+						size='sm'
+						variant='ghost'
+						onClick={searchPost}
+					>
+						<FaSearch />
+					</Button>
+				}
 				value={searchValue}
 				onChange={e => {
 					setSearchValue(e.target.value)
 				}}
 				onKeyPress={handleKeyPress}
 			/>
-			<Button
-				colorScheme='primary'
-				disabled={!searchValue && !searchTags?.length}
-				onClick={searchPost}
-			>
-				Search
-			</Button>
 		</Stack>
 	)
 }
