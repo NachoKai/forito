@@ -19,7 +19,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
 import { getRandomId } from '../utils/getRandomId'
-import { deletePost, likePost, savePost } from '../redux/posts'
+import { deletePost, likePost, savePost, setCurrentId } from '../redux/posts'
 import Likes from './Likes'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import Dialog from './common/Dialog'
@@ -27,7 +27,6 @@ import checkIsPostCreator from '../utils/checkIsPostCreator'
 import checkIsAdmin from '../utils/checkIsAdmin'
 
 const Post = ({
-	setCurrentId,
 	post: {
 		_id,
 		title,
@@ -42,7 +41,7 @@ const Post = ({
 		selectedFile,
 		comments,
 	},
-	handleScroll,
+	onOpen,
 }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
@@ -84,9 +83,9 @@ const Post = ({
 	)
 
 	const handleEdit = useCallback(() => {
-		setCurrentId(_id)
-		handleScroll()
-	}, [_id, handleScroll, setCurrentId])
+		onOpen()
+		dispatch(setCurrentId(_id))
+	}, [_id, dispatch, onOpen])
 
 	return (
 		<>
@@ -322,7 +321,6 @@ const Post = ({
 export default memo(Post)
 
 Post.propTypes = {
-	setCurrentId: PropTypes.func,
 	post: PropTypes.shape({
 		_id: PropTypes.string.isRequired,
 		title: PropTypes.string.isRequired,
@@ -338,5 +336,4 @@ Post.propTypes = {
 		}),
 		comments: PropTypes.arrayOf(PropTypes.object),
 	}),
-	handleScroll: PropTypes.func,
 }

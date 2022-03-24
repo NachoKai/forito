@@ -1,7 +1,6 @@
 import { useSelector } from 'react-redux'
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { FaPencilAlt } from 'react-icons/fa'
-import PropTypes from 'prop-types'
 
 import Post from './Post'
 import { CreateGradColor } from '../theme'
@@ -11,7 +10,7 @@ import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import checkIsPostCreator from '../utils/checkIsPostCreator'
 import checkIsAdmin from '../utils/checkIsAdmin'
 
-const Posts = ({ setCurrentId, handleScroll }) => {
+const Posts = ({ onOpen }) => {
 	const { posts, isLoading } = useSelector(state => state.posts)
 	const havePosts = posts?.length > 0
 	const user = getUserLocalStorage()
@@ -81,12 +80,7 @@ const Posts = ({ setCurrentId, handleScroll }) => {
 							w='100%'
 						>
 							{publicPosts?.map(post => (
-								<Post
-									key={post?._id}
-									handleScroll={handleScroll}
-									post={post}
-									setCurrentId={setCurrentId}
-								/>
+								<Post key={post?._id} post={post} onOpen={onOpen} />
 							))}
 						</StaggeredSlideFade>
 					)}
@@ -97,8 +91,3 @@ const Posts = ({ setCurrentId, handleScroll }) => {
 }
 
 export default Posts
-
-Posts.propTypes = {
-	setCurrentId: PropTypes.func.isRequired,
-	handleScroll: PropTypes.func.isRequired,
-}

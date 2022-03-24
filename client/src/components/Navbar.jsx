@@ -24,18 +24,19 @@ import decode from 'jwt-decode'
 import { logout } from '../redux/auth'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { CreateGradColor } from '../theme'
+import Form from './Form'
 
-const Navbar = () => {
+const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const dispatch = useDispatch()
 	const location = useLocation()
 	const navigate = useNavigate()
 	const [user, setUser] = useState(() => getUserLocalStorage())
 	const userId = user?.result?.googleId || user?.result?._id
 	const { colorMode, toggleColorMode } = useColorMode()
-	const [isOpen, setIsOpen] = useState(false)
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
 
-	const open = () => setIsOpen(!isOpen)
-	const close = () => setIsOpen(false)
+	const open = () => setIsDropdownOpen(!isDropdownOpen)
+	const close = () => setIsDropdownOpen(false)
 
 	const handleLogout = useCallback(() => {
 		setUser(null)
@@ -74,6 +75,7 @@ const Navbar = () => {
 			</Stack>
 
 			<Stack align='center' direction='row' spacing='4'>
+				<Form isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
 				{user?.result ? (
 					<Stack
 						align='center'
@@ -84,7 +86,7 @@ const Navbar = () => {
 							<Popover
 								isLazy
 								closeOnBlur={true}
-								isOpen={isOpen}
+								isOpen={isDropdownOpen}
 								returnFocusOnClose={false}
 								onClose={close}
 								onOpen={open}

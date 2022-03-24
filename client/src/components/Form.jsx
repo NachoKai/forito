@@ -1,13 +1,26 @@
-import { useCallback, useEffect, useState } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Button, Flex, Image, Radio, RadioGroup, Stack, Text } from '@chakra-ui/react'
-import { FaExclamationCircle } from 'react-icons/fa'
+import {
+	Button,
+	Drawer,
+	DrawerBody,
+	DrawerCloseButton,
+	DrawerContent,
+	DrawerFooter,
+	DrawerHeader,
+	DrawerOverlay,
+	Flex,
+	Image,
+	Radio,
+	RadioGroup,
+	Stack,
+	Text,
+} from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import ImageUploading from 'react-images-uploading'
-import PropTypes from 'prop-types'
 
 import { firebaseApp } from '../firebaseApp'
-import { createPost, updatePost } from '../redux/posts'
+import { createPost, setCurrentId, updatePost } from '../redux/posts'
 import FormInput from './common/FormInput'
 import FormTextArea from './common/FormTextArea'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
@@ -25,7 +38,9 @@ const initialState = {
 	privacy: 'public',
 }
 
-const Form = ({ currentId, setCurrentId }) => {
+const Form = ({ isOpen, onOpen, onClose }) => {
+	const currentId = useSelector(state => state.posts.currentId)
+	const btnRef = useRef()
 	const dispatch = useDispatch()
 	const user = getUserLocalStorage()
 	const navigate = useNavigate()
@@ -80,11 +95,11 @@ const Form = ({ currentId, setCurrentId }) => {
 		[postData]
 	)
 	const handleClear = useCallback(() => {
-		setCurrentId(null)
+		dispatch(setCurrentId(null))
 		setImages([])
 		setPrivacy('public')
 		setPostData(initialState)
-	}, [setCurrentId])
+	}, [dispatch])
 
 	const handleSubmit = useCallback(
 		async e => {
@@ -122,6 +137,7 @@ const Form = ({ currentId, setCurrentId }) => {
 					)
 				}
 				handleClear()
+				onClose()
 			} catch (error) {
 				showError('Something went wrong when trying to submit Post. Please try again.')
 				console.error(error)
@@ -130,13 +146,18 @@ const Form = ({ currentId, setCurrentId }) => {
 				dispatch(hideLoading())
 			}
 		},
-		[currentId, dispatch, handleClear, navigate, postData, user?.result?.name]
+		[currentId, dispatch, handleClear, navigate, onClose, postData, user?.result?.name]
 	)
 
 	const handleChange = useCallback(
 		e => setPostData({ ...postData, [e.target.name]: e.target.value }),
 		[postData]
 	)
+
+	const handleCreatePost = useCallback(() => {
+		handleClear()
+		onOpen()
+	}, [handleClear, onOpen])
 
 	useEffect(() => {
 		if (post) {
@@ -146,285 +167,289 @@ const Form = ({ currentId, setCurrentId }) => {
 		}
 	}, [post])
 
-	if (!user?.result?.name) {
-		return (
-			<Stack
-				align='center'
-				color='primary_600_100'
-				direction='column'
-				minWidth='320px'
-				p={{
-					sm: '6',
-					md: '8',
-					lg: '8',
-					xl: '8',
-				}}
-				spacing='4'
-			>
-				<Text fontSize='4xl' fontWeight='bold'>
-					<FaExclamationCircle />
-				</Text>
-				<Text
-					data-cy='form-login-to-create-a-post-message'
-					fontSize='lg'
-					fontWeight='bold'
-				>
-					Please login to create a Post.
-				</Text>
-			</Stack>
-		)
-	}
+	if (!user?.result?.name) return null
 
 	return (
-		<Flex
-			maxW={{ sm: '100vw', md: '100vw', lg: '322px', xl: '322px' }}
-			minWidth='320px'
-			w='100%'
-		>
-			<form
-				noValidate
-				autoComplete='off'
-				style={{ width: '100%' }}
-				onSubmit={handleSubmit}
+		<>
+			<Button
+				ref={btnRef}
+				colorScheme='primary'
+				display={{
+					sm: 'none',
+					md: 'flex',
+					lg: 'flex',
+					xl: 'flex',
+				}}
+				onClick={handleCreatePost}
 			>
-				<Stack
-					bg='primary_100_900'
-					borderRadius='lg'
-					boxShadow='md'
-					p={{
-						sm: '6',
-						md: '8',
-						lg: '8',
-						xl: '8',
-					}}
-					spacing='4'
-				>
-					<Text
-						bgClip='text'
-						bgGradient={CreateGradColor('primary', 700, 900, 50, 200)}
-						fontSize='xl'
-						fontWeight='bold'
-					>
-						{currentId ? 'Edit' : 'Create'} Post ✏️
-					</Text>
+				Create Post
+			</Button>
+			<Button
+				ref={btnRef}
+				colorScheme='primary'
+				display={{
+					sm: 'flex',
+					md: 'none',
+					lg: 'none',
+					xl: 'none',
+				}}
+				onClick={handleCreatePost}
+			>
+				Create
+			</Button>
+			<Drawer finalFocusRef={btnRef} isOpen={isOpen} placement='right' onClose={onClose}>
+				<DrawerOverlay />
+				<DrawerContent bg='primary_100_900'>
+					<DrawerCloseButton />
+					<DrawerHeader>
+						<Text
+							bgClip='text'
+							bgGradient={CreateGradColor('primary', 700, 900, 50, 200)}
+							fontSize='xl'
+							fontWeight='bold'
+						>
+							{currentId ? 'Edit' : 'Create'} Post ✏️
+						</Text>
+					</DrawerHeader>
 
-					<FormInput
-						isRequired
-						dataCy='form-title'
-						label='Title'
-						maxLength='105'
-						name='title'
-						tooltip='Required'
-						value={postData?.title}
-						onChange={handleChange}
-					/>
+					<DrawerBody>
+						<form noValidate autoComplete='off' style={{ width: '100%' }}>
+							<Stack spacing='4'>
+								<FormInput
+									isRequired
+									dataCy='form-title'
+									label='Title'
+									maxLength='105'
+									name='title'
+									tooltip='Required'
+									value={postData?.title}
+									onChange={handleChange}
+								/>
 
-					<FormTextArea
-						isRequired
-						dataCy='form-message'
-						label='Message'
-						maxLength='5000'
-						name='message'
-						tooltip='Required'
-						value={postData?.message}
-						onChange={handleChange}
-					/>
+								<FormTextArea
+									isRequired
+									dataCy='form-message'
+									label='Message'
+									maxLength='5000'
+									name='message'
+									tooltip='Required'
+									value={postData?.message}
+									onChange={handleChange}
+								/>
 
-					<FormInput
-						dataCy='form-tags'
-						helper='Separated by commas.'
-						isInvalid={areValidTags}
-						label='Tags'
-						maxLength='55'
-						name='tags'
-						validation={areValidTags && 'Insert only letters and numbers.'}
-						value={[...new Set(postData?.tags)]}
-						onChange={e => {
-							setPostData({
-								...postData,
-								tags: e.target.value.toLowerCase().trim().split(','),
-							})
-						}}
-					/>
+								<FormInput
+									dataCy='form-tags'
+									helper='Separated by commas.'
+									isInvalid={areValidTags}
+									label='Tags'
+									maxLength='55'
+									name='tags'
+									validation={areValidTags && 'Insert only letters and numbers.'}
+									value={[...new Set(postData?.tags)]}
+									onChange={e => {
+										setPostData({
+											...postData,
+											tags: e.target.value.toLowerCase().trim().split(','),
+										})
+									}}
+								/>
 
-					<FormInput
-						child={
-							<ImageUploading
-								acceptType={['jpg', 'jpeg', 'gif', 'png']}
-								dataURLKey='data_url'
-								maxFileSize={1024 * 1024 * 2.1}
-								maxNumber={1}
-								value={images}
-								onChange={onImageUpload}
-								onError={() =>
-									showError(
-										'Something went wrong when trying to upload image. Please try again.'
-									)
+								<FormInput
+									child={
+										<ImageUploading
+											acceptType={['jpg', 'jpeg', 'gif', 'png']}
+											dataURLKey='data_url'
+											maxFileSize={1024 * 1024 * 2.1}
+											maxNumber={1}
+											value={images}
+											onChange={onImageUpload}
+											onError={() =>
+												showError(
+													'Something went wrong when trying to upload image. Please try again.'
+												)
+											}
+										>
+											{({
+												imageList,
+												onImageUpload,
+												onImageUpdate,
+												isDragging,
+												dragProps,
+												errors,
+											}) => (
+												<Stack className='upload__image-wrapper' spacing='2'>
+													{errors && (
+														<Stack m='4px 0' spacing='2'>
+															{errors.maxNumber && (
+																<Flex
+																	color='red.400'
+																	fontWeight='bold'
+																	marginBottom='4px'
+																>
+																	Number of selected images exceed maxNumber.
+																</Flex>
+															)}
+															{errors.acceptType && (
+																<Flex
+																	color='red.400'
+																	fontWeight='bold'
+																	marginBottom='4px'
+																>
+																	Your selected file type is not allow.
+																</Flex>
+															)}
+															{errors.maxFileSize && (
+																<Flex
+																	color='red.400'
+																	fontWeight='bold'
+																	marginBottom='4px'
+																>
+																	Selected file size exceed maxFileSize.
+																</Flex>
+															)}
+															{errors.resolution && (
+																<Flex
+																	color='red.400'
+																	fontWeight='bold'
+																	marginBottom='4px'
+																>
+																	Selected file is not match your desired resolution.
+																</Flex>
+															)}
+														</Stack>
+													)}
+													{(!postData?.selectedFile?.url || !images.length) && (
+														<Stack
+															borderColor={
+																isDragging ? 'gray_700_200' : 'primary_600_100'
+															}
+															borderRadius='lg'
+															borderStyle='dashed'
+															borderWidth='2px'
+														>
+															<Button
+																bg={isDragging ? 'gray_200_700' : undefined}
+																color={isDragging ? 'gray_700_200' : 'primary_600_100'}
+																variant='ghost'
+																onClick={onImageUpload}
+																{...dragProps}
+																p={{
+																	sm: '6',
+																	md: '8',
+																	lg: '8',
+																	xl: '8',
+																}}
+															>
+																Click or drag & drop image here
+															</Button>
+														</Stack>
+													)}
+													{imageList?.map((image, index) => (
+														<Stack
+															key={index}
+															className='image-item'
+															direction='row'
+															spacing='2'
+														>
+															<Image
+																alt=''
+																h='100px'
+																objectFit='contain'
+																src={image?.data_url}
+																w='100px'
+															/>
+															<Flex align='center' direction='column' justify='center'>
+																<Button
+																	colorScheme='primary'
+																	variant='ghost'
+																	onClick={() => onImageUpdate(index)}
+																>
+																	Update
+																</Button>
+																<Button
+																	colorScheme='primary'
+																	variant='ghost'
+																	onClick={() => {
+																		setPostData({
+																			...postData,
+																			selectedFile: {
+																				url: null,
+																				name: null,
+																				id: null,
+																			},
+																		})
+																		setImages([])
+																	}}
+																>
+																	Remove
+																</Button>
+															</Flex>
+														</Stack>
+													))}
+												</Stack>
+											)}
+										</ImageUploading>
+									}
+									helper='Max: 2mb. Formats: jpg, jpeg, png, gif.'
+									label='Upload image'
+								/>
+
+								<FormInput
+									isRequired
+									child={
+										<RadioGroup
+											defaultValue='public'
+											name='privacy'
+											value={privacy}
+											onChange={privacy => handlePrivacy(privacy)}
+										>
+											<Stack direction='row'>
+												<Radio colorScheme='primary' value='public'>
+													Public
+												</Radio>
+												<Radio colorScheme='primary' value='private'>
+													Private
+												</Radio>
+											</Stack>
+										</RadioGroup>
+									}
+									label='Privacy'
+									name='privacy'
+									tooltip='Private Posts will only be visible to their creator'
+								/>
+							</Stack>
+						</form>
+					</DrawerBody>
+
+					<DrawerFooter w='100%'>
+						<Stack spacing='4' w='100%'>
+							<Button
+								bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
+								boxShadow='blue'
+								colorScheme='primary'
+								data-cy='form-submit-button'
+								disabled={
+									!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) ||
+									![...new Set(postData.tags)].every(tag => /^[a-zA-Z0-9_.-]*$/.test(tag))
 								}
+								onClick={handleSubmit}
 							>
-								{({
-									imageList,
-									onImageUpload,
-									onImageUpdate,
-									isDragging,
-									dragProps,
-									errors,
-								}) => (
-									<Stack className='upload__image-wrapper' spacing='2'>
-										{errors && (
-											<Stack m='4px 0' spacing='2'>
-												{errors.maxNumber && (
-													<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
-														Number of selected images exceed maxNumber.
-													</Flex>
-												)}
-												{errors.acceptType && (
-													<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
-														Your selected file type is not allow.
-													</Flex>
-												)}
-												{errors.maxFileSize && (
-													<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
-														Selected file size exceed maxFileSize.
-													</Flex>
-												)}
-												{errors.resolution && (
-													<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
-														Selected file is not match your desired resolution.
-													</Flex>
-												)}
-											</Stack>
-										)}
-										{(!postData?.selectedFile?.url || !images.length) && (
-											<Stack
-												borderColor={isDragging ? 'gray_700_200' : 'primary_600_100'}
-												borderRadius='lg'
-												borderStyle='dashed'
-												borderWidth='2px'
-											>
-												<Button
-													bg={isDragging ? 'gray_200_700' : undefined}
-													color={isDragging ? 'gray_700_200' : 'primary_600_100'}
-													variant='ghost'
-													onClick={onImageUpload}
-													{...dragProps}
-													p={{
-														sm: '6',
-														md: '8',
-														lg: '8',
-														xl: '8',
-													}}
-												>
-													Click or drag & drop image here
-												</Button>
-											</Stack>
-										)}
-										{imageList?.map((image, index) => (
-											<Stack
-												key={index}
-												className='image-item'
-												direction='row'
-												spacing='2'
-											>
-												<Image
-													alt=''
-													h='100px'
-													objectFit='contain'
-													src={image?.data_url}
-													w='100px'
-												/>
-												<Flex align='center' direction='column' justify='center'>
-													<Button
-														colorScheme='primary'
-														variant='ghost'
-														onClick={() => onImageUpdate(index)}
-													>
-														Update
-													</Button>
-													<Button
-														colorScheme='primary'
-														variant='ghost'
-														onClick={() => {
-															setPostData({
-																...postData,
-																selectedFile: {
-																	url: null,
-																	name: null,
-																	id: null,
-																},
-															})
-															setImages([])
-														}}
-													>
-														Remove
-													</Button>
-												</Flex>
-											</Stack>
-										))}
-									</Stack>
-								)}
-							</ImageUploading>
-						}
-						helper='Max: 2mb. Formats: jpg, jpeg, png, gif.'
-						label='Upload image'
-					/>
-
-					<FormInput
-						isRequired
-						child={
-							<RadioGroup
-								defaultValue='public'
-								name='privacy'
-								value={privacy}
-								onChange={privacy => handlePrivacy(privacy)}
+								Submit
+							</Button>
+							<Button
+								colorScheme='primary'
+								data-cy='form-clear-button'
+								variant='outline'
+								onClick={handleClear}
 							>
-								<Stack direction='row'>
-									<Radio colorScheme='primary' value='public'>
-										Public
-									</Radio>
-									<Radio colorScheme='primary' value='private'>
-										Private
-									</Radio>
-								</Stack>
-							</RadioGroup>
-						}
-						label='Privacy'
-						name='privacy'
-						tooltip='Private Posts will only be visible to their creator'
-					/>
-
-					<Stack spacing='4'>
-						<Button
-							bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
-							boxShadow='blue'
-							colorScheme='primary'
-							data-cy='form-submit-button'
-							disabled={
-								!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) ||
-								![...new Set(postData.tags)].every(tag => /^[a-zA-Z0-9_.-]*$/.test(tag))
-							}
-							type='submit'
-						>
-							Submit
-						</Button>
-						<Button
-							colorScheme='primary'
-							data-cy='form-clear-button'
-							variant='outline'
-							onClick={handleClear}
-						>
-							Clear
-						</Button>
-					</Stack>
-				</Stack>
-			</form>
-		</Flex>
+								Clear
+							</Button>
+						</Stack>
+					</DrawerFooter>
+				</DrawerContent>
+			</Drawer>
+		</>
 	)
 }
 
 export default Form
-
-Form.propTypes = {
-	currentId: PropTypes.string,
-	setCurrentId: PropTypes.func,
-}

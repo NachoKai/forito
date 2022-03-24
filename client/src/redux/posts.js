@@ -21,10 +21,13 @@ const START_LOADING = 'START_LOADING'
 const END_LOADING = 'END_LOADING'
 const ADD_COMMENT = 'ADD_COMMENT'
 const CLEAN_UP = 'CLEAN_UP'
+const SET_CURRENT_ID = 'SET_CURRENT_ID'
 
 /* ==========  ACTIONS  ========== */
 
 export const cleanUp = () => ({ type: CLEAN_UP })
+
+export const setCurrentId = id => ({ type: SET_CURRENT_ID, id })
 
 export const getPost = id => async dispatch => {
 	try {
@@ -210,6 +213,7 @@ export const getSavedPosts = id => async dispatch => {
 const initialState = {
 	posts: [],
 	isLoading: true,
+	currentId: null,
 }
 
 export const postsReducer = (state = initialState, action) => {
@@ -257,6 +261,14 @@ export const postsReducer = (state = initialState, action) => {
 					return post
 				}),
 			}
+		case SET_CURRENT_ID: {
+			const { id } = action
+
+			return {
+				...state,
+				currentId: id,
+			}
+		}
 		default:
 			return state
 	}
