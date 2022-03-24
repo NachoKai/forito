@@ -3,6 +3,7 @@ import { useDispatch } from 'react-redux'
 import { FaMoon, FaSun } from 'react-icons/fa'
 import {
 	Button,
+	Divider,
 	Flex,
 	Heading,
 	Image,
@@ -133,19 +134,13 @@ const Navbar = () => {
 											Saved Posts
 										</PopoverBody>
 									</Link>
+									<Divider />
+									<PopoverBody cursor='pointer' fontWeight='bold' onClick={handleLogout}>
+										Logout
+									</PopoverBody>
 								</PopoverContent>
 							</Popover>
 						)}
-
-						<Button
-							colorScheme='primary'
-							data-cy='navbar-logout-button'
-							size='sm'
-							variant='outline'
-							onClick={handleLogout}
-						>
-							Logout
-						</Button>
 					</Stack>
 				) : (
 					<Flex>
@@ -163,12 +158,7 @@ const Navbar = () => {
 					</Flex>
 				)}
 
-				<Button
-					colorScheme='primary'
-					size='sm'
-					variant='outline'
-					onClick={toggleColorMode}
-				>
+				<Button colorScheme='primary' size='sm' variant='ghost' onClick={toggleColorMode}>
 					{colorMode === 'light' ? (
 						<FaMoon aria-label='Dark Mode' />
 					) : (
