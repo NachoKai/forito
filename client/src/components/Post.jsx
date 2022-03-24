@@ -5,17 +5,24 @@ import {
 	Button,
 	Heading,
 	Image,
+	Menu,
+	MenuButton,
+	MenuItem,
+	MenuList,
 	Skeleton,
 	Stack,
 	Text,
 	Tooltip,
+	VisuallyHidden,
 	useColorModeValue,
 } from '@chakra-ui/react'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { FaBookmark, FaEraser, FaPen, FaRegBookmark, FaRegComments } from 'react-icons/fa'
+import { FiMoreHorizontal } from 'react-icons/fi'
 import { format, formatDistance, isValid } from 'date-fns'
 import { useDispatch } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { ChevronDownIcon } from '@chakra-ui/icons'
 import PropTypes from 'prop-types'
 
 import { getRandomId } from '../utils/getRandomId'
@@ -226,10 +233,53 @@ const Post = ({
 									>
 										<Likes isUserLike={isUserLike} likes={likes} />
 									</Button>
+									<Menu>
+										<MenuButton
+											as={Button}
+											colorScheme='primary'
+											display={{
+												sm: 'flex',
+												md: 'flex',
+												lg: 'none',
+												xl: 'none',
+											}}
+											rightIcon={<ChevronDownIcon />}
+											size='sm'
+											variant='ghost'
+										>
+											<FiMoreHorizontal />
+											<VisuallyHidden>More Options</VisuallyHidden>
+										</MenuButton>
+										<MenuList>
+											<MenuItem onClick={handleSave}>
+												<Stack align='center' direction='row' spacing='2'>
+													<Text fontWeight='bold'>{hasUserSaved ? 'Saved' : 'Save'}</Text>
+													{hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
+												</Stack>
+											</MenuItem>
+											<MenuItem onClick={handleEdit}>
+												<Stack align='center' direction='row' spacing='2'>
+													<Text fontWeight='bold'>Edit</Text> <FaPen />
+												</Stack>
+											</MenuItem>
+											<MenuItem onClick={() => setIsDialogOpen(true)}>
+												<Stack align='center' direction='row' spacing='2'>
+													<Text fontWeight='bold'>Delete</Text>
+													<FaEraser />
+												</Stack>
+											</MenuItem>
+										</MenuList>
+									</Menu>
 									{userEmail && (
 										<Button
 											colorScheme='primary'
 											disabled={!user?.result}
+											display={{
+												sm: 'none',
+												md: 'none',
+												lg: 'flex',
+												xl: 'flex',
+											}}
 											isLoading={!!saveLoading}
 											leftIcon={hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
 											loadingText='Loading...'
@@ -251,6 +301,12 @@ const Post = ({
 									{(isPostCreator || isAdmin) && (
 										<Button
 											colorScheme='primary'
+											display={{
+												sm: 'none',
+												md: 'none',
+												lg: 'flex',
+												xl: 'flex',
+											}}
 											leftIcon={<FaPen />}
 											minWidth='88px'
 											size='sm'
@@ -264,6 +320,12 @@ const Post = ({
 										<Button
 											bg='red_500_200'
 											colorScheme='primary'
+											display={{
+												sm: 'none',
+												md: 'none',
+												lg: 'flex',
+												xl: 'flex',
+											}}
 											leftIcon={<FaEraser />}
 											minWidth='88px'
 											size='sm'
