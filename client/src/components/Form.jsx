@@ -193,7 +193,6 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 					lg: 'none',
 					xl: 'none',
 				}}
-				size='sm'
 				onClick={handleCreatePost}
 			>
 				Create
