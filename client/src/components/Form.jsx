@@ -231,7 +231,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 									isRequired
 									dataCy='form-message'
 									label='Message'
-									maxLength='8000'
+									maxLength='27440'
 									name='message'
 									tooltip='Required'
 									value={postData?.message}
