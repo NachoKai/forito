@@ -29,7 +29,9 @@ const Tags = () => {
 		return !isPrivate || (isPrivate && isPostCreator) || isAdmin
 	})
 
-	useEffect(() => dispatch(getPostsBySearch({ tags: name })), [dispatch, name])
+	useEffect(() => {
+		dispatch(getPostsBySearch({ tags: name }))
+	}, [dispatch, name])
 
 	if (!publicPosts.length && !isLoading) {
 		return (

@@ -2,15 +2,15 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Button, Stack, Text } from '@chakra-ui/react'
 import { FaExclamationCircle } from 'react-icons/fa'
-import { Link } from 'react-router-dom'
+
 import PropTypes from 'prop-types'
 
-import { getRandomId } from '../utils/getRandomId'
 import FormTextArea from './common/FormTextArea'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { addComment } from '../redux/posts'
 import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
+import Comment from './Comment'
 
 const Comments = ({ post }) => {
 	const dispatch = useDispatch()
@@ -39,12 +39,7 @@ const Comments = ({ post }) => {
 		<Stack direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }} spacing='4'>
 			<Stack maxHeight='230px' overflow='auto' spacing='4' width='100%'>
 				{comments?.map(comment => (
-					<Text key={getRandomId()}>
-						<Link to={`/creator/${comment.id}`}>
-							<strong>{comment.name}: </strong>
-						</Link>
-						{comment.comment}
-					</Text>
+					<Comment key={comment.id} comment={comment} />
 				))}
 				<div ref={commentsRef} />
 			</Stack>

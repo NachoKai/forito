@@ -17,8 +17,10 @@ const Creator = () => {
 	const { posts, isLoading } = useSelector(state => state.posts)
 	const { user } = useSelector(state => state.auth)
 
-	useEffect(() => dispatch(getPostsByCreator(id)), [dispatch, id])
-	useEffect(() => dispatch(getUser(id)), [dispatch, id])
+	useEffect(() => {
+		dispatch(getPostsByCreator(id))
+		dispatch(getUser(id))
+	}, [dispatch, id])
 
 	if (!posts?.length && !isLoading) {
 		return (

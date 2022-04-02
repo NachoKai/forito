@@ -1,5 +1,5 @@
 import React from 'react'
-import ReactDOM from 'react-dom'
+import * as ReactDOMClient from 'react-dom/client'
 import { Provider } from 'react-redux'
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
 
@@ -9,16 +9,16 @@ import App from './App.jsx'
 import theme from './theme'
 import { LoadingContextProvider } from './components/common/LoadingScreen/LoadingContext'
 
-ReactDOM.render(
-	<React.StrictMode>
+const container = document.getElementById('root')
+const root = ReactDOMClient.createRoot(container)
+
+root.render(
+	<Provider store={store}>
 		<ChakraProvider theme={theme}>
-			<Provider store={store}>
-				<ColorModeScript initialColorMode={theme?.config?.initialColorMode} />
-				<LoadingContextProvider>
-					<App />
-				</LoadingContextProvider>
-			</Provider>
+			<ColorModeScript initialColorMode={theme?.config?.initialColorMode} />
+			<LoadingContextProvider>
+				<App />
+			</LoadingContextProvider>
 		</ChakraProvider>
-	</React.StrictMode>,
-	document.getElementById('root') || document.createElement('div')
+	</Provider>
 )

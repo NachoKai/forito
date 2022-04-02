@@ -13,7 +13,9 @@ const Paginate = ({ page }) => {
 	const { numberOfPages } = useSelector(state => state.posts)
 	const containerColor = useColorModeValue('black', 'white')
 
-	useEffect(() => page && dispatch(getPosts(page)), [dispatch, page])
+	useEffect(() => {
+		dispatch(getPosts(page))
+	}, [dispatch, page])
 
 	return (
 		<Container

@@ -1,7 +1,7 @@
 import { Stack } from '@chakra-ui/react'
 
 import Posts from './Posts'
-import Pagination from './Pagination'
+import Paginate from '././Paginate'
 import { useQuery } from '../utils/useQuery'
 
 const Home = ({ onOpen }) => {
@@ -26,7 +26,7 @@ const Home = ({ onOpen }) => {
 				</Stack>
 			</Stack>
 			<Stack paddingX={{ sm: '0', md: '0', lg: '32px', xl: '32px' }}>
-				{!searchQuery && <Pagination page={page} />}
+				{!searchQuery && <Paginate page={page} />}
 			</Stack>
 		</Stack>
 	)

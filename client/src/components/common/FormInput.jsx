@@ -92,7 +92,7 @@ const FormInput = ({
 export default FormInput
 
 FormInput.propTypes = {
-	label: PropTypes.string.isRequired,
+	label: PropTypes.string,
 	name: PropTypes.string,
 	isInvalid: PropTypes.bool,
 	value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
