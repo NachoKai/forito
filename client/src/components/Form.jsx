@@ -198,7 +198,13 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 			>
 				Create
 			</Button>
-			<Drawer finalFocusRef={btnRef} isOpen={isOpen} placement='right' onClose={onClose}>
+			<Drawer
+				finalFocusRef={btnRef}
+				isOpen={isOpen}
+				placement='right'
+				size='md'
+				onClose={onClose}
+			>
 				<DrawerOverlay />
 				<DrawerContent bg='primary_100_900'>
 					<DrawerCloseButton />
