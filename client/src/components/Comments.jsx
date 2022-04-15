@@ -2,7 +2,6 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { Button, Stack, Text } from '@chakra-ui/react'
 import { FaExclamationCircle } from 'react-icons/fa'
-
 import PropTypes from 'prop-types'
 
 import FormTextArea from './common/FormTextArea'
@@ -21,7 +20,7 @@ const Comments = ({ postComments, postId }) => {
 	const [comment, setComment] = useState('')
 
 	const handleComment = useCallback(async () => {
-		const commentContent = { id: userId, name: user?.result?.name, comment }
+		const commentContent = { userId, name: user?.result?.name, comment }
 		const newComments = await dispatch(addComment(commentContent, postId))
 
 		setComments(newComments)
@@ -116,7 +115,7 @@ export default Comments
 Comments.propTypes = {
 	postComments: PropTypes.arrayOf(
 		PropTypes.shape({
-			id: PropTypes.string,
+			userId: PropTypes.string,
 			name: PropTypes.string,
 			comment: PropTypes.string,
 			_id: PropTypes.string,
