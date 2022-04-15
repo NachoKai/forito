@@ -12,7 +12,7 @@ import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
 import Comment from './Comment'
 
-const Comments = ({ post }) => {
+const Comments = ({ postComments, postId }) => {
 	const dispatch = useDispatch()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
@@ -22,24 +22,24 @@ const Comments = ({ post }) => {
 
 	const handleComment = useCallback(async () => {
 		const commentContent = { id: userId, name: user?.result?.name, comment }
-		const newComments = await dispatch(addComment(commentContent, post?._id))
+		const newComments = await dispatch(addComment(commentContent, postId))
 
 		setComments(newComments)
 		setComment('')
 		commentsRef.current.scrollIntoView({ behavior: 'smooth' })
-	}, [comment, dispatch, post?._id, user?.result?.name, userId])
+	}, [comment, dispatch, postId, user?.result?.name, userId])
 
 	const handleClear = () => setComment('')
 
 	useEffect(() => {
-		setComments(post?.comments)
-	}, [post])
+		setComments(postComments)
+	}, [postComments])
 
 	return (
 		<Stack direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }} spacing='4'>
 			<Stack maxHeight='230px' overflow='auto' spacing='4' width='100%'>
 				{comments?.map(comment => (
-					<Comment key={comment.id} comment={comment} />
+					<Comment key={comment._id} comment={comment} />
 				))}
 				<div ref={commentsRef} />
 			</Stack>
@@ -114,5 +114,13 @@ const Comments = ({ post }) => {
 export default Comments
 
 Comments.propTypes = {
-	post: PropTypes.object.isRequired,
+	postComments: PropTypes.arrayOf(
+		PropTypes.shape({
+			id: PropTypes.string,
+			name: PropTypes.string,
+			comment: PropTypes.string,
+			_id: PropTypes.string,
+		})
+	),
+	postId: PropTypes.string,
 }
