@@ -54,7 +54,7 @@ const Post = ({
 	const navigate = useNavigate()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
-	const isUserLike = likes?.find(like => like === userId)
+	const isUserLike = Boolean(likes?.find(like => like === userId))
 	const hasUserSaved = saves?.find(save => save === userId)
 	const [isDialogOpen, setIsDialogOpen] = useState(false)
 	const location = useLocation()

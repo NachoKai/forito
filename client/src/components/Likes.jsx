@@ -36,6 +36,6 @@ const Likes = ({ likes, isUserLike }) => {
 export default Likes
 
 Likes.propTypes = {
-	likes: PropTypes.array,
-	isUserLike: PropTypes.string,
+	likes: PropTypes.arrayOf(PropTypes.string),
+	isUserLike: PropTypes.bool,
 }
