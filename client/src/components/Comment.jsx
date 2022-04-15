@@ -5,7 +5,7 @@ import PropTypes from 'prop-types'
 const Comment = ({ comment }) => {
 	return (
 		<Text>
-			<Link to={`/creator/${comment.id}`}>
+			<Link to={`/creator/${comment.userId}`}>
 				<strong>{comment.name}: </strong>
 			</Link>
 			{comment.comment}
