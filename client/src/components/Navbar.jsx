@@ -20,6 +20,7 @@ import {
 } from '@chakra-ui/react'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import decode from 'jwt-decode'
+import PropTypes from 'prop-types'
 
 import { logout } from '../redux/auth'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
@@ -180,3 +181,9 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 }
 
 export default Navbar
+
+Navbar.propTypes = {
+	isOpen: PropTypes.bool,
+	onOpen: PropTypes.func,
+	onClose: PropTypes.func,
+}

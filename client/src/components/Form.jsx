@@ -18,6 +18,7 @@ import {
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import ImageUploading from 'react-images-uploading'
+import PropTypes from 'prop-types'
 
 import { firebaseApp } from '../firebaseApp'
 import { createPost, setCurrentId, updatePost } from '../redux/posts'
@@ -460,3 +461,9 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 }
 
 export default Form
+
+Form.propTypes = {
+	isOpen: PropTypes.bool,
+	onOpen: PropTypes.func,
+	onClose: PropTypes.func,
+}

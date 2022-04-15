@@ -1,4 +1,5 @@
 import { Stack } from '@chakra-ui/react'
+import PropTypes from 'prop-types'
 
 import Posts from './Posts'
 import Paginate from '././Paginate'
@@ -33,3 +34,7 @@ const Home = ({ onOpen }) => {
 }
 
 export default Home
+
+Home.propTypes = {
+	onOpen: PropTypes.func,
+}
