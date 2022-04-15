@@ -66,14 +66,14 @@ const FormTextArea = ({
 export default FormTextArea
 
 FormTextArea.propTypes = {
-	label: PropTypes.string.isRequired,
-	name: PropTypes.string.isRequired,
-	value: PropTypes.string.isRequired,
+	label: PropTypes.string,
+	name: PropTypes.string,
+	value: PropTypes.string,
 	isRequired: PropTypes.bool,
 	helper: PropTypes.string,
 	autoFocus: PropTypes.bool,
 	maxLength: PropTypes.string,
-	onChange: PropTypes.func.isRequired,
+	onChange: PropTypes.func,
 	child: PropTypes.node,
 	type: PropTypes.string,
 	dataCy: PropTypes.string,

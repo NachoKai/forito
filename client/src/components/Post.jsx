@@ -394,11 +394,11 @@ export default memo(Post)
 
 Post.propTypes = {
 	post: PropTypes.shape({
-		_id: PropTypes.string.isRequired,
-		title: PropTypes.string.isRequired,
-		name: PropTypes.string.isRequired,
-		creator: PropTypes.string.isRequired,
-		message: PropTypes.string.isRequired,
+		_id: PropTypes.string,
+		title: PropTypes.string,
+		name: PropTypes.string,
+		creator: PropTypes.string,
+		message: PropTypes.string,
 		likes: PropTypes.arrayOf(PropTypes.string),
 		saves: PropTypes.arrayOf(PropTypes.string),
 		createdAt: PropTypes.string,

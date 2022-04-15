@@ -25,5 +25,5 @@ const StaggeredSlideFade = ({ children, ...props }) => {
 export default StaggeredSlideFade
 
 StaggeredSlideFade.propTypes = {
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 }

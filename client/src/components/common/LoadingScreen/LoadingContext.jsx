@@ -25,5 +25,5 @@ export function LoadingContextProvider({ children }) {
 export const LoadingContextConsumer = LoadingContext.Consumer
 
 LoadingContextProvider.propTypes = {
-	children: PropTypes.node.isRequired,
+	children: PropTypes.node,
 }

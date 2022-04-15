@@ -45,10 +45,10 @@ const Dialog = ({ title, message, button, action, isDialogOpen, setIsDialogOpen 
 export default Dialog
 
 Dialog.propTypes = {
-	title: PropTypes.string.isRequired,
-	message: PropTypes.string.isRequired,
-	button: PropTypes.string.isRequired,
-	action: PropTypes.func.isRequired,
-	isDialogOpen: PropTypes.bool.isRequired,
-	setIsDialogOpen: PropTypes.func.isRequired,
+	title: PropTypes.string,
+	message: PropTypes.string,
+	button: PropTypes.string,
+	action: PropTypes.func,
+	isDialogOpen: PropTypes.bool,
+	setIsDialogOpen: PropTypes.func,
 }
