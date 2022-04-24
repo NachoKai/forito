@@ -255,25 +255,25 @@ const Post = ({
 												{userEmail && (
 													<MenuItem onClick={handleSave}>
 														<Stack align='center' direction='row' spacing='2'>
+															{hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
 															<Text fontWeight='bold'>
 																{hasUserSaved ? 'Saved' : 'Save'}
 															</Text>
-															{hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
 														</Stack>
 													</MenuItem>
 												)}
 												{(isPostCreator || isAdmin) && (
 													<MenuItem onClick={handleEdit}>
 														<Stack align='center' direction='row' spacing='2'>
-															<Text fontWeight='bold'>Edit</Text> <FaPen />
+															<FaPen /> <Text fontWeight='bold'>Edit</Text>
 														</Stack>
 													</MenuItem>
 												)}
 												{(isPostCreator || isAdmin) && (
 													<MenuItem onClick={() => setIsDialogOpen(true)}>
 														<Stack align='center' direction='row' spacing='2'>
-															<Text fontWeight='bold'>Delete</Text>
 															<FaEraser />
+															<Text fontWeight='bold'>Delete</Text>
 														</Stack>
 													</MenuItem>
 												)}
