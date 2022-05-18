@@ -69,12 +69,7 @@ const SavedPosts = () => {
 			minHeight='100vh'
 			px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
 			py={{ sm: '0', md: '6', lg: '8', xl: '8' }}
-			spacing={{
-				sm: '6',
-				md: '8',
-				lg: '8',
-				xl: '8',
-			}}
+			spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 		>
 			<Stack spacing='2'>
 				<Text fontSize='2xl'>Saved Posts</Text>

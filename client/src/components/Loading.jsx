@@ -13,12 +13,7 @@ const Loading = ({ height = '500px' }) => (
 			xl: 'row',
 		}}
 		h='100%'
-		p={{
-			sm: '6',
-			md: '8',
-			lg: '8',
-			xl: '8',
-		}}
+		p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 		spacing='16px'
 		w='100%'
 	>

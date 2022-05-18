@@ -33,15 +33,7 @@ const SearchNavbar = () => {
 	const handleKeyPress = e => e.keyCode === ENTER_KEYCODE && searchPost()
 
 	return (
-		<Stack
-			align='center'
-			display={{
-				sm: 'none',
-				md: 'none',
-				lg: 'flex',
-				xl: 'flex',
-			}}
-		>
+		<Stack align='center' display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}>
 			<FormInput
 				maxLength='105'
 				name='search'

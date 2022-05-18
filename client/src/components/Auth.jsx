@@ -82,12 +82,7 @@ const Auth = () => {
 				borderRadius='lg'
 				maxWidth='450px'
 				minWidth='320px'
-				p={{
-					sm: '6',
-					md: '8',
-					lg: '8',
-					xl: '8',
-				}}
+				p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 				spacing='4'
 				w='100%'
 			>

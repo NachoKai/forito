@@ -75,39 +75,14 @@ const PostDetails = () => {
 			display={showPost ? 'block' : 'none'}
 			px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
 			py={{ sm: '0', md: '6', lg: '8', xl: '8' }}
-			spacing={{
-				sm: '6',
-				md: '8',
-				lg: '8',
-				xl: '8',
-			}}
+			spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 		>
-			<StaggeredSlideFade
-				spacing={{
-					sm: '6',
-					md: '8',
-					lg: '8',
-					xl: '8',
-				}}
-			>
+			<StaggeredSlideFade spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}>
 				<Stack
 					direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }}
-					spacing={{
-						sm: '6',
-						md: '8',
-						lg: '8',
-						xl: '8',
-					}}
+					spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 				>
-					<Stack
-						spacing={{
-							sm: '6',
-							md: '8',
-							lg: '8',
-							xl: '8',
-						}}
-						w='100%'
-					>
+					<Stack spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }} w='100%'>
 						<Stack align='center' direction='row' justify='space-between' w='100%'>
 							<Heading as='h2' data-cy='post-details-title' size='xl'>
 								{post?.title}
@@ -232,26 +207,13 @@ const PostDetails = () => {
 				<>
 					<Divider colorScheme='primary' />
 
-					<Stack
-						overflow='auto'
-						spacing={{
-							sm: '6',
-							md: '8',
-							lg: '8',
-							xl: '8',
-						}}
-					>
+					<Stack overflow='auto' spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}>
 						<Text fontWeight='bold'>You might also like:</Text>
 						<Stack
 							className='recommended-posts'
 							direction='row'
 							overflow='auto'
-							spacing={{
-								sm: '6',
-								md: '8',
-								lg: '8',
-								xl: '8',
-							}}
+							spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 						>
 							{recommendedPosts?.map(({ title, name, message, selectedFile, _id }) => (
 								<Stack
@@ -265,12 +227,7 @@ const PostDetails = () => {
 									h='100%'
 									maxWidth='320px'
 									minWidth='320px'
-									p={{
-										sm: '6',
-										md: '8',
-										lg: '8',
-										xl: '8',
-									}}
+									p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 									spacing='2'
 									onClick={() => openPost(_id)}
 								>
@@ -321,12 +278,7 @@ const PostDetails = () => {
 			h='100%'
 			marginY='64px'
 			minHeight='100vh'
-			p={{
-				sm: '6',
-				md: '8',
-				lg: '8',
-				xl: '8',
-			}}
+			p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 		>
 			<Text color='primary.400' fontSize='6xl' marginBottom='16px'>
 				<FaSearch />

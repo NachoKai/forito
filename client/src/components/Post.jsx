@@ -109,18 +109,8 @@ const Post = ({
 					}}
 					display={showPost ? 'flex' : 'none'}
 					h='100%'
-					p={{
-						sm: '6',
-						md: '8',
-						lg: '8',
-						xl: '8',
-					}}
-					spacing={{
-						sm: '6',
-						md: '8',
-						lg: '8',
-						xl: '8',
-					}}
+					p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
+					spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 					w='100%'
 				>
 					<Stack justify='space-between' spacing='4' w='100%'>
@@ -179,12 +169,7 @@ const Post = ({
 
 							<Text
 								fontSize='md'
-								m={{
-									sm: '6',
-									md: '8',
-									lg: '8',
-									xl: '8',
-								}}
+								m={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 								noOfLines={[4, 6, 8, 10]}
 								whiteSpace='pre-wrap'
 							>
@@ -238,12 +223,7 @@ const Post = ({
 											<MenuButton
 												as={Button}
 												colorScheme='primary'
-												display={{
-													sm: 'flex',
-													md: 'flex',
-													lg: 'none',
-													xl: 'none',
-												}}
+												display={{ sm: 'flex', md: 'flex', lg: 'none', xl: 'none' }}
 												rightIcon={<ChevronDownIcon />}
 												size='sm'
 												variant='ghost'
@@ -284,12 +264,7 @@ const Post = ({
 										<Button
 											colorScheme='primary'
 											disabled={!user?.result}
-											display={{
-												sm: 'none',
-												md: 'none',
-												lg: 'flex',
-												xl: 'flex',
-											}}
+											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
 											isLoading={!!saveLoading}
 											leftIcon={hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
 											loadingText='Loading...'
@@ -311,12 +286,7 @@ const Post = ({
 									{(isPostCreator || isAdmin) && (
 										<Button
 											colorScheme='primary'
-											display={{
-												sm: 'none',
-												md: 'none',
-												lg: 'flex',
-												xl: 'flex',
-											}}
+											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
 											leftIcon={<FaPen />}
 											minWidth='88px'
 											size='sm'
@@ -353,12 +323,7 @@ const Post = ({
 					{selectedFile?.url && (
 						<AspectRatio
 							maxH='80vh'
-							maxW={{
-								sm: '100%',
-								md: '100%',
-								lg: '100%',
-								xl: '500px',
-							}}
+							maxW={{ sm: '100%', md: '100%', lg: '100%', xl: '500px' }}
 							ratio={1}
 							w='100%'
 						>

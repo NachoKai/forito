@@ -6,29 +6,11 @@ const Footer = () => (
 	<Stack
 		bg='primary_100_900'
 		color='primary_800_100'
-		p={{
-			sm: '6',
-			md: '8',
-			lg: '8',
-			xl: '8',
-		}}
-		spacing={{
-			sm: '6',
-			md: '8',
-			lg: '8',
-			xl: '8',
-		}}
+		p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
+		spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 	>
 		<Stack direction='row' justify='space-between'>
-			<Stack
-				direction='row'
-				spacing={{
-					sm: '6',
-					md: '8',
-					lg: '8',
-					xl: '8',
-				}}
-			>
+			<Stack direction='row' spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}>
 				<Text fontWeight='bold'>
 					<Link to='/'>Home</Link>
 				</Text>

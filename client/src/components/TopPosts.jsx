@@ -37,12 +37,7 @@ const TopPosts = () => {
 			{isLoading ? (
 				<Stack
 					minHeight='100vh'
-					spacing={{
-						sm: '6',
-						md: '8',
-						lg: '8',
-						xl: '8',
-					}}
+					spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 					w='100%'
 				>
 					<Loading />
@@ -50,12 +45,7 @@ const TopPosts = () => {
 			) : (
 				<StaggeredSlideFade
 					direction='column'
-					spacing={{
-						sm: '6',
-						md: '8',
-						lg: '8',
-						xl: '8',
-					}}
+					spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 					w='100%'
 				>
 					{!havePosts ? (

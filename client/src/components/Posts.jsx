@@ -31,12 +31,7 @@ const Posts = ({ onOpen }) => {
 			{isLoading ? (
 				<StaggeredSlideFade
 					minHeight='100vh'
-					spacing={{
-						sm: '6',
-						md: '8',
-						lg: '8',
-						xl: '8',
-					}}
+					spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 					w='100%'
 				>
 					<Loading />
@@ -44,12 +39,7 @@ const Posts = ({ onOpen }) => {
 			) : (
 				<StaggeredSlideFade
 					direction='column'
-					spacing={{
-						sm: '6',
-						md: '8',
-						lg: '8',
-						xl: '8',
-					}}
+					spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 					w='100%'
 				>
 					{!havePosts ? (
@@ -70,12 +60,7 @@ const Posts = ({ onOpen }) => {
 					) : (
 						<StaggeredSlideFade
 							direction='column'
-							spacing={{
-								sm: '6',
-								md: '8',
-								lg: '8',
-								xl: '8',
-							}}
+							spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 							w='100%'
 						>
 							{publicPosts?.map(post => (

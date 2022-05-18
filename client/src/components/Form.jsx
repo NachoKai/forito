@@ -175,12 +175,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 			<Button
 				ref={btnRef}
 				colorScheme='primary'
-				display={{
-					sm: 'none',
-					md: 'flex',
-					lg: 'flex',
-					xl: 'flex',
-				}}
+				display={{ sm: 'none', md: 'flex', lg: 'flex', xl: 'flex' }}
 				onClick={handleCreatePost}
 			>
 				Create Post
@@ -188,12 +183,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 			<Button
 				ref={btnRef}
 				colorScheme='primary'
-				display={{
-					sm: 'flex',
-					md: 'none',
-					lg: 'none',
-					xl: 'none',
-				}}
+				display={{ sm: 'flex', md: 'none', lg: 'none', xl: 'none' }}
 				size='sm'
 				onClick={handleCreatePost}
 			>
@@ -341,12 +331,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 																variant='ghost'
 																onClick={onImageUpload}
 																{...dragProps}
-																p={{
-																	sm: '6',
-																	md: '8',
-																	lg: '8',
-																	xl: '8',
-																}}
+																p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 															>
 																Click or drag & drop image here
 															</Button>
