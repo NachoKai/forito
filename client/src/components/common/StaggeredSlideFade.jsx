@@ -13,7 +13,7 @@ const StaggeredSlideFade = ({ children, ...props }) => {
 						key={index}
 						in
 						transform='translateZ(0)'
-						transition={{ enter: { duration: 0.6, delay: 0.3 * index } }}
+						transition={{ enter: { duration: 0.6, delay: 0.2 * index } }}
 					>
 						{child}
 					</SlideFade>
