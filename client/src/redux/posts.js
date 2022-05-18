@@ -32,12 +32,12 @@ export const setCurrentId = id => ({ type: SET_CURRENT_ID, id })
 export const getPost = id => async dispatch => {
 	try {
 		dispatch(showLoading())
-		dispatch({ type: START_LOADING })
+		dispatch({ type: START_LOADING, loading: true })
 
 		const { data } = await api.fetchPost(id)
 
 		dispatch({ type: FETCH_POST, payload: { post: data } })
-		dispatch({ type: END_LOADING })
+		dispatch({ type: END_LOADING, loading: false })
 	} catch (err) {
 		showError('Something went wrong when trying to get post. Please try again.')
 		console.error(err)
@@ -48,13 +48,13 @@ export const getPost = id => async dispatch => {
 
 export const getPosts = page => async dispatch => {
 	try {
-		dispatch({ type: START_LOADING })
+		dispatch({ type: START_LOADING, loading: true })
 		const {
 			data: { data, currentPage, numberOfPages },
 		} = await api.fetchPosts(page)
 
 		dispatch({ type: FETCH_ALL_POSTS, payload: { data, currentPage, numberOfPages } })
-		dispatch({ type: END_LOADING })
+		dispatch({ type: END_LOADING, loading: false })
 	} catch (err) {
 		showError('Something went wrong when trying to get posts. Please try again.')
 		console.error(err)
@@ -63,13 +63,13 @@ export const getPosts = page => async dispatch => {
 
 export const getPostsBySearch = searchQuery => async dispatch => {
 	try {
-		dispatch({ type: START_LOADING })
+		dispatch({ type: START_LOADING, loading: true })
 		const {
 			data: { data },
 		} = await api.fetchPostsBySearch(searchQuery)
 
 		dispatch({ type: FETCH_POSTS_BY_SEARCH, payload: { data } })
-		dispatch({ type: END_LOADING })
+		dispatch({ type: END_LOADING, loading: false })
 	} catch (err) {
 		showError('Something went wrong when trying to get post by search. Please try again.')
 		console.error(err)
@@ -78,12 +78,12 @@ export const getPostsBySearch = searchQuery => async dispatch => {
 
 export const createPost = (post, navigate) => async dispatch => {
 	try {
-		dispatch({ type: START_LOADING })
+		dispatch({ type: START_LOADING, loading: true })
 		dispatch(showLoading())
 		const { data } = await api.createPost(post)
 
 		dispatch({ type: CREATE_POST, payload: data })
-		dispatch({ type: END_LOADING })
+		dispatch({ type: END_LOADING, loading: false })
 		showSuccess('Successfully created post.')
 		navigate(`/posts/${data._id}`)
 	} catch (err) {
@@ -96,12 +96,12 @@ export const createPost = (post, navigate) => async dispatch => {
 
 export const updatePost = (id, post) => async dispatch => {
 	try {
-		dispatch({ type: START_LOADING })
+		dispatch({ type: START_LOADING, loading: true })
 		dispatch(showLoading())
 		const { data } = await api.updatePost(id, post)
 
 		dispatch({ type: UPDATE_POST, payload: data })
-		dispatch({ type: END_LOADING })
+		dispatch({ type: END_LOADING, loading: false })
 
 		showSuccess('Successfully edited post.')
 	} catch (err) {
@@ -114,11 +114,11 @@ export const updatePost = (id, post) => async dispatch => {
 
 export const deletePost = id => async dispatch => {
 	try {
-		dispatch({ type: START_LOADING })
+		dispatch({ type: START_LOADING, loading: true })
 		dispatch(showLoading())
 		await api.deletePost(id)
 		dispatch({ type: DELETE_POST, payload: id })
-		dispatch({ type: END_LOADING })
+		dispatch({ type: END_LOADING, loading: false })
 		showSuccess('Successfully deleted post.')
 	} catch (err) {
 		showError('Something went wrong when trying to delete post. Please try again.')
@@ -170,14 +170,14 @@ export const addComment = (comment, id) => async dispatch => {
 
 export const getPostsByCreator = id => async dispatch => {
 	try {
-		dispatch({ type: START_LOADING })
+		dispatch({ type: START_LOADING, loading: true })
 		dispatch(showLoading())
 		const {
 			data: { data },
 		} = await api.fetchPostsByCreator(id)
 
 		dispatch({ type: FETCH_BY_CREATOR, payload: { data } })
-		dispatch({ type: END_LOADING })
+		dispatch({ type: END_LOADING, loading: false })
 	} catch (err) {
 		showError(
 			'Something went wrong when trying to get posts by creator. Please try again.'
@@ -190,14 +190,14 @@ export const getPostsByCreator = id => async dispatch => {
 
 export const getSavedPosts = id => async dispatch => {
 	try {
-		dispatch({ type: START_LOADING })
+		dispatch({ type: START_LOADING, loading: true })
 		dispatch(showLoading())
 		const {
 			data: { data },
 		} = await api.fetchSavedPosts(id)
 
 		dispatch({ type: FETCH_SAVED_POSTS, payload: { data } })
-		dispatch({ type: END_LOADING })
+		dispatch({ type: END_LOADING, loading: false })
 	} catch (err) {
 		showError(
 			'Something went wrong when trying to get posts by creator. Please try again.'

@@ -15,8 +15,8 @@ export const loadingReducer = (state = false, action) => {
 		case HIDE_LOADING:
 			return false
 		default:
-			if (action.shellLoading !== undefined) {
-				return action.shellLoading
+			if (action.loading !== undefined) {
+				return action.loading
 			}
 
 			return state
