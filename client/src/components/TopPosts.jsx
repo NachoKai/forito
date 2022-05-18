@@ -50,8 +50,6 @@ const TopPosts = () => {
 					w='100%'
 				>
 					<Loading />
-					<Loading />
-					<Loading />
 				</Stack>
 			) : (
 				<StaggeredSlideFade

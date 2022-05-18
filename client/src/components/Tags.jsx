@@ -79,11 +79,7 @@ const Tags = () => {
 			<Divider colorScheme='primary' />
 
 			{isLoading ? (
-				<>
-					<Loading />
-					<Loading />
-					<Loading />
-				</>
+				<Loading />
 			) : (
 				<StaggeredSlideFade spacing='3'>
 					{posts?.map(post => (

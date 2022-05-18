@@ -40,8 +40,6 @@ const Posts = ({ onOpen }) => {
 					w='100%'
 				>
 					<Loading />
-					<Loading />
-					<Loading />
 				</StaggeredSlideFade>
 			) : (
 				<StaggeredSlideFade
