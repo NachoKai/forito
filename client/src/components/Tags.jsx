@@ -57,7 +57,8 @@ const Tags = () => {
 			borderRadius='lg'
 			h='100%'
 			minHeight='100vh'
-			p='32px'
+			px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
+			py={{ sm: '0', md: '6', lg: '8', xl: '8' }}
 			spacing={{
 				sm: '6',
 				md: '8',
