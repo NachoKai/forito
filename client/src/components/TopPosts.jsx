@@ -1,12 +1,14 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { Flex, Stack, Text } from '@chakra-ui/react'
+import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { FaPencilAlt } from 'react-icons/fa'
+import { IoIosRocket } from 'react-icons/io'
 
 import Post from './Post'
 import Loading from './Loading'
 import StaggeredSlideFade from './common/StaggeredSlideFade'
 import { getAllPosts } from '../redux/posts'
+import { CreateGradColor } from '../theme'
 
 const TopPosts = () => {
 	const dispatch = useDispatch()
@@ -37,9 +39,25 @@ const TopPosts = () => {
 			py={{ sm: '0', md: '6', lg: '8', xl: '8' }}
 			w='100%'
 		>
-			<Text color='primary.400' fontSize='4xl' marginBottom='16px'>
-				Top Posts
-			</Text>
+			<Stack align='center' direction='row' marginBottom='16px' spacing='2'>
+				<Heading
+					as='h3'
+					bgClip='text'
+					bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
+					fontSize='4xl'
+					fontWeight='bold'
+				>
+					Top Posts
+				</Heading>
+				<Heading
+					as='h3'
+					color={CreateGradColor('primary', 300, 900, 50, 400)}
+					fontSize='4xl'
+					fontWeight='bold'
+				>
+					<IoIosRocket />
+				</Heading>
+			</Stack>
 
 			{isLoading ? (
 				<Stack
