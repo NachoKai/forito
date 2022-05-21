@@ -6,8 +6,8 @@ import showSuccess from '../utils/showSuccess'
 
 /* ==========  CONSTANTS  ========== */
 
-const FETCH_ALL = 'FETCH_ALL'
 const FETCH_ALL_POSTS = 'FETCH_ALL_POSTS'
+const FETCH_POSTS = 'FETCH_ALL'
 const FETCH_POST = 'FETCH_POST'
 const CREATE_POST = 'CREATE_POST'
 const UPDATE_POST = 'UPDATE_POST'
@@ -46,14 +46,31 @@ export const getPost = id => async dispatch => {
 	}
 }
 
+export const getAllPosts = page => async dispatch => {
+	try {
+		dispatch(cleanUp())
+		dispatch({ type: START_LOADING, loading: true })
+		const {
+			data: { data },
+		} = await api.fetchAllPosts(page)
+
+		dispatch({ type: FETCH_ALL_POSTS, payload: { data } })
+		dispatch({ type: END_LOADING, loading: false })
+	} catch (err) {
+		showError('Something went wrong when trying to get all posts. Please try again.')
+		console.error(err)
+	}
+}
+
 export const getPosts = page => async dispatch => {
 	try {
+		dispatch(cleanUp())
 		dispatch({ type: START_LOADING, loading: true })
 		const {
 			data: { data, currentPage, numberOfPages },
 		} = await api.fetchPosts(page)
 
-		dispatch({ type: FETCH_ALL_POSTS, payload: { data, currentPage, numberOfPages } })
+		dispatch({ type: FETCH_POSTS, payload: { data, currentPage, numberOfPages } })
 		dispatch({ type: END_LOADING, loading: false })
 	} catch (err) {
 		showError('Something went wrong when trying to get posts. Please try again.')
@@ -226,9 +243,12 @@ export const postsReducer = (state = initialState, action) => {
 			return { ...state, isLoading: true }
 		case END_LOADING:
 			return { ...state, isLoading: false }
-		case FETCH_ALL:
-			return payload
 		case FETCH_ALL_POSTS:
+			return {
+				...state,
+				posts: payload.data,
+			}
+		case FETCH_POSTS:
 			return {
 				...state,
 				posts: payload.data,

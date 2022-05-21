@@ -18,6 +18,7 @@ API.interceptors.request.use(req => {
 
 /* ==========  POSTS  ========== */
 
+export const fetchAllPosts = () => API.get(`/posts/top`)
 export const fetchPost = id => API.get(`/posts/${id}`)
 export const fetchPosts = page => API.get(`/posts?page=${page}`)
 export const fetchPostsBySearch = searchQuery =>

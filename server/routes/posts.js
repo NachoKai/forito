@@ -4,6 +4,7 @@ import {
 	commentPost,
 	createPost,
 	deletePost,
+	getAllPosts,
 	getPost,
 	getPosts,
 	getPostsByCreator,
@@ -17,6 +18,7 @@ import auth from "../middleware/auth.js";
 
 const router = express.Router();
 
+router.get("/top", getAllPosts);
 router.get("/search", getPostsBySearch);
 router.get("/creator", getPostsByCreator);
 router.get("/saved", getSavedPosts);

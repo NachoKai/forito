@@ -59,7 +59,7 @@ const App = () => {
 					path='auth'
 				/>
 				<Route element={<About />} path='about' />
-				<Route element={<TopPosts />} path='top' />
+				<Route element={<TopPosts />} path='/posts/top' />
 				<Route element={<ErrorPage />} path='*' />
 			</Routes>
 

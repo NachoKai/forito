@@ -1,25 +1,32 @@
-import { useSelector } from 'react-redux'
+import { useEffect } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 import { Flex, Stack, Text } from '@chakra-ui/react'
 import { FaPencilAlt } from 'react-icons/fa'
 
 import Post from './Post'
 import Loading from './Loading'
 import StaggeredSlideFade from './common/StaggeredSlideFade'
+import { getAllPosts } from '../redux/posts'
 
 const TopPosts = () => {
+	const dispatch = useDispatch()
 	const { posts, isLoading } = useSelector(state => state.posts)
 	const havePosts = posts?.length > 0
 
 	const getTopPosts = max => {
 		if (!havePosts) return
-
-		const sortedPosts = posts?.sort((a, b) => b.likes.length - a.likes.length)
+		const postsCopy = [...posts]
+		const sortedPosts = postsCopy?.sort((a, b) => b.likes.length - a.likes.length)
 		const slicedArray = sortedPosts?.slice(0, max)
 
 		return slicedArray
 	}
 
 	const topPosts = getTopPosts(5)
+
+	useEffect(() => {
+		dispatch(getAllPosts())
+	}, [dispatch])
 
 	return (
 		<StaggeredSlideFade

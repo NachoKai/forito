@@ -17,9 +17,9 @@ const Footer = () => (
 				<Text fontWeight='bold'>
 					<Link to='about'>About</Link>
 				</Text>
-				{/* <Text fontWeight="bold">
-						<Link to="top">Top Posts</Link>
-					</Text> */}
+				<Text fontWeight='bold'>
+					<Link to='posts/top'>Top Posts</Link>
+				</Text>
 			</Stack>
 			<Stack direction='row'>
 				<ChakraLink isExternal fontSize='xl' href='https://github.com/NachoKai/forito'>
