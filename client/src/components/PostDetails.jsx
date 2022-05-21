@@ -73,7 +73,8 @@ const PostDetails = () => {
 		<Stack
 			borderRadius='lg'
 			display={showPost ? 'block' : 'none'}
-			p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
+			px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
+			py={{ sm: '0', md: '6', lg: '8', xl: '8' }}
 			spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 		>
 			<StaggeredSlideFade spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}>
