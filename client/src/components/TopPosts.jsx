@@ -2,7 +2,6 @@ import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { FaPencilAlt } from 'react-icons/fa'
-import { IoIosRocket } from 'react-icons/io'
 
 import Post from './Post'
 import Loading from './Loading'
@@ -35,29 +34,19 @@ const TopPosts = () => {
 			flexGrow
 			direction='column'
 			minHeight='100vh'
-			px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
-			py={{ sm: '0', md: '6', lg: '8', xl: '8' }}
+			p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
+			spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 			w='100%'
 		>
-			<Stack align='center' direction='row' marginBottom='16px' spacing='2'>
-				<Heading
-					as='h3'
-					bgClip='text'
-					bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
-					fontSize='4xl'
-					fontWeight='bold'
-				>
-					Top Posts
-				</Heading>
-				<Heading
-					as='h3'
-					color={CreateGradColor('primary', 300, 900, 50, 400)}
-					fontSize='4xl'
-					fontWeight='bold'
-				>
-					<IoIosRocket />
-				</Heading>
-			</Stack>
+			<Heading
+				as='h3'
+				bgClip='text'
+				bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
+				fontSize='4xl'
+				fontWeight='bold'
+			>
+				Top Posts
+			</Heading>
 
 			{isLoading ? (
 				<Stack
