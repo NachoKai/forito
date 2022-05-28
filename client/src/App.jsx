@@ -41,6 +41,8 @@ const App = () => {
 
 	return (
 		<BrowserRouter>
+			<LoadingScreen />
+			<LoadingSync />
 			<ScrollToTop />
 			<Navbar isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
 			<Routes>
@@ -79,8 +81,6 @@ const App = () => {
 			</Button>
 			<Footer />
 			<ToastContainer />
-			<LoadingScreen />
-			<LoadingSync />
 		</BrowserRouter>
 	)
 }
