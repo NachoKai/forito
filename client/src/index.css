@@ -87,7 +87,7 @@ input[type="file"] {
   z-index: 9999;
   position: absolute;
   top: 40%;
-  left: 50%;
+  left: 49%;
   pointer-events: none;
   cursor: progress;
 }
