@@ -44,6 +44,7 @@ const SearchNavbar = () => {
 						data-cy='navbar-search-button'
 						disabled={!searchValue && !searchTags?.length}
 						size='sm'
+						title='Search'
 						variant='ghost'
 						onClick={searchPost}
 					>

@@ -24,7 +24,7 @@ const Footer = () => (
 			<Stack direction='row'>
 				<ChakraLink isExternal fontSize='xl' href='https://github.com/NachoKai/forito'>
 					<Text fontSize='xl'>
-						<FaGithub />
+						<FaGithub title='Github' />
 					</Text>
 				</ChakraLink>
 			</Stack>
