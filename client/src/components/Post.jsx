@@ -115,57 +115,57 @@ const Post = ({
 				>
 					<Stack justify='space-between' spacing='4' w='100%'>
 						<Stack direction='column' spacing='4'>
-							<Stack direction='row' w='100%'>
-								<Stack direction='row' justify='space-between' w='100%'>
-									<Stack align='center' direction='row'>
-										<Text fontSize='md' fontWeight='bold'>
-											<Link to={`/creator/${creator}`}>{` ${name}`}</Link>
-										</Text>
-										<span>•</span>
-										<Tooltip
-											hasArrow
-											colorScheme='primary'
-											label={format(
-												isValid(new Date(createdAt)) ? new Date(createdAt) : new Date(),
-												'dd MMM yyyy - HH:mm'
-											)}
-											openDelay={200}
-											placement='top'
-										>
-											<Text fontSize='sm'>
-												{formatDistance(
-													new Date(),
-													createdAt ? new Date(createdAt) : new Date()
-												) + ' ago'}
-											</Text>
-										</Tooltip>
-									</Stack>
-									{isPrivate && (
-										<Tooltip
-											hasArrow
-											colorScheme='primary'
-											label='Post only visible to you'
-											openDelay={200}
-											placement='top'
-										>
-											<span>
-												<RiGitRepositoryPrivateFill />
-											</span>
-										</Tooltip>
-									)}
-								</Stack>
+							<Stack direction='row'>
+								<Heading
+									as='h3'
+									className='pointer'
+									fontSize='2xl'
+									textShadow={textShadow}
+									w='100%'
+									onClick={openPost}
+								>
+									{title}
+								</Heading>
+								{isPrivate && (
+									<Tooltip
+										hasArrow
+										colorScheme='primary'
+										label='Post only visible to you'
+										openDelay={200}
+										placement='top'
+									>
+										<span>
+											<RiGitRepositoryPrivateFill />
+										</span>
+									</Tooltip>
+								)}
 							</Stack>
 
-							<Heading
-								as='h3'
-								className='pointer'
-								fontSize='2xl'
-								marginBottom='2'
-								textShadow={textShadow}
-								onClick={openPost}
-							>
-								{title}
-							</Heading>
+							<Stack direction='row' justify='space-between' w='100%'>
+								<Stack align='center' direction='row'>
+									<Text fontSize='sm' fontWeight='bold'>
+										<Link to={`/creator/${creator}`}>{` ${name}`}</Link>
+									</Text>
+									<span>•</span>
+									<Tooltip
+										hasArrow
+										colorScheme='primary'
+										label={format(
+											isValid(new Date(createdAt)) ? new Date(createdAt) : new Date(),
+											'dd MMM yyyy - HH:mm'
+										)}
+										openDelay={200}
+										placement='top'
+									>
+										<Text fontSize='sm'>
+											{formatDistance(
+												new Date(),
+												createdAt ? new Date(createdAt) : new Date()
+											) + ' ago'}
+										</Text>
+									</Tooltip>
+								</Stack>
+							</Stack>
 
 							<Text
 								fontSize='md'
