@@ -15,28 +15,28 @@
 	"license": "ISC",
 	"dependencies": {
 		"bcryptjs": "^2.4.3",
-		"body-parser": "^1.20.0",
+		"body-parser": "^1.19.0",
 		"compression": "^1.7.4",
 		"cors": "^2.8.5",
-		"dotenv": "^16.0.1",
+		"dotenv": "^10.0.0",
 		"escape-html": "^1.0.3",
-		"express": "^4.18.1",
-		"express-mongo-sanitize": "^2.2.0",
-		"express-rate-limit": "^6.4.0",
+		"express": "^4.17.1",
+		"express-mongo-sanitize": "^2.1.0",
+		"express-rate-limit": "^6.2.1",
 		"jsonwebtoken": "^8.5.1",
 		"lodash": "^4.17.21",
 		"mongo-sanitize": "^1.1.0",
-		"mongoose": "^6.3.5",
-		"nodemon": "^2.0.16"
+		"mongoose": "^6.1.0",
+		"nodemon": "^2.0.15"
 	},
 	"devDependencies": {
-		"eslint": "^8.17.0",
-		"eslint-config-prettier": "^8.5.0",
-		"eslint-config-standard": "^17.0.0",
-		"eslint-plugin-import": "^2.26.0",
+		"eslint": "^7.32.0",
+		"eslint-config-prettier": "^8.3.0",
+		"eslint-config-standard": "^16.0.3",
+		"eslint-plugin-import": "^2.25.3",
 		"eslint-plugin-node": "^11.1.0",
 		"eslint-plugin-prettier": "^4.0.0",
-		"eslint-plugin-promise": "^6.0.0",
-		"jest": "^28.1.1"
+		"eslint-plugin-promise": "^5.2.0",
+		"jest": "^27.4.3"
 	}
 }
