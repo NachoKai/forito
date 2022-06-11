@@ -30,7 +30,7 @@ const SearchNavbar = () => {
 		}
 	}, [dispatch, location, navigate, searchTags, searchValue])
 
-	const handleKeyPress = e => e.keyCode === ENTER_KEYCODE && searchPost()
+	const handleKeyPress = e => e?.keyCode === ENTER_KEYCODE && searchPost()
 
 	return (
 		<Stack align='center' display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}>

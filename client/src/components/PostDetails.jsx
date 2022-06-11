@@ -135,18 +135,16 @@ const PostDetails = () => {
 					<Stack spacing='4' w='100%'>
 						<Stack direction='row' spacing='2'>
 							{post?.tags &&
-								[...new Set(post?.tags)]
-									.filter(e => e)
-									.map(tag => (
-										<Badge
-											key={getRandomId()}
-											bg='primary.400'
-											color='white'
-											data-cy='post-details-tags'
-										>
-											<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
-										</Badge>
-									))}
+								[...new Set(post?.tags)].filter(Boolean).map(tag => (
+									<Badge
+										key={getRandomId()}
+										bg='primary.600'
+										color='white'
+										data-cy='post-details-tags'
+									>
+										<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
+									</Badge>
+								))}
 						</Stack>
 						<Flex align='center' justify='space-between' w='100%'>
 							<Stack
@@ -232,7 +230,7 @@ const PostDetails = () => {
 									onClick={() => openPost(_id)}
 								>
 									<Heading
-										as='h3'
+										as='h2'
 										fontSize='lg'
 										fontWeight='bold'
 										noOfLines={[1, 1, 2, 2]}

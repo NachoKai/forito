@@ -42,7 +42,7 @@ const Search = () => {
 		}
 	}, [dispatch, location, navigate, searchTags, searchValue])
 
-	const handleKeyPress = e => e.keyCode === ENTER_KEYCODE && searchPost()
+	const handleKeyPress = e => e?.keyCode === ENTER_KEYCODE && searchPost()
 
 	const handleAddTag = useCallback(
 		tag => setSearchTags([...searchTags, tag]),
