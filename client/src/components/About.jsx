@@ -30,7 +30,7 @@ const About = () => (
 				Hi, I&apos;m Nacho!
 			</Heading>
 			<Heading
-				as='h2'
+				as='h3'
 				bgClip='text'
 				bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
 				fontSize='2xl'

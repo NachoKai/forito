@@ -117,7 +117,7 @@ const Post = ({
 						<Stack direction='column' spacing='4'>
 							<Stack direction='row'>
 								<Heading
-									as='h3'
+									as='h2'
 									className='pointer'
 									fontSize='2xl'
 									textShadow={textShadow}
@@ -179,13 +179,11 @@ const Post = ({
 
 						<Stack direction='column' spacing='4'>
 							<Stack direction='row' overflow='auto' spacing='2'>
-								{[...new Set(tags)]
-									.filter(e => e)
-									.map(tag => (
-										<Badge key={getRandomId()} bg='primary.400' color='white'>
-											<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
-										</Badge>
-									))}
+								{[...new Set(tags)].filter(Boolean).map(tag => (
+									<Badge key={getRandomId()} bg='primary.600' color='white'>
+										<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
+									</Badge>
+								))}
 							</Stack>
 
 							<Stack
