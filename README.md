@@ -111,3 +111,4 @@ Hi, I'm Nacho! 👋 I'm a software developer from Argentina 🇦🇷
 
 [MIT](https://github.com/NachoKai/forito/blob/main/LICENSE)
 
+![Alt](https://repobeats.axiom.co/api/embed/ce8eb803bd1c089ae12756d8ff9c7e7e9aafeea8.svg "Repobeats analytics image")
