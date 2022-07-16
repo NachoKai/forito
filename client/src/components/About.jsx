@@ -11,8 +11,8 @@ const About = () => (
 		h='100%'
 		justify='flex-start'
 		minHeight='100vh'
-		px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
-		py={{ sm: '0', md: '6', lg: '8', xl: '8' }}
+		px={{ sm: '4', md: '10', lg: '16', xl: '24' }}
+		py={{ sm: '4', md: '6', lg: '8', xl: '8' }}
 	>
 		<Stack spacing='4'>
 			<Flex justify='center'>
