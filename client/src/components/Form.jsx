@@ -30,6 +30,7 @@ import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
 import { hideLoading, showLoading } from '../redux/loading'
 import { getRandomId } from '../utils/getRandomId'
+import getThemeColor from '../utils/getThemeColor'
 
 const initialState = {
 	title: '',
@@ -418,7 +419,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 						<Stack spacing='4' w='100%'>
 							<Button
 								bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
-								boxShadow='blue'
+								boxShadow={() => getThemeColor()}
 								colorScheme='primary'
 								data-cy='form-submit-button'
 								disabled={

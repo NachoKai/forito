@@ -2,6 +2,7 @@ import { useContext, useEffect, useRef } from 'react'
 import { Spinner, useColorMode } from '@chakra-ui/react'
 
 import { LoadingContext } from './LoadingContext'
+import getThemeColor from '../../../utils/getThemeColor'
 
 const LoadingScreen = () => {
 	const { isLoading } = useContext(LoadingContext)
@@ -22,7 +23,7 @@ const LoadingScreen = () => {
 			<div className='loading-bar'>
 				<Spinner
 					className='loading-circle'
-					color='blue.500'
+					color={() => `${getThemeColor()}.500`}
 					emptyColor='gray.200'
 					size='xl'
 					speed='0.65s'

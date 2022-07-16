@@ -28,6 +28,7 @@ import { CreateGradColor } from '../theme'
 import Form from './Form'
 import SearchNavbar from './SearchNavbar'
 import ColorPicker from './ColorPicker'
+import getThemeColor from '../utils/getThemeColor'
 
 const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const dispatch = useDispatch()
@@ -153,7 +154,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 					<Flex>
 						<Link to='auth'>
 							<Button
-								boxShadow='blue'
+								boxShadow={() => getThemeColor()}
 								colorScheme='primary'
 								data-cy='navbar-login-button'
 								variant='solid'
