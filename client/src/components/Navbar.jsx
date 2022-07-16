@@ -27,6 +27,7 @@ import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { CreateGradColor } from '../theme'
 import Form from './Form'
 import SearchNavbar from './SearchNavbar'
+import ColorPicker from './ColorPicker'
 
 const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const dispatch = useDispatch()
@@ -134,6 +135,12 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 											Saved Posts
 										</PopoverBody>
 									</Link>
+									<PopoverBody fontWeight='bold'>
+										<Flex justify='space-between'>
+											Theme color
+											<ColorPicker />
+										</Flex>
+									</PopoverBody>
 									<Divider />
 									<PopoverBody cursor='pointer' fontWeight='bold' onClick={handleLogout}>
 										Logout
