@@ -44,7 +44,7 @@ const SavedPosts = () => {
 				marginY='64px'
 				minHeight='100vh'
 				px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
-				py={{ sm: '0', md: '6', lg: '8', xl: '8' }}
+				py={{ sm: '4', md: '6', lg: '8', xl: '8' }}
 			>
 				<Text color='primary.400' fontSize='6xl' marginBottom='16px'>
 					<FaSearch />
@@ -55,6 +55,7 @@ const SavedPosts = () => {
 					bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
 					fontSize='4xl'
 					fontWeight='bold'
+					px={{ sm: '4' }}
 				>
 					No saved posts were found.
 				</Heading>

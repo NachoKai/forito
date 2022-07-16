@@ -35,7 +35,7 @@ const TopPosts = () => {
 			direction='column'
 			minHeight='100vh'
 			px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
-			py={{ sm: '0', md: '6', lg: '8', xl: '8' }}
+			py={{ sm: '4', md: '6', lg: '8', xl: '8' }}
 			spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 			w='100%'
 		>
@@ -45,6 +45,7 @@ const TopPosts = () => {
 				bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
 				fontSize='4xl'
 				fontWeight='bold'
+				px={{ sm: '4' }}
 			>
 				Top Posts
 			</Heading>
