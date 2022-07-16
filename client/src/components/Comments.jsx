@@ -10,6 +10,7 @@ import { addComment } from '../redux/posts'
 import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
 import Comment from './Comment'
+import getThemeColor from '../utils/getThemeColor'
 
 const Comments = ({ postComments, postId }) => {
 	const dispatch = useDispatch()
@@ -61,7 +62,7 @@ const Comments = ({ postComments, postId }) => {
 					/>
 					<Stack direction='row' spacing='4'>
 						<Button
-							boxShadow='blue'
+							boxShadow={() => getThemeColor()}
 							colorScheme='primary'
 							disabled={!checkEmpty(comment)}
 							flexGrow='1'

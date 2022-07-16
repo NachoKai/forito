@@ -9,6 +9,7 @@ import FormInput from './common/FormInput'
 import { AUTH, login, signup } from '../redux/auth'
 import showError from '../utils/showError'
 import { checkEmpty } from '../utils/checkEmpty'
+import getThemeColor from '../utils/getThemeColor'
 
 const initialState = {
 	firstName: '',
@@ -157,7 +158,7 @@ const Auth = () => {
 							/>
 						)}
 						<Button
-							boxShadow='blue'
+							boxShadow={() => getThemeColor()}
 							colorScheme='primary'
 							data-cy='auth-login-signup-button'
 							disabled={

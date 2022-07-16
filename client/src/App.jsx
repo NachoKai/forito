@@ -20,6 +20,7 @@ import TopPosts from './components/TopPosts'
 import ScrollToTop from './components/common/ScrollToTop'
 import LoadingScreen from './components/common/LoadingScreen/LoadingScreen'
 import LoadingSync from './components/common/LoadingScreen/LoadingSync'
+import getThemeColor from './utils/getThemeColor'
 
 const App = () => {
 	const [showScroll, setShowScroll] = useState(false)
@@ -67,7 +68,7 @@ const App = () => {
 
 			<Button
 				bottom={['16px', '32px']}
-				boxShadow='blue'
+				boxShadow={() => getThemeColor()}
 				colorScheme='primary'
 				display={showScroll ? 'flex' : 'none'}
 				position='fixed'

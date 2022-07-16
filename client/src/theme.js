@@ -3,8 +3,10 @@ import { createBreakpoints } from '@chakra-ui/theme-tools'
 import '@fontsource/roboto'
 import '@fontsource/roboto-slab'
 
-export const getColorTheme = colorMode => {
-	switch (colorMode) {
+export const getColorTheme = () => {
+	const selectedTheme = localStorage.getItem('forito-theme')
+
+	switch (selectedTheme) {
 		case 'red.500':
 			return theme.colors.red
 		case 'orange.400':
@@ -31,7 +33,7 @@ export const getColorTheme = colorMode => {
 }
 
 const colors = {
-	primary: getColorTheme(localStorage.getItem('forito-theme')),
+	primary: getColorTheme(),
 }
 
 const fonts = {
