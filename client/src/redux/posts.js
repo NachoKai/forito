@@ -164,7 +164,6 @@ export const savePost = saves => async dispatch => {
 		const { data } = await api.savePost(saves, user?.token)
 
 		dispatch({ type: SAVE_POST, payload: data })
-		showSuccess('Post successfully saved.')
 	} catch (err) {
 		showError('Something went wrong when trying to save post. Please try again.')
 		console.error(err)
