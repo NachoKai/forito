@@ -101,7 +101,7 @@ export const createPost = (post, navigate) => async dispatch => {
 
 		dispatch({ type: CREATE_POST, payload: data })
 		dispatch({ type: END_LOADING, loading: false })
-		showSuccess('Successfully created post.')
+		showSuccess('Post successfully created.')
 		navigate(`/posts/${data._id}`)
 	} catch (err) {
 		showError('Something went wrong when trying to create post. Please try again.')
@@ -119,8 +119,7 @@ export const updatePost = (id, post) => async dispatch => {
 
 		dispatch({ type: UPDATE_POST, payload: data })
 		dispatch({ type: END_LOADING, loading: false })
-
-		showSuccess('Successfully edited post.')
+		showSuccess('Post successfully edited.')
 	} catch (err) {
 		showError('Something went wrong when trying to update post. Please try again.')
 		console.error(err)
@@ -136,7 +135,7 @@ export const deletePost = id => async dispatch => {
 		await api.deletePost(id)
 		dispatch({ type: DELETE_POST, payload: id })
 		dispatch({ type: END_LOADING, loading: false })
-		showSuccess('Successfully deleted post.')
+		showSuccess('Post successfully deleted.')
 	} catch (err) {
 		showError('Something went wrong when trying to delete post. Please try again.')
 		console.error(err)
@@ -165,6 +164,7 @@ export const savePost = saves => async dispatch => {
 		const { data } = await api.savePost(saves, user?.token)
 
 		dispatch({ type: SAVE_POST, payload: data })
+		showSuccess('Post successfully saved.')
 	} catch (err) {
 		showError('Something went wrong when trying to save post. Please try again.')
 		console.error(err)
@@ -176,7 +176,7 @@ export const addComment = (comment, id) => async dispatch => {
 		const { data } = await api.addComment(comment, id)
 
 		dispatch({ type: ADD_COMMENT, payload: data })
-		showSuccess('Successfully added comment.')
+		showSuccess('Comment successfully added.')
 
 		return data.comments
 	} catch (err) {
