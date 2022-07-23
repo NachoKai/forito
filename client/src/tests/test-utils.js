@@ -9,9 +9,9 @@ import theme from '../theme'
 
 const AllTheProviders = ({ children }) => (
 	<ChakraProvider theme={theme}>
-		<Provider store={store}>
-			<MemoryRouter>{children}</MemoryRouter>
-		</Provider>
+		{/* <Provider store={store}> */}
+		<MemoryRouter>{children}</MemoryRouter>
+		{/* </Provider> */}
 	</ChakraProvider>
 )
 

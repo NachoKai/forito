@@ -1,8 +1,9 @@
 import React from 'react'
-import { render, screen } from './test-utils'
-import About from '../components/About'
 
-describe.skip('About', () => {
+import About from '../components/About'
+import { render, screen } from './test-utils'
+
+describe('About', () => {
 	test('Renders component sections', () => {
 		render(<About />)
 		const title = screen.getByRole('heading', { name: /hi, i'm nacho!/i })

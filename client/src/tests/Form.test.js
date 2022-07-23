@@ -1,6 +1,7 @@
 import React from 'react'
-import { render, screen } from './test-utils'
+
 import Form from '../components/Form'
+import { render, screen } from './test-utils'
 
 describe.skip('Form', () => {
 	test('Renders component sections', () => {

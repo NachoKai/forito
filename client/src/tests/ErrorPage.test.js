@@ -1,8 +1,9 @@
 import React from 'react'
-import { render, screen } from './test-utils'
-import ErrorPage from '../components/ErrorPage'
 
-describe.skip('ErrorPage', () => {
+import ErrorPage from '../components/ErrorPage'
+import { render, screen } from './test-utils'
+
+describe('ErrorPage', () => {
 	test('Renders component sections', () => {
 		render(<ErrorPage />)
 		const title = screen.getByRole('heading', { name: /404/i })

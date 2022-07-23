@@ -114,7 +114,6 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 										/>
 
 										<Text
-											isTruncated
 											data-cy='navbar-username'
 											display={{ sm: 'none', md: 'flex', lg: 'flex', xl: 'flex' }}
 										>
