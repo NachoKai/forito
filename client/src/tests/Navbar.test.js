@@ -1,8 +1,9 @@
 import React from 'react'
-import { render, screen } from './test-utils'
-import Navbar from '../components/Navbar'
 
-describe.skip('Navbar', () => {
+import Navbar from '../components/Navbar'
+import { render, screen } from './test-utils'
+
+describe('Navbar', () => {
 	test('Renders title', () => {
 		render(<Navbar />)
 		const title = screen.getByRole('link', { name: /forito ✨/i })

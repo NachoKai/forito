@@ -1,8 +1,9 @@
 import React from 'react'
-import { render, screen } from './test-utils'
-import Footer from '../components/Footer'
 
-describe.skip('Footer', () => {
+import Footer from '../components/Footer'
+import { render, screen } from './test-utils'
+
+describe('Footer', () => {
 	test('Renders component sections', () => {
 		render(<Footer />)
 		const home = screen.getByRole('link', { name: /home/i })
