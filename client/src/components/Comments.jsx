@@ -1,16 +1,16 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { Button, Stack, Text } from '@chakra-ui/react'
-import { FaExclamationCircle } from 'react-icons/fa'
 import PropTypes from 'prop-types'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { FaExclamationCircle } from 'react-icons/fa'
+import { useDispatch } from 'react-redux'
 
-import FormTextArea from './common/FormTextArea'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { addComment } from '../redux/posts'
 import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
-import Comment from './Comment'
 import getThemeColor from '../utils/getThemeColor'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import Comment from './Comment'
+import FormTextArea from './common/FormTextArea'
 
 const Comments = ({ postComments, postId }) => {
 	const dispatch = useDispatch()
@@ -26,7 +26,7 @@ const Comments = ({ postComments, postId }) => {
 
 		setComments(newComments)
 		setComment('')
-		commentsRef.current.scrollIntoView({ behavior: 'smooth' })
+		commentsRef?.current?.scrollIntoView({ behavior: 'smooth' })
 	}, [comment, dispatch, postId, user?.result?.name, userId])
 
 	const handleClear = () => setComment('')

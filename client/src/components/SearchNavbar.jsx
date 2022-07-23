@@ -1,8 +1,8 @@
 import { useCallback, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import { Button, Stack } from '@chakra-ui/react'
-import { useLocation, useNavigate } from 'react-router-dom'
 import { FaSearch } from 'react-icons/fa'
+import { useDispatch } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
 
 import { getPostsBySearch } from '../redux/posts'
 import FormInput from './common/FormInput'

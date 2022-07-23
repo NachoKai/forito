@@ -1,5 +1,4 @@
 import { useCallback, useState } from 'react'
-import { useDispatch } from 'react-redux'
 import {
 	Accordion,
 	AccordionButton,
@@ -11,14 +10,15 @@ import {
 	Stack,
 	Text,
 } from '@chakra-ui/react'
-import { useLocation, useNavigate } from 'react-router-dom'
 import ChipInput from 'material-ui-chip-input'
+import { useDispatch } from 'react-redux'
+import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { getPostsBySearch } from '../redux/posts'
-import FormInput from './common/FormInput'
 import { CreateGradColor } from '../theme'
 import getThemeColor from '../utils/getThemeColor'
+import FormInput from './common/FormInput'
 
 const Search = () => {
 	const dispatch = useDispatch()

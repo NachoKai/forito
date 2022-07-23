@@ -1,15 +1,15 @@
-import { useSelector } from 'react-redux'
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
-import { FaPencilAlt } from 'react-icons/fa'
 import PropTypes from 'prop-types'
+import { FaPencilAlt } from 'react-icons/fa'
+import { useSelector } from 'react-redux'
 
-import Post from './Post'
 import { CreateGradColor } from '../theme'
-import Loading from './Loading'
-import StaggeredSlideFade from './common/StaggeredSlideFade'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage'
-import checkIsPostCreator from '../utils/checkIsPostCreator'
 import checkIsAdmin from '../utils/checkIsAdmin'
+import checkIsPostCreator from '../utils/checkIsPostCreator'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import StaggeredSlideFade from './common/StaggeredSlideFade'
+import Loading from './Loading'
+import Post from './Post'
 
 const Posts = ({ onOpen }) => {
 	const { posts, isLoading } = useSelector(state => state.posts)

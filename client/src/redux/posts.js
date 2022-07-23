@@ -1,8 +1,8 @@
 import * as api from '../api'
-import { hideLoading, showLoading } from './loading'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import showError from '../utils/showError'
 import showSuccess from '../utils/showSuccess'
+import { hideLoading, showLoading } from './loading'
 
 /* ==========  CONSTANTS  ========== */
 

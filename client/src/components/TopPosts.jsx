@@ -1,13 +1,13 @@
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { FaPencilAlt } from 'react-icons/fa'
+import { useDispatch, useSelector } from 'react-redux'
 
-import Post from './Post'
-import Loading from './Loading'
-import StaggeredSlideFade from './common/StaggeredSlideFade'
 import { getAllPosts } from '../redux/posts'
 import { CreateGradColor } from '../theme'
+import StaggeredSlideFade from './common/StaggeredSlideFade'
+import Loading from './Loading'
+import Post from './Post'
 
 const TopPosts = () => {
 	const dispatch = useDispatch()

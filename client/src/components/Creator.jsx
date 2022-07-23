@@ -1,15 +1,15 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { Divider, Heading, Stack, Text } from '@chakra-ui/react'
 import { FaSearch } from 'react-icons/fa'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
-import { getPostsByCreator } from '../redux/posts'
-import Post from './Post'
-import { CreateGradColor } from '../theme'
 import { getUser } from '../redux/auth'
-import Loading from './Loading'
+import { getPostsByCreator } from '../redux/posts'
+import { CreateGradColor } from '../theme'
 import StaggeredSlideFade from './common/StaggeredSlideFade'
+import Loading from './Loading'
+import Post from './Post'
 
 const Creator = () => {
 	const dispatch = useDispatch()
