@@ -4,7 +4,7 @@ import { postsReducer as posts } from './posts'
 import { authReducer as auth } from './auth'
 import { loadingReducer as loading } from './loading'
 
-const reducers = {
+export const reducers = {
 	posts,
 	auth,
 	loading,

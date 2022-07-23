@@ -3,7 +3,7 @@ import React from 'react'
 import Navbar from '../components/Navbar'
 import { render, screen } from './test-utils'
 
-describe.skip('Navbar', () => {
+describe('Navbar', () => {
 	test('Renders title', () => {
 		render(<Navbar />)
 		const title = screen.getByRole('link', { name: /forito ✨/i })
