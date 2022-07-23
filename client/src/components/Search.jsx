@@ -6,11 +6,11 @@ import {
 	AccordionItem,
 	AccordionPanel,
 	Button,
+	Container,
 	Flex,
 	Stack,
 	Text,
 } from '@chakra-ui/react'
-import ChipInput from 'material-ui-chip-input'
 import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -19,6 +19,7 @@ import { getPostsBySearch } from '../redux/posts'
 import { CreateGradColor } from '../theme'
 import getThemeColor from '../utils/getThemeColor'
 import FormInput from './common/FormInput'
+import ChakraTagInput from './common/ChakraTagInput'
 
 const Search = () => {
 	const dispatch = useDispatch()
@@ -89,10 +90,8 @@ const Search = () => {
 							child={
 								<TagsContainer>
 									<ChipInput
-										disableUnderline
-										placeholder='Search Posts Tags'
-										style={{ margin: '0 0 0 16px' }}
-										value={searchTags}
+										setTags={setSearchTags}
+										tags={searchTags}
 										onAdd={tag => handleAddTag(tag)}
 										onDelete={tag => handleDeleteTag(tag)}
 									/>
@@ -127,3 +126,17 @@ const TagsContainer = styled(Flex)`
 	align-items: center;
 	border-radius: 8px;
 `
+const ChipInput = ({ tags, setTags }) => {
+	const handleTagsChange = useCallback(
+		(event, tags) => {
+			setTags(tags)
+		},
+		[setTags]
+	)
+
+	return (
+		<Container py={2}>
+			<ChakraTagInput tags={tags} onTagsChange={handleTagsChange} />
+		</Container>
+	)
+}

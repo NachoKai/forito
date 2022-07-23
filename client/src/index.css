@@ -21,14 +21,6 @@ input[type="file"] {
   margin: 4px !important;
 }
 
-.MuiChip-clickable {
-  height: 26px !important;
-}
-
-.MuiChip-label {
-  max-width: 220px !important;
-}
-
 .glassmorphism-light {
   background: rgb(255 255 255 / 40%);
   border: 2px solid rgb(255 255 255 / 20%);
