@@ -1,6 +1,6 @@
 import { Stack, Text } from '@chakra-ui/react'
-import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa'
 import PropTypes from 'prop-types'
+import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa'
 
 const Likes = ({ likes, isUserLike }) => {
 	const likesQuantity = likes?.length

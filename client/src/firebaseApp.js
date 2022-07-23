@@ -1,6 +1,6 @@
 import firebase from 'firebase/compat/app'
-import 'firebase/compat/storage'
 import 'firebase/compat/firestore'
+import 'firebase/compat/storage'
 
 export const firebaseApp = firebase.initializeApp({
 	projectId: process.env.REACT_APP_PROJECT_ID,

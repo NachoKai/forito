@@ -1,17 +1,17 @@
 import { useEffect } from 'react'
-import { useParams } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
 import { Divider, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { FaSearch } from 'react-icons/fa'
+import { useDispatch, useSelector } from 'react-redux'
+import { useParams } from 'react-router-dom'
 
 import { getPostsBySearch } from '../redux/posts'
-import Post from './Post'
 import { CreateGradColor } from '../theme'
-import Loading from './Loading'
-import StaggeredSlideFade from './common/StaggeredSlideFade'
+import checkIsAdmin from '../utils/checkIsAdmin'
 import checkIsPostCreator from '../utils/checkIsPostCreator'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
-import checkIsAdmin from '../utils/checkIsAdmin'
+import StaggeredSlideFade from './common/StaggeredSlideFade'
+import Loading from './Loading'
+import Post from './Post'
 
 const Tags = () => {
 	const dispatch = useDispatch()

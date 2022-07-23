@@ -55,7 +55,7 @@ const ColorPicker = () => {
 				</PopoverHeader>
 				<PopoverBody height='70px'>
 					<SimpleGrid columns={5} spacing={2}>
-						{colors.map(color => (
+						{colors?.map(color => (
 							<Button
 								key={color}
 								_hover={{ background: color }}

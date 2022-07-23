@@ -1,6 +1,3 @@
-import { useCallback, useEffect, useState } from 'react'
-import { useDispatch } from 'react-redux'
-import { FaMoon, FaSun } from 'react-icons/fa'
 import {
 	Button,
 	Divider,
@@ -18,17 +15,20 @@ import {
 	Text,
 	useColorMode,
 } from '@chakra-ui/react'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
 import decode from 'jwt-decode'
 import PropTypes from 'prop-types'
+import { useCallback, useEffect, useState } from 'react'
+import { FaMoon, FaSun } from 'react-icons/fa'
+import { useDispatch } from 'react-redux'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { logout } from '../redux/auth'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { CreateGradColor } from '../theme'
+import getThemeColor from '../utils/getThemeColor'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import ColorPicker from './ColorPicker'
 import Form from './Form'
 import SearchNavbar from './SearchNavbar'
-import ColorPicker from './ColorPicker'
-import getThemeColor from '../utils/getThemeColor'
 
 const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const dispatch = useDispatch()

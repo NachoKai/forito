@@ -48,7 +48,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 	const navigate = useNavigate()
 	const [postData, setPostData] = useState(initialState)
 	const [images, setImages] = useState([])
-	const areValidTags = ![...new Set(postData.tags)].every(tag =>
+	const areValidTags = ![...new Set(postData?.tags)].every(tag =>
 		/^[a-zA-Z0-9_.-]*$/.test(tag)
 	)
 	const post = useSelector(state =>
@@ -303,7 +303,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 																	fontWeight='bold'
 																	marginBottom='4px'
 																>
-																	Selected file size exceed maxFileSize.
+																	Selected file size exceed max file size.
 																</Flex>
 															)}
 															{errors.resolution && (

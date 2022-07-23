@@ -1,5 +1,4 @@
 import { useCallback, useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import {
 	AspectRatio,
 	Badge,
@@ -14,19 +13,20 @@ import {
 	Tooltip,
 } from '@chakra-ui/react'
 import { formatDistance } from 'date-fns'
-import { Link, useNavigate, useParams } from 'react-router-dom'
 import { FaSearch, FaTwitter } from 'react-icons/fa'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, useNavigate, useParams } from 'react-router-dom'
 
-import { getPost, getPostsBySearch } from '../redux/posts'
-import { getRandomId } from '../utils/getRandomId'
 import Comments from '../components/Comments'
+import { getPost, getPostsBySearch } from '../redux/posts'
 import { CreateGradColor } from '../theme'
-import StaggeredSlideFade from './common/StaggeredSlideFade'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage'
-import checkIsPostCreator from '../utils/checkIsPostCreator'
 import checkIsAdmin from '../utils/checkIsAdmin'
 import { isDev } from '../utils/checkIsDev'
+import checkIsPostCreator from '../utils/checkIsPostCreator'
+import { getRandomId } from '../utils/getRandomId'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import StaggeredSlideFade from './common/StaggeredSlideFade'
 
 const PostDetails = () => {
 	const dispatch = useDispatch()

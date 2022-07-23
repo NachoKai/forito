@@ -1,14 +1,14 @@
-import { Link } from 'react-router-dom'
 import { Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
+import { Link } from 'react-router-dom'
 
 const Comment = ({ comment }) => {
 	return (
 		<Text>
-			<Link to={`/creator/${comment.userId}`}>
-				<strong>{comment.name}: </strong>
+			<Link to={`/creator/${comment?.userId}`}>
+				<strong>{comment?.name}: </strong>
 			</Link>
-			{comment.comment}
+			{comment?.comment}
 		</Text>
 	)
 }
