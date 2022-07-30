@@ -12,21 +12,21 @@ import {
 	SimpleGrid,
 } from '@chakra-ui/react'
 
+const colors = [
+	'red.500',
+	'orange.400',
+	'yellow.300',
+	'green.500',
+	'teal.300',
+	'blue.500',
+	'cyan.400',
+	'purple.500',
+	'pink.400',
+	'gray.500',
+]
+
 const ColorPicker = () => {
 	const [color, setColor] = useState(localStorage.getItem('forito-theme') || 'blue.500')
-
-	const colors = [
-		'red.500',
-		'orange.400',
-		'yellow.300',
-		'green.500',
-		'teal.300',
-		'blue.500',
-		'cyan.400',
-		'purple.500',
-		'pink.400',
-		'gray.500',
-	]
 
 	return (
 		<Popover variant='picker'>

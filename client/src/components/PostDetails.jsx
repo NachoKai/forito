@@ -65,7 +65,7 @@ const PostDetails = () => {
 
 	// Recommended Posts search
 	useEffect(() => {
-		post && dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }))
+		if (post) dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }))
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [post])
 

@@ -2,9 +2,9 @@ import { Link as ChakraLink, Divider, Stack, Text } from '@chakra-ui/react'
 import { FaGithub } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
-const Footer = () => {
-	const GITHUB_URL = 'https://github.com/NachoKai/forito'
+const GITHUB_URL = 'https://github.com/NachoKai/forito'
 
+const Footer = () => {
 	return (
 		<Stack
 			bg='primary_100_900'

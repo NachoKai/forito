@@ -48,9 +48,11 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 	const navigate = useNavigate()
 	const [postData, setPostData] = useState(initialState)
 	const [images, setImages] = useState([])
+
 	const areValidTags = ![...new Set(postData?.tags)].every(tag =>
 		/^[a-zA-Z0-9_.-]*$/.test(tag)
 	)
+
 	const post = useSelector(state =>
 		currentId ? state.posts?.posts?.find(message => message._id === currentId) : null
 	)
@@ -62,7 +64,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 				dispatch(showLoading())
 				setImages(imageList)
 
-				const imageFile = imageList && imageList[0]?.file
+				const imageFile = imageList?.[0]?.file
 				const imageName = imageFile ? imageFile.name : ''
 				const storageRef = firebaseApp.storage().ref()
 				const imagePath = storageRef.child(imageFile?.name)
@@ -96,6 +98,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 		},
 		[postData]
 	)
+
 	const handleClear = useCallback(() => {
 		dispatch(setCurrentId(null))
 		setImages([])

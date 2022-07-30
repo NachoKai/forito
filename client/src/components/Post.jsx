@@ -1,4 +1,5 @@
 import { memo, useCallback, useState } from 'react'
+import { ChevronDownIcon } from '@chakra-ui/icons'
 import {
 	AspectRatio,
 	Badge,
@@ -16,22 +17,21 @@ import {
 	VisuallyHidden,
 	useColorModeValue,
 } from '@chakra-ui/react'
-import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
+import { format, formatDistance, isValid } from 'date-fns'
+import PropTypes from 'prop-types'
 import { FaBookmark, FaEraser, FaPen, FaRegBookmark, FaRegComments } from 'react-icons/fa'
 import { FiMoreHorizontal } from 'react-icons/fi'
-import { format, formatDistance, isValid } from 'date-fns'
+import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { useDispatch } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { ChevronDownIcon } from '@chakra-ui/icons'
-import PropTypes from 'prop-types'
 
-import { getRandomId } from '../utils/getRandomId'
 import { deletePost, likePost, savePost, setCurrentId } from '../redux/posts'
-import Likes from './Likes'
+import checkIsAdmin from '../utils/checkIsAdmin'
+import checkIsPostCreator from '../utils/checkIsPostCreator'
+import { getRandomId } from '../utils/getRandomId'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import Dialog from './common/Dialog'
-import checkIsPostCreator from '../utils/checkIsPostCreator'
-import checkIsAdmin from '../utils/checkIsAdmin'
+import Likes from './Likes'
 
 const Post = ({
 	post: {

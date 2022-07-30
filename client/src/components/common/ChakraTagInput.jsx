@@ -2,7 +2,7 @@ import { forwardRef, useCallback } from 'react'
 import { Input, Wrap, WrapItem } from '@chakra-ui/react'
 
 import ChakraTagInputTag from './Tag'
-import { maybeCall } from './maybeCall'
+import maybeCall from '../../utils/maybeCall'
 
 export default forwardRef(function ChakraTagInput(
 	{
