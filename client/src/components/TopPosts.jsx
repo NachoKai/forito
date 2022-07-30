@@ -17,7 +17,7 @@ const TopPosts = () => {
 	const getTopPosts = max => {
 		if (!havePosts) return
 		const postsCopy = [...posts]
-		const sortedPosts = postsCopy?.sort((a, b) => b.likes.length - a.likes.length)
+		const sortedPosts = postsCopy?.sort((a, b) => b?.likes?.length - a?.likes?.length)
 
 		return sortedPosts?.slice(0, max)
 	}

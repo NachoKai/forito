@@ -10,7 +10,7 @@ const LoadingScreen = () => {
 	const loadingRef = useRef(null)
 
 	useEffect(() => {
-		isLoading && loadingRef.current.focus()
+		if (isLoading) loadingRef.current.focus()
 	}, [isLoading])
 
 	return isLoading ? (

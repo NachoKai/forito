@@ -26,6 +26,12 @@ const Auth = () => {
 	const [isSignup, setIsSignup] = useState(false)
 	const [formData, setFormData] = useState(initialState)
 	const [showPassword, setShowPassword] = useState(false)
+	const isSubmitDisabled = !(isSignup
+		? checkEmpty(formData?.firstName) &&
+		  checkEmpty(formData?.email) &&
+		  checkEmpty(formData?.password) &&
+		  checkEmpty(formData?.confirmPassword)
+		: checkEmpty(formData?.email) && checkEmpty(formData?.password))
 
 	const onSuccess = useCallback(
 		async res => {
@@ -92,7 +98,7 @@ const Auth = () => {
 				</Text>
 				<form onSubmit={handleSubmit}>
 					<Stack spacing='2'>
-						{isSignup && (
+						{!!isSignup && (
 							<Stack direction='row' spacing='2'>
 								<FormInput
 									autoFocus
@@ -144,7 +150,7 @@ const Auth = () => {
 							value={formData?.password}
 							onChange={handleChange}
 						/>
-						{isSignup && (
+						{!!isSignup && (
 							<FormInput
 								isRequired
 								dataCy='auth-confirm-password'
@@ -161,14 +167,7 @@ const Auth = () => {
 							boxShadow={() => getThemeColor()}
 							colorScheme='primary'
 							data-cy='auth-login-signup-button'
-							disabled={
-								!(isSignup
-									? checkEmpty(formData?.firstName) &&
-									  checkEmpty(formData?.email) &&
-									  checkEmpty(formData?.password) &&
-									  checkEmpty(formData?.confirmPassword)
-									: checkEmpty(formData?.email) && checkEmpty(formData?.password))
-							}
+							disabled={isSubmitDisabled}
 							type='submit'
 							variant='solid'
 						>

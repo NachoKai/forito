@@ -43,19 +43,17 @@ const FormInput = ({
 					<FormLabel>{label}</FormLabel>
 				</Tooltip>
 			) : (
-				label && <FormLabel>{label}</FormLabel>
+				!!label && <FormLabel>{label}</FormLabel>
 			)}
 		</Flex>
-		{validation && (
+		{!!validation && (
 			<FormHelperText color='red.400' fontWeight='bold' marginBottom='4px'>
 				{validation}
 			</FormHelperText>
 		)}
-		{child ? (
-			child
-		) : (
+		{child || (
 			<InputGroup>
-				{leftIcon && (
+				{!!leftIcon && (
 					<InputLeftElement color='gray.300' fontSize='1.2em'>
 						{leftIcon}
 					</InputLeftElement>
@@ -78,14 +76,14 @@ const FormInput = ({
 					variant='outline'
 					onChange={onChange}
 				/>
-				{rightIcon && (
+				{!!rightIcon && (
 					<InputRightElement color='gray.300' fontSize='1.2em'>
 						{rightIcon}
 					</InputRightElement>
 				)}
 			</InputGroup>
 		)}
-		{helper && <FormHelperText>{helper}</FormHelperText>}
+		{!!helper && <FormHelperText>{helper}</FormHelperText>}
 	</FormControl>
 )
 

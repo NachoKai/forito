@@ -48,11 +48,12 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 	const navigate = useNavigate()
 	const [postData, setPostData] = useState(initialState)
 	const [images, setImages] = useState([])
-
+	const isSubmitDisabled =
+		!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) ||
+		![...new Set(postData.tags)].every(tag => /^[a-zA-Z0-9_.-]*$/.test(tag))
 	const areValidTags = ![...new Set(postData?.tags)].every(tag =>
 		/^[a-zA-Z0-9_.-]*$/.test(tag)
 	)
-
 	const post = useSelector(state =>
 		currentId ? state.posts?.posts?.find(message => message._id === currentId) : null
 	)
@@ -163,6 +164,18 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 		handleClear()
 		onOpen()
 	}, [handleClear, onOpen])
+
+	const handleRemoveImage = () => {
+		setPostData({
+			...postData,
+			selectedFile: {
+				url: null,
+				name: null,
+				id: null,
+			},
+		})
+		setImages([])
+	}
 
 	useEffect(() => {
 		if (post) {
@@ -280,9 +293,9 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 												errors,
 											}) => (
 												<Stack className='upload__image-wrapper' spacing='2'>
-													{errors && (
+													{!!errors && (
 														<Stack m='4px 0' spacing='2'>
-															{errors.maxNumber && (
+															{!!errors.maxNumber && (
 																<Flex
 																	color='red.400'
 																	fontWeight='bold'
@@ -291,7 +304,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 																	Number of selected images exceed maxNumber.
 																</Flex>
 															)}
-															{errors.acceptType && (
+															{!!errors.acceptType && (
 																<Flex
 																	color='red.400'
 																	fontWeight='bold'
@@ -300,7 +313,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 																	Your selected file type is not allow.
 																</Flex>
 															)}
-															{errors.maxFileSize && (
+															{!!errors.maxFileSize && (
 																<Flex
 																	color='red.400'
 																	fontWeight='bold'
@@ -309,7 +322,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 																	Selected file size exceed max file size.
 																</Flex>
 															)}
-															{errors.resolution && (
+															{!!errors.resolution && (
 																<Flex
 																	color='red.400'
 																	fontWeight='bold'
@@ -366,17 +379,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 																<Button
 																	colorScheme='primary'
 																	variant='ghost'
-																	onClick={() => {
-																		setPostData({
-																			...postData,
-																			selectedFile: {
-																				url: null,
-																				name: null,
-																				id: null,
-																			},
-																		})
-																		setImages([])
-																	}}
+																	onClick={handleRemoveImage}
 																>
 																	Remove
 																</Button>
@@ -425,10 +428,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 								boxShadow={() => getThemeColor()}
 								colorScheme='primary'
 								data-cy='form-submit-button'
-								disabled={
-									!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) ||
-									![...new Set(postData.tags)].every(tag => /^[a-zA-Z0-9_.-]*$/.test(tag))
-								}
+								disabled={isSubmitDisabled}
 								onClick={handleSubmit}
 							>
 								Submit

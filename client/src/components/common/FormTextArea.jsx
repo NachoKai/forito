@@ -38,9 +38,7 @@ const FormTextArea = ({
 				<FormLabel>{label}</FormLabel>
 			)}
 		</Flex>
-		{child ? (
-			child
-		) : (
+		{child || (
 			<Textarea
 				_placeholder={{ color: 'gray' }}
 				autoFocus={autoFocus}
@@ -59,7 +57,7 @@ const FormTextArea = ({
 				onChange={onChange}
 			/>
 		)}
-		{helper && <FormHelperText>{helper}</FormHelperText>}
+		{!!helper && <FormHelperText>{helper}</FormHelperText>}
 	</FormControl>
 )
 

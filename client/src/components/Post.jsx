@@ -230,7 +230,7 @@ const Post = ({
 												<VisuallyHidden>More Options</VisuallyHidden>
 											</MenuButton>
 											<MenuList>
-												{userEmail && (
+												{!!userEmail && (
 													<MenuItem onClick={handleSave}>
 														<Stack align='center' direction='row' spacing='2'>
 															{hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
@@ -240,14 +240,14 @@ const Post = ({
 														</Stack>
 													</MenuItem>
 												)}
-												{(isPostCreator || isAdmin) && (
+												{!!(isPostCreator || isAdmin) && (
 													<MenuItem onClick={handleEdit}>
 														<Stack align='center' direction='row' spacing='2'>
 															<FaPen /> <Text fontWeight='bold'>Edit</Text>
 														</Stack>
 													</MenuItem>
 												)}
-												{(isPostCreator || isAdmin) && (
+												{!!(isPostCreator || isAdmin) && (
 													<MenuItem onClick={() => setIsDialogOpen(true)}>
 														<Stack align='center' direction='row' spacing='2'>
 															<FaEraser />
@@ -258,7 +258,7 @@ const Post = ({
 											</MenuList>
 										</Menu>
 									)}
-									{userEmail && (
+									{!!userEmail && (
 										<Button
 											colorScheme='primary'
 											disabled={!user?.result}
@@ -281,7 +281,7 @@ const Post = ({
 									display={location?.pathname.includes('/posts') ? 'flex' : 'none'}
 									spacing='2'
 								>
-									{(isPostCreator || isAdmin) && (
+									{!!(isPostCreator || isAdmin) && (
 										<Button
 											colorScheme='primary'
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
@@ -294,7 +294,7 @@ const Post = ({
 											Edit
 										</Button>
 									)}
-									{(isPostCreator || isAdmin) && (
+									{!!(isPostCreator || isAdmin) && (
 										<Button
 											bg='red_500_200'
 											colorScheme='primary'
@@ -318,7 +318,7 @@ const Post = ({
 						</Stack>
 					</Stack>
 
-					{selectedFile?.url && (
+					{!!selectedFile?.url && (
 						<AspectRatio
 							maxH='80vh'
 							maxW={{ sm: '100%', md: '100%', lg: '100%', xl: '500px' }}

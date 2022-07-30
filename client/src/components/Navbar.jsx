@@ -38,6 +38,9 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const userId = user?.result?.googleId || user?.result?._id
 	const { colorMode, toggleColorMode } = useColorMode()
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+	const userAvatar = user?.result?.imageUrl
+		? user?.result?.imageUrl
+		: `${process.env.PUBLIC_URL}/images/avatar.png`
 
 	const open = () => setIsDropdownOpen(!isDropdownOpen)
 	const close = () => setIsDropdownOpen(false)
@@ -87,7 +90,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 						direction='row'
 						spacing={{ sm: '4', md: '8', lg: '8', xl: '8' }}
 					>
-						{user?.result.name && (
+						{!!user?.result?.name && (
 							<Popover
 								isLazy
 								closeOnBlur={true}
@@ -105,11 +108,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 											borderRadius='full'
 											h='30px'
 											objectFit='cover'
-											src={
-												user?.result?.imageUrl
-													? user?.result?.imageUrl
-													: `${process.env.PUBLIC_URL}/images/avatar.png`
-											}
+											src={userAvatar}
 											w='30px'
 										/>
 
