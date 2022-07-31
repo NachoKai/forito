@@ -28,12 +28,6 @@ const colors = [
 const ColorPicker = () => {
 	const [color, setColor] = useState(localStorage.getItem('forito-theme') || 'blue.500')
 
-	const handleColorPick = () => {
-		localStorage.setItem('forito-theme', color)
-		setColor(color)
-		location.reload()
-	}
-
 	return (
 		<Popover variant='picker'>
 			<PopoverTrigger>
@@ -72,7 +66,11 @@ const ColorPicker = () => {
 								minWidth='unset'
 								padding={0}
 								width='22px'
-								onClick={handleColorPick}
+								onClick={() => {
+									localStorage.setItem('forito-theme', color)
+									setColor(color)
+									location.reload()
+								}}
 							/>
 						))}
 					</SimpleGrid>
