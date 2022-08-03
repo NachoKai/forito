@@ -8,13 +8,11 @@ import { addComment } from '../redux/posts'
 import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
 import getThemeColor from '../utils/getThemeColor'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import Comment from './Comment'
 import FormTextArea from './common/FormTextArea'
 
-const Comments = ({ postComments, postId }) => {
+const Comments = ({ user, postComments, postId }) => {
 	const dispatch = useDispatch()
-	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
 	const commentsRef = useRef(null)
 	const [comments, setComments] = useState([])
@@ -113,4 +111,10 @@ Comments.propTypes = {
 		})
 	),
 	postId: PropTypes.string,
+	user: PropTypes.shape({
+		result: PropTypes.shape({
+			googleId: PropTypes.string,
+			name: PropTypes.string,
+		}),
+	}),
 }
