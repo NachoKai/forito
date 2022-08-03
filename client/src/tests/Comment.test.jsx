@@ -11,7 +11,7 @@ describe('Comment', () => {
 	})
 
 	test('Renders component sections', () => {
-		comment = { userId: '1', comment: 'test comment', name: 'test name' }
+		comment = { userId: '1', comment: 'test comment', name: 'test name', _id: '1' }
 
 		render(<Comment comment={comment} />)
 		const componentComment = screen.getByText(/test comment/i)

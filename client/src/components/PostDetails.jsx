@@ -198,7 +198,7 @@ const PostDetails = () => {
 				>
 					Comments
 				</Text>
-				<Comments postComments={post?.comments} postId={post?._id} />
+				<Comments postComments={post?.comments} postId={post?._id} user={user} />
 			</StaggeredSlideFade>
 
 			{!!recommendedPosts?.length && (
