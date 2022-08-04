@@ -17,6 +17,7 @@ import { FaSearch, FaTwitter } from 'react-icons/fa'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
 import Comments from '../components/Comments'
 import { getPost, getPostsBySearch } from '../redux/posts'
@@ -25,10 +26,9 @@ import checkIsAdmin from '../utils/checkIsAdmin'
 import { isDev } from '../utils/checkIsDev'
 import checkIsPostCreator from '../utils/checkIsPostCreator'
 import { getRandomId } from '../utils/getRandomId'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import StaggeredSlideFade from './common/StaggeredSlideFade'
 
-const PostDetails = () => {
+const PostDetails = ({ user }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const { id } = useParams()
@@ -37,7 +37,6 @@ const PostDetails = () => {
 	const baseURL = isDev
 		? 'http://localhost:3000/posts'
 		: 'https://forito.vercel.app/posts'
-	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const isPrivate = post?.privacy === 'private'
 	const isPostCreator = checkIsPostCreator(user, post?.creator)
@@ -295,3 +294,12 @@ const PostDetails = () => {
 }
 
 export default PostDetails
+
+PostDetails.propTypes = {
+	user: PropTypes.shape({
+		result: PropTypes.shape({
+			googleId: PropTypes.string,
+			name: PropTypes.string,
+		}),
+	}),
+}

@@ -50,7 +50,7 @@ const App = () => {
 				<Route element={<Navigate replace to='/posts' />} path='/' />
 				<Route element={<Home onOpen={onOpen} />} path='posts' />
 				<Route element={<Home onOpen={onOpen} />} path='posts/search' />
-				<Route element={<PostDetails />} path='posts/:id' />
+				<Route element={<PostDetails user={user} />} path='posts/:id' />
 				<Route element={<Creator />} path='creator/:id' />
 				<Route element={<Tags />} path='tags/:name' />
 				<Route
