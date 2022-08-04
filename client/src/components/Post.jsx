@@ -28,7 +28,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { deletePost, likePost, savePost, setCurrentId } from '../redux/posts'
 import checkIsAdmin from '../utils/checkIsAdmin'
 import checkIsPostCreator from '../utils/checkIsPostCreator'
-import { getRandomId } from '../utils/getRandomId'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import Dialog from './common/Dialog'
 import Likes from './Likes'
@@ -180,7 +179,7 @@ const Post = ({
 						<Stack direction='column' spacing='4'>
 							<Stack direction='row' overflow='auto' spacing='2'>
 								{[...new Set(tags)].filter(Boolean).map(tag => (
-									<Badge key={getRandomId()} bg='primary.600' color='white'>
+									<Badge key={Math.random()} bg='primary.600' color='white'>
 										<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
 									</Badge>
 								))}
