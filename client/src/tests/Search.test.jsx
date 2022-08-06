@@ -1,15 +1,13 @@
 import React from 'react'
 
-import SearchNavbar from '../components/SearchNavbar'
+import Search from '../components/Search'
 import { render, screen } from './test-utils'
 
-describe('SearchNavbar', () => {
+describe('Search', () => {
 	test('Renders component sections', () => {
-		render(<SearchNavbar />)
-		const searchPostsInput = screen.getByRole('textbox')
+		render(<Search />)
 		const searchButton = screen.getByRole('button', { name: /search/i })
 
-		expect(searchPostsInput).toBeInTheDocument()
 		expect(searchButton).toBeInTheDocument()
 	})
 })
