@@ -71,7 +71,7 @@ const Tags = () => {
 				</Text>
 			</Stack>
 
-			<Divider colorScheme='primary' />
+			<Divider />
 
 			{isLoading ? (
 				<Loading />

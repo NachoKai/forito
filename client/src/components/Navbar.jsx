@@ -153,7 +153,6 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 						<Link to='auth'>
 							<Button
 								boxShadow={() => getThemeColor()}
-								colorScheme='primary'
 								data-cy='navbar-login-button'
 								variant='solid'
 							>
@@ -163,13 +162,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 					</Flex>
 				)}
 
-				<Button
-					colorScheme='primary'
-					p='1'
-					size='sm'
-					variant='ghost'
-					onClick={toggleColorMode}
-				>
+				<Button p='1' size='sm' variant='ghost' onClick={toggleColorMode}>
 					{colorMode === 'light' ? (
 						<FaMoon aria-label='Dark Mode' />
 					) : (

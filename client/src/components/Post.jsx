@@ -128,7 +128,6 @@ const Post = ({
 								{isPrivate && (
 									<Tooltip
 										hasArrow
-										colorScheme='primary'
 										label='Post only visible to you'
 										openDelay={200}
 										placement='top'
@@ -148,7 +147,6 @@ const Post = ({
 									<span>•</span>
 									<Tooltip
 										hasArrow
-										colorScheme='primary'
 										label={format(
 											isValid(new Date(createdAt)) ? new Date(createdAt) : new Date(),
 											'dd MMM yyyy - HH:mm'
@@ -195,7 +193,6 @@ const Post = ({
 									spacing='2'
 								>
 									<Button
-										colorScheme='primary'
 										leftIcon={<FaRegComments />}
 										size='sm'
 										variant='ghost'
@@ -204,7 +201,6 @@ const Post = ({
 										{comments?.length} {comments?.length === 1 ? 'Comment' : 'Comments'}
 									</Button>
 									<Button
-										colorScheme='primary'
 										disabled={!user?.result}
 										isLoading={!!likeLoading}
 										loadingText='Loading...'
@@ -219,7 +215,6 @@ const Post = ({
 										<Menu>
 											<MenuButton
 												as={Button}
-												colorScheme='primary'
 												display={{ sm: 'flex', md: 'flex', lg: 'none', xl: 'none' }}
 												rightIcon={<ChevronDownIcon />}
 												size='sm'
@@ -259,7 +254,6 @@ const Post = ({
 									)}
 									{!!userEmail && (
 										<Button
-											colorScheme='primary'
 											disabled={!user?.result}
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
 											isLoading={!!saveLoading}
@@ -282,7 +276,6 @@ const Post = ({
 								>
 									{!!(isPostCreator || isAdmin) && (
 										<Button
-											colorScheme='primary'
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
 											leftIcon={<FaPen />}
 											minWidth='88px'
@@ -296,7 +289,6 @@ const Post = ({
 									{!!(isPostCreator || isAdmin) && (
 										<Button
 											bg='red_500_200'
-											colorScheme='primary'
 											display={{
 												sm: 'none',
 												md: 'none',

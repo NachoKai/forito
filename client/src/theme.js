@@ -1,4 +1,9 @@
-import { extendTheme, theme, useColorModeValue } from '@chakra-ui/react'
+import {
+	extendTheme,
+	theme,
+	useColorModeValue,
+	withDefaultColorScheme,
+} from '@chakra-ui/react'
 import { createBreakpoints } from '@chakra-ui/theme-tools'
 import '@fontsource/roboto'
 import '@fontsource/roboto-slab'
@@ -134,15 +139,20 @@ const spacing = {
 	},
 }
 
-export default extendTheme({
-	colors,
-	fonts,
-	breakpoints,
-	config,
-	shadows,
-	semanticTokens,
-	spacing,
-})
+export default extendTheme(
+	{
+		colors,
+		fonts,
+		breakpoints,
+		config,
+		shadows,
+		semanticTokens,
+		spacing,
+	},
+	withDefaultColorScheme({
+		colorScheme: 'primary',
+	})
+)
 
 export const CreateGradColor = (
 	scheme,

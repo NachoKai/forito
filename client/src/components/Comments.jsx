@@ -61,19 +61,13 @@ const Comments = ({ user, postComments, postId }) => {
 					<Stack direction='row' spacing='4'>
 						<Button
 							boxShadow={() => getThemeColor()}
-							colorScheme='primary'
 							disabled={!checkEmpty(comment)}
 							flexGrow='1'
 							onClick={handleComment}
 						>
 							Comment
 						</Button>
-						<Button
-							colorScheme='primary'
-							flexGrow='1'
-							variant='outline'
-							onClick={handleClear}
-						>
+						<Button flexGrow='1' variant='outline' onClick={handleClear}>
 							Clear
 						</Button>
 					</Stack>

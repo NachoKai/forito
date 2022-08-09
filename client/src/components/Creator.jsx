@@ -71,7 +71,7 @@ const Creator = () => {
 				</Text>
 			</Stack>
 
-			<Divider colorScheme='primary' />
+			<Divider />
 
 			{isLoading ? (
 				<Loading />

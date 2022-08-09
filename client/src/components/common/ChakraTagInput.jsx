@@ -80,7 +80,6 @@ export default forwardRef(function ChakraTagInput(
 			{tags.map((tag, index) => (
 				<WrapItem {...maybeCall(wrapItemProps, false, index)} key={index}>
 					<ChakraTagInputTag
-						colorScheme='primary'
 						size='sm'
 						tagCloseButtonProps={maybeCall(tagCloseButtonProps, tag, index)}
 						tagLabelProps={maybeCall(tagLabelProps, tag, index)}

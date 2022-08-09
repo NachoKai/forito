@@ -69,7 +69,6 @@ const App = () => {
 			<Button
 				bottom={['16px', '32px']}
 				boxShadow={() => getThemeColor()}
-				colorScheme='primary'
 				display={showScroll ? 'flex' : 'none'}
 				position='fixed'
 				right={['16px', '32px']}

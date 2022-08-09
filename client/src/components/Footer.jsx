@@ -33,7 +33,7 @@ const Footer = () => {
 				</Stack>
 			</Stack>
 
-			<Divider colorScheme='primary' />
+			<Divider />
 
 			<Stack
 				direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }}
