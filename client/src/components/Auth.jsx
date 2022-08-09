@@ -165,7 +165,6 @@ const Auth = () => {
 						)}
 						<Button
 							boxShadow={() => getThemeColor()}
-							colorScheme='primary'
 							data-cy='auth-login-signup-button'
 							disabled={isSubmitDisabled}
 							type='submit'
@@ -185,7 +184,6 @@ const Auth = () => {
 					cookiePolicy={'single_host_origin'}
 					render={({ disabled, onClick }) => (
 						<Button
-							colorScheme='primary'
 							data-cy='auth-google-login-signup'
 							disabled={disabled}
 							leftIcon={<FaGoogle />}
@@ -201,7 +199,7 @@ const Auth = () => {
 				/>
 
 				<Flex justify='flex-end'>
-					<Button colorScheme='primary' size='sm' variant='ghost' onClick={handleSwitch}>
+					<Button size='sm' variant='ghost' onClick={handleSwitch}>
 						{isSignup
 							? 'Already have an account? Login'
 							: "Don't have an account? Sign up"}

@@ -18,10 +18,12 @@ import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
+import { motion, useScroll } from 'framer-motion'
+import styled from 'styled-components'
 
 import Comments from '../components/Comments'
 import { getPost, getPostsBySearch } from '../redux/posts'
-import { CreateGradColor } from '../theme'
+import { CreateGradColor, getColorTheme } from '../theme'
 import checkIsAdmin from '../utils/checkIsAdmin'
 import { isDev } from '../utils/checkIsDev'
 import checkIsPostCreator from '../utils/checkIsPostCreator'
@@ -29,6 +31,7 @@ import { getRandomId } from '../utils/getRandomId'
 import StaggeredSlideFade from './common/StaggeredSlideFade'
 
 const PostDetails = ({ user }) => {
+	const { scrollYProgress } = useScroll()
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const { id } = useParams()
@@ -42,6 +45,7 @@ const PostDetails = ({ user }) => {
 	const isPostCreator = checkIsPostCreator(user, post?.creator)
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
+	const progressBarColor = getColorTheme()
 
 	const openPost = useCallback(_id => navigate(`/posts/${_id}`), [navigate])
 
@@ -76,6 +80,7 @@ const PostDetails = ({ user }) => {
 			py={{ sm: '6', md: '6', lg: '8', xl: '8' }}
 			spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 		>
+			<ProgressBar style={{ scaleX: scrollYProgress }} theme={progressBarColor?.[500]} />
 			<StaggeredSlideFade spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}>
 				<Stack
 					direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }}
@@ -89,7 +94,6 @@ const PostDetails = ({ user }) => {
 							{isPrivate && (
 								<Tooltip
 									hasArrow
-									colorScheme='primary'
 									label='Post only visible to you'
 									openDelay={200}
 									placement='top'
@@ -128,7 +132,7 @@ const PostDetails = ({ user }) => {
 					)}
 				</Stack>
 
-				<Divider colorScheme='primary' />
+				<Divider />
 
 				<Stack direction='row' spacing='2'>
 					<Stack spacing='4' w='100%'>
@@ -173,7 +177,6 @@ const PostDetails = ({ user }) => {
 									spacing='8px'
 								>
 									<Button
-										colorScheme='primary'
 										rightIcon={<FaTwitter />}
 										size='xs'
 										onClick={() => shareOnTwitter()}
@@ -186,7 +189,7 @@ const PostDetails = ({ user }) => {
 					</Stack>
 				</Stack>
 
-				<Divider colorScheme='primary' />
+				<Divider />
 
 				<Text
 					bgClip='text'
@@ -202,7 +205,7 @@ const PostDetails = ({ user }) => {
 
 			{!!recommendedPosts?.length && (
 				<>
-					<Divider colorScheme='primary' />
+					<Divider />
 
 					<Stack overflow='auto' spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}>
 						<Text fontWeight='bold'>You might also like:</Text>
@@ -294,6 +297,17 @@ const PostDetails = ({ user }) => {
 }
 
 export default PostDetails
+
+const ProgressBar = styled(motion.div)`
+	position: fixed;
+	bottom: 0;
+	z-index: 1;
+	left: 0;
+	right: 0;
+	height: 6px;
+	background-color: ${p => p.theme};
+	transform-origin: 0%;
+`
 
 PostDetails.propTypes = {
 	user: PropTypes.shape({

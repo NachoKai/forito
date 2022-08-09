@@ -25,13 +25,7 @@ const FormTextArea = ({
 	<FormControl isRequired={isRequired}>
 		<Flex>
 			{tooltip ? (
-				<Tooltip
-					hasArrow
-					colorScheme='primary'
-					label={tooltip}
-					openDelay={200}
-					placement='top'
-				>
+				<Tooltip hasArrow label={tooltip} openDelay={200} placement='top'>
 					<FormLabel>{label}</FormLabel>
 				</Tooltip>
 			) : (

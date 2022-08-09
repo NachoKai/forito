@@ -40,7 +40,6 @@ const SearchNavbar = () => {
 				placeholder='Search...'
 				rightIcon={
 					<Button
-						colorScheme='primary'
 						data-cy='navbar-search-button'
 						disabled={!searchValue && !searchTags?.length}
 						size='sm'

@@ -191,7 +191,6 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 		<>
 			<Button
 				ref={btnRef}
-				colorScheme='primary'
 				display={{ sm: 'none', md: 'flex', lg: 'flex', xl: 'flex' }}
 				onClick={handleCreatePost}
 			>
@@ -199,7 +198,6 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 			</Button>
 			<Button
 				ref={btnRef}
-				colorScheme='primary'
 				display={{ sm: 'flex', md: 'none', lg: 'none', xl: 'none' }}
 				size='sm'
 				onClick={handleCreatePost}
@@ -370,17 +368,12 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 															/>
 															<Flex align='center' direction='column' justify='center'>
 																<Button
-																	colorScheme='primary'
 																	variant='ghost'
 																	onClick={() => onImageUpdate(index)}
 																>
 																	Update
 																</Button>
-																<Button
-																	colorScheme='primary'
-																	variant='ghost'
-																	onClick={handleRemoveImage}
-																>
+																<Button variant='ghost' onClick={handleRemoveImage}>
 																	Remove
 																</Button>
 															</Flex>
@@ -404,12 +397,8 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 											onChange={privacy => handlePrivacy(privacy)}
 										>
 											<Stack direction='row'>
-												<Radio colorScheme='primary' value='public'>
-													Public
-												</Radio>
-												<Radio colorScheme='primary' value='private'>
-													Private
-												</Radio>
+												<Radio value='public'>Public</Radio>
+												<Radio value='private'>Private</Radio>
 											</Stack>
 										</RadioGroup>
 									}
@@ -426,19 +415,13 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 							<Button
 								bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
 								boxShadow={() => getThemeColor()}
-								colorScheme='primary'
 								data-cy='form-submit-button'
 								disabled={isSubmitDisabled}
 								onClick={handleSubmit}
 							>
 								Submit
 							</Button>
-							<Button
-								colorScheme='primary'
-								data-cy='form-clear-button'
-								variant='outline'
-								onClick={handleClear}
-							>
+							<Button data-cy='form-clear-button' variant='outline' onClick={handleClear}>
 								Clear
 							</Button>
 						</Stack>
