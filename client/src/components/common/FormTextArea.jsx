@@ -26,10 +26,10 @@ const FormTextArea = ({
 		<Flex>
 			{tooltip ? (
 				<Tooltip hasArrow label={tooltip} openDelay={200} placement='top'>
-					<FormLabel>{label}</FormLabel>
+					<FormLabel fontWeight='bold'>{label}</FormLabel>
 				</Tooltip>
 			) : (
-				<FormLabel>{label}</FormLabel>
+				<FormLabel fontWeight='bold'>{label}</FormLabel>
 			)}
 		</Flex>
 		{child || (
