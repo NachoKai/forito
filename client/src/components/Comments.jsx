@@ -36,9 +36,11 @@ const Comments = ({ user, postComments, postId }) => {
 	return (
 		<Stack direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }} spacing='4'>
 			<Stack maxHeight='230px' overflow='auto' spacing='4' width='100%'>
-				{comments?.map(comment => (
-					<Comment key={comment._id} comment={comment} />
-				))}
+				{comments.length ? (
+					comments?.map(comment => <Comment key={comment._id} comment={comment} />)
+				) : (
+					<Text color='gray.500'>No comments yet</Text>
+				)}
 				<div ref={commentsRef} />
 			</Stack>
 

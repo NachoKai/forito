@@ -34,10 +34,10 @@ const FormInput = ({
 		<Flex>
 			{tooltip ? (
 				<Tooltip hasArrow label={tooltip} openDelay={200} placement='top'>
-					<FormLabel>{label}</FormLabel>
+					<FormLabel fontWeight='bold'>{label}</FormLabel>
 				</Tooltip>
 			) : (
-				!!label && <FormLabel>{label}</FormLabel>
+				!!label && <FormLabel fontWeight='bold'>{label}</FormLabel>
 			)}
 		</Flex>
 		{!!validation && (
