@@ -19,8 +19,8 @@ import PostDetails from './components/PostDetails'
 import SavedPosts from './components/SavedPosts'
 import Tags from './components/Tags'
 import TopPosts from './components/TopPosts'
-import getThemeColor from './utils/getThemeColor'
-import { getUserLocalStorage } from './utils/getUserLocalStorage'
+import getThemeColor from './utils/getThemeColor.ts'
+import { getUserLocalStorage } from './utils/getUserLocalStorage.ts'
 
 const App = () => {
 	const [showScroll, setShowScroll] = useState(false)

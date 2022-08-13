@@ -1,5 +1,5 @@
 import * as api from '../api'
-import showError from '../utils/showError'
+import showError from '../utils/showError.ts'
 
 /* ==========  CONSTANTS  ========== */
 

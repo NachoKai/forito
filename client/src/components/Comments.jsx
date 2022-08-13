@@ -6,8 +6,8 @@ import { useDispatch } from 'react-redux'
 
 import { addComment } from '../redux/posts'
 import { CreateGradColor } from '../theme'
-import { checkEmpty } from '../utils/checkEmpty'
-import getThemeColor from '../utils/getThemeColor'
+import { checkEmpty } from '../utils/checkEmpty.ts'
+import getThemeColor from '../utils/getThemeColor.ts'
 import Comment from './Comment'
 import FormTextArea from './common/FormTextArea'
 
