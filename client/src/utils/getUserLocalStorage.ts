@@ -1,2 +1,5 @@
-export const getUserLocalStorage = () =>
-	JSON.parse(localStorage.getItem('forito-profile')) || {}
+export const getUserLocalStorage = (): object => {
+	const profile = localStorage.getItem('forito-profile')
+
+	return profile ? JSON.parse(profile) : {}
+}

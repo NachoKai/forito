@@ -5,7 +5,7 @@ import { FaExclamationCircle } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 
 import { addComment } from '../redux/posts'
-import { CreateGradColor } from '../theme'
+import { CreateGradColor } from '../theme.ts'
 import { checkEmpty } from '../utils/checkEmpty.ts'
 import getThemeColor from '../utils/getThemeColor.ts'
 import Comment from './Comment'

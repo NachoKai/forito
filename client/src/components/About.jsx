@@ -1,7 +1,7 @@
 import { Button, Link as ChakraLink, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { FaGithub, FaHandSpock } from 'react-icons/fa'
 
-import { CreateGradColor } from '../theme'
+import { CreateGradColor } from '../theme.ts'
 
 const About = () => (
 	<Flex

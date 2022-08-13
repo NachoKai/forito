@@ -16,7 +16,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { getPostsBySearch } from '../redux/posts'
-import { CreateGradColor } from '../theme'
+import { CreateGradColor } from '../theme.ts'
 import getThemeColor from '../utils/getThemeColor.ts'
 import FormInput from './common/FormInput'
 import ChakraTagInput from './common/ChakraTagInput'

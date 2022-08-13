@@ -6,7 +6,7 @@ import { useParams } from 'react-router-dom'
 
 import { getUser } from '../redux/auth'
 import { getPostsByCreator } from '../redux/posts'
-import { CreateGradColor } from '../theme'
+import { CreateGradColor } from '../theme.ts'
 import StaggeredSlideFade from './common/StaggeredSlideFade'
 import Loading from './Loading'
 import Post from './Post'

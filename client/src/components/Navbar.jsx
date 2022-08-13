@@ -23,7 +23,7 @@ import { useDispatch } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { logout } from '../redux/auth'
-import { CreateGradColor } from '../theme'
+import { CreateGradColor } from '../theme.ts'
 import getThemeColor from '../utils/getThemeColor.ts'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
 import ColorPicker from './ColorPicker'

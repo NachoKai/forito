@@ -4,9 +4,9 @@ import { Provider } from 'react-redux'
 import { ChakraProvider } from '@chakra-ui/react'
 import { MemoryRouter } from 'react-router-dom'
 
-import theme from '../theme'
+import theme from '../theme.ts'
 import { configureStore } from '@reduxjs/toolkit'
-import { reducers } from '../redux/store'
+import { reducers } from '../redux/store.ts'
 
 export const setupStore = preloadedState => {
 	return configureStore({

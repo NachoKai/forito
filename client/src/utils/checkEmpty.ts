@@ -1,1 +1,1 @@
-export const checkEmpty = (value: string): boolean => value.trim().length > 0
+export const checkEmpty = (value: string): boolean => value?.trim().length > 0
