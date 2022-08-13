@@ -24,7 +24,7 @@ import { v4 as uuid } from 'uuid'
 
 import Comments from '../components/Comments'
 import { getPost, getPostsBySearch } from '../redux/posts'
-import { CreateGradColor, getColorTheme } from '../theme'
+import { CreateGradColor, getColorTheme } from '../theme.ts'
 import checkIsAdmin from '../utils/checkIsAdmin.ts'
 import { isDev } from '../utils/checkIsDev.ts'
 import checkIsPostCreator from '../utils/checkIsPostCreator.ts'

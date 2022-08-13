@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { FaPencilAlt } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 
-import { CreateGradColor } from '../theme'
+import { CreateGradColor } from '../theme.ts'
 import checkIsAdmin from '../utils/checkIsAdmin.ts'
 import checkIsPostCreator from '../utils/checkIsPostCreator.ts'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'

@@ -4,12 +4,11 @@ import {
 	useColorModeValue,
 	withDefaultColorScheme,
 } from '@chakra-ui/react'
-import { createBreakpoints } from '@chakra-ui/theme-tools'
 import '@fontsource/roboto'
 import '@fontsource/roboto-slab'
 
 export const getColorTheme = () => {
-	const selectedTheme = localStorage.getItem('forito-theme')
+	const selectedTheme: string | null = localStorage.getItem('forito-theme')
 
 	switch (selectedTheme) {
 		case 'red.500':
@@ -47,12 +46,12 @@ const fonts = {
 	mono: 'Menlo, monospace',
 }
 
-const breakpoints = createBreakpoints({
+const breakpoints = {
 	sm: '320px',
 	md: '500px',
 	lg: '960px',
 	xl: '1200px',
-})
+}
 
 const config = {
 	initialColorMode: 'light',
@@ -155,11 +154,11 @@ export default extendTheme(
 )
 
 export const CreateGradColor = (
-	scheme,
-	firstValue,
-	secondValue,
-	thirdValue,
-	fourthValue,
+	scheme: string,
+	firstValue: string,
+	secondValue: string,
+	thirdValue: string,
+	fourthValue: string,
 	angle = 'to-l'
 ) =>
 	useColorModeValue(
