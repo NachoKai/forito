@@ -1,6 +1,6 @@
 import { toast } from 'react-toastify'
 
-const showSuccess = message =>
+const showSuccess = (message: string) =>
 	toast.success(message, {
 		position: 'bottom-right',
 		autoClose: 3000,

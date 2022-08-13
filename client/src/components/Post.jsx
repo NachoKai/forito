@@ -26,9 +26,9 @@ import { useDispatch } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { deletePost, likePost, savePost, setCurrentId } from '../redux/posts'
-import checkIsAdmin from '../utils/checkIsAdmin'
-import checkIsPostCreator from '../utils/checkIsPostCreator'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import checkIsAdmin from '../utils/checkIsAdmin.ts'
+import checkIsPostCreator from '../utils/checkIsPostCreator.ts'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
 import Dialog from './common/Dialog'
 import Likes from './Likes'
 

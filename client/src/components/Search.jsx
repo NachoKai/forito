@@ -17,7 +17,7 @@ import styled from 'styled-components'
 
 import { getPostsBySearch } from '../redux/posts'
 import { CreateGradColor } from '../theme'
-import getThemeColor from '../utils/getThemeColor'
+import getThemeColor from '../utils/getThemeColor.ts'
 import FormInput from './common/FormInput'
 import ChakraTagInput from './common/ChakraTagInput'
 

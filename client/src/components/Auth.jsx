@@ -6,10 +6,10 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { AUTH, login, signup } from '../redux/auth'
-import { checkEmpty } from '../utils/checkEmpty'
-import getThemeColor from '../utils/getThemeColor'
-import showError from '../utils/showError'
+import getThemeColor from '../utils/getThemeColor.ts'
 import FormInput from './common/FormInput'
+import { checkEmpty } from '../utils/checkEmpty.ts'
+import showError from '../utils/showError.ts'
 
 const initialState = {
 	firstName: '',

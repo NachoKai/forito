@@ -1,7 +1,7 @@
 import { Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-import { useQuery } from '../utils/useQuery'
+import { useQuery } from '../utils/useQuery.ts'
 import Paginate from '././Paginate'
 import Posts from './Posts'
 

@@ -20,14 +20,14 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import PropTypes from 'prop-types'
 import { motion, useScroll } from 'framer-motion'
 import styled from 'styled-components'
+import { v4 as uuid } from 'uuid'
 
 import Comments from '../components/Comments'
 import { getPost, getPostsBySearch } from '../redux/posts'
 import { CreateGradColor, getColorTheme } from '../theme'
-import checkIsAdmin from '../utils/checkIsAdmin'
-import { isDev } from '../utils/checkIsDev'
-import checkIsPostCreator from '../utils/checkIsPostCreator'
-import { getRandomId } from '../utils/getRandomId'
+import checkIsAdmin from '../utils/checkIsAdmin.ts'
+import { isDev } from '../utils/checkIsDev.ts'
+import checkIsPostCreator from '../utils/checkIsPostCreator.ts'
 import StaggeredSlideFade from './common/StaggeredSlideFade'
 
 const PostDetails = ({ user }) => {
@@ -140,7 +140,7 @@ const PostDetails = ({ user }) => {
 							{post?.tags &&
 								[...new Set(post?.tags)].filter(Boolean).map(tag => (
 									<Badge
-										key={getRandomId()}
+										key={uuid()}
 										bg='primary.600'
 										color='white'
 										data-cy='post-details-tags'

@@ -1,4 +1,11 @@
-const checkIsPostCreator = (user, creator) =>
+interface UserI {
+	result?: {
+		_id: string
+		googleId?: string
+	}
+}
+
+const checkIsPostCreator = (user: UserI, creator: string): boolean =>
 	user?.result?.googleId
 		? user?.result?.googleId === creator
 		: user?.result?._id

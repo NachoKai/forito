@@ -1,5 +1,5 @@
-const getThemeColor = () => {
-	const selectedTheme = localStorage.getItem('forito-theme')
+const getThemeColor = (): string => {
+	const selectedTheme: string | null = localStorage.getItem('forito-theme')
 
 	switch (selectedTheme) {
 		case 'blue.500':

@@ -18,19 +18,19 @@ import {
 } from '@chakra-ui/react'
 import { useNavigate } from 'react-router-dom'
 import ImageUploading from 'react-images-uploading'
+import { v4 as uuid } from 'uuid'
 import PropTypes from 'prop-types'
 
 import { firebaseApp } from '../firebaseApp'
 import { createPost, setCurrentId, updatePost } from '../redux/posts'
 import FormInput from './common/FormInput'
 import FormTextArea from './common/FormTextArea'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage'
-import showError from '../utils/showError'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
+import showError from '../utils/showError.ts'
 import { CreateGradColor } from '../theme'
-import { checkEmpty } from '../utils/checkEmpty'
 import { hideLoading, showLoading } from '../redux/loading'
-import { getRandomId } from '../utils/getRandomId'
-import getThemeColor from '../utils/getThemeColor'
+import getThemeColor from '../utils/getThemeColor.ts'
+import { checkEmpty } from '../utils/checkEmpty.ts'
 
 const initialState = {
 	title: '',
@@ -78,7 +78,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 					selectedFile: {
 						url: imageURL,
 						name: imageName,
-						id: postData?.selectedFile?.id ? postData?.selectedFile?.id : getRandomId(),
+						id: postData?.selectedFile?.id ? postData?.selectedFile?.id : uuid(),
 					},
 				})
 			} catch (error) {
