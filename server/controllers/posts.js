@@ -133,12 +133,15 @@ export const likePost = async (req, res) => {
 	}
 
 	const post = await Post.findById(id);
-	const index = post.likes.findIndex(id => id === String(req.userId));
+
+	if (!post) return res.status(404).send(`Post not found.`);
+
+	const index = post?.likes?.findIndex(id => id === String(req.userId));
 
 	if (index === -1) {
-		post.likes.push(req.userId);
+		post?.likes?.push(req.userId);
 	} else {
-		post.likes = post.likes.filter(id => id !== String(req.userId));
+		post.likes = post?.likes.filter(id => id !== String(req.userId));
 	}
 
 	const updatedPost = await Post.findByIdAndUpdate(id, post, { new: true });
@@ -157,12 +160,14 @@ export const savePost = async (req, res) => {
 	}
 
 	const post = await Post.findById(id);
-	const index = post.saves.findIndex(id => id === String(req.userId));
+
+	if (!post) return res.status(404).send(`Post not found.`);
+	const index = post?.saves?.findIndex(id => id === String(req.userId));
 
 	if (index === -1) {
-		post.saves.push(req.userId);
+		post?.saves?.push(req.userId);
 	} else {
-		post.saves = post.saves.filter(id => id !== String(req.userId));
+		post.saves = post?.saves?.filter(id => id !== String(req.userId));
 	}
 
 	const updatedPost = await Post.findByIdAndUpdate(id, post, { new: true });
@@ -175,7 +180,9 @@ export const commentPost = async (req, res) => {
 	const { value } = req.body;
 	const post = await Post.findById(id);
 
-	post.comments.push(value);
+	if (!post) return res.status(404).send(`Post not found.`);
+
+	post?.comments?.push(value);
 	const updatedPost = await Post.findByIdAndUpdate(id, post, { new: true });
 
 	res.status(200).json(updatedPost);
