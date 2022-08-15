@@ -41,7 +41,6 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const userAvatar =
 		user?.result?.imageUrl || `${process.env.PUBLIC_URL}/images/avatar.png`
 
-	console.log('userAvatar', userAvatar)
 	const open = () => setIsDropdownOpen(!isDropdownOpen)
 	const close = () => setIsDropdownOpen(false)
 
