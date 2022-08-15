@@ -8,19 +8,21 @@ import compression from "compression";
 import mongoSanitize from "express-mongo-sanitize";
 import rateLimit from "express-rate-limit";
 
-const limiter = rateLimit({
-	windowMs: 15 * 60 * 1000, // 15 minutes
-	max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
-	standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
-	legacyHeaders: false, // Disable the `X-RateLimit-*` headers
-});
+const isDev = process.env.NODE_ENV !== "production";
+const envFile = isDev ? `.env.${process.env.NODE_ENV}` : ".env";
+
+const limiter =
+	!isDev &&
+	rateLimit({
+		windowMs: 15 * 60 * 1000, // 15 minutes
+		max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+		standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+		legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+	});
 
 const app = express();
 
 app.get("env");
-
-const isDev = process.env.NODE_ENV !== "production";
-const envFile = isDev ? `.env.${process.env.NODE_ENV}` : ".env";
 
 dotenv.config({ path: envFile });
 

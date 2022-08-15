@@ -347,6 +347,7 @@ const Post = ({
 export default memo(Post)
 
 Post.propTypes = {
+	onOpen: PropTypes.func,
 	post: PropTypes.shape({
 		_id: PropTypes.string,
 		title: PropTypes.string,
@@ -357,6 +358,7 @@ Post.propTypes = {
 		saves: PropTypes.arrayOf(PropTypes.string),
 		createdAt: PropTypes.string,
 		tags: PropTypes.arrayOf(PropTypes.string),
+		privacy: PropTypes.string,
 		selectedFile: PropTypes.shape({
 			url: PropTypes.string,
 		}),

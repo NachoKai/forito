@@ -102,7 +102,7 @@
       }
     ],
     "react/self-closing-comp": "warn",
-    "react/prop-types": "off",
+    "react/prop-types": ["warn"],
     "react/react-in-jsx-scope": "off",
     "prettier/prettier": [
       "warn",

@@ -14,6 +14,7 @@ import {
 import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import PropTypes from 'prop-types'
 
 import { getPostsBySearch } from '../redux/posts'
 import { CreateGradColor } from '../theme.ts'
@@ -137,4 +138,9 @@ const ChipInput = ({ tags, setTags }) => {
 			<ChakraTagInput tags={tags} onTagsChange={handleTagsChange} />
 		</Container>
 	)
+}
+
+ChipInput.propTypes = {
+	tags: PropTypes.arrayOf(PropTypes.string),
+	setTags: PropTypes.func,
 }
