@@ -22,12 +22,11 @@ export const getPosts = async (req, res) => {
 	const { page } = req.query;
 
 	try {
-		const LIMIT = 5;
+		const LIMIT = 10;
 		const startIndex = (Number(page) - 1) * LIMIT;
 		const total = await Post.countDocuments({});
 		const posts = await Post.find().sort({ _id: -1 }).limit(LIMIT).skip(startIndex);
-		const privatePostsQuantity = await posts.filter(post => post.privacy === "private")
-			.length;
+		const privatePostsQuantity = posts.filter(post => post.privacy === "private").length;
 		const postsWithPrivate = await Post.find()
 			.sort({ _id: -1 })
 			.limit(LIMIT + privatePostsQuantity)
