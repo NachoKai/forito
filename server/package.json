@@ -8,7 +8,8 @@
     "lint": "eslint \"**/*.js\"",
     "test": "npm run lint && jest --coverage",
     "start": "NODE_ENV=production node index.js",
-    "dev": "npm run test && NODE_ENV=development nodemon index.js"
+    "dev": "npm run test && NODE_ENV=development nodemon index.js",
+    "deploy": "git push heroku `git subtree split --prefix server main`:main"
   },
   "keywords": [],
   "author": "Nacho Caiafa",
