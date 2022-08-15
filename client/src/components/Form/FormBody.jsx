@@ -1,8 +1,8 @@
 import { DrawerBody, Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-import FormInput from './common/FormInput'
-import FormTextArea from './common/FormTextArea'
+import FormInput from '../common/FormInput'
+import FormTextArea from '../common/FormTextArea'
 import ImageUpload from './ImageUpload'
 import PrivacySelector from './PrivacySelector'
 

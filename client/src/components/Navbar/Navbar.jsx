@@ -22,13 +22,13 @@ import { FaMoon, FaSun } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-import { logout } from '../redux/auth'
-import { CreateGradColor } from '../theme.ts'
-import getThemeColor from '../utils/getThemeColor.ts'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
+import { logout } from '../../redux/auth'
+import Form from '../Form/Form'
+import SearchNavbar from '../SearchNavbar'
+import { CreateGradColor } from '../../theme.ts'
+import getThemeColor from '../../utils/getThemeColor.ts'
+import { getUserLocalStorage } from '../../utils/getUserLocalStorage.ts'
 import ColorPicker from './ColorPicker'
-import Form from './Form'
-import SearchNavbar from './SearchNavbar'
 
 const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const dispatch = useDispatch()
