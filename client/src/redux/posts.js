@@ -59,6 +59,8 @@ export const getAllPosts = page => async dispatch => {
 	} catch (err) {
 		showError('Something went wrong when trying to get all posts. Please try again.')
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 
@@ -75,6 +77,8 @@ export const getPosts = page => async dispatch => {
 	} catch (err) {
 		showError('Something went wrong when trying to get posts. Please try again.')
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 
@@ -90,6 +94,8 @@ export const getPostsBySearch = searchQuery => async dispatch => {
 	} catch (err) {
 		showError('Something went wrong when trying to get post by search. Please try again.')
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 
@@ -154,6 +160,8 @@ export const likePost = id => async dispatch => {
 	} catch (err) {
 		showError('Something went wrong when trying to like post. Please try again.')
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 
@@ -167,6 +175,8 @@ export const savePost = saves => async dispatch => {
 	} catch (err) {
 		showError('Something went wrong when trying to save post. Please try again.')
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 
@@ -181,6 +191,8 @@ export const addComment = (comment, id) => async dispatch => {
 	} catch (err) {
 		showError('Something went wrong when trying to add comment. Please try again.')
 		console.error(err)
+	} finally {
+		dispatch(hideLoading())
 	}
 }
 

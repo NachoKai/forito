@@ -1,5 +1,5 @@
-import { useEffect } from 'react'
 import { Divider, Heading, Stack, Text } from '@chakra-ui/react'
+import { useEffect } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'

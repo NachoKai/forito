@@ -1,15 +1,15 @@
-import { useCallback, useState } from 'react'
 import { Button, Flex, Stack, Text } from '@chakra-ui/react'
+import { useCallback, useState } from 'react'
 import { GoogleLogin } from 'react-google-login'
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { AUTH, login, signup } from '../redux/auth'
-import getThemeColor from '../utils/getThemeColor.ts'
-import FormInput from './common/FormInput'
 import { checkEmpty } from '../utils/checkEmpty.ts'
+import getThemeColor from '../utils/getThemeColor.ts'
 import showError from '../utils/showError.ts'
+import FormInput from './common/FormInput'
 
 const initialState = {
 	firstName: '',

@@ -1,4 +1,3 @@
-import { useCallback, useEffect } from 'react'
 import {
 	AspectRatio,
 	Badge,
@@ -13,12 +12,13 @@ import {
 	Tooltip,
 } from '@chakra-ui/react'
 import { formatDistance } from 'date-fns'
+import { motion, useScroll } from 'framer-motion'
+import PropTypes from 'prop-types'
+import { useCallback, useEffect } from 'react'
 import { FaSearch, FaTwitter } from 'react-icons/fa'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
-import PropTypes from 'prop-types'
-import { motion, useScroll } from 'framer-motion'
 import styled from 'styled-components'
 import { v4 as uuid } from 'uuid'
 
