@@ -4,8 +4,8 @@ import { FaSearch } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { getPostsBySearch } from '../redux/posts'
-import FormInput from './common/FormInput'
+import { getPostsBySearch } from '../../redux/posts'
+import FormInput from '../common/FormInput'
 
 const SearchNavbar = () => {
 	const dispatch = useDispatch()

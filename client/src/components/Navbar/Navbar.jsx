@@ -23,16 +23,16 @@ import { useDispatch } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { logout } from '../../redux/auth'
-import Form from '../Form/Form'
-import SearchNavbar from '../SearchNavbar'
 import { CreateGradColor } from '../../theme.ts'
 import getThemeColor from '../../utils/getThemeColor.ts'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage.ts'
+import Form from '../Form/Form'
 import ColorPicker from './ColorPicker'
+import SearchNavbar from './SearchNavbar'
 
 const Navbar = ({ isOpen, onOpen, onClose }) => {
-	const dispatch = useDispatch()
 	const location = useLocation()
+	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const [user, setUser] = useState(() => getUserLocalStorage())
 	const userId = user?.result?.googleId || user?.result?._id
