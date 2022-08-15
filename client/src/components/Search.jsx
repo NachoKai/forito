@@ -1,4 +1,3 @@
-import { useCallback, useState } from 'react'
 import {
 	Accordion,
 	AccordionButton,
@@ -11,16 +10,17 @@ import {
 	Stack,
 	Text,
 } from '@chakra-ui/react'
+import PropTypes from 'prop-types'
+import { useCallback, useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
-import PropTypes from 'prop-types'
 
 import { getPostsBySearch } from '../redux/posts'
 import { CreateGradColor } from '../theme.ts'
 import getThemeColor from '../utils/getThemeColor.ts'
-import FormInput from './common/FormInput'
 import ChakraTagInput from './common/ChakraTagInput'
+import FormInput from './common/FormInput'
 
 const Search = () => {
 	const dispatch = useDispatch()

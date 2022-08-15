@@ -1,36 +1,25 @@
-import { useCallback, useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import {
 	Button,
 	Drawer,
-	DrawerBody,
 	DrawerCloseButton,
 	DrawerContent,
-	DrawerFooter,
-	DrawerHeader,
 	DrawerOverlay,
-	Flex,
-	Image,
-	Radio,
-	RadioGroup,
-	Stack,
-	Text,
 } from '@chakra-ui/react'
-import { useNavigate } from 'react-router-dom'
-import ImageUploading from 'react-images-uploading'
-import { v4 as uuid } from 'uuid'
 import PropTypes from 'prop-types'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { useNavigate } from 'react-router-dom'
+import { v4 as uuid } from 'uuid'
 
 import { firebaseApp } from '../firebaseApp.ts'
+import { hideLoading, showLoading } from '../redux/loading'
 import { createPost, setCurrentId, updatePost } from '../redux/posts'
-import FormInput from './common/FormInput'
-import FormTextArea from './common/FormTextArea'
+import { checkEmpty } from '../utils/checkEmpty.ts'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
 import showError from '../utils/showError.ts'
-import { CreateGradColor } from '../theme.ts'
-import { hideLoading, showLoading } from '../redux/loading'
-import getThemeColor from '../utils/getThemeColor.ts'
-import { checkEmpty } from '../utils/checkEmpty.ts'
+import FormBody from './FormBody'
+import FormFooter from './FormFooter'
+import FormHeader from './FormHeader'
 
 const initialState = {
 	title: '',
@@ -214,218 +203,25 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 				<DrawerOverlay />
 				<DrawerContent bg='primary_100_900'>
 					<DrawerCloseButton />
-					<DrawerHeader>
-						<Text
-							bgClip='text'
-							bgGradient={CreateGradColor('primary', 700, 900, 50, 200)}
-							fontSize='xl'
-							fontWeight='bold'
-						>
-							{currentId ? 'Edit' : 'Create'} Post ✏️
-						</Text>
-					</DrawerHeader>
+					<FormHeader currentId={currentId} />
 
-					<DrawerBody>
-						<form noValidate autoComplete='off' style={{ width: '100%' }}>
-							<Stack spacing='4'>
-								<FormInput
-									isRequired
-									dataCy='form-title'
-									label='Title'
-									maxLength='105'
-									name='title'
-									tooltip='Required'
-									value={postData?.title}
-									onChange={handleChange}
-								/>
+					<FormBody
+						areValidTags={areValidTags}
+						handleChange={handleChange}
+						handlePrivacy={handlePrivacy}
+						handleRemoveImage={handleRemoveImage}
+						images={images}
+						postData={postData}
+						privacy={privacy}
+						setPostData={setPostData}
+						onImageUpload={onImageUpload}
+					/>
 
-								<FormTextArea
-									isRequired
-									dataCy='form-message'
-									label='Message'
-									maxLength='27440'
-									name='message'
-									tooltip='Required'
-									value={postData?.message}
-									onChange={handleChange}
-								/>
-
-								<FormInput
-									dataCy='form-tags'
-									helper='Separated by commas.'
-									isInvalid={areValidTags}
-									label='Tags'
-									maxLength='55'
-									name='tags'
-									validation={areValidTags && 'Insert only letters and numbers.'}
-									value={[...new Set(postData?.tags)]}
-									onChange={e => {
-										setPostData({
-											...postData,
-											tags: e.target.value.toLowerCase().trim().split(','),
-										})
-									}}
-								/>
-
-								<FormInput
-									child={
-										<ImageUploading
-											acceptType={['jpg', 'jpeg', 'gif', 'png']}
-											dataURLKey='data_url'
-											maxFileSize={1024 * 1024 * 2.1}
-											maxNumber={1}
-											value={images}
-											onChange={onImageUpload}
-											onError={() =>
-												showError(
-													'Something went wrong when trying to upload image. Please try again.'
-												)
-											}
-										>
-											{({
-												imageList,
-												onImageUpload,
-												onImageUpdate,
-												isDragging,
-												dragProps,
-												errors,
-											}) => (
-												<Stack className='upload__image-wrapper' spacing='2'>
-													{!!errors && (
-														<Stack m='4px 0' spacing='2'>
-															{!!errors.maxNumber && (
-																<Flex
-																	color='red.400'
-																	fontWeight='bold'
-																	marginBottom='4px'
-																>
-																	Number of selected images exceed maxNumber.
-																</Flex>
-															)}
-															{!!errors.acceptType && (
-																<Flex
-																	color='red.400'
-																	fontWeight='bold'
-																	marginBottom='4px'
-																>
-																	Your selected file type is not allow.
-																</Flex>
-															)}
-															{!!errors.maxFileSize && (
-																<Flex
-																	color='red.400'
-																	fontWeight='bold'
-																	marginBottom='4px'
-																>
-																	Selected file size exceed max file size.
-																</Flex>
-															)}
-															{!!errors.resolution && (
-																<Flex
-																	color='red.400'
-																	fontWeight='bold'
-																	marginBottom='4px'
-																>
-																	Selected file is not match your desired resolution.
-																</Flex>
-															)}
-														</Stack>
-													)}
-													{(!postData?.selectedFile?.url || !images.length) && (
-														<Stack
-															borderColor={
-																isDragging ? 'gray_700_200' : 'primary_600_100'
-															}
-															borderRadius='lg'
-															borderStyle='dashed'
-															borderWidth='2px'
-														>
-															<Button
-																bg={isDragging ? 'gray_200_700' : undefined}
-																color={isDragging ? 'gray_700_200' : 'primary_600_100'}
-																variant='ghost'
-																onClick={onImageUpload}
-																{...dragProps}
-																p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
-															>
-																Click or drag & drop image here
-															</Button>
-														</Stack>
-													)}
-													{imageList?.map((image, index) => (
-														<Stack
-															key={index}
-															className='image-item'
-															direction='row'
-															spacing='2'
-														>
-															<Image
-																alt=''
-																h='100px'
-																objectFit='contain'
-																src={image?.data_url}
-																w='100px'
-															/>
-															<Flex align='center' direction='column' justify='center'>
-																<Button
-																	variant='ghost'
-																	onClick={() => onImageUpdate(index)}
-																>
-																	Update
-																</Button>
-																<Button variant='ghost' onClick={handleRemoveImage}>
-																	Remove
-																</Button>
-															</Flex>
-														</Stack>
-													))}
-												</Stack>
-											)}
-										</ImageUploading>
-									}
-									helper='Max: 2mb. Formats: jpg, jpeg, png, gif.'
-									label='Upload image'
-								/>
-
-								<FormInput
-									isRequired
-									child={
-										<RadioGroup
-											defaultValue='public'
-											name='privacy'
-											value={privacy}
-											onChange={privacy => handlePrivacy(privacy)}
-										>
-											<Stack direction='row'>
-												<Radio value='public'>Public</Radio>
-												<Radio value='private'>Private</Radio>
-											</Stack>
-										</RadioGroup>
-									}
-									label='Privacy'
-									name='privacy'
-									tooltip='Private Posts will only be visible to their creator'
-								/>
-							</Stack>
-						</form>
-					</DrawerBody>
-
-					<DrawerFooter w='100%'>
-						<Stack spacing='4' w='100%'>
-							<Button
-								bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
-								boxShadow={() => getThemeColor()}
-								data-cy='form-submit-button'
-								disabled={isSubmitDisabled}
-								onClick={handleSubmit}
-							>
-								Submit
-							</Button>
-							<Button data-cy='form-clear-button' variant='outline' onClick={handleClear}>
-								Clear
-							</Button>
-						</Stack>
-					</DrawerFooter>
+					<FormFooter
+						handleClear={handleClear}
+						handleSubmit={handleSubmit}
+						isSubmitDisabled={isSubmitDisabled}
+					/>
 				</DrawerContent>
 			</Drawer>
 		</>

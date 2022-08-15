@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import {
 	Button,
 	Center,
@@ -11,6 +10,7 @@ import {
 	PopoverTrigger,
 	SimpleGrid,
 } from '@chakra-ui/react'
+import { useState } from 'react'
 
 const colors = [
 	'red.500',

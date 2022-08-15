@@ -1,4 +1,3 @@
-import { memo, useCallback, useState } from 'react'
 import { ChevronDownIcon } from '@chakra-ui/icons'
 import {
 	AspectRatio,
@@ -19,6 +18,7 @@ import {
 } from '@chakra-ui/react'
 import { format, formatDistance, isValid } from 'date-fns'
 import PropTypes from 'prop-types'
+import { memo, useCallback, useState } from 'react'
 import { FaBookmark, FaEraser, FaPen, FaRegBookmark, FaRegComments } from 'react-icons/fa'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
