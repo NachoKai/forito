@@ -111,6 +111,7 @@ Comments.propTypes = {
 		result: PropTypes.shape({
 			googleId: PropTypes.string,
 			name: PropTypes.string,
+			_id: PropTypes.string,
 		}),
 	}),
 }

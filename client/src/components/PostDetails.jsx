@@ -37,15 +37,15 @@ const PostDetails = ({ user }) => {
 	const { id } = useParams()
 	const { post, posts } = useSelector(state => state.posts)
 	const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id)
-	const baseURL = isDev
-		? 'http://localhost:3000/posts'
-		: 'https://forito.vercel.app/posts'
 	const userEmail = user?.result?.email
 	const isPrivate = post?.privacy === 'private'
 	const isPostCreator = checkIsPostCreator(user, post?.creator)
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
 	const progressBarColor = getColorTheme()
+	const baseURL = isDev
+		? 'http://localhost:3000/posts'
+		: 'https://forito.vercel.app/posts'
 
 	const openPost = useCallback(_id => navigate(`/posts/${_id}`), [navigate])
 
@@ -314,6 +314,7 @@ PostDetails.propTypes = {
 		result: PropTypes.shape({
 			googleId: PropTypes.string,
 			name: PropTypes.string,
+			email: PropTypes.string,
 		}),
 	}),
 }

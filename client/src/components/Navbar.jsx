@@ -116,14 +116,14 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 											data-cy='navbar-username'
 											display={{ sm: 'none', md: 'flex', lg: 'flex', xl: 'flex' }}
 										>
-											{user.result.name}
+											{user?.result?.name}
 										</Text>
 									</Stack>
 								</PopoverTrigger>
 								<PopoverContent>
 									<PopoverArrow />
 									<PopoverCloseButton />
-									<PopoverHeader>{user.result.name}</PopoverHeader>
+									<PopoverHeader>{user?.result?.name}</PopoverHeader>
 									<Link to={`/creator/${userId}`} onClick={close}>
 										<PopoverBody cursor='pointer' fontWeight='bold'>
 											My Posts
