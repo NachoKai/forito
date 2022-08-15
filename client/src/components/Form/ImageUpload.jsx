@@ -2,7 +2,7 @@ import ImageUploading from 'react-images-uploading'
 import { Button, Flex, Image, Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-import showError from '../utils/showError.ts'
+import showError from '../../utils/showError.ts'
 
 const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData }) => {
 	return (

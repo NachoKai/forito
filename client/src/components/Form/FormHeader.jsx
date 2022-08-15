@@ -1,7 +1,7 @@
 import { DrawerHeader, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-import { CreateGradColor } from '../theme.ts'
+import { CreateGradColor } from '../../theme.ts'
 
 const FormHeader = ({ currentId }) => {
 	return (
