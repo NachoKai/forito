@@ -13,6 +13,7 @@
 		"sourceType": "module"
 	},
 	"rules": {
+    "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
 		"sort-imports": [
 			"warn",
 			{
