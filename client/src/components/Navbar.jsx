@@ -38,10 +38,10 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const userId = user?.result?.googleId || user?.result?._id
 	const { colorMode, toggleColorMode } = useColorMode()
 	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
-	const userAvatar = user?.result?.imageUrl
-		? user?.result?.imageUrl
-		: `${process.env.PUBLIC_URL}/images/avatar.png`
+	const userAvatar =
+		user?.result?.imageUrl || `${process.env.PUBLIC_URL}/images/avatar.png`
 
+	console.log('userAvatar', userAvatar)
 	const open = () => setIsDropdownOpen(!isDropdownOpen)
 	const close = () => setIsDropdownOpen(false)
 
@@ -108,6 +108,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 											borderRadius='full'
 											h='30px'
 											objectFit='cover'
+											referrerPolicy='no-referrer'
 											src={userAvatar}
 											w='30px'
 										/>
