@@ -4,7 +4,7 @@ import { isDev } from './utils/checkIsDev.ts'
 import { getUserLocalStorage } from './utils/getUserLocalStorage.ts'
 
 const API = axios.create({
-	baseURL: isDev ? 'http://localhost:5000' : 'https://forito-app.herokuapp.com',
+	baseURL: isDev ? 'http://localhost:5000' : 'https://forito-prd.herokuapp.com',
 	timeout: 20_000,
 })
 
