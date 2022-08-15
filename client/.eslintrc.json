@@ -29,6 +29,7 @@
     "@typescript-eslint"
   ],
   "rules": {
+    "no-console": ["warn", { "allow": ["warn", "error", "info"] }],
     "cypress/no-assigning-return-values": "warn",
     "cypress/no-unnecessary-waiting": "warn",
     "cypress/assertion-before-screenshot": "warn",
