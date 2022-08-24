@@ -10,7 +10,6 @@ import rateLimit from "express-rate-limit";
 
 const isDev = process.env.NODE_ENV !== "production";
 const envFile = isDev ? `.env.${process.env.NODE_ENV}` : ".env";
-
 const limiter =
 	!isDev &&
 	rateLimit({
