@@ -29,22 +29,10 @@ Start the Client
   cd client
 ```
 ```bash
-  npm install
+  yarn install
 ```
 ```bash
-  npm run start
-```
-
-Start the Server
-
-```bash
-  cd server
-```
-```bash
-  npm install
-```
-```bash
-  npm run dev
+  yarn start
 ```
 
 Runs the app in the development mode.  
@@ -57,7 +45,7 @@ You will also see any lint errors in the console.
 To run tests, run the following command
 
 ```bash
-  npm run test
+  yarn test
 ```
 
 
@@ -65,7 +53,6 @@ To run tests, run the following command
 
 To run this project, you will need to add the following environment variables to your .env file
 
-### Client  
 `REACT_APP_GOOGLE_CLIENT_ID`  
 `REACT_APP_LOCATION_ID`  
 `REACT_APP_API_KEY`  
@@ -77,17 +64,10 @@ To run this project, you will need to add the following environment variables to
 `REACT_APP_STORAGE_BUCKET`  
 `REACT_APP_ADMIN`  
 `REACT_APP_GOOGLE_CLIENT_ID`  
-### Server
-`PORT`  
-`MONGODB_URI`  
-`SECRET`  
-`SALT`  
+ 
 ## Tech Stack
 
-**Client:** React, Redux, ChakraUI, Firebase
-
-**Server:** Node, Express, MongoDB, Mongoose
-
+React, Redux, ChakraUI, Firebase
 
 ## Feedback
 
@@ -110,5 +90,3 @@ Hi, I'm Nacho! 👋 I'm a software developer from Argentina 🇦🇷
 ## License
 
 [MIT](https://github.com/NachoKai/forito/blob/main/LICENSE)
-
-![Alt](https://repobeats.axiom.co/api/embed/ce8eb803bd1c089ae12756d8ff9c7e7e9aafeea8.svg "Repobeats analytics image")
