@@ -51,10 +51,10 @@ export const getAllPosts = page => async dispatch => {
 		dispatch(cleanUp())
 		dispatch({ type: START_LOADING, loading: true })
 		const {
-			data: { data },
+			data: { data, count },
 		} = await api.fetchAllPosts(page)
 
-		dispatch({ type: FETCH_ALL_POSTS, payload: { data } })
+		dispatch({ type: FETCH_ALL_POSTS, payload: { data, count } })
 		dispatch({ type: END_LOADING, loading: false })
 	} catch (err) {
 		showError('Something went wrong when trying to get all posts. Please try again.')
@@ -69,10 +69,10 @@ export const getPosts = page => async dispatch => {
 		dispatch(cleanUp())
 		dispatch({ type: START_LOADING, loading: true })
 		const {
-			data: { data, currentPage, numberOfPages },
+			data: { data, currentPage, numberOfPages, count },
 		} = await api.fetchPosts(page)
 
-		dispatch({ type: FETCH_POSTS, payload: { data, currentPage, numberOfPages } })
+		dispatch({ type: FETCH_POSTS, payload: { data, currentPage, numberOfPages, count } })
 		dispatch({ type: END_LOADING, loading: false })
 	} catch (err) {
 		showError('Something went wrong when trying to get posts. Please try again.')
@@ -258,6 +258,7 @@ export const postsReducer = (state = initialState, action) => {
 			return {
 				...state,
 				posts: payload.data,
+				count: payload.count,
 			}
 		case FETCH_POSTS:
 			return {
@@ -265,6 +266,7 @@ export const postsReducer = (state = initialState, action) => {
 				posts: payload.data,
 				currentPage: payload.currentPage,
 				numberOfPages: payload.numberOfPages,
+				count: payload.count,
 			}
 		case FETCH_POSTS_BY_SEARCH:
 		case FETCH_BY_CREATOR:
