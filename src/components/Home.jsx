@@ -22,7 +22,7 @@ const Home = ({ onOpen }) => {
 					<Posts searchQuery={searchQuery} onOpen={onOpen} />
 				</Stack>
 			</Stack>
-			<Stack px={{ sm: '0', md: '10', lg: '16', xl: '24' }}>
+			<Stack px={{ sm: '4', md: '10', lg: '16', xl: '24' }}>
 				{!searchQuery && <Paginate page={page} />}
 			</Stack>
 		</Stack>
