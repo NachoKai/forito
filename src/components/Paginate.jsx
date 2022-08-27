@@ -27,7 +27,7 @@ const Paginate = ({ page }) => {
 			inner: 2,
 		},
 		initialState: {
-			pageSize: 10,
+			pageSize: 8,
 			currentPage: 1,
 		},
 	})
