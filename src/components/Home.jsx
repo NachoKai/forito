@@ -15,7 +15,7 @@ const Home = ({ onOpen }) => {
 			<Stack
 				direction={{ sm: 'column-reverse', md: 'column-reverse', lg: 'row', xl: 'row' }}
 				px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
-				py={{ sm: '4', md: '6', lg: '8', xl: '8' }}
+				py={{ sm: '6', md: '6', lg: '8', xl: '8' }}
 				spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 			>
 				<Stack w='100%'>
