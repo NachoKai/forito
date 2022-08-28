@@ -280,7 +280,7 @@ const Post = ({
 											leftIcon={<FaPen />}
 											minWidth='88px'
 											size='sm'
-											variant='outline'
+											variant='solid'
 											onClick={handleEdit}
 										>
 											Edit

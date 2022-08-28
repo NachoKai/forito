@@ -10,17 +10,13 @@ import PropTypes from 'prop-types'
 
 const FormTextArea = ({
 	label,
-	name,
-	value,
 	isRequired,
 	helper,
-	autoFocus,
-	maxLength,
-	onChange,
 	child,
-	type,
 	dataCy,
 	tooltip,
+	placeholder,
+	...rest
 }) => (
 	<FormControl isRequired={isRequired}>
 		<Flex>
@@ -35,20 +31,15 @@ const FormTextArea = ({
 		{child || (
 			<Textarea
 				_placeholder={{ color: 'gray' }}
-				autoFocus={autoFocus}
 				bg='white'
 				color='black'
 				data-cy={dataCy}
 				errorBorderColor='red.300'
 				focusBorderColor='primary.200'
-				maxLength={maxLength}
-				name={name}
-				placeholder={label}
-				type={type}
-				value={value}
+				placeholder={placeholder || label}
 				variant='outline'
 				whiteSpace='pre-wrap'
-				onChange={onChange}
+				{...rest}
 			/>
 		)}
 		{!!helper && <FormHelperText>{helper}</FormHelperText>}
@@ -70,4 +61,5 @@ FormTextArea.propTypes = {
 	type: PropTypes.string,
 	dataCy: PropTypes.string,
 	tooltip: PropTypes.string,
+	placeholder: PropTypes.string,
 }

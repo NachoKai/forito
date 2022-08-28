@@ -149,17 +149,15 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 						)}
 					</Stack>
 				) : (
-					<Flex>
-						<Link to='auth'>
-							<Button
-								boxShadow={() => getThemeColor()}
-								data-cy='navbar-login-button'
-								variant='solid'
-							>
-								Login
-							</Button>
-						</Link>
-					</Flex>
+					<Link to='auth'>
+						<Button
+							boxShadow={() => getThemeColor()}
+							data-cy='navbar-login-button'
+							variant='solid'
+						>
+							Login
+						</Button>
+					</Link>
 				)}
 
 				<Button p='1' size='sm' variant='ghost' onClick={toggleColorMode}>
