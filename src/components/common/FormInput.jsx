@@ -13,22 +13,16 @@ import PropTypes from 'prop-types'
 
 const FormInput = ({
 	label,
-	name,
-	isInvalid,
-	value,
 	isRequired,
 	helper,
 	validation,
-	autoFocus,
-	maxLength,
-	onChange,
 	child,
-	type,
 	leftIcon,
 	rightIcon,
 	placeholder,
 	tooltip,
 	dataCy,
+	...rest
 }) => (
 	<FormControl isRequired={isRequired}>
 		<Flex>
@@ -55,20 +49,14 @@ const FormInput = ({
 				<Input
 					_placeholder={{ color: 'gray' }}
 					autoComplete='off'
-					autoFocus={autoFocus}
 					bg='white'
 					color='black'
 					data-cy={dataCy}
 					errorBorderColor='red.400'
 					focusBorderColor='primary.200'
-					isInvalid={isInvalid}
-					maxLength={maxLength}
-					name={name}
 					placeholder={placeholder || label}
-					type={type}
-					value={value}
 					variant='outline'
-					onChange={onChange}
+					{...rest}
 				/>
 				{!!rightIcon && (
 					<InputRightElement color='gray.300' fontSize='1.2em'>

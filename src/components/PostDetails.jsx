@@ -31,9 +31,9 @@ import checkIsPostCreator from '../utils/checkIsPostCreator.ts'
 import StaggeredSlideFade from './common/StaggeredSlideFade'
 
 const PostDetails = ({ user }) => {
-	const { scrollYProgress } = useScroll()
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	const { scrollYProgress } = useScroll()
 	const { id } = useParams()
 	const { post, posts } = useSelector(state => state.posts)
 	const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id)

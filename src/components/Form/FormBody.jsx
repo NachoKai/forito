@@ -1,5 +1,6 @@
 import { DrawerBody, Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
+import styled from 'styled-components'
 
 import FormInput from '../common/FormInput'
 import FormTextArea from '../common/FormTextArea'
@@ -19,7 +20,7 @@ const FormBody = ({
 }) => {
 	return (
 		<DrawerBody>
-			<form noValidate autoComplete='off' style={{ width: '100%' }}>
+			<Form noValidate autoComplete='off'>
 				<Stack spacing='4'>
 					<FormInput
 						isRequired
@@ -81,7 +82,7 @@ const FormBody = ({
 						tooltip='Private Posts will only be visible to their creator'
 					/>
 				</Stack>
-			</form>
+			</Form>
 		</DrawerBody>
 	)
 }
@@ -99,3 +100,7 @@ FormBody.propTypes = {
 	privacy: PropTypes.string,
 	setPostData: PropTypes.func,
 }
+
+const Form = styled.form`
+	width: 100%;
+`

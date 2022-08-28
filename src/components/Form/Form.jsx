@@ -181,6 +181,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 			<Button
 				ref={btnRef}
 				display={{ sm: 'none', md: 'flex', lg: 'flex', xl: 'flex' }}
+				size='sm'
 				onClick={handleCreatePost}
 			>
 				Create Post
