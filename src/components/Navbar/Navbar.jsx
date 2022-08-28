@@ -153,6 +153,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 						<Button
 							boxShadow={() => getThemeColor()}
 							data-cy='navbar-login-button'
+							size='sm'
 							variant='solid'
 						>
 							Login
