@@ -55,8 +55,10 @@ const Paginate = ({ page }) => {
 									key={page}
 									_current={{
 										bg: () => `${getThemeColor()}.700`,
+										color: () => `${getThemeColor()}.100`,
 									}}
-									bg={() => `${getThemeColor()}.200`}
+									bg='primary_100_900'
+									color='primary_900_100'
 									h={8}
 									page={page}
 									w={8}

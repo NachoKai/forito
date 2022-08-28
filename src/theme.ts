@@ -73,6 +73,10 @@ const semanticTokens = {
 			default: 'primary.100',
 			_dark: 'primary.900',
 		},
+		primary_900_100: {
+			default: 'primary.900',
+			_dark: 'primary.100',
+		},
 		red_500_200: {
 			default: 'red.500',
 			_dark: 'red.200',
