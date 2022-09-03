@@ -1,15 +1,17 @@
 import { Text } from '@chakra-ui/react'
+import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 const Comment = ({ comment }) => {
 	return (
-		<Text>
+		<Container>
 			<Link to={`/creator/${comment?.userId}`}>
 				<strong>{comment?.name}: </strong>
 			</Link>
-			{comment?.comment}
-		</Text>
+			<Linkify tagName='span'>{comment?.comment}</Linkify>
+		</Container>
 	)
 }
 
@@ -23,3 +25,11 @@ Comment.propTypes = {
 		comment: PropTypes.string,
 	}),
 }
+
+const Container = styled(Text)`
+	span a {
+		text-decoration: underline;
+    &:hover {
+      font-weight: bold;
+	}
+`
