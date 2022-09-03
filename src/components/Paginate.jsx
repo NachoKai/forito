@@ -19,6 +19,7 @@ const Paginate = ({ page }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const { count, numberOfPages } = useSelector(state => state.posts)
+	const POSTS_LIMIT = 6
 
 	const { pages, currentPage, setCurrentPage } = usePagination({
 		total: count,
@@ -27,7 +28,7 @@ const Paginate = ({ page }) => {
 			inner: 2,
 		},
 		initialState: {
-			pageSize: 8,
+			pageSize: POSTS_LIMIT,
 			currentPage: 1,
 		},
 	})
