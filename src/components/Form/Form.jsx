@@ -30,11 +30,11 @@ const initialState = {
 }
 
 const Form = ({ isOpen, onOpen, onClose }) => {
+	const dispatch = useDispatch()
+	const navigate = useNavigate()
 	const currentId = useSelector(state => state.posts.currentId)
 	const btnRef = useRef()
-	const dispatch = useDispatch()
 	const user = getUserLocalStorage()
-	const navigate = useNavigate()
 	const [postData, setPostData] = useState(initialState)
 	const [images, setImages] = useState([])
 	const isSubmitDisabled =
@@ -201,7 +201,7 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 				size='md'
 				onClose={onClose}
 			>
-				<DrawerOverlay />
+				<DrawerOverlay backdropFilter='blur(10px)' bg='blackAlpha.300' />
 				<DrawerContent bg='primary_100_900'>
 					<DrawerCloseButton />
 					<FormHeader currentId={currentId} />

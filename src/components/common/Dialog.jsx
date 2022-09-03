@@ -22,7 +22,7 @@ const Dialog = ({ title, message, button, action, isDialogOpen, setIsDialogOpen 
 
 	return (
 		<AlertDialog isOpen={isDialogOpen} leastDestructiveRef={cancelRef} onClose={onCancel}>
-			<AlertDialogOverlay>
+			<AlertDialogOverlay backdropFilter='blur(10px)' bg='blackAlpha.300'>
 				<AlertDialogContent>
 					<AlertDialogHeader fontSize='lg' fontWeight='bold'>
 						{title}
