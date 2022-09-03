@@ -369,6 +369,7 @@ Post.propTypes = {
 }
 
 const Message = styled(Text)`
+  white-space: pre-wrap;
 	span a {
 		text-decoration: underline;
     &:hover {
