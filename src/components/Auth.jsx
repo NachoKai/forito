@@ -6,6 +6,7 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { AUTH, login, signup } from '../redux/auth'
+import { hideLoading, showLoading } from '../redux/loading'
 import { checkEmpty } from '../utils/checkEmpty.ts'
 import getThemeColor from '../utils/getThemeColor.ts'
 import showError from '../utils/showError.ts'
@@ -39,12 +40,15 @@ const Auth = () => {
 			const token = res?.tokenId
 
 			try {
+				dispatch(showLoading())
 				dispatch({ type: AUTH, data: { result, token } })
 				navigate('/')
 				navigate('/posts')
 			} catch (err) {
 				showError('Something went wrong when trying to log in. Please try again.')
 				console.error(err)
+			} finally {
+				dispatch(hideLoading())
 			}
 		},
 		[dispatch, navigate]
@@ -57,9 +61,18 @@ const Auth = () => {
 
 	const handleSubmit = useCallback(
 		e => {
-			e.preventDefault()
-			if (isSignup) dispatch(signup(formData, navigate))
-			else dispatch(login(formData, navigate))
+			try {
+				e.preventDefault()
+				dispatch(showLoading())
+				if (isSignup) dispatch(signup(formData, navigate))
+				else dispatch(login(formData, navigate))
+			} catch (error) {
+				showError('Something went wrong when trying to log in. Please try again.')
+				console.error(error)
+				throw error
+			} finally {
+				dispatch(hideLoading())
+			}
 		},
 		[dispatch, formData, navigate, isSignup]
 	)
