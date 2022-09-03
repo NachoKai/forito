@@ -25,7 +25,6 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { useDispatch } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
 
 import { deletePost, likePost, savePost, setCurrentId } from '../redux/posts'
 import checkIsAdmin from '../utils/checkIsAdmin.ts'
@@ -166,14 +165,14 @@ const Post = ({
 								</Stack>
 							</Stack>
 
-							<Message
+							<Text
 								fontSize='md'
 								m={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 								noOfLines={[4, 6, 8, 10]}
 								whiteSpace='pre-wrap'
 							>
 								<Linkify tagName='span'>{message}</Linkify>
-							</Message>
+							</Text>
 						</Stack>
 
 						<Stack direction='column' spacing='4'>
@@ -367,12 +366,3 @@ Post.propTypes = {
 		comments: PropTypes.arrayOf(PropTypes.object),
 	}),
 }
-
-const Message = styled(Text)`
-  white-space: pre-wrap;
-	span a {
-		text-decoration: underline;
-    &:hover {
-      font-weight: bold;
-	}
-`

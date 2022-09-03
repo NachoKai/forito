@@ -13,6 +13,7 @@ import {
 } from '@chakra-ui/react'
 import { formatDistance } from 'date-fns'
 import { motion, useScroll } from 'framer-motion'
+import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect } from 'react'
 import { FaSearch, FaTwitter } from 'react-icons/fa'
@@ -106,7 +107,7 @@ const PostDetails = ({ user }) => {
 						</Stack>
 
 						<Text data-cy='post-details-message' fontSize='lg' whiteSpace='pre-wrap'>
-							{post?.message}
+							<Linkify tagName='span'>{post?.message}</Linkify>
 						</Text>
 					</Stack>
 
