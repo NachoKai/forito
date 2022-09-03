@@ -27,6 +27,7 @@ Comment.propTypes = {
 }
 
 const Container = styled(Text)`
+  white-space: pre-wrap;
 	span a {
 		text-decoration: underline;
     &:hover {
