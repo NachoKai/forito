@@ -17,6 +17,7 @@ import {
 	useColorModeValue,
 } from '@chakra-ui/react'
 import { format, formatDistance, isValid } from 'date-fns'
+import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
 import { memo, useCallback, useState } from 'react'
 import { FaBookmark, FaEraser, FaPen, FaRegBookmark, FaRegComments } from 'react-icons/fa'
@@ -24,6 +25,7 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { useDispatch } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import styled from 'styled-components'
 
 import { deletePost, likePost, savePost, setCurrentId } from '../redux/posts'
 import checkIsAdmin from '../utils/checkIsAdmin.ts'
@@ -164,14 +166,14 @@ const Post = ({
 								</Stack>
 							</Stack>
 
-							<Text
+							<Message
 								fontSize='md'
 								m={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 								noOfLines={[4, 6, 8, 10]}
 								whiteSpace='pre-wrap'
 							>
-								{message}
-							</Text>
+								<Linkify tagName='span'>{message}</Linkify>
+							</Message>
 						</Stack>
 
 						<Stack direction='column' spacing='4'>
@@ -365,3 +367,11 @@ Post.propTypes = {
 		comments: PropTypes.arrayOf(PropTypes.object),
 	}),
 }
+
+const Message = styled(Text)`
+	span a {
+		text-decoration: underline;
+    &:hover {
+      font-weight: bold;
+	}
+`
