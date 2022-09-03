@@ -16,8 +16,8 @@ import { getPosts } from '../redux/posts'
 import getThemeColor from '../utils/getThemeColor.ts'
 
 const Paginate = ({ page }) => {
-	const navigate = useNavigate()
 	const dispatch = useDispatch()
+	const navigate = useNavigate()
 	const { count, numberOfPages } = useSelector(state => state.posts)
 
 	const { pages, currentPage, setCurrentPage } = usePagination({

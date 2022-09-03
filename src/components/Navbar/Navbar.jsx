@@ -31,9 +31,9 @@ import ColorPicker from './ColorPicker'
 import SearchNavbar from './SearchNavbar'
 
 const Navbar = ({ isOpen, onOpen, onClose }) => {
-	const location = useLocation()
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	const location = useLocation()
 	const [user, setUser] = useState(() => getUserLocalStorage())
 	const userId = user?.result?.googleId || user?.result?._id
 	const { colorMode, toggleColorMode } = useColorMode()
