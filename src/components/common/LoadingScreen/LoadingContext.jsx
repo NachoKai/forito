@@ -1,13 +1,13 @@
-import { createContext, useCallback, useState } from 'react'
 import PropTypes from 'prop-types'
+import { createContext, useState } from 'react'
 
 export const LoadingContext = createContext()
 
 export function LoadingContextProvider({ children }) {
 	const [isLoading, setLoading] = useState(false)
 
-	const showLoading = useCallback(() => setLoading(true), [])
-	const hideLoading = useCallback(() => setLoading(false), [])
+	const showLoading = () => setLoading(true)
+	const hideLoading = () => setLoading(false)
 
 	return (
 		<LoadingContext.Provider

@@ -1,12 +1,11 @@
 import { Button, Flex, Stack, Text } from '@chakra-ui/react'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { GoogleLogin } from 'react-google-login'
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa'
 import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { AUTH, login, signup } from '../redux/auth'
-import { hideLoading, showLoading } from '../redux/loading'
 import { checkEmpty } from '../utils/checkEmpty.ts'
 import getThemeColor from '../utils/getThemeColor.ts'
 import showError from '../utils/showError.ts'
@@ -34,60 +33,41 @@ const Auth = () => {
 		  checkEmpty(formData?.confirmPassword)
 		: checkEmpty(formData?.email) && checkEmpty(formData?.password))
 
-	const onSuccess = useCallback(
-		async res => {
-			const result = res?.profileObj
-			const token = res?.tokenId
+	const onSuccess = res => {
+		const result = res?.profileObj
+		const token = res?.tokenId
 
-			try {
-				dispatch(showLoading())
-				dispatch({ type: AUTH, data: { result, token } })
-				navigate('/')
-				navigate('/posts')
-			} catch (err) {
-				showError('Something went wrong when trying to log in. Please try again.')
-				console.error(err)
-			} finally {
-				dispatch(hideLoading())
-			}
-		},
-		[dispatch, navigate]
-	)
+		try {
+			dispatch({ type: AUTH, data: { result, token } })
+			navigate('/')
+		} catch (err) {
+			showError('Something went wrong when trying to log in. Please try again.')
+			console.error(err)
+		}
+	}
 
-	const onFailure = useCallback(res => {
+	const onFailure = res => {
 		showError('Something went wrong when trying to log in. Please try again.')
 		console.error('Google login was unsuccessful: ', res)
-	}, [])
+	}
 
-	const handleSubmit = useCallback(
-		e => {
-			try {
-				e.preventDefault()
-				dispatch(showLoading())
-				if (isSignup) dispatch(signup(formData, navigate))
-				else dispatch(login(formData, navigate))
-			} catch (error) {
-				showError('Something went wrong when trying to log in. Please try again.')
-				console.error(error)
-				throw error
-			} finally {
-				dispatch(hideLoading())
-			}
-		},
-		[dispatch, formData, navigate, isSignup]
-	)
+	const handleSubmit = e => {
+		try {
+			e.preventDefault()
+			if (isSignup) dispatch(signup(formData, navigate))
+			else dispatch(login(formData, navigate))
+		} catch (error) {
+			showError('Something went wrong when trying to log in. Please try again.')
+			console.error(error)
+			throw error
+		}
+	}
 
-	const handleChange = useCallback(
-		e => setFormData({ ...formData, [e.target.name]: e.target.value }),
-		[formData]
-	)
+	const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
 
 	const handleSwitch = () => setIsSignup(prevIsSignup => !prevIsSignup)
 
-	const handleShowPassword = useCallback(
-		() => setShowPassword(!showPassword),
-		[showPassword]
-	)
+	const handleShowPassword = () => setShowPassword(!showPassword)
 
 	return (
 		<Stack
