@@ -12,7 +12,7 @@ import Loading from './Loading'
 import Post from './Post'
 
 const Posts = ({ onOpen }) => {
-	const { posts, isLoading } = useSelector(state => state.posts)
+	const { posts, loading } = useSelector(state => state.posts)
 	const havePosts = posts?.length > 0
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
@@ -28,7 +28,7 @@ const Posts = ({ onOpen }) => {
 
 	return (
 		<Flex flexGrow minHeight='100vh' w='100%'>
-			{isLoading ? (
+			{loading ? (
 				<StaggeredSlideFade
 					minHeight='100vh'
 					spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}

@@ -73,7 +73,7 @@ export const cleanUp = () => ({ type: CLEAN_UP })
 const initialState = {
 	authData: null,
 	user: null,
-	isLoading: true,
+	loading: true,
 }
 
 export const authReducer = (state = initialState, action) => {
@@ -94,9 +94,9 @@ export const authReducer = (state = initialState, action) => {
 		case FETCH_USER:
 			return { ...state, user: data.user }
 		case START_LOADING:
-			return { ...state, isLoading: true }
+			return { ...state, loading: true }
 		case END_LOADING:
-			return { ...state, isLoading: false }
+			return { ...state, loading: false }
 		default:
 			return state
 	}

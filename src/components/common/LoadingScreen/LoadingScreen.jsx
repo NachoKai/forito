@@ -5,15 +5,15 @@ import getThemeColor from '../../../utils/getThemeColor.ts'
 import { LoadingContext } from './LoadingContext'
 
 const LoadingScreen = () => {
-	const { isLoading } = useContext(LoadingContext)
+	const { loading } = useContext(LoadingContext)
 	const { colorMode } = useColorMode()
 	const loadingRef = useRef(null)
 
 	useEffect(() => {
-		if (isLoading) loadingRef.current.focus()
-	}, [isLoading])
+		if (loading) loadingRef.current.focus()
+	}, [loading])
 
-	return isLoading ? (
+	return loading ? (
 		<div
 			ref={loadingRef}
 			className={

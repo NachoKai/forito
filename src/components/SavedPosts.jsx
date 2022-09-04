@@ -16,7 +16,7 @@ import Post from './Post'
 const SavedPosts = () => {
 	const dispatch = useDispatch()
 	const { id } = useParams()
-	const { posts, isLoading } = useSelector(state => state.posts)
+	const { posts, loading } = useSelector(state => state.posts)
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const userId = user?.result?.googleId || user?.result?._id
@@ -35,7 +35,7 @@ const SavedPosts = () => {
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [])
 
-	if ((!publicPosts?.length && !isLoading) || userId !== id) {
+	if ((!publicPosts?.length && !loading) || userId !== id) {
 		return (
 			<StaggeredSlideFade
 				align='center'
@@ -84,7 +84,7 @@ const SavedPosts = () => {
 
 			<Divider />
 
-			{isLoading ? (
+			{loading ? (
 				<Loading />
 			) : (
 				<StaggeredSlideFade spacing='3'>

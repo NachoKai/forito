@@ -16,7 +16,7 @@ import Post from './Post'
 const Tags = () => {
 	const dispatch = useDispatch()
 	const { name } = useParams()
-	const { posts, isLoading } = useSelector(state => state.posts)
+	const { posts, loading } = useSelector(state => state.posts)
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const isAdmin = checkIsAdmin(userEmail)
@@ -33,7 +33,7 @@ const Tags = () => {
 		dispatch(getPostsBySearch({ tags: name }))
 	}, [dispatch, name])
 
-	if (!publicPosts.length && !isLoading) {
+	if (!publicPosts.length && !loading) {
 		return (
 			<Flex align='center' direction='column' h='100%' marginY='64px' minHeight='100vh'>
 				<Text color='primary.400' fontSize='6xl' marginBottom='16px'>
@@ -63,7 +63,7 @@ const Tags = () => {
 			<Stack spacing='2'>
 				<Text fontSize='2xl'>#{name?.toUpperCase()}</Text>
 				<Text fontSize='md'>
-					{!isLoading && posts?.length
+					{!loading && posts?.length
 						? posts.length !== 1
 							? `${posts.length} Posts`
 							: `${posts.length} Post`
@@ -73,7 +73,7 @@ const Tags = () => {
 
 			<Divider />
 
-			{isLoading ? (
+			{loading ? (
 				<Loading />
 			) : (
 				<StaggeredSlideFade spacing='3'>

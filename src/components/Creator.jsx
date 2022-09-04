@@ -14,7 +14,7 @@ import Post from './Post'
 const Creator = () => {
 	const dispatch = useDispatch()
 	const { id } = useParams()
-	const { posts, isLoading } = useSelector(state => state.posts)
+	const { posts, loading } = useSelector(state => state.posts)
 	const { user } = useSelector(state => state.auth)
 
 	useEffect(() => {
@@ -22,7 +22,7 @@ const Creator = () => {
 		dispatch(getUser(id))
 	}, [dispatch, id])
 
-	if (!posts?.length && !isLoading) {
+	if (!posts?.length && !loading) {
 		return (
 			<StaggeredSlideFade
 				align='center'
@@ -63,7 +63,7 @@ const Creator = () => {
 			<Stack spacing='2'>
 				<Text fontSize='2xl'>{user?.name || ''}</Text>
 				<Text fontSize='md'>
-					{!isLoading && posts?.length
+					{!loading && posts?.length
 						? posts.length !== 1
 							? `${posts.length} Posts`
 							: `${posts.length} Post`
@@ -73,7 +73,7 @@ const Creator = () => {
 
 			<Divider />
 
-			{isLoading ? (
+			{loading ? (
 				<Loading />
 			) : (
 				<StaggeredSlideFade spacing='3'>

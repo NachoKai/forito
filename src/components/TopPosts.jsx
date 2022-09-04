@@ -11,7 +11,7 @@ import Post from './Post'
 
 const TopPosts = () => {
 	const dispatch = useDispatch()
-	const { posts, isLoading } = useSelector(state => state.posts)
+	const { posts, loading } = useSelector(state => state.posts)
 	const havePosts = posts?.length > 0
 
 	const getTopPosts = max => {
@@ -49,7 +49,7 @@ const TopPosts = () => {
 				Top Posts
 			</Heading>
 
-			{isLoading ? (
+			{loading ? (
 				<Stack
 					minHeight='100vh'
 					spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
