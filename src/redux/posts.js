@@ -239,7 +239,7 @@ export const getSavedPosts = id => async dispatch => {
 
 const initialState = {
 	posts: [],
-	isLoading: true,
+	loading: true,
 	currentId: null,
 }
 
@@ -250,9 +250,9 @@ export const postsReducer = (state = initialState, action) => {
 		case CLEAN_UP:
 			return initialState
 		case START_LOADING:
-			return { ...state, isLoading: true }
+			return { ...state, loading: true }
 		case END_LOADING:
-			return { ...state, isLoading: false }
+			return { ...state, loading: false }
 		case FETCH_ALL_POSTS:
 			return {
 				...state,
