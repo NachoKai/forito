@@ -84,9 +84,10 @@ input[type="file"] {
   cursor: progress;
 }
 
-span a {
+article a {
   text-decoration: underline;
 }
-span a:hover {
+
+article a:hover {
   font-weight: bold;
 }
