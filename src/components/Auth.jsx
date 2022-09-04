@@ -24,7 +24,6 @@ const Auth = () => {
 	const navigate = useNavigate()
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
 	const [isSignup, setIsSignup] = useState(false)
-	const [loading, setLoading] = useState(false)
 	const [formData, setFormData] = useState(initialState)
 	const [showPassword, setShowPassword] = useState(false)
 	const isSubmitDisabled = !(isSignup
@@ -161,13 +160,8 @@ const Auth = () => {
 							boxShadow={() => getThemeColor()}
 							data-cy='auth-login-signup-button'
 							disabled={isSubmitDisabled}
-							isLoading={loading}
-							loadingText='Loading...'
 							type='submit'
 							variant='solid'
-							onClick={() => {
-								setLoading(true)
-							}}
 						>
 							{isSignup ? 'Sign Up' : 'Login'}
 						</Button>
