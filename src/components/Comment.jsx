@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 const Comment = ({ comment }) => {
 	return (
-		<Text h='100%' whiteSpace='pre-wrap'>
+		<Text whiteSpace='pre-wrap'>
 			<Link to={`/creator/${comment?.userId}`}>
 				<strong>{comment?.name}: </strong>
 			</Link>
