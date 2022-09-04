@@ -1,6 +1,6 @@
 import React from 'react'
 
-import SearchNavbar from '../components/SearchNavbar'
+import SearchNavbar from '../components/Navbar/SearchNavbar'
 import { render, screen } from './test-utils'
 
 describe('SearchNavbar', () => {
