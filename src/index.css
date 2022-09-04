@@ -84,10 +84,10 @@ input[type="file"] {
   cursor: progress;
 }
 
-article a {
+p a {
   text-decoration: underline;
 }
 
-article a:hover {
+p a:hover {
   font-weight: bold;
 }

@@ -107,7 +107,7 @@ const PostDetails = ({ user }) => {
 						</Stack>
 
 						<Text data-cy='post-details-message' fontSize='lg' whiteSpace='pre-wrap'>
-							<Linkify tagName='article'>{post?.message}</Linkify>
+							<Linkify>{post?.message}</Linkify>
 						</Text>
 					</Stack>
 

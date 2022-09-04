@@ -142,9 +142,7 @@ const Post = ({
 
 							<Stack direction='row' justify='space-between' w='100%'>
 								<Stack align='center' direction='row'>
-									<Text fontSize='sm' fontWeight='bold'>
-										<Link to={`/creator/${creator}`}>{` ${name}`}</Link>
-									</Text>
+									<Link to={`/creator/${creator}`}>{` ${name}`}</Link>
 									<span>•</span>
 									<Tooltip
 										hasArrow
@@ -155,12 +153,10 @@ const Post = ({
 										openDelay={200}
 										placement='top'
 									>
-										<Text fontSize='sm'>
-											{formatDistance(
-												new Date(),
-												createdAt ? new Date(createdAt) : new Date()
-											) + ' ago'}
-										</Text>
+										{formatDistance(
+											new Date(),
+											createdAt ? new Date(createdAt) : new Date()
+										) + ' ago'}
 									</Tooltip>
 								</Stack>
 							</Stack>
@@ -171,7 +167,7 @@ const Post = ({
 								noOfLines={[4, 6, 8, 10]}
 								whiteSpace='pre-wrap'
 							>
-								<Linkify tagName='article'>{message}</Linkify>
+								<Linkify>{message}</Linkify>
 							</Text>
 						</Stack>
 

@@ -9,7 +9,7 @@ const Comment = ({ comment }) => {
 			<Link to={`/creator/${comment?.userId}`}>
 				<strong>{comment?.name}: </strong>
 			</Link>
-			<Linkify tagName='article'>{comment?.comment}</Linkify>
+			<Linkify>{comment?.comment}</Linkify>
 		</Text>
 	)
 }
