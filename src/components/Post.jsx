@@ -171,7 +171,7 @@ const Post = ({
 								noOfLines={[4, 6, 8, 10]}
 								whiteSpace='pre-wrap'
 							>
-								<Linkify tagName='span'>{message}</Linkify>
+								<Linkify tagName='article'>{message}</Linkify>
 							</Text>
 						</Stack>
 
