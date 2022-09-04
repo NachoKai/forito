@@ -142,7 +142,9 @@ const Post = ({
 
 							<Stack direction='row' justify='space-between' w='100%'>
 								<Stack align='center' direction='row'>
-									<Link to={`/creator/${creator}`}>{` ${name}`}</Link>
+									<Text fontSize='sm' fontWeight='bold'>
+										<Link to={`/creator/${creator}`}>{` ${name}`}</Link>
+									</Text>
 									<span>•</span>
 									<Tooltip
 										hasArrow
@@ -153,10 +155,12 @@ const Post = ({
 										openDelay={200}
 										placement='top'
 									>
-										{formatDistance(
-											new Date(),
-											createdAt ? new Date(createdAt) : new Date()
-										) + ' ago'}
+										<Text fontSize='sm'>
+											{formatDistance(
+												new Date(),
+												createdAt ? new Date(createdAt) : new Date()
+											) + ' ago'}
+										</Text>
 									</Tooltip>
 								</Stack>
 							</Stack>
