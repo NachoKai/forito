@@ -11,7 +11,7 @@ import {
 	Text,
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -30,7 +30,7 @@ const Search = () => {
 	const location = useLocation()
 	const ENTER_KEYCODE = 13
 
-	const searchPost = useCallback(() => {
+	const searchPost = () => {
 		if (searchValue.trim() || searchTags) {
 			setSearchValue('')
 			setSearchTags([])
@@ -43,19 +43,14 @@ const Search = () => {
 		} else {
 			navigate('/')
 		}
-	}, [dispatch, location, navigate, searchTags, searchValue])
+	}
 
 	const handleKeyPress = e => e?.keyCode === ENTER_KEYCODE && searchPost()
 
-	const handleAddTag = useCallback(
-		tag => setSearchTags([...searchTags, tag]),
-		[searchTags]
-	)
+	const handleAddTag = tag => setSearchTags([...searchTags, tag])
 
-	const handleDeleteTag = useCallback(
-		tagToDelete => setSearchTags(searchTags.filter(tag => tag !== tagToDelete)),
-		[searchTags]
-	)
+	const handleDeleteTag = tagToDelete =>
+		setSearchTags(searchTags.filter(tag => tag !== tagToDelete))
 
 	return (
 		<Accordion
@@ -126,12 +121,9 @@ const TagsContainer = styled(Flex)`
 	border-radius: 8px;
 `
 const ChipInput = ({ tags, setTags }) => {
-	const handleTagsChange = useCallback(
-		(event, tags) => {
-			setTags(tags)
-		},
-		[setTags]
-	)
+	const handleTagsChange = (event, tags) => {
+		setTags(tags)
+	}
 
 	return (
 		<Container py={2}>

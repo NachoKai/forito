@@ -19,7 +19,7 @@ import {
 import { format, formatDistance, isValid } from 'date-fns'
 import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
-import { memo, useCallback, useState } from 'react'
+import { memo, useState } from 'react'
 import { FaBookmark, FaEraser, FaPen, FaRegBookmark, FaRegComments } from 'react-icons/fa'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
@@ -70,29 +70,26 @@ const Post = ({
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
 
-	const handleLike = useCallback(async () => {
+	const handleLike = async () => {
 		await setLikeLoading(true)
 		await dispatch(likePost(_id))
 		await setLikeLoading(false)
-	}, [_id, dispatch])
+	}
 
-	const handleSave = useCallback(async () => {
+	const handleSave = async () => {
 		await setSaveLoading(true)
 		await dispatch(savePost(_id))
 		await setSaveLoading(false)
-	}, [_id, dispatch])
+	}
 
-	const openPost = useCallback(() => navigate(`/posts/${_id}`), [_id, navigate])
+	const openPost = () => navigate(`/posts/${_id}`)
 
-	const openComments = useCallback(
-		() => navigate(`/posts/${_id}#comments`),
-		[_id, navigate]
-	)
+	const openComments = () => navigate(`/posts/${_id}#comments`)
 
-	const handleEdit = useCallback(() => {
+	const handleEdit = () => {
 		onOpen()
 		dispatch(setCurrentId(_id))
-	}, [_id, dispatch, onOpen])
+	}
 
 	return (
 		<>

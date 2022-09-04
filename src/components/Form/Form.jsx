@@ -48,46 +48,40 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 	)
 	const [privacy, setPrivacy] = useState(post?.privacy)
 
-	const onImageUpload = useCallback(
-		async imageList => {
-			try {
-				dispatch(showLoading())
-				setImages(imageList)
+	const onImageUpload = async imageList => {
+		try {
+			dispatch(showLoading())
+			setImages(imageList)
 
-				const imageFile = imageList?.[0]?.file
-				const imageName = imageFile ? imageFile.name : ''
-				const storageRef = firebaseApp.storage().ref()
-				const imagePath = storageRef.child(imageFile?.name)
+			const imageFile = imageList?.[0]?.file
+			const imageName = imageFile ? imageFile.name : ''
+			const storageRef = firebaseApp.storage().ref()
+			const imagePath = storageRef.child(imageFile?.name)
 
-				await imagePath.put(imageFile)
-				const imageURL = imagePath ? await imagePath.getDownloadURL() : ''
+			await imagePath.put(imageFile)
+			const imageURL = imagePath ? await imagePath.getDownloadURL() : ''
 
-				setPostData({
-					...postData,
-					selectedFile: {
-						url: imageURL,
-						name: imageName,
-						id: postData?.selectedFile?.id ? postData?.selectedFile?.id : uuid(),
-					},
-				})
-			} catch (error) {
-				showError('Something went wrong when trying to upload image. Please try again.')
-				console.error(error)
-				throw error
-			} finally {
-				dispatch(hideLoading())
-			}
-		},
-		[dispatch, postData]
-	)
+			setPostData({
+				...postData,
+				selectedFile: {
+					url: imageURL,
+					name: imageName,
+					id: postData?.selectedFile?.id ? postData?.selectedFile?.id : uuid(),
+				},
+			})
+		} catch (error) {
+			showError('Something went wrong when trying to upload image. Please try again.')
+			console.error(error)
+			throw error
+		} finally {
+			dispatch(hideLoading())
+		}
+	}
 
-	const handlePrivacy = useCallback(
-		privacy => {
-			setPostData({ ...postData, privacy })
-			setPrivacy(privacy)
-		},
-		[postData]
-	)
+	const handlePrivacy = privacy => {
+		setPostData({ ...postData, privacy })
+		setPrivacy(privacy)
+	}
 
 	const handleClear = useCallback(() => {
 		dispatch(setCurrentId(null))
@@ -96,63 +90,57 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 		setPostData(initialState)
 	}, [dispatch])
 
-	const handleSubmit = useCallback(
-		async e => {
-			e.preventDefault()
+	const handleSubmit = async e => {
+		e.preventDefault()
 
-			try {
-				dispatch(showLoading())
+		try {
+			dispatch(showLoading())
 
-				if (postData?.selectedFile?.id) {
-					const imageCollectionRef = firebaseApp.firestore().collection('images')
+			if (postData?.selectedFile?.id) {
+				const imageCollectionRef = firebaseApp.firestore().collection('images')
 
-					await imageCollectionRef.doc(postData?.selectedFile?.id).set({
-						url: postData?.selectedFile?.url,
-						name: postData?.selectedFile?.name,
-						id: postData?.selectedFile?.id,
-					})
-				}
+				await imageCollectionRef.doc(postData?.selectedFile?.id).set({
+					url: postData?.selectedFile?.url,
+					name: postData?.selectedFile?.name,
+					id: postData?.selectedFile?.id,
+				})
+			}
 
-				if (currentId === null) {
-					dispatch(
-						createPost(
-							{
-								...postData,
-								name: user?.result?.name,
-							},
-							navigate
-						)
-					)
-				} else {
-					dispatch(
-						updatePost(currentId, {
+			if (currentId === null) {
+				dispatch(
+					createPost(
+						{
 							...postData,
 							name: user?.result?.name,
-						})
+						},
+						navigate
 					)
-				}
-				handleClear()
-				onClose()
-			} catch (error) {
-				showError('Something went wrong when trying to submit Post. Please try again.')
-				console.error(error)
-				throw error
-			} finally {
-				dispatch(hideLoading())
+				)
+			} else {
+				dispatch(
+					updatePost(currentId, {
+						...postData,
+						name: user?.result?.name,
+					})
+				)
 			}
-		},
-		[currentId, dispatch, handleClear, navigate, onClose, postData, user?.result?.name]
-	)
+			handleClear()
+			onClose()
+		} catch (error) {
+			showError('Something went wrong when trying to submit Post. Please try again.')
+			console.error(error)
+			throw error
+		} finally {
+			dispatch(hideLoading())
+		}
+	}
 
-	const handleChange = useCallback(
-		e => setPostData({ ...postData, [e.target.name]: e.target.value }),
-		[postData]
-	)
+	const handleChange = e => setPostData({ ...postData, [e.target.name]: e.target.value })
 
-	const handleCreatePost = useCallback(() => {
+	const handleCreatePost = () => {
 		handleClear()
 		onOpen()
-	}, [handleClear, onOpen])
+	}
 
 	const handleRemoveImage = () => {
 		setPostData({

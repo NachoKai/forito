@@ -15,7 +15,7 @@ import { formatDistance } from 'date-fns'
 import { motion, useScroll } from 'framer-motion'
 import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
-import { useCallback, useEffect } from 'react'
+import { useEffect } from 'react'
 import { FaSearch, FaTwitter } from 'react-icons/fa'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { useDispatch, useSelector } from 'react-redux'
@@ -48,7 +48,7 @@ const PostDetails = ({ user }) => {
 		? 'http://localhost:3000/posts'
 		: 'https://forito.vercel.app/posts'
 
-	const openPost = useCallback(_id => navigate(`/posts/${_id}`), [navigate])
+	const openPost = _id => navigate(`/posts/${_id}`)
 
 	const shareOnTwitter = () => {
 		const url = `${baseURL}/${id}`

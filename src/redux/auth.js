@@ -28,7 +28,6 @@ export const logout = navigate => async dispatch => {
 		dispatch({ type: LOGOUT })
 		navigate('/')
 		navigate(0)
-		navigate('/auth')
 	} catch (err) {
 		showError('Something went wrong when trying to log out. Please try again.')
 		console.error(err)
