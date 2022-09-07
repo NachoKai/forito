@@ -56,7 +56,7 @@ const Search = () => {
 		<Accordion
 			allowToggle
 			bg='primary_100_900'
-			borderRadius='lg'
+			borderRadius='24px'
 			boxShadow='md'
 			maxW={{ sm: '100vw', md: '100vw', lg: '322px', xl: '322px' }}
 			minWidth='320px'

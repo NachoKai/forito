@@ -46,7 +46,7 @@ const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData }) => 
 					{(!postData?.selectedFile?.url || !images.length) && (
 						<Stack
 							borderColor={isDragging ? 'gray_700_200' : 'primary_600_100'}
-							borderRadius='lg'
+							borderRadius='24px'
 							borderStyle='dashed'
 							borderWidth='2px'
 						>

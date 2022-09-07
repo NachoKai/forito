@@ -75,7 +75,7 @@ const PostDetails = ({ user }) => {
 
 	return post && showPost ? (
 		<Stack
-			borderRadius='lg'
+			borderRadius='24px'
 			display={showPost ? 'block' : 'none'}
 			px={{ sm: '6', md: '10', lg: '16', xl: '24' }}
 			py={{ sm: '6', md: '6', lg: '8', xl: '8' }}
@@ -220,7 +220,7 @@ const PostDetails = ({ user }) => {
 								<Stack
 									key={_id}
 									bg='primary_100_900'
-									borderRadius='lg'
+									borderRadius='24px'
 									boxShadow='md'
 									className='recommended-post'
 									color='primary_800_100'
@@ -255,7 +255,7 @@ const PostDetails = ({ user }) => {
 											<AspectRatio maxH='80vh' ratio={1} w='100%'>
 												<Image
 													alt={post?.title}
-													borderRadius='lg'
+													borderRadius='24px'
 													fallback={<Skeleton flexGrow='1' objectFit='cover' w='100%' />}
 													flexGrow='1'
 													objectFit='cover'

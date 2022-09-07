@@ -79,7 +79,7 @@ const Auth = () => {
 		>
 			<Stack
 				bg='primary_100_600'
-				borderRadius='lg'
+				borderRadius='24px'
 				maxWidth='450px'
 				minWidth='320px'
 				p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
