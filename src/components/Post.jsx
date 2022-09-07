@@ -96,7 +96,7 @@ const Post = ({
 			{showPost ? (
 				<Stack
 					bg='primary_100_900'
-					borderRadius='lg'
+					borderRadius='24px'
 					boxShadow='lg'
 					direction={{
 						sm: 'column-reverse',
@@ -316,7 +316,7 @@ const Post = ({
 						>
 							<Image
 								alt={title}
-								borderRadius='lg'
+								borderRadius='16px'
 								className='pointer'
 								fallback={<Skeleton flexGrow='1' />}
 								flexGrow='1'

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 const Loading = ({ height = '500px' }) => (
 	<Stack
 		bg='primary_100_900'
-		borderRadius='lg'
+		borderRadius='24px'
 		boxShadow='lg'
 		direction={{
 			sm: 'column-reverse',
@@ -26,7 +26,7 @@ const Loading = ({ height = '500px' }) => (
 			w='100%'
 		/>
 		<Skeleton
-			borderRadius='lg'
+			borderRadius='24px'
 			endColor='gray.200'
 			h={height}
 			startColor='gray.600'

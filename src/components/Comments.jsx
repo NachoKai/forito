@@ -47,7 +47,7 @@ const Comments = ({ user, postComments, postId }) => {
 				{user?.result?.name ? (
 					<Stack
 						bgGradient={CreateGradColor('primary', 100, 50, 900, 600, '135deg')}
-						borderRadius='lg'
+						borderRadius='24px'
 						boxShadow='md'
 						maxH='230px'
 						p={{ sm: '6', md: '8', lg: '8', xl: '8' }}

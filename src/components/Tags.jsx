@@ -54,7 +54,7 @@ const Tags = () => {
 
 	return (
 		<StaggeredSlideFade
-			borderRadius='lg'
+			borderRadius='24px'
 			h='100%'
 			minHeight='100vh'
 			p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
