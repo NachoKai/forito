@@ -6,32 +6,16 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { AUTH, login, signup } from '../redux/auth'
-import { checkEmpty } from '../utils/checkEmpty.ts'
 import getThemeColor from '../utils/getThemeColor.ts'
 import showError from '../utils/showError.ts'
 import FormInput from './common/FormInput'
-
-const initialState = {
-	firstName: '',
-	lastName: '',
-	email: '',
-	password: '',
-	confirmPassword: '',
-}
 
 const Auth = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
 	const [isSignup, setIsSignup] = useState(false)
-	const [formData, setFormData] = useState(initialState)
 	const [showPassword, setShowPassword] = useState(false)
-	const isSubmitDisabled = !(isSignup
-		? checkEmpty(formData?.firstName) &&
-		  checkEmpty(formData?.email) &&
-		  checkEmpty(formData?.password) &&
-		  checkEmpty(formData?.confirmPassword)
-		: checkEmpty(formData?.email) && checkEmpty(formData?.password))
 
 	const onSuccess = res => {
 		const result = res?.profileObj
@@ -54,8 +38,29 @@ const Auth = () => {
 	const handleSubmit = e => {
 		try {
 			e.preventDefault()
-			if (isSignup) dispatch(signup(formData, navigate))
-			else dispatch(login(formData, navigate))
+			if (isSignup)
+				dispatch(
+					signup(
+						{
+							firstName: e.target.firstName.value,
+							lastName: e.target.lastName.value,
+							email: e.target.email.value,
+							password: e.target.password.value,
+							confirmPassword: e.target.confirmPassword.value,
+						},
+						navigate
+					)
+				)
+			else
+				dispatch(
+					login(
+						{
+							email: e.target.email.value,
+							password: e.target.password.value,
+						},
+						navigate
+					)
+				)
 		} catch (error) {
 			showError('Something went wrong when trying to log in. Please try again.')
 			console.error(error)
@@ -63,10 +68,7 @@ const Auth = () => {
 		}
 	}
 
-	const handleChange = e => setFormData({ ...formData, [e.target.name]: e.target.value })
-
 	const handleSwitch = () => setIsSignup(prevIsSignup => !prevIsSignup)
-
 	const handleShowPassword = () => setShowPassword(!showPassword)
 
 	return (
@@ -101,16 +103,12 @@ const Auth = () => {
 									maxLength='25'
 									name='firstName'
 									tooltip='Required'
-									value={formData?.firstName}
-									onChange={handleChange}
 								/>
 								<FormInput
 									dataCy='auth-last-name'
 									label='Last Name'
 									maxLength='25'
 									name='lastName'
-									value={formData?.lastName}
-									onChange={handleChange}
 								/>
 							</Stack>
 						)}
@@ -122,8 +120,6 @@ const Auth = () => {
 							name='email'
 							tooltip='Required'
 							type='email'
-							value={formData?.email}
-							onChange={handleChange}
 						/>
 						<FormInput
 							isRequired
@@ -140,8 +136,6 @@ const Auth = () => {
 							}
 							tooltip='Required'
 							type={showPassword ? 'text' : 'password'}
-							value={formData?.password}
-							onChange={handleChange}
 						/>
 						{!!isSignup && (
 							<FormInput
@@ -152,14 +146,11 @@ const Auth = () => {
 								name='confirmPassword'
 								tooltip='Required'
 								type='password'
-								value={formData?.confirmPassword}
-								onChange={handleChange}
 							/>
 						)}
 						<Button
 							boxShadow={() => getThemeColor()}
 							data-cy='auth-login-signup-button'
-							disabled={isSubmitDisabled}
 							type='submit'
 							variant='solid'
 						>
