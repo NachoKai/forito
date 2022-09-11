@@ -31,17 +31,17 @@ const FormInput = ({
 					<FormLabel fontWeight='bold'>{label}</FormLabel>
 				</Tooltip>
 			) : (
-				!!label && <FormLabel fontWeight='bold'>{label}</FormLabel>
+				Boolean(label) && <FormLabel fontWeight='bold'>{label}</FormLabel>
 			)}
 		</Flex>
-		{!!validation && (
+		{Boolean(validation) && (
 			<FormHelperText color='red.400' fontWeight='bold' marginBottom='4px'>
 				{validation}
 			</FormHelperText>
 		)}
 		{child || (
 			<InputGroup>
-				{!!leftIcon && (
+				{Boolean(leftIcon) && (
 					<InputLeftElement color='gray.300' fontSize='1.2em'>
 						{leftIcon}
 					</InputLeftElement>
@@ -58,14 +58,14 @@ const FormInput = ({
 					variant='outline'
 					{...rest}
 				/>
-				{!!rightIcon && (
+				{Boolean(rightIcon) && (
 					<InputRightElement color='gray.300' fontSize='1.2em'>
 						{rightIcon}
 					</InputRightElement>
 				)}
 			</InputGroup>
 		)}
-		{!!helper && <FormHelperText>{helper}</FormHelperText>}
+		{Boolean(helper) && <FormHelperText>{helper}</FormHelperText>}
 	</FormControl>
 )
 

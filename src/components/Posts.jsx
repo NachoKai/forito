@@ -13,6 +13,7 @@ import Post from './Post'
 
 const Posts = ({ onOpen }) => {
 	const { posts, loading } = useSelector(state => state.posts)
+
 	const havePosts = posts?.length > 0
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email

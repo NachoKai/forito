@@ -89,7 +89,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 						direction='row'
 						spacing={{ sm: '4', md: '8', lg: '8', xl: '8' }}
 					>
-						{!!user?.result?.name && (
+						{Boolean(user?.result?.name) && (
 							<Popover
 								isLazy
 								closeOnBlur={true}

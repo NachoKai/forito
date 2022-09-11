@@ -42,7 +42,7 @@ const FormTextArea = ({
 				{...rest}
 			/>
 		)}
-		{!!helper && <FormHelperText>{helper}</FormHelperText>}
+		{Boolean(helper) && <FormHelperText>{helper}</FormHelperText>}
 	</FormControl>
 )
 

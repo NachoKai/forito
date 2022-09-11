@@ -211,7 +211,7 @@ const Post = ({
 									</Button>
 									<Button
 										disabled={!user?.result}
-										isLoading={!!likeLoading}
+										isLoading={Boolean(likeLoading)}
 										loadingText='Loading...'
 										minWidth='80px'
 										size='sm'
@@ -233,7 +233,7 @@ const Post = ({
 												<VisuallyHidden>More Options</VisuallyHidden>
 											</MenuButton>
 											<MenuList>
-												{!!userEmail && (
+												{Boolean(userEmail) && (
 													<MenuItem onClick={handleSave}>
 														<Stack align='center' direction='row' spacing='2'>
 															{hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
@@ -243,14 +243,14 @@ const Post = ({
 														</Stack>
 													</MenuItem>
 												)}
-												{!!(isPostCreator || isAdmin) && (
+												{Boolean(isPostCreator || isAdmin) && (
 													<MenuItem onClick={handleEdit}>
 														<Stack align='center' direction='row' spacing='2'>
 															<FaPen /> <Text fontWeight='bold'>Edit</Text>
 														</Stack>
 													</MenuItem>
 												)}
-												{!!(isPostCreator || isAdmin) && (
+												{Boolean(isPostCreator || isAdmin) && (
 													<MenuItem onClick={() => setIsDialogOpen(true)}>
 														<Stack align='center' direction='row' spacing='2'>
 															<FaEraser />
@@ -261,11 +261,11 @@ const Post = ({
 											</MenuList>
 										</Menu>
 									)}
-									{!!userEmail && (
+									{Boolean(userEmail) && (
 										<Button
 											disabled={!user?.result}
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
-											isLoading={!!saveLoading}
+											isLoading={Boolean(saveLoading)}
 											leftIcon={hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
 											loadingText='Loading...'
 											minWidth='88px'
@@ -283,7 +283,7 @@ const Post = ({
 									display={location?.pathname.includes('/posts') ? 'flex' : 'none'}
 									spacing='2'
 								>
-									{!!(isPostCreator || isAdmin) && (
+									{Boolean(isPostCreator || isAdmin) && (
 										<Button
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
 											leftIcon={<FaPen />}
@@ -295,7 +295,7 @@ const Post = ({
 											Edit
 										</Button>
 									)}
-									{!!(isPostCreator || isAdmin) && (
+									{Boolean(isPostCreator || isAdmin) && (
 										<Button
 											bg='red_500_200'
 											display={{
@@ -318,7 +318,7 @@ const Post = ({
 						</Stack>
 					</Stack>
 
-					{!!selectedFile?.url && (
+					{Boolean(selectedFile?.url) && (
 						<AspectRatio
 							maxH='80vh'
 							maxW={{ sm: '100%', md: '100%', lg: '100%', xl: '500px' }}
