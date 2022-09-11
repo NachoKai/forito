@@ -69,10 +69,10 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 					id: postData?.selectedFile?.id ? postData?.selectedFile?.id : uuid(),
 				},
 			})
-		} catch (error) {
+		} catch (err) {
 			showError('Something went wrong when trying to upload image. Please try again.')
-			console.error(error)
-			throw error
+			console.error(err)
+			throw err
 		} finally {
 			dispatch(hideLoading())
 		}
@@ -126,10 +126,10 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 			}
 			handleClear()
 			onClose()
-		} catch (error) {
+		} catch (err) {
 			showError('Something went wrong when trying to submit Post. Please try again.')
-			console.error(error)
-			throw error
+			console.error(err)
+			throw err
 		} finally {
 			dispatch(hideLoading())
 		}

@@ -8,6 +8,7 @@ import { addComment } from '../redux/posts'
 import { CreateGradColor } from '../theme.ts'
 import { checkEmpty } from '../utils/checkEmpty.ts'
 import getThemeColor from '../utils/getThemeColor.ts'
+import showError from '../utils/showError.ts'
 import Comment from './Comment'
 import FormTextArea from './common/FormTextArea'
 
@@ -19,12 +20,17 @@ const Comments = ({ user, postComments, postId }) => {
 	const [comment, setComment] = useState('')
 
 	const handleComment = async () => {
-		const commentContent = { userId, name: user?.result?.name, comment }
-		const newComments = await dispatch(addComment(commentContent, postId))
+		try {
+			const commentContent = { userId, name: user?.result?.name, comment }
+			const newComments = await dispatch(addComment(commentContent, postId))
 
-		setComments(newComments)
-		setComment('')
-		commentsRef?.current?.scrollIntoView({ behavior: 'smooth' })
+			setComments(newComments)
+			setComment('')
+			commentsRef?.current?.scrollIntoView({ behavior: 'smooth' })
+		} catch (err) {
+			console.error(err)
+			showError('Something went wrong when trying to add comment. Please try again.')
+		}
 	}
 
 	const handleClear = () => setComment('')
