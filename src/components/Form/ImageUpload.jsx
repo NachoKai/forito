@@ -19,24 +19,24 @@ const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData }) => 
 		>
 			{({ imageList, onImageUpload, onImageUpdate, isDragging, dragProps, errors }) => (
 				<Stack className='upload__image-wrapper' spacing='2'>
-					{!!errors && (
+					{Boolean(errors) && (
 						<Stack m='4px 0' spacing='2'>
-							{!!errors.maxNumber && (
+							{Boolean(errors.maxNumber) && (
 								<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
 									Number of selected images exceed maxNumber.
 								</Flex>
 							)}
-							{!!errors.acceptType && (
+							{Boolean(errors.acceptType) && (
 								<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
 									Your selected file type is not allow.
 								</Flex>
 							)}
-							{!!errors.maxFileSize && (
+							{Boolean(errors.maxFileSize) && (
 								<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
 									Selected file size exceed max file size.
 								</Flex>
 							)}
-							{!!errors.resolution && (
+							{Boolean(errors.resolution) && (
 								<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
 									Selected file is not match your desired resolution.
 								</Flex>

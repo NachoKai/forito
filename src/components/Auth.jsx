@@ -93,7 +93,7 @@ const Auth = () => {
 				</Text>
 				<form onSubmit={handleSubmit}>
 					<Stack spacing='2'>
-						{!!isSignup && (
+						{Boolean(isSignup) && (
 							<Stack direction='row' spacing='2'>
 								<FormInput
 									autoFocus
@@ -137,7 +137,7 @@ const Auth = () => {
 							tooltip='Required'
 							type={showPassword ? 'text' : 'password'}
 						/>
-						{!!isSignup && (
+						{Boolean(isSignup) && (
 							<FormInput
 								isRequired
 								dataCy='auth-confirm-password'
