@@ -2,7 +2,6 @@ import * as api from '../api'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
 import showError from '../utils/showError.ts'
 import showSuccess from '../utils/showSuccess.ts'
-import { hideLoading, showLoading } from './loading'
 
 /* ==========  CONSTANTS  ========== */
 
@@ -30,7 +29,6 @@ export const cleanUp = () => ({ type: CLEAN_UP })
 export const setCurrentId = id => ({ type: SET_CURRENT_ID, id })
 
 export const getPost = id => async dispatch => {
-	dispatch(showLoading())
 	dispatch({ type: START_LOADING, loading: true })
 	try {
 		const { data } = await api.fetchPost(id)
@@ -41,7 +39,6 @@ export const getPost = id => async dispatch => {
 		console.error(err)
 	} finally {
 		dispatch({ type: END_LOADING, loading: false })
-		dispatch(hideLoading())
 	}
 }
 
@@ -59,7 +56,6 @@ export const getAllPosts = page => async dispatch => {
 		console.error(err)
 	} finally {
 		dispatch({ type: END_LOADING, loading: false })
-		dispatch(hideLoading())
 	}
 }
 
@@ -77,7 +73,6 @@ export const getPosts = page => async dispatch => {
 		console.error(err)
 	} finally {
 		dispatch({ type: END_LOADING, loading: false })
-		dispatch(hideLoading())
 	}
 }
 
@@ -94,13 +89,12 @@ export const getPostsBySearch = searchQuery => async dispatch => {
 		console.error(err)
 	} finally {
 		dispatch({ type: END_LOADING, loading: false })
-		dispatch(hideLoading())
 	}
 }
 
 export const createPost = (post, navigate) => async dispatch => {
 	dispatch({ type: START_LOADING, loading: true })
-	dispatch(showLoading())
+
 	try {
 		const { data } = await api.createPost(post)
 
@@ -112,13 +106,12 @@ export const createPost = (post, navigate) => async dispatch => {
 		console.error(err)
 	} finally {
 		dispatch({ type: END_LOADING, loading: false })
-		dispatch(hideLoading())
 	}
 }
 
 export const updatePost = (id, post) => async dispatch => {
 	dispatch({ type: START_LOADING, loading: true })
-	dispatch(showLoading())
+
 	try {
 		const { data } = await api.updatePost(id, post)
 
@@ -129,13 +122,12 @@ export const updatePost = (id, post) => async dispatch => {
 		console.error(err)
 	} finally {
 		dispatch({ type: END_LOADING, loading: false })
-		dispatch(hideLoading())
 	}
 }
 
 export const deletePost = id => async dispatch => {
 	dispatch({ type: START_LOADING, loading: true })
-	dispatch(showLoading())
+
 	try {
 		await api.deletePost(id)
 		dispatch({ type: DELETE_POST, payload: id })
@@ -145,7 +137,6 @@ export const deletePost = id => async dispatch => {
 		console.error(err)
 	} finally {
 		dispatch({ type: END_LOADING, loading: false })
-		dispatch(hideLoading())
 	}
 }
 
@@ -159,8 +150,6 @@ export const likePost = id => async dispatch => {
 	} catch (err) {
 		showError('Something went wrong when trying to like post. Please try again.')
 		console.error(err)
-	} finally {
-		dispatch(hideLoading())
 	}
 }
 
@@ -174,8 +163,6 @@ export const savePost = saves => async dispatch => {
 	} catch (err) {
 		showError('Something went wrong when trying to save post. Please try again.')
 		console.error(err)
-	} finally {
-		dispatch(hideLoading())
 	}
 }
 
@@ -190,14 +177,12 @@ export const addComment = (comment, id) => async dispatch => {
 	} catch (err) {
 		showError('Something went wrong when trying to add comment. Please try again.')
 		console.error(err)
-	} finally {
-		dispatch(hideLoading())
 	}
 }
 
 export const getPostsByCreator = id => async dispatch => {
 	dispatch({ type: START_LOADING, loading: true })
-	dispatch(showLoading())
+
 	try {
 		const {
 			data: { data },
@@ -211,13 +196,12 @@ export const getPostsByCreator = id => async dispatch => {
 		console.error(err)
 	} finally {
 		dispatch({ type: END_LOADING, loading: false })
-		dispatch(hideLoading())
 	}
 }
 
 export const getSavedPosts = id => async dispatch => {
 	dispatch({ type: START_LOADING, loading: true })
-	dispatch(showLoading())
+
 	try {
 		const {
 			data: { data },
@@ -231,7 +215,6 @@ export const getSavedPosts = id => async dispatch => {
 		console.error(err)
 	} finally {
 		dispatch({ type: END_LOADING, loading: false })
-		dispatch(hideLoading())
 	}
 }
 
