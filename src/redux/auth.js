@@ -85,12 +85,12 @@ export const authReducer = (state = initialState, action) => {
 		case AUTH:
 			localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
 
-			return { ...state, authData: data, loading: false, errors: null }
+			return { ...state, authData: data, loading: false }
 		case LOGOUT:
 			localStorage.removeItem('forito-profile')
 			localStorage.removeItem('forito-theme')
 
-			return { ...state, authData: null, loading: false, errors: null }
+			return { ...state, authData: null, loading: false }
 		case FETCH_USER:
 			return { ...state, user: data.user }
 		case START_LOADING:
