@@ -30,6 +30,7 @@ import { deletePost, likePost, savePost, setCurrentId } from '../redux/posts'
 import checkIsAdmin from '../utils/checkIsAdmin.ts'
 import checkIsPostCreator from '../utils/checkIsPostCreator.ts'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
+import showError from '../utils/showError.ts'
 import Dialog from './common/Dialog'
 import Likes from './Likes'
 
@@ -71,15 +72,25 @@ const Post = ({
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
 
 	const handleLike = async () => {
-		await setLikeLoading(true)
-		await dispatch(likePost(_id))
-		await setLikeLoading(false)
+		try {
+			await setLikeLoading(true)
+			await dispatch(likePost(_id))
+			await setLikeLoading(false)
+		} catch (err) {
+			showError('Something went wrong when trying to like post. Please try again.')
+			console.error(err)
+		}
 	}
 
 	const handleSave = async () => {
-		await setSaveLoading(true)
-		await dispatch(savePost(_id))
-		await setSaveLoading(false)
+		try {
+			await setSaveLoading(true)
+			await dispatch(savePost(_id))
+			await setSaveLoading(false)
+		} catch (err) {
+			showError('Something went wrong when trying to like post. Please try again.')
+			console.error(err)
+		}
 	}
 
 	const openPost = () => navigate(`/posts/${_id}`)

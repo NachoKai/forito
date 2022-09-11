@@ -61,10 +61,10 @@ const Auth = () => {
 						navigate
 					)
 				)
-		} catch (error) {
+		} catch (err) {
 			showError('Something went wrong when trying to log in. Please try again.')
-			console.error(error)
-			throw error
+			console.error(err)
+			throw err
 		}
 	}
 
