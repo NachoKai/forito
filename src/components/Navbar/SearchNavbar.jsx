@@ -1,25 +1,25 @@
 import { Button, Stack } from '@chakra-ui/react'
 import { useCallback, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
-import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { getPostsBySearch } from '../../redux/posts'
+import { usePostsStore } from '../../state/postsStore'
 import FormInput from '../common/FormInput'
 
 const SearchNavbar = () => {
-	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const [searchValue, setSearchValue] = useState('')
 	const [searchTags, setSearchTags] = useState([])
 	const location = useLocation()
 	const ENTER_KEYCODE = 13
+	const getPostsBySearch = usePostsStore(state => state.getPostsBySearch)
 
 	const searchPost = useCallback(() => {
 		if (searchValue.trim() || searchTags) {
 			setSearchValue('')
-			setSearchTags([])
-			dispatch(getPostsBySearch({ search: searchValue, tags: searchTags.join(',') }))
+			setSearchTags([])(
+				getPostsBySearch({ search: searchValue, tags: searchTags.join(',') })
+			)
 			navigate(
 				`${location?.pathname}?searchQuery=${
 					searchValue || 'none'
@@ -28,7 +28,7 @@ const SearchNavbar = () => {
 		} else {
 			navigate('/')
 		}
-	}, [dispatch, location, navigate, searchTags, searchValue])
+	}, [getPostsBySearch, location?.pathname, navigate, searchTags, searchValue])
 
 	const handleKeyPress = e => e?.keyCode === ENTER_KEYCODE && searchPost()
 

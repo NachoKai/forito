@@ -1,17 +1,17 @@
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { FaPencilAlt } from 'react-icons/fa'
-import { useDispatch, useSelector } from 'react-redux'
+import { usePostsStore } from '../state/postsStore'
 
-import { getAllPosts } from '../redux/posts'
 import { CreateGradColor } from '../theme.ts'
 import StaggeredSlideFade from './common/StaggeredSlideFade'
 import Loading from './Loading'
 import Post from './Post'
 
 const TopPosts = () => {
-	const dispatch = useDispatch()
-	const { posts, loading } = useSelector(state => state.posts)
+	const getAllPosts = usePostsStore(state => state.getAllPosts)
+	const posts = usePostsStore(state => state.posts)
+	const loading = usePostsStore(state => state.loading)
 	const havePosts = posts?.length > 0
 
 	const getTopPosts = max => {
@@ -25,8 +25,8 @@ const TopPosts = () => {
 	const topPosts = getTopPosts(5)
 
 	useEffect(() => {
-		dispatch(getAllPosts())
-	}, [dispatch])
+		getAllPosts()
+	}, [getAllPosts])
 
 	return (
 		<StaggeredSlideFade

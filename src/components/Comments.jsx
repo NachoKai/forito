@@ -2,9 +2,8 @@ import { Button, Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useEffect, useRef, useState } from 'react'
 import { FaExclamationCircle } from 'react-icons/fa'
-import { useDispatch } from 'react-redux'
+import { usePostsStore } from '../state/postsStore'
 
-import { addComment } from '../redux/posts'
 import { CreateGradColor } from '../theme.ts'
 import { checkEmpty } from '../utils/checkEmpty.ts'
 import getThemeColor from '../utils/getThemeColor.ts'
@@ -13,16 +12,16 @@ import Comment from './Comment'
 import FormTextArea from './common/FormTextArea'
 
 const Comments = ({ user, postComments, postId }) => {
-	const dispatch = useDispatch()
 	const userId = user?.result?.googleId || user?.result?._id
 	const commentsRef = useRef(null)
 	const [comments, setComments] = useState([])
 	const [comment, setComment] = useState('')
+	const addComment = usePostsStore(state => state.addComment)
 
 	const handleComment = async () => {
 		try {
 			const commentContent = { userId, name: user?.result?.name, comment }
-			const newComments = await dispatch(addComment(commentContent, postId))
+			const newComments = await addComment(commentContent, postId)
 
 			setComments(newComments)
 			setComment('')

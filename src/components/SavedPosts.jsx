@@ -1,10 +1,9 @@
 import { Divider, Heading, Stack, Text } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { FaSearch } from 'react-icons/fa'
-import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
+import { usePostsStore } from '../state/postsStore'
 
-import { getSavedPosts } from '../redux/posts'
 import { CreateGradColor } from '../theme.ts'
 import checkIsAdmin from '../utils/checkIsAdmin.ts'
 import checkIsPostCreator from '../utils/checkIsPostCreator.ts'
@@ -14,9 +13,10 @@ import Loading from './Loading'
 import Post from './Post'
 
 const SavedPosts = () => {
-	const dispatch = useDispatch()
 	const { id } = useParams()
-	const { posts, loading } = useSelector(state => state.posts)
+	const posts = usePostsStore(state => state.posts)
+	const loading = usePostsStore(state => state.loading)
+	const getSavedPosts = usePostsStore(state => state.getSavedPosts)
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const userId = user?.result?.googleId || user?.result?._id
@@ -31,9 +31,8 @@ const SavedPosts = () => {
 	})
 
 	useEffect(() => {
-		if (userId === id) dispatch(getSavedPosts(id))
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [])
+		if (userId === id) getSavedPosts(id)
+	}, [getSavedPosts, id, userId])
 
 	if ((!publicPosts?.length && !loading) || userId !== id) {
 		return (

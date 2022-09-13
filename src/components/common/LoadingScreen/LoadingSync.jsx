@@ -1,11 +1,10 @@
 import { useContext, useLayoutEffect } from 'react'
-import { useSelector } from 'react-redux'
 
-import { getLoading } from '../../../redux/loading'
+import { useLoadingStore } from '../../../state/loadingStore'
 import { LoadingContext } from './LoadingContext'
 
 export default function LoadingSync() {
-	const loading = useSelector(getLoading)
+	const loading = useLoadingStore(state => state.loading)
 	const { showLoading, hideLoading } = useContext(LoadingContext)
 
 	useLayoutEffect(() => {

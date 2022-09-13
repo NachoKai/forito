@@ -19,10 +19,10 @@ import decode from 'jwt-decode'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useState } from 'react'
 import { FaMoon, FaSun } from 'react-icons/fa'
-import { useDispatch } from 'react-redux'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-import { logout } from '../../redux/auth'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { useAuthStore } from '../../state/authStore'
+
 import { CreateGradColor } from '../../theme.ts'
 import getThemeColor from '../../utils/getThemeColor.ts'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage.ts'
@@ -31,7 +31,7 @@ import ColorPicker from './ColorPicker'
 import SearchNavbar from './SearchNavbar'
 
 const Navbar = ({ isOpen, onOpen, onClose }) => {
-	const dispatch = useDispatch()
+	const logout = useAuthStore(state => state.logout)
 	const navigate = useNavigate()
 	const location = useLocation()
 	const [user, setUser] = useState(() => getUserLocalStorage())
@@ -45,9 +45,8 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const close = () => setIsDropdownOpen(false)
 
 	const handleLogout = useCallback(() => {
-		setUser(null)
-		dispatch(logout(navigate))
-	}, [dispatch, navigate])
+		setUser(null)(logout(navigate))
+	}, [logout, navigate])
 
 	useEffect(() => {
 		const token = user?.token

@@ -1,8 +1,8 @@
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { FaPencilAlt } from 'react-icons/fa'
-import { useSelector } from 'react-redux'
 
+import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme.ts'
 import checkIsAdmin from '../utils/checkIsAdmin.ts'
 import checkIsPostCreator from '../utils/checkIsPostCreator.ts'
@@ -12,8 +12,8 @@ import Loading from './Loading'
 import Post from './Post'
 
 const Posts = ({ onOpen }) => {
-	const { posts, loading } = useSelector(state => state.posts)
-
+	const posts = usePostsStore(state => state.posts)
+	const loading = usePostsStore(state => state.loading)
 	const havePosts = posts?.length > 0
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email

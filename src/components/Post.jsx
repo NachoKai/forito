@@ -23,10 +23,9 @@ import { memo, useState } from 'react'
 import { FaBookmark, FaEraser, FaPen, FaRegBookmark, FaRegComments } from 'react-icons/fa'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
-import { useDispatch } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-import { deletePost, likePost, savePost, setCurrentId } from '../redux/posts'
+import { usePostsStore } from '../state/postsStore'
 import checkIsAdmin from '../utils/checkIsAdmin.ts'
 import checkIsPostCreator from '../utils/checkIsPostCreator.ts'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
@@ -51,7 +50,10 @@ const Post = ({
 	},
 	onOpen,
 }) => {
-	const dispatch = useDispatch()
+	const likePost = usePostsStore(state => state.likePost)
+	const savePost = usePostsStore(state => state.savePost)
+	const deletePost = usePostsStore(state => state.deletePost)
+	const setCurrentId = usePostsStore(state => state.setCurrentId)
 	const navigate = useNavigate()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
@@ -74,7 +76,7 @@ const Post = ({
 	const handleLike = async () => {
 		try {
 			await setLikeLoading(true)
-			await dispatch(likePost(_id))
+			await likePost(_id)
 			await setLikeLoading(false)
 		} catch (err) {
 			showError('Something went wrong when trying to like post. Please try again.')
@@ -85,7 +87,7 @@ const Post = ({
 	const handleSave = async () => {
 		try {
 			await setSaveLoading(true)
-			await dispatch(savePost(_id))
+			await savePost(_id)
 			await setSaveLoading(false)
 		} catch (err) {
 			showError('Something went wrong when trying to like post. Please try again.')
@@ -99,7 +101,7 @@ const Post = ({
 
 	const handleEdit = () => {
 		onOpen()
-		dispatch(setCurrentId(_id))
+		setCurrentId(_id)
 	}
 
 	return (
@@ -340,7 +342,7 @@ const Post = ({
 
 					<Dialog
 						_id={_id}
-						action={() => dispatch(deletePost(_id))}
+						action={() => deletePost(_id)}
 						button='Delete'
 						isDialogOpen={isDialogOpen}
 						message='Are you sure you want to delete this post?'

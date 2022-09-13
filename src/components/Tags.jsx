@@ -1,10 +1,9 @@
 import { Divider, Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { FaSearch } from 'react-icons/fa'
-import { useDispatch, useSelector } from 'react-redux'
-import { useParams } from 'react-router-dom'
 
-import { getPostsBySearch } from '../redux/posts'
+import { useParams } from 'react-router-dom'
+import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme.ts'
 import checkIsAdmin from '../utils/checkIsAdmin.ts'
 import checkIsPostCreator from '../utils/checkIsPostCreator.ts'
@@ -14,9 +13,10 @@ import Loading from './Loading'
 import Post from './Post'
 
 const Tags = () => {
-	const dispatch = useDispatch()
 	const { name } = useParams()
-	const { posts, loading } = useSelector(state => state.posts)
+	const posts = usePostsStore(state => state.posts)
+	const loading = usePostsStore(state => state.loading)
+	const getPostsBySearch = usePostsStore(state => state.getPostsBySearch)
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const isAdmin = checkIsAdmin(userEmail)
@@ -30,8 +30,8 @@ const Tags = () => {
 	})
 
 	useEffect(() => {
-		dispatch(getPostsBySearch({ tags: name }))
-	}, [dispatch, name])
+		getPostsBySearch({ tags: name })
+	}, [getPostsBySearch, name])
 
 	if (!publicPosts.length && !loading) {
 		return (

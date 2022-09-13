@@ -12,19 +12,19 @@ import {
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+
 import { useLocation, useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
+import { usePostsStore } from '../state/postsStore'
 
-import { getPostsBySearch } from '../redux/posts'
 import { CreateGradColor } from '../theme.ts'
 import getThemeColor from '../utils/getThemeColor.ts'
 import ChakraTagInput from './common/ChakraTagInput'
 import FormInput from './common/FormInput'
 
 const Search = () => {
-	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	const getPostsBySearch = usePostsStore(state => state.getPostsBySearch)
 	const [searchValue, setSearchValue] = useState('')
 	const [searchTags, setSearchTags] = useState([])
 	const location = useLocation()
@@ -33,8 +33,9 @@ const Search = () => {
 	const searchPost = () => {
 		if (searchValue.trim() || searchTags) {
 			setSearchValue('')
-			setSearchTags([])
-			dispatch(getPostsBySearch({ search: searchValue, tags: searchTags.join(',') }))
+			setSearchTags([])(
+				getPostsBySearch({ search: searchValue, tags: searchTags.join(',') })
+			)
 			navigate(
 				`${location?.pathname}?searchQuery=${
 					searchValue || 'none'

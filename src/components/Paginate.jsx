@@ -8,17 +8,16 @@ import {
 import { Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { getPosts } from '../redux/posts'
+import { usePostsStore } from '../state/postsStore'
 import getThemeColor from '../utils/getThemeColor.ts'
 
 const Paginate = ({ page }) => {
-	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const { count, numberOfPages } = useSelector(state => state.posts)
+	const { count, numberOfPages } = usePostsStore(state => state.posts)
+	const getPosts = usePostsStore(state => state.getPosts)
 	const POSTS_LIMIT = 6
 
 	const { pages, currentPage, setCurrentPage } = usePagination({
@@ -38,8 +37,8 @@ const Paginate = ({ page }) => {
 	}
 
 	useEffect(() => {
-		dispatch(getPosts(page))
-	}, [dispatch, page])
+		getPosts(page)
+	}, [getPosts, page])
 
 	return (
 		<Container>
