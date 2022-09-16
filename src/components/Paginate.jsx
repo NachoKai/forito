@@ -83,5 +83,5 @@ const Container = styled(Stack)`
 `
 
 Paginate.propTypes = {
-	page: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+	page: PropTypes.number,
 }
