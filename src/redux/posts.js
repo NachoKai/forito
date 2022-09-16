@@ -59,22 +59,27 @@ export const getAllPosts = page => async dispatch => {
 	}
 }
 
-export const getPosts = page => async dispatch => {
-	try {
-		dispatch(cleanUp())
-		dispatch({ type: START_LOADING, loading: true })
-		const {
-			data: { data, currentPage, numberOfPages, count },
-		} = await api.fetchPosts(page)
+export const getPosts =
+	(page = 1) =>
+	async dispatch => {
+		try {
+			dispatch(cleanUp())
+			dispatch({ type: START_LOADING, loading: true })
+			const {
+				data: { data, currentPage, numberOfPages, count },
+			} = await api.fetchPosts(page)
 
-		dispatch({ type: FETCH_POSTS, payload: { data, currentPage, numberOfPages, count } })
-	} catch (err) {
-		showError('Something went wrong when trying to get posts. Please try again.')
-		console.error(err)
-	} finally {
-		dispatch({ type: END_LOADING, loading: false })
+			dispatch({
+				type: FETCH_POSTS,
+				payload: { data, currentPage, numberOfPages, count },
+			})
+		} catch (err) {
+			showError('Something went wrong when trying to get posts. Please try again.')
+			console.error(err)
+		} finally {
+			dispatch({ type: END_LOADING, loading: false })
+		}
 	}
-}
 
 export const getPostsBySearch = searchQuery => async dispatch => {
 	try {
