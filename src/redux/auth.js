@@ -13,8 +13,8 @@ const END_LOADING = 'END_LOADING'
 /* ==========  ACTIONS  ========== */
 
 export const login = (formData, navigate) => async dispatch => {
-	dispatch({ type: START_LOADING, loading: true })
 	try {
+		dispatch({ type: START_LOADING, loading: true })
 		const { data } = await api.login(formData)
 
 		dispatch({ type: AUTH, data })
@@ -40,8 +40,8 @@ export const logout = navigate => async dispatch => {
 }
 
 export const signup = (formData, navigate) => async dispatch => {
-	dispatch({ type: START_LOADING, loading: true })
 	try {
+		dispatch({ type: START_LOADING, loading: true })
 		const { data } = await api.signup(formData)
 
 		dispatch({ type: AUTH, data })

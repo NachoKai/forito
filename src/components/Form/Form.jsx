@@ -92,7 +92,6 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 
 	const handleSubmit = async e => {
 		e.preventDefault()
-
 		try {
 			dispatch(showLoading())
 

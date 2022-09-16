@@ -18,10 +18,10 @@ const Auth = () => {
 	const [showPassword, setShowPassword] = useState(false)
 
 	const onSuccess = res => {
-		const result = res?.profileObj
-		const token = res?.tokenId
-
 		try {
+			const result = res?.profileObj
+			const token = res?.tokenId
+
 			dispatch({ type: AUTH, data: { result, token } })
 			navigate('/')
 		} catch (err) {
@@ -36,8 +36,8 @@ const Auth = () => {
 	}
 
 	const handleSubmit = e => {
+		e.preventDefault()
 		try {
-			e.preventDefault()
 			if (isSignup)
 				dispatch(
 					signup(
