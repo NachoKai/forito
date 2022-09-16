@@ -29,8 +29,8 @@ export const cleanUp = () => ({ type: CLEAN_UP })
 export const setCurrentId = id => ({ type: SET_CURRENT_ID, id })
 
 export const getPost = id => async dispatch => {
-	dispatch({ type: START_LOADING, loading: true })
 	try {
+		dispatch({ type: START_LOADING, loading: true })
 		const { data } = await api.fetchPost(id)
 
 		dispatch({ type: FETCH_POST, payload: { post: data } })
@@ -43,9 +43,9 @@ export const getPost = id => async dispatch => {
 }
 
 export const getAllPosts = page => async dispatch => {
-	dispatch(cleanUp())
-	dispatch({ type: START_LOADING, loading: true })
 	try {
+		dispatch(cleanUp())
+		dispatch({ type: START_LOADING, loading: true })
 		const {
 			data: { data, count },
 		} = await api.fetchAllPosts(page)
@@ -60,9 +60,9 @@ export const getAllPosts = page => async dispatch => {
 }
 
 export const getPosts = page => async dispatch => {
-	dispatch(cleanUp())
-	dispatch({ type: START_LOADING, loading: true })
 	try {
+		dispatch(cleanUp())
+		dispatch({ type: START_LOADING, loading: true })
 		const {
 			data: { data, currentPage, numberOfPages, count },
 		} = await api.fetchPosts(page)
@@ -77,8 +77,8 @@ export const getPosts = page => async dispatch => {
 }
 
 export const getPostsBySearch = searchQuery => async dispatch => {
-	dispatch({ type: START_LOADING, loading: true })
 	try {
+		dispatch({ type: START_LOADING, loading: true })
 		const {
 			data: { data },
 		} = await api.fetchPostsBySearch(searchQuery)
@@ -93,9 +93,8 @@ export const getPostsBySearch = searchQuery => async dispatch => {
 }
 
 export const createPost = (post, navigate) => async dispatch => {
-	dispatch({ type: START_LOADING, loading: true })
-
 	try {
+		dispatch({ type: START_LOADING, loading: true })
 		const { data } = await api.createPost(post)
 
 		dispatch({ type: CREATE_POST, payload: data })
@@ -110,9 +109,8 @@ export const createPost = (post, navigate) => async dispatch => {
 }
 
 export const updatePost = (id, post) => async dispatch => {
-	dispatch({ type: START_LOADING, loading: true })
-
 	try {
+		dispatch({ type: START_LOADING, loading: true })
 		const { data } = await api.updatePost(id, post)
 
 		dispatch({ type: UPDATE_POST, payload: data })
@@ -126,9 +124,8 @@ export const updatePost = (id, post) => async dispatch => {
 }
 
 export const deletePost = id => async dispatch => {
-	dispatch({ type: START_LOADING, loading: true })
-
 	try {
+		dispatch({ type: START_LOADING, loading: true })
 		await api.deletePost(id)
 		dispatch({ type: DELETE_POST, payload: id })
 		showSuccess('Post successfully deleted.')
@@ -141,9 +138,8 @@ export const deletePost = id => async dispatch => {
 }
 
 export const likePost = id => async dispatch => {
-	const user = getUserLocalStorage()
-
 	try {
+		const user = getUserLocalStorage()
 		const { data } = await api.likePost(id, user?.token)
 
 		dispatch({ type: LIKE_POST, payload: data })
@@ -154,9 +150,8 @@ export const likePost = id => async dispatch => {
 }
 
 export const savePost = saves => async dispatch => {
-	const user = getUserLocalStorage()
-
 	try {
+		const user = getUserLocalStorage()
 		const { data } = await api.savePost(saves, user?.token)
 
 		dispatch({ type: SAVE_POST, payload: data })
@@ -181,9 +176,8 @@ export const addComment = (comment, id) => async dispatch => {
 }
 
 export const getPostsByCreator = id => async dispatch => {
-	dispatch({ type: START_LOADING, loading: true })
-
 	try {
+		dispatch({ type: START_LOADING, loading: true })
 		const {
 			data: { data },
 		} = await api.fetchPostsByCreator(id)
@@ -200,9 +194,8 @@ export const getPostsByCreator = id => async dispatch => {
 }
 
 export const getSavedPosts = id => async dispatch => {
-	dispatch({ type: START_LOADING, loading: true })
-
 	try {
+		dispatch({ type: START_LOADING, loading: true })
 		const {
 			data: { data },
 		} = await api.fetchSavedPosts(id)
