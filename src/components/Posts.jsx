@@ -4,14 +4,14 @@ import { FaPencilAlt } from 'react-icons/fa'
 import { useSelector } from 'react-redux'
 
 import { CreateGradColor } from '../theme.ts'
-import checkIsAdmin from '../utils/checkIsAdmin.ts'
-import checkIsPostCreator from '../utils/checkIsPostCreator.ts'
+import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
+import { checkIsPostCreator } from '../utils/checkIsPostCreator.ts'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
-import StaggeredSlideFade from './common/StaggeredSlideFade'
-import Loading from './Loading'
-import Post from './Post'
+import { StaggeredSlideFade } from './common/StaggeredSlideFade'
+import { Loading } from './Loading'
+import { Post } from './Post'
 
-const Posts = ({ onOpen }) => {
+export const Posts = ({ onOpen }) => {
 	const { posts, loading } = useSelector(state => state.posts)
 
 	const havePosts = posts?.length > 0
@@ -74,8 +74,6 @@ const Posts = ({ onOpen }) => {
 		</Flex>
 	)
 }
-
-export default Posts
 
 Posts.propTypes = {
 	onOpen: PropTypes.func,

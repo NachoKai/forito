@@ -25,7 +25,7 @@ const colors = [
 	'gray.500',
 ]
 
-const ColorPicker = () => {
+export const ColorPicker = () => {
 	const [color, setColor] = useState(localStorage.getItem('forito-theme') || 'blue.500')
 
 	return (
@@ -79,5 +79,3 @@ const ColorPicker = () => {
 		</Popover>
 	)
 }
-
-export default ColorPicker

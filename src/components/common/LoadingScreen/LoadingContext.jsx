@@ -3,7 +3,7 @@ import { createContext, useState } from 'react'
 
 export const LoadingContext = createContext()
 
-export function LoadingContextProvider({ children }) {
+export const LoadingContextProvider = ({ children }) => {
 	const [loading, setLoading] = useState(false)
 
 	const showLoading = () => setLoading(true)

@@ -6,14 +6,14 @@ import { useParams } from 'react-router-dom'
 
 import { getPostsBySearch } from '../redux/posts'
 import { CreateGradColor } from '../theme.ts'
-import checkIsAdmin from '../utils/checkIsAdmin.ts'
-import checkIsPostCreator from '../utils/checkIsPostCreator.ts'
+import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
+import { checkIsPostCreator } from '../utils/checkIsPostCreator.ts'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
-import StaggeredSlideFade from './common/StaggeredSlideFade'
-import Loading from './Loading'
-import Post from './Post'
+import { StaggeredSlideFade } from './common/StaggeredSlideFade'
+import { Loading } from './Loading'
+import { Post } from './Post'
 
-const Tags = () => {
+export const Tags = () => {
 	const dispatch = useDispatch()
 	const { name } = useParams()
 	const { posts, loading } = useSelector(state => state.posts)
@@ -87,5 +87,3 @@ const Tags = () => {
 		</StaggeredSlideFade>
 	)
 }
-
-export default Tags

@@ -5,11 +5,11 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { getAllPosts } from '../redux/posts'
 import { CreateGradColor } from '../theme.ts'
-import StaggeredSlideFade from './common/StaggeredSlideFade'
-import Loading from './Loading'
-import Post from './Post'
+import { StaggeredSlideFade } from './common/StaggeredSlideFade'
+import { Loading } from './Loading'
+import { Post } from './Post'
 
-const TopPosts = () => {
+export const TopPosts = () => {
 	const dispatch = useDispatch()
 	const { posts, loading } = useSelector(state => state.posts)
 	const havePosts = posts?.length > 0
@@ -80,5 +80,3 @@ const TopPosts = () => {
 		</StaggeredSlideFade>
 	)
 }
-
-export default TopPosts

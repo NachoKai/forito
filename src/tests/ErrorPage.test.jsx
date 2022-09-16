@@ -1,6 +1,6 @@
 import React from 'react'
 
-import ErrorPage from '../components/ErrorPage'
+import { ErrorPage } from '../components/ErrorPage'
 import { render, screen } from './test-utils'
 
 describe('ErrorPage', () => {

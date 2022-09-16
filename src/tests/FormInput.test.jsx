@@ -1,6 +1,6 @@
 import React from 'react'
 
-import FormInput from '../components/common/FormInput'
+import { FormInput } from '../components/common/FormInput'
 import { render, screen } from './test-utils'
 
 describe('FormInput', () => {

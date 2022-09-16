@@ -2,10 +2,10 @@ import { Input, Wrap, WrapItem } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { forwardRef } from 'react'
 
-import maybeCall from '../../utils/maybeCall'
-import ChakraTagInputTag from './Tag'
+import { maybeCall } from '../../utils/maybeCall'
+import { ChakraTagInputTag } from './Tag'
 
-const ChakraTagInput = forwardRef(function ChakraTagInput(
+export const ChakraTagInput = forwardRef(function ChakraTagInput(
 	{
 		tags = [],
 		onTagsChange,
@@ -86,8 +86,6 @@ const ChakraTagInput = forwardRef(function ChakraTagInput(
 		</Wrap>
 	)
 })
-
-export default ChakraTagInput
 
 ChakraTagInput.propTypes = {
 	tags: PropTypes.arrayOf(PropTypes.string),

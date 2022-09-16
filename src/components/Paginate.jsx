@@ -13,9 +13,9 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { getPosts } from '../redux/posts'
-import getThemeColor from '../utils/getThemeColor.ts'
+import { getThemeColor } from '../utils/getThemeColor.ts'
 
-const Paginate = ({ page }) => {
+export const Paginate = ({ page }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const { count, numberOfPages } = useSelector(state => state.posts)
@@ -73,8 +73,6 @@ const Paginate = ({ page }) => {
 		</Container>
 	)
 }
-
-export default Paginate
 
 const Container = styled(Stack)`
 	a {

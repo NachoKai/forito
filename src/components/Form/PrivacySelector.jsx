@@ -1,7 +1,7 @@
 import { Radio, RadioGroup, Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-const PrivacySelector = ({ handlePrivacy, privacy }) => {
+export const PrivacySelector = ({ handlePrivacy, privacy }) => {
 	return (
 		<RadioGroup
 			defaultValue='public'
@@ -16,8 +16,6 @@ const PrivacySelector = ({ handlePrivacy, privacy }) => {
 		</RadioGroup>
 	)
 }
-
-export default PrivacySelector
 
 PrivacySelector.propTypes = {
 	handlePrivacy: PropTypes.func,

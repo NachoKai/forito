@@ -19,7 +19,7 @@ import {
 import { format, formatDistance, isValid } from 'date-fns'
 import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
-import { memo, useState } from 'react'
+import { useState } from 'react'
 import { FaBookmark, FaEraser, FaPen, FaRegBookmark, FaRegComments } from 'react-icons/fa'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
@@ -27,14 +27,14 @@ import { useDispatch } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { deletePost, likePost, savePost, setCurrentId } from '../redux/posts'
-import checkIsAdmin from '../utils/checkIsAdmin.ts'
-import checkIsPostCreator from '../utils/checkIsPostCreator.ts'
+import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
+import { checkIsPostCreator } from '../utils/checkIsPostCreator.ts'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
-import showError from '../utils/showError.ts'
-import Dialog from './common/Dialog'
-import Likes from './Likes'
+import { showError } from '../utils/showError.ts'
+import { Dialog } from './common/Dialog'
+import { Likes } from './Likes'
 
-const Post = ({
+export const Post = ({
 	post: {
 		_id,
 		title,
@@ -352,8 +352,6 @@ const Post = ({
 		</>
 	)
 }
-
-export default memo(Post)
 
 Post.propTypes = {
 	onOpen: PropTypes.func,

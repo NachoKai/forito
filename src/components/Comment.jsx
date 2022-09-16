@@ -3,7 +3,7 @@ import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
 import { Link } from 'react-router-dom'
 
-const Comment = ({ comment }) => {
+export const Comment = ({ comment }) => {
 	return (
 		<Text whiteSpace='pre-wrap'>
 			<Link to={`/creator/${comment?.userId}`}>
@@ -13,8 +13,6 @@ const Comment = ({ comment }) => {
 		</Text>
 	)
 }
-
-export default Comment
 
 Comment.propTypes = {
 	comment: PropTypes.shape({
