@@ -4,7 +4,7 @@ import { useSelector } from 'react-redux'
 import { getLoading } from '../../../redux/loading'
 import { LoadingContext } from './LoadingContext'
 
-export default function LoadingSync() {
+export const LoadingSync = () => {
 	const loading = useSelector(getLoading)
 	const { showLoading, hideLoading } = useContext(LoadingContext)
 

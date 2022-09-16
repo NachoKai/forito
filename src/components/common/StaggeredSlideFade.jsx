@@ -2,7 +2,7 @@ import { Children, isValidElement } from 'react'
 import { SlideFade, Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-const StaggeredSlideFade = ({ children, ...props }) => {
+export const StaggeredSlideFade = ({ children, ...props }) => {
 	return (
 		<Stack {...props}>
 			{Children.map(children, (child, index) => {
@@ -22,8 +22,6 @@ const StaggeredSlideFade = ({ children, ...props }) => {
 		</Stack>
 	)
 }
-
-export default StaggeredSlideFade
 
 StaggeredSlideFade.propTypes = {
 	children: PropTypes.node,

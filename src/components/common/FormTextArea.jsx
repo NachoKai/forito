@@ -8,7 +8,7 @@ import {
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-const FormTextArea = ({
+export const FormTextArea = ({
 	label,
 	isRequired,
 	helper,
@@ -45,8 +45,6 @@ const FormTextArea = ({
 		{Boolean(helper) && <FormHelperText>{helper}</FormHelperText>}
 	</FormControl>
 )
-
-export default FormTextArea
 
 FormTextArea.propTypes = {
 	label: PropTypes.string,

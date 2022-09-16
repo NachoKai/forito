@@ -1,4 +1,4 @@
-const getThemeColor = (): string => {
+export const getThemeColor = (): string => {
 	const selectedTheme: string | null = localStorage.getItem('forito-theme')
 
 	switch (selectedTheme) {
@@ -26,5 +26,3 @@ const getThemeColor = (): string => {
 			return 'blue'
 	}
 }
-
-export default getThemeColor

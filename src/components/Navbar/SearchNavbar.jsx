@@ -5,9 +5,9 @@ import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 
 import { getPostsBySearch } from '../../redux/posts'
-import FormInput from '../common/FormInput'
+import { FormInput } from '../common/FormInput'
 
-const SearchNavbar = () => {
+export const SearchNavbar = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const [searchValue, setSearchValue] = useState('')
@@ -59,5 +59,3 @@ const SearchNavbar = () => {
 		</Stack>
 	)
 }
-
-export default SearchNavbar

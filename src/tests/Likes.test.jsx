@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Likes from '../components/Likes'
+import { Likes } from '../components/Likes'
 import { render, screen } from './test-utils'
 
 describe('Likes', () => {

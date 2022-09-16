@@ -142,7 +142,7 @@ const spacing = {
 	},
 }
 
-export default extendTheme(
+export const themeConfig = extendTheme(
 	{
 		colors,
 		fonts,

@@ -24,13 +24,13 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { logout } from '../../redux/auth'
 import { CreateGradColor } from '../../theme.ts'
-import getThemeColor from '../../utils/getThemeColor.ts'
+import { getThemeColor } from '../../utils/getThemeColor.ts'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage.ts'
-import Form from '../Form/Form'
-import ColorPicker from './ColorPicker'
-import SearchNavbar from './SearchNavbar'
+import { Form } from '../Form/Form'
+import { ColorPicker } from './ColorPicker'
+import { SearchNavbar } from './SearchNavbar'
 
-const Navbar = ({ isOpen, onOpen, onClose }) => {
+export const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const location = useLocation()
@@ -172,8 +172,6 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 		</Flex>
 	)
 }
-
-export default Navbar
 
 Navbar.propTypes = {
 	isOpen: PropTypes.bool,

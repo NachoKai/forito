@@ -2,7 +2,7 @@ import { Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa'
 
-const Likes = ({ likes, isUserLike }) => {
+export const Likes = ({ likes, isUserLike }) => {
 	const likesQuantity = likes?.length
 
 	if (likesQuantity > 0) {
@@ -32,8 +32,6 @@ const Likes = ({ likes, isUserLike }) => {
 		</Stack>
 	)
 }
-
-export default Likes
 
 Likes.propTypes = {
 	likes: PropTypes.arrayOf(PropTypes.string),

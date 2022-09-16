@@ -7,11 +7,11 @@ import { useParams } from 'react-router-dom'
 import { getUser } from '../redux/auth'
 import { getPostsByCreator } from '../redux/posts'
 import { CreateGradColor } from '../theme.ts'
-import StaggeredSlideFade from './common/StaggeredSlideFade'
-import Loading from './Loading'
-import Post from './Post'
+import { StaggeredSlideFade } from './common/StaggeredSlideFade'
+import { Loading } from './Loading'
+import { Post } from './Post'
 
-const Creator = () => {
+export const Creator = () => {
 	const dispatch = useDispatch()
 	const { id } = useParams()
 	const { posts, loading } = useSelector(state => state.posts)
@@ -87,5 +87,3 @@ const Creator = () => {
 		</StaggeredSlideFade>
 	)
 }
-
-export default Creator

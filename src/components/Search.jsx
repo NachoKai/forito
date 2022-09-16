@@ -18,11 +18,11 @@ import styled from 'styled-components'
 
 import { getPostsBySearch } from '../redux/posts'
 import { CreateGradColor } from '../theme.ts'
-import getThemeColor from '../utils/getThemeColor.ts'
-import ChakraTagInput from './common/ChakraTagInput'
-import FormInput from './common/FormInput'
+import { getThemeColor } from '../utils/getThemeColor.ts'
+import { ChakraTagInput } from './common/ChakraTagInput'
+import { FormInput } from './common/FormInput'
 
-const Search = () => {
+export const Search = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const [searchValue, setSearchValue] = useState('')
@@ -110,8 +110,6 @@ const Search = () => {
 		</Accordion>
 	)
 }
-
-export default Search
 
 const TagsContainer = styled(Flex)`
 	background: white;

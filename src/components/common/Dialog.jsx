@@ -10,7 +10,14 @@ import {
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-const Dialog = ({ title, message, button, action, isDialogOpen, setIsDialogOpen }) => {
+export const Dialog = ({
+	title,
+	message,
+	button,
+	action,
+	isDialogOpen,
+	setIsDialogOpen,
+}) => {
 	const cancelRef = useRef()
 
 	const onCancel = () => setIsDialogOpen(false)
@@ -41,8 +48,6 @@ const Dialog = ({ title, message, button, action, isDialogOpen, setIsDialogOpen 
 		</AlertDialog>
 	)
 }
-
-export default Dialog
 
 Dialog.propTypes = {
 	title: PropTypes.string,

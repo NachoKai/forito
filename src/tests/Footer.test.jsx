@@ -1,6 +1,6 @@
 import React from 'react'
 
-import Footer from '../components/Footer'
+import { Footer } from '../components/Footer'
 import { render, screen } from './test-utils'
 
 describe('Footer', () => {

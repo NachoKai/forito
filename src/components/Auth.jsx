@@ -6,11 +6,11 @@ import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
 import { AUTH, login, signup } from '../redux/auth'
-import getThemeColor from '../utils/getThemeColor.ts'
-import showError from '../utils/showError.ts'
-import FormInput from './common/FormInput'
+import { getThemeColor } from '../utils/getThemeColor.ts'
+import { showError } from '../utils/showError.ts'
+import { FormInput } from './common/FormInput'
 
-const Auth = () => {
+export const Auth = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
@@ -193,5 +193,3 @@ const Auth = () => {
 		</Stack>
 	)
 }
-
-export default Auth

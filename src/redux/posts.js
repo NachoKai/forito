@@ -1,7 +1,7 @@
 import * as api from '../api'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
-import showError from '../utils/showError.ts'
-import showSuccess from '../utils/showSuccess.ts'
+import { showError } from '../utils/showError.ts'
+import { showSuccess } from '../utils/showSuccess.ts'
 
 /* ==========  CONSTANTS  ========== */
 

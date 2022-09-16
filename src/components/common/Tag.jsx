@@ -1,13 +1,13 @@
 import { Tag, TagCloseButton, TagLabel } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-export default function ChakraTagInputTag({
+export const ChakraTagInputTag = ({
 	children,
 	onRemove,
 	tagLabelProps,
 	tagCloseButtonProps,
 	...props
-}) {
+}) => {
 	const onTagCloseButtonClick = tagCloseButtonProps?.onClick
 
 	const handleClickTagCloseButton = event => {

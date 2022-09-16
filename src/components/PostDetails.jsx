@@ -23,15 +23,15 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { v4 as uuid } from 'uuid'
 
-import Comments from '../components/Comments'
+import { Comments } from '../components/Comments'
 import { getPost, getPostsBySearch } from '../redux/posts'
 import { CreateGradColor, getColorTheme } from '../theme.ts'
-import checkIsAdmin from '../utils/checkIsAdmin.ts'
+import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
 import { isDev } from '../utils/checkIsDev.ts'
-import checkIsPostCreator from '../utils/checkIsPostCreator.ts'
-import StaggeredSlideFade from './common/StaggeredSlideFade'
+import { checkIsPostCreator } from '../utils/checkIsPostCreator.ts'
+import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 
-const PostDetails = ({ user }) => {
+export const PostDetails = ({ user }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const { scrollYProgress } = useScroll()
@@ -296,8 +296,6 @@ const PostDetails = ({ user }) => {
 		</StaggeredSlideFade>
 	)
 }
-
-export default PostDetails
 
 const ProgressBar = styled(motion.div)`
 	position: fixed;

@@ -2,9 +2,9 @@ import ImageUploading from 'react-images-uploading'
 import { Button, Flex, Image, Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-import showError from '../../utils/showError.ts'
+import { showError } from '../../utils/showError.ts'
 
-const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData }) => {
+export const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData }) => {
 	return (
 		<ImageUploading
 			acceptType={['jpg', 'jpeg', 'gif', 'png']}
@@ -87,8 +87,6 @@ const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData }) => 
 		</ImageUploading>
 	)
 }
-
-export default ImageUpload
 
 ImageUpload.propTypes = {
 	handleRemoveImage: PropTypes.func,

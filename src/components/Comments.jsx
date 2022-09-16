@@ -7,12 +7,12 @@ import { useDispatch } from 'react-redux'
 import { addComment } from '../redux/posts'
 import { CreateGradColor } from '../theme.ts'
 import { checkEmpty } from '../utils/checkEmpty.ts'
-import getThemeColor from '../utils/getThemeColor.ts'
-import showError from '../utils/showError.ts'
-import Comment from './Comment'
-import FormTextArea from './common/FormTextArea'
+import { getThemeColor } from '../utils/getThemeColor.ts'
+import { showError } from '../utils/showError.ts'
+import { Comment } from './Comment'
+import { FormTextArea } from './common/FormTextArea'
 
-const Comments = ({ user, postComments, postId }) => {
+export const Comments = ({ user, postComments, postId }) => {
 	const dispatch = useDispatch()
 	const userId = user?.result?.googleId || user?.result?._id
 	const commentsRef = useRef(null)
@@ -103,8 +103,6 @@ const Comments = ({ user, postComments, postId }) => {
 		</Stack>
 	)
 }
-
-export default Comments
 
 Comments.propTypes = {
 	postComments: PropTypes.arrayOf(

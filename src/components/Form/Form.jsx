@@ -16,10 +16,10 @@ import { hideLoading, showLoading } from '../../redux/loading'
 import { createPost, setCurrentId, updatePost } from '../../redux/posts'
 import { checkEmpty } from '../../utils/checkEmpty.ts'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage.ts'
-import showError from '../../utils/showError.ts'
-import FormBody from './FormBody'
-import FormFooter from './FormFooter'
-import FormHeader from './FormHeader'
+import { showError } from '../../utils/showError.ts'
+import { FormBody } from './FormBody'
+import { FormFooter } from './FormFooter'
+import { FormHeader } from './FormHeader'
 
 const initialState = {
 	title: '',
@@ -29,7 +29,7 @@ const initialState = {
 	privacy: 'public',
 }
 
-const Form = ({ isOpen, onOpen, onClose }) => {
+export const Form = ({ isOpen, onOpen, onClose }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const currentId = useSelector(state => state.posts.currentId)
@@ -215,8 +215,6 @@ const Form = ({ isOpen, onOpen, onClose }) => {
 		</>
 	)
 }
-
-export default Form
 
 Form.propTypes = {
 	isOpen: PropTypes.bool,

@@ -1,10 +1,10 @@
 import { useContext, useEffect, useRef } from 'react'
 import { Spinner, useColorMode } from '@chakra-ui/react'
 
-import getThemeColor from '../../../utils/getThemeColor.ts'
+import { getThemeColor } from '../../../utils/getThemeColor.ts'
 import { LoadingContext } from './LoadingContext'
 
-const LoadingScreen = () => {
+export const LoadingScreen = () => {
 	const { loading } = useContext(LoadingContext)
 	const { colorMode } = useColorMode()
 	const loadingRef = useRef(null)
@@ -33,5 +33,3 @@ const LoadingScreen = () => {
 		</div>
 	) : null
 }
-
-export default LoadingScreen

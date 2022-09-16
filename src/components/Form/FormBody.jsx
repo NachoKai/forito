@@ -2,12 +2,12 @@ import { DrawerBody, Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import styled from 'styled-components'
 
-import FormInput from '../common/FormInput'
-import FormTextArea from '../common/FormTextArea'
-import ImageUpload from './ImageUpload'
-import PrivacySelector from './PrivacySelector'
+import { FormInput } from '../common/FormInput'
+import { FormTextArea } from '../common/FormTextArea'
+import { ImageUpload } from './ImageUpload'
+import { PrivacySelector } from './PrivacySelector'
 
-const FormBody = ({
+export const FormBody = ({
 	areValidTags,
 	handleChange,
 	handlePrivacy,
@@ -86,8 +86,6 @@ const FormBody = ({
 		</DrawerBody>
 	)
 }
-
-export default FormBody
 
 FormBody.propTypes = {
 	areValidTags: PropTypes.bool,
