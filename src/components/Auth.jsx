@@ -38,7 +38,7 @@ export const Auth = () => {
 	const handleSubmit = e => {
 		e.preventDefault()
 		try {
-			if (isSignup)
+			if (isSignup) {
 				dispatch(
 					signup(
 						{
@@ -51,7 +51,7 @@ export const Auth = () => {
 						navigate
 					)
 				)
-			else
+			} else {
 				dispatch(
 					login(
 						{
@@ -61,6 +61,7 @@ export const Auth = () => {
 						navigate
 					)
 				)
+			}
 		} catch (err) {
 			showError('Something went wrong when trying to log in. Please try again.')
 			console.error(err)
