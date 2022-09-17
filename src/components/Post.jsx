@@ -23,16 +23,17 @@ import { useState } from 'react'
 import { FaBookmark, FaEraser, FaPen, FaRegBookmark, FaRegComments } from 'react-icons/fa'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-import { deletePost, likePost, savePost, setCurrentId } from '../redux/posts'
+import { deletePost, getPosts, likePost, savePost, setCurrentId } from '../redux/posts'
 import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator.ts'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
 import { showError } from '../utils/showError.ts'
 import { Dialog } from './common/Dialog'
 import { Likes } from './Likes'
+import { useQuery } from '../utils/useQuery.ts'
 
 export const Post = ({
 	post: {
@@ -70,6 +71,9 @@ export const Post = ({
 	const isPostCreator = checkIsPostCreator(user, creator)
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
+	const query = useQuery()
+	const page = Number(query.get('page') || 1)
+	const { posts } = useSelector(state => state.posts)
 
 	const handleLike = async () => {
 		try {
@@ -100,6 +104,22 @@ export const Post = ({
 	const handleEdit = () => {
 		onOpen()
 		dispatch(setCurrentId(_id))
+	}
+
+	const handleDelete = async () => {
+		try {
+			await dispatch(deletePost(_id))
+			setIsDialogOpen(false)
+
+			if (posts.length === 1 && page > 1) {
+				navigate(`/posts?page=${page - 1}`)
+			}
+
+			dispatch(getPosts(page))
+		} catch (err) {
+			showError('Something went wrong when trying to delete post. Please try again.')
+			console.error(err)
+		}
 	}
 
 	return (
@@ -340,7 +360,7 @@ export const Post = ({
 
 					<Dialog
 						_id={_id}
-						action={() => dispatch(deletePost(_id))}
+						action={handleDelete}
 						button='Delete'
 						isDialogOpen={isDialogOpen}
 						message='Are you sure you want to delete this post?'
