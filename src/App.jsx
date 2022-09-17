@@ -6,7 +6,6 @@ import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
 import { LoadingScreen } from './components/common/LoadingScreen/LoadingScreen'
-import { LoadingSync } from './components/common/LoadingScreen/LoadingSync'
 import { ScrollToTop } from './components/common/ScrollToTop'
 
 import { About } from './components/About'
@@ -44,7 +43,6 @@ export const App = () => {
 	return (
 		<BrowserRouter>
 			<LoadingScreen />
-			<LoadingSync />
 			<ScrollToTop />
 			<Navbar isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
 			<Routes>
