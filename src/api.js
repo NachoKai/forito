@@ -5,7 +5,7 @@ import { getUserLocalStorage } from './utils/getUserLocalStorage.ts'
 
 const API = axios.create({
 	baseURL: isDev ? 'http://localhost:5000' : 'https://forito-server.onrender.com',
-	timeout: 20_000,
+	timeout: 5_000,
 })
 
 API.interceptors.request.use(req => {
