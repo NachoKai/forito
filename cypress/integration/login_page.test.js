@@ -6,14 +6,14 @@ describe('The Login Page', () => {
 			fixture: 'posts.json',
 		}).as('getPosts')
 
-		cy.visit('/auth')
+		cy.visit('http://localhost:3000/auth')
 		cy.get('[data-cy="auth-email"]').type('tester@mail.com')
 		cy.get('[data-cy="auth-password"]').type('123123')
 		cy.get('[data-cy="auth-login-signup-button"]').click()
 		cy.wait('@getPosts')
 		cy.url().should('include', '/posts')
 		cy.get('[data-cy="navbar-username"]').should('contain', 'tester tester')
-		cy.visit('/auth')
+		cy.visit('http://localhost:3000/auth')
 		cy.wait('@getPosts')
 		cy.url().should('include', '/posts')
 		cy.get('[data-cy="navbar-logout-button"]').click()

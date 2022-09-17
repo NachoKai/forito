@@ -73,6 +73,7 @@
     ]
   },
   "devDependencies": {
+    "@playwright/test": "^1.25.2",
     "@redux-devtools/core": "3.13.1",
     "@testing-library/dom": "8.17.1",
     "@testing-library/jest-dom": "^5.16.5",
