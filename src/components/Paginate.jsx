@@ -7,7 +7,6 @@ import {
 } from '@ajna/pagination'
 import { Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
@@ -35,11 +34,8 @@ export const Paginate = ({ page }) => {
 
 	const handlePageChange = nextPage => {
 		setCurrentPage(nextPage)
-	}
-
-	useEffect(() => {
 		dispatch(getPosts(page))
-	}, [dispatch, page])
+	}
 
 	return (
 		<Container>

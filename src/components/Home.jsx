@@ -1,14 +1,22 @@
 import { Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
+import { useEffect } from 'react'
+import { useDispatch } from 'react-redux'
+import { getPosts } from '../redux/posts'
 
 import { useQuery } from '../utils/useQuery.ts'
 import { Paginate } from './Paginate'
 import { Posts } from './Posts'
 
 export const Home = ({ onOpen }) => {
+	const dispatch = useDispatch()
 	const query = useQuery()
 	const page = Number(query.get('page') || 1)
 	const searchQuery = query.get('searchQuery')
+
+	useEffect(() => {
+		dispatch(getPosts(page))
+	}, [dispatch, page])
 
 	return (
 		<Stack paddingBottom='4'>
