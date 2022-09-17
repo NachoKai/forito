@@ -30,3 +30,6 @@ cypress.json
 cypress.env.json
 cypress/videos
 cypress/screenshots
+/test-results/
+/playwright-report/
+/playwright/.cache/

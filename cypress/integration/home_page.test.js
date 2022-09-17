@@ -2,7 +2,7 @@
 
 describe('The Home Page', () => {
 	it('successfully loads', () => {
-		cy.visit('/')
+		cy.visit('http://localhost:3000/')
 	})
 })
 
@@ -15,7 +15,7 @@ describe('Post Form', () => {
 			fixture: 'posts.json',
 		}).as('searchPost')
 
-		cy.visit('/auth')
+		cy.visit('http://localhost:3000/auth')
 		cy.get('[data-cy="auth-email"]').type('tester@mail.com')
 		cy.get('[data-cy="auth-password"]').type('123123')
 		cy.get('[data-cy="auth-login-signup-button"]').click()
