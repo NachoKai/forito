@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 
 const GITHUB_URL = 'https://github.com/NachoKai/forito'
 
-export const Footer = () => {
+const Footer = () => {
 	return (
 		<Stack
 			bg='primary_100_900'
@@ -52,3 +52,5 @@ export const Footer = () => {
 		</Stack>
 	)
 }
+
+export default Footer

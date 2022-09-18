@@ -30,7 +30,7 @@ import { Form } from '../Form/Form'
 import { ColorPicker } from './ColorPicker'
 import { SearchNavbar } from './SearchNavbar'
 
-export const Navbar = ({ isOpen, onOpen, onClose }) => {
+const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const location = useLocation()
@@ -178,3 +178,5 @@ Navbar.propTypes = {
 	onOpen: PropTypes.func,
 	onClose: PropTypes.func,
 }
+
+export default Navbar

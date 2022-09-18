@@ -1,26 +1,29 @@
-import { Button, useDisclosure } from '@chakra-ui/react'
+import { Button, Stack, useDisclosure } from '@chakra-ui/react'
+import loadable from '@loadable/component'
 import { useState } from 'react'
 import { FaChevronUp } from 'react-icons/fa'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import { LoadingScreen } from './components/common/LoadingScreen/LoadingScreen'
-import { ScrollToTop } from './components/common/ScrollToTop'
-
-import { About } from './components/About'
-import { Auth } from './components/Auth'
-import { Creator } from './components/Creator'
-import { ErrorPage } from './components/ErrorPage'
-import { Footer } from './components/Footer'
-import { Home } from './components/Home'
-import { Navbar } from './components/Navbar/Navbar'
-import { PostDetails } from './components/PostDetails'
-import { SavedPosts } from './components/SavedPosts'
-import { Tags } from './components/Tags'
-import { TopPosts } from './components/TopPosts'
 import { getThemeColor } from './utils/getThemeColor.ts'
 import { getUserLocalStorage } from './utils/getUserLocalStorage.ts'
+
+const ScrollToTop = loadable(() => import('./components/common/ScrollToTop'))
+const About = loadable(() => import('./components/About'))
+const Auth = loadable(() => import('./components/Auth'))
+const Creator = loadable(() => import('./components/Creator'))
+const ErrorPage = loadable(() => import('./components/ErrorPage'))
+const Footer = loadable(() => import('./components/Footer'))
+const Home = loadable(() => import('./components/Home'))
+const Navbar = loadable(() => import('./components/Navbar/Navbar'))
+const PostDetails = loadable(() => import('./components/PostDetails'))
+const SavedPosts = loadable(() => import('./components/SavedPosts'))
+const Tags = loadable(() => import('./components/Tags'))
+const TopPosts = loadable(() => import('./components/TopPosts'))
+const LoadingScreen = loadable(() =>
+	import('./components/common/LoadingScreen/LoadingScreen')
+)
 
 export const App = () => {
 	const [showScroll, setShowScroll] = useState(false)
@@ -45,25 +48,27 @@ export const App = () => {
 			<LoadingScreen />
 			<ScrollToTop />
 			<Navbar isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
-			<Routes>
-				<Route element={<Navigate replace to='/posts' />} path='/' />
-				<Route element={<Home onOpen={onOpen} />} path='posts' />
-				<Route element={<Home onOpen={onOpen} />} path='posts/search' />
-				<Route element={<PostDetails user={user} />} path='posts/:id' />
-				<Route element={<Creator />} path='creator/:id' />
-				<Route element={<Tags />} path='tags/:name' />
-				<Route
-					element={userEmail ? <SavedPosts /> : <Navigate replace to='/posts' />}
-					path='saved/:id'
-				/>
-				<Route
-					element={!userEmail ? <Auth /> : <Navigate replace to='/posts' />}
-					path='auth'
-				/>
-				<Route element={<About />} path='about' />
-				<Route element={<TopPosts />} path='/posts/top' />
-				<Route element={<ErrorPage />} path='*' />
-			</Routes>
+			<Stack minH='100vh'>
+				<Routes>
+					<Route element={<Navigate replace to='/posts' />} path='/' />
+					<Route element={<Home onOpen={onOpen} />} path='posts' />
+					<Route element={<Home onOpen={onOpen} />} path='posts/search' />
+					<Route element={<PostDetails user={user} />} path='posts/:id' />
+					<Route element={<Creator />} path='creator/:id' />
+					<Route element={<Tags />} path='tags/:name' />
+					<Route
+						element={userEmail ? <SavedPosts /> : <Navigate replace to='/posts' />}
+						path='saved/:id'
+					/>
+					<Route
+						element={!userEmail ? <Auth /> : <Navigate replace to='/posts' />}
+						path='auth'
+					/>
+					<Route element={<About />} path='about' />
+					<Route element={<TopPosts />} path='/posts/top' />
+					<Route element={<ErrorPage />} path='*' />
+				</Routes>
+			</Stack>
 
 			<Button
 				bottom={['16px', '32px']}

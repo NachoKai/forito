@@ -9,7 +9,7 @@ import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Loading } from './Loading'
 import { Post } from './Post'
 
-export const TopPosts = () => {
+const TopPosts = () => {
 	const dispatch = useDispatch()
 	const { posts, loading } = useSelector(state => state.posts)
 	const havePosts = posts?.length > 0
@@ -80,3 +80,5 @@ export const TopPosts = () => {
 		</StaggeredSlideFade>
 	)
 }
+
+export default TopPosts

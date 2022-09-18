@@ -31,7 +31,7 @@ import { isDev } from '../utils/checkIsDev.ts'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator.ts'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 
-export const PostDetails = ({ user }) => {
+const PostDetails = ({ user }) => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const { scrollYProgress } = useScroll()
@@ -317,3 +317,5 @@ PostDetails.propTypes = {
 		}),
 	}),
 }
+
+export default PostDetails

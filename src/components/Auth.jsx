@@ -10,7 +10,7 @@ import { getThemeColor } from '../utils/getThemeColor.ts'
 import { showError } from '../utils/showError.ts'
 import { FormInput } from './common/FormInput'
 
-export const Auth = () => {
+const Auth = () => {
 	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
@@ -194,3 +194,5 @@ export const Auth = () => {
 		</Stack>
 	)
 }
+
+export default Auth

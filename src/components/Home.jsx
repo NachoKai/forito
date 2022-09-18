@@ -8,7 +8,7 @@ import { useQuery } from '../utils/useQuery.ts'
 import { Paginate } from './Paginate'
 import { Posts } from './Posts'
 
-export const Home = ({ onOpen }) => {
+const Home = ({ onOpen }) => {
 	const dispatch = useDispatch()
 	const query = useQuery()
 	const page = Number(query.get('page') || 1)
@@ -40,3 +40,5 @@ export const Home = ({ onOpen }) => {
 Home.propTypes = {
 	onOpen: PropTypes.func,
 }
+
+export default Home

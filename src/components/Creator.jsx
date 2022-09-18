@@ -11,7 +11,7 @@ import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Loading } from './Loading'
 import { Post } from './Post'
 
-export const Creator = () => {
+const Creator = () => {
 	const dispatch = useDispatch()
 	const { id } = useParams()
 	const { posts, loading } = useSelector(state => state.posts)
@@ -87,3 +87,5 @@ export const Creator = () => {
 		</StaggeredSlideFade>
 	)
 }
+
+export default Creator

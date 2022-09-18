@@ -1,7 +1,7 @@
 import { Flex, Heading, Text } from '@chakra-ui/react'
 import { FaExclamationCircle } from 'react-icons/fa'
 
-export const ErrorPage = () => (
+const ErrorPage = () => (
 	<Flex
 		flexGrow
 		align='center'
@@ -23,3 +23,5 @@ export const ErrorPage = () => (
 		</Heading>
 	</Flex>
 )
+
+export default ErrorPage
