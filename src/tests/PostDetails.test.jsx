@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { PostDetails } from '../components/PostDetails'
+import PostDetails from '../components/PostDetails'
 import { render, screen } from './test-utils'
 
 describe('PostDetails', () => {
