@@ -1,7 +1,7 @@
 import React from 'react'
 import userEvent from '@testing-library/user-event'
 
-import { Auth } from '../components/Auth'
+import Auth from '../components/Auth'
 import { render, screen } from './test-utils'
 
 describe('Auth', () => {

@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { About } from '../components/About'
+import About from '../components/About'
 import { render, screen } from './test-utils'
 
 describe('About', () => {

@@ -1,4 +1,4 @@
-import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
+import { Flex, Heading, Text } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { FaPencilAlt } from 'react-icons/fa'
 import { useDispatch, useSelector } from 'react-redux'
@@ -6,12 +6,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllPosts } from '../redux/posts'
 import { CreateGradColor } from '../theme.ts'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
-import { Loading } from './Loading'
 import { Post } from './Post'
 
 const TopPosts = () => {
 	const dispatch = useDispatch()
-	const { posts, loading } = useSelector(state => state.posts)
+	const { posts } = useSelector(state => state.posts)
 	const havePosts = posts?.length > 0
 
 	const getTopPosts = max => {
@@ -49,34 +48,24 @@ const TopPosts = () => {
 				Top Posts
 			</Heading>
 
-			{loading ? (
-				<Stack
-					minHeight='100vh'
-					spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
-					w='100%'
-				>
-					<Loading />
-				</Stack>
-			) : (
-				<StaggeredSlideFade
-					direction='column'
-					spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
-					w='100%'
-				>
-					{!havePosts ? (
-						<Flex align='center' direction='column' marginY='64px'>
-							<Text color='primary.400' fontSize='6xl'>
-								<FaPencilAlt />
-							</Text>
-							<Text color='primary.400' fontSize='6xl'>
-								No posts found
-							</Text>
-						</Flex>
-					) : (
-						topPosts?.map(post => <Post key={post?._id} post={post} />)
-					)}
-				</StaggeredSlideFade>
-			)}
+			<StaggeredSlideFade
+				direction='column'
+				spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
+				w='100%'
+			>
+				{!havePosts ? (
+					<Flex align='center' direction='column' marginY='64px'>
+						<Text color='primary.400' fontSize='6xl'>
+							<FaPencilAlt />
+						</Text>
+						<Text color='primary.400' fontSize='6xl'>
+							No posts found
+						</Text>
+					</Flex>
+				) : (
+					topPosts?.map(post => <Post key={post?._id} post={post} />)
+				)}
+			</StaggeredSlideFade>
 		</StaggeredSlideFade>
 	)
 }
