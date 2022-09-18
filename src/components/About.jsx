@@ -3,7 +3,7 @@ import { FaGithub, FaHandSpock } from 'react-icons/fa'
 
 import { CreateGradColor } from '../theme.ts'
 
-export const About = () => (
+const About = () => (
 	<Flex
 		flexGrow
 		align='center'
@@ -46,3 +46,5 @@ export const About = () => (
 		</Stack>
 	</Flex>
 )
+
+export default About

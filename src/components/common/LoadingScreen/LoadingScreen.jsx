@@ -6,7 +6,7 @@ import { LoadingContext } from './LoadingContext'
 import { getLoading } from '../../../redux/loading'
 import { useSelector } from 'react-redux'
 
-export const LoadingScreen = () => {
+const LoadingScreen = () => {
 	const { loading } = useContext(LoadingContext)
 	const { colorMode } = useColorMode()
 	const loadingRef = useRef(null)
@@ -45,3 +45,5 @@ export const LoadingScreen = () => {
 		</div>
 	) : null
 }
+
+export default LoadingScreen

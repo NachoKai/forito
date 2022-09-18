@@ -13,7 +13,7 @@ import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Loading } from './Loading'
 import { Post } from './Post'
 
-export const Tags = () => {
+const Tags = () => {
 	const dispatch = useDispatch()
 	const { name } = useParams()
 	const { posts, loading } = useSelector(state => state.posts)
@@ -87,3 +87,5 @@ export const Tags = () => {
 		</StaggeredSlideFade>
 	)
 }
+
+export default Tags
