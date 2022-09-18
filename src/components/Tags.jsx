@@ -10,7 +10,6 @@ import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator.ts'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
-import { Loading } from './Loading'
 import { Post } from './Post'
 
 const Tags = () => {
@@ -73,17 +72,13 @@ const Tags = () => {
 
 			<Divider />
 
-			{loading ? (
-				<Loading />
-			) : (
-				<StaggeredSlideFade spacing='3'>
-					{posts?.map(post => (
-						<Stack key={post._id}>
-							<Post post={post} />
-						</Stack>
-					))}
-				</StaggeredSlideFade>
-			)}
+			<StaggeredSlideFade spacing='3'>
+				{posts?.map(post => (
+					<Stack key={post._id}>
+						<Post post={post} />
+					</Stack>
+				))}
+			</StaggeredSlideFade>
 		</StaggeredSlideFade>
 	)
 }
