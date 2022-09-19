@@ -7,15 +7,13 @@ import {
 } from '@ajna/pagination'
 import { Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
-import { getPosts } from '../redux/posts'
 import { getThemeColor } from '../utils/getThemeColor.ts'
 
-export const Paginate = ({ page }) => {
-	const dispatch = useDispatch()
+export const Paginate = () => {
 	const navigate = useNavigate()
 	const { count, numberOfPages } = useSelector(state => state.posts)
 	const POSTS_LIMIT = 6
@@ -34,7 +32,6 @@ export const Paginate = ({ page }) => {
 
 	const handlePageChange = nextPage => {
 		setCurrentPage(nextPage)
-		dispatch(getPosts(page))
 	}
 
 	return (
