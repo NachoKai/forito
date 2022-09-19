@@ -31,7 +31,7 @@ const Home = ({ onOpen }) => {
 				</Stack>
 			</Stack>
 			<Stack px={{ sm: '4', md: '10', lg: '16', xl: '24' }}>
-				{!searchQuery && <Paginate page={page} />}
+				{!searchQuery && <Paginate />}
 			</Stack>
 		</Stack>
 	)

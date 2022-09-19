@@ -12,7 +12,6 @@ import { Post } from './Post'
 
 export const Posts = ({ onOpen }) => {
 	const { posts } = useSelector(state => state.posts)
-
 	const havePosts = posts?.length > 0
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
