@@ -6,10 +6,15 @@ export default {
 	component: FormInput,
 	argTypes: {
 		label: { control: 'text' },
+		name: { control: 'text' },
+		isInvalid: { control: 'boolean' },
+		value: { control: 'text' },
 		isRequired: { control: 'boolean' },
 		helper: { control: 'text' },
 		validation: { control: 'text' },
-		child: { control: 'text' },
+		autoFocus: { control: 'boolean' },
+		maxLength: { control: 'text' },
+		type: { control: 'text' },
 		leftIcon: { control: 'text' },
 		rightIcon: { control: 'text' },
 		placeholder: { control: 'text' },
@@ -27,7 +32,7 @@ export const Full = () => (
 		helper='Helper'
 		isRequired={true}
 		label='Label'
-		leftIcon='LeftIcon'
+		leftIcon='✨'
 		maxLength='100'
 		placeholder='Placeholder'
 		tooltip='Tooltip'
