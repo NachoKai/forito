@@ -1,16 +1,15 @@
-import { useContext, useEffect, useLayoutEffect, useRef } from 'react'
 import { Spinner, useColorMode } from '@chakra-ui/react'
+import { useContext, useEffect, useLayoutEffect, useRef } from 'react'
 
+import { usePostsStore } from '../../../state/postsStore'
 import { getThemeColor } from '../../../utils/getThemeColor.ts'
 import { LoadingContext } from './LoadingContext'
-import { getLoading } from '../../../redux/loading'
-import { useSelector } from 'react-redux'
 
 const LoadingScreen = () => {
 	const { loading } = useContext(LoadingContext)
 	const { colorMode } = useColorMode()
+	const isLoading = usePostsStore(state => state.loading)
 	const loadingRef = useRef(null)
-	const isLoading = useSelector(getLoading)
 	const { showLoading, hideLoading } = useContext(LoadingContext)
 
 	useLayoutEffect(() => {

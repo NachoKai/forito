@@ -1,8 +1,8 @@
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { FaPencilAlt } from 'react-icons/fa'
-import { useSelector } from 'react-redux'
 
+import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme.ts'
 import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator.ts'
@@ -11,11 +11,12 @@ import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 
 export const Posts = ({ onOpen }) => {
-	const { posts } = useSelector(state => state.posts)
+	const posts = usePostsStore(state => state.posts)
 	const havePosts = posts?.length > 0
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const isAdmin = checkIsAdmin(userEmail)
+	const loading = usePostsStore(state => state.loading)
 
 	const publicPosts = posts?.filter(post => {
 		const isPrivate = post?.privacy === 'private'
@@ -32,7 +33,7 @@ export const Posts = ({ onOpen }) => {
 				spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 				w='100%'
 			>
-				{!havePosts ? (
+				{!havePosts && !loading ? (
 					<Stack align='center' direction='column' marginY='64px' spacing='4'>
 						<Text color='primary.400' fontSize='6xl'>
 							<FaPencilAlt />

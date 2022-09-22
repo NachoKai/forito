@@ -18,13 +18,12 @@ import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { FaSearch, FaTwitter } from 'react-icons/fa'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
-import { useDispatch, useSelector } from 'react-redux'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { v4 as uuid } from 'uuid'
 
 import { Comments } from '../components/Comments'
-import { getPost, getPostsBySearch } from '../redux/posts'
+import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor, getColorTheme } from '../theme.ts'
 import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
 import { isDev } from '../utils/checkIsDev.ts'
@@ -32,12 +31,14 @@ import { checkIsPostCreator } from '../utils/checkIsPostCreator.ts'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 
 const PostDetails = ({ user }) => {
-	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const { scrollYProgress } = useScroll()
 	const { id } = useParams()
-	const { post, posts } = useSelector(state => state.posts)
-	const recommendedPosts = posts.filter(({ _id }) => _id !== post?._id)
+	const posts = usePostsStore(state => state.posts)
+	const getPost = usePostsStore(state => state.getPost)
+	const post = usePostsStore(state => state.post)
+	const getPostsBySearch = usePostsStore(state => state.getPostsBySearch)
+	const recommendedPosts = posts?.filter(({ _id }) => _id !== post?._id)
 	const userEmail = user?.result?.email
 	const isPrivate = post?.privacy === 'private'
 	const isPostCreator = checkIsPostCreator(user, post?.creator)
@@ -63,15 +64,13 @@ const PostDetails = ({ user }) => {
 	}
 
 	useEffect(() => {
-		dispatch(getPost(id))
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [id])
+		getPost(id)
+	}, [getPost, id])
 
 	// Recommended Posts search
 	useEffect(() => {
-		if (post) dispatch(getPostsBySearch({ search: 'none', tags: post?.tags.join(',') }))
-		// eslint-disable-next-line react-hooks/exhaustive-deps
-	}, [post])
+		if (post) getPostsBySearch({ search: 'none', tags: post?.tags.join(',') })
+	}, [getPostsBySearch, post])
 
 	return post && showPost ? (
 		<Stack
@@ -201,7 +200,7 @@ const PostDetails = ({ user }) => {
 				>
 					Comments
 				</Text>
-				<Comments postComments={post?.comments} postId={post?._id} user={user} />
+				<Comments user={user} />
 			</StaggeredSlideFade>
 
 			{Boolean(recommendedPosts?.length) && (

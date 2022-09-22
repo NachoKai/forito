@@ -23,17 +23,16 @@ import { useState } from 'react'
 import { FaBookmark, FaEraser, FaPen, FaRegBookmark, FaRegComments } from 'react-icons/fa'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
-import { useDispatch, useSelector } from 'react-redux'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 
-import { deletePost, getPosts, likePost, savePost, setCurrentId } from '../redux/posts'
+import { usePostsStore } from '../state/postsStore'
 import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator.ts'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
 import { showError } from '../utils/showError.ts'
+import { useQuery } from '../utils/useQuery.ts'
 import { Dialog } from './common/Dialog'
 import { Likes } from './Likes'
-import { useQuery } from '../utils/useQuery.ts'
 
 export const Post = ({
 	post: {
@@ -52,8 +51,11 @@ export const Post = ({
 	},
 	onOpen,
 }) => {
-	const dispatch = useDispatch()
 	const navigate = useNavigate()
+	const likePost = usePostsStore(state => state.likePost)
+	const savePost = usePostsStore(state => state.savePost)
+	const deletePost = usePostsStore(state => state.deletePost)
+	const setCurrentId = usePostsStore(state => state.setCurrentId)
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
 	const isUserLike = Boolean(likes?.find(like => like === userId))
@@ -73,12 +75,13 @@ export const Post = ({
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
 	const query = useQuery()
 	const page = Number(query.get('page') || 1)
-	const { posts } = useSelector(state => state.posts)
+	const getPosts = usePostsStore(state => state.getPosts)
+	const posts = usePostsStore(state => state.posts)
 
 	const handleLike = async () => {
 		try {
 			await setLikeLoading(true)
-			await dispatch(likePost(_id))
+			await likePost(_id)
 			await setLikeLoading(false)
 		} catch (err) {
 			showError('Something went wrong when trying to like post. Please try again.')
@@ -89,7 +92,7 @@ export const Post = ({
 	const handleSave = async () => {
 		try {
 			await setSaveLoading(true)
-			await dispatch(savePost(_id))
+			await savePost(_id)
 			await setSaveLoading(false)
 		} catch (err) {
 			showError('Something went wrong when trying to like post. Please try again.')
@@ -103,19 +106,19 @@ export const Post = ({
 
 	const handleEdit = () => {
 		onOpen()
-		dispatch(setCurrentId(_id))
+		setCurrentId(_id)
 	}
 
 	const handleDelete = async () => {
 		try {
-			await dispatch(deletePost(_id))
+			await deletePost(_id)
 			setIsDialogOpen(false)
 
 			if (posts.length === 1 && page > 1) {
 				navigate(`/posts?page=${page - 1}`)
 			}
 
-			dispatch(getPosts(page))
+			getPosts(page)
 		} catch (err) {
 			showError('Something went wrong when trying to delete post. Please try again.')
 			console.error(err)

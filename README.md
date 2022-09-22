@@ -67,7 +67,7 @@ To run this project, you will need to add the following environment variables to
  
 ## Tech Stack
 
-React, Redux, ChakraUI, Firebase
+React, Zustand, ChakraUI, Firebase
 
 ## Feedback
 
