@@ -7,15 +7,16 @@ import {
 } from '@ajna/pagination'
 import { Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { usePostsStore } from '../state/postsStore'
 import { getThemeColor } from '../utils/getThemeColor.ts'
 
 export const Paginate = () => {
 	const navigate = useNavigate()
-	const { count, numberOfPages } = useSelector(state => state.posts)
+	const count = usePostsStore(state => state.count)
+	const numberOfPages = usePostsStore(state => state.numberOfPages)
 	const POSTS_LIMIT = 6
 
 	const { pages, currentPage, setCurrentPage } = usePagination({

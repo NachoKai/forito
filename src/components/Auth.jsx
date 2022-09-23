@@ -2,27 +2,27 @@ import { Button, Flex, Stack, Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { GoogleLogin } from 'react-google-login'
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa'
-import { useDispatch } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 
-import { AUTH, login, signup } from '../redux/auth'
 import { getThemeColor } from '../utils/getThemeColor.ts'
 import { showError } from '../utils/showError.ts'
 import { FormInput } from './common/FormInput'
+import { useAuthStore } from '../state/authStore'
 
 const Auth = () => {
-	const dispatch = useDispatch()
 	const navigate = useNavigate()
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
 	const [isSignup, setIsSignup] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
+	const login = useAuthStore(state => state.login)
+	const signup = useAuthStore(state => state.signup)
 
 	const onSuccess = res => {
 		try {
 			const result = res?.profileObj
 			const token = res?.tokenId
 
-			dispatch({ type: AUTH, data: { result, token } })
+			login({ result, token })
 			navigate('/')
 		} catch (err) {
 			showError('Something went wrong when trying to log in. Please try again.')
@@ -39,27 +39,23 @@ const Auth = () => {
 		e.preventDefault()
 		try {
 			if (isSignup) {
-				dispatch(
-					signup(
-						{
-							firstName: e.target.firstName.value,
-							lastName: e.target.lastName.value,
-							email: e.target.email.value,
-							password: e.target.password.value,
-							confirmPassword: e.target.confirmPassword.value,
-						},
-						navigate
-					)
+				signup(
+					{
+						firstName: e.target.firstName.value,
+						lastName: e.target.lastName.value,
+						email: e.target.email.value,
+						password: e.target.password.value,
+						confirmPassword: e.target.confirmPassword.value,
+					},
+					navigate
 				)
 			} else {
-				dispatch(
-					login(
-						{
-							email: e.target.email.value,
-							password: e.target.password.value,
-						},
-						navigate
-					)
+				login(
+					{
+						email: e.target.email.value,
+						password: e.target.password.value,
+					},
+					navigate
 				)
 			}
 		} catch (err) {

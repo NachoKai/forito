@@ -1,25 +1,26 @@
 import { Divider, Heading, Stack, Text } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { FaSearch } from 'react-icons/fa'
-import { useDispatch, useSelector } from 'react-redux'
 import { useParams } from 'react-router-dom'
 
-import { getUser } from '../redux/auth'
-import { getPostsByCreator } from '../redux/posts'
+import { useAuthStore } from '../state/authStore'
+import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme.ts'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 
 const Creator = () => {
-	const dispatch = useDispatch()
 	const { id } = useParams()
-	const { posts, loading } = useSelector(state => state.posts)
-	const { user } = useSelector(state => state.auth)
+	const posts = usePostsStore(state => state.posts)
+	const loading = usePostsStore(state => state.loading)
+	const getPostsByCreator = usePostsStore(state => state.getPostsByCreator)
+	const user = useAuthStore(state => state.user)
+	const getUser = useAuthStore(state => state.getUser)
 
 	useEffect(() => {
-		dispatch(getPostsByCreator(id))
-		dispatch(getUser(id))
-	}, [dispatch, id])
+		getPostsByCreator(id)
+		getUser(id)
+	}, [getPostsByCreator, getUser, id])
 
 	if (!posts?.length && !loading) {
 		return (

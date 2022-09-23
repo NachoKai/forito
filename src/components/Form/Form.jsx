@@ -7,13 +7,12 @@ import {
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
 import { useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 import { firebaseApp } from '../../firebaseApp.ts'
-import { hideLoading, showLoading } from '../../redux/loading'
-import { createPost, setCurrentId, updatePost } from '../../redux/posts'
+import { useLoadingStore } from '../../state/loadingStore'
+import { usePostsStore } from '../../state/postsStore'
 import { checkEmpty } from '../../utils/checkEmpty.ts'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage.ts'
 import { showError } from '../../utils/showError.ts'
@@ -30,9 +29,13 @@ const initialState = {
 }
 
 export const Form = ({ isOpen, onOpen, onClose }) => {
-	const dispatch = useDispatch()
 	const navigate = useNavigate()
-	const currentId = useSelector(state => state.posts.currentId)
+	const showLoading = useLoadingStore(state => state.showLoading)
+	const hideLoading = useLoadingStore(state => state.hideLoading)
+	const currentId = usePostsStore(state => state.currentId)
+	const setCurrentId = usePostsStore(state => state.setCurrentId)
+	const createPost = usePostsStore(state => state.createPost)
+	const updatePost = usePostsStore(state => state.updatePost)
 	const btnRef = useRef()
 	const user = getUserLocalStorage()
 	const [postData, setPostData] = useState(initialState)
@@ -40,17 +43,18 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 	const isSubmitDisabled =
 		!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) ||
 		![...new Set(postData.tags)].every(tag => /^[a-zA-Z0-9_.-]*$/.test(tag))
+
 	const areValidTags = ![...new Set(postData?.tags)].every(tag =>
 		/^[a-zA-Z0-9_.-]*$/.test(tag)
 	)
-	const post = useSelector(state =>
-		currentId ? state.posts?.posts?.find(message => message._id === currentId) : null
+	const post = usePostsStore(state =>
+		currentId ? state.posts?.find(message => message._id === currentId) : null
 	)
 	const [privacy, setPrivacy] = useState(post?.privacy)
 
 	const onImageUpload = async imageList => {
 		try {
-			dispatch(showLoading())
+			showLoading()
 			setImages(imageList)
 
 			const imageFile = imageList?.[0]?.file
@@ -74,7 +78,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 			console.error(err)
 			throw err
 		} finally {
-			dispatch(hideLoading())
+			hideLoading()
 		}
 	}
 
@@ -84,16 +88,16 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 	}
 
 	const handleClear = useCallback(() => {
-		dispatch(setCurrentId(null))
+		setCurrentId(null)
 		setImages([])
 		setPrivacy('public')
 		setPostData(initialState)
-	}, [dispatch])
+	}, [setCurrentId])
 
 	const handleSubmit = async e => {
 		e.preventDefault()
 		try {
-			dispatch(showLoading())
+			showLoading()
 
 			if (postData?.selectedFile?.id) {
 				const imageCollectionRef = firebaseApp.firestore().collection('images')
@@ -106,22 +110,18 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 			}
 
 			if (currentId === null) {
-				dispatch(
-					createPost(
-						{
-							...postData,
-							name: user?.result?.name,
-						},
-						navigate
-					)
-				)
-			} else {
-				dispatch(
-					updatePost(currentId, {
+				createPost(
+					{
 						...postData,
 						name: user?.result?.name,
-					})
+					},
+					navigate
 				)
+			} else {
+				updatePost(currentId, {
+					...postData,
+					name: user?.result?.name,
+				})
 			}
 			handleClear()
 			onClose()
@@ -130,7 +130,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 			console.error(err)
 			throw err
 		} finally {
-			dispatch(hideLoading())
+			hideLoading()
 		}
 	}
 

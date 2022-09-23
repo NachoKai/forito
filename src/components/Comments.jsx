@@ -1,10 +1,9 @@
 import { Button, Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { useEffect, useRef, useState } from 'react'
+import { useState } from 'react'
 import { FaExclamationCircle } from 'react-icons/fa'
-import { useDispatch } from 'react-redux'
 
-import { addComment } from '../redux/posts'
+import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme.ts'
 import { checkEmpty } from '../utils/checkEmpty.ts'
 import { getThemeColor } from '../utils/getThemeColor.ts'
@@ -12,21 +11,23 @@ import { showError } from '../utils/showError.ts'
 import { Comment } from './Comment'
 import { FormTextArea } from './common/FormTextArea'
 
-export const Comments = ({ user, postComments, postId }) => {
-	const dispatch = useDispatch()
+export const Comments = ({ user }) => {
+	const post = usePostsStore(state => state.post)
+	const postComments = post?.comments
+	const postId = post?._id
 	const userId = user?.result?.googleId || user?.result?._id
-	const commentsRef = useRef(null)
-	const [comments, setComments] = useState([])
 	const [comment, setComment] = useState('')
+	const [comments, setComments] = useState(postComments)
+
+	const addComment = usePostsStore(state => state.addComment)
 
 	const handleComment = async () => {
 		try {
 			const commentContent = { userId, name: user?.result?.name, comment }
-			const newComments = await dispatch(addComment(commentContent, postId))
 
-			setComments(newComments)
+			await addComment(commentContent, postId)
+			setComments([...comments, commentContent])
 			setComment('')
-			commentsRef?.current?.scrollIntoView({ behavior: 'smooth' })
 		} catch (err) {
 			console.error(err)
 			showError('Something went wrong when trying to add comment. Please try again.')
@@ -34,10 +35,6 @@ export const Comments = ({ user, postComments, postId }) => {
 	}
 
 	const handleClear = () => setComment('')
-
-	useEffect(() => {
-		setComments(postComments)
-	}, [postComments])
 
 	return (
 		<Stack>
@@ -99,21 +96,22 @@ export const Comments = ({ user, postComments, postId }) => {
 					</Stack>
 				)}
 			</Stack>
-			<div ref={commentsRef} />
 		</Stack>
 	)
 }
 
 Comments.propTypes = {
-	postComments: PropTypes.arrayOf(
-		PropTypes.shape({
-			userId: PropTypes.string,
-			name: PropTypes.string,
-			comment: PropTypes.string,
-			_id: PropTypes.string,
-		})
-	),
-	postId: PropTypes.string,
+	post: PropTypes.shape({
+		comments: PropTypes.arrayOf(
+			PropTypes.shape({
+				userId: PropTypes.string,
+				name: PropTypes.string,
+				comment: PropTypes.string,
+				_id: PropTypes.string,
+			})
+		),
+		_id: PropTypes.string,
+	}),
 	user: PropTypes.shape({
 		result: PropTypes.shape({
 			googleId: PropTypes.string,
