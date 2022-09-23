@@ -37,6 +37,7 @@ const PostDetails = ({ user }) => {
 	const posts = usePostsStore(state => state.posts)
 	const getPost = usePostsStore(state => state.getPost)
 	const post = usePostsStore(state => state.post)
+	const loading = usePostsStore(state => state.loading)
 	const getPostsBySearch = usePostsStore(state => state.getPostsBySearch)
 	const recommendedPosts = posts?.filter(({ _id }) => _id !== post?._id)
 	const userEmail = user?.result?.email
@@ -72,7 +73,7 @@ const PostDetails = ({ user }) => {
 		if (post) getPostsBySearch({ search: 'none', tags: post?.tags.join(',') })
 	}, [getPostsBySearch, post])
 
-	return post && showPost ? (
+	return post && showPost && !loading ? (
 		<Stack
 			borderRadius='24px'
 			display={showPost ? 'block' : 'none'}
