@@ -225,6 +225,8 @@ const store = (set, get) => ({
 			set({ loading: false }, false, 'get-saved-posts')
 		}
 	},
+
+	setCurrentPage: page => set({ currentPage: page }, false, 'set-current-page'),
 })
 
 export const usePostsStore = create(
