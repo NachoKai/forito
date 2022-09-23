@@ -18,8 +18,10 @@ export const Paginate = () => {
 	const count = usePostsStore(state => state.count)
 	const numberOfPages = usePostsStore(state => state.numberOfPages)
 	const POSTS_LIMIT = 6
+	const setCurrentPage = usePostsStore(state => state.setCurrentPage)
+	const currentPage = usePostsStore(state => state.currentPage)
 
-	const { pages, currentPage, setCurrentPage } = usePagination({
+	const { pages } = usePagination({
 		total: count,
 		limits: {
 			outer: 2,
@@ -31,8 +33,8 @@ export const Paginate = () => {
 		},
 	})
 
-	const handlePageChange = nextPage => {
-		setCurrentPage(nextPage)
+	const handlePageChange = page => {
+		setCurrentPage(page)
 	}
 
 	return (
