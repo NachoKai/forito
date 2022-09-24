@@ -174,7 +174,6 @@ const createPostsStore = () =>
 		},
 
 		addComment: async (comment, id) => {
-			set({ loading: true }, false, 'add-comment')
 			try {
 				const { data } = await api.addComment(comment, id)
 
@@ -187,8 +186,6 @@ const createPostsStore = () =>
 			} catch (err) {
 				showError('Something went wrong when trying to add comment. Please try again.')
 				console.error(err)
-			} finally {
-				set({ loading: false }, false, 'add-comment')
 			}
 		},
 
