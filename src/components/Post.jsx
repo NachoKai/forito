@@ -30,7 +30,7 @@ import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator.ts'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
 import { showError } from '../utils/showError.ts'
-import { useQuery } from '../utils/useQuery.ts'
+import { useLocationQuery } from '../utils/useLocationQuery.ts'
 import { Dialog } from './common/Dialog'
 import { Likes } from './Likes'
 
@@ -71,8 +71,8 @@ export const Post = ({
 	const isPostCreator = checkIsPostCreator(user, creator)
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
-	const query = useQuery()
-	const page = Number(query.get('page') || 1)
+	const locationQuery = useLocationQuery()
+	const page = Number(locationQuery.get('page') || 1)
 
 	const handleLike = async () => {
 		try {

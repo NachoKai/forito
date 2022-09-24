@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { usePostsStore } from '../state/postsStore'
 
-import { useQuery } from '../utils/useQuery.ts'
+import { useLocationQuery } from '../utils/useLocationQuery.ts'
 import { Paginate } from './Paginate'
 import { Posts } from './Posts'
 
 const Home = ({ onOpen }) => {
-	const query = useQuery()
-	const page = Number(query.get('page') || 1)
-	const searchQuery = query.get('searchQuery')
+	const locationQuery = useLocationQuery()
+	const page = Number(locationQuery.get('page') || 1)
+	const searchQuery = locationQuery.get('searchQuery')
 	const { getPosts } = usePostsStore()
 
 	useEffect(() => {
@@ -26,7 +26,7 @@ const Home = ({ onOpen }) => {
 				spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 			>
 				<Stack w='100%'>
-					<Posts searchQuery={searchQuery} onOpen={onOpen} />
+					<Posts onOpen={onOpen} />
 				</Stack>
 			</Stack>
 			<Stack px={{ sm: '4', md: '10', lg: '16', xl: '24' }}>
