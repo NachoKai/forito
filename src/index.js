@@ -14,15 +14,15 @@ const root = createRoot(rootElement)
 const queryClient = new QueryClient()
 
 root.render(
-	<ChakraProvider theme={themeConfig}>
-		<ColorModeScript initialColorMode={themeConfig?.config?.initialColorMode} />
-		<QueryClientProvider client={queryClient}>
-			<LoadingContextProvider>
-				<StrictMode>
+	<StrictMode>
+		<ChakraProvider theme={themeConfig}>
+			<ColorModeScript initialColorMode={themeConfig?.config?.initialColorMode} />
+			<QueryClientProvider client={queryClient}>
+				<LoadingContextProvider>
 					<App />
-				</StrictMode>
-			</LoadingContextProvider>
-			<ReactQueryDevtools initialIsOpen={false} />
-		</QueryClientProvider>
-	</ChakraProvider>
+				</LoadingContextProvider>
+				<ReactQueryDevtools initialIsOpen={false} />
+			</QueryClientProvider>
+		</ChakraProvider>
+	</StrictMode>
 )
