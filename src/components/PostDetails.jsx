@@ -35,6 +35,8 @@ const PostDetails = ({ user }) => {
 	const { scrollYProgress } = useScroll()
 	const { id } = useParams()
 	const { post, posts, getPost, loading, getPostsBySearch } = usePostsStore()
+	const postComments = post?.comments
+	const postId = post?._id
 	const recommendedPosts = posts?.filter(({ _id }) => _id !== post?._id)
 	const userEmail = user?.result?.email
 	const isPrivate = post?.privacy === 'private'
@@ -197,7 +199,7 @@ const PostDetails = ({ user }) => {
 				>
 					Comments
 				</Text>
-				<Comments user={user} />
+				<Comments postComments={postComments} postId={postId} user={user} />
 			</StaggeredSlideFade>
 
 			{Boolean(recommendedPosts?.length) && (

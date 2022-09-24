@@ -11,10 +11,8 @@ import { showError } from '../utils/showError.ts'
 import { Comment } from './Comment'
 import { FormTextArea } from './common/FormTextArea'
 
-export const Comments = ({ user }) => {
-	const { post, addComment } = usePostsStore()
-	const postComments = post?.comments
-	const postId = post?._id
+export const Comments = ({ postComments, postId, user }) => {
+	const { addComment } = usePostsStore()
 	const userId = user?.result?.googleId || user?.result?._id
 	const [comment, setComment] = useState('')
 	const [comments, setComments] = useState(postComments)
@@ -99,17 +97,15 @@ export const Comments = ({ user }) => {
 }
 
 Comments.propTypes = {
-	post: PropTypes.shape({
-		comments: PropTypes.arrayOf(
-			PropTypes.shape({
-				userId: PropTypes.string,
-				name: PropTypes.string,
-				comment: PropTypes.string,
-				_id: PropTypes.string,
-			})
-		),
-		_id: PropTypes.string,
-	}),
+	postComments: PropTypes.arrayOf(
+		PropTypes.shape({
+			userId: PropTypes.string,
+			name: PropTypes.string,
+			comment: PropTypes.string,
+			_id: PropTypes.string,
+		})
+	),
+	postId: PropTypes.string,
 	user: PropTypes.shape({
 		result: PropTypes.shape({
 			googleId: PropTypes.string,

@@ -3,7 +3,7 @@ import React from 'react'
 import { Comments } from '../components/Comments'
 import { render, screen } from './test-utils'
 
-describe('Comment', () => {
+describe('Comments', () => {
 	let postComments
 	let postId
 	let user
