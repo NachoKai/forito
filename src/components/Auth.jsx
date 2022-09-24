@@ -22,7 +22,7 @@ const Auth = () => {
 			const token = res?.tokenId
 
 			login({ result, token })
-			navigate('/')
+			navigate('/posts')
 		} catch (err) {
 			showError('Something went wrong when trying to log in. Please try again.')
 			console.error(err)

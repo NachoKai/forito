@@ -25,7 +25,7 @@ export const SearchNavbar = () => {
 				}&tags=${searchTags.join(',')}`
 			)
 		} else {
-			navigate('/')
+			navigate('/posts')
 		}
 	}, [getPostsBySearch, location?.pathname, navigate, searchTags, searchValue])
 

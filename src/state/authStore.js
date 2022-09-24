@@ -20,7 +20,7 @@ const createAuthStore = () =>
 
 				localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
 				set({ authData: data, loading: false }, false, 'login')
-				navigate('/')
+				navigate('/posts')
 				navigate(0)
 			} catch (err) {
 				showError('Something went wrong when trying to log in. Please try again.')
@@ -35,7 +35,7 @@ const createAuthStore = () =>
 				localStorage.removeItem('forito-profile')
 				localStorage.removeItem('forito-theme')
 				set({ authData: null, loading: false }, false, 'logout')
-				navigate('/')
+				navigate('/posts')
 				navigate(0)
 			} catch (err) {
 				showError('Something went wrong when trying to log out. Please try again.')
@@ -50,7 +50,7 @@ const createAuthStore = () =>
 
 				set({ authData: data }, false, 'signup')
 				localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
-				navigate('/')
+				navigate('/posts')
 				navigate(0)
 			} catch (err) {
 				showError('Something went wrong when trying to sign up. Please try again.')
