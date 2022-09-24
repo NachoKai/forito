@@ -10,7 +10,7 @@ export const SearchNavbar = () => {
 	const navigate = useNavigate()
 	const [searchValue, setSearchValue] = useState('')
 	const [searchTags, setSearchTags] = useState([])
-	const getPostsBySearch = usePostsStore(state => state.getPostsBySearch)
+	const { getPostsBySearch } = usePostsStore()
 	const location = useLocation()
 	const ENTER_KEYCODE = 13
 

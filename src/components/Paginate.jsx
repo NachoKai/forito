@@ -15,11 +15,8 @@ import { getThemeColor } from '../utils/getThemeColor.ts'
 
 export const Paginate = () => {
 	const navigate = useNavigate()
-	const count = usePostsStore(state => state.count)
-	const numberOfPages = usePostsStore(state => state.numberOfPages)
+	const { count, numberOfPages, setCurrentPage, currentPage } = usePostsStore()
 	const POSTS_LIMIT = 6
-	const setCurrentPage = usePostsStore(state => state.setCurrentPage)
-	const currentPage = usePostsStore(state => state.currentPage)
 
 	const { pages } = usePagination({
 		total: count,

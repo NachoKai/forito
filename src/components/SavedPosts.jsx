@@ -13,9 +13,7 @@ import { Post } from './Post'
 
 const SavedPosts = () => {
 	const { id } = useParams()
-	const posts = usePostsStore(state => state.posts)
-	const loading = usePostsStore(state => state.loading)
-	const getSavedPosts = usePostsStore(state => state.getSavedPosts)
+	const { posts, loading, getSavedPosts } = usePostsStore()
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const userId = user?.result?.googleId || user?.result?._id

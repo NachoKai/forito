@@ -13,9 +13,7 @@ import { Post } from './Post'
 
 const Tags = () => {
 	const { name } = useParams()
-	const posts = usePostsStore(state => state.posts)
-	const loading = usePostsStore(state => state.loading)
-	const getPostsBySearch = usePostsStore(state => state.getPostsBySearch)
+	const { posts, loading, getPostsBySearch } = usePostsStore()
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const isAdmin = checkIsAdmin(userEmail)

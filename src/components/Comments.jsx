@@ -12,14 +12,12 @@ import { Comment } from './Comment'
 import { FormTextArea } from './common/FormTextArea'
 
 export const Comments = ({ user }) => {
-	const post = usePostsStore(state => state.post)
+	const { post, addComment } = usePostsStore()
 	const postComments = post?.comments
 	const postId = post?._id
 	const userId = user?.result?.googleId || user?.result?._id
 	const [comment, setComment] = useState('')
 	const [comments, setComments] = useState(postComments)
-
-	const addComment = usePostsStore(state => state.addComment)
 
 	const handleComment = async () => {
 		try {

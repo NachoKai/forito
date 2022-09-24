@@ -8,7 +8,7 @@ import { LoadingContext } from './LoadingContext'
 const LoadingScreen = () => {
 	const { loading } = useContext(LoadingContext)
 	const { colorMode } = useColorMode()
-	const isLoading = usePostsStore(state => state.loading)
+	const { isLoading } = usePostsStore()
 	const loadingRef = useRef(null)
 	const { showLoading, hideLoading } = useContext(LoadingContext)
 

@@ -52,10 +52,8 @@ export const Post = ({
 	onOpen,
 }) => {
 	const navigate = useNavigate()
-	const likePost = usePostsStore(state => state.likePost)
-	const savePost = usePostsStore(state => state.savePost)
-	const deletePost = usePostsStore(state => state.deletePost)
-	const setCurrentId = usePostsStore(state => state.setCurrentId)
+	const { likePost, savePost, setCurrentId, deletePost, posts, getPosts } =
+		usePostsStore()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
 	const isUserLike = Boolean(likes?.find(like => like === userId))
@@ -75,8 +73,6 @@ export const Post = ({
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
 	const query = useQuery()
 	const page = Number(query.get('page') || 1)
-	const getPosts = usePostsStore(state => state.getPosts)
-	const posts = usePostsStore(state => state.posts)
 
 	const handleLike = async () => {
 		try {

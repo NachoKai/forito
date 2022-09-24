@@ -10,12 +10,11 @@ import { FormInput } from './common/FormInput'
 import { useAuthStore } from '../state/authStore'
 
 const Auth = () => {
+	const { login, signup } = useAuthStore()
 	const navigate = useNavigate()
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
 	const [isSignup, setIsSignup] = useState(false)
 	const [showPassword, setShowPassword] = useState(false)
-	const login = useAuthStore(state => state.login)
-	const signup = useAuthStore(state => state.signup)
 
 	const onSuccess = res => {
 		try {

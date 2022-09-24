@@ -30,12 +30,8 @@ const initialState = {
 
 export const Form = ({ isOpen, onOpen, onClose }) => {
 	const navigate = useNavigate()
-	const showLoading = useLoadingStore(state => state.showLoading)
-	const hideLoading = useLoadingStore(state => state.hideLoading)
-	const currentId = usePostsStore(state => state.currentId)
-	const setCurrentId = usePostsStore(state => state.setCurrentId)
-	const createPost = usePostsStore(state => state.createPost)
-	const updatePost = usePostsStore(state => state.updatePost)
+	const { showLoading, hideLoading } = useLoadingStore()
+	const { currentId, setCurrentId, createPost, updatePost } = usePostsStore()
 	const btnRef = useRef()
 	const user = getUserLocalStorage()
 	const [postData, setPostData] = useState(initialState)

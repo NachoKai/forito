@@ -32,7 +32,7 @@ import { SearchNavbar } from './SearchNavbar'
 const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const navigate = useNavigate()
 	const location = useLocation()
-	const logout = useAuthStore(state => state.logout)
+	const { logout } = useAuthStore()
 	const [user, setUser] = useState(() => getUserLocalStorage())
 	const userId = user?.result?.googleId || user?.result?._id
 	const { colorMode, toggleColorMode } = useColorMode()

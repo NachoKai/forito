@@ -34,11 +34,7 @@ const PostDetails = ({ user }) => {
 	const navigate = useNavigate()
 	const { scrollYProgress } = useScroll()
 	const { id } = useParams()
-	const posts = usePostsStore(state => state.posts)
-	const getPost = usePostsStore(state => state.getPost)
-	const post = usePostsStore(state => state.post)
-	const loading = usePostsStore(state => state.loading)
-	const getPostsBySearch = usePostsStore(state => state.getPostsBySearch)
+	const { post, posts, getPost, loading, getPostsBySearch } = usePostsStore()
 	const recommendedPosts = posts?.filter(({ _id }) => _id !== post?._id)
 	const userEmail = user?.result?.email
 	const isPrivate = post?.privacy === 'private'
