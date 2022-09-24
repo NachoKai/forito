@@ -1,8 +1,9 @@
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
-import { QueryClient, QueryClientProvider } from 'react-query'
 import { App } from './App.jsx'
 import { LoadingContextProvider } from './components/common/LoadingScreen/LoadingContext'
 import './index.css'
@@ -21,6 +22,7 @@ root.render(
 					<App />
 				</StrictMode>
 			</LoadingContextProvider>
+			<ReactQueryDevtools initialIsOpen={false} />
 		</QueryClientProvider>
 	</ChakraProvider>
 )
