@@ -1,6 +1,4 @@
 import { ChakraProvider, ColorModeScript } from '@chakra-ui/react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
 
@@ -11,18 +9,14 @@ import { themeConfig } from './theme.ts'
 
 const rootElement = document.getElementById('root')
 const root = createRoot(rootElement)
-const queryClient = new QueryClient()
 
 root.render(
 	<StrictMode>
 		<ChakraProvider theme={themeConfig}>
 			<ColorModeScript initialColorMode={themeConfig?.config?.initialColorMode} />
-			<QueryClientProvider client={queryClient}>
-				<LoadingContextProvider>
-					<App />
-				</LoadingContextProvider>
-				<ReactQueryDevtools initialIsOpen={false} />
-			</QueryClientProvider>
+			<LoadingContextProvider>
+				<App />
+			</LoadingContextProvider>
 		</ChakraProvider>
 	</StrictMode>
 )
