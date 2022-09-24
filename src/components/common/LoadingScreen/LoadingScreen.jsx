@@ -6,9 +6,9 @@ import { getThemeColor } from '../../../utils/getThemeColor.ts'
 import { LoadingContext } from './LoadingContext'
 
 const LoadingScreen = () => {
-	const { loading } = useContext(LoadingContext)
+	const { isLoading } = useContext(LoadingContext)
 	const { colorMode } = useColorMode()
-	const { isLoading } = usePostsStore()
+	const { loading } = usePostsStore()
 	const loadingRef = useRef(null)
 	const { showLoading, hideLoading } = useContext(LoadingContext)
 
