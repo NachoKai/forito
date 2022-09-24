@@ -15,11 +15,12 @@ import { formatDistance } from 'date-fns'
 import { motion, useScroll } from 'framer-motion'
 import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
-import { useEffect, useId } from 'react'
+import { useEffect } from 'react'
 import { FaSearch, FaTwitter } from 'react-icons/fa'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import styled from 'styled-components'
+import { v4 as uuid } from 'uuid'
 
 import { Comments } from '../components/Comments'
 import { usePostsStore } from '../state/postsStore'
@@ -32,7 +33,6 @@ import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 const PostDetails = ({ user }) => {
 	const navigate = useNavigate()
 	const { scrollYProgress } = useScroll()
-	const uuid = useId()
 	const { id } = useParams()
 	const { post, posts, getPost, loading, getPostsBySearch } = usePostsStore()
 	const postComments = post?.comments
