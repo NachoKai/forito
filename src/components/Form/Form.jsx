@@ -6,9 +6,8 @@ import {
 	DrawerOverlay,
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useId, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
 
 import { firebaseApp } from '../../firebaseApp.ts'
 import { useLoadingStore } from '../../state/loadingStore'
@@ -30,6 +29,7 @@ const initialState = {
 
 export const Form = ({ isOpen, onOpen, onClose }) => {
 	const navigate = useNavigate()
+	const uuid = useId()
 	const { showLoading, hideLoading } = useLoadingStore()
 	const { currentId, setCurrentId, createPost, updatePost } = usePostsStore()
 	const btnRef = useRef()
