@@ -40,7 +40,7 @@ export const Search = () => {
 				}&tags=${searchTags.join(',')}`
 			)
 		} else {
-			navigate('/')
+			navigate('/posts')
 		}
 	}
 
