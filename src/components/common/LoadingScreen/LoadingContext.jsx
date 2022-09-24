@@ -4,15 +4,15 @@ import { createContext, useState } from 'react'
 export const LoadingContext = createContext()
 
 export const LoadingContextProvider = ({ children }) => {
-	const [loading, setLoading] = useState(false)
+	const [isLoading, setIsLoading] = useState(false)
 
-	const showLoading = () => setLoading(true)
-	const hideLoading = () => setLoading(false)
+	const showLoading = () => setIsLoading(true)
+	const hideLoading = () => setIsLoading(false)
 
 	return (
 		<LoadingContext.Provider
 			value={{
-				loading,
+				isLoading,
 				showLoading,
 				hideLoading,
 			}}
