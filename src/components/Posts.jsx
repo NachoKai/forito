@@ -11,12 +11,11 @@ import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 
 export const Posts = ({ onOpen }) => {
-	const posts = usePostsStore(state => state.posts)
+	const { posts, loading } = usePostsStore()
 	const havePosts = posts?.length > 0
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const isAdmin = checkIsAdmin(userEmail)
-	const loading = usePostsStore(state => state.loading)
 
 	const publicPosts = posts?.filter(post => {
 		const isPrivate = post?.privacy === 'private'

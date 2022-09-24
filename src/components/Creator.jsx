@@ -11,11 +11,8 @@ import { Post } from './Post'
 
 const Creator = () => {
 	const { id } = useParams()
-	const posts = usePostsStore(state => state.posts)
-	const loading = usePostsStore(state => state.loading)
-	const getPostsByCreator = usePostsStore(state => state.getPostsByCreator)
-	const user = useAuthStore(state => state.user)
-	const getUser = useAuthStore(state => state.getUser)
+	const { posts, loading, getPostsByCreator } = usePostsStore()
+	const { user, getUser } = useAuthStore()
 
 	useEffect(() => {
 		getPostsByCreator(id)

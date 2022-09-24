@@ -23,7 +23,7 @@ import { FormInput } from './common/FormInput'
 
 export const Search = () => {
 	const navigate = useNavigate()
-	const getPostsBySearch = usePostsStore(state => state.getPostsBySearch)
+	const { getPostsBySearch } = usePostsStore()
 	const [searchValue, setSearchValue] = useState('')
 	const [searchTags, setSearchTags] = useState([])
 	const location = useLocation()

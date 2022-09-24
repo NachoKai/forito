@@ -11,7 +11,7 @@ const Home = ({ onOpen }) => {
 	const query = useQuery()
 	const page = Number(query.get('page') || 1)
 	const searchQuery = query.get('searchQuery')
-	const getPosts = usePostsStore(state => state.getPosts)
+	const { getPosts } = usePostsStore()
 
 	useEffect(() => {
 		getPosts(page)

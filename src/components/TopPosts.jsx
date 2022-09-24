@@ -8,8 +8,7 @@ import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 
 const TopPosts = () => {
-	const getAllPosts = usePostsStore(state => state.getAllPosts)
-	const posts = usePostsStore(state => state.posts)
+	const { posts, getAllPosts } = usePostsStore()
 	const havePosts = posts?.length > 0
 
 	const getTopPosts = max => {
