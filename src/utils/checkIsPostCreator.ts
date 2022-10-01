@@ -5,9 +5,13 @@ interface UserI {
 	}
 }
 
-export const checkIsPostCreator = (user: UserI, creator: string): boolean =>
-	user?.result?.googleId
-		? user?.result?.googleId === creator
-		: user?.result?._id
-		? user?.result?._id === creator
-		: false
+export const checkIsPostCreator = (user: UserI, creator: string): boolean => {
+	if (user?.result?.googleId) {
+		return user.result.googleId === creator
+	}
+	if (user?.result?._id) {
+		return user.result._id === creator
+	}
+
+	return false
+}

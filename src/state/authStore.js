@@ -70,6 +70,21 @@ const createAuthStore = () =>
 				console.error(err)
 			}
 		},
+
+		googleLogin: async (formData, navigate) => {
+			set({ loading: true }, false, 'googleLogin')
+			try {
+				set({ authData: formData }, false, 'googleLogin')
+				localStorage.setItem('forito-profile', JSON.stringify({ ...formData }))
+				navigate('/posts')
+				navigate(0)
+			} catch (err) {
+				showError('Something went wrong when trying to sign up. Please try again.')
+				console.error(err)
+			} finally {
+				set({ loading: false }, false, 'googleLogin')
+			}
+		},
 	}))
 
 export const useAuthStore = createAuthStore()
