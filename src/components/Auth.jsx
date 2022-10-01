@@ -10,7 +10,7 @@ import { FormInput } from './common/FormInput'
 import { useAuthStore } from '../state/authStore'
 
 const Auth = () => {
-	const { login, signup } = useAuthStore()
+	const { login, signup, googleLogin } = useAuthStore()
 	const navigate = useNavigate()
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
 	const [isSignup, setIsSignup] = useState(false)
@@ -21,7 +21,7 @@ const Auth = () => {
 			const result = res?.profileObj
 			const token = res?.tokenId
 
-			login({ result, token })
+			googleLogin({ result, token }, navigate)
 			navigate('/posts')
 		} catch (err) {
 			showError('Something went wrong when trying to log in. Please try again.')

@@ -1,16 +1,48 @@
-import { Text } from '@chakra-ui/react'
+import { Button, Stack, Text } from '@chakra-ui/react'
 import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
+import { FaEraser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
+import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
+
 export const Comment = ({ comment }) => {
+	const user = getUserLocalStorage()
+	const userEmail = user?.result?.email
+	const isAdmin = checkIsAdmin(userEmail)
+
+	const handleDeleteComment = id => {
+		console.info(id)
+	}
+
 	return (
-		<Text whiteSpace='pre-wrap'>
-			<Link to={`/creator/${comment?.userId}`}>
-				<strong>{comment?.name}: </strong>
-			</Link>
-			<Linkify>{comment?.comment}</Linkify>
-		</Text>
+		<Stack align='center' direction='row' justify='space-between'>
+			<Text whiteSpace='pre-wrap'>
+				<Link to={`/creator/${comment?.userId}`}>
+					<strong>{comment?.name}: </strong>
+				</Link>
+				<Linkify>{comment?.comment}</Linkify>
+			</Text>
+			{Boolean(isAdmin) && (
+				<Button
+					bg='red_500_200'
+					display={{
+						sm: 'none',
+						md: 'none',
+						lg: 'flex',
+						xl: 'flex',
+					}}
+					leftIcon={<FaEraser />}
+					maxWidth='88px'
+					size='xs'
+					variant='solid'
+					onClick={() => handleDeleteComment(comment._id)}
+				>
+					Delete
+				</Button>
+			)}
+		</Stack>
 	)
 }
 
