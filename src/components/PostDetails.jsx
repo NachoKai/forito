@@ -130,7 +130,7 @@ const PostDetails = ({ user }) => {
 
 				<Stack direction='row' spacing='2'>
 					<Stack spacing='4' w='100%'>
-						<Text>Tags:</Text>
+						<Text fontSize='md'>Tags:</Text>
 						<Stack direction='row' spacing='2'>
 							{post?.tags?.length ? (
 								[...new Set(post?.tags)].filter(Boolean).map(tag => (
