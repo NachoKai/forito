@@ -27,7 +27,7 @@ export const FormInput = ({
 	<FormControl isRequired={isRequired}>
 		<Flex>
 			{tooltip ? (
-				<Tooltip hasArrow label={tooltip} openDelay={200} placement='top'>
+				<Tooltip label={tooltip} openDelay={200} placement='top'>
 					<FormLabel fontWeight='bold'>{label}</FormLabel>
 				</Tooltip>
 			) : (

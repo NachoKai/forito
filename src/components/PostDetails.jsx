@@ -11,7 +11,7 @@ import {
 	Text,
 	Tooltip,
 } from '@chakra-ui/react'
-import { formatDistance } from 'date-fns'
+import { format, formatDistance, isValid } from 'date-fns'
 import { motion, useScroll } from 'framer-motion'
 import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
@@ -91,12 +91,7 @@ const PostDetails = ({ user }) => {
 								{post?.title}
 							</Heading>
 							{isPrivate && (
-								<Tooltip
-									hasArrow
-									label='Post only visible to you'
-									openDelay={200}
-									placement='top'
-								>
+								<Tooltip label='Post only visible to you' openDelay={200} placement='top'>
 									<span>
 										<RiGitRepositoryPrivateFill />
 									</span>
@@ -137,7 +132,7 @@ const PostDetails = ({ user }) => {
 					<Stack spacing='4' w='100%'>
 						<Text>Tags:</Text>
 						<Stack direction='row' spacing='2'>
-							{post?.tags &&
+							{post?.tags?.length ? (
 								[...new Set(post?.tags)].filter(Boolean).map(tag => (
 									<Badge
 										key={uuid()}
@@ -147,7 +142,10 @@ const PostDetails = ({ user }) => {
 									>
 										<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
 									</Badge>
-								))}
+								))
+							) : (
+								<Text color='gray.500'>No tags yet</Text>
+							)}
 						</Stack>
 						<Flex align='center' justify='space-between' w='100%'>
 							<Stack
@@ -160,12 +158,23 @@ const PostDetails = ({ user }) => {
 										<Link to={`/creator/${post?.creator}`}>{` ${post?.name}`}</Link>
 									</Text>
 									<span>•</span>
-									<Text fontSize='md'>
-										{formatDistance(
-											new Date(),
-											post?.createdAt ? new Date(post?.createdAt) : new Date()
-										) + ' ago'}
-									</Text>
+									<Tooltip
+										label={format(
+											isValid(new Date(post?.createdAt))
+												? new Date(post?.createdAt)
+												: new Date(),
+											'dd MMM yyyy - HH:mm'
+										)}
+										openDelay={200}
+										placement='top'
+									>
+										<Text fontSize='md'>
+											{formatDistance(
+												new Date(),
+												post?.createdAt ? new Date(post?.createdAt) : new Date()
+											) + ' ago'}
+										</Text>
+									</Tooltip>
 								</Stack>
 							</Stack>
 							{!isPrivate && (

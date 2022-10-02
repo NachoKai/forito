@@ -32,16 +32,16 @@ export const Dialog = ({
 			onClose={setIsDialogOpen.off}
 		>
 			<AlertDialogOverlay backdropFilter='blur(10px)' bg='blackAlpha.300'>
-				<AlertDialogContent>
+				<AlertDialogContent className='container'>
 					<AlertDialogHeader fontSize='lg' fontWeight='bold'>
 						{title}
 					</AlertDialogHeader>
 					<AlertDialogBody>{message}</AlertDialogBody>
 					<AlertDialogFooter>
-						<Button ref={cancelRef} onClick={setIsDialogOpen.off}>
+						<Button ref={cancelRef} className='button' onClick={setIsDialogOpen.off}>
 							Cancel
 						</Button>
-						<Button colorScheme='red' ml={3} onClick={onAccept}>
+						<Button className='button' colorScheme='red' ml={3} onClick={onAccept}>
 							{button}
 						</Button>
 					</AlertDialogFooter>
