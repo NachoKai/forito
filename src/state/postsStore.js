@@ -189,6 +189,22 @@ const createPostsStore = () =>
 			}
 		},
 
+		deleteComment: async (postId, commentId) => {
+			try {
+				const { data } = await api.deleteComment(postId, commentId)
+
+				set(
+					{ posts: get().posts?.map(post => (post?._id === data._id ? data : post)) },
+					false,
+					'delete-comment'
+				)
+				showSuccess('Comment successfully deleted.')
+			} catch (err) {
+				showError('Something went wrong when trying to delete comment. Please try again.')
+				console.error(err)
+			}
+		},
+
 		getPostsByCreator: async id => {
 			get().cleanUp()
 			set({ loading: true }, false, 'get-posts-by-creator')

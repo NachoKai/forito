@@ -34,7 +34,8 @@ export const likePost = id => API.patch(`/posts/${id}/likePost`)
 export const savePost = id => API.patch(`/posts/${id}/savePost`)
 export const updatePost = (id, updatedPost) => API.patch(`/posts/${id}`, updatedPost)
 export const deletePost = id => API.delete(`/posts/${id}`)
-export const addComment = (value, id) => API.post(`/posts/${id}/commentPost`, { value })
+export const addComment = (value, id) => API.post(`/posts/${id}/addComment`, { value })
+export const deleteComment = (id, commentId) => API.delete(`/posts/${id}/${commentId}`)
 
 /* ==========  USER  ========== */
 
