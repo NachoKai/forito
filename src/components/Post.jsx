@@ -155,7 +155,6 @@ export const Post = ({
 								</Heading>
 								{isPrivate && (
 									<Tooltip
-										hasArrow
 										label='Post only visible to you'
 										openDelay={200}
 										placement='top'
@@ -174,7 +173,6 @@ export const Post = ({
 									</Text>
 									<span>•</span>
 									<Tooltip
-										hasArrow
 										label={format(
 											isValid(new Date(createdAt)) ? new Date(createdAt) : new Date(),
 											'dd MMM yyyy - HH:mm'
