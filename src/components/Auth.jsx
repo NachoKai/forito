@@ -1,20 +1,19 @@
-import { Button, Flex, Stack, Text } from '@chakra-ui/react'
-import { useState } from 'react'
+import { Button, Flex, Stack, Text, useBoolean } from '@chakra-ui/react'
 import { GoogleLogin } from 'react-google-login'
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
+import { useAuthStore } from '../state/authStore'
 import { getThemeColor } from '../utils/getThemeColor.ts'
 import { showError } from '../utils/showError.ts'
 import { FormInput } from './common/FormInput'
-import { useAuthStore } from '../state/authStore'
 
 const Auth = () => {
 	const { login, signup, googleLogin } = useAuthStore()
 	const navigate = useNavigate()
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
-	const [isSignup, setIsSignup] = useState(false)
-	const [showPassword, setShowPassword] = useState(false)
+	const [isSignup, setIsSignup] = useBoolean()
+	const [showPassword, setShowPassword] = useBoolean()
 
 	const onSuccess = res => {
 		try {
@@ -63,9 +62,6 @@ const Auth = () => {
 			throw err
 		}
 	}
-
-	const handleSwitch = () => setIsSignup(prevIsSignup => !prevIsSignup)
-	const handleShowPassword = () => setShowPassword(!showPassword)
 
 	return (
 		<Stack
@@ -125,9 +121,9 @@ const Auth = () => {
 							name='password'
 							rightIcon={
 								showPassword ? (
-									<FaEyeSlash onClick={handleShowPassword} />
+									<FaEyeSlash onClick={setShowPassword.toggle} />
 								) : (
-									<FaEye onClick={handleShowPassword} />
+									<FaEye onClick={setShowPassword.toggle} />
 								)
 							}
 							tooltip='Required'
@@ -179,7 +175,7 @@ const Auth = () => {
 				/>
 
 				<Flex justify='flex-end'>
-					<Button size='sm' variant='ghost' onClick={handleSwitch}>
+					<Button size='sm' variant='ghost' onClick={setIsSignup.toggle}>
 						{isSignup
 							? 'Already have an account? Login'
 							: "Don't have an account? Sign up"}

@@ -1,13 +1,14 @@
+import { useBoolean } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { createContext, useState } from 'react'
+import { createContext } from 'react'
 
 export const LoadingContext = createContext()
 
 export const LoadingContextProvider = ({ children }) => {
-	const [isLoading, setIsLoading] = useState(false)
+	const [isLoading, setIsLoading] = useBoolean()
 
-	const showLoading = () => setIsLoading(true)
-	const hideLoading = () => setIsLoading(false)
+	const showLoading = () => setIsLoading.on()
+	const hideLoading = () => setIsLoading.off()
 
 	return (
 		<LoadingContext.Provider

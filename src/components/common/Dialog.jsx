@@ -20,15 +20,17 @@ export const Dialog = ({
 }) => {
 	const cancelRef = useRef()
 
-	const onCancel = () => setIsDialogOpen(false)
-
 	const onAccept = () => {
 		action()
-		setIsDialogOpen(false)
+		setIsDialogOpen.off()
 	}
 
 	return (
-		<AlertDialog isOpen={isDialogOpen} leastDestructiveRef={cancelRef} onClose={onCancel}>
+		<AlertDialog
+			isOpen={isDialogOpen}
+			leastDestructiveRef={cancelRef}
+			onClose={setIsDialogOpen.off}
+		>
 			<AlertDialogOverlay backdropFilter='blur(10px)' bg='blackAlpha.300'>
 				<AlertDialogContent>
 					<AlertDialogHeader fontSize='lg' fontWeight='bold'>
@@ -36,7 +38,7 @@ export const Dialog = ({
 					</AlertDialogHeader>
 					<AlertDialogBody>{message}</AlertDialogBody>
 					<AlertDialogFooter>
-						<Button ref={cancelRef} onClick={onCancel}>
+						<Button ref={cancelRef} onClick={setIsDialogOpen.off}>
 							Cancel
 						</Button>
 						<Button colorScheme='red' ml={3} onClick={onAccept}>
