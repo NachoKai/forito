@@ -15,7 +15,6 @@ import {
 	Tooltip,
 	VisuallyHidden,
 	useBoolean,
-	useColorModeValue,
 } from '@chakra-ui/react'
 import { format, formatDistance, isValid } from 'date-fns'
 import Linkify from 'linkify-react'
@@ -63,10 +62,6 @@ export const Post = ({
 	const [isDialogOpen, setIsDialogOpen] = useBoolean()
 	const [saveLoading, setSaveLoading] = useBoolean()
 	const [likeLoading, setLikeLoading] = useBoolean()
-	const textShadow = useColorModeValue(
-		`0 0 2px rgba(0,0,0,0.3)`,
-		`0 0 2px rgba(255,255,255,0.3)`
-	)
 	const isPrivate = privacy === 'private'
 	const isPostCreator = checkIsPostCreator(user, creator)
 	const isAdmin = checkIsAdmin(userEmail)
@@ -147,7 +142,6 @@ export const Post = ({
 									as='h2'
 									className='pointer'
 									fontSize='2xl'
-									textShadow={textShadow}
 									w='100%'
 									onClick={openPost}
 								>
