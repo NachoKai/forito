@@ -2,6 +2,7 @@ import { Button, Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { FaExclamationCircle } from 'react-icons/fa'
+import { v4 as uuid } from 'uuid'
 
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme.ts'
@@ -12,14 +13,19 @@ import { Comment } from './Comment'
 import { FormTextArea } from './common/FormTextArea'
 
 export const Comments = ({ postComments, postId, user }) => {
-	const { addComment } = usePostsStore()
+	const { addComment, deleteComment } = usePostsStore()
 	const userId = user?.result?.googleId || user?.result?._id
 	const [comment, setComment] = useState('')
 	const [comments, setComments] = useState(postComments)
 
-	const handleComment = async () => {
+	const handleAddComment = async () => {
 		try {
-			const commentContent = { userId, name: user?.result?.name, comment }
+			const commentContent = {
+				userId,
+				name: user?.result?.name,
+				comment,
+				commentId: uuid(),
+			}
 
 			await addComment(commentContent, postId)
 			setComments([...comments, commentContent])
@@ -37,7 +43,14 @@ export const Comments = ({ postComments, postId, user }) => {
 			<Stack direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }} spacing='4'>
 				<Stack overflow='auto' spacing='4' width='100%'>
 					{comments?.length ? (
-						comments?.map(comment => <Comment key={comment._id} comment={comment} />)
+						comments?.map(comment => (
+							<Comment
+								key={comment._id}
+								comment={comment}
+								deleteComment={deleteComment}
+								postId={postId}
+							/>
+						))
 					) : (
 						<Text color='gray.500'>No comments yet</Text>
 					)}
@@ -65,7 +78,7 @@ export const Comments = ({ postComments, postId, user }) => {
 								boxShadow={() => getThemeColor()}
 								disabled={!checkEmpty(comment)}
 								flexGrow='1'
-								onClick={handleComment}
+								onClick={handleAddComment}
 							>
 								Comment
 							</Button>

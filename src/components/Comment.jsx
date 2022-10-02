@@ -7,14 +7,10 @@ import { Link } from 'react-router-dom'
 import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
 
-export const Comment = ({ comment }) => {
+export const Comment = ({ comment, deleteComment, postId }) => {
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const isAdmin = checkIsAdmin(userEmail)
-
-	const handleDeleteComment = id => {
-		console.info(id)
-	}
 
 	return (
 		<Stack align='center' direction='row' justify='space-between'>
@@ -37,7 +33,7 @@ export const Comment = ({ comment }) => {
 					maxWidth='88px'
 					size='xs'
 					variant='solid'
-					onClick={() => handleDeleteComment(comment._id)}
+					onClick={() => deleteComment(postId, comment?.commentId)}
 				>
 					Delete
 				</Button>
@@ -52,5 +48,8 @@ Comment.propTypes = {
 		_id: PropTypes.string,
 		name: PropTypes.string,
 		comment: PropTypes.string,
+		commentId: PropTypes.string,
 	}),
+	deleteComment: PropTypes.func,
+	postId: PropTypes.string,
 }
