@@ -2,7 +2,6 @@ import {
 	Button,
 	Center,
 	Popover,
-	PopoverArrow,
 	PopoverBody,
 	PopoverCloseButton,
 	PopoverContent,
@@ -43,7 +42,6 @@ export const ColorPicker = () => {
 				/>
 			</PopoverTrigger>
 			<PopoverContent className='button' width='170px'>
-				<PopoverArrow bg={color} />
 				<PopoverCloseButton color='white' />
 				<PopoverHeader
 					backgroundColor={color}
