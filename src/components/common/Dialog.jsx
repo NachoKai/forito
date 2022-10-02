@@ -32,7 +32,7 @@ export const Dialog = ({
 			onClose={setIsDialogOpen.off}
 		>
 			<AlertDialogOverlay backdropFilter='blur(10px)' bg='blackAlpha.300'>
-				<AlertDialogContent className='container'>
+				<AlertDialogContent boxShadow='none' className='container'>
 					<AlertDialogHeader fontSize='lg' fontWeight='bold'>
 						{title}
 					</AlertDialogHeader>
