@@ -5,7 +5,6 @@ import {
 	Heading,
 	Image,
 	Popover,
-	PopoverArrow,
 	PopoverBody,
 	PopoverCloseButton,
 	PopoverContent,
@@ -118,7 +117,6 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 									</Stack>
 								</PopoverTrigger>
 								<PopoverContent className='container'>
-									<PopoverArrow />
 									<PopoverCloseButton />
 									<PopoverHeader>{user?.result?.name}</PopoverHeader>
 									<Link to={`/creator/${userId}`} onClick={close}>
