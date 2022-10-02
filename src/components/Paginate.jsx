@@ -52,6 +52,7 @@ export const Paginate = () => {
 										color: () => `${getThemeColor()}.100`,
 									}}
 									bg='primary_100_900'
+									className='pagination'
 									color='primary_900_100'
 									h={8}
 									page={page}

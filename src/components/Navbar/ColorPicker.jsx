@@ -35,13 +35,14 @@ export const ColorPicker = () => {
 					aria-label={color}
 					background={color}
 					borderRadius={3}
+					className='button'
 					height='22px'
 					minWidth='unset'
 					padding={0}
 					width='22px'
 				/>
 			</PopoverTrigger>
-			<PopoverContent width='170px'>
+			<PopoverContent className='button' width='170px'>
 				<PopoverArrow bg={color} />
 				<PopoverCloseButton color='white' />
 				<PopoverHeader
@@ -62,6 +63,7 @@ export const ColorPicker = () => {
 								aria-label={color}
 								background={color}
 								borderRadius={3}
+								className='button'
 								height='22px'
 								minWidth='unset'
 								padding={0}

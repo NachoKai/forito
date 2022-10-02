@@ -135,6 +135,7 @@ const PostDetails = ({ user }) => {
 
 				<Stack direction='row' spacing='2'>
 					<Stack spacing='4' w='100%'>
+						<Text>Tags:</Text>
 						<Stack direction='row' spacing='2'>
 							{post?.tags &&
 								[...new Set(post?.tags)].filter(Boolean).map(tag => (
@@ -176,6 +177,7 @@ const PostDetails = ({ user }) => {
 									spacing='8px'
 								>
 									<Button
+										className='button'
 										rightIcon={<FaTwitter />}
 										size='xs'
 										onClick={() => shareOnTwitter()}
@@ -219,11 +221,11 @@ const PostDetails = ({ user }) => {
 									key={_id}
 									bg='primary_100_900'
 									borderRadius='24px'
-									boxShadow='md'
-									className='recommended-post'
+									className=' container recommended-post'
 									color='primary_800_100'
 									cursor='pointer'
 									h='100%'
+									m='2'
 									maxWidth='320px'
 									minWidth='320px'
 									p={{ sm: '6', md: '8', lg: '8', xl: '8' }}

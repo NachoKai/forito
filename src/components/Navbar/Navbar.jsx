@@ -24,7 +24,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { useAuthStore } from '../../state/authStore'
 import { CreateGradColor } from '../../theme.ts'
-import { getThemeColor } from '../../utils/getThemeColor.ts'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage.ts'
 import { Form } from '../Form/Form'
 import { ColorPicker } from './ColorPicker'
@@ -118,7 +117,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 										</Text>
 									</Stack>
 								</PopoverTrigger>
-								<PopoverContent>
+								<PopoverContent className='container'>
 									<PopoverArrow />
 									<PopoverCloseButton />
 									<PopoverHeader>{user?.result?.name}</PopoverHeader>
@@ -134,7 +133,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 									</Link>
 									<PopoverBody fontWeight='bold'>
 										<Flex justify='space-between'>
-											Theme color
+											Theme color:
 											<ColorPicker />
 										</Flex>
 									</PopoverBody>
@@ -149,7 +148,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 				) : (
 					<Link to='auth'>
 						<Button
-							boxShadow={() => getThemeColor()}
+							className='button'
 							data-cy='navbar-login-button'
 							size='sm'
 							variant='solid'
@@ -159,7 +158,13 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 					</Link>
 				)}
 
-				<Button p='1' size='sm' variant='ghost' onClick={toggleColorMode}>
+				<Button
+					className='button'
+					p='1'
+					size='sm'
+					variant='ghost'
+					onClick={toggleColorMode}
+				>
 					{colorMode === 'light' ? (
 						<FaMoon aria-label='Dark Mode' />
 					) : (

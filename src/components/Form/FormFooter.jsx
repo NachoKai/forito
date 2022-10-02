@@ -2,7 +2,6 @@ import { Button, DrawerFooter, Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
 import { CreateGradColor } from '../../theme.ts'
-import { getThemeColor } from '../../utils/getThemeColor.ts'
 
 export const FormFooter = ({ handleClear, handleSubmit, isSubmitDisabled }) => {
 	return (
@@ -10,14 +9,19 @@ export const FormFooter = ({ handleClear, handleSubmit, isSubmitDisabled }) => {
 			<Stack spacing='4' w='100%'>
 				<Button
 					bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
-					boxShadow={() => getThemeColor()}
+					className='button'
 					data-cy='form-submit-button'
 					disabled={isSubmitDisabled}
 					onClick={handleSubmit}
 				>
 					Submit
 				</Button>
-				<Button data-cy='form-clear-button' variant='outline' onClick={handleClear}>
+				<Button
+					className='button'
+					data-cy='form-clear-button'
+					variant='outline'
+					onClick={handleClear}
+				>
 					Clear
 				</Button>
 			</Stack>

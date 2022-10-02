@@ -7,7 +7,6 @@ import { v4 as uuid } from 'uuid'
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme.ts'
 import { checkEmpty } from '../utils/checkEmpty.ts'
-import { getThemeColor } from '../utils/getThemeColor.ts'
 import { showError } from '../utils/showError.ts'
 import { Comment } from './Comment'
 import { FormTextArea } from './common/FormTextArea'
@@ -60,7 +59,7 @@ export const Comments = ({ postComments, postId, user }) => {
 					<Stack
 						bgGradient={CreateGradColor('primary', 100, 50, 900, 600, '135deg')}
 						borderRadius='24px'
-						boxShadow='md'
+						className='container'
 						maxH='230px'
 						p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 						spacing='4'
@@ -75,14 +74,19 @@ export const Comments = ({ postComments, postId, user }) => {
 						/>
 						<Stack direction='row' spacing='4'>
 							<Button
-								boxShadow={() => getThemeColor()}
+								className='button'
 								disabled={!checkEmpty(comment)}
 								flexGrow='1'
 								onClick={handleAddComment}
 							>
 								Comment
 							</Button>
-							<Button flexGrow='1' variant='outline' onClick={handleClear}>
+							<Button
+								className='button'
+								flexGrow='1'
+								variant='outline'
+								onClick={handleClear}
+							>
 								Clear
 							</Button>
 						</Stack>

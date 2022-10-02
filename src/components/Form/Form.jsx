@@ -163,6 +163,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 		<>
 			<Button
 				ref={btnRef}
+				className='button'
 				display={{ sm: 'none', md: 'flex', lg: 'flex', xl: 'flex' }}
 				size='sm'
 				onClick={handleCreatePost}
@@ -185,7 +186,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 				onClose={onClose}
 			>
 				<DrawerOverlay backdropFilter='blur(10px)' bg='blackAlpha.300' />
-				<DrawerContent bg='primary_100_900'>
+				<DrawerContent bg='primary_100_900' className='form'>
 					<DrawerCloseButton />
 					<FormHeader currentId={currentId} />
 

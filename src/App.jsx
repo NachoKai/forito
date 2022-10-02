@@ -5,7 +5,6 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import { getThemeColor } from './utils/getThemeColor.ts'
 import { getUserLocalStorage } from './utils/getUserLocalStorage.ts'
 
 const ScrollToTop = loadable(() => import('./components/common/ScrollToTop'))
@@ -71,7 +70,7 @@ export const App = () => {
 
 			<Button
 				bottom={['16px', '32px']}
-				boxShadow={() => getThemeColor()}
+				className='button'
 				display={showScroll ? 'flex' : 'none'}
 				position='fixed'
 				right={['16px', '32px']}

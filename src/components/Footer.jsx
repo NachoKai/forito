@@ -8,6 +8,7 @@ const Footer = () => {
 	return (
 		<Stack
 			bg='primary_100_900'
+			className='footer'
 			color='primary_800_100'
 			p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 			spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}

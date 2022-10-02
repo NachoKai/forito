@@ -25,12 +25,18 @@ input[type="file"] {
   background: rgb(255 255 255 / 40%);
   border: 2px solid rgb(255 255 255 / 20%);
   backdrop-filter: blur(5px);
+  border-style: solid;
+  border-width: 0 0 2px 0;
+  border-color: #0D0D0D;
 }
 
 .glassmorphism-dark {
   background: rgb(0 0 0 / 40%);
   border: 2px solid rgb(0 0 0 / 20%);
   backdrop-filter: blur(5px);
+  border-style: solid;
+  border-width: 0 0 2px 0;
+  border-color: #0D0D0D;
 }
 
 .chakra-accordion__item {
@@ -86,4 +92,50 @@ input[type="file"] {
 
 p a:hover {
   font-weight: bold;
+}
+
+.container,
+.pagination {
+  border: 2px solid #0D0D0D !important;
+}
+
+.container:hover,
+.pagination:hover {
+  border: 2px solid #0D0D0D !important;
+  box-shadow: 2px 2px 0 0 #0d0d0d !important;
+  transition: box-shadow 0.1s ease-in-out !important;
+}
+
+.button {
+  border: 1px solid #0d0d0d !important;
+}
+
+.button:hover {
+  border: 1px solid #0d0d0d !important;
+  box-shadow: 1px 1px 0 0 #0d0d0d !important;
+  transition: box-shadow 0.1s ease-in-out !important;
+}
+
+.form {
+  border-left: 2px solid #0D0D0D !important;
+}
+
+.footer {
+  border-top: 2px solid #0D0D0D !important;
+}
+
+input,
+textarea {
+  border: 1px solid #0D0D0D !important;
+}
+
+input:hover,
+input:active,
+input:focus,
+textarea:hover,
+textarea:active,
+textarea:focus {
+  border: 1px solid #0D0D0D !important;
+  box-shadow: 1px 1px 0 0 #0d0d0d !important;
+  transition: box-shadow 0.1s ease-in-out !important;
 }
