@@ -57,5 +57,5 @@ Dialog.propTypes = {
 	button: PropTypes.string,
 	action: PropTypes.func,
 	isDialogOpen: PropTypes.bool,
-	setIsDialogOpen: PropTypes.func,
+	setIsDialogOpen: PropTypes.object,
 }

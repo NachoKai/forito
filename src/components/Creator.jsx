@@ -6,6 +6,7 @@ import { useParams } from 'react-router-dom'
 import { useAuthStore } from '../state/authStore'
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme.ts'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 
@@ -13,6 +14,8 @@ const Creator = () => {
 	const { id } = useParams()
 	const { posts, loading, getPostsByCreator } = usePostsStore()
 	const { user, getUser } = useAuthStore()
+	const userLocalStorage = getUserLocalStorage()
+	const userName = user?.name || userLocalStorage?.result?.name
 
 	useEffect(() => {
 		getPostsByCreator(id)
@@ -41,8 +44,8 @@ const Creator = () => {
 					fontWeight='bold'
 					px={{ sm: '4' }}
 				>
-					{user?.name
-						? `No posts created by ${user?.name} were found.`
+					{userName
+						? `No posts created by ${userName} were found.`
 						: 'No posts created were found.'}
 				</Heading>
 			</StaggeredSlideFade>
@@ -58,7 +61,7 @@ const Creator = () => {
 			spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 		>
 			<Stack spacing='2'>
-				<Text fontSize='2xl'>{user?.name || ''}</Text>
+				<Text fontSize='2xl'>{userName || ''}</Text>
 				<Text fontSize='md'>
 					{!loading && posts?.length
 						? posts.length !== 1
