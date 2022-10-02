@@ -17,7 +17,6 @@ import styled from 'styled-components'
 
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme.ts'
-import { getThemeColor } from '../utils/getThemeColor.ts'
 import { ChakraTagInput } from './common/ChakraTagInput'
 import { FormInput } from './common/FormInput'
 
@@ -56,7 +55,6 @@ export const Search = () => {
 			allowToggle
 			bg='primary_100_900'
 			borderRadius='24px'
-			boxShadow='md'
 			maxW={{ sm: '100vw', md: '100vw', lg: '322px', xl: '322px' }}
 			minWidth='320px'
 			w='100%'
@@ -97,7 +95,6 @@ export const Search = () => {
 						/>
 						<Button
 							bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
-							boxShadow={() => getThemeColor()}
 							disabled={!searchValue && !searchTags?.length}
 							onClick={searchPost}
 						>

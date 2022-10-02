@@ -4,7 +4,6 @@ import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuthStore } from '../state/authStore'
-import { getThemeColor } from '../utils/getThemeColor.ts'
 import { showError } from '../utils/showError.ts'
 import { FormInput } from './common/FormInput'
 
@@ -74,6 +73,7 @@ const Auth = () => {
 			<Stack
 				bg='primary_100_600'
 				borderRadius='24px'
+				className='container'
 				maxWidth='450px'
 				minWidth='320px'
 				p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
@@ -141,7 +141,7 @@ const Auth = () => {
 							/>
 						)}
 						<Button
-							boxShadow={() => getThemeColor()}
+							className='button'
 							data-cy='auth-login-signup-button'
 							type='submit'
 							variant='solid'
@@ -160,6 +160,7 @@ const Auth = () => {
 					cookiePolicy={'single_host_origin'}
 					render={({ disabled, onClick }) => (
 						<Button
+							className='button'
 							data-cy='auth-google-login-signup'
 							disabled={disabled}
 							leftIcon={<FaGoogle />}

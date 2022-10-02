@@ -127,7 +127,7 @@ export const Post = ({
 				<Stack
 					bg='primary_100_900'
 					borderRadius='24px'
-					boxShadow='lg'
+					className='container'
 					direction={{
 						sm: 'column-reverse',
 						md: 'column-reverse',
@@ -229,6 +229,7 @@ export const Post = ({
 										{comments?.length} {comments?.length === 1 ? 'Comment' : 'Comments'}
 									</Button>
 									<Button
+										className='button'
 										disabled={!user?.result}
 										isLoading={Boolean(likeLoading)}
 										loadingText='Loading...'
@@ -282,6 +283,7 @@ export const Post = ({
 									)}
 									{Boolean(userEmail) && (
 										<Button
+											className='button'
 											disabled={!user?.result}
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
 											isLoading={Boolean(saveLoading)}
@@ -304,6 +306,7 @@ export const Post = ({
 								>
 									{Boolean(isPostCreator || isAdmin) && (
 										<Button
+											className='button'
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
 											leftIcon={<FaPen />}
 											minWidth='88px'
@@ -317,6 +320,7 @@ export const Post = ({
 									{Boolean(isPostCreator || isAdmin) && (
 										<Button
 											bg='red_500_200'
+											className='button'
 											display={{
 												sm: 'none',
 												md: 'none',
