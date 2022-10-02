@@ -137,6 +137,7 @@ const PostDetails = ({ user }) => {
 									<Badge
 										key={uuid()}
 										bg='primary.600'
+										borderRadius='4px'
 										color='white'
 										data-cy='post-details-tags'
 									>

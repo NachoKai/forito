@@ -23,6 +23,7 @@ import { FaBookmark, FaEraser, FaPen, FaRegBookmark, FaRegComments } from 'react
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { v4 as uuid } from 'uuid'
 
 import { usePostsStore } from '../state/postsStore'
 import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
@@ -197,7 +198,7 @@ export const Post = ({
 						<Stack direction='column' spacing='4'>
 							<Stack direction='row' overflow='auto' spacing='2'>
 								{[...new Set(tags)].filter(Boolean).map(tag => (
-									<Badge key={Math.random()} bg='primary.600' color='white'>
+									<Badge key={uuid()} bg='primary.600' borderRadius='4px' color='white'>
 										<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
 									</Badge>
 								))}
