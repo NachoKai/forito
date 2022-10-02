@@ -103,7 +103,7 @@ p a:hover {
 .pagination:hover {
   border: 2px solid #0D0D0D !important;
   box-shadow: 2px 2px 0 0 #0d0d0d !important;
-  transition: box-shadow 0.1s ease-in-out !important;
+  transition: box-shadow 0.2s ease-in-out !important;
 }
 
 .button {
@@ -113,7 +113,7 @@ p a:hover {
 .button:hover {
   border: 1px solid #0d0d0d !important;
   box-shadow: 1px 1px 0 0 #0d0d0d !important;
-  transition: box-shadow 0.1s ease-in-out !important;
+  transition: box-shadow 0.2s ease-in-out !important;
 }
 
 .form {
@@ -137,5 +137,5 @@ textarea:active,
 textarea:focus {
   border: 1px solid #0D0D0D !important;
   box-shadow: 1px 1px 0 0 #0d0d0d !important;
-  transition: box-shadow 0.1s ease-in-out !important;
+  transition: box-shadow 0.2s ease-in-out !important;
 }
