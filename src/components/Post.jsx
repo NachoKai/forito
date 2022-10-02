@@ -14,12 +14,12 @@ import {
 	Text,
 	Tooltip,
 	VisuallyHidden,
+	useBoolean,
 	useColorModeValue,
 } from '@chakra-ui/react'
 import { format, formatDistance, isValid } from 'date-fns'
 import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
 import { FaBookmark, FaEraser, FaPen, FaRegBookmark, FaRegComments } from 'react-icons/fa'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
@@ -58,11 +58,11 @@ export const Post = ({
 	const userId = user?.result?.googleId || user?.result?._id
 	const isUserLike = Boolean(likes?.find(like => like === userId))
 	const hasUserSaved = saves?.find(save => save === userId)
-	const [isDialogOpen, setIsDialogOpen] = useState(false)
 	const location = useLocation()
 	const userEmail = user?.result?.email
-	const [saveLoading, setSaveLoading] = useState(false)
-	const [likeLoading, setLikeLoading] = useState(false)
+	const [isDialogOpen, setIsDialogOpen] = useBoolean()
+	const [saveLoading, setSaveLoading] = useBoolean()
+	const [likeLoading, setLikeLoading] = useBoolean()
 	const textShadow = useColorModeValue(
 		`0 0 2px rgba(0,0,0,0.3)`,
 		`0 0 2px rgba(255,255,255,0.3)`
@@ -76,9 +76,9 @@ export const Post = ({
 
 	const handleLike = async () => {
 		try {
-			await setLikeLoading(true)
+			await setLikeLoading.on()
 			await likePost(_id)
-			await setLikeLoading(false)
+			await setLikeLoading.off()
 		} catch (err) {
 			showError('Something went wrong when trying to like post. Please try again.')
 			console.error(err)
@@ -87,9 +87,9 @@ export const Post = ({
 
 	const handleSave = async () => {
 		try {
-			await setSaveLoading(true)
+			await setSaveLoading.on()
 			await savePost(_id)
-			await setSaveLoading(false)
+			await setSaveLoading.off()
 		} catch (err) {
 			showError('Something went wrong when trying to like post. Please try again.')
 			console.error(err)
@@ -108,7 +108,7 @@ export const Post = ({
 	const handleDelete = async () => {
 		try {
 			await deletePost(_id)
-			setIsDialogOpen(false)
+			setIsDialogOpen.off()
 
 			if (posts.length === 1 && page > 1) {
 				navigate(`/posts?page=${page - 1}`)
@@ -270,7 +270,7 @@ export const Post = ({
 													</MenuItem>
 												)}
 												{Boolean(isPostCreator || isAdmin) && (
-													<MenuItem onClick={() => setIsDialogOpen(true)}>
+													<MenuItem onClick={setIsDialogOpen.on}>
 														<Stack align='center' direction='row' spacing='2'>
 															<FaEraser />
 															<Text fontWeight='bold'>Delete</Text>
@@ -327,7 +327,7 @@ export const Post = ({
 											minWidth='88px'
 											size='sm'
 											variant='solid'
-											onClick={() => setIsDialogOpen(true)}
+											onClick={setIsDialogOpen.on}
 										>
 											Delete
 										</Button>

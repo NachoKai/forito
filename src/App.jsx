@@ -1,6 +1,5 @@
-import { Button, Stack, useDisclosure } from '@chakra-ui/react'
+import { Button, Stack, useBoolean, useDisclosure } from '@chakra-ui/react'
 import loadable from '@loadable/component'
-import { useState } from 'react'
 import { FaChevronUp } from 'react-icons/fa'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
@@ -26,16 +25,16 @@ const LoadingScreen = loadable(() =>
 )
 
 export const App = () => {
-	const [showScroll, setShowScroll] = useState(false)
+	const [showScroll, setShowScroll] = useBoolean()
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const { isOpen, onOpen, onClose } = useDisclosure()
 
 	const checkScrollTop = () => {
 		if (!showScroll && window.pageYOffset > 400) {
-			setShowScroll(true)
+			setShowScroll.on()
 		} else if (showScroll && window.pageYOffset <= 400) {
-			setShowScroll(false)
+			setShowScroll.off()
 		}
 	}
 

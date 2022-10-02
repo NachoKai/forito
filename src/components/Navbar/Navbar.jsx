@@ -13,6 +13,7 @@ import {
 	PopoverTrigger,
 	Stack,
 	Text,
+	useBoolean,
 	useColorMode,
 } from '@chakra-ui/react'
 import decode from 'jwt-decode'
@@ -36,13 +37,10 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const [user, setUser] = useState(() => getUserLocalStorage())
 	const userId = user?.result?.googleId || user?.result?._id
 	const { colorMode, toggleColorMode } = useColorMode()
-	const [isDropdownOpen, setIsDropdownOpen] = useState(false)
+	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
 
 	const userAvatar =
 		user?.result?.imageUrl || `${process.env.PUBLIC_URL}/images/avatar.png`
-
-	const open = () => setIsDropdownOpen(!isDropdownOpen)
-	const close = () => setIsDropdownOpen(false)
 
 	const handleLogout = useCallback(() => {
 		setUser(null)
@@ -95,8 +93,8 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 								closeOnBlur={true}
 								isOpen={isDropdownOpen}
 								returnFocusOnClose={false}
-								onClose={close}
-								onOpen={open}
+								onClose={setIsDropdownOpen.off}
+								onOpen={setIsDropdownOpen.toggle}
 							>
 								<PopoverTrigger>
 									<Stack align='center' cursor='pointer' direction='row'>
