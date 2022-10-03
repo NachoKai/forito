@@ -237,6 +237,7 @@ export const Post = ({
 										<Menu>
 											<MenuButton
 												as={Button}
+												className='button'
 												display={{ sm: 'flex', md: 'flex', lg: 'none', xl: 'none' }}
 												rightIcon={<ChevronDownIcon />}
 												size='sm'
@@ -245,7 +246,7 @@ export const Post = ({
 												<FiMoreHorizontal />
 												<VisuallyHidden>More Options</VisuallyHidden>
 											</MenuButton>
-											<MenuList>
+											<MenuList className='button'>
 												{Boolean(userEmail) && (
 													<MenuItem onClick={handleSave}>
 														<Stack align='center' direction='row' spacing='2'>
