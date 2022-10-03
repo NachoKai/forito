@@ -172,6 +172,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 			</Button>
 			<Button
 				ref={btnRef}
+				className='button'
 				display={{ sm: 'flex', md: 'none', lg: 'none', xl: 'none' }}
 				size='sm'
 				onClick={handleCreatePost}
