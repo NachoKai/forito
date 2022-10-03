@@ -130,7 +130,27 @@ const PostDetails = ({ user }) => {
 
 				<Stack direction='row' spacing='2'>
 					<Stack spacing='4' w='100%'>
-						<Text fontSize='md'>Tags:</Text>
+						<Flex align='center' justify='space-between'>
+							<Text fontSize='md'>Tags:</Text>
+							{!isPrivate && (
+								<Stack
+									align='flex-start'
+									direction='row'
+									h='100%'
+									justify='flex-end'
+									spacing='8px'
+								>
+									<Button
+										className='button'
+										rightIcon={<FaTwitter />}
+										size='xs'
+										onClick={() => shareOnTwitter()}
+									>
+										Share
+									</Button>
+								</Stack>
+							)}
+						</Flex>
 						<Stack direction='row' spacing='2'>
 							{post?.tags?.length ? (
 								[...new Set(post?.tags)].filter(Boolean).map(tag => (
@@ -178,24 +198,6 @@ const PostDetails = ({ user }) => {
 									</Tooltip>
 								</Stack>
 							</Stack>
-							{!isPrivate && (
-								<Stack
-									align='flex-start'
-									direction='row'
-									h='100%'
-									justify='flex-end'
-									spacing='8px'
-								>
-									<Button
-										className='button'
-										rightIcon={<FaTwitter />}
-										size='xs'
-										onClick={() => shareOnTwitter()}
-									>
-										Share
-									</Button>
-								</Stack>
-							)}
 						</Flex>
 					</Stack>
 				</Stack>
