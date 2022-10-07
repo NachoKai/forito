@@ -1,6 +1,6 @@
-import { create } from './createStore'
-import * as api from '../api'
+import { fetchUser, login, signup } from '../clients/userClients'
 import { showError } from '../utils/showError.ts'
+import { create } from './createStore'
 
 const INITIAL_STATE = {
 	authData: null,
@@ -16,7 +16,7 @@ const createAuthStore = () =>
 		login: async (formData, navigate) => {
 			set({ loading: true }, false, 'login')
 			try {
-				const { data } = await api.login(formData)
+				const { data } = await login(formData)
 
 				localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
 				set({ authData: data, loading: false }, false, 'login')
@@ -46,7 +46,7 @@ const createAuthStore = () =>
 		signup: async (formData, navigate) => {
 			set({ loading: true }, false, 'signup')
 			try {
-				const { data } = await api.signup(formData)
+				const { data } = await signup(formData)
 
 				set({ authData: data }, false, 'signup')
 				localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
@@ -62,7 +62,7 @@ const createAuthStore = () =>
 
 		getUser: async id => {
 			try {
-				const { data } = await api.fetchUser(id)
+				const { data } = await fetchUser(id)
 
 				set({ user: data }, false, 'getUser')
 			} catch (err) {
