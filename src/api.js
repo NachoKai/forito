@@ -4,9 +4,7 @@ import { isDev } from './utils/checkIsDev.ts'
 import { getUserLocalStorage } from './utils/getUserLocalStorage.ts'
 
 const API = axios.create({
-	baseURL: isDev
-		? 'http://localhost:5000'
-		: 'https://forito-server-production.up.railway.app/',
+	baseURL: isDev ? 'http://localhost:5000' : process.env.SERVER_URL,
 	timeout: 20_000,
 })
 
