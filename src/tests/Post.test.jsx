@@ -42,7 +42,6 @@ describe('Post', () => {
 		const message = screen.getByText(/test message 1/i)
 		const commentsButton = screen.getByText(/2 comments/i)
 		const likesButton = screen.getByText(/3 likes/i)
-		const date = screen.getByText(/over/i)
 		const tag1 = screen.getByRole('link', { name: /#test1/i })
 		const tag2 = screen.getByRole('link', { name: /#test2/i })
 
@@ -51,7 +50,6 @@ describe('Post', () => {
 		expect(message).toBeInTheDocument()
 		expect(commentsButton).toBeInTheDocument()
 		expect(likesButton).toBeInTheDocument()
-		expect(date).toBeInTheDocument()
 		expect(tag1).toBeInTheDocument()
 		expect(tag2).toBeInTheDocument()
 	})
