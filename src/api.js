@@ -4,7 +4,7 @@ import { isDev } from './utils/checkIsDev.ts'
 import { getUserLocalStorage } from './utils/getUserLocalStorage.ts'
 
 const API = axios.create({
-	baseURL: isDev ? 'http://localhost:5000' : process.env.SERVER_URL,
+	baseURL: isDev ? 'http://localhost:5000' : process.env.REACT_APP_SERVER_URL,
 	timeout: 20_000,
 })
 

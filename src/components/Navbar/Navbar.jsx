@@ -38,7 +38,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
 
 	const userAvatar =
-		user?.result?.imageUrl || `${process.env.PUBLIC_URL}/images/avatar.png`
+		user?.result?.imageUrl || `${process.env.REACT_APP_PUBLIC_URL}/images/avatar.png`
 
 	const handleLogout = useCallback(() => {
 		setUser(null)
