@@ -244,6 +244,9 @@ const createPostsStore = () =>
 		},
 
 		setCurrentPage: page => set({ currentPage: page }, false, 'set-current-page'),
+
+		showLoading: () => set({ loading: true }, false, 'show-loading'),
+		hideLoading: () => set({ loading: false }, false, 'hide-loading'),
 	}))
 
 export const usePostsStore = createPostsStore()

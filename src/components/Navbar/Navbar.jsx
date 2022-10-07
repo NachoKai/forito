@@ -44,7 +44,6 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 			? `${process.env.REACT_APP_PUBLIC_URL}/images/avatar.png`
 			: '/images/avatar.png')
 
-
 	const handleLogout = useCallback(() => {
 		setUser(null)
 		logout(navigate)
