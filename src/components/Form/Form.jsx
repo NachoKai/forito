@@ -11,7 +11,6 @@ import { useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 import { firebaseApp } from '../../firebaseApp.ts'
-import { useLoadingStore } from '../../state/loadingStore'
 import { usePostsStore } from '../../state/postsStore'
 import { checkEmpty } from '../../utils/checkEmpty.ts'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage.ts'
@@ -30,8 +29,8 @@ const initialState = {
 
 export const Form = ({ isOpen, onOpen, onClose }) => {
 	const navigate = useNavigate()
-	const { showLoading, hideLoading } = useLoadingStore()
-	const { currentId, setCurrentId, createPost, updatePost } = usePostsStore()
+	const { currentId, setCurrentId, createPost, updatePost, showLoading, hideLoading } =
+		usePostsStore()
 	const btnRef = useRef()
 	const user = getUserLocalStorage()
 	const [postData, setPostData] = useState(initialState)
