@@ -23,6 +23,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { useAuthStore } from '../../state/authStore'
 import { CreateGradColor } from '../../theme.ts'
+import { isDev } from '../../utils/checkIsDev.ts'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage.ts'
 import { Form } from '../Form/Form'
 import { ColorPicker } from './ColorPicker'
@@ -38,7 +39,10 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
 
 	const userAvatar =
-		user?.result?.imageUrl || `${process.env.PUBLIC_URL}/images/avatar.png`
+		user?.result?.imageUrl ||
+		(isDev
+			? `${process.env.REACT_APP_PUBLIC_URL}/images/avatar.png`
+			: '/images/avatar.png')
 
 	const handleLogout = useCallback(() => {
 		setUser(null)

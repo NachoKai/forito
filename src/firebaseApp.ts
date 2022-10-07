@@ -9,6 +9,6 @@ export const firebaseApp = firebase.initializeApp({
 	locationId: process.env.REACT_APP_LOCATION_ID,
 	apiKey: process.env.REACT_APP_API_KEY,
 	authDomain: process.env.REACT_APP_AUTH_DOMAIN,
-	messagingSenderId: process.env.MESSAGING_SENDER_ID,
+	messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
 	measurementId: process.env.REACT_APP_MEASUREMENT_ID,
 })
