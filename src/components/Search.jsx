@@ -12,11 +12,12 @@ import {
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme.ts'
+import { showError } from '../utils/showError.ts'
 import { ChakraTagInput } from './common/ChakraTagInput'
 import { FormInput } from './common/FormInput'
 
@@ -25,25 +26,28 @@ export const Search = () => {
 	const { getPostsBySearch } = usePostsStore()
 	const [searchValue, setSearchValue] = useState('')
 	const [searchTags, setSearchTags] = useState([])
-	const location = useLocation()
 	const ENTER_KEYCODE = 13
 
-	const searchPost = () => {
-		if (searchValue.trim() || searchTags) {
-			setSearchValue('')
-			setSearchTags([])
-			getPostsBySearch({ search: searchValue, tags: searchTags.join(',') })
-			navigate(
-				`${location?.pathname}?searchQuery=${
-					searchValue || 'none'
-				}&tags=${searchTags.join(',')}`
-			)
-		} else {
-			navigate('/posts')
+	const searchPost = async () => {
+		try {
+			if (searchValue.trim() || searchTags) {
+				setSearchValue('')
+				setSearchTags([])
+				await getPostsBySearch({ search: searchValue, tags: searchTags.join(',') })
+				navigate(
+					`posts?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`
+				)
+			}
+		} catch (err) {
+			showError("Couldn't search posts")
 		}
 	}
 
-	const handleKeyPress = e => e?.keyCode === ENTER_KEYCODE && searchPost()
+	const handleKeyDown = e => {
+		if (e.keyCode === ENTER_KEYCODE) {
+			searchPost()
+		}
+	}
 
 	const handleAddTag = tag => setSearchTags([...searchTags, tag])
 
@@ -76,7 +80,7 @@ export const Search = () => {
 							onChange={e => {
 								setSearchValue(e.target.value)
 							}}
-							onKeyPress={handleKeyPress}
+							onKeyDown={handleKeyDown}
 						/>
 						<FormInput
 							child={
