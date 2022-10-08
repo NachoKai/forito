@@ -1,9 +1,10 @@
 import {
+	Avatar,
+	AvatarBadge,
 	Button,
 	Divider,
 	Flex,
 	Heading,
-	Image,
 	Popover,
 	PopoverBody,
 	PopoverCloseButton,
@@ -23,7 +24,6 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 
 import { useAuthStore } from '../../state/authStore'
 import { CreateGradColor } from '../../theme.ts'
-import { isDev } from '../../utils/checkIsDev.ts'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage.ts'
 import { Form } from '../Form/Form'
 import { ColorPicker } from './ColorPicker'
@@ -37,12 +37,6 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const userId = user?.result?.googleId || user?.result?._id
 	const { colorMode, toggleColorMode } = useColorMode()
 	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
-
-	const userAvatar =
-		user?.result?.imageUrl ||
-		(isDev
-			? `${process.env.REACT_APP_PUBLIC_URL}/images/avatar.png`
-			: '/images/avatar.png')
 
 	const handleLogout = useCallback(() => {
 		setUser(null)
@@ -100,17 +94,14 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 							>
 								<PopoverTrigger>
 									<Stack align='center' cursor='pointer' direction='row'>
-										<Image
-											alt={`${user?.result.name}'s profile picture`}
-											border='1px'
-											borderColor='primary'
-											borderRadius='full'
-											h='30px'
-											objectFit='cover'
+										<Avatar
+											name={user?.result.name}
 											referrerPolicy='no-referrer'
-											src={userAvatar}
-											w='30px'
-										/>
+											size='sm'
+											src={user?.result?.imageUrl}
+										>
+											<AvatarBadge bg='green.500' boxSize='1em' />
+										</Avatar>
 
 										<Text
 											data-cy='navbar-username'
