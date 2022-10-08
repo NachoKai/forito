@@ -1,9 +1,10 @@
 import { Button, Stack } from '@chakra-ui/react'
-import { useCallback, useState } from 'react'
+import { useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
 import { usePostsStore } from '../../state/postsStore'
+import { showError } from '../../utils/showError.ts'
 import { FormInput } from '../common/FormInput'
 
 export const SearchNavbar = () => {
@@ -13,16 +14,20 @@ export const SearchNavbar = () => {
 	const { getPostsBySearch } = usePostsStore()
 	const ENTER_KEYCODE = 13
 
-	const searchPost = useCallback(() => {
-		if (searchValue.trim() || searchTags) {
-			setSearchValue('')
-			setSearchTags([])
-			getPostsBySearch({ search: searchValue, tags: searchTags.join(',') })
-			navigate(`posts?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`)
-		} else {
-			navigate('/posts')
+	const searchPost = async () => {
+		try {
+			if (searchValue.trim() || searchTags) {
+				setSearchValue('')
+				setSearchTags([])
+				await getPostsBySearch({ search: searchValue, tags: searchTags.join(',') })
+				navigate(
+					`posts?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`
+				)
+			}
+		} catch (err) {
+			showError("Couldn't search posts")
 		}
-	}, [getPostsBySearch, navigate, searchTags, searchValue])
+	}
 
 	const handleKeyDown = e => {
 		if (e.keyCode === ENTER_KEYCODE) {
