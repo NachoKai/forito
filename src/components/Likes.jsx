@@ -2,11 +2,11 @@ import { Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa'
 
-export const Likes = ({ likes, isUserLike }) => {
+export const Likes = ({ likes, hasUserLike }) => {
 	const likesQuantity = likes?.length
 
 	if (likesQuantity > 0) {
-		return isUserLike ? (
+		return hasUserLike ? (
 			<Stack align='center' direction='row' spacing='2'>
 				<FaThumbsUp fontSize='small' h='13px' w='13px' />
 				<Text>
@@ -35,5 +35,5 @@ export const Likes = ({ likes, isUserLike }) => {
 
 Likes.propTypes = {
 	likes: PropTypes.arrayOf(PropTypes.string),
-	isUserLike: PropTypes.bool,
+	hasUserLike: PropTypes.bool,
 }
