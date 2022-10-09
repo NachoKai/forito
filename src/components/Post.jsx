@@ -56,7 +56,7 @@ export const Post = ({
 		usePostsStore()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
-	const isUserLike = Boolean(likes?.find(like => like === userId))
+	const hasUserLike = Boolean(likes?.find(like => like === userId))
 	const hasUserSaved = saves?.find(save => save === userId)
 	const location = useLocation()
 	const userEmail = user?.result?.email
@@ -222,16 +222,16 @@ export const Post = ({
 										{comments?.length} {comments?.length === 1 ? 'Comment' : 'Comments'}
 									</Button>
 									<Button
-										className='button'
+										className={hasUserLike ? '' : 'button'}
 										disabled={!user?.result}
 										isLoading={Boolean(likeLoading)}
 										loadingText='Loading...'
 										minWidth='80px'
 										size='sm'
-										variant={isUserLike ? 'ghost' : 'outline'}
+										variant={hasUserLike ? 'ghost' : 'outline'}
 										onClick={handleLike}
 									>
-										<Likes isUserLike={isUserLike} likes={likes} />
+										<Likes hasUserLike={hasUserLike} likes={likes} />
 									</Button>
 									{(isPostCreator || isAdmin || userEmail) && (
 										<Menu>
@@ -277,7 +277,7 @@ export const Post = ({
 									)}
 									{Boolean(userEmail) && (
 										<Button
-											className='button'
+											className={hasUserLike ? '' : 'button'}
 											disabled={!user?.result}
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
 											isLoading={Boolean(saveLoading)}
