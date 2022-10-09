@@ -33,6 +33,7 @@ export const ColorPicker = () => {
 				<Button
 					aria-label={color}
 					background={color}
+					border='1px solid #0d0d0d'
 					borderRadius={3}
 					className='button'
 					height='22px'
@@ -41,7 +42,11 @@ export const ColorPicker = () => {
 					width='22px'
 				/>
 			</PopoverTrigger>
-			<PopoverContent className='button' width='170px'>
+			<PopoverContent
+				border='1px solid #0d0d0d !important'
+				className='button'
+				width='170px'
+			>
 				<PopoverCloseButton color='white' />
 				<PopoverHeader
 					backgroundColor={color}
@@ -60,6 +65,7 @@ export const ColorPicker = () => {
 								_hover={{ background: color }}
 								aria-label={color}
 								background={color}
+								border='1px solid #0d0d0d'
 								borderRadius={3}
 								className='button'
 								height='22px'
