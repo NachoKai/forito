@@ -214,6 +214,7 @@ export const Post = ({
 									spacing='2'
 								>
 									<Button
+										className='button'
 										leftIcon={<FaRegComments />}
 										size='sm'
 										variant='ghost'
@@ -222,7 +223,7 @@ export const Post = ({
 										{comments?.length} {comments?.length === 1 ? 'Comment' : 'Comments'}
 									</Button>
 									<Button
-										className={hasUserLike ? '' : 'button'}
+										className='button'
 										disabled={!user?.result}
 										isLoading={Boolean(likeLoading)}
 										loadingText='Loading...'
@@ -237,6 +238,7 @@ export const Post = ({
 										<Menu>
 											<MenuButton
 												as={Button}
+												className='button'
 												display={{ sm: 'flex', md: 'flex', lg: 'none', xl: 'none' }}
 												rightIcon={<ChevronDownIcon />}
 												size='sm'
@@ -276,7 +278,7 @@ export const Post = ({
 									)}
 									{Boolean(userEmail) && (
 										<Button
-											className={hasUserLike ? '' : 'button'}
+											className='button'
 											disabled={!user?.result}
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
 											isLoading={Boolean(saveLoading)}
