@@ -32,7 +32,7 @@ const Tags = () => {
 
 	if (!publicPosts?.length && !loading) {
 		return (
-			<Flex align='center' direction='column' h='100%' my='64px' minH='100vh'>
+			<Flex align='center' direction='column' h='100%' minH='100vh' my='64px'>
 				<Text color='primary.400' fontSize='6xl' mb='16px'>
 					<FaSearch />
 				</Text>
