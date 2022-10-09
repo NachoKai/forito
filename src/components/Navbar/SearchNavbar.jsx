@@ -44,7 +44,7 @@ export const SearchNavbar = () => {
 				rightIcon={
 					<Button
 						data-cy='navbar-search-button'
-						disabled={!searchValue && !searchTags?.length}
+						disabled={!searchValue?.trim().length && !searchTags?.length}
 						size='sm'
 						title='Search'
 						variant='ghost'
