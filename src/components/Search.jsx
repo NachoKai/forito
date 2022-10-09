@@ -5,14 +5,12 @@ import {
 	AccordionItem,
 	AccordionPanel,
 	Button,
-	Flex,
 	Stack,
 	Text,
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import styled from 'styled-components'
 
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme.ts'
@@ -83,14 +81,12 @@ export const Search = () => {
 						/>
 						<FormInput
 							child={
-								<TagsContainer w='100%'>
-									<ChipInput
-										setTags={setSearchTags}
-										tags={searchTags}
-										onAdd={tag => handleAddTag(tag)}
-										onDelete={tag => handleDeleteTag(tag)}
-									/>
-								</TagsContainer>
+								<ChipInput
+									setTags={setSearchTags}
+									tags={searchTags}
+									onAdd={tag => handleAddTag(tag)}
+									onDelete={tag => handleDeleteTag(tag)}
+								/>
 							}
 							helper='Insert tag with enter/return.'
 							label='Search Posts Tags'
@@ -110,23 +106,12 @@ export const Search = () => {
 	)
 }
 
-const TagsContainer = styled(Flex)`
-	background: white;
-	color: black;
-	display: flex;
-	align-items: center;
-	border-radius: 8px;
-`
 const ChipInput = ({ tags, setTags }) => {
 	const handleTagsChange = (event, tags) => {
-		setTags(tags)
+		setTags([...new Set(tags)])
 	}
 
-	return (
-		<Stack p={2} w='100%'>
-			<ChakraTagInput tags={tags} w='100%' onTagsChange={handleTagsChange} />
-		</Stack>
-	)
+	return <ChakraTagInput tags={tags} w='100%' onTagsChange={handleTagsChange} />
 }
 
 ChipInput.propTypes = {
