@@ -22,6 +22,9 @@ const Footer = () => {
 						<Link to='about'>About</Link>
 					</Text>
 					<Text fontWeight='bold'>
+						<Link to='search'>Search</Link>
+					</Text>
+					<Text fontWeight='bold'>
 						<Link to='posts/top'>Top Posts</Link>
 					</Text>
 				</Stack>

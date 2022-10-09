@@ -40,7 +40,7 @@ export const Comments = ({ postComments, postId, user }) => {
 	return (
 		<Stack>
 			<Stack direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }} spacing='4'>
-				<Stack overflow='auto' spacing='4' width='100%'>
+				<Stack overflow='auto' spacing='4' w='100%'>
 					{comments?.length ? (
 						comments?.map(comment => (
 							<Comment
@@ -63,7 +63,7 @@ export const Comments = ({ postComments, postId, user }) => {
 						maxH='230px'
 						p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 						spacing='4'
-						width='100%'
+						w='100%'
 					>
 						<FormTextArea
 							label='Write a comment'

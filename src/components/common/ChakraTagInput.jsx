@@ -2,7 +2,7 @@ import { Input, Wrap, WrapItem } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { forwardRef } from 'react'
 
-import { maybeCall } from '../../utils/maybeCall'
+import { maybeCall } from '../../utils/maybeCall.ts'
 import { ChakraTagInputTag } from './Tag'
 
 export const ChakraTagInput = forwardRef(function ChakraTagInput(
@@ -49,10 +49,14 @@ export const ChakraTagInput = forwardRef(function ChakraTagInput(
 		const { selectionStart, selectionEnd } = currentTarget
 
 		if (addKeys.includes(key) && currentTarget.value) {
-			addTag(event, currentTarget.value)
+			if (currentTarget?.value?.trim()?.length) {
+				addTag(event, currentTarget.value)
+			}
+
 			if (!event.isDefaultPrevented()) {
 				currentTarget.value = ''
 			}
+
 			event.preventDefault()
 		} else if (
 			key === 'Backspace' &&

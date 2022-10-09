@@ -5,7 +5,6 @@ import {
 	AccordionItem,
 	AccordionPanel,
 	Button,
-	Container,
 	Flex,
 	Stack,
 	Text,
@@ -34,9 +33,7 @@ export const Search = () => {
 				setSearchValue('')
 				setSearchTags([])
 				await getPostsBySearch({ search: searchValue, tags: searchTags.join(',') })
-				navigate(
-					`search?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`
-				)
+				navigate(`?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`)
 			}
 		} catch (err) {
 			showError("Couldn't search posts")
@@ -61,14 +58,14 @@ export const Search = () => {
 			allowToggle
 			bg='primary_100_900'
 			borderRadius='24px'
-			maxW={{ sm: '100vw', md: '100vw', lg: '322px', xl: '322px' }}
-			minWidth='320px'
+			className='container'
+			p={{ sm: '3', md: '5', lg: '5', xl: '5' }}
 			w='100%'
 		>
-			<AccordionItem>
+			<AccordionItem border='none'>
 				<AccordionButton>
 					<Text fontSize='lg' fontWeight='bold'>
-						Search
+						Advanced Search
 					</Text>
 					<AccordionIcon />
 				</AccordionButton>
@@ -86,7 +83,7 @@ export const Search = () => {
 						/>
 						<FormInput
 							child={
-								<TagsContainer>
+								<TagsContainer w='100%'>
 									<ChipInput
 										setTags={setSearchTags}
 										tags={searchTags}
@@ -126,9 +123,9 @@ const ChipInput = ({ tags, setTags }) => {
 	}
 
 	return (
-		<Container py={2}>
-			<ChakraTagInput tags={tags} onTagsChange={handleTagsChange} />
-		</Container>
+		<Stack p={2} w='100%'>
+			<ChakraTagInput tags={tags} w='100%' onTagsChange={handleTagsChange} />
+		</Stack>
 	)
 }
 

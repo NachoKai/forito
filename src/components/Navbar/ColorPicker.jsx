@@ -36,16 +36,16 @@ export const ColorPicker = () => {
 					border='1px solid #0d0d0d'
 					borderRadius={3}
 					className='button'
-					height='22px'
+					h='22px'
 					minWidth='unset'
 					padding={0}
-					width='22px'
+					w='22px'
 				/>
 			</PopoverTrigger>
 			<PopoverContent
 				border='1px solid #0d0d0d !important'
 				className='button'
-				width='170px'
+				w='170px'
 			>
 				<PopoverCloseButton color='white' />
 				<PopoverHeader
@@ -53,11 +53,11 @@ export const ColorPicker = () => {
 					borderTopLeftRadius={5}
 					borderTopRightRadius={5}
 					color='white'
-					height='100px'
+					h='100px'
 				>
-					<Center height='100%'>{color}</Center>
+					<Center h='100%'>{color}</Center>
 				</PopoverHeader>
-				<PopoverBody height='70px'>
+				<PopoverBody h='70px'>
 					<SimpleGrid columns={5} spacing={2}>
 						{colors?.map(color => (
 							<Button
@@ -68,10 +68,10 @@ export const ColorPicker = () => {
 								border='1px solid #0d0d0d'
 								borderRadius={3}
 								className='button'
-								height='22px'
+								h='22px'
 								minWidth='unset'
 								padding={0}
-								width='22px'
+								w='22px'
 								onClick={() => {
 									localStorage.setItem('forito-theme', color)
 									setColor(color)
