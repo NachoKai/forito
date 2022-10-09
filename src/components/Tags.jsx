@@ -32,8 +32,8 @@ const Tags = () => {
 
 	if (!publicPosts?.length && !loading) {
 		return (
-			<Flex align='center' direction='column' h='100%' marginY='64px' minHeight='100vh'>
-				<Text color='primary.400' fontSize='6xl' marginBottom='16px'>
+			<Flex align='center' direction='column' h='100%' my='64px' minH='100vh'>
+				<Text color='primary.400' fontSize='6xl' mb='16px'>
 					<FaSearch />
 				</Text>
 				<Heading
@@ -53,7 +53,7 @@ const Tags = () => {
 		<StaggeredSlideFade
 			borderRadius='24px'
 			h='100%'
-			minHeight='100vh'
+			minH='100vh'
 			p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 			spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 		>

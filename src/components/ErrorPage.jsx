@@ -8,7 +8,7 @@ const ErrorPage = () => (
 		direction='column'
 		h='100%'
 		justify='flex-start'
-		minHeight='100vh'
+		minH='100vh'
 		px={{ sm: '4', md: '10', lg: '16', xl: '24' }}
 		py={{ sm: '4', md: '6', lg: '8', xl: '8' }}
 	>

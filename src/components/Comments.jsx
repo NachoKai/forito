@@ -96,7 +96,7 @@ export const Comments = ({ postComments, postId, user }) => {
 						align='center'
 						color='primary_600_100'
 						direction='column'
-						minWidth='320px'
+						minW='320px'
 						p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 						spacing='4'
 					>

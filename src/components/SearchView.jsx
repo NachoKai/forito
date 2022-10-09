@@ -12,7 +12,7 @@ const SearchView = () => {
 	const { posts } = usePostsStore()
 
 	return (
-		<Stack paddingBottom='4'>
+		<Stack pb='4'>
 			<Stack
 				direction={{ sm: 'column-reverse', md: 'column-reverse', lg: 'row', xl: 'row' }}
 				px={{ sm: '0', md: '10', lg: '16', xl: '24' }}

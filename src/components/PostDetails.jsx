@@ -238,8 +238,8 @@ const PostDetails = ({ user }) => {
 									cursor='pointer'
 									h='100%'
 									m='2'
-									maxWidth='320px'
-									minWidth='320px'
+									maxW='320px'
+									minW='320px'
 									p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 									spacing='2'
 									onClick={() => openPost(_id)}
@@ -289,11 +289,11 @@ const PostDetails = ({ user }) => {
 			align='center'
 			direction='column'
 			h='100%'
-			marginY='64px'
-			minHeight='100vh'
+			minH='100vh'
+			my='64px'
 			p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 		>
-			<Text color='primary.400' fontSize='6xl' marginBottom='16px'>
+			<Text color='primary.400' fontSize='6xl' mb='16px'>
 				<FaSearch />
 			</Text>
 			<Heading

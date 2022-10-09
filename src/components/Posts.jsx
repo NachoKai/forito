@@ -26,14 +26,14 @@ export const Posts = ({ onOpen, posts, highlight }) => {
 	})
 
 	return (
-		<Flex flexGrow minHeight='100vh' w='100%'>
+		<Flex flexGrow minH='100vh' w='100%'>
 			<StaggeredSlideFade
 				direction='column'
 				spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 				w='100%'
 			>
 				{!havePosts && !loading ? (
-					<Stack align='center' direction='column' marginY='64px' spacing='4'>
+					<Stack align='center' direction='column' my='64px' spacing='4'>
 						<Text color='primary.400' fontSize='6xl'>
 							<FaPencilAlt />
 						</Text>

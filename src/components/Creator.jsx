@@ -28,12 +28,12 @@ const Creator = () => {
 				align='center'
 				direction='column'
 				h='100%'
-				marginY='64px'
-				minHeight='100vh'
+				my='64px'
+				minH='100vh'
 				px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
 				py={{ sm: '4', md: '6', lg: '8', xl: '8' }}
 			>
-				<Text color='primary.400' fontSize='6xl' marginBottom='16px'>
+				<Text color='primary.400' fontSize='6xl' mb='16px'>
 					<FaSearch />
 				</Text>
 				<Heading
@@ -56,7 +56,7 @@ const Creator = () => {
 		<StaggeredSlideFade
 			borderRadius='24px'
 			h='100%'
-			minHeight='100vh'
+			minH='100vh'
 			p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 			spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 		>

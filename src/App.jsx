@@ -73,7 +73,7 @@ export const App = () => {
 				bottom={['16px', '32px']}
 				className='button'
 				display={showScroll ? 'flex' : 'none'}
-				position='fixed'
+				pos='fixed'
 				right={['16px', '32px']}
 				size='sm'
 				variant='solid'
