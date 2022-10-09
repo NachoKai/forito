@@ -59,7 +59,7 @@ export const Search = () => {
 			bg='primary_100_900'
 			borderRadius='24px'
 			className='container'
-			p={{ sm: '3', md: '5', lg: '5', xl: '5' }}
+			p={{ sm: '2', md: '4', lg: '4', xl: '4' }}
 			w='100%'
 		>
 			<AccordionItem border='none'>
