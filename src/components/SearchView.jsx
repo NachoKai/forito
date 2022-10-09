@@ -3,8 +3,8 @@ import PropTypes from 'prop-types'
 
 import { usePostsStore } from '../state/postsStore'
 import { useLocationQuery } from '../utils/useLocationQuery.ts'
-import { Paginate } from './Paginate'
 import { Posts } from './Posts'
+import { Search } from './Search'
 
 const SearchView = () => {
 	const locationQuery = useLocationQuery()
@@ -19,12 +19,10 @@ const SearchView = () => {
 				py={{ sm: '6', md: '6', lg: '8', xl: '8' }}
 				spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 			>
-				<Stack w='100%'>
+				<Stack align='center' spacing='8' w='100%'>
+					<Search />
 					<Posts highlight={searchQuery} posts={posts} />
 				</Stack>
-			</Stack>
-			<Stack px={{ sm: '4', md: '10', lg: '16', xl: '24' }}>
-				{!searchQuery && <Paginate />}
 			</Stack>
 		</Stack>
 	)
