@@ -30,7 +30,9 @@ export const SearchNavbar = () => {
 	}
 
 	const handleKeyDown = e => {
-		if (e.keyCode === ENTER_KEYCODE) {
+		const disabled = !searchValue?.trim().length && !searchTags?.length
+
+		if (e.keyCode === ENTER_KEYCODE && !disabled) {
 			searchPost()
 		}
 	}
