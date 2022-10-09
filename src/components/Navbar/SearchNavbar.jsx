@@ -21,7 +21,7 @@ export const SearchNavbar = () => {
 				setSearchTags([])
 				await getPostsBySearch({ search: searchValue, tags: searchTags.join(',') })
 				navigate(
-					`posts?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`
+					`search?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`
 				)
 			}
 		} catch (err) {
@@ -30,7 +30,7 @@ export const SearchNavbar = () => {
 	}
 
 	const handleKeyDown = e => {
-		const disabled = !searchValue?.trim().length && !searchTags?.length
+		const disabled = !searchValue?.trim()?.length && !searchTags?.length
 
 		if (e.keyCode === ENTER_KEYCODE && !disabled) {
 			searchPost()
@@ -46,7 +46,7 @@ export const SearchNavbar = () => {
 				rightIcon={
 					<Button
 						data-cy='navbar-search-button'
-						disabled={!searchValue?.trim().length && !searchTags?.length}
+						disabled={!searchValue?.trim()?.length && !searchTags?.length}
 						size='sm'
 						title='Search'
 						variant='ghost'

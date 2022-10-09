@@ -77,6 +77,14 @@ const semanticTokens = {
 			default: 'primary.900',
 			_dark: 'primary.100',
 		},
+		bnw_900_100: {
+			default: 'black',
+			_dark: 'white',
+		},
+		bnw_100_900: {
+			default: 'black',
+			_dark: 'white',
+		},
 		red_500_200: {
 			default: 'red.500',
 			_dark: 'red.200',
@@ -100,6 +108,10 @@ const semanticTokens = {
 		primary_300_900_50_400: {
 			default: 'linear(to-l, primary.300, primary.900)',
 			_dark: 'linear(to-l, primary.50, primary.400)',
+		},
+		highlight: {
+			default: 'yellow.100',
+			_dark: 'yellow.600',
 		},
 	},
 }

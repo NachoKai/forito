@@ -30,7 +30,7 @@ const Tags = () => {
 		getPostsBySearch({ tags: name })
 	}, [getPostsBySearch, name])
 
-	if (!publicPosts.length && !loading) {
+	if (!publicPosts?.length && !loading) {
 		return (
 			<Flex align='center' direction='column' h='100%' marginY='64px' minHeight='100vh'>
 				<Text color='primary.400' fontSize='6xl' marginBottom='16px'>
@@ -61,9 +61,9 @@ const Tags = () => {
 				<Text fontSize='2xl'>#{name?.toUpperCase()}</Text>
 				<Text fontSize='md'>
 					{!loading && posts?.length
-						? posts.length !== 1
-							? `${posts.length} Posts`
-							: `${posts.length} Post`
+						? posts?.length !== 1
+							? `${posts?.length} Posts`
+							: `${posts?.length} Post`
 						: ''}
 				</Text>
 			</Stack>

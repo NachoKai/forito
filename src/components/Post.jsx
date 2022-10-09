@@ -4,6 +4,7 @@ import {
 	Badge,
 	Button,
 	Heading,
+	Highlight,
 	Image,
 	Menu,
 	MenuButton,
@@ -50,6 +51,7 @@ export const Post = ({
 		comments,
 	},
 	onOpen,
+	highlight,
 }) => {
 	const navigate = useNavigate()
 	const { likePost, savePost, setCurrentId, deletePost, posts, getPosts } =
@@ -106,7 +108,7 @@ export const Post = ({
 			await deletePost(_id)
 			setIsDialogOpen.off()
 
-			if (posts.length === 1 && page > 1) {
+			if (posts?.length === 1 && page > 1) {
 				navigate(`/posts?page=${page - 1}`)
 			}
 
@@ -146,7 +148,21 @@ export const Post = ({
 									w='100%'
 									onClick={openPost}
 								>
-									{title}
+									{highlight?.length ? (
+										<Highlight
+											query={highlight}
+											styles={{
+												px: '1',
+												py: '1',
+												bg: 'highlight',
+												color: 'bnw_900_100',
+											}}
+										>
+											{title}
+										</Highlight>
+									) : (
+										<>{title}</>
+									)}
 								</Heading>
 								{isPrivate && (
 									<Tooltip
@@ -382,4 +398,5 @@ Post.propTypes = {
 		}),
 		comments: PropTypes.arrayOf(PropTypes.object),
 	}),
+	highlight: PropTypes.string,
 }

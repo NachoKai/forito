@@ -18,6 +18,7 @@ const Navbar = loadable(() => import('./components/Navbar/Navbar'))
 const PostDetails = loadable(() => import('./components/PostDetails'))
 const SavedPosts = loadable(() => import('./components/SavedPosts'))
 const Tags = loadable(() => import('./components/Tags'))
+const SearchView = loadable(() => import('./components/SearchView'))
 const TopPosts = loadable(() => import('./components/TopPosts'))
 const LoadingScreen = loadable(() =>
 	import('./components/common/LoadingScreen/LoadingScreen')
@@ -48,22 +49,22 @@ export const App = () => {
 			<Navbar isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
 			<Stack minH='100vh'>
 				<Routes>
-					<Route element={<Navigate replace to='/posts' />} path='/' />
+					<Route element={<Navigate replace to='posts' />} path='/' />
 					<Route element={<Home onOpen={onOpen} />} path='posts' />
-					<Route element={<Home onOpen={onOpen} />} path='posts/search' />
 					<Route element={<PostDetails user={user} />} path='posts/:id' />
+					<Route element={<SearchView />} path='search' />
 					<Route element={<Creator />} path='creator/:id' />
 					<Route element={<Tags />} path='tags/:name' />
 					<Route
-						element={userEmail ? <SavedPosts /> : <Navigate replace to='/posts' />}
+						element={userEmail ? <SavedPosts /> : <Navigate replace to='posts' />}
 						path='saved/:id'
 					/>
 					<Route
-						element={!userEmail ? <Auth /> : <Navigate replace to='/posts' />}
+						element={!userEmail ? <Auth /> : <Navigate replace to='posts' />}
 						path='auth'
 					/>
 					<Route element={<About />} path='about' />
-					<Route element={<TopPosts />} path='/posts/top' />
+					<Route element={<TopPosts />} path='posts/top' />
 					<Route element={<ErrorPage />} path='*' />
 				</Routes>
 			</Stack>

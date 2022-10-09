@@ -43,7 +43,7 @@ export const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData
 							)}
 						</Stack>
 					)}
-					{(!postData?.selectedFile?.url || !images.length) && (
+					{(!postData?.selectedFile?.url || !images?.length) && (
 						<Stack
 							borderColor={isDragging ? 'gray_700_200' : 'primary_600_100'}
 							borderRadius='16px'
