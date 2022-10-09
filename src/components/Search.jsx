@@ -35,7 +35,7 @@ export const Search = () => {
 				setSearchTags([])
 				await getPostsBySearch({ search: searchValue, tags: searchTags.join(',') })
 				navigate(
-					`posts?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`
+					`search?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`
 				)
 			}
 		} catch (err) {
@@ -44,7 +44,7 @@ export const Search = () => {
 	}
 
 	const handleKeyDown = e => {
-		const disabled = !searchValue?.trim().length && !searchTags?.length
+		const disabled = !searchValue?.trim()?.length && !searchTags?.length
 
 		if (e.keyCode === ENTER_KEYCODE && !disabled) {
 			searchPost()
@@ -101,7 +101,7 @@ export const Search = () => {
 						/>
 						<Button
 							bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
-							disabled={!searchValue?.trim().length && !searchTags?.length}
+							disabled={!searchValue?.trim()?.length && !searchTags?.length}
 							onClick={searchPost}
 						>
 							Search

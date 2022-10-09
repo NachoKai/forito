@@ -10,8 +10,8 @@ import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 
-export const Posts = ({ onOpen }) => {
-	const { posts, loading } = usePostsStore()
+export const Posts = ({ onOpen, posts, highlight }) => {
+	const { loading } = usePostsStore()
 	const havePosts = posts?.length > 0
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
@@ -54,7 +54,7 @@ export const Posts = ({ onOpen }) => {
 						w='100%'
 					>
 						{publicPosts?.map(post => (
-							<Post key={post?._id} post={post} onOpen={onOpen} />
+							<Post key={post?._id} highlight={highlight} post={post} onOpen={onOpen} />
 						))}
 					</StaggeredSlideFade>
 				)}
@@ -65,4 +65,6 @@ export const Posts = ({ onOpen }) => {
 
 Posts.propTypes = {
 	onOpen: PropTypes.func,
+	posts: PropTypes.array,
+	highlight: PropTypes.string,
 }

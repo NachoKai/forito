@@ -71,9 +71,9 @@ const SavedPosts = () => {
 				<Text fontSize='2xl'>Saved Posts</Text>
 				<Text fontSize='md'>
 					{posts?.length
-						? posts.length !== 1
-							? `${posts.length} Posts`
-							: `${posts.length} Post`
+						? posts?.length !== 1
+							? `${posts?.length} Posts`
+							: `${posts?.length} Post`
 						: ''}
 				</Text>
 			</Stack>

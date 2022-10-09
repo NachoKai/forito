@@ -56,11 +56,11 @@ export const ChakraTagInput = forwardRef(function ChakraTagInput(
 			event.preventDefault()
 		} else if (
 			key === 'Backspace' &&
-			tags.length > 0 &&
+			tags?.length > 0 &&
 			selectionStart === 0 &&
 			selectionEnd === 0
 		) {
-			removeTag(event, tags.length - 1)
+			removeTag(event, tags?.length - 1)
 		}
 	}
 
@@ -80,7 +80,7 @@ export const ChakraTagInput = forwardRef(function ChakraTagInput(
 				</WrapItem>
 			))}
 
-			<WrapItem flexGrow={1} {...maybeCall(wrapItemProps, true, tags.length)}>
+			<WrapItem flexGrow={1} {...maybeCall(wrapItemProps, true, tags?.length)}>
 				<Input ref={ref} onKeyDown={handleKeyDown} />
 			</WrapItem>
 		</Wrap>
