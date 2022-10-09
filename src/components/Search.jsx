@@ -44,7 +44,9 @@ export const Search = () => {
 	}
 
 	const handleKeyDown = e => {
-		if (e.keyCode === ENTER_KEYCODE) {
+		const disabled = !searchValue?.trim().length && !searchTags?.length
+
+		if (e.keyCode === ENTER_KEYCODE && !disabled) {
 			searchPost()
 		}
 	}
@@ -99,7 +101,7 @@ export const Search = () => {
 						/>
 						<Button
 							bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
-							disabled={!searchValue && !searchTags?.length}
+							disabled={!searchValue?.trim().length && !searchTags?.length}
 							onClick={searchPost}
 						>
 							Search
