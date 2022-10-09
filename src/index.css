@@ -90,37 +90,32 @@ p a:hover {
 
 .container,
 .pagination {
-  border: 2px solid #0D0D0D !important;
+  border: 2px solid #0d0d0d !important;
 }
 
 .container:hover,
 .pagination:hover {
-  border: 2px solid #0D0D0D !important;
+  border: 2px solid #0d0d0d !important;
   box-shadow: 2px 2px 0 0 #0d0d0d !important;
   transition: box-shadow 0.2s ease-in-out !important;
 }
 
-.button {
-  border: 1px solid #0d0d0d !important;
-}
-
 .button:hover {
-  border: 1px solid #0d0d0d !important;
-  box-shadow: 1px 1px 0 0 #0d0d0d !important;
+  box-shadow: 2px 2px 0 0 #0d0d0d !important;
   transition: box-shadow 0.2s ease-in-out !important;
 }
 
 .form {
-  border-left: 2px solid #0D0D0D !important;
+  border-left: 2px solid #0d0d0d !important;
 }
 
 .footer {
-  border-top: 2px solid #0D0D0D !important;
+  border-top: 2px solid #0d0d0d !important;
 }
 
 input,
 textarea {
-  border: 1px solid #0D0D0D !important;
+  border: 1px solid #0d0d0d !important;
 }
 
 input:hover,
@@ -129,7 +124,7 @@ input:focus,
 textarea:hover,
 textarea:active,
 textarea:focus {
-  border: 1px solid #0D0D0D !important;
+  border: 1px solid #0d0d0d !important;
   box-shadow: 1px 1px 0 0 #0d0d0d !important;
   transition: box-shadow 0.2s ease-in-out !important;
 }
