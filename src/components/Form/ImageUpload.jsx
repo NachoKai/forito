@@ -22,22 +22,22 @@ export const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData
 					{Boolean(errors) && (
 						<Stack m='4px 0' spacing='2'>
 							{Boolean(errors.maxNumber) && (
-								<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
+								<Flex color='red.400' fontWeight='bold' mb='4px'>
 									Number of selected images exceed maxNumber.
 								</Flex>
 							)}
 							{Boolean(errors.acceptType) && (
-								<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
+								<Flex color='red.400' fontWeight='bold' mb='4px'>
 									Your selected file type is not allow.
 								</Flex>
 							)}
 							{Boolean(errors.maxFileSize) && (
-								<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
+								<Flex color='red.400' fontWeight='bold' mb='4px'>
 									Selected file size exceed max file size.
 								</Flex>
 							)}
 							{Boolean(errors.resolution) && (
-								<Flex color='red.400' fontWeight='bold' marginBottom='4px'>
+								<Flex color='red.400' fontWeight='bold' mb='4px'>
 									Selected file is not match your desired resolution.
 								</Flex>
 							)}

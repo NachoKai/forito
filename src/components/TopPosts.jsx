@@ -29,7 +29,7 @@ const TopPosts = () => {
 		<StaggeredSlideFade
 			flexGrow
 			direction='column'
-			minHeight='100vh'
+			minH='100vh'
 			px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
 			py={{ sm: '4', md: '6', lg: '8', xl: '8' }}
 			spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
@@ -52,7 +52,7 @@ const TopPosts = () => {
 				w='100%'
 			>
 				{!havePosts ? (
-					<Flex align='center' direction='column' marginY='64px'>
+					<Flex align='center' direction='column' my='64px'>
 						<Text color='primary.400' fontSize='6xl'>
 							<FaPencilAlt />
 						</Text>

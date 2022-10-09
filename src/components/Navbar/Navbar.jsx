@@ -57,7 +57,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 			className={colorMode === 'light' ? 'glassmorphism-light' : 'glassmorphism-dark'}
 			h='70px'
 			justify='space-between'
-			position='sticky'
+			pos='sticky'
 			px={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 			top='0'
 			zIndex='3'

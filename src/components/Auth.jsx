@@ -66,7 +66,7 @@ const Auth = () => {
 		<Stack
 			align='center'
 			justify='flex-start'
-			minHeight='100vh'
+			minH='100vh'
 			px={{ sm: '4', md: '10', lg: '16', xl: '24' }}
 			py={{ sm: '4', md: '6', lg: '8', xl: '8' }}
 		>
@@ -74,8 +74,8 @@ const Auth = () => {
 				bg='primary_100_600'
 				borderRadius='24px'
 				className='container'
-				maxWidth='450px'
-				minWidth='320px'
+				maxW='450px'
+				minW='320px'
 				p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 				spacing='4'
 				w='100%'

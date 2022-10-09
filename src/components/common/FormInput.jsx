@@ -35,7 +35,7 @@ export const FormInput = ({
 			)}
 		</Flex>
 		{Boolean(validation) && (
-			<FormHelperText color='red.400' fontWeight='bold' marginBottom='4px'>
+			<FormHelperText color='red.400' fontWeight='bold' mb='4px'>
 				{validation}
 			</FormHelperText>
 		)}

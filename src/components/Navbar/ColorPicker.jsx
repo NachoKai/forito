@@ -32,21 +32,17 @@ export const ColorPicker = () => {
 			<PopoverTrigger>
 				<Button
 					aria-label={color}
-					background={color}
+					bg={color}
 					border='1px solid #0d0d0d'
 					borderRadius={3}
 					className='button'
 					h='22px'
-					minWidth='unset'
-					padding={0}
+					minW='unset'
+					p='0'
 					w='22px'
 				/>
 			</PopoverTrigger>
-			<PopoverContent
-				border='1px solid #0d0d0d !important'
-				className='button'
-				w='170px'
-			>
+			<PopoverContent border='1px solid #0d0d0d !important' className='button' w='170px'>
 				<PopoverCloseButton color='white' />
 				<PopoverHeader
 					backgroundColor={color}
@@ -64,13 +60,13 @@ export const ColorPicker = () => {
 								key={color}
 								_hover={{ background: color }}
 								aria-label={color}
-								background={color}
+								bg={color}
 								border='1px solid #0d0d0d'
 								borderRadius={3}
 								className='button'
 								h='22px'
-								minWidth='unset'
-								padding={0}
+								minW='unset'
+								p='0'
 								w='22px'
 								onClick={() => {
 									localStorage.setItem('forito-theme', color)

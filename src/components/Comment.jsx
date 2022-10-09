@@ -30,7 +30,7 @@ export const Comment = ({ comment, deleteComment, postId }) => {
 						xl: 'flex',
 					}}
 					leftIcon={<FaEraser />}
-					maxWidth='88px'
+					maxW='88px'
 					size='xs'
 					variant='solid'
 					onClick={() => deleteComment(postId, comment?.commentId)}
