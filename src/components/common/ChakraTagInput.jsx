@@ -73,7 +73,9 @@ export const ChakraTagInput = forwardRef(function ChakraTagInput(
 			{tags.map((tag, index) => (
 				<WrapItem {...maybeCall(wrapItemProps, false, index)} key={index}>
 					<ChakraTagInputTag
-						size='sm'
+						bg='primary.600'
+						borderRadius='4px'
+						color='white'
 						tagCloseButtonProps={maybeCall(tagCloseButtonProps, tag, index)}
 						tagLabelProps={maybeCall(tagLabelProps, tag, index)}
 						onRemove={handleRemoveTag(index)}
@@ -85,7 +87,12 @@ export const ChakraTagInput = forwardRef(function ChakraTagInput(
 			))}
 
 			<WrapItem flexGrow={1} {...maybeCall(wrapItemProps, true, tags?.length)}>
-				<Input ref={ref} onKeyDown={handleKeyDown} />
+				<Input
+					ref={ref}
+					background='#fff'
+					placeholder='Search Posts Tags'
+					onKeyDown={handleKeyDown}
+				/>
 			</WrapItem>
 		</Wrap>
 	)
