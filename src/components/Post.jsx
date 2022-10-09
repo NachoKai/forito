@@ -206,13 +206,10 @@ export const Post = ({
 
 							<Stack
 								direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }}
+								display={location?.pathname.includes('/posts') ? 'flex' : 'none'}
 								spacing='2'
 							>
-								<Stack
-									direction='row'
-									display={location?.pathname.includes('/posts') ? 'flex' : 'none'}
-									spacing='2'
-								>
+								<Stack direction='row' spacing='2'>
 									<Button
 										className='button'
 										leftIcon={<FaRegComments />}
@@ -294,11 +291,7 @@ export const Post = ({
 									)}
 								</Stack>
 
-								<Stack
-									direction='row'
-									display={location?.pathname.includes('/posts') ? 'flex' : 'none'}
-									spacing='2'
-								>
+								<Stack direction='row' spacing='2'>
 									{Boolean(isPostCreator || isAdmin) && (
 										<Button
 											className='button'
