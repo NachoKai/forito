@@ -152,7 +152,6 @@ export const Post = ({
 										<Highlight
 											query={highlight}
 											styles={{
-												px: '1',
 												py: '1',
 												bg: 'highlight',
 												color: 'bnw_900_100',
