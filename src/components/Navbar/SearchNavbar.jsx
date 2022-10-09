@@ -30,7 +30,9 @@ export const SearchNavbar = () => {
 	}
 
 	const handleKeyDown = e => {
-		if (e.keyCode === ENTER_KEYCODE) {
+		const disabled = !searchValue?.trim().length && !searchTags?.length
+
+		if (e.keyCode === ENTER_KEYCODE && !disabled) {
 			searchPost()
 		}
 	}
@@ -44,7 +46,7 @@ export const SearchNavbar = () => {
 				rightIcon={
 					<Button
 						data-cy='navbar-search-button'
-						disabled={!searchValue && !searchTags?.length}
+						disabled={!searchValue?.trim().length && !searchTags?.length}
 						size='sm'
 						title='Search'
 						variant='ghost'
