@@ -86,14 +86,13 @@ export const ChakraTagInput = forwardRef(function ChakraTagInput(
 				</WrapItem>
 			))}
 
-			<WrapItem flexGrow={1} {...maybeCall(wrapItemProps, true, tags?.length)}>
-				<Input
-					ref={ref}
-					background='#fff'
-					placeholder='Search Posts Tags'
-					onKeyDown={handleKeyDown}
-				/>
-			</WrapItem>
+			<Input
+				ref={ref}
+				background='#fff'
+				maxLength='105'
+				placeholder='Search Posts Tags'
+				onKeyDown={handleKeyDown}
+			/>
 		</Wrap>
 	)
 })

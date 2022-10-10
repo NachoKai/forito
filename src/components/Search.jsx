@@ -90,7 +90,6 @@ export const Search = () => {
 							}
 							helper='Insert tag with enter/return.'
 							label='Search Posts Tags'
-							maxLength='105'
 						/>
 						<Button
 							bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
