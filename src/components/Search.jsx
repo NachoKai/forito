@@ -84,8 +84,8 @@ export const Search = () => {
 								<ChipInput
 									setTags={setSearchTags}
 									tags={searchTags}
-									onAdd={tag => handleAddTag(tag)}
-									onDelete={tag => handleDeleteTag(tag)}
+									onAdd={tag => handleAddTag(tag?.toLowerCase())}
+									onDelete={tag => handleDeleteTag(tag?.toLowerCase())}
 								/>
 							}
 							helper='Insert tag with enter/return.'

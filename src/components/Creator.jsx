@@ -28,8 +28,8 @@ const Creator = () => {
 				align='center'
 				direction='column'
 				h='100%'
-				my='64px'
 				minH='100vh'
+				my='64px'
 				px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
 				py={{ sm: '4', md: '6', lg: '8', xl: '8' }}
 			>
