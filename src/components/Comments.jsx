@@ -1,6 +1,6 @@
 import { Button, Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { FaExclamationCircle } from 'react-icons/fa'
 import { v4 as uuid } from 'uuid'
 

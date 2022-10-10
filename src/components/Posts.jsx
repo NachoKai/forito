@@ -26,7 +26,7 @@ export const Posts = ({ onOpen, posts, highlight }) => {
 	})
 
 	return (
-		<Flex flexGrow minH='100vh' w='100%'>
+		<Flex flexGrow='1' minH='100vh' w='100%'>
 			<StaggeredSlideFade
 				direction='column'
 				spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
