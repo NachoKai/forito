@@ -50,7 +50,7 @@ export const ChakraTagInput = forwardRef(function ChakraTagInput(
 
 		if (addKeys.includes(key) && currentTarget.value) {
 			if (currentTarget?.value?.trim()?.length) {
-				addTag(event, currentTarget.value)
+				addTag(event, currentTarget.value?.toLowerCase())
 			}
 
 			if (!event.isDefaultPrevented()) {
