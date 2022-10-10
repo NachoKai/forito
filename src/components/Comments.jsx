@@ -5,9 +5,9 @@ import { FaExclamationCircle } from 'react-icons/fa'
 import { v4 as uuid } from 'uuid'
 
 import { usePostsStore } from '../state/postsStore'
-import { CreateGradColor } from '../theme.ts'
-import { checkEmpty } from '../utils/checkEmpty.ts'
-import { showError } from '../utils/showError.ts'
+import { CreateGradColor } from '../theme'
+import { checkEmpty } from '../utils/checkEmpty'
+import { showError } from '../utils/showError'
 import { Comment } from './Comment'
 import { FormTextArea } from './common/FormTextArea'
 

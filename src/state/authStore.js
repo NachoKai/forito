@@ -1,5 +1,5 @@
 import { fetchUser, login, signup } from '../clients/userClients'
-import { showError } from '../utils/showError.ts'
+import { showError } from '../utils/showError'
 import { create } from './createStore'
 
 const INITIAL_STATE = {

@@ -24,10 +24,10 @@ import { v4 as uuid } from 'uuid'
 
 import { Comments } from '../components/Comments'
 import { usePostsStore } from '../state/postsStore'
-import { CreateGradColor, getColorTheme } from '../theme.ts'
-import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
-import { isDev } from '../utils/checkIsDev.ts'
-import { checkIsPostCreator } from '../utils/checkIsPostCreator.ts'
+import { CreateGradColor, getColorTheme } from '../theme'
+import { checkIsAdmin } from '../utils/checkIsAdmin'
+import { isDev } from '../utils/checkIsDev'
+import { checkIsPostCreator } from '../utils/checkIsPostCreator'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 
 const PostDetails = ({ user }) => {

@@ -4,7 +4,7 @@ import PropTypes from 'prop-types'
 import React from 'react'
 import { MemoryRouter } from 'react-router-dom'
 
-import { themeConfig } from '../theme.ts'
+import { themeConfig } from '../theme'
 
 const AllTheProviders = ({ children }) => {
 	return (

@@ -5,8 +5,8 @@ import { useParams } from 'react-router-dom'
 
 import { useAuthStore } from '../state/authStore'
 import { usePostsStore } from '../state/postsStore'
-import { CreateGradColor } from '../theme.ts'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
+import { CreateGradColor } from '../theme'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 

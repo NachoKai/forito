@@ -1,4 +1,4 @@
-import { checkIsPostCreator } from '../../utils/checkIsPostCreator.ts'
+import { checkIsPostCreator } from '../../utils/checkIsPostCreator'
 
 describe('checkIsPostCreator', () => {
 	let user

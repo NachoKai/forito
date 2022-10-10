@@ -13,8 +13,8 @@ import { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { usePostsStore } from '../state/postsStore'
-import { CreateGradColor } from '../theme.ts'
-import { showError } from '../utils/showError.ts'
+import { CreateGradColor } from '../theme'
+import { showError } from '../utils/showError'
 import { ChakraTagInput } from './common/ChakraTagInput'
 import { FormInput } from './common/FormInput'
 

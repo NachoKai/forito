@@ -2,7 +2,7 @@ import { Input, Wrap, WrapItem } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { forwardRef } from 'react'
 
-import { maybeCall } from '../../utils/maybeCall.ts'
+import { maybeCall } from '../../utils/maybeCall'
 import { ChakraTagInputTag } from './Tag'
 
 export const ChakraTagInput = forwardRef(function ChakraTagInput(

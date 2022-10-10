@@ -4,7 +4,7 @@ import { FaSearch } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
 import { usePostsStore } from '../../state/postsStore'
-import { showError } from '../../utils/showError.ts'
+import { showError } from '../../utils/showError'
 import { FormInput } from '../common/FormInput'
 
 export const SearchNavbar = () => {

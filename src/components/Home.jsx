@@ -3,7 +3,7 @@ import PropTypes from 'prop-types'
 import { useEffect } from 'react'
 import { usePostsStore } from '../state/postsStore'
 
-import { useLocationQuery } from '../utils/useLocationQuery.ts'
+import { useLocationQuery } from '../utils/useLocationQuery'
 import { Paginate } from './Paginate'
 import { Posts } from './Posts'
 

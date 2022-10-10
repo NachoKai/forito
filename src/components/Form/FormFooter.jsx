@@ -1,7 +1,7 @@
 import { Button, DrawerFooter, Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-import { CreateGradColor } from '../../theme.ts'
+import { CreateGradColor } from '../../theme'
 
 export const FormFooter = ({ handleClear, handleSubmit, isSubmitDisabled }) => {
 	return (
