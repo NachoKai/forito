@@ -322,8 +322,8 @@ export const Post = ({
 									)}
 									{Boolean(isPostCreator || isAdmin) && (
 										<Button
-											bg='red_500_200'
 											className='button'
+											colorScheme='red'
 											display={{
 												sm: 'none',
 												md: 'none',
