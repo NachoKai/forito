@@ -22,7 +22,7 @@ export const Comment = ({ comment, deleteComment, postId }) => {
 			</Text>
 			{Boolean(isAdmin) && (
 				<Button
-					bg='red_500_200'
+					colorScheme='red'
 					display={{
 						sm: 'none',
 						md: 'none',
