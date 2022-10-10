@@ -13,9 +13,9 @@ import {
 	savePost,
 	updatePost,
 } from '../clients/postsClients'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
-import { showError } from '../utils/showError.ts'
-import { showSuccess } from '../utils/showSuccess.ts'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import { showError } from '../utils/showError'
+import { showSuccess } from '../utils/showSuccess'
 import { create } from './createStore'
 
 const INITIAL_STATE = {

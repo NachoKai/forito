@@ -11,7 +11,7 @@ import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
 import { usePostsStore } from '../state/postsStore'
-import { getThemeColor } from '../utils/getThemeColor.ts'
+import { getThemeColor } from '../utils/getThemeColor'
 
 export const Paginate = () => {
 	const navigate = useNavigate()

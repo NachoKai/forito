@@ -4,8 +4,8 @@ import PropTypes from 'prop-types'
 import { FaEraser } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
-import { checkIsAdmin } from '../utils/checkIsAdmin.ts'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage.ts'
+import { checkIsAdmin } from '../utils/checkIsAdmin'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 
 export const Comment = ({ comment, deleteComment, postId }) => {
 	const user = getUserLocalStorage()

@@ -1,7 +1,7 @@
 import axios from 'axios'
 
-import { isDev } from './utils/checkIsDev.ts'
-import { getUserLocalStorage } from './utils/getUserLocalStorage.ts'
+import { isDev } from './utils/checkIsDev'
+import { getUserLocalStorage } from './utils/getUserLocalStorage'
 
 export const api = axios.create({
 	baseURL: isDev ? 'http://localhost:5000' : process.env.REACT_APP_SERVER_URL,

@@ -5,7 +5,7 @@ import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
-import { getUserLocalStorage } from './utils/getUserLocalStorage.ts'
+import { getUserLocalStorage } from './utils/getUserLocalStorage'
 
 const ScrollToTop = loadable(() => import('./components/common/ScrollToTop'))
 const About = loadable(() => import('./components/About'))
@@ -31,9 +31,9 @@ export const App = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure()
 
 	const checkScrollTop = () => {
-		if (!showScroll && window.pageYOffset > 400) {
+		if (!showScroll && window.scrollY > 400) {
 			setShowScroll.on()
-		} else if (showScroll && window.pageYOffset <= 400) {
+		} else if (showScroll && window.scrollY <= 400) {
 			setShowScroll.off()
 		}
 	}

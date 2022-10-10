@@ -1,4 +1,4 @@
-import { checkEmpty } from '../../utils/checkEmpty.ts'
+import { checkEmpty } from '../../utils/checkEmpty'
 
 describe('checkEmpty', () => {
 	let value

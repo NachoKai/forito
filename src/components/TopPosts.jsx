@@ -3,7 +3,7 @@ import { useEffect } from 'react'
 import { FaPencilAlt } from 'react-icons/fa'
 
 import { usePostsStore } from '../state/postsStore'
-import { CreateGradColor } from '../theme.ts'
+import { CreateGradColor } from '../theme'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 

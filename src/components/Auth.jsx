@@ -4,7 +4,7 @@ import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
 import { useAuthStore } from '../state/authStore'
-import { showError } from '../utils/showError.ts'
+import { showError } from '../utils/showError'
 import { FormInput } from './common/FormInput'
 
 const Auth = () => {

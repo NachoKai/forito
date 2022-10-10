@@ -2,7 +2,7 @@ import { Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
 import { usePostsStore } from '../state/postsStore'
-import { useLocationQuery } from '../utils/useLocationQuery.ts'
+import { useLocationQuery } from '../utils/useLocationQuery'
 import { Posts } from './Posts'
 import { Search } from './Search'
 
