@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
     "target": "es2022",
-    "jsx": "react-jsx",
+    "jsx": "react-jsxdev",
     "lib": [
       "dom",
       "es2022"

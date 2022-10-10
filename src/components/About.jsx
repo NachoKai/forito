@@ -1,13 +1,14 @@
 import { Button, Link as ChakraLink, Flex, Heading, Stack, Text } from '@chakra-ui/react'
+import React from 'react'
 import { FaGithub, FaHandSpock } from 'react-icons/fa'
 
 import { CreateGradColor } from '../theme'
 
 const About = () => (
 	<Flex
-		flexGrow
 		align='center'
 		direction='column'
+		flexGrow='1'
 		h='100%'
 		justify='flex-start'
 		minH='100vh'

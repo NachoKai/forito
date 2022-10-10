@@ -167,10 +167,10 @@ export const themeConfig = extendTheme(
 
 export const CreateGradColor = (
 	scheme: string,
-	firstValue: string,
-	secondValue: string,
-	thirdValue: string,
-	fourthValue: string,
+	firstValue: number,
+	secondValue: number,
+	thirdValue: number,
+	fourthValue: number,
 	angle = 'to-l'
 ) =>
 	useColorModeValue(
