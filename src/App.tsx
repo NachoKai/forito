@@ -4,6 +4,7 @@ import { FaChevronUp } from 'react-icons/fa'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
+import { UserI } from './types'
 
 import { getUserLocalStorage } from './utils/getUserLocalStorage'
 
@@ -20,13 +21,13 @@ const SavedPosts = loadable(() => import('./components/SavedPosts'))
 const Tags = loadable(() => import('./components/Tags'))
 const SearchView = loadable(() => import('./components/SearchView'))
 const TopPosts = loadable(() => import('./components/TopPosts'))
-const LoadingScreen = loadable(() =>
-	import('./components/common/LoadingScreen/LoadingScreen')
+const LoadingScreen = loadable(
+	() => import('./components/common/LoadingScreen/LoadingScreen')
 )
 
 export const App = () => {
 	const [showScroll, setShowScroll] = useBoolean()
-	const user = getUserLocalStorage()
+	const user: UserI = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const { isOpen, onOpen, onClose } = useDisclosure()
 

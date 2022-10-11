@@ -1,8 +1,7 @@
 import { Flex, Heading, Text } from '@chakra-ui/react'
-import React from 'react'
 import { FaExclamationCircle } from 'react-icons/fa'
 
-const ErrorPage = () => (
+const ErrorPage: React.FC = () => (
 	<Flex
 		align='center'
 		direction='column'

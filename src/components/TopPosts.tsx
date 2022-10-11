@@ -7,14 +7,13 @@ import { CreateGradColor } from '../theme'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 
-const TopPosts = () => {
+const TopPosts: React.FC = () => {
 	const { posts, getAllPosts } = usePostsStore()
 	const havePosts = posts?.length > 0
 
-	const getTopPosts = max => {
+	const getTopPosts = (max: number) => {
 		if (!havePosts) return
-		const postsCopy = [...posts]
-		const sortedPosts = postsCopy?.sort((a, b) => b?.likes?.length - a?.likes?.length)
+		const sortedPosts = [...posts]?.sort((a, b) => b?.likes?.length - a?.likes?.length)
 
 		return sortedPosts?.slice(0, max)
 	}
