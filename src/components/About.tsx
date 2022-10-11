@@ -1,10 +1,9 @@
 import { Button, Link as ChakraLink, Flex, Heading, Stack, Text } from '@chakra-ui/react'
-import React from 'react'
 import { FaGithub, FaHandSpock } from 'react-icons/fa'
 
 import { CreateGradColor } from '../theme'
 
-const About = () => (
+const About: React.FC = () => (
 	<Flex
 		align='center'
 		direction='column'

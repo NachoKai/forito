@@ -5,20 +5,22 @@ import { useParams } from 'react-router-dom'
 
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme'
+import { PostI, UserI } from '../types'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 
-const Tags = () => {
+const Tags: React.FC = () => {
 	const { name } = useParams()
 	const { posts, loading, getPostsBySearch } = usePostsStore()
-	const user = getUserLocalStorage()
+	const user: UserI = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const isAdmin = checkIsAdmin(userEmail)
+	const title = posts?.length !== 1 ? `${posts?.length} Posts` : `${posts?.length} Post`
 
-	const publicPosts = posts?.filter(post => {
+	const publicPosts = posts?.filter((post: PostI) => {
 		const isPrivate = post?.privacy === 'private'
 		const creator = post?.creator
 		const isPostCreator = checkIsPostCreator(user, creator)
@@ -30,26 +32,22 @@ const Tags = () => {
 		getPostsBySearch({ tags: name })
 	}, [getPostsBySearch, name])
 
-	if (!publicPosts?.length && !loading) {
-		return (
-			<Flex align='center' direction='column' h='100%' minH='100vh' my='64px'>
-				<Text color='primary.400' fontSize='6xl' mb='16px'>
-					<FaSearch />
-				</Text>
-				<Heading
-					as='h2'
-					bgClip='text'
-					bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
-					fontSize='4xl'
-					fontWeight='bold'
-				>
-					No posts found for &quot;#{name}&quot;
-				</Heading>
-			</Flex>
-		)
-	}
-
-	return (
+	return !publicPosts?.length && !loading ? (
+		<Flex align='center' direction='column' h='100%' minH='100vh' my='64px'>
+			<Text color='primary.400' fontSize='6xl' mb='16px'>
+				<FaSearch />
+			</Text>
+			<Heading
+				as='h2'
+				bgClip='text'
+				bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
+				fontSize='4xl'
+				fontWeight='bold'
+			>
+				No posts found for &quot;#{name}&quot;
+			</Heading>
+		</Flex>
+	) : (
 		<StaggeredSlideFade
 			borderRadius='24px'
 			h='100%'
@@ -59,13 +57,7 @@ const Tags = () => {
 		>
 			<Stack spacing='2'>
 				<Text fontSize='2xl'>#{name?.toUpperCase()}</Text>
-				<Text fontSize='md'>
-					{!loading && posts?.length
-						? posts?.length !== 1
-							? `${posts?.length} Posts`
-							: `${posts?.length} Post`
-						: ''}
-				</Text>
+				<Text fontSize='md'>{!loading && posts?.length ? title : ''}</Text>
 			</Stack>
 
 			<Divider />

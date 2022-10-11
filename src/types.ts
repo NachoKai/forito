@@ -29,3 +29,16 @@ export interface FormDataI {
 	password: string
 	confirmPassword: string
 }
+
+export interface UserI {
+	result?: {
+		_id: string
+		firstName: string
+		lastName: string
+		email: string
+		createdAt: string
+		updatedAt: string
+		__v: number
+	}
+	token?: string
+}

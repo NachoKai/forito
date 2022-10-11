@@ -5,12 +5,13 @@ import { usePostsStore } from '../../../state/postsStore'
 import { getThemeColor } from '../../../utils/getThemeColor'
 import { LoadingContext } from './LoadingContext'
 
-const LoadingScreen = () => {
+const LoadingScreen: React.FC = () => {
 	const { isLoading } = useContext(LoadingContext)
 	const { colorMode } = useColorMode()
 	const { loading } = usePostsStore()
 	const loadingRef = useRef(null)
 	const { showLoading, hideLoading } = useContext(LoadingContext)
+	const color = `${getThemeColor()}.500`
 
 	useLayoutEffect(() => {
 		if (isLoading) {
@@ -34,7 +35,7 @@ const LoadingScreen = () => {
 			<div className='loading-bar'>
 				<Spinner
 					className='loading-circle'
-					color={() => `${getThemeColor()}.500`}
+					color={color}
 					emptyColor='gray.200'
 					size='xl'
 					speed='0.65s'
