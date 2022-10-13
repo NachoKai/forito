@@ -88,7 +88,10 @@ export const ChakraTagInput = forwardRef(function ChakraTagInput(
 
 			<Input
 				ref={ref}
-				background='#fff'
+				_placeholder={{ color: 'gray' }}
+				autoComplete='off'
+				bg='white'
+				color='black'
 				maxLength='105'
 				placeholder='Search Posts Tags'
 				onKeyDown={handleKeyDown}
