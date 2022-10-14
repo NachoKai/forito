@@ -355,7 +355,7 @@ export const Post = ({
 								alt={title}
 								borderRadius='16px'
 								className='pointer'
-								fallback={<Skeleton flexGrow='1' />}
+								fallback={<Skeleton borderRadius='16px' flexGrow='1' />}
 								flexGrow='1'
 								objectFit='cover'
 								src={selectedFile.url}
