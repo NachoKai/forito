@@ -268,7 +268,14 @@ const PostDetails = ({ user }) => {
 												<Image
 													alt={post?.title}
 													borderRadius='24px'
-													fallback={<Skeleton flexGrow='1' objectFit='cover' w='100%' />}
+													fallback={
+														<Skeleton
+															borderRadius='24px'
+															flexGrow='1'
+															objectFit='cover'
+															w='100%'
+														/>
+													}
 													flexGrow='1'
 													objectFit='cover'
 													src={selectedFile.url}
