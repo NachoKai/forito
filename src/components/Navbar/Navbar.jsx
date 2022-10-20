@@ -52,9 +52,9 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 
 	return (
 		<Flex
-			flexGrow='1'
 			align='center'
 			className={colorMode === 'light' ? 'glassmorphism-light' : 'glassmorphism-dark'}
+			flexGrow='1'
 			h='70px'
 			justify='space-between'
 			pos='sticky'
