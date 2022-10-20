@@ -47,7 +47,7 @@ const Footer = () => {
 					&#169; {new Date().getFullYear()} Forito. All rights reserved.
 				</Text>
 				<Text fontSize='sm'>
-					Made with &#10084; by{' '}
+					Made with ♥️ in 🇦🇷 by{' '}
 					<ChakraLink isExternal fontWeight='bold' href={GITHUB_URL}>
 						Nacho Caiafa
 					</ChakraLink>
