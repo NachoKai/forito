@@ -1,4 +1,4 @@
-import { Button, Flex, Stack, Text, useBoolean } from '@chakra-ui/react'
+import { Button, Flex, HStack, Stack, Text, useBoolean } from '@chakra-ui/react'
 import { GoogleLogin } from 'react-google-login'
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
@@ -86,7 +86,7 @@ const Auth = () => {
 				<form onSubmit={handleSubmit}>
 					<Stack spacing='2'>
 						{Boolean(isSignup) && (
-							<Stack direction='row' spacing='2'>
+							<HStack spacing='2'>
 								<FormInput
 									autoFocus
 									isRequired
@@ -102,7 +102,7 @@ const Auth = () => {
 									maxLength='25'
 									name='lastName'
 								/>
-							</Stack>
+							</HStack>
 						)}
 						<FormInput
 							isRequired

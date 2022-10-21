@@ -1,4 +1,4 @@
-import { Link as ChakraLink, Divider, Stack, Text } from '@chakra-ui/react'
+import { Link as ChakraLink, Divider, HStack, Stack, Text } from '@chakra-ui/react'
 import { FaGithub } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
@@ -13,8 +13,8 @@ const Footer = () => {
 			p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 			spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 		>
-			<Stack direction='row' justify='space-between'>
-				<Stack direction='row' spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}>
+			<HStack justify='space-between'>
+				<HStack spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}>
 					<Text fontWeight='bold'>
 						<Link to='/'>Home</Link>
 					</Text>
@@ -27,15 +27,15 @@ const Footer = () => {
 					<Text fontWeight='bold'>
 						<Link to='posts/top'>Top Posts</Link>
 					</Text>
-				</Stack>
-				<Stack direction='row'>
+				</HStack>
+				<HStack>
 					<ChakraLink isExternal fontSize='xl' href={GITHUB_URL}>
 						<Text fontSize='xl'>
 							<FaGithub title='Github' />
 						</Text>
 					</ChakraLink>
-				</Stack>
-			</Stack>
+				</HStack>
+			</HStack>
 
 			<Divider />
 

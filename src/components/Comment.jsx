@@ -1,4 +1,4 @@
-import { Button, Stack, Text } from '@chakra-ui/react'
+import { Button, HStack, Text } from '@chakra-ui/react'
 import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
 import { FaEraser } from 'react-icons/fa'
@@ -13,7 +13,7 @@ export const Comment = ({ comment, deleteComment, postId }) => {
 	const isAdmin = checkIsAdmin(userEmail)
 
 	return (
-		<Stack align='center' direction='row' justify='space-between'>
+		<HStack align='center' justify='space-between'>
 			<Text whiteSpace='pre-wrap'>
 				<Link to={`/creator/${comment?.userId}`}>
 					<strong>{comment?.name}: </strong>
@@ -38,7 +38,7 @@ export const Comment = ({ comment, deleteComment, postId }) => {
 					Delete
 				</Button>
 			)}
-		</Stack>
+		</HStack>
 	)
 }
 

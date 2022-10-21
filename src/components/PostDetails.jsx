@@ -4,6 +4,7 @@ import {
 	Button,
 	Divider,
 	Flex,
+	HStack,
 	Heading,
 	Image,
 	Skeleton,
@@ -86,7 +87,7 @@ const PostDetails = ({ user }) => {
 					spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 				>
 					<Stack spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }} w='100%'>
-						<Stack align='center' direction='row' justify='space-between' w='100%'>
+						<HStack align='center' justify='space-between' w='100%'>
 							<Heading as='h2' data-cy='post-details-title' size='xl'>
 								{post?.title}
 							</Heading>
@@ -97,7 +98,7 @@ const PostDetails = ({ user }) => {
 									</span>
 								</Tooltip>
 							)}
-						</Stack>
+						</HStack>
 
 						<Text data-cy='post-details-message' fontSize='lg' whiteSpace='pre-wrap'>
 							<Linkify>{post?.message}</Linkify>
@@ -128,18 +129,12 @@ const PostDetails = ({ user }) => {
 
 				<Divider />
 
-				<Stack direction='row' spacing='2'>
+				<HStack spacing='2'>
 					<Stack spacing='4' w='100%'>
 						<Flex align='center' justify='space-between'>
 							<Text fontSize='md'>Tags:</Text>
 							{!isPrivate && (
-								<Stack
-									align='flex-start'
-									direction='row'
-									h='100%'
-									justify='flex-end'
-									spacing='8px'
-								>
+								<HStack align='flex-start' h='100%' justify='flex-end' spacing='8px'>
 									<Button
 										className='button'
 										rightIcon={<FaTwitter />}
@@ -148,10 +143,10 @@ const PostDetails = ({ user }) => {
 									>
 										Share
 									</Button>
-								</Stack>
+								</HStack>
 							)}
 						</Flex>
-						<Stack direction='row' spacing='2'>
+						<HStack spacing='2'>
 							{post?.tags?.length ? (
 								[...new Set(post?.tags)].filter(Boolean).map(tag => (
 									<Badge
@@ -167,14 +162,14 @@ const PostDetails = ({ user }) => {
 							) : (
 								<Text color='gray.500'>No tags yet</Text>
 							)}
-						</Stack>
+						</HStack>
 						<Flex align='center' justify='space-between' w='100%'>
 							<Stack
 								direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }}
 								spacing='2'
 							>
 								<Text fontSize='md'>Created by:</Text>
-								<Stack direction='row'>
+								<HStack>
 									<Text fontSize='md' fontWeight='bold'>
 										<Link to={`/creator/${post?.creator}`}>{` ${post?.name}`}</Link>
 									</Text>
@@ -196,11 +191,11 @@ const PostDetails = ({ user }) => {
 											) + ' ago'}
 										</Text>
 									</Tooltip>
-								</Stack>
+								</HStack>
 							</Stack>
 						</Flex>
 					</Stack>
-				</Stack>
+				</HStack>
 
 				<Divider />
 
@@ -222,9 +217,8 @@ const PostDetails = ({ user }) => {
 
 					<Stack overflow='auto' spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}>
 						<Text fontWeight='bold'>You might also like:</Text>
-						<Stack
+						<HStack
 							className='recommended-posts'
-							direction='row'
 							overflow='auto'
 							spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 						>
@@ -286,7 +280,7 @@ const PostDetails = ({ user }) => {
 									</Stack>
 								</Stack>
 							))}
-						</Stack>
+						</HStack>
 					</Stack>
 				</>
 			)}

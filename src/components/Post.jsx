@@ -3,6 +3,7 @@ import {
 	AspectRatio,
 	Badge,
 	Button,
+	HStack,
 	Heading,
 	Highlight,
 	Image,
@@ -139,8 +140,8 @@ export const Post = ({
 					w='100%'
 				>
 					<Stack justify='space-between' spacing='4' w='100%'>
-						<Stack direction='column' spacing='4'>
-							<Stack direction='row'>
+						<Stack spacing='4'>
+							<HStack>
 								<Heading
 									as='h2'
 									className='pointer'
@@ -174,10 +175,10 @@ export const Post = ({
 										</span>
 									</Tooltip>
 								)}
-							</Stack>
+							</HStack>
 
-							<Stack direction='row' justify='space-between' w='100%'>
-								<Stack align='center' direction='row'>
+							<HStack justify='space-between' w='100%'>
+								<HStack align='center'>
 									<Text fontSize='sm' fontWeight='bold'>
 										<Link to={`/creator/${creator}`}>{` ${name}`}</Link>
 									</Text>
@@ -197,8 +198,8 @@ export const Post = ({
 											) + ' ago'}
 										</Text>
 									</Tooltip>
-								</Stack>
-							</Stack>
+								</HStack>
+							</HStack>
 
 							<Text
 								fontSize='md'
@@ -210,21 +211,21 @@ export const Post = ({
 							</Text>
 						</Stack>
 
-						<Stack direction='column' spacing='4'>
-							<Stack direction='row' overflow='auto' spacing='2'>
+						<Stack spacing='4'>
+							<HStack overflow='auto' spacing='2'>
 								{[...new Set(tags)].filter(Boolean).map(tag => (
 									<Badge key={uuid()} bg='primary.600' borderRadius='4px' color='white'>
 										<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
 									</Badge>
 								))}
-							</Stack>
+							</HStack>
 
 							<Stack
 								direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }}
 								display={location?.pathname.includes('/posts') ? 'flex' : 'none'}
 								spacing='2'
 							>
-								<Stack direction='row' spacing='2'>
+								<HStack spacing='2'>
 									<Button
 										className='button'
 										leftIcon={<FaRegComments />}
@@ -262,27 +263,27 @@ export const Post = ({
 											<MenuList border='2px solid #0d0d0d' className='button'>
 												{Boolean(userEmail) && (
 													<MenuItem onClick={handleSave}>
-														<Stack align='center' direction='row' spacing='2'>
+														<HStack align='center' spacing='2'>
 															{hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
 															<Text fontWeight='bold'>
 																{hasUserSaved ? 'Saved' : 'Save'}
 															</Text>
-														</Stack>
+														</HStack>
 													</MenuItem>
 												)}
 												{Boolean(isPostCreator || isAdmin) && (
 													<MenuItem onClick={handleEdit}>
-														<Stack align='center' direction='row' spacing='2'>
+														<HStack align='center' spacing='2'>
 															<FaPen /> <Text fontWeight='bold'>Edit</Text>
-														</Stack>
+														</HStack>
 													</MenuItem>
 												)}
 												{Boolean(isPostCreator || isAdmin) && (
 													<MenuItem onClick={setIsDialogOpen.on}>
-														<Stack align='center' direction='row' spacing='2'>
+														<HStack align='center' spacing='2'>
 															<FaEraser />
 															<Text fontWeight='bold'>Delete</Text>
-														</Stack>
+														</HStack>
 													</MenuItem>
 												)}
 											</MenuList>
@@ -304,9 +305,9 @@ export const Post = ({
 											{hasUserSaved ? 'Saved' : 'Save'}
 										</Button>
 									)}
-								</Stack>
+								</HStack>
 
-								<Stack direction='row' spacing='2'>
+								<HStack spacing='2'>
 									{Boolean(isPostCreator || isAdmin) && (
 										<Button
 											className='button'
@@ -339,7 +340,7 @@ export const Post = ({
 											Delete
 										</Button>
 									)}
-								</Stack>
+								</HStack>
 							</Stack>
 						</Stack>
 					</Stack>
