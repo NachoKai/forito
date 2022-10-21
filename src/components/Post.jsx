@@ -11,6 +11,12 @@ import {
 	MenuButton,
 	MenuItem,
 	MenuList,
+	Popover,
+	PopoverBody,
+	PopoverCloseButton,
+	PopoverContent,
+	PopoverHeader,
+	PopoverTrigger,
 	Skeleton,
 	Stack,
 	Text,
@@ -50,6 +56,7 @@ export const Post = ({
 		tags,
 		selectedFile,
 		comments,
+		alt,
 	},
 	onOpen,
 	highlight,
@@ -75,9 +82,9 @@ export const Post = ({
 
 	const handleLike = async () => {
 		try {
-			await setLikeLoading.on()
+			setLikeLoading.on()
 			await likePost(_id)
-			await setLikeLoading.off()
+			setLikeLoading.off()
 		} catch (err) {
 			showError('Something went wrong when trying to like post. Please try again.')
 			console.error(err)
@@ -86,9 +93,9 @@ export const Post = ({
 
 	const handleSave = async () => {
 		try {
-			await setSaveLoading.on()
+			setSaveLoading.on()
 			await savePost(_id)
-			await setSaveLoading.off()
+			setSaveLoading.off()
 		} catch (err) {
 			showError('Something went wrong when trying to like post. Please try again.')
 			console.error(err)
@@ -352,16 +359,43 @@ export const Post = ({
 							ratio={1}
 							w='100%'
 						>
-							<Image
-								alt={title}
-								borderRadius='16px'
-								className='pointer'
-								fallback={<Skeleton borderRadius='16px' flexGrow='1' />}
-								flexGrow='1'
-								objectFit='cover'
-								src={selectedFile.url}
-								onClick={openPost}
-							/>
+							<>
+								<Image
+									alt={alt}
+									borderRadius='16px'
+									className='pointer'
+									fallback={<Skeleton borderRadius='16px' flexGrow='1' />}
+									flexGrow='1'
+									objectFit='cover'
+									src={selectedFile.url}
+									onClick={openPost}
+								/>
+								<Popover>
+									<PopoverTrigger>
+										<Button
+											background='gray.800'
+											borderRadius='4px'
+											color='white'
+											cursor='pointer'
+											fontSize='xs'
+											m='2'
+											maxH='18px'
+											maxW='32px'
+											opacity='0.8'
+											position='absolute'
+											right='0'
+											top='0'
+										>
+											ALT
+										</Button>
+									</PopoverTrigger>
+									<PopoverContent position='absolute' right='0' top='0'>
+										<PopoverCloseButton />
+										<PopoverHeader>Image description</PopoverHeader>
+										<PopoverBody>{alt || 'No description available'}</PopoverBody>
+									</PopoverContent>
+								</Popover>
+							</>
 						</AspectRatio>
 					)}
 
@@ -397,6 +431,7 @@ Post.propTypes = {
 			url: PropTypes.string,
 		}),
 		comments: PropTypes.arrayOf(PropTypes.object),
+		alt: PropTypes.string,
 	}),
 	highlight: PropTypes.string,
 }

@@ -73,6 +73,17 @@ export const FormBody = ({
 						helper='Max: 2mb. Formats: jpg, jpeg, png, gif.'
 						label='Upload image'
 					/>
+					{images.length ? (
+						<FormInput
+							dataCy='form-alt'
+							helper='You can add an "alt text" to your photos to make them accessible to more people, such as people who are blind or visually impaired.'
+							label='Image description'
+							maxLength='105'
+							name='alt'
+							value={postData?.alt}
+							onChange={handleChange}
+						/>
+					) : null}
 
 					<FormInput
 						isRequired
