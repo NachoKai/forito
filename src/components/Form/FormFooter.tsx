@@ -3,7 +3,17 @@ import PropTypes from 'prop-types'
 
 import { CreateGradColor } from '../../theme'
 
-export const FormFooter = ({ handleClear, handleSubmit, isSubmitDisabled }) => {
+interface FormFooterProps {
+	handleClear: () => void
+	handleSubmit: () => void
+	isSubmitDisabled: boolean
+}
+
+export const FormFooter: React.FC<FormFooterProps> = ({
+	handleClear,
+	handleSubmit,
+	isSubmitDisabled,
+}) => {
 	return (
 		<DrawerFooter w='100%'>
 			<Stack spacing='4' w='100%'>

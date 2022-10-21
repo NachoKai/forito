@@ -6,7 +6,7 @@ import { useLocationQuery } from '../utils/useLocationQuery'
 import { Posts } from './Posts'
 import { Search } from './Search'
 
-const SearchView = () => {
+const SearchView: React.FC = () => {
 	const locationQuery = useLocationQuery()
 	const searchQuery = locationQuery.get('searchQuery')
 	const { posts } = usePostsStore()

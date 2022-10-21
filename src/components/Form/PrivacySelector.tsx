@@ -1,7 +1,16 @@
 import { HStack, Radio, RadioGroup } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-export const PrivacySelector = ({ handlePrivacy, privacy }) => {
+interface PrivacySelectorProps {
+	privacy: string
+	// eslint-disable-next-line no-unused-vars
+	handlePrivacy: (privacy: string) => void
+}
+
+export const PrivacySelector: React.FC<PrivacySelectorProps> = ({
+	handlePrivacy,
+	privacy,
+}) => {
 	return (
 		<RadioGroup
 			defaultValue='public'
