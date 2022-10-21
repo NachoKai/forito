@@ -19,7 +19,7 @@ export interface PostI {
 	creator: string
 	createdAt: string
 	updatedAt: string
-	__v: number
+	alt: string
 }
 
 export interface FormDataI {

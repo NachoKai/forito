@@ -25,6 +25,7 @@ const initialState = {
 	tags: [],
 	selectedFile: { url: null, name: null, id: null },
 	privacy: 'public',
+	alt: '',
 }
 
 export const Form = ({ isOpen, onOpen, onClose }) => {
