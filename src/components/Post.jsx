@@ -399,7 +399,7 @@ export const Post = ({
 										>
 											<PopoverCloseButton />
 											<PopoverHeader>Image description</PopoverHeader>
-											<PopoverBody>{alt || 'No description available'}</PopoverBody>
+											<PopoverBody>{alt}</PopoverBody>
 										</PopoverContent>
 									</Popover>
 								) : null}
