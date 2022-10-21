@@ -107,7 +107,7 @@ const PostDetails = ({ user }) => {
 
 					{post?.selectedFile?.url && (
 						<Image
-							alt={post?.title}
+							alt={post?.alt || post?.title}
 							fallback={
 								<Skeleton
 									flexGrow='1'
