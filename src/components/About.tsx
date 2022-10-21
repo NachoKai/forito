@@ -1,12 +1,18 @@
-import { Button, Link as ChakraLink, Flex, Heading, Stack, Text } from '@chakra-ui/react'
+import {
+	Button,
+	Link as ChakraLink,
+	HStack,
+	Heading,
+	Stack,
+	Text,
+} from '@chakra-ui/react'
 import { FaGithub, FaHandSpock } from 'react-icons/fa'
 
 import { CreateGradColor } from '../theme'
 
 const About: React.FC = () => (
-	<Flex
+	<Stack
 		align='center'
-		direction='column'
 		flexGrow='1'
 		h='100%'
 		justify='flex-start'
@@ -15,11 +21,11 @@ const About: React.FC = () => (
 		py={{ sm: '4', md: '6', lg: '8', xl: '8' }}
 	>
 		<Stack spacing='4'>
-			<Flex justify='center'>
+			<HStack justify='center'>
 				<Text color='primary.400' fontSize='6xl'>
 					<FaHandSpock />
 				</Text>
-			</Flex>
+			</HStack>
 			<Heading
 				as='h2'
 				bgClip='text'
@@ -44,7 +50,7 @@ const About: React.FC = () => (
 				</Button>
 			</ChakraLink>
 		</Stack>
-	</Flex>
+	</Stack>
 )
 
 export default About

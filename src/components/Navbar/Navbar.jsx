@@ -4,6 +4,7 @@ import {
 	Button,
 	Divider,
 	Flex,
+	HStack,
 	Heading,
 	Popover,
 	PopoverBody,
@@ -11,7 +12,6 @@ import {
 	PopoverContent,
 	PopoverHeader,
 	PopoverTrigger,
-	Stack,
 	Text,
 	useBoolean,
 	useColorMode,
@@ -62,7 +62,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 			top='0'
 			zIndex='3'
 		>
-			<Stack align='center' direction='row' spacing='4'>
+			<HStack align='center' spacing='4'>
 				<Heading
 					as='h1'
 					bgClip='text'
@@ -72,17 +72,13 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 				>
 					<Link to='/'>Forito ✨</Link>
 				</Heading>
-			</Stack>
+			</HStack>
 
-			<Stack align='center' direction='row' spacing='4'>
+			<HStack align='center' spacing='4'>
 				<SearchNavbar />
 				<Form isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
 				{user?.result ? (
-					<Stack
-						align='center'
-						direction='row'
-						spacing={{ sm: '4', md: '8', lg: '8', xl: '8' }}
-					>
+					<HStack align='center' spacing={{ sm: '4', md: '8', lg: '8', xl: '8' }}>
 						{Boolean(user?.result?.name) && (
 							<Popover
 								isLazy
@@ -93,7 +89,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 								onOpen={setIsDropdownOpen.toggle}
 							>
 								<PopoverTrigger>
-									<Stack align='center' cursor='pointer' direction='row'>
+									<HStack align='center' cursor='pointer'>
 										<Avatar
 											name={user?.result.name}
 											referrerPolicy='no-referrer'
@@ -109,7 +105,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 										>
 											{user?.result?.name}
 										</Text>
-									</Stack>
+									</HStack>
 								</PopoverTrigger>
 								<PopoverContent className='container'>
 									<PopoverCloseButton />
@@ -137,7 +133,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 								</PopoverContent>
 							</Popover>
 						)}
-					</Stack>
+					</HStack>
 				) : (
 					<Link to='auth'>
 						<Button
@@ -158,7 +154,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 						<FaSun aria-label='Light Mode' />
 					)}
 				</Button>
-			</Stack>
+			</HStack>
 		</Flex>
 	)
 }

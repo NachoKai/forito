@@ -1,4 +1,4 @@
-import { Button, Stack, Text } from '@chakra-ui/react'
+import { Button, HStack, Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import React, { useState } from 'react'
 import { FaExclamationCircle } from 'react-icons/fa'
@@ -72,7 +72,7 @@ export const Comments = ({ postComments, postId, user }) => {
 							value={comment}
 							onChange={e => setComment(e.target.value)}
 						/>
-						<Stack direction='row' spacing='4'>
+						<HStack spacing='4'>
 							<Button
 								className='button'
 								disabled={!checkEmpty(comment)}
@@ -89,13 +89,12 @@ export const Comments = ({ postComments, postId, user }) => {
 							>
 								Clear
 							</Button>
-						</Stack>
+						</HStack>
 					</Stack>
 				) : (
 					<Stack
 						align='center'
 						color='primary_600_100'
-						direction='column'
 						minW='320px'
 						p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 						spacing='4'

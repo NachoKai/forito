@@ -1,4 +1,4 @@
-import { Radio, RadioGroup, Stack } from '@chakra-ui/react'
+import { HStack, Radio, RadioGroup } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
 export const PrivacySelector = ({ handlePrivacy, privacy }) => {
@@ -9,10 +9,10 @@ export const PrivacySelector = ({ handlePrivacy, privacy }) => {
 			value={privacy}
 			onChange={privacy => handlePrivacy(privacy)}
 		>
-			<Stack direction='row'>
+			<HStack>
 				<Radio value='public'>Public</Radio>
 				<Radio value='private'>Private</Radio>
-			</Stack>
+			</HStack>
 		</RadioGroup>
 	)
 }

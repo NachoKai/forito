@@ -1,4 +1,4 @@
-import { Stack, Text } from '@chakra-ui/react'
+import { HStack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa'
 
@@ -7,29 +7,29 @@ export const Likes = ({ likes, hasUserLike }) => {
 
 	if (likesQuantity > 0) {
 		return hasUserLike ? (
-			<Stack align='center' direction='row' spacing='2'>
+			<HStack align='center' spacing='2'>
 				<FaThumbsUp fontSize='small' h='13px' w='13px' />
 				<Text>
 					{likesQuantity > 2
 						? `You and ${likesQuantity - 1} others`
 						: `${likesQuantity} Like${likesQuantity > 1 ? 's' : ''}`}
 				</Text>
-			</Stack>
+			</HStack>
 		) : (
-			<Stack align='center' direction='row' spacing='2'>
+			<HStack align='center' spacing='2'>
 				<FaRegThumbsUp fontSize='small' h='13px' w='13px' />
 				<Text>
 					{likesQuantity} {likesQuantity === 1 ? 'Like' : 'Likes'}
 				</Text>
-			</Stack>
+			</HStack>
 		)
 	}
 
 	return (
-		<Stack align='center' direction='row' spacing='2'>
+		<HStack align='center' spacing='2'>
 			<FaRegThumbsUp fontSize='small' h='13px' w='13px' />
 			<Text>Like</Text>
-		</Stack>
+		</HStack>
 	)
 }
 

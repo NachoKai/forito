@@ -1,6 +1,6 @@
-import ImageUploading from 'react-images-uploading'
-import { Button, Flex, Image, Stack } from '@chakra-ui/react'
+import { Button, Flex, HStack, Image, Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
+import ImageUploading from 'react-images-uploading'
 
 import { showError } from '../../utils/showError'
 
@@ -64,7 +64,7 @@ export const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData
 						</Stack>
 					)}
 					{imageList?.map((image, index) => (
-						<Stack key={index} className='image-item' direction='row' spacing='2'>
+						<HStack key={index} className='image-item' spacing='2'>
 							<Image
 								alt=''
 								h='100px'
@@ -80,7 +80,7 @@ export const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData
 									Remove
 								</Button>
 							</Flex>
-						</Stack>
+						</HStack>
 					))}
 				</Stack>
 			)}
