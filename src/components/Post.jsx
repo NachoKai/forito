@@ -153,6 +153,7 @@ export const Post = ({
 									as='button'
 									className='pointer'
 									fontSize='2xl'
+									textAlign='left'
 									onClick={openPost}
 								>
 									{highlight?.length ? (
