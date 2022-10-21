@@ -361,7 +361,7 @@ export const Post = ({
 						>
 							<>
 								<Image
-									alt={alt}
+									alt={alt || title}
 									borderRadius='16px'
 									className='pointer'
 									fallback={<Skeleton borderRadius='16px' flexGrow='1' />}
@@ -370,37 +370,39 @@ export const Post = ({
 									src={selectedFile.url}
 									onClick={openPost}
 								/>
-								<Popover>
-									<PopoverTrigger>
-										<Button
-											background='gray.800'
-											borderRadius='4px'
-											color='white'
-											cursor='pointer'
-											fontSize='xs'
-											m='2'
-											maxH='18px'
-											maxW='32px'
-											opacity='0.8'
+								{alt ? (
+									<Popover isLazy>
+										<PopoverTrigger>
+											<Button
+												background='gray.800'
+												borderRadius='4px'
+												color='white'
+												cursor='pointer'
+												fontSize='xs'
+												m='2'
+												maxH='18px'
+												maxW='32px'
+												opacity='0.8'
+												position='absolute'
+												right='0'
+												top='0'
+											>
+												ALT
+											</Button>
+										</PopoverTrigger>
+										<PopoverContent
+											border='1px solid #0d0d0d !important'
+											className='button'
 											position='absolute'
 											right='0'
 											top='0'
 										>
-											ALT
-										</Button>
-									</PopoverTrigger>
-									<PopoverContent
-										border='1px solid #0d0d0d !important'
-										className='button'
-										position='absolute'
-										right='0'
-										top='0'
-									>
-										<PopoverCloseButton />
-										<PopoverHeader>Image description</PopoverHeader>
-										<PopoverBody>{alt || 'No description available'}</PopoverBody>
-									</PopoverContent>
-								</Popover>
+											<PopoverCloseButton />
+											<PopoverHeader>Image description</PopoverHeader>
+											<PopoverBody>{alt || 'No description available'}</PopoverBody>
+										</PopoverContent>
+									</Popover>
+								) : null}
 							</>
 						</AspectRatio>
 					)}
