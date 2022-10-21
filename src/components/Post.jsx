@@ -389,7 +389,13 @@ export const Post = ({
 											ALT
 										</Button>
 									</PopoverTrigger>
-									<PopoverContent position='absolute' right='0' top='0'>
+									<PopoverContent
+										border='1px solid #0d0d0d !important'
+										className='button'
+										position='absolute'
+										right='0'
+										top='0'
+									>
 										<PopoverCloseButton />
 										<PopoverHeader>Image description</PopoverHeader>
 										<PopoverBody>{alt || 'No description available'}</PopoverBody>
