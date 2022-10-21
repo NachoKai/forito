@@ -150,10 +150,9 @@ export const Post = ({
 						<Stack spacing='4'>
 							<HStack>
 								<Heading
-									as='h2'
+									as='button'
 									className='pointer'
 									fontSize='2xl'
-									w='100%'
 									onClick={openPost}
 								>
 									{highlight?.length ? (
