@@ -225,6 +225,7 @@ const PostDetails = ({ user }) => {
 							{recommendedPosts?.map(({ title, name, message, selectedFile, _id }) => (
 								<Stack
 									key={_id}
+									as={Link}
 									bg='primary_100_900'
 									borderRadius='24px'
 									className=' container recommended-post'
@@ -236,6 +237,7 @@ const PostDetails = ({ user }) => {
 									minW='320px'
 									p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 									spacing='2'
+									to={`/posts/${_id}`}
 									onClick={() => openPost(_id)}
 								>
 									<Heading
