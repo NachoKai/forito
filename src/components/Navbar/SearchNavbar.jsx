@@ -1,5 +1,5 @@
 import { Button, Stack } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
@@ -14,7 +14,7 @@ export const SearchNavbar = () => {
 	const { getPostsBySearch } = usePostsStore()
 	const ENTER_KEYCODE = 13
 
-	const searchPost = async () => {
+	const searchPost = useCallback(async () => {
 		try {
 			if (searchValue.trim() || searchTags) {
 				setSearchValue('')
@@ -27,15 +27,16 @@ export const SearchNavbar = () => {
 		} catch (err) {
 			showError("Couldn't search posts")
 		}
-	}
+	}, [getPostsBySearch, navigate, searchTags, searchValue])
 
-	const handleKeyDown = e => {
-		const disabled = !searchValue?.trim()?.length && !searchTags?.length
+	const handleKeyDown = useCallback(
+		e => {
+			const disabled = !searchValue?.trim()?.length && !searchTags?.length
 
-		if (e.keyCode === ENTER_KEYCODE && !disabled) {
-			searchPost()
-		}
-	}
+			if (e.keyCode === ENTER_KEYCODE && !disabled) searchPost()
+		},
+		[searchPost, searchTags?.length, searchValue]
+	)
 
 	return (
 		<Stack align='center' display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}>

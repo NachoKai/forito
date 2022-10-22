@@ -1,5 +1,5 @@
 import { Divider, Heading, Stack, Text } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 
@@ -19,13 +19,17 @@ const SavedPosts = () => {
 	const userId = user?.result?.googleId || user?.result?._id
 	const isAdmin = checkIsAdmin(userEmail)
 
-	const publicPosts = posts?.filter(post => {
-		const isPrivate = post?.privacy === 'private'
-		const creator = post?.creator
-		const isPostCreator = checkIsPostCreator(user, creator)
+	const publicPosts = useMemo(
+		() =>
+			posts?.filter(post => {
+				const isPrivate = post?.privacy === 'private'
+				const creator = post?.creator
+				const isPostCreator = checkIsPostCreator(user, creator)
 
-		return !isPrivate || (isPrivate && isPostCreator) || isAdmin
-	})
+				return !isPrivate || (isPrivate && isPostCreator) || isAdmin
+			}),
+		[isAdmin, posts, user]
+	)
 
 	useEffect(() => {
 		if (userId === id) getSavedPosts(id)

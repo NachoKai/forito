@@ -16,7 +16,7 @@ import { format, formatDistance, isValid } from 'date-fns'
 import { motion, useScroll } from 'framer-motion'
 import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
-import { useEffect } from 'react'
+import { useCallback, useEffect, useMemo } from 'react'
 import { FaSearch, FaTwitter } from 'react-icons/fa'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { Link, useNavigate, useParams } from 'react-router-dom'
@@ -38,7 +38,12 @@ const PostDetails = ({ user }) => {
 	const { post, posts, getPost, loading, getPostsBySearch } = usePostsStore()
 	const postComments = post?.comments
 	const postId = post?._id
-	const recommendedPosts = posts?.filter(({ _id }) => _id !== post?._id)
+
+	const recommendedPosts = useMemo(
+		() => posts?.filter(({ _id }) => _id !== post?._id),
+		[post?._id, posts]
+	)
+
 	const userEmail = user?.result?.email
 	const isPrivate = post?.privacy === 'private'
 	const isPostCreator = checkIsPostCreator(user, post?.creator)
@@ -49,7 +54,12 @@ const PostDetails = ({ user }) => {
 		? 'http://localhost:3000/posts'
 		: 'https://forito.vercel.app/posts'
 
-	const openPost = _id => navigate(`/posts/${_id}`)
+	const openPost = useCallback(
+		_id => {
+			navigate(`/posts/${_id}`)
+		},
+		[navigate]
+	)
 
 	const shareOnTwitter = () => {
 		const url = `${baseURL}/${id}`
@@ -218,9 +228,11 @@ const PostDetails = ({ user }) => {
 					<Stack overflow='auto' spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}>
 						<Text fontWeight='bold'>You might also like:</Text>
 						<HStack
+							align='flex-start'
 							className='recommended-posts'
 							overflow='auto'
 							spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
+							tabIndex='-1'
 						>
 							{recommendedPosts?.map(({ title, name, message, selectedFile, _id }) => (
 								<Stack

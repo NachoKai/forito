@@ -1,5 +1,6 @@
 import { Tag, TagCloseButton, TagLabel } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
+import { useCallback } from 'react'
 
 export const ChakraTagInputTag = ({
 	children,
@@ -10,12 +11,15 @@ export const ChakraTagInputTag = ({
 }) => {
 	const onTagCloseButtonClick = tagCloseButtonProps?.onClick
 
-	const handleClickTagCloseButton = event => {
-		onTagCloseButtonClick?.(event)
-		if (event.isDefaultPrevented()) return
+	const handleClickTagCloseButton = useCallback(
+		event => {
+			onTagCloseButtonClick?.(event)
+			if (event.isDefaultPrevented()) return
 
-		onRemove?.(event)
-	}
+			onRemove?.(event)
+		},
+		[onRemove, onTagCloseButtonClick]
+	)
 
 	return (
 		<Tag {...props}>

@@ -1,5 +1,6 @@
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
+import { useMemo } from 'react'
 import { FaPencilAlt } from 'react-icons/fa'
 
 import { usePostsStore } from '../state/postsStore'
@@ -17,13 +18,17 @@ export const Posts = ({ onOpen, posts, highlight }) => {
 	const userEmail = user?.result?.email
 	const isAdmin = checkIsAdmin(userEmail)
 
-	const publicPosts = posts?.filter(post => {
-		const isPrivate = post?.privacy === 'private'
-		const creator = post?.creator
-		const isPostCreator = checkIsPostCreator(user, creator)
+	const publicPosts = useMemo(
+		() =>
+			posts?.filter(post => {
+				const isPrivate = post?.privacy === 'private'
+				const creator = post?.creator
+				const isPostCreator = checkIsPostCreator(user, creator)
 
-		return !isPrivate || (isPrivate && isPostCreator) || isAdmin
-	})
+				return !isPrivate || (isPrivate && isPostCreator) || isAdmin
+			}),
+		[isAdmin, posts, user]
+	)
 
 	return (
 		<Flex flexGrow='1' minH='100vh' w='100%'>
