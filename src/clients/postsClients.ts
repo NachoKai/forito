@@ -4,7 +4,7 @@ import { CommentI, SearchQueryI } from '../types'
 
 export const fetchAllPosts = async () => {
 	try {
-		return await api.get('/posts')
+		return await api.get('/posts/top')
 	} catch (err) {
 		console.error('Error getting all posts', err)
 	}
