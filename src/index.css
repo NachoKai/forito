@@ -128,3 +128,9 @@ textarea:focus {
   box-shadow: 1px 1px 0 0 #0d0d0d !important;
   transition: box-shadow 0.2s ease-in-out !important;
 }
+
+.chakra-popover__popper {
+  max-height: 133px;
+  max-width: 320px;
+  margin: 8px !important;
+}
