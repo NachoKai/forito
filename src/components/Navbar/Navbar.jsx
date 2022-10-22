@@ -89,9 +89,8 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 								onOpen={setIsDropdownOpen.toggle}
 							>
 								<PopoverTrigger>
-									<HStack align='center' cursor='pointer'>
+									<HStack align='center' as='button' cursor='pointer'>
 										<Avatar
-											as='button'
 											name={user?.result.name}
 											referrerPolicy='no-referrer'
 											size='sm'
