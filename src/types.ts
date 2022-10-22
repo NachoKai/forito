@@ -22,6 +22,8 @@ export interface PostI {
 	likes: []
 	saves: []
 	alt: string
+	name: string
+	comments: CommentI[]
 }
 
 export interface FormDataI {
