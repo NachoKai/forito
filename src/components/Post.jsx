@@ -27,6 +27,7 @@ import {
 import { format, formatDistance, isValid } from 'date-fns'
 import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
+import { useRef } from 'react'
 import { FaBookmark, FaEraser, FaPen, FaRegBookmark, FaRegComments } from 'react-icons/fa'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
@@ -79,6 +80,7 @@ export const Post = ({
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
 	const locationQuery = useLocationQuery()
 	const page = Number(locationQuery.get('page') || 1)
+	const initialFocusRef = useRef()
 
 	const handleLike = async () => {
 		try {
@@ -371,7 +373,12 @@ export const Post = ({
 									onClick={openPost}
 								/>
 								{alt ? (
-									<Popover isLazy>
+									<Popover
+										isLazy
+										closeOnBlur={true}
+										initialFocusRef={initialFocusRef}
+										placement='bottom'
+									>
 										<PopoverTrigger>
 											<Button
 												background='gray.800'
