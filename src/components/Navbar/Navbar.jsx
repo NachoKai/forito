@@ -91,6 +91,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 								<PopoverTrigger>
 									<HStack align='center' cursor='pointer'>
 										<Avatar
+											as='button'
 											name={user?.result.name}
 											referrerPolicy='no-referrer'
 											size='sm'
