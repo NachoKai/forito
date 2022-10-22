@@ -19,6 +19,8 @@ export interface PostI {
 	creator: string
 	createdAt: string
 	updatedAt: string
+	likes: []
+	saves: []
 	alt: string
 }
 
