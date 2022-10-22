@@ -131,6 +131,5 @@ textarea:focus {
 
 .chakra-popover__popper {
   max-height: 133px;
-  max-width: 320px;
-  margin: 8px !important;
+  max-width: 322px;
 }
