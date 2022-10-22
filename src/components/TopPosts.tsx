@@ -4,15 +4,10 @@ import { FaPencilAlt } from 'react-icons/fa'
 
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme'
+import { getTopPosts } from '../utils/getTopPosts'
 import { PostI } from './../types'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
-
-const getTopPosts = (posts: PostI[], max: number) => {
-	const sortedPosts = [...posts]?.sort((a, b) => b?.likes?.length - a?.likes?.length)
-
-	return sortedPosts?.slice(0, max)
-}
 
 const TopPosts: React.FC = () => {
 	const { posts, getAllPosts } = usePostsStore()
