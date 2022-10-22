@@ -48,13 +48,13 @@ const createPostsStore = () =>
 			}
 		},
 
-		getAllPosts: async page => {
+		getAllPosts: async () => {
 			get().cleanUp()
 			set({ loading: true }, false, 'get-all-posts')
 			try {
 				const {
 					data: { data, count },
-				} = await fetchAllPosts(page)
+				} = await fetchAllPosts()
 
 				set({ posts: data, count }, false, 'get-all-posts')
 			} catch (err) {
