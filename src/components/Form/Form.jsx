@@ -6,7 +6,7 @@ import {
 	DrawerOverlay,
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { useCallback, useEffect, useRef, useState } from 'react'
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
@@ -36,13 +36,19 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 	const user = getUserLocalStorage()
 	const [postData, setPostData] = useState(initialState)
 	const [images, setImages] = useState([])
-	const isSubmitDisabled =
-		!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) ||
-		![...new Set(postData.tags)].every(tag => /^[a-zA-Z0-9_.-]*$/.test(tag))
 
-	const areValidTags = ![...new Set(postData?.tags)].every(tag =>
-		/^[a-zA-Z0-9_.-]*$/.test(tag)
+	const isSubmitDisabled = useMemo(
+		() =>
+			!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) ||
+			![...new Set(postData.tags)].every(tag => /^[a-zA-Z0-9_.-]*$/.test(tag)),
+		[postData?.message, postData.tags, postData?.title]
 	)
+
+	const areValidTags = useMemo(
+		() => ![...new Set(postData?.tags)].every(tag => /^[a-zA-Z0-9_.-]*$/.test(tag)),
+		[postData?.tags]
+	)
+
 	const post = usePostsStore(state =>
 		currentId ? state.posts?.find(message => message._id === currentId) : null
 	)
@@ -130,7 +136,12 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 		}
 	}
 
-	const handleChange = e => setPostData({ ...postData, [e.target.name]: e.target.value })
+	const handleChange = useCallback(
+		e => {
+			setPostData({ ...postData, [e.target.name]: e.target.value })
+		},
+		[postData]
+	)
 
 	const handleCreatePost = () => {
 		handleClear()

@@ -19,7 +19,7 @@ export const FormFooter: React.FC<FormFooterProps> = ({
 			<Stack spacing='4' w='100%'>
 				<Button
 					bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
-					className='button'
+					className={isSubmitDisabled ? '' : 'button'}
 					data-cy='form-submit-button'
 					disabled={isSubmitDisabled}
 					onClick={handleSubmit}
@@ -27,8 +27,9 @@ export const FormFooter: React.FC<FormFooterProps> = ({
 					Submit
 				</Button>
 				<Button
-					className='button'
+					className={isSubmitDisabled ? '' : 'button'}
 					data-cy='form-clear-button'
+					disabled={isSubmitDisabled}
 					variant='outline'
 					onClick={handleClear}
 				>

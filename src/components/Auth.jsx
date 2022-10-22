@@ -160,7 +160,7 @@ const Auth = () => {
 					cookiePolicy={'single_host_origin'}
 					render={({ disabled, onClick }) => (
 						<Button
-							className='button'
+							className={disabled ? '' : 'button'}
 							data-cy='auth-google-login-signup'
 							disabled={disabled}
 							leftIcon={<FaGoogle />}

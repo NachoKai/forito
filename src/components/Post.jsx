@@ -81,6 +81,7 @@ export const Post = ({
 	const locationQuery = useLocationQuery()
 	const page = Number(locationQuery.get('page') || 1)
 	const initialFocusRef = useRef()
+	const userLogged = user?.result
 
 	const handleLike = async () => {
 		try {
@@ -245,8 +246,8 @@ export const Post = ({
 										{comments?.length} {comments?.length === 1 ? 'Comment' : 'Comments'}
 									</Button>
 									<Button
-										className='button'
-										disabled={!user?.result}
+										className={userLogged ? 'button' : ''}
+										disabled={!userLogged}
 										isLoading={Boolean(likeLoading)}
 										loadingText='Loading...'
 										minW='80px'
@@ -300,8 +301,8 @@ export const Post = ({
 									)}
 									{Boolean(userEmail) && (
 										<Button
-											className='button'
-											disabled={!user?.result}
+											className={userLogged ? 'button' : ''}
+											disabled={!userLogged}
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
 											isLoading={Boolean(saveLoading)}
 											leftIcon={hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}

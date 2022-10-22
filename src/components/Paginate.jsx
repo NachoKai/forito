@@ -7,6 +7,7 @@ import {
 } from '@ajna/pagination'
 import { Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
+import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
@@ -30,9 +31,12 @@ export const Paginate = () => {
 		},
 	})
 
-	const handlePageChange = page => {
-		setCurrentPage(page)
-	}
+	const handlePageChange = useCallback(
+		page => {
+			setCurrentPage(page)
+		},
+		[setCurrentPage]
+	)
 
 	return (
 		<Container>

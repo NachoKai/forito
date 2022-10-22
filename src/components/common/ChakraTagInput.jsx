@@ -1,6 +1,6 @@
 import { Input, Wrap, WrapItem } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { forwardRef } from 'react'
+import { forwardRef, useCallback } from 'react'
 
 import { maybeCall } from '../../utils/maybeCall'
 import { ChakraTagInputTag } from './Tag'
@@ -21,52 +21,64 @@ export const ChakraTagInput = forwardRef(function ChakraTagInput(
 	},
 	ref
 ) {
-	const addTag = (event, tag) => {
-		onTagAdd?.(event, tag)
-		if (event.isDefaultPrevented()) return
+	const addTag = useCallback(
+		(event, tag) => {
+			onTagAdd?.(event, tag)
+			if (event.isDefaultPrevented()) return
 
-		onTagsChange?.(event, tags.concat([tag]))
-	}
+			onTagsChange?.(event, tags.concat([tag]))
+		},
+		[onTagAdd, onTagsChange, tags]
+	)
 
-	const removeTag = (event, index) => {
-		onTagRemove?.(event, index)
-		if (event.isDefaultPrevented()) return
+	const removeTag = useCallback(
+		(event, index) => {
+			onTagRemove?.(event, index)
+			if (event.isDefaultPrevented()) return
 
-		onTagsChange?.(event, [...tags.slice(0, index), ...tags.slice(index + 1)])
-	}
+			onTagsChange?.(event, [...tags.slice(0, index), ...tags.slice(index + 1)])
+		},
+		[onTagRemove, onTagsChange, tags]
+	)
 
-	const handleRemoveTag = index => event => {
-		removeTag(event, index)
-	}
+	const handleRemoveTag = useCallback(
+		index => {
+			removeTag(event, index)
+		},
+		[removeTag]
+	)
 
-	const handleKeyDown = event => {
-		onKeyDown?.(event)
+	const handleKeyDown = useCallback(
+		event => {
+			onKeyDown?.(event)
 
-		if (event.isDefaultPrevented()) return
-		if (event.isPropagationStopped()) return
+			if (event.isDefaultPrevented()) return
+			if (event.isPropagationStopped()) return
 
-		const { currentTarget, key } = event
-		const { selectionStart, selectionEnd } = currentTarget
+			const { currentTarget, key } = event
+			const { selectionStart, selectionEnd } = currentTarget
 
-		if (addKeys.includes(key) && currentTarget.value) {
-			if (currentTarget?.value?.trim()?.length) {
-				addTag(event, currentTarget.value?.toLowerCase())
+			if (addKeys.includes(key) && currentTarget.value) {
+				if (currentTarget?.value?.trim()?.length) {
+					addTag(event, currentTarget.value?.toLowerCase())
+				}
+
+				if (!event.isDefaultPrevented()) {
+					currentTarget.value = ''
+				}
+
+				event.preventDefault()
+			} else if (
+				key === 'Backspace' &&
+				tags?.length > 0 &&
+				selectionStart === 0 &&
+				selectionEnd === 0
+			) {
+				removeTag(event, tags?.length - 1)
 			}
-
-			if (!event.isDefaultPrevented()) {
-				currentTarget.value = ''
-			}
-
-			event.preventDefault()
-		} else if (
-			key === 'Backspace' &&
-			tags?.length > 0 &&
-			selectionStart === 0 &&
-			selectionEnd === 0
-		) {
-			removeTag(event, tags?.length - 1)
-		}
-	}
+		},
+		[addKeys, addTag, onKeyDown, removeTag, tags?.length]
+	)
 
 	return (
 		<Wrap align='center' {...wrapProps}>

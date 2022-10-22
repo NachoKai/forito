@@ -1,6 +1,6 @@
 import { Button, HStack, Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import React, { useState } from 'react'
+import React, { useCallback, useState } from 'react'
 import { FaExclamationCircle } from 'react-icons/fa'
 import { v4 as uuid } from 'uuid'
 
@@ -16,8 +16,9 @@ export const Comments = ({ postComments, postId, user }) => {
 	const userId = user?.result?.googleId || user?.result?._id
 	const [comment, setComment] = useState('')
 	const [comments, setComments] = useState(postComments)
+	const isInputEmpty = checkEmpty(comment)
 
-	const handleAddComment = async () => {
+	const handleAddComment = useCallback(async () => {
 		try {
 			const commentContent = {
 				userId,
@@ -33,7 +34,7 @@ export const Comments = ({ postComments, postId, user }) => {
 			console.error(err)
 			showError('Something went wrong when trying to add comment. Please try again.')
 		}
-	}
+	}, [addComment, comment, comments, postId, user?.result?.name, userId])
 
 	const handleClear = () => setComment('')
 
@@ -74,15 +75,16 @@ export const Comments = ({ postComments, postId, user }) => {
 						/>
 						<HStack spacing='4'>
 							<Button
-								className='button'
-								disabled={!checkEmpty(comment)}
+								className={isInputEmpty ? 'button' : ''}
+								disabled={!isInputEmpty}
 								flexGrow='1'
 								onClick={handleAddComment}
 							>
 								Comment
 							</Button>
 							<Button
-								className='button'
+								className={isInputEmpty ? 'button' : ''}
+								disabled={!isInputEmpty}
 								flexGrow='1'
 								variant='outline'
 								onClick={handleClear}

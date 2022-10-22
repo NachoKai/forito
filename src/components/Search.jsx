@@ -9,7 +9,7 @@ import {
 	Text,
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { useState } from 'react'
+import { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
 import { usePostsStore } from '../state/postsStore'
@@ -25,7 +25,7 @@ export const Search = () => {
 	const [searchTags, setSearchTags] = useState([])
 	const ENTER_KEYCODE = 13
 
-	const searchPost = async () => {
+	const searchPost = useCallback(async () => {
 		try {
 			if (searchValue.trim() || searchTags) {
 				setSearchValue('')
@@ -36,7 +36,7 @@ export const Search = () => {
 		} catch (err) {
 			showError("Couldn't search posts")
 		}
-	}
+	}, [getPostsBySearch, navigate, searchTags, searchValue])
 
 	const handleKeyDown = e => {
 		const disabled = !searchValue?.trim()?.length && !searchTags?.length

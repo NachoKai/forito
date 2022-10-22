@@ -1,5 +1,5 @@
 import { Divider, Flex, Heading, Stack, Text } from '@chakra-ui/react'
-import { useEffect } from 'react'
+import { useEffect, useMemo } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 
@@ -20,13 +20,17 @@ const Tags: React.FC = () => {
 	const isAdmin = checkIsAdmin(userEmail)
 	const title = posts?.length !== 1 ? `${posts?.length} Posts` : `${posts?.length} Post`
 
-	const publicPosts = posts?.filter((post: PostI) => {
-		const isPrivate = post?.privacy === 'private'
-		const creator = post?.creator
-		const isPostCreator = checkIsPostCreator(user, creator)
+	const publicPosts = useMemo(
+		() =>
+			posts?.filter((post: PostI) => {
+				const isPrivate = post?.privacy === 'private'
+				const creator = post?.creator
+				const isPostCreator = checkIsPostCreator(user, creator)
 
-		return !isPrivate || (isPrivate && isPostCreator) || isAdmin
-	})
+				return !isPrivate || (isPrivate && isPostCreator) || isAdmin
+			}),
+		[isAdmin, posts, user]
+	)
 
 	useEffect(() => {
 		getPostsBySearch({ tags: name })
