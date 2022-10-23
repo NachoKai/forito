@@ -5,6 +5,7 @@ import {
 	AccordionItem,
 	AccordionPanel,
 	Button,
+	HStack,
 	Stack,
 	Text,
 } from '@chakra-ui/react'
@@ -24,6 +25,7 @@ export const Search = () => {
 	const [searchValue, setSearchValue] = useState('')
 	const [searchTags, setSearchTags] = useState([])
 	const ENTER_KEYCODE = 13
+	const isInputEmpty = !searchValue?.trim()?.length && !searchTags?.length
 
 	const searchPost = useCallback(async () => {
 		try {
@@ -50,6 +52,11 @@ export const Search = () => {
 
 	const handleDeleteTag = tagToDelete =>
 		setSearchTags(searchTags.filter(tag => tag !== tagToDelete))
+
+	const handleClear = () => {
+		setSearchValue('')
+		setSearchTags([])
+	}
 
 	return (
 		<Accordion
@@ -91,13 +98,25 @@ export const Search = () => {
 							helper='Insert tag with enter/return.'
 							label='Search Posts Tags'
 						/>
-						<Button
-							bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
-							disabled={!searchValue?.trim()?.length && !searchTags?.length}
-							onClick={searchPost}
-						>
-							Search
-						</Button>
+						<HStack spacing='4'>
+							<Button
+								bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
+								disabled={isInputEmpty}
+								flexGrow='1'
+								onClick={searchPost}
+							>
+								Search
+							</Button>
+							<Button
+								className={isInputEmpty ? 'button' : ''}
+								disabled={isInputEmpty}
+								flexGrow='1'
+								variant='outline'
+								onClick={handleClear}
+							>
+								Clear
+							</Button>
+						</HStack>
 					</Stack>
 				</AccordionPanel>
 			</AccordionItem>
