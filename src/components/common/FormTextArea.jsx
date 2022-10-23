@@ -22,6 +22,8 @@ export const FormTextArea = ({
 			<Tooltip
 				hasArrow
 				arrowSize={8}
+				border='1px solid #000'
+				borderRadius='8px'
 				label={tooltip || ''}
 				openDelay={150}
 				placement='top'

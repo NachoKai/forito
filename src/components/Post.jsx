@@ -151,7 +151,7 @@ export const Post = ({
 				>
 					<Stack justify='space-between' spacing='4' w='100%'>
 						<Stack spacing='4'>
-							<HStack>
+							<HStack align='flex-start' justify='space-between'>
 								<Heading
 									as='button'
 									className='pointer'
@@ -178,6 +178,8 @@ export const Post = ({
 									<Tooltip
 										hasArrow
 										arrowSize={8}
+										border='1px solid #000'
+										borderRadius='8px'
 										label='Post only visible to you'
 										openDelay={150}
 										placement='top'
@@ -198,6 +200,8 @@ export const Post = ({
 									<Tooltip
 										hasArrow
 										arrowSize={8}
+										border='1px solid #000'
+										borderRadius='8px'
 										label={format(
 											isValid(new Date(createdAt)) ? new Date(createdAt) : new Date(),
 											'dd MMM yyyy - HH:mm'

@@ -97,7 +97,7 @@ const PostDetails = ({ user }) => {
 					spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 				>
 					<Stack spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }} w='100%'>
-						<HStack align='center' justify='space-between' w='100%'>
+						<HStack align='flex-start' justify='space-between' w='100%'>
 							<Heading as='h2' data-cy='post-details-title' size='xl'>
 								{post?.title}
 							</Heading>
@@ -105,6 +105,8 @@ const PostDetails = ({ user }) => {
 								<Tooltip
 									hasArrow
 									arrowSize={8}
+									border='1px solid #000'
+									borderRadius='8px'
 									label='Post only visible to you'
 									openDelay={150}
 									placement='top'
@@ -193,6 +195,8 @@ const PostDetails = ({ user }) => {
 									<Tooltip
 										hasArrow
 										arrowSize={8}
+										border='1px solid #000'
+										borderRadius='8px'
 										label={format(
 											isValid(new Date(post?.createdAt))
 												? new Date(post?.createdAt)
