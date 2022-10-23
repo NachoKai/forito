@@ -97,12 +97,20 @@ const PostDetails = ({ user }) => {
 					spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 				>
 					<Stack spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }} w='100%'>
-						<HStack align='center' justify='space-between' w='100%'>
+						<HStack align='flex-start' justify='space-between' w='100%'>
 							<Heading as='h2' data-cy='post-details-title' size='xl'>
 								{post?.title}
 							</Heading>
 							{isPrivate && (
-								<Tooltip label='Post only visible to you' openDelay={200} placement='top'>
+								<Tooltip
+									hasArrow
+									arrowSize={8}
+									border='1px solid #000'
+									borderRadius='8px'
+									label='Post only visible to you'
+									openDelay={150}
+									placement='top'
+								>
 									<span>
 										<RiGitRepositoryPrivateFill />
 									</span>
@@ -185,13 +193,17 @@ const PostDetails = ({ user }) => {
 									</Text>
 									<span>•</span>
 									<Tooltip
+										hasArrow
+										arrowSize={8}
+										border='1px solid #000'
+										borderRadius='8px'
 										label={format(
 											isValid(new Date(post?.createdAt))
 												? new Date(post?.createdAt)
 												: new Date(),
 											'dd MMM yyyy - HH:mm'
 										)}
-										openDelay={200}
+										openDelay={150}
 										placement='top'
 									>
 										<Text fontSize='md'>

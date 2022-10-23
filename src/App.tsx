@@ -71,13 +71,16 @@ export const App = () => {
 			</Stack>
 
 			<Button
+				borderRadius='100%'
 				bottom={['16px', '32px']}
 				className='button'
 				display={showScroll ? 'flex' : 'none'}
+				h='38px'
 				pos='fixed'
 				right={['16px', '32px']}
 				size='sm'
 				variant='solid'
+				w='38px'
 				zIndex={1}
 				onClick={scrollTop}
 			>

@@ -1,5 +1,4 @@
 import {
-	Flex,
 	FormControl,
 	FormHelperText,
 	FormLabel,
@@ -25,20 +24,28 @@ export const FormInput = ({
 	...rest
 }) => (
 	<FormControl isRequired={isRequired}>
-		<Flex>
-			{tooltip ? (
-				<Tooltip label={tooltip} openDelay={200} placement='top'>
-					<FormLabel fontWeight='bold'>{label}</FormLabel>
-				</Tooltip>
-			) : (
-				Boolean(label) && <FormLabel fontWeight='bold'>{label}</FormLabel>
-			)}
-		</Flex>
+		{label && (
+			<Tooltip
+				hasArrow
+				arrowSize={8}
+				border='1px solid #000'
+				borderRadius='8px'
+				label={tooltip || ''}
+				openDelay={150}
+				placement='top'
+			>
+				<FormLabel fontWeight='bold' w='fit-content'>
+					{label}
+				</FormLabel>
+			</Tooltip>
+		)}
+
 		{Boolean(validation) && (
 			<FormHelperText color='red.400' fontWeight='bold' mb='4px'>
 				{validation}
 			</FormHelperText>
 		)}
+
 		{child || (
 			<InputGroup>
 				{Boolean(leftIcon) && (
@@ -58,6 +65,7 @@ export const FormInput = ({
 					variant='outline'
 					{...rest}
 				/>
+
 				{Boolean(rightIcon) && (
 					<InputRightElement color='gray.300' fontSize='1.2em'>
 						{rightIcon}
@@ -65,6 +73,7 @@ export const FormInput = ({
 				)}
 			</InputGroup>
 		)}
+
 		{Boolean(helper) && <FormHelperText>{helper}</FormHelperText>}
 	</FormControl>
 )
