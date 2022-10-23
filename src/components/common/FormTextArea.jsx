@@ -1,5 +1,4 @@
 import {
-	Flex,
 	FormControl,
 	FormHelperText,
 	FormLabel,
@@ -19,15 +18,20 @@ export const FormTextArea = ({
 	...rest
 }) => (
 	<FormControl isRequired={isRequired}>
-		<Flex>
-			{tooltip ? (
-				<Tooltip label={tooltip} openDelay={200} placement='top'>
-					<FormLabel fontWeight='bold'>{label}</FormLabel>
-				</Tooltip>
-			) : (
-				<FormLabel fontWeight='bold'>{label}</FormLabel>
-			)}
-		</Flex>
+		{label && (
+			<Tooltip
+				hasArrow
+				arrowSize={8}
+				label={tooltip || ''}
+				openDelay={150}
+				placement='top'
+			>
+				<FormLabel fontWeight='bold' w='fit-content'>
+					{label}
+				</FormLabel>
+			</Tooltip>
+		)}
+
 		{child || (
 			<Textarea
 				_placeholder={{ color: 'gray' }}
@@ -42,6 +46,7 @@ export const FormTextArea = ({
 				{...rest}
 			/>
 		)}
+
 		{Boolean(helper) && <FormHelperText>{helper}</FormHelperText>}
 	</FormControl>
 )

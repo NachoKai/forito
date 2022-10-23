@@ -39,77 +39,75 @@ export const Comments = ({ postComments, postId, user }) => {
 	const handleClear = () => setComment('')
 
 	return (
-		<Stack>
-			<Stack direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }} spacing='4'>
-				<Stack overflow='auto' spacing='4' w='100%'>
-					{comments?.length ? (
-						comments?.map(comment => (
-							<Comment
-								key={comment._id}
-								comment={comment}
-								deleteComment={deleteComment}
-								postId={postId}
-							/>
-						))
-					) : (
-						<Text color='gray.500'>No comments yet</Text>
-					)}
-				</Stack>
-
-				{user?.result?.name ? (
-					<Stack
-						bgGradient={CreateGradColor('primary', 100, 50, 900, 600, '135deg')}
-						borderRadius='24px'
-						className='container'
-						maxH='230px'
-						p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
-						spacing='4'
-						w='100%'
-					>
-						<FormTextArea
-							label='Write a comment'
-							maxLength='500'
-							name='comment'
-							value={comment}
-							onChange={e => setComment(e.target.value)}
+		<Stack direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }} spacing='8'>
+			<Stack overflow='auto' spacing='4' w='100%'>
+				{comments?.length ? (
+					comments?.map(comment => (
+						<Comment
+							key={comment._id}
+							comment={comment}
+							deleteComment={deleteComment}
+							postId={postId}
 						/>
-						<HStack spacing='4'>
-							<Button
-								className={isInputEmpty ? 'button' : ''}
-								disabled={!isInputEmpty}
-								flexGrow='1'
-								onClick={handleAddComment}
-							>
-								Comment
-							</Button>
-							<Button
-								className={isInputEmpty ? 'button' : ''}
-								disabled={!isInputEmpty}
-								flexGrow='1'
-								variant='outline'
-								onClick={handleClear}
-							>
-								Clear
-							</Button>
-						</HStack>
-					</Stack>
+					))
 				) : (
-					<Stack
-						align='center'
-						color='primary_600_100'
-						minW='320px'
-						p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
-						spacing='4'
-					>
-						<Text fontSize='4xl' fontWeight='bold'>
-							<FaExclamationCircle />
-						</Text>
-						<Text fontSize='lg' fontWeight='bold'>
-							Please login to comment a Post.
-						</Text>
-					</Stack>
+					<Text color='gray.500'>No comments yet</Text>
 				)}
 			</Stack>
+
+			{user?.result?.name ? (
+				<Stack
+					bgGradient={CreateGradColor('primary', 100, 50, 900, 600, '135deg')}
+					borderRadius='24px'
+					className='container'
+					maxH='230px'
+					p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
+					spacing='4'
+					w='100%'
+				>
+					<FormTextArea
+						label='Write a comment'
+						maxLength='500'
+						name='comment'
+						value={comment}
+						onChange={e => setComment(e.target.value)}
+					/>
+					<HStack spacing='4'>
+						<Button
+							className={isInputEmpty ? 'button' : ''}
+							disabled={!isInputEmpty}
+							flexGrow='1'
+							onClick={handleAddComment}
+						>
+							Comment
+						</Button>
+						<Button
+							className={isInputEmpty ? 'button' : ''}
+							disabled={!isInputEmpty}
+							flexGrow='1'
+							variant='outline'
+							onClick={handleClear}
+						>
+							Clear
+						</Button>
+					</HStack>
+				</Stack>
+			) : (
+				<Stack
+					align='center'
+					color='primary_600_100'
+					minW='320px'
+					p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
+					spacing='4'
+				>
+					<Text fontSize='4xl' fontWeight='bold'>
+						<FaExclamationCircle />
+					</Text>
+					<Text fontSize='lg' fontWeight='bold'>
+						Please login to comment a Post.
+					</Text>
+				</Stack>
+			)}
 		</Stack>
 	)
 }

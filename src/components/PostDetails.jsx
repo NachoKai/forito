@@ -102,7 +102,13 @@ const PostDetails = ({ user }) => {
 								{post?.title}
 							</Heading>
 							{isPrivate && (
-								<Tooltip label='Post only visible to you' openDelay={200} placement='top'>
+								<Tooltip
+									hasArrow
+									arrowSize={8}
+									label='Post only visible to you'
+									openDelay={150}
+									placement='top'
+								>
 									<span>
 										<RiGitRepositoryPrivateFill />
 									</span>
@@ -185,13 +191,15 @@ const PostDetails = ({ user }) => {
 									</Text>
 									<span>•</span>
 									<Tooltip
+										hasArrow
+										arrowSize={8}
 										label={format(
 											isValid(new Date(post?.createdAt))
 												? new Date(post?.createdAt)
 												: new Date(),
 											'dd MMM yyyy - HH:mm'
 										)}
-										openDelay={200}
+										openDelay={150}
 										placement='top'
 									>
 										<Text fontSize='md'>

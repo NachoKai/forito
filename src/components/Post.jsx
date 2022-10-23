@@ -176,8 +176,10 @@ export const Post = ({
 								</Heading>
 								{isPrivate && (
 									<Tooltip
+										hasArrow
+										arrowSize={8}
 										label='Post only visible to you'
-										openDelay={200}
+										openDelay={150}
 										placement='top'
 									>
 										<span>
@@ -194,11 +196,13 @@ export const Post = ({
 									</Text>
 									<span>•</span>
 									<Tooltip
+										hasArrow
+										arrowSize={8}
 										label={format(
 											isValid(new Date(createdAt)) ? new Date(createdAt) : new Date(),
 											'dd MMM yyyy - HH:mm'
 										)}
-										openDelay={200}
+										openDelay={150}
 										placement='top'
 									>
 										<Text fontSize='sm'>
@@ -357,7 +361,7 @@ export const Post = ({
 
 					{Boolean(selectedFile?.url) && (
 						<AspectRatio
-							maxH='80vh'
+							maxH='70vh'
 							maxW={{ sm: '100%', md: '100%', lg: '100%', xl: '500px' }}
 							ratio={1}
 							w='100%'
