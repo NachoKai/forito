@@ -54,6 +54,7 @@ export const Post = ({
 		saves,
 		privacy = 'public',
 		createdAt,
+		updatedAt,
 		tags,
 		selectedFile,
 		comments,
@@ -82,6 +83,8 @@ export const Post = ({
 	const page = Number(locationQuery.get('page') || 1)
 	const initialFocusRef = useRef()
 	const userLogged = user?.result
+	const createdAtDate = isValid(new Date(createdAt)) ? new Date(createdAt) : new Date()
+	const updatedAtDate = isValid(new Date(updatedAt)) ? new Date(updatedAt) : null
 
 	const handleLike = async () => {
 		try {
@@ -202,10 +205,14 @@ export const Post = ({
 										arrowSize={8}
 										border='1px solid #000'
 										borderRadius='8px'
-										label={format(
-											isValid(new Date(createdAt)) ? new Date(createdAt) : new Date(),
-											'dd MMM yyyy - HH:mm'
-										)}
+										label={
+											updatedAtDate
+												? `${format(
+														createdAtDate,
+														'dd MMM yyyy h:mmaaa'
+												  )} (Edited: ${format(updatedAtDate, 'dd MMM yyyy h:mmaaa')})`
+												: format(createdAtDate, 'dd MMM yyyy h:mmaaa')
+										}
 										openDelay={150}
 										placement='top'
 									>
@@ -449,6 +456,7 @@ Post.propTypes = {
 		likes: PropTypes.arrayOf(PropTypes.string),
 		saves: PropTypes.arrayOf(PropTypes.string),
 		createdAt: PropTypes.string,
+		updatedAt: PropTypes.string,
 		tags: PropTypes.arrayOf(PropTypes.string),
 		privacy: PropTypes.string,
 		selectedFile: PropTypes.shape({
