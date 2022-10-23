@@ -53,6 +53,12 @@ const PostDetails = ({ user }) => {
 	const baseURL = isDev
 		? 'http://localhost:3000/posts'
 		: 'https://forito.vercel.app/posts'
+	const createdAtDate = isValid(new Date(post?.createdAt))
+		? new Date(post.createdAt)
+		: new Date()
+	const updatedAtDate = isValid(new Date(post?.updatedAt))
+		? new Date(post.updatedAt)
+		: null
 
 	const openPost = useCallback(
 		_id => {
@@ -197,12 +203,14 @@ const PostDetails = ({ user }) => {
 										arrowSize={8}
 										border='1px solid #000'
 										borderRadius='8px'
-										label={format(
-											isValid(new Date(post?.createdAt))
-												? new Date(post?.createdAt)
-												: new Date(),
-											'dd MMM yyyy - HH:mm'
-										)}
+										label={
+											updatedAtDate
+												? `${format(
+														createdAtDate,
+														'dd MMM yyyy h:mmaaa'
+												  )} (Edited: ${format(updatedAtDate, 'dd MMM yyyy h:mmaaa')})`
+												: format(createdAtDate, 'dd MMM yyyy h:mmaaa')
+										}
 										openDelay={150}
 										placement='top'
 									>
