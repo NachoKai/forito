@@ -13,9 +13,11 @@ const Auth = () => {
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
 	const [isSignup, setIsSignup] = useBoolean()
 	const [showPassword, setShowPassword] = useBoolean()
+	const [loading, setLoading] = useBoolean()
 
 	const onSuccess = res => {
 		try {
+			setLoading.on()
 			const result = res?.profileObj
 			const token = res?.tokenId
 
@@ -24,17 +26,24 @@ const Auth = () => {
 		} catch (err) {
 			showError('Something went wrong when trying to log in. Please try again.')
 			console.error(err)
+		} finally {
+			setLoading.off()
 		}
 	}
 
 	const onFailure = res => {
+		setLoading.on()
 		showError('Something went wrong when trying to log in. Please try again.')
 		console.error('Google login was unsuccessful: ', res)
+		setLoading.off()
 	}
 
 	const handleSubmit = e => {
 		e.preventDefault()
+		e.stopPropagation()
+
 		try {
+			setLoading.on()
 			if (isSignup) {
 				signup(
 					{
@@ -59,6 +68,8 @@ const Auth = () => {
 			showError('Something went wrong when trying to log in. Please try again.')
 			console.error(err)
 			throw err
+		} finally {
+			setLoading.off()
 		}
 	}
 
@@ -143,6 +154,9 @@ const Auth = () => {
 						<Button
 							className='button'
 							data-cy='auth-login-signup-button'
+							disabled={Boolean(loading)}
+							isLoading={Boolean(loading)}
+							loadingText='Loading...'
 							type='submit'
 							variant='solid'
 						>
