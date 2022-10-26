@@ -38,9 +38,11 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const { colorMode, toggleColorMode } = useColorMode()
 	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
 
-	const handleLogout = useCallback(() => {
-		setUser(null)
-		logout(navigate)
+	const handleLogout = useCallback(async () => {
+		await setUser(null)
+		await logout()
+		navigate('/posts')
+		navigate(0)
 	}, [logout, navigate])
 
 	useEffect(() => {

@@ -13,15 +13,13 @@ const createAuthStore = () =>
 		...INITIAL_STATE,
 		cleanUp: () => set(INITIAL_STATE, false, 'auth-clean-up'),
 
-		login: async (formData, navigate) => {
+		login: async formData => {
 			set({ loading: true }, false, 'login')
 			try {
 				const { data } = await login(formData)
 
 				localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
 				set({ authData: data, loading: false }, false, 'login')
-				navigate('/posts')
-				navigate(0)
 			} catch (err) {
 				showError('Something went wrong when trying to log in. Please try again.')
 				console.error(err)
@@ -30,28 +28,24 @@ const createAuthStore = () =>
 			}
 		},
 
-		logout: async navigate => {
+		logout: async () => {
 			try {
 				localStorage.removeItem('forito-profile')
 				localStorage.removeItem('forito-theme')
 				set({ authData: null, loading: false }, false, 'logout')
-				navigate('/posts')
-				navigate(0)
 			} catch (err) {
 				showError('Something went wrong when trying to log out. Please try again.')
 				console.error(err)
 			}
 		},
 
-		signup: async (formData, navigate) => {
+		signup: async formData => {
 			set({ loading: true }, false, 'signup')
 			try {
 				const { data } = await signup(formData)
 
 				set({ authData: data }, false, 'signup')
 				localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
-				navigate('/posts')
-				navigate(0)
 			} catch (err) {
 				showError('Something went wrong when trying to sign up. Please try again.')
 				console.error(err)
@@ -71,13 +65,11 @@ const createAuthStore = () =>
 			}
 		},
 
-		googleLogin: async (formData, navigate) => {
+		googleLogin: async formData => {
 			set({ loading: true }, false, 'googleLogin')
 			try {
 				set({ authData: formData }, false, 'googleLogin')
 				localStorage.setItem('forito-profile', JSON.stringify({ ...formData }))
-				navigate('/posts')
-				navigate(0)
 			} catch (err) {
 				showError('Something went wrong when trying to sign up. Please try again.')
 				console.error(err)
