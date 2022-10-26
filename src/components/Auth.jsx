@@ -15,14 +15,15 @@ const Auth = () => {
 	const [showPassword, setShowPassword] = useBoolean()
 	const [loading, setLoading] = useBoolean()
 
-	const onSuccess = res => {
+	const onSuccess = async res => {
 		try {
 			setLoading.on()
 			const result = res?.profileObj
 			const token = res?.tokenId
 
-			googleLogin({ result, token }, navigate)
+			await googleLogin({ result, token })
 			navigate('/posts')
+			navigate(0)
 		} catch (err) {
 			showError('Something went wrong when trying to log in. Please try again.')
 			console.error(err)
@@ -32,44 +33,38 @@ const Auth = () => {
 	}
 
 	const onFailure = res => {
-		setLoading.on()
 		showError('Something went wrong when trying to log in. Please try again.')
 		console.error('Google login was unsuccessful: ', res)
-		setLoading.off()
 	}
 
-	const handleSubmit = e => {
+	const handleSubmit = async e => {
 		e.preventDefault()
 		e.stopPropagation()
 
 		try {
-			setLoading.on()
 			if (isSignup) {
-				signup(
-					{
-						firstName: e.target.firstName.value,
-						lastName: e.target.lastName.value,
-						email: e.target.email.value,
-						password: e.target.password.value,
-						confirmPassword: e.target.confirmPassword.value,
-					},
-					navigate
-				)
+				setLoading.on()
+				await signup({
+					firstName: e.target.firstName.value,
+					lastName: e.target.lastName.value,
+					email: e.target.email.value,
+					password: e.target.password.value,
+					confirmPassword: e.target.confirmPassword.value,
+				})
 			} else {
-				login(
-					{
-						email: e.target.email.value,
-						password: e.target.password.value,
-					},
-					navigate
-				)
+				setLoading.on()
+				await login({
+					email: e.target.email.value,
+					password: e.target.password.value,
+				})
 			}
+			setLoading.off()
+			navigate('/posts')
+			navigate(0)
 		} catch (err) {
 			showError('Something went wrong when trying to log in. Please try again.')
 			console.error(err)
 			throw err
-		} finally {
-			setLoading.off()
 		}
 	}
 
