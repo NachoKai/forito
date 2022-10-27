@@ -23,7 +23,6 @@ const Auth = () => {
 
 			await googleLogin({ result, token })
 			navigate('/posts')
-			navigate(0)
 		} catch (err) {
 			showError('Something went wrong when trying to log in. Please try again.')
 			console.error(err)
@@ -60,7 +59,6 @@ const Auth = () => {
 			}
 			setLoading.off()
 			navigate('/posts')
-			navigate(0)
 		} catch (err) {
 			showError('Something went wrong when trying to log in. Please try again.')
 			console.error(err)

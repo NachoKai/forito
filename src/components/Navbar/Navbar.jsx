@@ -39,9 +39,8 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
 
 	const handleLogout = useCallback(async () => {
-		await setUser(null)
+		setUser(null)
 		await logout()
-		navigate('/posts')
 		navigate(0)
 	}, [logout, navigate])
 
