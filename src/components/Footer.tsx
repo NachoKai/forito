@@ -1,6 +1,7 @@
 import { Link as ChakraLink, Divider, HStack, Stack, Text } from '@chakra-ui/react'
 import { FaGithub } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
+import styled from 'styled-components'
 
 const GITHUB_URL = 'https://github.com/NachoKai/forito'
 
@@ -16,22 +17,22 @@ const Footer: React.FC = () => {
 			<HStack justify='space-between'>
 				<HStack spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}>
 					<Text fontWeight='bold'>
-						<Link to='/'>Home</Link>
+						<RouterLink to='/'>Home</RouterLink>
 					</Text>
 					<Text fontWeight='bold'>
-						<Link to='about'>About</Link>
+						<RouterLink to='about'>About</RouterLink>
 					</Text>
 					<Text fontWeight='bold'>
-						<Link to='search'>Search</Link>
+						<RouterLink to='search'>Search</RouterLink>
 					</Text>
 					<Text fontWeight='bold'>
-						<Link to='posts/top'>Top Posts</Link>
+						<RouterLink to='posts/top'>Top Posts</RouterLink>
 					</Text>
 				</HStack>
 				<HStack>
 					<ChakraLink isExternal fontSize='xl' href={GITHUB_URL}>
 						<Text fontSize='xl'>
-							<FaGithub title='Github' />
+							<GithubIcon title='Github' />
 						</Text>
 					</ChakraLink>
 				</HStack>
@@ -58,3 +59,15 @@ const Footer: React.FC = () => {
 }
 
 export default Footer
+
+const RouterLink = styled(Link)`
+	&:hover {
+		text-decoration: underline;
+	}
+`
+
+const GithubIcon = styled(FaGithub)`
+	&:hover {
+		color: #fff;
+	}
+`

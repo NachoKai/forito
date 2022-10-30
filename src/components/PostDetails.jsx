@@ -31,6 +31,8 @@ import { isDev } from '../utils/checkIsDev'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 
+const DATE_FORMAT = 'dd MMM yyyy • hh:mmaaa'
+
 const PostDetails = ({ user }) => {
 	const navigate = useNavigate()
 	const { scrollYProgress } = useScroll()
@@ -204,12 +206,16 @@ const PostDetails = ({ user }) => {
 										border='1px solid #000'
 										borderRadius='8px'
 										label={
-											updatedAtDate
-												? `${format(
-														createdAtDate,
-														'dd MMM yyyy h:mmaaa'
-												  )} (Edited: ${format(updatedAtDate, 'dd MMM yyyy h:mmaaa')})`
-												: format(createdAtDate, 'dd MMM yyyy h:mmaaa')
+											updatedAtDate ? (
+												<>
+													<Text>{format(createdAtDate, DATE_FORMAT)}</Text>
+													<Text fontSize='xs'>
+														Edited: {format(updatedAtDate, DATE_FORMAT)}
+													</Text>
+												</>
+											) : (
+												<Text>{format(createdAtDate, DATE_FORMAT)}</Text>
+											)
 										}
 										openDelay={150}
 										placement='top'
