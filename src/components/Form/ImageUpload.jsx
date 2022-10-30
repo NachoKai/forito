@@ -1,4 +1,4 @@
-import { Button, Flex, HStack, Image, Stack } from '@chakra-ui/react'
+import { Button, Flex, HStack, Image, Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import ImageUploading from 'react-images-uploading'
 
@@ -14,7 +14,12 @@ export const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData
 			value={images}
 			onChange={onImageUpload}
 			onError={() =>
-				showError('Something went wrong when trying to upload image. Please try again.')
+				showError(
+					<>
+						<Text>Something went wrong when trying to upload image.</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 			}
 		>
 			{({ imageList, onImageUpload, onImageUpdate, isDragging, dragProps, errors }) => (

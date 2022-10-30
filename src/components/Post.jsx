@@ -94,7 +94,13 @@ export const Post = ({
 			await likePost(_id)
 			setLikeLoading.off()
 		} catch (err) {
-			showError('Something went wrong when trying to like post. Please try again.')
+			showError(
+				<>
+					<Text fontWeight='bold'>{err.name}</Text>
+					<Text>Something went wrong when trying to like post. {err.message}</Text>
+					<Text>Please try again.</Text>
+				</>
+			)
 			console.error(err)
 		}
 	}
@@ -105,7 +111,13 @@ export const Post = ({
 			await savePost(_id)
 			setSaveLoading.off()
 		} catch (err) {
-			showError('Something went wrong when trying to like post. Please try again.')
+			showError(
+				<>
+					<Text fontWeight='bold'>{err.name}</Text>
+					<Text>Something went wrong when trying to save post. {err.message}</Text>
+					<Text>Please try again.</Text>
+				</>
+			)
 			console.error(err)
 		}
 	}
@@ -130,7 +142,13 @@ export const Post = ({
 
 			getPosts(page)
 		} catch (err) {
-			showError('Something went wrong when trying to delete post. Please try again.')
+			showError(
+				<>
+					<Text fontWeight='bold'>{err.name}</Text>
+					<Text>Something went wrong when trying to delete post. {err.message}</Text>
+					<Text>Please try again.</Text>
+				</>
+			)
 			console.error(err)
 		}
 	}

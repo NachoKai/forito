@@ -4,6 +4,7 @@ import {
 	DrawerCloseButton,
 	DrawerContent,
 	DrawerOverlay,
+	Text,
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'
@@ -76,7 +77,13 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 				},
 			})
 		} catch (err) {
-			showError('Something went wrong when trying to upload image. Please try again.')
+			showError(
+				<>
+					<Text fontWeight='bold'>{err.name}</Text>
+					<Text>Something went wrong when trying to upload image. {err.message}</Text>
+					<Text>Please try again.</Text>
+				</>
+			)
 			console.error(err)
 			throw err
 		} finally {
@@ -128,7 +135,13 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 			handleClear()
 			onClose()
 		} catch (err) {
-			showError('Something went wrong when trying to submit Post. Please try again.')
+			showError(
+				<>
+					<Text fontWeight='bold'>{err.name}</Text>
+					<Text>Something went wrong when trying to submit post. {err.message}</Text>
+					<Text>Please try again.</Text>
+				</>
+			)
 			console.error(err)
 			throw err
 		} finally {

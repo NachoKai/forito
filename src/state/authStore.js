@@ -1,3 +1,4 @@
+import { Text } from '@chakra-ui/react'
 import { fetchUser, login, signup } from '../clients/userClients'
 import { showError } from '../utils/showError'
 import { create } from './createStore'
@@ -21,7 +22,13 @@ const createAuthStore = () =>
 				localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
 				set({ authData: data, loading: false }, false, 'login')
 			} catch (err) {
-				showError('Something went wrong when trying to log in. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to log in. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			} finally {
 				set({ loading: false }, false, 'login')
@@ -34,7 +41,13 @@ const createAuthStore = () =>
 				localStorage.removeItem('forito-theme')
 				set({ authData: null, loading: false }, false, 'logout')
 			} catch (err) {
-				showError('Something went wrong when trying to log out. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to log out. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			}
 		},
@@ -47,7 +60,13 @@ const createAuthStore = () =>
 				set({ authData: data }, false, 'signup')
 				localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
 			} catch (err) {
-				showError('Something went wrong when trying to sign up. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to sign up. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			} finally {
 				set({ loading: false }, false, 'signup')
@@ -60,7 +79,13 @@ const createAuthStore = () =>
 
 				set({ user: data }, false, 'getUser')
 			} catch (err) {
-				showError('Something went wrong when trying to get user. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to get user. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			}
 		},
@@ -71,7 +96,15 @@ const createAuthStore = () =>
 				set({ authData: formData }, false, 'googleLogin')
 				localStorage.setItem('forito-profile', JSON.stringify({ ...formData }))
 			} catch (err) {
-				showError('Something went wrong when trying to sign up. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>
+							Something went wrong when trying to login with Google. {err.message}
+						</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			} finally {
 				set({ loading: false }, false, 'googleLogin')

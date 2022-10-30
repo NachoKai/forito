@@ -1,3 +1,4 @@
+import { Text } from '@chakra-ui/react'
 import {
 	addComment,
 	createPost,
@@ -41,7 +42,13 @@ const createPostsStore = () =>
 
 				set({ post: data }, false, 'get-post')
 			} catch (err) {
-				showError('Something went wrong when trying to get post. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to get post. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			} finally {
 				set({ loading: false }, false, 'get-post')
@@ -58,7 +65,13 @@ const createPostsStore = () =>
 
 				set({ posts: data, count }, false, 'get-all-posts')
 			} catch (err) {
-				showError('Something went wrong when trying to get all posts. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to get all posts. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			} finally {
 				set({ loading: false }, false, 'get-all-posts')
@@ -75,7 +88,13 @@ const createPostsStore = () =>
 
 				set({ posts: data, currentPage, numberOfPages, count }, false, 'get-posts')
 			} catch (err) {
-				showError('Something went wrong when trying to get posts. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to get posts. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			} finally {
 				set({ loading: false }, false, 'get-posts')
@@ -92,7 +111,13 @@ const createPostsStore = () =>
 				set({ posts: data }, false, 'get-posts-by-search')
 			} catch (err) {
 				showError(
-					'Something went wrong when trying to get posts by search. Please try again.'
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>
+							Something went wrong when trying to get posts by search. {err.message}
+						</Text>
+						<Text>Please try again.</Text>
+					</>
 				)
 				console.error(err)
 			} finally {
@@ -109,7 +134,13 @@ const createPostsStore = () =>
 				showSuccess('Post successfully created.')
 				navigate(`/posts/${data._id}`)
 			} catch (err) {
-				showError('Something went wrong when trying to create post. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to create post. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			} finally {
 				set({ loading: false }, false, 'create-post')
@@ -128,7 +159,13 @@ const createPostsStore = () =>
 				)
 				showSuccess('Post successfully updated.')
 			} catch (err) {
-				showError('Something went wrong when trying to update post. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to update post. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			} finally {
 				set({ loading: false }, false, 'update-post')
@@ -146,7 +183,13 @@ const createPostsStore = () =>
 				)
 				showSuccess('Post successfully deleted.')
 			} catch (err) {
-				showError('Something went wrong when trying to delete post. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to delete post. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			} finally {
 				set({ loading: false }, false, 'delete-post')
@@ -165,7 +208,13 @@ const createPostsStore = () =>
 					'like-post'
 				)
 			} catch (err) {
-				showError('Something went wrong when trying to like post. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to like post. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			}
 		},
@@ -182,7 +231,13 @@ const createPostsStore = () =>
 					'save-post'
 				)
 			} catch (err) {
-				showError('Something went wrong when trying to save post. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to save post. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			}
 		},
@@ -198,7 +253,13 @@ const createPostsStore = () =>
 				)
 				showSuccess('Comment successfully added.')
 			} catch (err) {
-				showError('Something went wrong when trying to add comment. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to add comment. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			}
 		},
@@ -214,7 +275,13 @@ const createPostsStore = () =>
 				)
 				showSuccess('Comment successfully deleted.')
 			} catch (err) {
-				showError('Something went wrong when trying to delete comment. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to delete comment. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				console.error(err)
 			}
 		},
@@ -230,7 +297,13 @@ const createPostsStore = () =>
 				set({ posts: data }, false, 'get-posts-by-creator')
 			} catch (err) {
 				showError(
-					'Something went wrong when trying to get posts by creator. Please try again.'
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>
+							Something went wrong when trying to get posts by creator. {err.message}
+						</Text>
+						<Text>Please try again.</Text>
+					</>
 				)
 				console.error(err)
 			} finally {
@@ -249,7 +322,13 @@ const createPostsStore = () =>
 				set({ posts: data }, false, 'get-saved-posts')
 			} catch (err) {
 				showError(
-					'Something went wrong when trying to get saved posts. Please try again.'
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>
+							Something went wrong when trying to get saved posts. {err.message}
+						</Text>
+						<Text>Please try again.</Text>
+					</>
 				)
 				console.error(err)
 			} finally {
