@@ -36,7 +36,7 @@ export const Search = () => {
 				navigate(`?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`)
 			}
 		} catch (err) {
-			showError("Couldn't search posts")
+			showError('Something went wrong when trying to search post. Please try again.')
 		}
 	}, [getPostsBySearch, navigate, searchTags, searchValue])
 
