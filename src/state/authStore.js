@@ -99,7 +99,9 @@ const createAuthStore = () =>
 				showError(
 					<>
 						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to sign up. {err.message}</Text>
+						<Text>
+							Something went wrong when trying to login with Google. {err.message}
+						</Text>
 						<Text>Please try again.</Text>
 					</>
 				)

@@ -114,7 +114,7 @@ export const Post = ({
 			showError(
 				<>
 					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to like post. {err.message}</Text>
+					<Text>Something went wrong when trying to save post. {err.message}</Text>
 					<Text>Please try again.</Text>
 				</>
 			)

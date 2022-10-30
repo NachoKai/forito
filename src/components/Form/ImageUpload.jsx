@@ -16,7 +16,7 @@ export const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData
 			onError={() =>
 				showError(
 					<>
-						<Text>Something went wrong when trying to log in.</Text>
+						<Text>Something went wrong when trying to upload image.</Text>
 						<Text>Please try again.</Text>
 					</>
 				)
