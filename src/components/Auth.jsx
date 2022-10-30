@@ -24,7 +24,13 @@ const Auth = () => {
 			await googleLogin({ result, token })
 			navigate('/posts')
 		} catch (err) {
-			showError('Something went wrong when trying to log in. Please try again.')
+			showError(
+				<>
+					<Text fontWeight='bold'>{err.name}</Text>
+					<Text>Something went wrong when trying to log in. {err.message}</Text>
+					<Text>Please try again.</Text>
+				</>
+			)
 			console.error(err)
 		} finally {
 			setLoading.off()
@@ -32,7 +38,12 @@ const Auth = () => {
 	}
 
 	const onFailure = res => {
-		showError('Something went wrong when trying to log in. Please try again.')
+		showError(
+			<>
+				<Text>Something went wrong when trying to log in. </Text>
+				<Text>Please try again.</Text>
+			</>
+		)
 		console.error('Google login was unsuccessful: ', res)
 	}
 
@@ -60,7 +71,13 @@ const Auth = () => {
 			setLoading.off()
 			navigate('/posts')
 		} catch (err) {
-			showError('Something went wrong when trying to log in. Please try again.')
+			showError(
+				<>
+					<Text fontWeight='bold'>{err.name}</Text>
+					<Text>Something went wrong when trying to log in. {err.message}</Text>
+					<Text>Please try again.</Text>
+				</>
+			)
 			console.error(err)
 			throw err
 		}

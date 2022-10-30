@@ -1,4 +1,4 @@
-import { Button, Stack } from '@chakra-ui/react'
+import { Button, Stack, Text } from '@chakra-ui/react'
 import { useCallback, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
@@ -25,7 +25,13 @@ export const SearchNavbar = () => {
 				)
 			}
 		} catch (err) {
-			showError('Something went wrong when trying to search post. Please try again.')
+			showError(
+				<>
+					<Text fontWeight='bold'>{err.name}</Text>
+					<Text>Something went wrong when trying to search post. {err.message}</Text>
+					<Text>Please try again.</Text>
+				</>
+			)
 		}
 	}, [getPostsBySearch, navigate, searchTags, searchValue])
 

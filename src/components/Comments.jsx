@@ -32,7 +32,13 @@ export const Comments = ({ postComments, postId, user }) => {
 			setComment('')
 		} catch (err) {
 			console.error(err)
-			showError('Something went wrong when trying to add comment. Please try again.')
+			showError(
+				<>
+					<Text fontWeight='bold'>{err.name}</Text>
+					<Text>Something went wrong when trying to add comment. {err.message}</Text>
+					<Text>Please try again.</Text>
+				</>
+			)
 		}
 	}, [addComment, comment, comments, postId, user?.result?.name, userId])
 
