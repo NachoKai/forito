@@ -2,27 +2,34 @@ import { Divider, Heading, Stack, Text } from '@chakra-ui/react'
 import { useEffect } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
+import { usePostsByCreator } from '../hooks/data/posts'
 
 import { useAuthStore } from '../state/authStore'
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import { Loading } from './common/Loading'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 
 const Creator = () => {
 	const { id } = useParams()
-	const { posts, loading, getPostsByCreator } = usePostsStore()
+	const { getPostsByCreator } = usePostsStore()
 	const { user, getUser } = useAuthStore()
 	const userLocalStorage = getUserLocalStorage()
 	const userName = user?.name || userLocalStorage?.result?.name
+	const { postsByCreator, isLoading } = usePostsByCreator(id)
+	const postsByCreatorQuantity = postsByCreator?.length
 
 	useEffect(() => {
-		getPostsByCreator(id)
 		getUser(id)
 	}, [getPostsByCreator, getUser, id])
 
-	if (!posts?.length && !loading) {
+	if (isLoading) {
+		return <Loading />
+	}
+
+	if (!postsByCreatorQuantity) {
 		return (
 			<StaggeredSlideFade
 				align='center'
@@ -63,10 +70,10 @@ const Creator = () => {
 			<Stack spacing='2'>
 				<Text fontSize='2xl'>{userName || ''}</Text>
 				<Text fontSize='md'>
-					{!loading && posts?.length
-						? posts?.length !== 1
-							? `${posts?.length} Posts`
-							: `${posts?.length} Post`
+					{postsByCreatorQuantity
+						? postsByCreatorQuantity !== 1
+							? `${postsByCreatorQuantity} Posts`
+							: `${postsByCreatorQuantity} Post`
 						: ''}
 				</Text>
 			</Stack>
@@ -74,7 +81,7 @@ const Creator = () => {
 			<Divider />
 
 			<StaggeredSlideFade spacing='3'>
-				{posts?.map(post => (
+				{postsByCreator?.map(post => (
 					<Stack key={post._id}>
 						<Post post={post} />
 					</Stack>
