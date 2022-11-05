@@ -48,6 +48,7 @@ export const useAllPosts = () => {
 
 	return {
 		...allPostsQuery,
+		data: allPostsQuery?.data?.data?.data || [],
 		refetch: async () => {
 			await allPostsQuery.refetch()
 		},
@@ -94,6 +95,13 @@ export const usePosts = page => {
 
 				return posts
 			} catch (err) {
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to get posts. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				handleErrorResponse(err, { source: 'posts' })
 			}
 		},
@@ -105,6 +113,7 @@ export const usePosts = page => {
 
 	return {
 		...postsQuery,
+		data: postsQuery?.data?.data?.data || [],
 		refetch: async () => {
 			await postsQuery.refetch()
 		},
