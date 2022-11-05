@@ -11,12 +11,14 @@ import { useCallback } from 'react'
 import { useNavigate } from 'react-router-dom'
 import styled from 'styled-components'
 
+import { usePosts } from '../hooks/data/posts'
 import { usePostsStore } from '../state/postsStore'
 import { getThemeColor } from '../utils/getThemeColor'
 
-export const Paginate = () => {
+export const Paginate = ({ page }) => {
 	const navigate = useNavigate()
-	const { count, numberOfPages, setCurrentPage, currentPage } = usePostsStore()
+	const { setCurrentPage } = usePostsStore()
+	const { count, numberOfPages, currentPage } = usePosts(page)
 	const POSTS_LIMIT = 6
 
 	const { pages } = usePagination({
