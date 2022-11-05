@@ -1,8 +1,8 @@
 import { Flex, Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { FaPencilAlt } from 'react-icons/fa'
-import { usePosts } from '../hooks/data/posts'
 
+import { usePosts } from '../hooks/data/posts'
 import { useLocationQuery } from '../utils/useLocationQuery'
 import { Loading } from './common/Loading'
 import { Paginate } from './Paginate'
@@ -12,7 +12,7 @@ const Home = ({ onOpen }) => {
 	const locationQuery = useLocationQuery()
 	const page = Number(locationQuery.get('page') || 1)
 	const searchQuery = locationQuery.get('searchQuery')
-	const { data: posts, isLoading, isError, isSuccess, error } = usePosts(page)
+	const { posts, isLoading, isError, isSuccess, error } = usePosts(page)
 
 	return (
 		<Stack pb='4'>
@@ -44,7 +44,7 @@ const Home = ({ onOpen }) => {
 				</Stack>
 			</Stack>
 			<Stack px={{ sm: '4', md: '10', lg: '16', xl: '24' }}>
-				{!searchQuery && <Paginate />}
+				{!searchQuery && <Paginate page={page} />}
 			</Stack>
 		</Stack>
 	)

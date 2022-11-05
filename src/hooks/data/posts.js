@@ -48,7 +48,8 @@ export const useAllPosts = () => {
 
 	return {
 		...allPostsQuery,
-		data: allPostsQuery?.data?.data?.data || [],
+		allPosts: allPostsQuery?.data?.data?.data || [],
+		count: allPostsQuery?.data?.data?.count || 0,
 		refetch: async () => {
 			await allPostsQuery.refetch()
 		},
@@ -113,7 +114,10 @@ export const usePosts = page => {
 
 	return {
 		...postsQuery,
-		data: postsQuery?.data?.data?.data || [],
+		posts: postsQuery?.data?.data?.data || [],
+		count: postsQuery?.data?.data?.count || 0,
+		currentPage: postsQuery?.data?.data?.currentPage || 0,
+		numberOfPages: postsQuery?.data?.data?.numberOfPages || 0,
 		refetch: async () => {
 			await postsQuery.refetch()
 		},
