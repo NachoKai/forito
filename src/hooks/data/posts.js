@@ -48,6 +48,7 @@ export const useAllPosts = () => {
 
 	return {
 		...allPostsQuery,
+		data: allPostsQuery?.data?.data?.data || [],
 		refetch: async () => {
 			await allPostsQuery.refetch()
 		},
@@ -112,6 +113,7 @@ export const usePosts = page => {
 
 	return {
 		...postsQuery,
+		data: postsQuery?.data?.data?.data || [],
 		refetch: async () => {
 			await postsQuery.refetch()
 		},

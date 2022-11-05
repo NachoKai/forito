@@ -9,9 +9,8 @@ import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 
 const TopPosts = () => {
-	const { data, isLoading, isError, isSuccess, error } = useAllPosts()
-	const posts = data?.data?.data
-	const postsWithLikes = posts?.filter(post => post?.likes?.length > 0)
+	const { data: allPosts, isLoading, isError, isSuccess, error } = useAllPosts()
+	const postsWithLikes = allPosts?.filter(post => post?.likes?.length > 0)
 	const havePosts = postsWithLikes?.length > 0
 	const topPosts = isSuccess && getTopPosts(postsWithLikes, 5)
 
