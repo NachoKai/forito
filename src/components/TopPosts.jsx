@@ -12,7 +12,7 @@ const TopPosts = () => {
 	const { data: allPosts, isLoading, isError, isSuccess, error } = useAllPosts()
 	const postsWithLikes = allPosts?.filter(post => post?.likes?.length > 0)
 	const havePosts = postsWithLikes?.length > 0
-	const topPosts = isSuccess && getTopPosts(postsWithLikes, 5)
+	const topPosts = getTopPosts(postsWithLikes, 5)
 
 	return (
 		<StaggeredSlideFade
