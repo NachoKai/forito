@@ -6,6 +6,7 @@ export const login = async (formData: FormDataI) => {
 		return await api.post('/user/login', formData)
 	} catch (err) {
 		console.error('Error logging in', err)
+		throw err
 	}
 }
 
@@ -14,6 +15,7 @@ export const signup = async (formData: FormDataI) => {
 		return await api.post('/user/signup', formData)
 	} catch (err) {
 		console.error('Error signing up', err)
+		throw err
 	}
 }
 
@@ -22,5 +24,6 @@ export const fetchUser = async (id: string) => {
 		return await api.get(`/user/${id}`)
 	} catch (err) {
 		console.error('Error fetching user', err)
+		throw err
 	}
 }

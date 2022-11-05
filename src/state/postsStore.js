@@ -4,7 +4,6 @@ import {
 	createPost,
 	deleteComment,
 	deletePost,
-	fetchAllPosts,
 	fetchPost,
 	fetchPosts,
 	fetchPostsByCreator,
@@ -52,29 +51,6 @@ const createPostsStore = () =>
 				console.error(err)
 			} finally {
 				set({ loading: false }, false, 'get-post')
-			}
-		},
-
-		getAllPosts: async () => {
-			get().cleanUp()
-			set({ loading: true }, false, 'get-all-posts')
-			try {
-				const {
-					data: { data, count },
-				} = await fetchAllPosts()
-
-				set({ posts: data, count }, false, 'get-all-posts')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to get all posts. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-			} finally {
-				set({ loading: false }, false, 'get-all-posts')
 			}
 		},
 
