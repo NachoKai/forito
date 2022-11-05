@@ -1,11 +1,9 @@
 import { Divider, Heading, Stack, Text } from '@chakra-ui/react'
-import { useEffect } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 import { usePostsByCreator } from '../hooks/data/posts'
 
-import { useAuthStore } from '../state/authStore'
-import { usePostsStore } from '../state/postsStore'
+import { useGetUser } from '../hooks/data/user'
 import { CreateGradColor } from '../theme'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { Loading } from './common/Loading'
@@ -14,16 +12,11 @@ import { Post } from './Post'
 
 const Creator = () => {
 	const { id } = useParams()
-	const { getPostsByCreator } = usePostsStore()
-	const { user, getUser } = useAuthStore()
+	const { user } = useGetUser(id)
 	const userLocalStorage = getUserLocalStorage()
 	const userName = user?.name || userLocalStorage?.result?.name
 	const { postsByCreator, isLoading } = usePostsByCreator(id)
 	const postsByCreatorQuantity = postsByCreator?.length
-
-	useEffect(() => {
-		getUser(id)
-	}, [getPostsByCreator, getUser, id])
 
 	if (isLoading) {
 		return <Loading />
