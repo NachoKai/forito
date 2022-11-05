@@ -7,6 +7,7 @@ export const fetchAllPosts = async () => {
 		return await api.get('/posts/top')
 	} catch (err) {
 		console.error('Error getting all posts', err)
+		throw err
 	}
 }
 
@@ -15,6 +16,7 @@ export const fetchPost = async (id: string) => {
 		return await api.get(`/posts/${id}`)
 	} catch (err) {
 		console.error('Error getting post', err)
+		throw err
 	}
 }
 
@@ -23,6 +25,7 @@ export const fetchPosts = async (page: number) => {
 		return await api.get(`/posts?page=${page}`)
 	} catch (err) {
 		console.error('Error getting posts', err)
+		throw err
 	}
 }
 
@@ -33,6 +36,7 @@ export const fetchPostsBySearch = async (searchQuery: SearchQueryI) => {
 		)
 	} catch (err) {
 		console.error('Error getting posts by search', err)
+		throw err
 	}
 }
 
@@ -41,6 +45,7 @@ export const fetchPostsByCreator = async (id: string) => {
 		return await api.get(`/posts/creator?id=${id}`)
 	} catch (err) {
 		console.error('Error getting posts by creator', err)
+		throw err
 	}
 }
 
@@ -49,6 +54,7 @@ export const fetchSavedPosts = async (id: string) => {
 		return await api.get(`/posts/saved?id=${id}`)
 	} catch (err) {
 		console.error('Error getting saved posts', err)
+		throw err
 	}
 }
 
@@ -57,6 +63,7 @@ export const createPost = async (newPost: PostI) => {
 		return await api.post('/posts', newPost)
 	} catch (err) {
 		console.error('Error creating post', err)
+		throw err
 	}
 }
 
@@ -65,6 +72,7 @@ export const likePost = async (id: string) => {
 		return await api.patch(`/posts/${id}/likePost`)
 	} catch (err) {
 		console.error('Error liking post', err)
+		throw err
 	}
 }
 
@@ -73,6 +81,7 @@ export const savePost = async (id: string) => {
 		return await api.patch(`/posts/${id}/savePost`)
 	} catch (err) {
 		console.error('Error saving post', err)
+		throw err
 	}
 }
 
@@ -81,6 +90,7 @@ export const updatePost = async (id: string, updatedPost: PostI) => {
 		return await api.patch(`/posts/${id}`, updatedPost)
 	} catch (err) {
 		console.error('Error updating post', err)
+		throw err
 	}
 }
 
@@ -89,6 +99,7 @@ export const deletePost = async (id: string) => {
 		return await api.delete(`/posts/${id}`)
 	} catch (err) {
 		console.error('Error deleting post', err)
+		throw err
 	}
 }
 
@@ -97,6 +108,7 @@ export const addComment = async (value: CommentI, id: string) => {
 		return await api.post(`/posts/${id}/addComment`, { value })
 	} catch (err) {
 		console.error('Error adding comment', err)
+		throw err
 	}
 }
 
@@ -105,5 +117,6 @@ export const deleteComment = async (id: string, commentId: string) => {
 		return await api.delete(`/posts/${id}/${commentId}`)
 	} catch (err) {
 		console.error('Error deleting comment', err)
+		throw err
 	}
 }
