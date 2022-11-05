@@ -163,7 +163,15 @@ export const usePostsByCreator = id => {
 
 				return posts
 			} catch (err) {
-				showError('Something went wrong when trying to get posts. Please try again.')
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>
+							Something went wrong when trying to get posts by creator. {err.message}
+						</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				handleErrorResponse(err, { source: 'posts-by-creator' })
 			}
 		},
@@ -175,6 +183,7 @@ export const usePostsByCreator = id => {
 
 	return {
 		...postsByCreatorQuery,
+		postsByCreator: postsByCreatorQuery?.data?.data?.data || [],
 		refetch: async () => {
 			await postsByCreatorQuery.refetch()
 		},

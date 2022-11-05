@@ -5,7 +5,6 @@ import {
 	deleteComment,
 	deletePost,
 	fetchPost,
-	fetchPostsByCreator,
 	fetchPostsBySearch,
 	fetchSavedPosts,
 	likePost,
@@ -235,31 +234,6 @@ const createPostsStore = () =>
 					</>
 				)
 				console.error(err)
-			}
-		},
-
-		getPostsByCreator: async id => {
-			get().cleanUp()
-			set({ loading: true }, false, 'get-posts-by-creator')
-			try {
-				const {
-					data: { data },
-				} = await fetchPostsByCreator(id)
-
-				set({ posts: data }, false, 'get-posts-by-creator')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>
-							Something went wrong when trying to get posts by creator. {err.message}
-						</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-			} finally {
-				set({ loading: false }, false, 'get-posts-by-creator')
 			}
 		},
 
