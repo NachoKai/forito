@@ -94,6 +94,13 @@ export const usePosts = page => {
 
 				return posts
 			} catch (err) {
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to get posts. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
 				handleErrorResponse(err, { source: 'posts' })
 			}
 		},

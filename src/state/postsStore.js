@@ -5,7 +5,6 @@ import {
 	deleteComment,
 	deletePost,
 	fetchPost,
-	fetchPosts,
 	fetchPostsByCreator,
 	fetchPostsBySearch,
 	fetchSavedPosts,
@@ -51,29 +50,6 @@ const createPostsStore = () =>
 				console.error(err)
 			} finally {
 				set({ loading: false }, false, 'get-post')
-			}
-		},
-
-		getPosts: async page => {
-			get().cleanUp()
-			set({ loading: true }, false, 'get-posts')
-			try {
-				const {
-					data: { data, currentPage, numberOfPages, count },
-				} = await fetchPosts(page)
-
-				set({ posts: data, currentPage, numberOfPages, count }, false, 'get-posts')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to get posts. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-			} finally {
-				set({ loading: false }, false, 'get-posts')
 			}
 		},
 
