@@ -12,10 +12,12 @@ import { useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
 import { firebaseApp } from '../../firebaseApp'
+import { usePosts } from '../../hooks/data/posts'
 import { usePostsStore } from '../../state/postsStore'
 import { checkEmpty } from '../../utils/checkEmpty'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
 import { showError } from '../../utils/showError'
+import { useLocationQuery } from '../../utils/useLocationQuery'
 import { FormBody } from './FormBody'
 import { FormFooter } from './FormFooter'
 import { FormHeader } from './FormHeader'
@@ -37,6 +39,9 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 	const user = getUserLocalStorage()
 	const [postData, setPostData] = useState(initialState)
 	const [images, setImages] = useState([])
+	const locationQuery = useLocationQuery()
+	const page = Number(locationQuery.get('page') || 1)
+	const { posts } = usePosts(page)
 
 	const isSubmitDisabled = useMemo(
 		() =>
@@ -50,9 +55,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 		[postData?.tags]
 	)
 
-	const post = usePostsStore(state =>
-		currentId ? state.posts?.find(message => message._id === currentId) : null
-	)
+	const post = currentId ? posts?.find(message => message._id === currentId) : null
 	const [privacy, setPrivacy] = useState(post?.privacy)
 
 	const onImageUpload = async imageList => {
@@ -103,8 +106,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 		setPostData(initialState)
 	}, [setCurrentId])
 
-	const handleSubmit = async e => {
-		e.preventDefault()
+	const handleSubmit = async () => {
 		try {
 			showLoading()
 
@@ -131,6 +133,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 					...postData,
 					name: user?.result?.name,
 				})
+				navigate(0)
 			}
 			handleClear()
 			onClose()
