@@ -48,6 +48,8 @@ export const useAllPosts = () => {
 
 	return {
 		...allPostsQuery,
+		allPosts: allPostsQuery.data?.data?.data || [],
+		count: allPostsQuery.data?.data?.count || 0,
 		refetch: async () => {
 			await allPostsQuery.refetch()
 		},
