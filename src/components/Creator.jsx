@@ -64,9 +64,9 @@ const Creator = () => {
 				<Text fontSize='2xl'>{userName || ''}</Text>
 				<Text fontSize='md'>
 					{!loading && posts?.length
-						? posts?.length !== 1
-							? `${posts?.length} Posts`
-							: `${posts?.length} Post`
+						? posts?.length === 1
+							? `${posts?.length} Post`
+							: `${posts?.length} Posts`
 						: ''}
 				</Text>
 			</Stack>

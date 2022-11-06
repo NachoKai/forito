@@ -84,6 +84,7 @@ const PostDetails = ({ user }) => {
 
 	// Recommended Posts search
 	useEffect(() => {
+		if (!post) return
 		if (post) {
 			const searchQuery = { search: 'none', tags: post?.tags.join(',') }
 
