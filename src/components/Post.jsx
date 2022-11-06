@@ -117,8 +117,8 @@ export const Post = ({
 
 	const openComments = () => navigate(`/posts/${_id}#comments`)
 
-	const handleEdit = () => {
-		setCurrentId(_id)
+	const handleEdit = async () => {
+		await setCurrentId(_id)
 		onOpen()
 	}
 

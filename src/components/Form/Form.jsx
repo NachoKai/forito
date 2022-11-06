@@ -42,6 +42,8 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 	const locationQuery = useLocationQuery()
 	const page = Number(locationQuery.get('page') || 1)
 	const { posts } = usePosts(page)
+	const post = currentId ? posts?.find(message => message._id === currentId) : null
+	const [privacy, setPrivacy] = useState(post?.privacy)
 
 	const isSubmitDisabled = useMemo(
 		() =>
@@ -54,9 +56,6 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 		() => ![...new Set(postData?.tags)].every(tag => /^[a-zA-Z0-9_.-]*$/.test(tag)),
 		[postData?.tags]
 	)
-
-	const post = currentId ? posts?.find(message => message._id === currentId) : null
-	const [privacy, setPrivacy] = useState(post?.privacy)
 
 	const onImageUpload = async imageList => {
 		try {
