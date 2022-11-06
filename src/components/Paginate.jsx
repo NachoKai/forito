@@ -35,6 +35,7 @@ export const Paginate = ({ page }) => {
 
 	const handlePageChange = useCallback(
 		page => {
+			window.scrollTo(0, 0)
 			setCurrentPage(page)
 		},
 		[setCurrentPage]
