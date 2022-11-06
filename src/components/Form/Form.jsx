@@ -103,8 +103,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 		setPostData(initialState)
 	}, [setCurrentId])
 
-	const handleSubmit = async e => {
-		e.preventDefault()
+	const handleSubmit = async () => {
 		try {
 			showLoading()
 
@@ -131,6 +130,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 					...postData,
 					name: user?.result?.name,
 				})
+				navigate(0)
 			}
 			handleClear()
 			onClose()

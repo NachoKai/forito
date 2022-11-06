@@ -70,8 +70,8 @@ export const Post = ({
 		usePostsStore()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
-	const hasUserLike = likes.includes(userId)
-	const hasUserSaved = saves.includes(userId)
+	const hasUserLike = likes?.includes(userId)
+	const hasUserSaved = saves?.includes(userId)
 	const location = useLocation()
 	const userEmail = user?.result?.email
 	const [isDialogOpen, setIsDialogOpen] = useBoolean()
