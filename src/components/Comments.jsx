@@ -50,7 +50,7 @@ export const Comments = ({ postComments, postId, user }) => {
 				{comments?.length ? (
 					comments?.map(comment => (
 						<Comment
-							key={comment._id}
+							key={comment.commentId}
 							comment={comment}
 							deleteComment={deleteComment}
 							postId={postId}
