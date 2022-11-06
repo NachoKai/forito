@@ -12,7 +12,6 @@ const INITIAL_STATE = {
 const createAuthStore = () =>
 	create('authStore')(set => ({
 		...INITIAL_STATE,
-		cleanUp: () => set(INITIAL_STATE, false, 'auth-clean-up'),
 
 		login: async formData => {
 			set({ loading: true }, false, 'login')

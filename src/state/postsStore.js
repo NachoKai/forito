@@ -31,7 +31,6 @@ const INITIAL_STATE = {
 const createPostsStore = () =>
 	create('postsStore')((set, get) => ({
 		...INITIAL_STATE,
-		cleanUp: () => set(INITIAL_STATE, false, 'posts-clean-up'),
 		setCurrentId: id => set({ currentId: id }, false, 'set-current-id'),
 
 		getPost: async id => {
@@ -55,7 +54,6 @@ const createPostsStore = () =>
 		},
 
 		getPosts: async page => {
-			get().cleanUp()
 			set({ loading: true }, false, 'get-posts')
 			try {
 				const {
@@ -123,7 +121,7 @@ const createPostsStore = () =>
 			}
 		},
 
-		updatePost: async (id, post, navigate) => {
+		updatePost: async (id, post) => {
 			set({ loading: true }, false, 'update-post')
 			try {
 				const { data } = await updatePost(id, post)
@@ -134,7 +132,6 @@ const createPostsStore = () =>
 					'update-post'
 				)
 				showSuccess('Post successfully updated.')
-				navigate(0)
 			} catch (err) {
 				showError(
 					<>
@@ -264,7 +261,6 @@ const createPostsStore = () =>
 		},
 
 		getPostsByCreator: async id => {
-			get().cleanUp()
 			set({ loading: true }, false, 'get-posts-by-creator')
 			try {
 				const {
@@ -289,7 +285,6 @@ const createPostsStore = () =>
 		},
 
 		getSavedPosts: async id => {
-			get().cleanUp()
 			set({ loading: true }, false, 'get-saved-posts')
 			try {
 				const {
