@@ -361,6 +361,7 @@ const ProgressBar = styled(motion.div)`
 	height: 6px;
 	background-color: ${p => p.theme};
 	transform-origin: 0%;
+	width: calc(100vw + 10vw);
 `
 
 PostDetails.propTypes = {
