@@ -146,6 +146,7 @@ export const usePostsBySearch = searchQuery => {
 
 	return {
 		...postsBySearchQuery,
+		postsBySearch: postsBySearchQuery?.data?.data?.data || [],
 		refetch: async () => {
 			await postsBySearchQuery.refetch()
 		},
