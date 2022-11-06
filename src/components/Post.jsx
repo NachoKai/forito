@@ -33,7 +33,6 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-import { useLikePost, usePosts, useSavePost } from '../hooks/data/posts'
 
 import { usePostsStore } from '../state/postsStore'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
@@ -67,49 +66,59 @@ export const Post = ({
 	highlight,
 }) => {
 	const navigate = useNavigate()
-	const locationQuery = useLocationQuery()
-	const page = Number(locationQuery.get('page') || 1)
-	const { posts } = usePosts(page)
-	const { setCurrentId, deletePost } = usePostsStore()
+	const { likePost, savePost, setCurrentId, deletePost, posts, getPosts } =
+		usePostsStore()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
-	const hasUserLike = likes.includes(userId)
-	const hasUserSaved = saves.includes(userId)
+	const hasUserLike = likes?.includes(userId)
+	const hasUserSaved = saves?.includes(userId)
 	const location = useLocation()
 	const userEmail = user?.result?.email
 	const [isDialogOpen, setIsDialogOpen] = useBoolean()
+	const [saveLoading, setSaveLoading] = useBoolean()
+	const [likeLoading, setLikeLoading] = useBoolean()
 	const isPrivate = privacy === 'private'
 	const isPostCreator = checkIsPostCreator(user, creator)
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
+	const locationQuery = useLocationQuery()
+	const page = Number(locationQuery.get('page') || 1)
 	const initialFocusRef = useRef()
 	const userLogged = user?.result
 	const createdAtDate = isValid(new Date(createdAt)) ? new Date(createdAt) : new Date()
 	const updatedAtDate = isValid(new Date(updatedAt)) ? new Date(updatedAt) : null
-	const {
-		mutateAsync: likePost,
-		isLoading: likeLoading,
-		error: likeError,
-	} = useLikePost()
-	const {
-		mutateAsync: savePost,
-		isLoading: saveLoading,
-		error: saveError,
-	} = useSavePost()
 
 	const handleLike = async () => {
 		try {
+			setLikeLoading.on()
 			await likePost(_id)
+			setLikeLoading.off()
 		} catch (err) {
-			console.error(err, likeError)
+			showError(
+				<>
+					<Text fontWeight='bold'>{err.name}</Text>
+					<Text>Something went wrong when trying to like post. {err.message}</Text>
+					<Text>Please try again.</Text>
+				</>
+			)
+			console.error(err)
 		}
 	}
 
 	const handleSave = async () => {
 		try {
+			setSaveLoading.on()
 			await savePost(_id)
+			setSaveLoading.off()
 		} catch (err) {
-			console.error(err, saveError)
+			showError(
+				<>
+					<Text fontWeight='bold'>{err.name}</Text>
+					<Text>Something went wrong when trying to save post. {err.message}</Text>
+					<Text>Please try again.</Text>
+				</>
+			)
+			console.error(err)
 		}
 	}
 
@@ -129,9 +138,9 @@ export const Post = ({
 
 			if (posts?.length === 1 && page > 1) {
 				navigate(`/posts?page=${page - 1}`)
-			} else {
-				navigate(0)
 			}
+
+			getPosts(page)
 		} catch (err) {
 			showError(
 				<>

@@ -1,45 +1,42 @@
 import { Divider, Flex, Heading, Stack, Text } from '@chakra-ui/react'
-import { useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 
-import { usePostsBySearch } from '../hooks/data/posts'
+import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme'
 import { PostI, UserI } from '../types'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
-import { Loading } from './common/Loading'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 
 const Tags: React.FC = () => {
 	const { name } = useParams()
-	const searchQuery = { tags: name }
-	const { postsBySearch, isLoading, isSuccess } = usePostsBySearch(searchQuery)
+	const { posts, loading, getPostsBySearch } = usePostsStore()
 	const user: UserI = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const isAdmin = checkIsAdmin(userEmail)
-	const title =
-		postsBySearch?.length === 1
-			? `${postsBySearch?.length} Post`
-			: `${postsBySearch?.length} Posts`
+	const title = posts?.length === 1 ? `${posts?.length} Post` : `${posts?.length} Posts`
 
 	const publicPosts = useMemo(
 		() =>
-			postsBySearch?.filter((post: PostI) => {
+			posts?.filter((post: PostI) => {
 				const isPrivate = post?.privacy === 'private'
 				const creator = post?.creator
 				const isPostCreator = checkIsPostCreator(user, creator)
 
 				return !isPrivate || (isPrivate && isPostCreator) || isAdmin
 			}),
-		[isAdmin, postsBySearch, user]
+		[isAdmin, posts, user]
 	)
 
-	return isLoading ? (
-		<Loading />
-	) : !publicPosts?.length && isSuccess ? (
+	useEffect(() => {
+		getPostsBySearch({ tags: name })
+	}, [getPostsBySearch, name])
+
+	return !publicPosts?.length && !loading ? (
 		<Flex align='center' direction='column' h='100%' minH='100vh' my='64px'>
 			<Text color='primary.400' fontSize='6xl' mb='16px'>
 				<FaSearch />
@@ -64,13 +61,13 @@ const Tags: React.FC = () => {
 		>
 			<Stack spacing='2'>
 				<Text fontSize='2xl'>#{name?.toUpperCase()}</Text>
-				<Text fontSize='md'>{isSuccess && postsBySearch?.length ? title : ''}</Text>
+				<Text fontSize='md'>{!loading && posts?.length ? title : ''}</Text>
 			</Stack>
 
 			<Divider />
 
 			<StaggeredSlideFade spacing='3'>
-				{postsBySearch?.map(post => (
+				{posts?.map((post: PostI) => (
 					<Stack key={post._id}>
 						<Post post={post} />
 					</Stack>
