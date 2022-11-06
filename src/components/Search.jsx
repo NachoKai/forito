@@ -107,7 +107,7 @@ export const Search = () => {
 						<HStack spacing='4'>
 							<Button
 								bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
-								className={!isInputEmpty ? 'button' : ''}
+								className={isInputEmpty ? '' : 'button'}
 								disabled={isInputEmpty}
 								flexGrow='1'
 								onClick={searchPost}
@@ -115,7 +115,7 @@ export const Search = () => {
 								Search
 							</Button>
 							<Button
-								className={!isInputEmpty ? 'button' : ''}
+								className={isInputEmpty ? '' : 'button'}
 								disabled={isInputEmpty}
 								flexGrow='1'
 								variant='outline'
