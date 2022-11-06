@@ -66,8 +66,7 @@ export const Post = ({
 	highlight,
 }) => {
 	const navigate = useNavigate()
-	const { likePost, savePost, setCurrentId, deletePost, posts, getPosts } =
-		usePostsStore()
+	const { likePost, savePost, setCurrentId, deletePost, posts } = usePostsStore()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
 	const hasUserLike = Boolean(likes?.find(like => like === userId))
@@ -127,8 +126,8 @@ export const Post = ({
 	const openComments = () => navigate(`/posts/${_id}#comments`)
 
 	const handleEdit = () => {
-		onOpen()
 		setCurrentId(_id)
+		onOpen()
 	}
 
 	const handleDelete = async () => {
@@ -138,9 +137,9 @@ export const Post = ({
 
 			if (posts?.length === 1 && page > 1) {
 				navigate(`/posts?page=${page - 1}`)
+			} else {
+				navigate(0)
 			}
-
-			getPosts(page)
 		} catch (err) {
 			showError(
 				<>
