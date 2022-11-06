@@ -33,7 +33,7 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
-import { useLikePost, useSavePost } from '../hooks/data/posts'
+import { useLikePost, usePosts, useSavePost } from '../hooks/data/posts'
 
 import { usePostsStore } from '../state/postsStore'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
@@ -67,11 +67,14 @@ export const Post = ({
 	highlight,
 }) => {
 	const navigate = useNavigate()
-	const { setCurrentId, deletePost, posts } = usePostsStore()
+	const locationQuery = useLocationQuery()
+	const page = Number(locationQuery.get('page') || 1)
+	const { posts } = usePosts(page)
+	const { setCurrentId, deletePost } = usePostsStore()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
-	const hasUserLike = Boolean(likes?.find(like => like === userId))
-	const hasUserSaved = saves?.find(save => save === userId)
+	const hasUserLike = likes.includes(userId)
+	const hasUserSaved = saves.includes(userId)
 	const location = useLocation()
 	const userEmail = user?.result?.email
 	const [isDialogOpen, setIsDialogOpen] = useBoolean()
@@ -79,8 +82,6 @@ export const Post = ({
 	const isPostCreator = checkIsPostCreator(user, creator)
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
-	const locationQuery = useLocationQuery()
-	const page = Number(locationQuery.get('page') || 1)
 	const initialFocusRef = useRef()
 	const userLogged = user?.result
 	const createdAtDate = isValid(new Date(createdAt)) ? new Date(createdAt) : new Date()
