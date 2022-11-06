@@ -18,7 +18,7 @@ const Tags: React.FC = () => {
 	const user: UserI = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const isAdmin = checkIsAdmin(userEmail)
-	const title = posts?.length !== 1 ? `${posts?.length} Posts` : `${posts?.length} Post`
+	const title = posts?.length === 1 ? `${posts?.length} Post` : `${posts?.length} Posts`
 
 	const publicPosts = useMemo(
 		() =>
@@ -67,7 +67,7 @@ const Tags: React.FC = () => {
 			<Divider />
 
 			<StaggeredSlideFade spacing='3'>
-				{posts?.map(post => (
+				{posts?.map((post: PostI) => (
 					<Stack key={post._id}>
 						<Post post={post} />
 					</Stack>

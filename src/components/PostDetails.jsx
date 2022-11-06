@@ -27,7 +27,6 @@ import { Comments } from '../components/Comments'
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor, getColorTheme } from '../theme'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
-import { isDev } from '../utils/checkIsDev'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 
@@ -52,9 +51,7 @@ const PostDetails = ({ user }) => {
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
 	const progressBarColor = getColorTheme()
-	const baseURL = isDev
-		? 'http://localhost:3000/posts'
-		: 'https://forito.vercel.app/posts'
+	const baseURL = 'https://forito.vercel.app/posts'
 	const createdAtDate = isValid(new Date(post?.createdAt))
 		? new Date(post.createdAt)
 		: new Date()
@@ -87,7 +84,11 @@ const PostDetails = ({ user }) => {
 
 	// Recommended Posts search
 	useEffect(() => {
-		if (post) getPostsBySearch({ search: 'none', tags: post?.tags.join(',') })
+		if (post) {
+			const searchQuery = { search: 'none', tags: post?.tags.join(',') }
+
+			getPostsBySearch(searchQuery)
+		}
 	}, [getPostsBySearch, post])
 
 	return post && showPost && !loading ? (

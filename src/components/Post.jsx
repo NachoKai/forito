@@ -70,8 +70,8 @@ export const Post = ({
 		usePostsStore()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
-	const hasUserLike = Boolean(likes?.find(like => like === userId))
-	const hasUserSaved = saves?.find(save => save === userId)
+	const hasUserLike = likes.includes(userId)
+	const hasUserSaved = saves.includes(userId)
 	const location = useLocation()
 	const userEmail = user?.result?.email
 	const [isDialogOpen, setIsDialogOpen] = useBoolean()
@@ -126,9 +126,9 @@ export const Post = ({
 
 	const openComments = () => navigate(`/posts/${_id}#comments`)
 
-	const handleEdit = () => {
+	const handleEdit = async () => {
+		await setCurrentId(_id)
 		onOpen()
-		setCurrentId(_id)
 	}
 
 	const handleDelete = async () => {
