@@ -33,6 +33,7 @@ import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
+import { useLikePost, useSavePost } from '../hooks/data/posts'
 
 import { usePostsStore } from '../state/postsStore'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
@@ -66,7 +67,7 @@ export const Post = ({
 	highlight,
 }) => {
 	const navigate = useNavigate()
-	const { likePost, savePost, setCurrentId, deletePost, posts } = usePostsStore()
+	const { setCurrentId, deletePost, posts } = usePostsStore()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
 	const hasUserLike = Boolean(likes?.find(like => like === userId))
@@ -74,8 +75,6 @@ export const Post = ({
 	const location = useLocation()
 	const userEmail = user?.result?.email
 	const [isDialogOpen, setIsDialogOpen] = useBoolean()
-	const [saveLoading, setSaveLoading] = useBoolean()
-	const [likeLoading, setLikeLoading] = useBoolean()
 	const isPrivate = privacy === 'private'
 	const isPostCreator = checkIsPostCreator(user, creator)
 	const isAdmin = checkIsAdmin(userEmail)
@@ -86,38 +85,30 @@ export const Post = ({
 	const userLogged = user?.result
 	const createdAtDate = isValid(new Date(createdAt)) ? new Date(createdAt) : new Date()
 	const updatedAtDate = isValid(new Date(updatedAt)) ? new Date(updatedAt) : null
+	const {
+		mutateAsync: likePost,
+		isLoading: likeLoading,
+		error: likeError,
+	} = useLikePost()
+	const {
+		mutateAsync: savePost,
+		isLoading: saveLoading,
+		error: saveError,
+	} = useSavePost()
 
 	const handleLike = async () => {
 		try {
-			setLikeLoading.on()
 			await likePost(_id)
-			setLikeLoading.off()
 		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to like post. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
-			console.error(err)
+			console.error(err, likeError)
 		}
 	}
 
 	const handleSave = async () => {
 		try {
-			setSaveLoading.on()
 			await savePost(_id)
-			setSaveLoading.off()
 		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to save post. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
-			console.error(err)
+			console.error(err, saveError)
 		}
 	}
 
