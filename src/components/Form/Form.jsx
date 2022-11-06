@@ -126,14 +126,10 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 					navigate
 				)
 			} else {
-				updatePost(
-					currentId,
-					{
-						...postData,
-						name: user?.result?.name,
-					},
-					navigate
-				)
+				updatePost(currentId, {
+					...postData,
+					name: user?.result?.name,
+				})
 			}
 			handleClear()
 			onClose()

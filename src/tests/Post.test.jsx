@@ -37,7 +37,7 @@ describe('Post', () => {
 		onOpen = jest.fn()
 
 		render(<Post post={post} onOpen={onOpen} />)
-		const title = screen.getByRole('heading', { name: /test title 1/i })
+		const title = screen.getByRole('button', { name: /test title 1/i })
 		const name = screen.getByRole('link', { name: /test name 1/i })
 		const message = screen.getByText(/test message 1/i)
 		const commentsButton = screen.getByText(/2 comments/i)
