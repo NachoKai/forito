@@ -12,13 +12,7 @@ import { themeConfig } from './theme'
 const rootElement = document.getElementById('root')
 const root = createRoot(rootElement)
 
-const queryClient = new QueryClient({
-	defaultOptions: {
-		queries: {
-			refetchOnWindowFocus: false,
-		},
-	},
-})
+const queryClient = new QueryClient()
 
 root.render(
 	<StrictMode>
