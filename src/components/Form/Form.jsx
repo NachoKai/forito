@@ -126,11 +126,14 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 					navigate
 				)
 			} else {
-				updatePost(currentId, {
-					...postData,
-					name: user?.result?.name,
-				})
-				navigate(0)
+				updatePost(
+					currentId,
+					{
+						...postData,
+						name: user?.result?.name,
+					},
+					navigate
+				)
 			}
 			handleClear()
 			onClose()
@@ -174,6 +177,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 	}
 
 	useEffect(() => {
+		if (!post) return
 		if (post) {
 			setImages(post?.selectedFile?.url ? [{ data_url: post?.selectedFile?.url }] : [])
 			setPrivacy(post?.privacy)

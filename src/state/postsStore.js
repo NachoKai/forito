@@ -123,7 +123,7 @@ const createPostsStore = () =>
 			}
 		},
 
-		updatePost: async (id, post) => {
+		updatePost: async (id, post, navigate) => {
 			set({ loading: true }, false, 'update-post')
 			try {
 				const { data } = await updatePost(id, post)
@@ -134,6 +134,7 @@ const createPostsStore = () =>
 					'update-post'
 				)
 				showSuccess('Post successfully updated.')
+				navigate(0)
 			} catch (err) {
 				showError(
 					<>
