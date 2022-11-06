@@ -48,8 +48,6 @@ export const useAllPosts = () => {
 
 	return {
 		...allPostsQuery,
-		allPosts: allPostsQuery?.data?.data?.data || [],
-		count: allPostsQuery?.data?.data?.count || 0,
 		refetch: async () => {
 			await allPostsQuery.refetch()
 		},
@@ -96,13 +94,6 @@ export const usePosts = page => {
 
 				return posts
 			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to get posts. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
 				handleErrorResponse(err, { source: 'posts' })
 			}
 		},
@@ -114,10 +105,6 @@ export const usePosts = page => {
 
 	return {
 		...postsQuery,
-		posts: postsQuery?.data?.data?.data || [],
-		count: postsQuery?.data?.data?.count || 0,
-		currentPage: postsQuery?.data?.data?.currentPage || 0,
-		numberOfPages: postsQuery?.data?.data?.numberOfPages || 0,
 		refetch: async () => {
 			await postsQuery.refetch()
 		},
@@ -146,7 +133,6 @@ export const usePostsBySearch = searchQuery => {
 
 	return {
 		...postsBySearchQuery,
-		postsBySearch: postsBySearchQuery?.data?.data?.data || [],
 		refetch: async () => {
 			await postsBySearchQuery.refetch()
 		},
@@ -164,15 +150,7 @@ export const usePostsByCreator = id => {
 
 				return posts
 			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>
-							Something went wrong when trying to get posts by creator. {err.message}
-						</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
+				showError('Something went wrong when trying to get posts. Please try again.')
 				handleErrorResponse(err, { source: 'posts-by-creator' })
 			}
 		},
@@ -184,7 +162,6 @@ export const usePostsByCreator = id => {
 
 	return {
 		...postsByCreatorQuery,
-		postsByCreator: postsByCreatorQuery?.data?.data?.data || [],
 		refetch: async () => {
 			await postsByCreatorQuery.refetch()
 		},
@@ -306,13 +283,6 @@ export const useLikePost = () => {
 
 				return data
 			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to like post. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
 				handleErrorResponse(err, { source: 'like-post' })
 			}
 		},
@@ -335,13 +305,6 @@ export const useSavePost = () => {
 
 				return data
 			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to save post. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
 				handleErrorResponse(err, { source: 'save-post' })
 			}
 		},

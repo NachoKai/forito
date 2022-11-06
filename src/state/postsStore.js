@@ -5,10 +5,15 @@ import {
 	deleteComment,
 	deletePost,
 	fetchPost,
+	fetchPosts,
+	fetchPostsByCreator,
 	fetchPostsBySearch,
 	fetchSavedPosts,
+	likePost,
+	savePost,
 	updatePost,
 } from '../clients/postsClients'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { showError } from '../utils/showError'
 import { showSuccess } from '../utils/showSuccess'
 import { create } from './createStore'
@@ -46,6 +51,29 @@ const createPostsStore = () =>
 				console.error(err)
 			} finally {
 				set({ loading: false }, false, 'get-post')
+			}
+		},
+
+		getPosts: async page => {
+			get().cleanUp()
+			set({ loading: true }, false, 'get-posts')
+			try {
+				const {
+					data: { data, currentPage, numberOfPages, count },
+				} = await fetchPosts(page)
+
+				set({ posts: data, currentPage, numberOfPages, count }, false, 'get-posts')
+			} catch (err) {
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to get posts. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
+				console.error(err)
+			} finally {
+				set({ loading: false }, false, 'get-posts')
 			}
 		},
 
@@ -144,6 +172,52 @@ const createPostsStore = () =>
 			}
 		},
 
+		likePost: async id => {
+			const user = getUserLocalStorage()
+
+			try {
+				const { data } = await likePost(id, user?.token)
+
+				set(
+					{ posts: get().posts?.map(post => (post?._id === data._id ? data : post)) },
+					false,
+					'like-post'
+				)
+			} catch (err) {
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to like post. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
+				console.error(err)
+			}
+		},
+
+		savePost: async saves => {
+			const user = getUserLocalStorage()
+
+			try {
+				const { data } = await savePost(saves, user?.token)
+
+				set(
+					{ posts: get().posts?.map(post => (post?._id === data._id ? data : post)) },
+					false,
+					'save-post'
+				)
+			} catch (err) {
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to save post. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
+				console.error(err)
+			}
+		},
+
 		addComment: async (comment, id) => {
 			try {
 				const { data } = await addComment(comment, id)
@@ -185,6 +259,31 @@ const createPostsStore = () =>
 					</>
 				)
 				console.error(err)
+			}
+		},
+
+		getPostsByCreator: async id => {
+			get().cleanUp()
+			set({ loading: true }, false, 'get-posts-by-creator')
+			try {
+				const {
+					data: { data },
+				} = await fetchPostsByCreator(id)
+
+				set({ posts: data }, false, 'get-posts-by-creator')
+			} catch (err) {
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>
+							Something went wrong when trying to get posts by creator. {err.message}
+						</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
+				console.error(err)
+			} finally {
+				set({ loading: false }, false, 'get-posts-by-creator')
 			}
 		},
 

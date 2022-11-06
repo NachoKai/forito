@@ -1,6 +1,5 @@
 import { Text } from '@chakra-ui/react'
-
-import { login, signup } from '../clients/userClients'
+import { fetchUser, login, signup } from '../clients/userClients'
 import { showError } from '../utils/showError'
 import { create } from './createStore'
 
@@ -71,6 +70,23 @@ const createAuthStore = () =>
 				console.error(err)
 			} finally {
 				set({ loading: false }, false, 'signup')
+			}
+		},
+
+		getUser: async id => {
+			try {
+				const { data } = await fetchUser(id)
+
+				set({ user: data }, false, 'getUser')
+			} catch (err) {
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>Something went wrong when trying to get user. {err.message}</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
+				console.error(err)
 			}
 		},
 
