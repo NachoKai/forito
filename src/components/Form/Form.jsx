@@ -19,6 +19,7 @@ import { showError } from '../../utils/showError'
 import { FormBody } from './FormBody'
 import { FormFooter } from './FormFooter'
 import { FormHeader } from './FormHeader'
+import { usePrivacy } from '../../hooks/usePrivacy'
 
 const initialState = {
 	title: '',
@@ -50,23 +51,18 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 		![...new Set(postData.tags)].every(tag => regEx.test(tag))
 	const areValidTags = ![...new Set(postData?.tags)].every(tag => regEx.test(tag))
 	const post = currentId ? posts?.find(message => message._id === currentId) : null
-	const [privacy, setPrivacy] = useState(post?.privacy)
+	const { privacy, setPrivacy, handlePrivacy } = usePrivacy(postData, setPostData, post)
 	const { onImageUpload, handleRemoveImage, images, setImages } = useImage(
 		postData,
 		setPostData
 	)
-
-	const handlePrivacy = privacy => {
-		setPostData({ ...postData, privacy })
-		setPrivacy(privacy)
-	}
 
 	const handleClear = useCallback(() => {
 		setCurrentId(null)
 		setImages([])
 		setPrivacy('public')
 		setPostData(initialState)
-	}, [setCurrentId, setImages])
+	}, [setCurrentId, setImages, setPrivacy])
 
 	const handleSubmit = async () => {
 		try {
@@ -131,7 +127,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 		setImages(post?.selectedFile?.url ? [{ data_url: post?.selectedFile?.url }] : [])
 		setPrivacy(post?.privacy)
 		setPostData(post)
-	}, [post, setImages])
+	}, [post, setImages, setPrivacy])
 
 	if (!user?.result?.name) return null
 

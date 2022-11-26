@@ -33,7 +33,7 @@ export const App = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const { setCurrentId } = usePostsStore()
 
-	const handleOnclose = async () => {
+	const handleOnClose = async () => {
 		await setCurrentId(null)
 		onClose()
 	}
@@ -54,7 +54,7 @@ export const App = () => {
 		<BrowserRouter>
 			<LoadingScreen />
 			<ScrollToTop />
-			<Navbar isOpen={isOpen} onClose={handleOnclose} onOpen={onOpen} />
+			<Navbar isOpen={isOpen} onClose={handleOnClose} onOpen={onOpen} />
 			<Stack minH='100vh'>
 				<Routes>
 					<Route element={<Navigate replace to='posts' />} path='/' />
