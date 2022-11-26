@@ -34,6 +34,8 @@ import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
+import { useSave } from '../hooks/useSave'
+import { useLike } from '../hooks/useLike'
 import { usePostsStore } from '../state/postsStore'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
@@ -66,8 +68,7 @@ export const Post = ({
 	highlight,
 }) => {
 	const navigate = useNavigate()
-	const { likePost, savePost, setCurrentId, deletePost, posts, getPosts } =
-		usePostsStore()
+	const { setCurrentId, deletePost, posts, getPosts } = usePostsStore()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
 	const hasUserLike = likes?.includes(userId)
@@ -75,8 +76,6 @@ export const Post = ({
 	const location = useLocation()
 	const userEmail = user?.result?.email
 	const [isDialogOpen, setIsDialogOpen] = useBoolean()
-	const [saveLoading, setSaveLoading] = useBoolean()
-	const [likeLoading, setLikeLoading] = useBoolean()
 	const isPrivate = privacy === 'private'
 	const isPostCreator = checkIsPostCreator(user, creator)
 	const isAdmin = checkIsAdmin(userEmail)
@@ -87,40 +86,8 @@ export const Post = ({
 	const userLogged = user?.result
 	const createdAtDate = isValid(new Date(createdAt)) ? new Date(createdAt) : new Date()
 	const updatedAtDate = isValid(new Date(updatedAt)) ? new Date(updatedAt) : null
-
-	const handleLike = async () => {
-		try {
-			setLikeLoading.on()
-			await likePost(_id)
-			setLikeLoading.off()
-		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to like post. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
-			console.error(err)
-		}
-	}
-
-	const handleSave = async () => {
-		try {
-			setSaveLoading.on()
-			await savePost(_id)
-			setSaveLoading.off()
-		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to save post. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
-			console.error(err)
-		}
-	}
+	const { handleLike, likeLoading } = useLike(_id)
+	const { handleSave, saveLoading } = useSave(_id)
 
 	const openPost = () => navigate(`/posts/${_id}`)
 
