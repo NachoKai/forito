@@ -31,6 +31,7 @@ import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { RecommendedPost } from './RecommendedPost'
 
 const DATE_FORMAT = 'dd MMM yyyy • hh:mmaaa'
+const BASE_URL = 'https://forito.vercel.app/posts'
 
 const PostDetails = ({ user }) => {
 	const { scrollYProgress } = useScroll()
@@ -48,7 +49,6 @@ const PostDetails = ({ user }) => {
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
 	const progressBarColor = getColorTheme()
-	const baseURL = 'https://forito.vercel.app/posts'
 	const createdAtDate = isValid(new Date(post?.createdAt))
 		? new Date(post.createdAt)
 		: new Date()
@@ -57,7 +57,7 @@ const PostDetails = ({ user }) => {
 		: null
 
 	const shareOnTwitter = () => {
-		const url = `${baseURL}/${id}`
+		const url = `${BASE_URL}/${id}`
 
 		window.open(
 			`https://twitter.com/intent/tweet?text=${url}`,
