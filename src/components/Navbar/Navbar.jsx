@@ -16,40 +16,21 @@ import {
 	useBoolean,
 	useColorMode,
 } from '@chakra-ui/react'
-import decode from 'jwt-decode'
 import PropTypes from 'prop-types'
-import { useCallback, useEffect, useState } from 'react'
 import { FaMoon, FaSun } from 'react-icons/fa'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
 
-import { useAuthStore } from '../../state/authStore'
+import { useUser } from '../../hooks/useUser'
 import { CreateGradColor } from '../../theme'
-import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
 import { Form } from '../Form/Form'
 import { ColorPicker } from './ColorPicker'
 import { SearchNavbar } from './SearchNavbar'
 
 const Navbar = ({ isOpen, onOpen, onClose }) => {
-	const navigate = useNavigate()
-	const location = useLocation()
-	const { logout } = useAuthStore()
-	const [user, setUser] = useState(() => getUserLocalStorage())
+	const { user, handleLogout } = useUser()
 	const userId = user?.result?.googleId || user?.result?._id
 	const { colorMode, toggleColorMode } = useColorMode()
 	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
-
-	const handleLogout = useCallback(async () => {
-		setUser(null)
-		await logout()
-		navigate(0)
-	}, [logout, navigate])
-
-	useEffect(() => {
-		const token = user?.token
-
-		if (token && decode(token).exp * 1000 < new Date().getTime()) handleLogout()
-		setUser(getUserLocalStorage())
-	}, [handleLogout, location, user?.token])
 
 	return (
 		<Flex
