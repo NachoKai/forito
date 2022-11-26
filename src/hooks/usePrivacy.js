@@ -1,7 +1,7 @@
 import { useState } from 'react'
 
-export const usePrivacy = (postData, setPostData, post) => {
-	const [privacy, setPrivacy] = useState(post?.privacy)
+export const usePrivacy = (postData, setPostData) => {
+	const [privacy, setPrivacy] = useState(postData?.privacy)
 
 	const handlePrivacy = privacy => {
 		setPostData({ ...postData, privacy })
