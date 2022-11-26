@@ -14,10 +14,11 @@ import styled from 'styled-components'
 import { usePostsStore } from '../state/postsStore'
 import { getThemeColor } from '../utils/getThemeColor'
 
+const POSTS_LIMIT = 6
+
 export const Paginate = () => {
 	const navigate = useNavigate()
 	const { count, numberOfPages, setCurrentPage, currentPage } = usePostsStore()
-	const POSTS_LIMIT = 6
 
 	const { pages } = usePagination({
 		total: count,

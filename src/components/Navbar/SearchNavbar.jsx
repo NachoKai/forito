@@ -7,12 +7,13 @@ import { usePostsStore } from '../../state/postsStore'
 import { showError } from '../../utils/showError'
 import { FormInput } from '../common/FormInput'
 
+const ENTER_KEYCODE = 13
+
 export const SearchNavbar = () => {
 	const navigate = useNavigate()
 	const [searchValue, setSearchValue] = useState('')
 	const [searchTags, setSearchTags] = useState([])
 	const { getPostsBySearch } = usePostsStore()
-	const ENTER_KEYCODE = 13
 
 	const searchPost = useCallback(async () => {
 		try {
