@@ -68,7 +68,7 @@ export const App = () => {
 						path='saved/:id'
 					/>
 					<Route
-						element={!userEmail ? <Auth /> : <Navigate replace to='posts' />}
+						element={userEmail ? <Navigate replace to='posts' /> : <Auth />}
 						path='auth'
 					/>
 					<Route element={<About />} path='about' />
