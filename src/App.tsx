@@ -4,8 +4,9 @@ import { FaChevronUp } from 'react-icons/fa'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
-import { UserI } from './types'
 
+import { usePostsStore } from './state/postsStore'
+import { UserI } from './types'
 import { getUserLocalStorage } from './utils/getUserLocalStorage'
 
 const ScrollToTop = loadable(() => import('./components/common/ScrollToTop'))
@@ -30,6 +31,12 @@ export const App = () => {
 	const user: UserI = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const { isOpen, onOpen, onClose } = useDisclosure()
+	const { setCurrentId } = usePostsStore()
+
+	const handleOnclose = async () => {
+		await setCurrentId(null)
+		onClose()
+	}
 
 	const checkScrollTop = () => {
 		if (!showScroll && window.scrollY > 400) {
@@ -47,7 +54,7 @@ export const App = () => {
 		<BrowserRouter>
 			<LoadingScreen />
 			<ScrollToTop />
-			<Navbar isOpen={isOpen} onClose={onClose} onOpen={onOpen} />
+			<Navbar isOpen={isOpen} onClose={handleOnclose} onOpen={onOpen} />
 			<Stack minH='100vh'>
 				<Routes>
 					<Route element={<Navigate replace to='posts' />} path='/' />
@@ -61,7 +68,7 @@ export const App = () => {
 						path='saved/:id'
 					/>
 					<Route
-						element={!userEmail ? <Auth /> : <Navigate replace to='posts' />}
+						element={userEmail ? <Navigate replace to='posts' /> : <Auth />}
 						path='auth'
 					/>
 					<Route element={<About />} path='about' />

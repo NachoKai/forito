@@ -9,9 +9,9 @@ import {
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
 
 import { firebaseApp } from '../../firebaseApp'
+import { useImage } from '../../hooks/useImage'
 import { usePostsStore } from '../../state/postsStore'
 import { checkEmpty } from '../../utils/checkEmpty'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
@@ -29,59 +29,32 @@ const initialState = {
 	alt: '',
 }
 
+const regEx = /^[a-zA-Z0-9_.-]*$/
+
 export const Form = ({ isOpen, onOpen, onClose }) => {
 	const navigate = useNavigate()
-	const { currentId, setCurrentId, createPost, updatePost, showLoading, hideLoading } =
-		usePostsStore()
+	const {
+		posts,
+		currentId,
+		setCurrentId,
+		createPost,
+		updatePost,
+		showLoading,
+		hideLoading,
+	} = usePostsStore()
 	const btnRef = useRef()
 	const user = getUserLocalStorage()
 	const [postData, setPostData] = useState(initialState)
-	const [images, setImages] = useState([])
-	const regEx = /^[a-zA-Z0-9_.-]*$/
 	const isSubmitDisabled =
 		!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) ||
 		![...new Set(postData.tags)].every(tag => regEx.test(tag))
 	const areValidTags = ![...new Set(postData?.tags)].every(tag => regEx.test(tag))
-	const post = usePostsStore(state =>
-		currentId ? state.posts?.find(message => message._id === currentId) : null
-	)
+	const post = currentId ? posts?.find(message => message._id === currentId) : null
 	const [privacy, setPrivacy] = useState(post?.privacy)
-
-	const onImageUpload = async imageList => {
-		try {
-			showLoading()
-			setImages(imageList)
-
-			const imageFile = imageList?.[0]?.file
-			const imageName = imageFile ? imageFile.name : ''
-			const storageRef = firebaseApp.storage().ref()
-			const imagePath = storageRef.child(imageFile?.name)
-
-			await imagePath.put(imageFile)
-			const imageURL = imagePath ? await imagePath.getDownloadURL() : ''
-
-			setPostData({
-				...postData,
-				selectedFile: {
-					url: imageURL,
-					name: imageName,
-					id: postData?.selectedFile?.id ? postData?.selectedFile?.id : uuid(),
-				},
-			})
-		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to upload image. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
-			console.error(err)
-			throw err
-		} finally {
-			hideLoading()
-		}
-	}
+	const { onImageUpload, handleRemoveImage, images, setImages } = useImage(
+		postData,
+		setPostData
+	)
 
 	const handlePrivacy = privacy => {
 		setPostData({ ...postData, privacy })
@@ -93,7 +66,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 		setImages([])
 		setPrivacy('public')
 		setPostData(initialState)
-	}, [setCurrentId])
+	}, [setCurrentId, setImages])
 
 	const handleSubmit = async () => {
 		try {
@@ -152,26 +125,13 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 		onOpen()
 	}
 
-	const handleRemoveImage = () => {
-		setPostData({
-			...postData,
-			selectedFile: {
-				url: null,
-				name: null,
-				id: null,
-			},
-		})
-		setImages([])
-	}
-
 	useEffect(() => {
 		if (!post) return
-		if (post) {
-			setImages(post?.selectedFile?.url ? [{ data_url: post?.selectedFile?.url }] : [])
-			setPrivacy(post?.privacy)
-			setPostData(post)
-		}
-	}, [post])
+
+		setImages(post?.selectedFile?.url ? [{ data_url: post?.selectedFile?.url }] : [])
+		setPrivacy(post?.privacy)
+		setPostData(post)
+	}, [post, setImages])
 
 	if (!user?.result?.name) return null
 
