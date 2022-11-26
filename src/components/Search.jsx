@@ -18,13 +18,15 @@ import { CreateGradColor } from '../theme'
 import { showError } from '../utils/showError'
 import { ChakraTagInput } from './common/ChakraTagInput'
 import { FormInput } from './common/FormInput'
+import { useTags } from '../hooks/useTags'
+
+const ENTER_KEYCODE = 13
 
 export const Search = () => {
 	const navigate = useNavigate()
 	const { getPostsBySearch } = usePostsStore()
 	const [searchValue, setSearchValue] = useState('')
-	const [searchTags, setSearchTags] = useState([])
-	const ENTER_KEYCODE = 13
+	const { searchTags, setSearchTags, handleAddTag, handleDeleteTag } = useTags()
 	const isInputEmpty = !searchValue?.trim()?.length && !searchTags?.length
 
 	const searchPost = useCallback(async () => {
@@ -44,7 +46,7 @@ export const Search = () => {
 				</>
 			)
 		}
-	}, [getPostsBySearch, navigate, searchTags, searchValue])
+	}, [getPostsBySearch, navigate, searchTags, searchValue, setSearchTags])
 
 	const handleKeyDown = e => {
 		const disabled = !searchValue?.trim()?.length && !searchTags?.length
@@ -53,11 +55,6 @@ export const Search = () => {
 			searchPost()
 		}
 	}
-
-	const handleAddTag = tag => setSearchTags([...searchTags, tag])
-
-	const handleDeleteTag = tagToDelete =>
-		setSearchTags(searchTags.filter(tag => tag !== tagToDelete))
 
 	const handleClear = () => {
 		setSearchValue('')
