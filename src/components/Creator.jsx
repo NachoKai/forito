@@ -75,9 +75,7 @@ const Creator = () => {
 
 			<StaggeredSlideFade spacing='3'>
 				{posts?.map(post => (
-					<Stack key={post._id}>
-						<Post post={post} />
-					</Stack>
+					<Post key={post._id} post={post} />
 				))}
 			</StaggeredSlideFade>
 		</StaggeredSlideFade>
