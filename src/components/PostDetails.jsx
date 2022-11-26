@@ -1,5 +1,4 @@
 import {
-	AspectRatio,
 	Badge,
 	Button,
 	Divider,
@@ -16,10 +15,10 @@ import { format, formatDistance, isValid } from 'date-fns'
 import { motion, useScroll } from 'framer-motion'
 import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
-import { useCallback, useEffect, useMemo } from 'react'
+import { useEffect, useMemo } from 'react'
 import { FaSearch, FaTwitter } from 'react-icons/fa'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
-import { Link, useNavigate, useParams } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import styled from 'styled-components'
 import { v4 as uuid } from 'uuid'
 
@@ -29,29 +28,27 @@ import { CreateGradColor, getColorTheme } from '../theme'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
+import { RecommendedPost } from './RecommendedPost'
 
 const DATE_FORMAT = 'dd MMM yyyy • hh:mmaaa'
+const BASE_URL = 'https://forito.vercel.app/posts'
 
 const PostDetails = ({ user }) => {
-	const navigate = useNavigate()
 	const { scrollYProgress } = useScroll()
 	const { id } = useParams()
 	const { post, posts, getPost, loading, getPostsBySearch } = usePostsStore()
 	const postComments = post?.comments
 	const postId = post?._id
-
 	const recommendedPosts = useMemo(
 		() => posts?.filter(({ _id }) => _id !== post?._id),
 		[post?._id, posts]
 	)
-
 	const userEmail = user?.result?.email
 	const isPrivate = post?.privacy === 'private'
 	const isPostCreator = checkIsPostCreator(user, post?.creator)
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
 	const progressBarColor = getColorTheme()
-	const baseURL = 'https://forito.vercel.app/posts'
 	const createdAtDate = isValid(new Date(post?.createdAt))
 		? new Date(post.createdAt)
 		: new Date()
@@ -59,15 +56,8 @@ const PostDetails = ({ user }) => {
 		? new Date(post.updatedAt)
 		: null
 
-	const openPost = useCallback(
-		_id => {
-			navigate(`/posts/${_id}`)
-		},
-		[navigate]
-	)
-
 	const shareOnTwitter = () => {
-		const url = `${baseURL}/${id}`
+		const url = `${BASE_URL}/${id}`
 
 		window.open(
 			`https://twitter.com/intent/tweet?text=${url}`,
@@ -262,65 +252,8 @@ const PostDetails = ({ user }) => {
 							spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 							tabIndex='-1'
 						>
-							{recommendedPosts?.map(({ title, name, message, selectedFile, _id }) => (
-								<Stack
-									key={_id}
-									as={Link}
-									bg='primary_100_900'
-									borderRadius='24px'
-									className=' container recommended-post'
-									color='primary_800_100'
-									cursor='pointer'
-									h='100%'
-									m='2'
-									maxW='320px'
-									minW='320px'
-									p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
-									spacing='2'
-									to={`/posts/${_id}`}
-									onClick={() => openPost(_id)}
-								>
-									<Heading
-										as='h2'
-										fontSize='lg'
-										fontWeight='bold'
-										noOfLines={[1, 1, 2, 2]}
-									>
-										{title}
-									</Heading>
-									<Text fontSize='sm'>
-										{name}{' '}
-										{formatDistance(
-											new Date(),
-											post?.createdAt ? new Date(post?.createdAt) : new Date()
-										) + ' ago'}
-									</Text>
-									<Stack spacing='4'>
-										<Text fontSize='md' noOfLines={[1, 2, 4, 5]}>
-											{message}
-										</Text>
-										{selectedFile?.url && (
-											<AspectRatio maxH='80vh' ratio={1} w='100%'>
-												<Image
-													alt={post?.title}
-													borderRadius='24px'
-													fallback={
-														<Skeleton
-															borderRadius='24px'
-															flexGrow='1'
-															objectFit='cover'
-															w='100%'
-														/>
-													}
-													flexGrow='1'
-													objectFit='cover'
-													src={selectedFile.url}
-													w='100%'
-												/>
-											</AspectRatio>
-										)}
-									</Stack>
-								</Stack>
+							{recommendedPosts?.map(post => (
+								<RecommendedPost key={post?._id} post={post} />
 							))}
 						</HStack>
 					</Stack>
