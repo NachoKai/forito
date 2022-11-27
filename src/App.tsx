@@ -23,7 +23,7 @@ const SavedPosts = loadable(() => import('./components/SavedPosts'))
 const Tags = loadable(() => import('./components/Tags'))
 const SearchView = loadable(() => import('./components/SearchView'))
 const TopPosts = loadable(() => import('./components/TopPosts'))
-const Settings = loadable(() => import('./components/Settings'))
+const Settings = loadable(() => import('./components/Settings/Settings'))
 const LoadingScreen = loadable(
 	() => import('./components/common/LoadingScreen/LoadingScreen')
 )
@@ -34,6 +34,7 @@ export const App = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const { setCurrentId } = usePostsStore()
 	const { checkScrollTop, scrollTop, showScroll } = useScroll()
+	const _id = user?.result?._id
 
 	const handleOnClose = async () => {
 		await setCurrentId(null)
@@ -55,7 +56,7 @@ export const App = () => {
 					<Route element={<SearchView />} path='search' />
 					<Route
 						element={userEmail ? <Settings /> : <Navigate replace={true} to='auth' />}
-						path='settings/:id'
+						path={`settings/${_id}`}
 					/>
 					<Route element={<Creator />} path='creator/:id' />
 					<Route element={<Tags />} path='tags/:name' />
