@@ -9,6 +9,7 @@ import {
 	PopoverTrigger,
 	SimpleGrid,
 } from '@chakra-ui/react'
+import {} from 'lodash/fp'
 import { useState } from 'react'
 
 const colors = [
@@ -26,6 +27,7 @@ const colors = [
 
 export const ColorPicker = () => {
 	const [color, setColor] = useState(localStorage.getItem('forito-theme') || 'blue.500')
+	const colorName = color?.split('.')[0]?.toUpperCase() || 'BLUE'
 
 	return (
 		<Popover variant='picker'>
@@ -48,10 +50,12 @@ export const ColorPicker = () => {
 					backgroundColor={color}
 					borderTopLeftRadius={5}
 					borderTopRightRadius={5}
-					color='white'
+					color={colorName === 'YELLOW' ? 'black' : 'white'}
 					h='100px'
 				>
-					<Center h='100%'>{color}</Center>
+					<Center fontWeight={600} h='100%'>
+						{colorName}
+					</Center>
 				</PopoverHeader>
 				<PopoverBody h='70px'>
 					<SimpleGrid columns={5} spacing={2}>

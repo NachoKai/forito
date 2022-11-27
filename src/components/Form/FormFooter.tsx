@@ -9,11 +9,11 @@ interface FormFooterProps {
 	isSubmitDisabled: boolean
 }
 
-export const FormFooter: React.FC<FormFooterProps> = ({
+export const FormFooter = ({
 	handleClear,
 	handleSubmit,
 	isSubmitDisabled,
-}) => {
+}: FormFooterProps) => {
 	return (
 		<DrawerFooter w='100%'>
 			<Stack spacing='4' w='100%'>

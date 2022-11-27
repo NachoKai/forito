@@ -12,7 +12,7 @@ import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 
-const Tags: React.FC = () => {
+const Tags = () => {
 	const { name } = useParams()
 	const { posts, loading, getPostsBySearch } = usePostsStore()
 	const user: UserI = getUserLocalStorage()

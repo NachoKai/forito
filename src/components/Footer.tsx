@@ -5,7 +5,7 @@ import styled from 'styled-components'
 
 const GITHUB_URL = 'https://github.com/NachoKai/forito'
 
-const Footer: React.FC = () => {
+const Footer = () => {
 	return (
 		<Stack
 			bg='primary_100_900'

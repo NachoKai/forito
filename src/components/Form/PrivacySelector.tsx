@@ -7,10 +7,7 @@ interface PrivacySelectorProps {
 	handlePrivacy: (privacy: string) => void
 }
 
-export const PrivacySelector: React.FC<PrivacySelectorProps> = ({
-	handlePrivacy,
-	privacy,
-}) => {
+export const PrivacySelector = ({ handlePrivacy, privacy }: PrivacySelectorProps) => {
 	return (
 		<RadioGroup
 			defaultValue='public'
