@@ -37,24 +37,24 @@ export const ChangeEmail = () => {
 					<ModalCloseButton />
 					<ModalBody pb={6}>
 						<FormControl>
-							<FormLabel>Email</FormLabel>
+							<FormLabel>New email</FormLabel>
 							<Input
 								ref={initialRef}
 								maxLength='35'
 								minLength='7'
-								name='email'
-								placeholder='Email'
+								name='new-email'
+								placeholder='New email'
 								type='email'
 							/>
 						</FormControl>
 
 						<FormControl mt={4}>
-							<FormLabel>Repeat email</FormLabel>
+							<FormLabel>Repeat new email</FormLabel>
 							<Input
 								maxLength='35'
 								minLength='7'
-								name='repeat-email'
-								placeholder='Repeat email'
+								name='repeat-new-email'
+								placeholder='Repeat new email'
 								type='email'
 							/>
 						</FormControl>
