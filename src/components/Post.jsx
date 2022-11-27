@@ -88,6 +88,7 @@ export const Post = ({
 	const updatedAtDate = isValid(new Date(updatedAt)) ? new Date(updatedAt) : null
 	const { handleLike, likeLoading } = useLike(_id)
 	const { handleSave, saveLoading } = useSave(_id)
+	const pathname = location?.pathname
 
 	const openPost = () => navigate(`/posts/${_id}`)
 
@@ -238,7 +239,11 @@ export const Post = ({
 
 							<Stack
 								direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }}
-								display={location?.pathname.includes('/posts') ? 'flex' : 'none'}
+								display={
+									pathname !== '/posts/top' && pathname.includes('/posts')
+										? 'flex'
+										: 'none'
+								}
 								spacing='2'
 							>
 								<HStack spacing='2'>

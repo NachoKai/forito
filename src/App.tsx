@@ -1,4 +1,4 @@
-import { Button, Stack, useBoolean, useDisclosure } from '@chakra-ui/react'
+import { Button, Stack, useDisclosure } from '@chakra-ui/react'
 import loadable from '@loadable/component'
 import { FaChevronUp } from 'react-icons/fa'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
@@ -8,6 +8,7 @@ import 'react-toastify/dist/ReactToastify.css'
 import { usePostsStore } from './state/postsStore'
 import { UserI } from './types'
 import { getUserLocalStorage } from './utils/getUserLocalStorage'
+import { useScroll } from './hooks/useScroll'
 
 const ScrollToTop = loadable(() => import('./components/common/ScrollToTop'))
 const About = loadable(() => import('./components/About'))
@@ -28,26 +29,16 @@ const LoadingScreen = loadable(
 )
 
 export const App = () => {
-	const [showScroll, setShowScroll] = useBoolean()
 	const user: UserI = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const { setCurrentId } = usePostsStore()
+	const { checkScrollTop, scrollTop, showScroll } = useScroll()
 
 	const handleOnClose = async () => {
 		await setCurrentId(null)
 		onClose()
 	}
-
-	const checkScrollTop = () => {
-		if (!showScroll && window.scrollY > 400) {
-			setShowScroll.on()
-		} else if (showScroll && window.scrollY <= 400) {
-			setShowScroll.off()
-		}
-	}
-
-	const scrollTop = () => window.scrollTo({ top: 0, behavior: 'smooth' })
 
 	window.addEventListener('scroll', checkScrollTop)
 
