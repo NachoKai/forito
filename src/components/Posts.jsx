@@ -1,7 +1,7 @@
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useMemo } from 'react'
-import { FaPencilAlt } from 'react-icons/fa'
+import { FaSearch } from 'react-icons/fa'
 
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme'
@@ -40,7 +40,7 @@ export const Posts = ({ onOpen, posts, highlight }) => {
 				{!havePosts && !loading ? (
 					<Stack align='center' direction='column' my='64px' spacing='4'>
 						<Text color='primary.400' fontSize='6xl'>
-							<FaPencilAlt />
+							<FaSearch />
 						</Text>
 						<Heading
 							as='h2'
