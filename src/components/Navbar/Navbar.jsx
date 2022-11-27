@@ -92,22 +92,27 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 								<PopoverContent className='container'>
 									<PopoverCloseButton />
 									<PopoverHeader>{user?.result?.name}</PopoverHeader>
-									<Link to={`/creator/${userId}`} onClick={close}>
-										<PopoverBody cursor='pointer' fontWeight='bold'>
-											My Posts
-										</PopoverBody>
-									</Link>
-									<Link to={`/saved/${userId}`} onClick={close}>
-										<PopoverBody cursor='pointer' fontWeight='bold'>
-											Saved Posts
-										</PopoverBody>
-									</Link>
 									<PopoverBody fontWeight='bold'>
 										<Flex justify='space-between'>
 											Theme color:
 											<ColorPicker />
 										</Flex>
 									</PopoverBody>
+									<Link to={`/creator/${userId}`} onClick={setIsDropdownOpen.off}>
+										<PopoverBody cursor='pointer' fontWeight='bold'>
+											My Posts
+										</PopoverBody>
+									</Link>
+									<Link to={`/saved/${userId}`} onClick={setIsDropdownOpen.off}>
+										<PopoverBody cursor='pointer' fontWeight='bold'>
+											Saved Posts
+										</PopoverBody>
+									</Link>
+									{/* <Link to={`/settings/${userId}`} onClick={setIsDropdownOpen.off}>
+										<PopoverBody cursor='pointer' fontWeight='bold'>
+											Settings
+										</PopoverBody>
+									</Link> */}
 									<Divider />
 									<PopoverBody cursor='pointer' fontWeight='bold' onClick={handleLogout}>
 										Logout

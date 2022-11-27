@@ -22,6 +22,7 @@ const SavedPosts = loadable(() => import('./components/SavedPosts'))
 const Tags = loadable(() => import('./components/Tags'))
 const SearchView = loadable(() => import('./components/SearchView'))
 const TopPosts = loadable(() => import('./components/TopPosts'))
+const Settings = loadable(() => import('./components/Settings'))
 const LoadingScreen = loadable(
 	() => import('./components/common/LoadingScreen/LoadingScreen')
 )
@@ -57,18 +58,22 @@ export const App = () => {
 			<Navbar isOpen={isOpen} onClose={handleOnClose} onOpen={onOpen} />
 			<Stack minH='100vh'>
 				<Routes>
-					<Route element={<Navigate replace to='posts' />} path='/' />
+					<Route element={<Navigate replace={true} to='posts' />} path='/' />
 					<Route element={<Home onOpen={onOpen} />} path='posts' />
 					<Route element={<PostDetails user={user} />} path='posts/:id' />
 					<Route element={<SearchView />} path='search' />
+					<Route
+						element={userEmail ? <Settings /> : <Navigate replace={true} to='auth' />}
+						path='settings/:id'
+					/>
 					<Route element={<Creator />} path='creator/:id' />
 					<Route element={<Tags />} path='tags/:name' />
 					<Route
-						element={userEmail ? <SavedPosts /> : <Navigate replace to='posts' />}
+						element={userEmail ? <SavedPosts /> : <Navigate replace={true} to='auth' />}
 						path='saved/:id'
 					/>
 					<Route
-						element={userEmail ? <Navigate replace to='posts' /> : <Auth />}
+						element={userEmail ? <Navigate replace={true} to='posts' /> : <Auth />}
 						path='auth'
 					/>
 					<Route element={<About />} path='about' />
