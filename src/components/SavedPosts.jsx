@@ -1,4 +1,4 @@
-import { Divider, Heading, Stack, Text } from '@chakra-ui/react'
+import { Heading, Stack, Text } from '@chakra-ui/react'
 import { useEffect, useMemo } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
@@ -81,8 +81,6 @@ const SavedPosts = () => {
 						: ''}
 				</Text>
 			</Stack>
-
-			<Divider />
 
 			<StaggeredSlideFade spacing='3'>
 				{posts?.map(post => (
