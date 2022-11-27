@@ -9,16 +9,15 @@ import {
 	Stack,
 	Text,
 } from '@chakra-ui/react'
-import PropTypes from 'prop-types'
 import { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { useTags } from '../hooks/useTags'
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme'
 import { showError } from '../utils/showError'
-import { ChakraTagInput } from './common/ChakraTagInput'
+import { ChipInput } from './common/ChipInput'
 import { FormInput } from './common/FormInput'
-import { useTags } from '../hooks/useTags'
 
 const ENTER_KEYCODE = 13
 
@@ -126,17 +125,4 @@ export const Search = () => {
 			</AccordionItem>
 		</Accordion>
 	)
-}
-
-const ChipInput = ({ tags, setTags }) => {
-	const handleTagsChange = (event, tags) => {
-		setTags([...new Set(tags)])
-	}
-
-	return <ChakraTagInput tags={tags} w='100%' onTagsChange={handleTagsChange} />
-}
-
-ChipInput.propTypes = {
-	tags: PropTypes.arrayOf(PropTypes.string),
-	setTags: PropTypes.func,
 }

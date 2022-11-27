@@ -21,7 +21,7 @@ const SearchView = () => {
 			>
 				<Stack align='center' spacing='8' w='100%'>
 					<Search />
-					<Posts highlight={searchQuery} posts={posts} />
+					<Posts highlight={searchQuery} posts={searchQuery ? posts : []} />
 				</Stack>
 			</Stack>
 		</Stack>
