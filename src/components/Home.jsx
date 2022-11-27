@@ -9,10 +9,9 @@ import { Posts } from './Posts'
 
 const Home = ({ onOpen }) => {
 	const locationQuery = useLocationQuery()
-	const { posts } = usePostsStore()
+	const { posts, getPosts } = usePostsStore()
 	const page = Number(locationQuery.get('page') || 1)
 	const searchQuery = locationQuery.get('searchQuery')
-	const { getPosts } = usePostsStore()
 
 	useEffect(() => {
 		getPosts(page)

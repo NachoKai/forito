@@ -1,4 +1,4 @@
-import { Divider, Flex, Heading, Stack, Text } from '@chakra-ui/react'
+import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { useEffect, useMemo } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
@@ -63,8 +63,6 @@ const Tags = () => {
 				<Text fontSize='2xl'>#{name?.toUpperCase()}</Text>
 				<Text fontSize='md'>{!loading && posts?.length ? title : ''}</Text>
 			</Stack>
-
-			<Divider />
 
 			<StaggeredSlideFade spacing='3'>
 				{posts?.map((post: PostI) => (
