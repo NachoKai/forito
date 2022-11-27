@@ -13,6 +13,7 @@ const Auth = () => {
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
 	const [isSignup, setIsSignup] = useBoolean()
 	const [showPassword, setShowPassword] = useBoolean()
+	const [showRepeatPassword, setShowRepeatPassword] = useBoolean()
 	const [loading, setLoading] = useBoolean()
 
 	const onSuccess = async res => {
@@ -95,7 +96,7 @@ const Auth = () => {
 				bg='primary_100_600'
 				borderRadius='24px'
 				className='container'
-				maxW='450px'
+				maxW='500px'
 				minW='320px'
 				p={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 				spacing='4'
@@ -105,9 +106,9 @@ const Auth = () => {
 					{isSignup ? 'Sign Up' : 'Login'}
 				</Text>
 				<form onSubmit={handleSubmit}>
-					<Stack spacing='2'>
+					<Stack spacing='4'>
 						{Boolean(isSignup) && (
-							<HStack spacing='2'>
+							<HStack spacing='4'>
 								<FormInput
 									autoFocus
 									isRequired
@@ -157,8 +158,15 @@ const Auth = () => {
 								label='Repeat Password'
 								maxLength='35'
 								name='confirmPassword'
+								rightIcon={
+									showRepeatPassword ? (
+										<FaEyeSlash onClick={setShowRepeatPassword.toggle} />
+									) : (
+										<FaEye onClick={setShowRepeatPassword.toggle} />
+									)
+								}
 								tooltip='Required'
-								type='password'
+								type={showRepeatPassword ? 'text' : 'password'}
 							/>
 						)}
 						<Button

@@ -22,6 +22,7 @@ const SavedPosts = loadable(() => import('./components/SavedPosts'))
 const Tags = loadable(() => import('./components/Tags'))
 const SearchView = loadable(() => import('./components/SearchView'))
 const TopPosts = loadable(() => import('./components/TopPosts'))
+const Settings = loadable(() => import('./components/Settings'))
 const LoadingScreen = loadable(
 	() => import('./components/common/LoadingScreen/LoadingScreen')
 )
@@ -61,6 +62,7 @@ export const App = () => {
 					<Route element={<Home onOpen={onOpen} />} path='posts' />
 					<Route element={<PostDetails user={user} />} path='posts/:id' />
 					<Route element={<SearchView />} path='search' />
+					<Route element={<Settings />} path='settings/:id' />
 					<Route element={<Creator />} path='creator/:id' />
 					<Route element={<Tags />} path='tags/:name' />
 					<Route
