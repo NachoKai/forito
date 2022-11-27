@@ -108,11 +108,11 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 											Saved Posts
 										</PopoverBody>
 									</Link>
-									{/* <Link to={`/settings/${userId}`} onClick={setIsDropdownOpen.off}>
+									<Link to={`/settings/${userId}`} onClick={setIsDropdownOpen.off}>
 										<PopoverBody cursor='pointer' fontWeight='bold'>
 											Settings
 										</PopoverBody>
-									</Link> */}
+									</Link>
 									<Divider />
 									<PopoverBody cursor='pointer' fontWeight='bold' onClick={handleLogout}>
 										Logout

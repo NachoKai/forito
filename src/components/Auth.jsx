@@ -115,6 +115,7 @@ const Auth = () => {
 									dataCy='auth-first-name'
 									label='First Name'
 									maxLength='25'
+									minLength='2'
 									name='firstName'
 									tooltip='Required'
 								/>
@@ -131,6 +132,7 @@ const Auth = () => {
 							dataCy='auth-email'
 							label='Email'
 							maxLength='35'
+							minLength='7'
 							name='email'
 							tooltip='Required'
 							type='email'
@@ -138,8 +140,10 @@ const Auth = () => {
 						<FormInput
 							isRequired
 							dataCy='auth-password'
+							errorBorderColor='red.300'
 							label='Password'
 							maxLength='35'
+							minLength='6'
 							name='password'
 							rightIcon={
 								showPassword ? (
@@ -155,8 +159,10 @@ const Auth = () => {
 							<FormInput
 								isRequired
 								dataCy='auth-confirm-password'
+								errorBorderColor='red.300'
 								label='Repeat Password'
 								maxLength='35'
+								minLength='6'
 								name='confirmPassword'
 								rightIcon={
 									showRepeatPassword ? (
