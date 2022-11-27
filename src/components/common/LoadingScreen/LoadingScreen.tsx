@@ -5,7 +5,7 @@ import { usePostsStore } from '../../../state/postsStore'
 import { getThemeColor } from '../../../utils/getThemeColor'
 import { LoadingContext } from './LoadingContext'
 
-const LoadingScreen: React.FC = () => {
+const LoadingScreen = () => {
 	const { isLoading } = useContext(LoadingContext)
 	const { colorMode } = useColorMode()
 	const { loading } = usePostsStore()

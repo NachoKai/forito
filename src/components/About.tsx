@@ -10,7 +10,7 @@ import { FaGithub, FaHandSpock } from 'react-icons/fa'
 
 import { CreateGradColor } from '../theme'
 
-const About: React.FC = () => (
+const About = () => (
 	<Stack
 		align='center'
 		flexGrow='1'

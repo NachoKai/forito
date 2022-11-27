@@ -7,7 +7,7 @@ interface LikesProps {
 	hasUserLike: boolean
 }
 
-export const Likes: React.FC<LikesProps> = ({ likes, hasUserLike }) => {
+export const Likes = ({ likes, hasUserLike }: LikesProps) => {
 	const likesQuantity = likes?.length
 
 	if (likesQuantity > 0) {

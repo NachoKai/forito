@@ -7,7 +7,7 @@ interface FormHeaderProps {
 	currentId: string
 }
 
-export const FormHeader: React.FC<FormHeaderProps> = ({ currentId }) => {
+export const FormHeader = ({ currentId }: FormHeaderProps) => {
 	return (
 		<DrawerHeader>
 			<Text
