@@ -11,8 +11,6 @@ const Settings = () => {
 
 	const handleSubmit = () => {
 		setLoading.on()
-
-		return
 	}
 
 	return (
