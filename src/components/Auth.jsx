@@ -10,7 +10,7 @@ import { FormInput } from './common/FormInput'
 const Auth = () => {
 	const { login, signup, googleLogin } = useAuthStore()
 	const navigate = useNavigate()
-	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
+	const clientId = import.meta.env.VITE_GOOGLE_CLIENT_ID || null
 	const [isSignup, setIsSignup] = useBoolean()
 	const [showPassword, setShowPassword] = useBoolean()
 	const [showRepeatPassword, setShowRepeatPassword] = useBoolean()

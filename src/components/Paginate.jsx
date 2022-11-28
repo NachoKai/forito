@@ -51,20 +51,43 @@ export const Paginate = () => {
 					<PaginationContainer>
 						<PaginationPageGroup>
 							{pages.map(page => (
-								<PaginationPage
+								<Stack
 									key={page}
 									_current={{
 										bg: () => `${getThemeColor()}.700`,
 										color: () => `${getThemeColor()}.100`,
 									}}
+									align='center'
 									bg='primary_100_900'
+									borderRadius={8}
 									className='pagination'
 									color='primary_900_100'
+									cursor='pointer'
 									h={8}
-									page={page}
+									justify='center'
 									w={8}
-									onClick={() => navigate(`/posts?page=${page}`)}
-								/>
+								>
+									<PaginationPage
+										key={page}
+										_current={{
+											bg: () => `${getThemeColor()}.700`,
+											color: () => `${getThemeColor()}.100`,
+										}}
+										align='center'
+										borderRadius={8}
+										cursor='pointer'
+										h={8}
+										justify='center'
+										page={page}
+										style={{
+											width: '100%',
+											height: '100%',
+											fontWeight: 600,
+										}}
+										w={8}
+										onClick={() => navigate(`/posts?page=${page}`)}
+									/>
+								</Stack>
 							))}
 						</PaginationPageGroup>
 					</PaginationContainer>

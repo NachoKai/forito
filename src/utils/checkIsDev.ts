@@ -1,1 +1,1 @@
-export const isDev: boolean = process.env.NODE_ENV !== 'production'
+export const isDev: boolean = import.meta.env.NODE_ENV !== 'production'

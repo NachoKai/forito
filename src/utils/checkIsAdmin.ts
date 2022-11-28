@@ -1,2 +1,2 @@
 export const checkIsAdmin = (userEmail: string): boolean =>
-	userEmail ? process.env.REACT_APP_ADMIN === userEmail : false
+	userEmail ? import.meta.env.VITE_ADMIN === userEmail : false
