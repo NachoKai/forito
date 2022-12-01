@@ -62,7 +62,6 @@ export const Search = () => {
 
 	return (
 		<Accordion
-			allowToggle
 			bg='primary_100_900'
 			borderRadius='24px'
 			className='container'
