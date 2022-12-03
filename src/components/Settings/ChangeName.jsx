@@ -39,6 +39,8 @@ export const ChangeName = () => {
 		} catch (err) {
 			console.error(err)
 		} finally {
+			setFirstName('')
+			setLastName('')
 			onClose()
 		}
 	}
