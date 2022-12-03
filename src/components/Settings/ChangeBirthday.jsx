@@ -39,6 +39,7 @@ export const ChangeBirthday = () => {
 		} catch (err) {
 			console.error(err)
 		} finally {
+			setBirthday('')
 			onClose()
 		}
 	}

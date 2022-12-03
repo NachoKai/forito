@@ -46,6 +46,7 @@ const Auth = () => {
 			</>
 		)
 		console.error('Google login was unsuccessful: ', res)
+		setLoading.off()
 	}
 
 	const handleSubmit = async e => {
@@ -81,6 +82,8 @@ const Auth = () => {
 			)
 			console.error(err)
 			throw err
+		} finally {
+			setLoading.off()
 		}
 	}
 

@@ -45,3 +45,12 @@ export const updateName = async (id: string, { firstName, lastName }) => {
 		throw err
 	}
 }
+
+export const updateEmail = async (id: string, email: string) => {
+	try {
+		return await api.patch(`/user/${id}/setEmail`, email)
+	} catch (err) {
+		console.error('Error updating user email', err)
+		throw err
+	}
+}

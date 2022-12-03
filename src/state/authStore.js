@@ -4,6 +4,7 @@ import {
 	login,
 	signup,
 	updateBirthday,
+	updateEmail,
 	updateName,
 } from '../clients/userClients'
 import { showError } from '../utils/showError'
@@ -160,6 +161,30 @@ const createAuthStore = () =>
 						<Text fontWeight='bold'>{err.name}</Text>
 						<Text>
 							Something went wrong when trying to update user name. {err.message}
+						</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
+				console.error(err)
+				throw err
+			}
+		},
+
+		updateUserEmail: async (id, email) => {
+			try {
+				const { data } = await updateEmail(id, { email })
+
+				set({ user: data }, false, 'updateUserEmail')
+				const profile = JSON.parse(localStorage.getItem('forito-profile'))
+
+				profile.result.email = email
+				localStorage.setItem('forito-profile', JSON.stringify({ ...profile }))
+			} catch (err) {
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>
+							Something went wrong when trying to update user email. {err.message}
 						</Text>
 						<Text>Please try again.</Text>
 					</>
