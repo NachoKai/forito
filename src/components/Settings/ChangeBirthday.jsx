@@ -12,12 +12,36 @@ import {
 	ModalOverlay,
 	useDisclosure,
 } from '@chakra-ui/react'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
+
+import { useAuthStore } from '../../state/authStore'
+import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
 
 export const ChangeBirthday = () => {
+	const navigate = useNavigate()
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const initialRef = useRef(null)
 	const finalRef = useRef(null)
+	const [birthday, setBirthday] = useState('')
+	const { updateUserBirthday } = useAuthStore()
+
+	const handleSubmit = async e => {
+		e.preventDefault()
+		e.stopPropagation()
+
+		try {
+			const user = getUserLocalStorage()
+			const userId = user?.result?.googleId || user?.result?._id
+
+			await updateUserBirthday(userId, birthday?.replace(/-/g, '/'))
+			navigate(0)
+		} catch (err) {
+			console.error(err)
+		} finally {
+			onClose()
+		}
+	}
 
 	return (
 		<>
@@ -46,12 +70,20 @@ export const ChangeBirthday = () => {
 								size='md'
 								tooltip='Required'
 								type='date'
+								value={birthday}
+								onChange={e => setBirthday(e.target.value)}
 							/>
 						</FormControl>
 					</ModalBody>
 
 					<ModalFooter>
-						<Button className='button' colorScheme='primary' mr={3}>
+						<Button
+							className='button'
+							colorScheme='primary'
+							disabled={!birthday}
+							mr={3}
+							onClick={handleSubmit}
+						>
 							Save
 						</Button>
 						<Button className='button' onClick={onClose}>

@@ -27,3 +27,21 @@ export const fetchUser = async (id: string) => {
 		throw err
 	}
 }
+
+export const updateBirthday = async (id: string, birthday: string) => {
+	try {
+		return await api.patch(`/user/${id}/setBirthday`, birthday)
+	} catch (err) {
+		console.error('Error updating user birthday', err)
+		throw err
+	}
+}
+
+export const updateName = async (id: string, { firstName, lastName }) => {
+	try {
+		return await api.patch(`/user/${id}/setName`, { firstName, lastName })
+	} catch (err) {
+		console.error('Error updating user name', err)
+		throw err
+	}
+}

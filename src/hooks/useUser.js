@@ -14,6 +14,7 @@ export const useUser = () => {
 	const handleLogout = useCallback(async () => {
 		setUser(null)
 		await logout()
+		navigate('/', { replace: true })
 		navigate(0)
 	}, [logout, navigate])
 

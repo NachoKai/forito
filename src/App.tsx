@@ -29,12 +29,12 @@ const LoadingScreen = loadable(
 )
 
 export const App = () => {
+	const { isOpen, onOpen, onClose } = useDisclosure()
+	const { checkScrollTop, scrollTop, showScroll } = useScroll()
+	const { setCurrentId } = usePostsStore()
 	const user: UserI = getUserLocalStorage()
 	const userEmail = user?.result?.email
-	const { isOpen, onOpen, onClose } = useDisclosure()
-	const { setCurrentId } = usePostsStore()
-	const { checkScrollTop, scrollTop, showScroll } = useScroll()
-	const _id = user?.result?._id
+	const userId = user?.result?.googleId || user?.result?._id
 
 	const handleOnClose = async () => {
 		await setCurrentId(null)
@@ -55,8 +55,10 @@ export const App = () => {
 					<Route element={<PostDetails user={user} />} path='posts/:id' />
 					<Route element={<SearchView />} path='search' />
 					<Route
-						element={userEmail ? <Settings /> : <Navigate replace={true} to='auth' />}
-						path={`settings/${_id}`}
+						element={
+							userEmail ? <Settings user={user} /> : <Navigate replace={true} to='auth' />
+						}
+						path={`settings/${userId}`}
 					/>
 					<Route element={<Creator />} path='creator/:id' />
 					<Route element={<Tags />} path='tags/:name' />

@@ -1,5 +1,11 @@
 import { Text } from '@chakra-ui/react'
-import { fetchUser, login, signup } from '../clients/userClients'
+import {
+	fetchUser,
+	login,
+	signup,
+	updateBirthday,
+	updateName,
+} from '../clients/userClients'
 import { showError } from '../utils/showError'
 import { create } from './createStore'
 
@@ -29,6 +35,7 @@ const createAuthStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			} finally {
 				set({ loading: false }, false, 'login')
 			}
@@ -48,6 +55,7 @@ const createAuthStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			}
 		},
 
@@ -67,6 +75,7 @@ const createAuthStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			} finally {
 				set({ loading: false }, false, 'signup')
 			}
@@ -86,6 +95,7 @@ const createAuthStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			}
 		},
 
@@ -105,8 +115,57 @@ const createAuthStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			} finally {
 				set({ loading: false }, false, 'googleLogin')
+			}
+		},
+
+		updateUserBirthday: async (id, birthday) => {
+			try {
+				const { data } = await updateBirthday(id, { birthday })
+
+				set({ user: data }, false, 'updateUserBirthday')
+				const profile = JSON.parse(localStorage.getItem('forito-profile'))
+
+				profile.result.birthday = birthday
+				localStorage.setItem('forito-profile', JSON.stringify({ ...profile }))
+			} catch (err) {
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>
+							Something went wrong when trying to update user birthday. {err.message}
+						</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
+				console.error(err)
+				throw err
+			}
+		},
+
+		updateUserName: async (id, firstName, lastName) => {
+			try {
+				const { data } = await updateName(id, { firstName, lastName })
+
+				set({ user: data }, false, 'updateUserName')
+				const profile = JSON.parse(localStorage.getItem('forito-profile'))
+
+				profile.result.name = lastName ? `${firstName} ${lastName}` : firstName
+				localStorage.setItem('forito-profile', JSON.stringify({ ...profile }))
+			} catch (err) {
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>
+							Something went wrong when trying to update user name. {err.message}
+						</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
+				console.error(err)
+				throw err
 			}
 		},
 	}))
