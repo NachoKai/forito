@@ -85,6 +85,10 @@ const semanticTokens = {
 			default: 'black',
 			_dark: 'white',
 		},
+		primary_500_200: {
+			default: 'primary.500',
+			_dark: 'primary.200',
+		},
 		primary_600_100: {
 			default: 'primary.600',
 			_dark: 'primary.100',
