@@ -27,7 +27,8 @@ export const ChangeEmail = () => {
 	const [email, setEmail] = useState('')
 	const [emailRepeat, setEmailRepeat] = useState('')
 	const { updateUserEmail } = useAuthStore()
-	const emailRegex = /^[a-zA-Z0-9.!#$%&’*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:.[a-zA-Z0-9-]+)*$/
+	const emailRegex =
+		/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
 	const handleSubmit = async e => {
 		if (email !== emailRepeat || !emailRegex.test(email)) return
