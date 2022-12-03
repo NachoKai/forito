@@ -13,13 +13,35 @@ import {
 	useDisclosure,
 } from '@chakra-ui/react'
 import { useRef, useState } from 'react'
+import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
+import { useAuthStore } from '../../state/authStore'
+import { useNavigate } from 'react-router-dom'
 
 export const ChangeName = () => {
+	const navigate = useNavigate()
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const initialRef = useRef(null)
 	const finalRef = useRef(null)
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
+	const { updateUserName } = useAuthStore()
+
+	const handleSubmit = async e => {
+		e.preventDefault()
+		e.stopPropagation()
+
+		try {
+			const user = getUserLocalStorage()
+			const userId = user?.result?.googleId || user?.result?._id
+
+			await updateUserName(userId, firstName, lastName)
+			navigate(0)
+		} catch (err) {
+			console.error(err)
+		} finally {
+			onClose()
+		}
+	}
 
 	return (
 		<>
@@ -48,7 +70,7 @@ export const ChangeName = () => {
 								name='firstName'
 								placeholder='First name'
 								tooltip='Required'
-								value={firstName}
+								value={firstName?.trim()}
 								onChange={e => setFirstName(e.target.value)}
 							/>
 						</FormControl>
@@ -60,14 +82,20 @@ export const ChangeName = () => {
 								minLength='2'
 								name='lastName'
 								placeholder='Last name'
-								value={lastName}
+								value={lastName?.trim()}
 								onChange={e => setLastName(e.target.value)}
 							/>
 						</FormControl>
 					</ModalBody>
 
 					<ModalFooter>
-						<Button className='button' colorScheme='primary' mr={3}>
+						<Button
+							className='button'
+							colorScheme='primary'
+							disabled={!firstName}
+							mr={3}
+							onClick={handleSubmit}
+						>
 							Save
 						</Button>
 						<Button className='button' onClick={onClose}>

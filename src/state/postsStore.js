@@ -48,6 +48,7 @@ const createPostsStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			} finally {
 				set({ loading: false }, false, 'get-post')
 			}
@@ -70,6 +71,7 @@ const createPostsStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			} finally {
 				set({ loading: false }, false, 'get-posts')
 			}
@@ -94,6 +96,7 @@ const createPostsStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			} finally {
 				set({ loading: false }, false, 'get-posts-by-search')
 			}
@@ -116,6 +119,7 @@ const createPostsStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			} finally {
 				set({ loading: false }, false, 'create-post')
 			}
@@ -141,6 +145,7 @@ const createPostsStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			} finally {
 				set({ loading: false }, false, 'update-post')
 			}
@@ -165,6 +170,7 @@ const createPostsStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			} finally {
 				set({ loading: false }, false, 'delete-post')
 			}
@@ -190,6 +196,7 @@ const createPostsStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			}
 		},
 
@@ -213,6 +220,7 @@ const createPostsStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			}
 		},
 
@@ -235,6 +243,7 @@ const createPostsStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			}
 		},
 
@@ -257,6 +266,7 @@ const createPostsStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			}
 		},
 
@@ -279,6 +289,7 @@ const createPostsStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			} finally {
 				set({ loading: false }, false, 'get-posts-by-creator')
 			}
@@ -303,6 +314,7 @@ const createPostsStore = () =>
 					</>
 				)
 				console.error(err)
+				throw err
 			} finally {
 				set({ loading: false }, false, 'get-saved-posts')
 			}

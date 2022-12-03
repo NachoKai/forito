@@ -1,20 +1,39 @@
-import { Stack, Text } from '@chakra-ui/react'
-import { useLocation } from 'react-router-dom'
+import { HStack, Stack, Text } from '@chakra-ui/react'
+import { format, isValid } from 'date-fns'
+import { useLocation, useNavigate } from 'react-router-dom'
+import PropTypes from 'prop-types'
 
-import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
 import { ChangeBirthday } from './ChangeBirthday'
 import { ChangeEmail } from './ChangeEmail'
 import { ChangeName } from './ChangeName'
 import { ChangePassword } from './ChangePassword'
+import { useEffect } from 'react'
 
-const Settings = () => {
+const DATE_FORMAT = 'dd/MM/yyyy'
+
+const Settings = ({ user }) => {
+	const navigate = useNavigate()
 	const location = useLocation()
 	const pathname = location.pathname
 	const selectedId = pathname.split('/')?.[2]
-	const user = getUserLocalStorage()
-	const _id = user?.result?._id
+	const userName = user?.result?.name
+	const userEmail = user?.result?.email
+	const userBirthday = isValid(new Date(user?.result?.birthday))
+		? new Date(user?.result?.birthday)
+		: null
+	const formattedBirthday = format(userBirthday, DATE_FORMAT)
+	const userGoogleId = user?.result?.googleId
+	const userId = user?.result?._id
 
-	if (selectedId !== _id) return null
+	useEffect(() => {
+		if (userGoogleId) {
+			if (selectedId !== userGoogleId) {
+				navigate(`/settings/${userGoogleId}`)
+			}
+		} else if (selectedId !== userId) {
+			navigate(`/settings/${userId}`)
+		}
+	}, [navigate, selectedId, userGoogleId, userId])
 
 	return (
 		<Stack
@@ -35,16 +54,43 @@ const Settings = () => {
 				w='100%'
 			>
 				<Text fontSize='xl' fontWeight='bold'>
-					Settings (under construction)
+					Settings
 				</Text>
 
-				<ChangeName />
-				<ChangeBirthday />
-				<ChangeEmail />
-				<ChangePassword />
+				<Stack spacing='2'>
+					<HStack spacing='2'>
+						<Text fontWeight='bold'>Name:</Text>
+						<Text>{userName}</Text>
+					</HStack>
+					<HStack spacing='2'>
+						<Text fontWeight='bold'>Email:</Text>
+						<Text>{userEmail}</Text>
+					</HStack>
+					<HStack spacing='2'>
+						<Text fontWeight='bold'>Birthday:</Text>
+						<Text>{formattedBirthday}</Text>
+					</HStack>
+				</Stack>
+
+				{userGoogleId ? (
+					<Text fontSize='md' mt='4'>
+						You can&apos;t change your settings because you signed up with Google.
+					</Text>
+				) : (
+					<>
+						<ChangeName />
+						<ChangeBirthday />
+						<ChangeEmail />
+						<ChangePassword />
+					</>
+				)}
 			</Stack>
 		</Stack>
 	)
 }
 
 export default Settings
+
+Settings.propTypes = {
+	user: PropTypes.object,
+}

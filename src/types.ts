@@ -43,6 +43,7 @@ export interface UserI {
 		createdAt: string
 		updatedAt: string
 		__v: number
+		googleId: string
 	}
 	token?: string
 }
