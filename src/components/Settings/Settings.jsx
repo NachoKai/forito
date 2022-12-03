@@ -21,7 +21,7 @@ const Settings = ({ user }) => {
 	const userBirthday = isValid(new Date(user?.result?.birthday))
 		? new Date(user?.result?.birthday)
 		: null
-	const formattedBirthday = format(userBirthday, DATE_FORMAT)
+	const formattedBirthday = userBirthday && format(userBirthday, DATE_FORMAT)
 	const userGoogleId = user?.result?.googleId
 	const userId = user?.result?._id
 
