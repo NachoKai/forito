@@ -13,7 +13,7 @@ import {
 	Text,
 	useBoolean,
 } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import { ColorPicker } from './ColorPicker'
@@ -22,10 +22,21 @@ import { Link } from 'react-router-dom'
 export const UserNavbar = ({ user, handleLogout, colorMode }) => {
 	const userId = user?.result?.googleId || user?.result?._id
 	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
+	const [isOnline, setIsOnline] = useBoolean(false)
+	const userName = user?.result?.name
+	const imageUrl = user?.result?.imageUrl
+
+	useEffect(() => {
+		if (navigator.onLine) {
+			setIsOnline.on()
+		} else {
+			setIsOnline.off()
+		}
+	}, [setIsOnline])
 
 	return (
 		<HStack align='center' spacing={{ sm: '4', md: '8', lg: '8', xl: '8' }}>
-			{Boolean(user?.result?.name) && (
+			{Boolean(userName) && (
 				<Popover
 					isLazy
 					closeOnBlur={true}
@@ -37,25 +48,25 @@ export const UserNavbar = ({ user, handleLogout, colorMode }) => {
 					<PopoverTrigger>
 						<HStack align='center' as='button' cursor='pointer'>
 							<Avatar
-								name={user?.result.name}
+								name={userName}
 								referrerPolicy='no-referrer'
 								size='sm'
-								src={user?.result?.imageUrl}
+								src={imageUrl}
 							>
-								<AvatarBadge bg='green.500' boxSize='1em' />
+								<AvatarBadge bg={isOnline ? 'green.500' : 'gray.400'} boxSize='1em' />
 							</Avatar>
 
 							<Text
 								data-cy='navbar-username'
 								display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
 							>
-								{user?.result?.name}
+								{userName}
 							</Text>
 						</HStack>
 					</PopoverTrigger>
 					<PopoverContent className='container'>
 						<PopoverCloseButton />
-						<PopoverHeader>{user?.result?.name}</PopoverHeader>
+						<PopoverHeader>{userName}</PopoverHeader>
 						<PopoverBody fontWeight='bold'>
 							<Flex justify='space-between'>
 								Theme color:
