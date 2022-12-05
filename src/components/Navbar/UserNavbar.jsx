@@ -23,6 +23,8 @@ export const UserNavbar = ({ user, handleLogout, colorMode }) => {
 	const userId = user?.result?.googleId || user?.result?._id
 	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
 	const [isOnline, setIsOnline] = useBoolean(false)
+	const userName = user?.result?.name
+	const imageUrl = user?.result?.imageUrl
 
 	useEffect(() => {
 		if (navigator.onLine) {
@@ -34,7 +36,7 @@ export const UserNavbar = ({ user, handleLogout, colorMode }) => {
 
 	return (
 		<HStack align='center' spacing={{ sm: '4', md: '8', lg: '8', xl: '8' }}>
-			{Boolean(user?.result?.name) && (
+			{Boolean(userName) && (
 				<Popover
 					isLazy
 					closeOnBlur={true}
@@ -46,10 +48,10 @@ export const UserNavbar = ({ user, handleLogout, colorMode }) => {
 					<PopoverTrigger>
 						<HStack align='center' as='button' cursor='pointer'>
 							<Avatar
-								name={user?.result.name}
+								name={userName}
 								referrerPolicy='no-referrer'
 								size='sm'
-								src={user?.result?.imageUrl}
+								src={imageUrl}
 							>
 								<AvatarBadge bg={isOnline ? 'green.500' : 'gray.400'} boxSize='1em' />
 							</Avatar>
@@ -58,13 +60,13 @@ export const UserNavbar = ({ user, handleLogout, colorMode }) => {
 								data-cy='navbar-username'
 								display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
 							>
-								{user?.result?.name}
+								{userName}
 							</Text>
 						</HStack>
 					</PopoverTrigger>
 					<PopoverContent className='container'>
 						<PopoverCloseButton />
-						<PopoverHeader>{user?.result?.name}</PopoverHeader>
+						<PopoverHeader>{userName}</PopoverHeader>
 						<PopoverBody fontWeight='bold'>
 							<Flex justify='space-between'>
 								Theme color:
