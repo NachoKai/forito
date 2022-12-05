@@ -13,7 +13,7 @@ import {
 	Text,
 	useBoolean,
 } from '@chakra-ui/react'
-import React from 'react'
+import React, { useEffect } from 'react'
 import PropTypes from 'prop-types'
 
 import { ColorPicker } from './ColorPicker'
@@ -22,6 +22,15 @@ import { Link } from 'react-router-dom'
 export const UserNavbar = ({ user, handleLogout, colorMode }) => {
 	const userId = user?.result?.googleId || user?.result?._id
 	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
+	const [isOnline, setIsOnline] = useBoolean(false)
+
+	useEffect(() => {
+		if (navigator.onLine) {
+			setIsOnline.on()
+		} else {
+			setIsOnline.off()
+		}
+	}, [setIsOnline])
 
 	return (
 		<HStack align='center' spacing={{ sm: '4', md: '8', lg: '8', xl: '8' }}>
@@ -42,7 +51,7 @@ export const UserNavbar = ({ user, handleLogout, colorMode }) => {
 								size='sm'
 								src={user?.result?.imageUrl}
 							>
-								<AvatarBadge bg='green.500' boxSize='1em' />
+								<AvatarBadge bg={isOnline ? 'green.500' : 'gray.400'} boxSize='1em' />
 							</Avatar>
 
 							<Text
