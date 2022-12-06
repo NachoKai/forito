@@ -1,7 +1,7 @@
 import { Button, Stack, useDisclosure } from '@chakra-ui/react'
 import loadable from '@loadable/component'
 import { FaChevronUp } from 'react-icons/fa'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -49,18 +49,26 @@ export const App = () => {
 			<Navbar isOpen={isOpen} onClose={handleOnClose} onOpen={onOpen} />
 			<Stack minH='100vh'>
 				<Routes>
-					<Route element={<Home onOpen={onOpen} />} path='/' />
+					<Route element={<Navigate replace={true} to='posts' />} path='/' />
 					<Route element={<Home onOpen={onOpen} />} path='posts' />
 					<Route element={<PostDetails user={user} />} path='posts/:id' />
 					<Route element={<SearchView />} path='search' />
 					<Route
-						element={userId ? <Settings user={user} /> : <Auth />}
+						element={
+							userId ? <Settings user={user} /> : <Navigate replace={true} to='/' />
+						}
 						path={`settings/${userId}`}
 					/>
 					<Route element={<Creator />} path='creator/:id' />
 					<Route element={<Tags />} path='tags/:name' />
-					<Route element={userId ? <SavedPosts /> : <Auth />} path='saved/:id' />
-					<Route element={userId ? <Home onOpen={onOpen} /> : <Auth />} path='auth' />
+					<Route
+						element={userId ? <SavedPosts /> : <Navigate replace={true} to='/' />}
+						path='saved/:id'
+					/>
+					<Route
+						element={userId ? <Navigate replace={true} to='/' /> : <Auth />}
+						path='auth'
+					/>
 					<Route element={<About />} path='about' />
 					<Route element={<TopPosts />} path='posts/top' />
 					<Route element={<ErrorPage />} path='*' />
