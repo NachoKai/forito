@@ -12,6 +12,7 @@ import {
 	ModalOverlay,
 	useDisclosure,
 } from '@chakra-ui/react'
+import { sub } from 'date-fns'
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
@@ -25,6 +26,9 @@ export const ChangeBirthday = () => {
 	const finalRef = useRef(null)
 	const [birthday, setBirthday] = useState('')
 	const { updateUserBirthday } = useAuthStore()
+	const now = new Date()
+	const minDate = sub(now, { years: 100 }).toISOString().split('T')[0]
+	const maxDate = sub(now, { years: 10 }).toISOString().split('T')[0]
 
 	const handleSubmit = async e => {
 		e.preventDefault()
@@ -66,6 +70,8 @@ export const ChangeBirthday = () => {
 							<Input
 								ref={initialRef}
 								isRequired
+								max={maxDate}
+								min={minDate}
 								name='birthday'
 								placeholder='Select Date'
 								size='md'
