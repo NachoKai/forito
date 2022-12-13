@@ -79,8 +79,8 @@ const Settings = ({ user }) => {
 				) : (
 					<>
 						<ChangeName />
-						<ChangeBirthday />
 						<ChangeEmail />
+						<ChangeBirthday />
 						<ChangePassword />
 					</>
 				)}
