@@ -4,10 +4,7 @@ import {
 	deleteComment,
 	fetchPostsByCreator,
 	fetchPostsBySearch,
-	likePost,
-	savePost,
 } from '../clients/postsClients'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { showError } from '../utils/showError'
 import { showSuccess } from '../utils/showSuccess'
 import { create } from './createStore'
@@ -49,54 +46,6 @@ const createPostsStore = () =>
 				throw err
 			} finally {
 				set({ loading: false }, false, 'get-posts-by-search')
-			}
-		},
-
-		likePost: async id => {
-			const user = getUserLocalStorage()
-
-			try {
-				const { data } = await likePost(id, user?.token)
-
-				set(
-					{ posts: get().posts?.map(post => (post?._id === data._id ? data : post)) },
-					false,
-					'like-post'
-				)
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to like post. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			}
-		},
-
-		savePost: async saves => {
-			const user = getUserLocalStorage()
-
-			try {
-				const { data } = await savePost(saves, user?.token)
-
-				set(
-					{ posts: get().posts?.map(post => (post?._id === data._id ? data : post)) },
-					false,
-					'save-post'
-				)
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to save post. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
 			}
 		},
 

@@ -219,7 +219,7 @@ export const useUpdatePost = () => {
 		},
 		{
 			onSuccess: async ({ id }) => {
-				await queryClient.refetchQueries({ queryKey: ['postQuery', id] })
+				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
 				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
 			},
 		}
@@ -263,7 +263,8 @@ export const useLikePost = () => {
 		},
 		{
 			onSuccess: async ({ id }) => {
-				await queryClient.refetchQueries({ queryKey: ['postQuery', id] })
+				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
+				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
 			},
 		}
 	)
@@ -284,7 +285,8 @@ export const useSavePost = () => {
 		},
 		{
 			onSuccess: async ({ id }) => {
-				await queryClient.refetchQueries({ queryKey: ['postQuery', id] })
+				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
+				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
 			},
 		}
 	)
@@ -305,7 +307,7 @@ export const useAddComment = () => {
 		},
 		{
 			onSuccess: async ({ id }) => {
-				await queryClient.refetchQueries({ queryKey: ['postQuery', id] })
+				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
 			},
 		}
 	)
@@ -326,7 +328,7 @@ export const useDeleteComment = () => {
 		},
 		{
 			onSuccess: async ({ id }) => {
-				await queryClient.refetchQueries({ queryKey: ['postQuery', id] })
+				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
 			},
 		}
 	)

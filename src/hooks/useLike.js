@@ -1,18 +1,14 @@
-import { Text, useBoolean } from '@chakra-ui/react'
-import React from 'react'
+import { Text } from '@chakra-ui/react'
 
-import { usePostsStore } from '../state/postsStore'
 import { showError } from '../utils/showError'
+import { useLikePost } from './data/posts'
 
 export const useLike = id => {
-	const { likePost } = usePostsStore()
-	const [likeLoading, setLikeLoading] = useBoolean()
+	const { mutateAsync: likePost, isLoading } = useLikePost()
 
 	const handleLike = async () => {
 		try {
-			setLikeLoading.on()
 			await likePost(id)
-			setLikeLoading.off()
 		} catch (err) {
 			showError(
 				<>
@@ -25,5 +21,5 @@ export const useLike = id => {
 		}
 	}
 
-	return { handleLike, likeLoading, setLikeLoading }
+	return { handleLike, likeLoading: isLoading }
 }
