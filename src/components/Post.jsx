@@ -44,6 +44,7 @@ import { showError } from '../utils/showError'
 import { useLocationQuery } from '../utils/useLocationQuery'
 import { Dialog } from './common/Dialog'
 import { Likes } from './Likes'
+import { useDeletePost, usePosts } from '../hooks/data/posts'
 
 const DATE_FORMAT = 'dd MMM yyyy • hh:mmaaa'
 
@@ -68,7 +69,11 @@ export const Post = ({
 	highlight,
 }) => {
 	const navigate = useNavigate()
-	const { setCurrentId, deletePost, posts, getPosts } = usePostsStore()
+	const locationQuery = useLocationQuery()
+	const page = Number(locationQuery.get('page') || 1)
+	const { posts } = usePosts(page)
+	const { mutateAsync: deletePost } = useDeletePost(page)
+	const { setCurrentId } = usePostsStore()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
 	const hasUserLike = likes?.includes(userId)
@@ -80,8 +85,6 @@ export const Post = ({
 	const isPostCreator = checkIsPostCreator(user, creator)
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
-	const locationQuery = useLocationQuery()
-	const page = Number(locationQuery.get('page') || 1)
 	const initialFocusRef = useRef()
 	const userLogged = user?.result
 	const createdAtDate = isValid(new Date(createdAt)) ? new Date(createdAt) : new Date()
@@ -107,8 +110,6 @@ export const Post = ({
 			if (posts?.length === 1 && page > 1) {
 				navigate(`/posts?page=${page - 1}`)
 			}
-
-			getPosts(page)
 		} catch (err) {
 			showError(
 				<>
