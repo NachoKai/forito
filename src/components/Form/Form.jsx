@@ -8,18 +8,20 @@ import {
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useRef, useState } from 'react'
-import { useNavigate } from 'react-router-dom'
 
 import { firebaseApp } from '../../firebaseApp'
+import { useCreatePost, usePosts, useUpdatePost } from '../../hooks/data/posts'
 import { useImage } from '../../hooks/useImage'
+import { usePrivacy } from '../../hooks/usePrivacy'
 import { usePostsStore } from '../../state/postsStore'
 import { checkEmpty } from '../../utils/checkEmpty'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
 import { showError } from '../../utils/showError'
+import { useLocationQuery } from '../../utils/useLocationQuery'
+import { Loading } from '../common/Loading'
 import { FormBody } from './FormBody'
 import { FormFooter } from './FormFooter'
 import { FormHeader } from './FormHeader'
-import { usePrivacy } from '../../hooks/usePrivacy'
 
 const initialState = {
 	title: '',
@@ -33,16 +35,12 @@ const initialState = {
 const regEx = /^[a-zA-Z0-9_.-]*$/
 
 export const Form = ({ isOpen, onOpen, onClose }) => {
-	const navigate = useNavigate()
-	const {
-		posts,
-		currentId,
-		setCurrentId,
-		createPost,
-		updatePost,
-		showLoading,
-		hideLoading,
-	} = usePostsStore()
+	const locationQuery = useLocationQuery()
+	const page = Number(locationQuery.get('page') || 1)
+	const { posts, isLoading: isPostsLoading } = usePosts(page)
+	const { currentId, setCurrentId, showLoading, hideLoading } = usePostsStore()
+	const { mutateAsync: createPost, isLoading: isCreatePostLoading } = useCreatePost()
+	const { mutateAsync: updatePost, isLoading: isUpdatePostLoading } = useUpdatePost()
 	const btnRef = useRef()
 	const user = getUserLocalStorage()
 	const [postData, setPostData] = useState(initialState)
@@ -78,19 +76,15 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 				})
 			}
 
+			const newPost = {
+				...postData,
+				name: user?.result?.name,
+			}
+
 			if (currentId === null) {
-				createPost(
-					{
-						...postData,
-						name: user?.result?.name,
-					},
-					navigate
-				)
+				createPost(newPost)
 			} else {
-				updatePost(currentId, {
-					...postData,
-					name: user?.result?.name,
-				})
+				updatePost({ id: currentId, post: newPost })
 			}
 			handleClear()
 			onClose()
@@ -130,6 +124,8 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 	}, [post, setImages, setPrivacy])
 
 	if (!user?.result?.name) return null
+
+	if (isPostsLoading || isCreatePostLoading || isUpdatePostLoading) return <Loading />
 
 	return (
 		<>

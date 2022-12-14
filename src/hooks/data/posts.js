@@ -1,5 +1,6 @@
 import { Text } from '@chakra-ui/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useNavigate } from 'react-router-dom'
 
 import {
 	addComment,
@@ -18,6 +19,7 @@ import {
 } from '../../clients/postsClients'
 import { showError } from '../../utils/showError.ts'
 import { handleErrorResponse, retry } from './utils'
+import { showSuccess } from '../../utils/showSuccess'
 
 export const useAllPosts = () => {
 	const allPostsQuery = useQuery(
@@ -174,16 +176,15 @@ export const useSavedPosts = () => {
 
 export const useCreatePost = () => {
 	const queryClient = useQueryClient()
+	const navigate = useNavigate()
 
 	return useMutation(
-		async ({ title, description, tags, selectedFile }) => {
+		async post => {
 			try {
-				return await createPost({
-					title,
-					description,
-					tags,
-					selectedFile,
-				})
+				const { data } = await createPost(post)
+
+				showSuccess('Post successfully created.')
+				navigate(`/posts/${data._id}`)
 			} catch (err) {
 				handleErrorResponse(err, { source: 'create-post' })
 			}
@@ -200,21 +201,20 @@ export const useUpdatePost = () => {
 	const queryClient = useQueryClient()
 
 	return useMutation(
-		async ({ id, title, description, tags, selectedFile }) => {
+		async ({ id, post }) => {
 			try {
-				return await updatePost({
-					id,
-					title,
-					description,
-					tags,
-					selectedFile,
-				})
+				await updatePost(id, post)
+
+				showSuccess('Post successfully updated.')
+
+				return { id }
 			} catch (err) {
 				handleErrorResponse(err, { source: 'update-post' })
 			}
 		},
 		{
-			onSuccess: async () => {
+			onSuccess: async ({ id }) => {
+				await queryClient.refetchQueries({ queryKey: ['postQuery', id] })
 				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
 			},
 		}

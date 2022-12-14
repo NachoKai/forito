@@ -1,17 +1,14 @@
 import { Text } from '@chakra-ui/react'
 import {
 	addComment,
-	createPost,
 	deleteComment,
 	deletePost,
 	fetchPost,
-	fetchPosts,
 	fetchPostsByCreator,
 	fetchPostsBySearch,
 	fetchSavedPosts,
 	likePost,
 	savePost,
-	updatePost,
 } from '../clients/postsClients'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { showError } from '../utils/showError'
@@ -54,29 +51,6 @@ const createPostsStore = () =>
 			}
 		},
 
-		getPosts: async page => {
-			set({ loading: true }, false, 'get-posts')
-			try {
-				const {
-					data: { data, currentPage, numberOfPages, count },
-				} = await fetchPosts(page)
-
-				set({ posts: data, currentPage, numberOfPages, count }, false, 'get-posts')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to get posts. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			} finally {
-				set({ loading: false }, false, 'get-posts')
-			}
-		},
-
 		getPostsBySearch: async searchQuery => {
 			set({ loading: true }, false, 'get-posts-by-search')
 			try {
@@ -99,55 +73,6 @@ const createPostsStore = () =>
 				throw err
 			} finally {
 				set({ loading: false }, false, 'get-posts-by-search')
-			}
-		},
-
-		createPost: async (post, navigate) => {
-			set({ loading: true }, false, 'create-post')
-			try {
-				const { data } = await createPost(post)
-
-				set({ posts: [data, ...get().posts] }, false, 'create-post')
-				showSuccess('Post successfully created.')
-				navigate(`/posts/${data._id}`)
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to create post. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			} finally {
-				set({ loading: false }, false, 'create-post')
-			}
-		},
-
-		updatePost: async (id, post) => {
-			set({ loading: true }, false, 'update-post')
-			try {
-				const { data } = await updatePost(id, post)
-
-				set(
-					{ posts: get().posts?.map(post => (post?._id === data._id ? data : post)) },
-					false,
-					'update-post'
-				)
-				showSuccess('Post successfully updated.')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to update post. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			} finally {
-				set({ loading: false }, false, 'update-post')
 			}
 		},
 
