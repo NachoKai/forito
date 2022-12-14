@@ -1,9 +1,13 @@
 rules_version = '2';
-service cloud.firestore {
-  match /databases/{database}/documents {
-    match /{document=**} {
+
+service firebase.storage {
+  match /b/{bucket}/o {
+    match /{allPaths=**} {
       allow read: if true;
       allow write: if true;
+      allow write: if request.resource.contentType.matches('^image/.*');
+      allow write: if !request.resource.size > 1024 * 1024 * 2.1
+      allow write: if !request.path.matches('/sensitive-files/') && request.auth.uid.matches('admin|moderator');
     }
   }
 }
