@@ -1,5 +1,6 @@
 import { Text } from '@chakra-ui/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
+import { useNavigate } from 'react-router-dom'
 
 import {
 	addComment,
@@ -18,17 +19,14 @@ import {
 } from '../../clients/postsClients'
 import { showError } from '../../utils/showError.ts'
 import { handleErrorResponse, retry } from './utils'
+import { showSuccess } from '../../utils/showSuccess'
 
 export const useAllPosts = () => {
 	const allPostsQuery = useQuery(
 		['allPostsQuery'],
 		async () => {
 			try {
-				const allPosts = await fetchAllPosts()
-
-				if (!allPosts) return []
-
-				return allPosts
+				return await fetchAllPosts()
 			} catch (err) {
 				showError(
 					<>
@@ -48,11 +46,8 @@ export const useAllPosts = () => {
 
 	return {
 		...allPostsQuery,
-		allPosts: allPostsQuery.data?.data?.data || [],
+		allPosts: allPostsQuery.data?.data?.data,
 		count: allPostsQuery.data?.data?.count || 0,
-		refetch: async () => {
-			await allPostsQuery.refetch()
-		},
 	}
 }
 
@@ -61,11 +56,7 @@ export const usePost = id => {
 		['postQuery', id],
 		async () => {
 			try {
-				const post = await fetchPost(id)
-
-				if (!post) return []
-
-				return post
+				return await fetchPost(id)
 			} catch (err) {
 				showError('Something went wrong when trying to get post. Please try again.')
 				handleErrorResponse(err, { source: 'post' })
@@ -74,14 +65,13 @@ export const usePost = id => {
 		{
 			retry,
 			staleTime: 60 * 1000,
+			enabled: !!id,
 		}
 	)
 
 	return {
 		...postQuery,
-		refetch: async () => {
-			await postQuery.refetch()
-		},
+		post: postQuery.data?.data,
 	}
 }
 
@@ -90,11 +80,11 @@ export const usePosts = page => {
 		['postsQuery', page],
 		async () => {
 			try {
-				const posts = await fetchPosts(page)
+				const {
+					data: { data, currentPage, numberOfPages, count },
+				} = await fetchPosts(page)
 
-				if (!posts) return []
-
-				return posts
+				return { data, currentPage, numberOfPages, count }
 			} catch (err) {
 				handleErrorResponse(err, { source: 'posts' })
 			}
@@ -102,14 +92,16 @@ export const usePosts = page => {
 		{
 			retry,
 			staleTime: 60 * 1000,
+			enabled: !!page,
 		}
 	)
 
 	return {
 		...postsQuery,
-		refetch: async () => {
-			await postsQuery.refetch()
-		},
+		posts: postsQuery.data?.data,
+		currentPage: postsQuery.data?.currentPage || 1,
+		numberOfPages: postsQuery.data?.numberOfPages || 1,
+		count: postsQuery.data?.count || 0,
 	}
 }
 
@@ -118,11 +110,7 @@ export const usePostsBySearch = searchQuery => {
 		['postsBySearchQuery', searchQuery],
 		async () => {
 			try {
-				const posts = await fetchPostsBySearch(searchQuery)
-
-				if (!posts) return []
-
-				return posts
+				return await fetchPostsBySearch(searchQuery)
 			} catch (err) {
 				handleErrorResponse(err, { source: 'posts-by-search' })
 			}
@@ -130,14 +118,13 @@ export const usePostsBySearch = searchQuery => {
 		{
 			retry,
 			staleTime: 60 * 1000,
+			enabled: !!searchQuery,
 		}
 	)
 
 	return {
 		...postsBySearchQuery,
-		refetch: async () => {
-			await postsBySearchQuery.refetch()
-		},
+		postsBySearch: postsBySearchQuery.data?.data?.data,
 	}
 }
 
@@ -146,11 +133,7 @@ export const usePostsByCreator = id => {
 		['postsByCreatorQuery', id],
 		async () => {
 			try {
-				const posts = await fetchPostsByCreator(id)
-
-				if (!posts) return []
-
-				return posts
+				return await fetchPostsByCreator(id)
 			} catch (err) {
 				showError('Something went wrong when trying to get posts. Please try again.')
 				handleErrorResponse(err, { source: 'posts-by-creator' })
@@ -159,27 +142,27 @@ export const usePostsByCreator = id => {
 		{
 			retry,
 			staleTime: 60 * 1000,
+			enabled: !!id,
 		}
 	)
 
 	return {
 		...postsByCreatorQuery,
-		refetch: async () => {
-			await postsByCreatorQuery.refetch()
-		},
+		postsByCreator: postsByCreatorQuery.data?.data?.data,
+		count: postsByCreatorQuery.data?.data?.count || 0,
 	}
 }
 
-export const useSavedPosts = () => {
+export const useSavedPosts = id => {
 	const savedPostsQuery = useQuery(
 		['savedPostsQuery'],
 		async () => {
 			try {
-				const posts = await fetchSavedPosts()
+				const {
+					data: { data, count },
+				} = await fetchSavedPosts(id)
 
-				if (!posts) return []
-
-				return posts
+				return { data, count }
 			} catch (err) {
 				handleErrorResponse(err, { source: 'saved-posts' })
 			}
@@ -192,34 +175,29 @@ export const useSavedPosts = () => {
 
 	return {
 		...savedPostsQuery,
-		refetch: async () => {
-			await savedPostsQuery.refetch()
-		},
+		savedPosts: savedPostsQuery.data?.data,
+		count: savedPostsQuery.data?.count || 0,
 	}
 }
 
 export const useCreatePost = () => {
 	const queryClient = useQueryClient()
+	const navigate = useNavigate()
 
 	return useMutation(
-		async ({ title, description, tags, selectedFile }) => {
+		async post => {
 			try {
-				const { data } = await createPost({
-					title,
-					description,
-					tags,
-					selectedFile,
-				})
+				const { data } = await createPost(post)
 
-				return data
+				showSuccess('Post successfully created.')
+				navigate(`/posts/${data._id}`)
 			} catch (err) {
 				handleErrorResponse(err, { source: 'create-post' })
 			}
 		},
 		{
-			onSuccess: () => {
-				queryClient.invalidateQueries('postsQuery')
-				queryClient.invalidateQueries('allPostsQuery')
+			onSuccess: async () => {
+				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
 			},
 		}
 	)
@@ -229,25 +207,21 @@ export const useUpdatePost = () => {
 	const queryClient = useQueryClient()
 
 	return useMutation(
-		async ({ id, title, description, tags, selectedFile }) => {
+		async ({ id, post }) => {
 			try {
-				const { data } = await updatePost({
-					id,
-					title,
-					description,
-					tags,
-					selectedFile,
-				})
+				await updatePost(id, post)
 
-				return data
+				showSuccess('Post successfully updated.')
+
+				return { id }
 			} catch (err) {
 				handleErrorResponse(err, { source: 'update-post' })
 			}
 		},
 		{
-			onSuccess: () => {
-				queryClient.invalidateQueries('postsQuery')
-				queryClient.invalidateQueries('allPostsQuery')
+			onSuccess: async ({ id }) => {
+				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
+				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
 			},
 		}
 	)
@@ -259,17 +233,17 @@ export const useDeletePost = () => {
 	return useMutation(
 		async id => {
 			try {
-				const { data } = await deletePost(id)
+				await deletePost(id)
 
-				return data
+				return { id }
 			} catch (err) {
 				handleErrorResponse(err, { source: 'delete-post' })
 			}
 		},
 		{
-			onSuccess: () => {
-				queryClient.invalidateQueries('postsQuery')
-				queryClient.invalidateQueries('allPostsQuery')
+			onSuccess: async ({ id }) => {
+				queryClient.removeQueries({ queryKey: ['postQuery', id] })
+				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
 			},
 		}
 	)
@@ -281,17 +255,17 @@ export const useLikePost = () => {
 	return useMutation(
 		async id => {
 			try {
-				const { data } = await likePost(id)
+				await likePost(id)
 
-				return data
+				return { id }
 			} catch (err) {
 				handleErrorResponse(err, { source: 'like-post' })
 			}
 		},
 		{
-			onSuccess: () => {
-				queryClient.invalidateQueries('postsQuery')
-				queryClient.invalidateQueries('allPostsQuery')
+			onSuccess: async ({ id }) => {
+				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
+				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
 			},
 		}
 	)
@@ -303,16 +277,17 @@ export const useSavePost = () => {
 	return useMutation(
 		async id => {
 			try {
-				const { data } = await savePost(id)
+				await savePost(id)
 
-				return data
+				return { id }
 			} catch (err) {
 				handleErrorResponse(err, { source: 'save-post' })
 			}
 		},
 		{
-			onSuccess: () => {
-				queryClient.invalidateQueries('savedPostsQuery')
+			onSuccess: async ({ id }) => {
+				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
+				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
 			},
 		}
 	)
@@ -324,17 +299,16 @@ export const useAddComment = () => {
 	return useMutation(
 		async ({ id, value }) => {
 			try {
-				const { data } = await addComment({ id, value })
+				await addComment({ id, value })
 
-				return data
+				return { id }
 			} catch (err) {
 				handleErrorResponse(err, { source: 'add-comment' })
 			}
 		},
 		{
-			onSuccess: () => {
-				queryClient.invalidateQueries('postsQuery')
-				queryClient.invalidateQueries('allPostsQuery')
+			onSuccess: async ({ id }) => {
+				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
 			},
 		}
 	)
@@ -346,17 +320,16 @@ export const useDeleteComment = () => {
 	return useMutation(
 		async ({ id, commentId }) => {
 			try {
-				const { data } = await deleteComment({ id, commentId })
+				await deleteComment({ id, commentId })
 
-				return data
+				return { id }
 			} catch (err) {
 				handleErrorResponse(err, { source: 'delete-comment' })
 			}
 		},
 		{
-			onSuccess: () => {
-				queryClient.invalidateQueries('postsQuery')
-				queryClient.invalidateQueries('allPostsQuery')
+			onSuccess: async ({ id }) => {
+				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
 			},
 		}
 	)

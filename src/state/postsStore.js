@@ -1,19 +1,5 @@
 import { Text } from '@chakra-ui/react'
-import {
-	addComment,
-	createPost,
-	deleteComment,
-	deletePost,
-	fetchPost,
-	fetchPosts,
-	fetchPostsByCreator,
-	fetchPostsBySearch,
-	fetchSavedPosts,
-	likePost,
-	savePost,
-	updatePost,
-} from '../clients/postsClients'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import { addComment, deleteComment, fetchPostsBySearch } from '../clients/postsClients'
 import { showError } from '../utils/showError'
 import { showSuccess } from '../utils/showSuccess'
 import { create } from './createStore'
@@ -32,50 +18,6 @@ const createPostsStore = () =>
 	create('postsStore')((set, get) => ({
 		...INITIAL_STATE,
 		setCurrentId: id => set({ currentId: id }, false, 'set-current-id'),
-
-		getPost: async id => {
-			set({ loading: true }, false, 'get-post')
-			try {
-				const { data } = await fetchPost(id)
-
-				set({ post: data }, false, 'get-post')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to get post. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			} finally {
-				set({ loading: false }, false, 'get-post')
-			}
-		},
-
-		getPosts: async page => {
-			set({ loading: true }, false, 'get-posts')
-			try {
-				const {
-					data: { data, currentPage, numberOfPages, count },
-				} = await fetchPosts(page)
-
-				set({ posts: data, currentPage, numberOfPages, count }, false, 'get-posts')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to get posts. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			} finally {
-				set({ loading: false }, false, 'get-posts')
-			}
-		},
 
 		getPostsBySearch: async searchQuery => {
 			set({ loading: true }, false, 'get-posts-by-search')
@@ -99,128 +41,6 @@ const createPostsStore = () =>
 				throw err
 			} finally {
 				set({ loading: false }, false, 'get-posts-by-search')
-			}
-		},
-
-		createPost: async (post, navigate) => {
-			set({ loading: true }, false, 'create-post')
-			try {
-				const { data } = await createPost(post)
-
-				set({ posts: [data, ...get().posts] }, false, 'create-post')
-				showSuccess('Post successfully created.')
-				navigate(`/posts/${data._id}`)
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to create post. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			} finally {
-				set({ loading: false }, false, 'create-post')
-			}
-		},
-
-		updatePost: async (id, post) => {
-			set({ loading: true }, false, 'update-post')
-			try {
-				const { data } = await updatePost(id, post)
-
-				set(
-					{ posts: get().posts?.map(post => (post?._id === data._id ? data : post)) },
-					false,
-					'update-post'
-				)
-				showSuccess('Post successfully updated.')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to update post. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			} finally {
-				set({ loading: false }, false, 'update-post')
-			}
-		},
-
-		deletePost: async id => {
-			set({ loading: true }, false, 'delete-post')
-			try {
-				await deletePost(id)
-				set(
-					{ posts: get().posts?.filter(post => post?._id !== id) },
-					false,
-					'delete-post'
-				)
-				showSuccess('Post successfully deleted.')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to delete post. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			} finally {
-				set({ loading: false }, false, 'delete-post')
-			}
-		},
-
-		likePost: async id => {
-			const user = getUserLocalStorage()
-
-			try {
-				const { data } = await likePost(id, user?.token)
-
-				set(
-					{ posts: get().posts?.map(post => (post?._id === data._id ? data : post)) },
-					false,
-					'like-post'
-				)
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to like post. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			}
-		},
-
-		savePost: async saves => {
-			const user = getUserLocalStorage()
-
-			try {
-				const { data } = await savePost(saves, user?.token)
-
-				set(
-					{ posts: get().posts?.map(post => (post?._id === data._id ? data : post)) },
-					false,
-					'save-post'
-				)
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to save post. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
 			}
 		},
 
@@ -267,56 +87,6 @@ const createPostsStore = () =>
 				)
 				console.error(err)
 				throw err
-			}
-		},
-
-		getPostsByCreator: async id => {
-			set({ loading: true }, false, 'get-posts-by-creator')
-			try {
-				const {
-					data: { data },
-				} = await fetchPostsByCreator(id)
-
-				set({ posts: data }, false, 'get-posts-by-creator')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>
-							Something went wrong when trying to get posts by creator. {err.message}
-						</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			} finally {
-				set({ loading: false }, false, 'get-posts-by-creator')
-			}
-		},
-
-		getSavedPosts: async id => {
-			set({ loading: true }, false, 'get-saved-posts')
-			try {
-				const {
-					data: { data },
-				} = await fetchSavedPosts(id)
-
-				set({ posts: data }, false, 'get-saved-posts')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>
-							Something went wrong when trying to get saved posts. {err.message}
-						</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			} finally {
-				set({ loading: false }, false, 'get-saved-posts')
 			}
 		},
 

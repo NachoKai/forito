@@ -1,41 +1,42 @@
 import { Heading, Stack, Text } from '@chakra-ui/react'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 
-import { usePostsStore } from '../state/postsStore'
+import { useSavedPosts } from '../hooks/data/posts'
 import { CreateGradColor } from '../theme'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import { Loading } from './common/Loading'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 
 const SavedPosts = () => {
-	const { id } = useParams()
-	const { posts, loading, getSavedPosts } = usePostsStore()
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const userId = user?.result?.googleId || user?.result?._id
 	const isAdmin = checkIsAdmin(userEmail)
+	const { id } = useParams()
+	const { savedPosts, count, isLoading, isSuccess } = useSavedPosts(id)
 
 	const publicPosts = useMemo(
 		() =>
-			posts?.filter(post => {
+			isSuccess &&
+			savedPosts?.filter(post => {
 				const isPrivate = post?.privacy === 'private'
 				const creator = post?.creator
 				const isPostCreator = checkIsPostCreator(user, creator)
 
 				return !isPrivate || (isPrivate && isPostCreator) || isAdmin
 			}),
-		[isAdmin, posts, user]
+		[isAdmin, savedPosts, user, isSuccess]
 	)
 
-	useEffect(() => {
-		if (userId === id) getSavedPosts(id)
-	}, [getSavedPosts, id, userId])
+	if (userId !== id) return null
+	if (isLoading) return <Loading />
 
-	if ((!publicPosts?.length && !loading) || userId !== id) {
+	if (!publicPosts?.length) {
 		return (
 			<StaggeredSlideFade
 				align='center'
@@ -74,16 +75,12 @@ const SavedPosts = () => {
 			<Stack spacing='2'>
 				<Text fontSize='2xl'>Saved Posts</Text>
 				<Text fontSize='md'>
-					{posts?.length
-						? posts?.length === 1
-							? `${posts?.length} Post`
-							: `${posts?.length} Posts`
-						: ''}
+					{count ? (count === 1 ? `${count} Post` : `${count} Posts`) : ''}
 				</Text>
 			</Stack>
 
 			<StaggeredSlideFade spacing='3'>
-				{posts?.map(post => (
+				{savedPosts?.map(post => (
 					<Post key={post._id} post={post} />
 				))}
 			</StaggeredSlideFade>

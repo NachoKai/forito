@@ -6,8 +6,8 @@ import { render, screen } from './test-utils'
 describe('ErrorPage', () => {
 	test('Renders component sections', () => {
 		render(<ErrorPage />)
-		const title = screen.getByRole('heading', { name: /404/i })
-		const subTitle = screen.getByRole('heading', { name: /page not found/i })
+		const title = screen.getByRole('heading', { name: /error/i })
+		const subTitle = screen.getByRole('heading', { name: /something went wrong/i })
 
 		expect(title).toBeInTheDocument()
 		expect(subTitle).toBeInTheDocument()

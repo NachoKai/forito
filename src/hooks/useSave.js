@@ -1,18 +1,14 @@
-import { Text, useBoolean } from '@chakra-ui/react'
-import React from 'react'
+import { Text } from '@chakra-ui/react'
 
-import { usePostsStore } from '../state/postsStore'
 import { showError } from '../utils/showError'
+import { useSavePost } from './data/posts'
 
 export const useSave = id => {
-	const { savePost } = usePostsStore()
-	const [saveLoading, setSaveLoading] = useBoolean()
+	const { mutateAsync: savePost, isLoading } = useSavePost()
 
 	const handleSave = async () => {
 		try {
-			setSaveLoading.on()
 			await savePost(id)
-			setSaveLoading.off()
 		} catch (err) {
 			showError(
 				<>
@@ -25,5 +21,5 @@ export const useSave = id => {
 		}
 	}
 
-	return { handleSave, saveLoading, setSaveLoading }
+	return { handleSave, saveLoading: isLoading }
 }
