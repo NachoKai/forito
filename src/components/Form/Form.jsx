@@ -19,6 +19,7 @@ import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
 import { showError } from '../../utils/showError'
 import { useLocationQuery } from '../../utils/useLocationQuery'
 import { Loading } from '../common/Loading'
+import ErrorPage from '../ErrorPage'
 import { FormBody } from './FormBody'
 import { FormFooter } from './FormFooter'
 import { FormHeader } from './FormHeader'
@@ -37,7 +38,12 @@ const regEx = /^[a-zA-Z0-9_.-]*$/
 export const Form = ({ isOpen, onOpen, onClose }) => {
 	const locationQuery = useLocationQuery()
 	const page = Number(locationQuery.get('page') || 1)
-	const { posts, isLoading: isPostsLoading } = usePosts(page)
+	const {
+		posts,
+		isLoading: isPostsLoading,
+		isError: isPostsError,
+		error: postsError,
+	} = usePosts(page)
 	const { currentId, setCurrentId, showLoading, hideLoading } = usePostsStore()
 	const { mutateAsync: createPost, isLoading: isCreatePostLoading } = useCreatePost()
 	const { mutateAsync: updatePost, isLoading: isUpdatePostLoading } = useUpdatePost()
@@ -126,6 +132,12 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 	if (!user?.result?.name) return null
 
 	if (isPostsLoading || isCreatePostLoading || isUpdatePostLoading) return <Loading />
+
+	if (isPostsError) {
+		console.error(postsError)
+
+		return <ErrorPage />
+	}
 
 	return (
 		<>

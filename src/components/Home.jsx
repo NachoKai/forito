@@ -4,6 +4,7 @@ import { usePosts } from '../hooks/data/posts'
 
 import { useLocationQuery } from '../utils/useLocationQuery'
 import { Loading } from './common/Loading'
+import ErrorPage from './ErrorPage'
 import { Paginate } from './Paginate'
 import { Posts } from './Posts'
 
@@ -22,7 +23,11 @@ const Home = ({ onOpen }) => {
 		error,
 	} = usePosts(page)
 
-	if (isError) console.error(error)
+	if (isError) {
+		console.error(error)
+
+		return <ErrorPage />
+	}
 
 	return (
 		<>

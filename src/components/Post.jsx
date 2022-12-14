@@ -34,8 +34,9 @@ import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
-import { useSave } from '../hooks/useSave'
+import { useDeletePost, usePosts } from '../hooks/data/posts'
 import { useLike } from '../hooks/useLike'
+import { useSave } from '../hooks/useSave'
 import { usePostsStore } from '../state/postsStore'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
@@ -43,8 +44,8 @@ import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { showError } from '../utils/showError'
 import { useLocationQuery } from '../utils/useLocationQuery'
 import { Dialog } from './common/Dialog'
+import ErrorPage from './ErrorPage'
 import { Likes } from './Likes'
-import { useDeletePost, usePosts } from '../hooks/data/posts'
 
 const DATE_FORMAT = 'dd MMM yyyy • hh:mmaaa'
 
@@ -71,7 +72,7 @@ export const Post = ({
 	const navigate = useNavigate()
 	const locationQuery = useLocationQuery()
 	const page = Number(locationQuery.get('page') || 1)
-	const { posts } = usePosts(page)
+	const { posts, isError, error } = usePosts(page)
 	const { mutateAsync: deletePost } = useDeletePost(page)
 	const { setCurrentId } = usePostsStore()
 	const user = getUserLocalStorage()
@@ -120,6 +121,12 @@ export const Post = ({
 			)
 			console.error(err)
 		}
+	}
+
+	if (isError) {
+		console.error(error)
+
+		return <ErrorPage />
 	}
 
 	return (

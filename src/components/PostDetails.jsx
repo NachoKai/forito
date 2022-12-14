@@ -29,6 +29,7 @@ import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
 import { Loading } from './common/Loading'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
+import ErrorPage from './ErrorPage'
 import { RecommendedPost } from './RecommendedPost'
 
 const DATE_FORMAT = 'dd MMM yyyy • hh:mmaaa'
@@ -37,7 +38,12 @@ const BASE_URL = 'https://forito.vercel.app/posts'
 const PostDetails = ({ user }) => {
 	const { scrollYProgress } = useScroll()
 	const { id } = useParams()
-	const { post, isLoading: isPostLoading } = usePost(id)
+	const {
+		post,
+		isLoading: isPostLoading,
+		isError: isPostError,
+		error: postError,
+	} = usePost(id)
 	const postComments = post?.comments
 	const postId = post?._id
 	const userEmail = user?.result?.email
@@ -53,8 +59,12 @@ const PostDetails = ({ user }) => {
 		? new Date(post.updatedAt)
 		: null
 	const searchQuery = { search: 'none', tags: post?.tags?.join(',') }
-	const { postsBySearch, isLoading: isPostsBySearchLoading } =
-		usePostsBySearch(searchQuery)
+	const {
+		postsBySearch,
+		isLoading: isPostsBySearchLoading,
+		isError: isPostsBySearchError,
+		error: postsBySearchError,
+	} = usePostsBySearch(searchQuery)
 	const recommendedPosts = useMemo(
 		() => postsBySearch?.filter(({ _id }) => _id !== post?._id),
 		[post?._id, postsBySearch]
@@ -73,6 +83,18 @@ const PostDetails = ({ user }) => {
 	}
 
 	if (isPostLoading || isPostsBySearchLoading) return <Loading />
+
+	if (isPostError) {
+		console.error(postError)
+
+		return <ErrorPage />
+	}
+
+	if (isPostsBySearchError) {
+		console.error(postsBySearchError)
+
+		return <ErrorPage />
+	}
 
 	return post && showPost ? (
 		<Stack
