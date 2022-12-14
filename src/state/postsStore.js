@@ -2,10 +2,8 @@ import { Text } from '@chakra-ui/react'
 import {
 	addComment,
 	deleteComment,
-	deletePost,
 	fetchPostsByCreator,
 	fetchPostsBySearch,
-	fetchSavedPosts,
 	likePost,
 	savePost,
 } from '../clients/postsClients'
@@ -51,31 +49,6 @@ const createPostsStore = () =>
 				throw err
 			} finally {
 				set({ loading: false }, false, 'get-posts-by-search')
-			}
-		},
-
-		deletePost: async id => {
-			set({ loading: true }, false, 'delete-post')
-			try {
-				await deletePost(id)
-				set(
-					{ posts: get().posts?.filter(post => post?._id !== id) },
-					false,
-					'delete-post'
-				)
-				showSuccess('Post successfully deleted.')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to delete post. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			} finally {
-				set({ loading: false }, false, 'delete-post')
 			}
 		},
 
@@ -195,31 +168,6 @@ const createPostsStore = () =>
 				throw err
 			} finally {
 				set({ loading: false }, false, 'get-posts-by-creator')
-			}
-		},
-
-		getSavedPosts: async id => {
-			set({ loading: true }, false, 'get-saved-posts')
-			try {
-				const {
-					data: { data },
-				} = await fetchSavedPosts(id)
-
-				set({ posts: data }, false, 'get-saved-posts')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>
-							Something went wrong when trying to get saved posts. {err.message}
-						</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			} finally {
-				set({ loading: false }, false, 'get-saved-posts')
 			}
 		},
 

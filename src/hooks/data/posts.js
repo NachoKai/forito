@@ -152,12 +152,16 @@ export const usePostsByCreator = id => {
 	}
 }
 
-export const useSavedPosts = () => {
+export const useSavedPosts = id => {
 	const savedPostsQuery = useQuery(
 		['savedPostsQuery'],
 		async () => {
 			try {
-				return (await fetchSavedPosts()) || []
+				const {
+					data: { data, count },
+				} = await fetchSavedPosts(id)
+
+				return { data, count }
 			} catch (err) {
 				handleErrorResponse(err, { source: 'saved-posts' })
 			}
@@ -170,7 +174,8 @@ export const useSavedPosts = () => {
 
 	return {
 		...savedPostsQuery,
-		savedPosts: savedPostsQuery.data?.data?.data || [],
+		savedPosts: savedPostsQuery.data?.data || [],
+		count: savedPostsQuery.data?.count || 0,
 	}
 }
 
