@@ -26,7 +26,7 @@ export const useAllPosts = () => {
 		['allPostsQuery'],
 		async () => {
 			try {
-				return (await fetchAllPosts()) || []
+				return await fetchAllPosts()
 			} catch (err) {
 				showError(
 					<>
@@ -46,7 +46,7 @@ export const useAllPosts = () => {
 
 	return {
 		...allPostsQuery,
-		allPosts: allPostsQuery.data?.data?.data || [],
+		allPosts: allPostsQuery.data?.data?.data,
 		count: allPostsQuery.data?.data?.count || 0,
 	}
 }
@@ -56,7 +56,7 @@ export const usePost = id => {
 		['postQuery', id],
 		async () => {
 			try {
-				return (await fetchPost(id)) || []
+				return await fetchPost(id)
 			} catch (err) {
 				showError('Something went wrong when trying to get post. Please try again.')
 				handleErrorResponse(err, { source: 'post' })
@@ -71,7 +71,7 @@ export const usePost = id => {
 
 	return {
 		...postQuery,
-		post: postQuery.data?.data || [],
+		post: postQuery.data?.data,
 	}
 }
 
@@ -98,7 +98,7 @@ export const usePosts = page => {
 
 	return {
 		...postsQuery,
-		posts: postsQuery.data?.data || [],
+		posts: postsQuery.data?.data,
 		currentPage: postsQuery.data?.currentPage || 1,
 		numberOfPages: postsQuery.data?.numberOfPages || 1,
 		count: postsQuery.data?.count || 0,
@@ -110,7 +110,7 @@ export const usePostsBySearch = searchQuery => {
 		['postsBySearchQuery', searchQuery],
 		async () => {
 			try {
-				return (await fetchPostsBySearch(searchQuery)) || []
+				return await fetchPostsBySearch(searchQuery)
 			} catch (err) {
 				handleErrorResponse(err, { source: 'posts-by-search' })
 			}
@@ -124,7 +124,7 @@ export const usePostsBySearch = searchQuery => {
 
 	return {
 		...postsBySearchQuery,
-		postsBySearch: postsBySearchQuery.data?.data?.data || [],
+		postsBySearch: postsBySearchQuery.data?.data?.data,
 	}
 }
 
@@ -133,7 +133,7 @@ export const usePostsByCreator = id => {
 		['postsByCreatorQuery', id],
 		async () => {
 			try {
-				return (await fetchPostsByCreator(id)) || []
+				return await fetchPostsByCreator(id)
 			} catch (err) {
 				showError('Something went wrong when trying to get posts. Please try again.')
 				handleErrorResponse(err, { source: 'posts-by-creator' })
@@ -148,7 +148,7 @@ export const usePostsByCreator = id => {
 
 	return {
 		...postsByCreatorQuery,
-		postsByCreator: postsByCreatorQuery.data?.data?.data || [],
+		postsByCreator: postsByCreatorQuery.data?.data?.data,
 	}
 }
 
@@ -174,7 +174,7 @@ export const useSavedPosts = id => {
 
 	return {
 		...savedPostsQuery,
-		savedPosts: savedPostsQuery.data?.data || [],
+		savedPosts: savedPostsQuery.data?.data,
 		count: savedPostsQuery.data?.count || 0,
 	}
 }

@@ -16,8 +16,8 @@ describe('Comments', () => {
 
 	test('Renders component sections when  logged out', () => {
 		postComments = [
-			{ userId: '1', comment: 'test comment 1', name: 'test name 1', _id: '1' },
-			{ userId: '2', comment: 'test comment 2', name: 'test name 2', _id: '2' },
+			{ userId: '1', comment: 'test comment 1', name: 'test name 1', commentId: '1' },
+			{ userId: '2', comment: 'test comment 2', name: 'test name 2', commentId: '2' },
 		]
 		postId = '111'
 
@@ -29,8 +29,8 @@ describe('Comments', () => {
 
 	test('Renders component sections when logged in', () => {
 		postComments = [
-			{ userId: '1', comment: 'test comment 1', name: 'test name 1', _id: '1' },
-			{ userId: '2', comment: 'test comment 2', name: 'test name 2', _id: '2' },
+			{ userId: '1', comment: 'test comment 1', name: 'test name 1', commentId: '1' },
+			{ userId: '2', comment: 'test comment 2', name: 'test name 2', commentId: '2' },
 		]
 		postId = '111'
 		user = {

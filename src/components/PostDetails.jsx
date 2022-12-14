@@ -72,7 +72,6 @@ const PostDetails = ({ user }) => {
 		return false
 	}
 
-	if (!post) return
 	if (isPostLoading || isPostsBySearchLoading) return <Loading />
 
 	return post && showPost ? (
