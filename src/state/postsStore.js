@@ -1,10 +1,5 @@
 import { Text } from '@chakra-ui/react'
-import {
-	addComment,
-	deleteComment,
-	fetchPostsByCreator,
-	fetchPostsBySearch,
-} from '../clients/postsClients'
+import { addComment, deleteComment, fetchPostsBySearch } from '../clients/postsClients'
 import { showError } from '../utils/showError'
 import { showSuccess } from '../utils/showSuccess'
 import { create } from './createStore'
@@ -92,31 +87,6 @@ const createPostsStore = () =>
 				)
 				console.error(err)
 				throw err
-			}
-		},
-
-		getPostsByCreator: async id => {
-			set({ loading: true }, false, 'get-posts-by-creator')
-			try {
-				const {
-					data: { data },
-				} = await fetchPostsByCreator(id)
-
-				set({ posts: data }, false, 'get-posts-by-creator')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>
-							Something went wrong when trying to get posts by creator. {err.message}
-						</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			} finally {
-				set({ loading: false }, false, 'get-posts-by-creator')
 			}
 		},
 

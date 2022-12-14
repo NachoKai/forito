@@ -149,6 +149,7 @@ export const usePostsByCreator = id => {
 	return {
 		...postsByCreatorQuery,
 		postsByCreator: postsByCreatorQuery.data?.data?.data,
+		count: postsByCreatorQuery.data?.data?.count || 0,
 	}
 }
 
