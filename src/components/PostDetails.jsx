@@ -15,7 +15,7 @@ import { format, formatDistance, isValid } from 'date-fns'
 import { motion, useScroll } from 'framer-motion'
 import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { FaSearch, FaTwitter } from 'react-icons/fa'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { Link, useParams } from 'react-router-dom'
@@ -23,10 +23,11 @@ import styled from 'styled-components'
 import { v4 as uuid } from 'uuid'
 
 import { Comments } from '../components/Comments'
-import { usePostsStore } from '../state/postsStore'
+import { usePost, usePostsBySearch } from '../hooks/data/posts'
 import { CreateGradColor, getColorTheme } from '../theme'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
+import { Loading } from './common/Loading'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { RecommendedPost } from './RecommendedPost'
 
@@ -36,13 +37,9 @@ const BASE_URL = 'https://forito.vercel.app/posts'
 const PostDetails = ({ user }) => {
 	const { scrollYProgress } = useScroll()
 	const { id } = useParams()
-	const { post, posts, getPost, loading, getPostsBySearch } = usePostsStore()
+	const { post, isLoading: isPostLoading } = usePost(id)
 	const postComments = post?.comments
 	const postId = post?._id
-	const recommendedPosts = useMemo(
-		() => posts?.filter(({ _id }) => _id !== post?._id),
-		[post?._id, posts]
-	)
 	const userEmail = user?.result?.email
 	const isPrivate = post?.privacy === 'private'
 	const isPostCreator = checkIsPostCreator(user, post?.creator)
@@ -55,6 +52,13 @@ const PostDetails = ({ user }) => {
 	const updatedAtDate = isValid(new Date(post?.updatedAt))
 		? new Date(post.updatedAt)
 		: null
+	const searchQuery = { search: 'none', tags: post?.tags?.join(',') }
+	const { postsBySearch, isLoading: isPostsBySearchLoading } =
+		usePostsBySearch(searchQuery)
+	const recommendedPosts = useMemo(
+		() => postsBySearch?.filter(({ _id }) => _id !== post?._id),
+		[post?._id, postsBySearch]
+	)
 
 	const shareOnTwitter = () => {
 		const url = `${BASE_URL}/${id}`
@@ -68,21 +72,10 @@ const PostDetails = ({ user }) => {
 		return false
 	}
 
-	useEffect(() => {
-		getPost(id)
-	}, [getPost, id])
+	if (!post) return
+	if (isPostLoading || isPostsBySearchLoading) return <Loading />
 
-	// Recommended Posts search
-	useEffect(() => {
-		if (!post) return
-		if (post) {
-			const searchQuery = { search: 'none', tags: post?.tags.join(',') }
-
-			getPostsBySearch(searchQuery)
-		}
-	}, [getPostsBySearch, post])
-
-	return post && showPost && !loading ? (
+	return post && showPost ? (
 		<Stack
 			borderRadius='24px'
 			display={showPost ? 'block' : 'none'}

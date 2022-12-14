@@ -71,7 +71,7 @@ export const usePost = id => {
 
 	return {
 		...postQuery,
-		post: postQuery.data?.data?.data || [],
+		post: postQuery.data?.data || [],
 	}
 }
 

@@ -3,7 +3,6 @@ import {
 	addComment,
 	deleteComment,
 	deletePost,
-	fetchPost,
 	fetchPostsByCreator,
 	fetchPostsBySearch,
 	fetchSavedPosts,
@@ -29,27 +28,6 @@ const createPostsStore = () =>
 	create('postsStore')((set, get) => ({
 		...INITIAL_STATE,
 		setCurrentId: id => set({ currentId: id }, false, 'set-current-id'),
-
-		getPost: async id => {
-			set({ loading: true }, false, 'get-post')
-			try {
-				const { data } = await fetchPost(id)
-
-				set({ post: data }, false, 'get-post')
-			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to get post. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				console.error(err)
-				throw err
-			} finally {
-				set({ loading: false }, false, 'get-post')
-			}
-		},
 
 		getPostsBySearch: async searchQuery => {
 			set({ loading: true }, false, 'get-posts-by-search')
