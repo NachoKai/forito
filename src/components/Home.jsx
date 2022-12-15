@@ -12,16 +12,8 @@ const Home = ({ onOpen }) => {
 	const locationQuery = useLocationQuery()
 	const page = Number(locationQuery.get('page') || 1)
 	const searchQuery = locationQuery.get('searchQuery')
-	const {
-		posts,
-		currentPage,
-		numberOfPages,
-		count,
-		isSuccess,
-		isLoading,
-		isError,
-		error,
-	} = usePosts(page)
+	const { posts, currentPage, numberOfPages, count, isLoading, isError, error } =
+		usePosts(page)
 
 	if (isError) {
 		console.error(error)
@@ -32,36 +24,32 @@ const Home = ({ onOpen }) => {
 	if (isLoading) return <Loading />
 
 	return (
-		<>
-			{isSuccess ? (
-				<Stack pb='4'>
-					<Stack
-						direction={{
-							sm: 'column-reverse',
-							md: 'column-reverse',
-							lg: 'row',
-							xl: 'row',
-						}}
-						px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
-						py={{ sm: '6', md: '6', lg: '8', xl: '8' }}
-						spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
-					>
-						<Stack w='100%'>
-							<Posts isLoading={isLoading} posts={posts} onOpen={onOpen} />
-						</Stack>
-					</Stack>
-					<Stack px={{ sm: '4', md: '10', lg: '16', xl: '24' }}>
-						{!searchQuery && (
-							<Paginate
-								count={count}
-								currentPage={currentPage}
-								numberOfPages={numberOfPages}
-							/>
-						)}
-					</Stack>
+		<Stack pb='4'>
+			<Stack
+				direction={{
+					sm: 'column-reverse',
+					md: 'column-reverse',
+					lg: 'row',
+					xl: 'row',
+				}}
+				px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
+				py={{ sm: '6', md: '6', lg: '8', xl: '8' }}
+				spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
+			>
+				<Stack w='100%'>
+					<Posts isLoading={isLoading} posts={posts} onOpen={onOpen} />
 				</Stack>
-			) : null}
-		</>
+			</Stack>
+			<Stack px={{ sm: '4', md: '10', lg: '16', xl: '24' }}>
+				{!searchQuery && (
+					<Paginate
+						count={count}
+						currentPage={currentPage}
+						numberOfPages={numberOfPages}
+					/>
+				)}
+			</Stack>
+		</Stack>
 	)
 }
 
