@@ -34,8 +34,9 @@ import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { v4 as uuid } from 'uuid'
 
-import { useSave } from '../hooks/useSave'
+import { useDeletePost, usePosts } from '../hooks/data/posts'
 import { useLike } from '../hooks/useLike'
+import { useSave } from '../hooks/useSave'
 import { usePostsStore } from '../state/postsStore'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
@@ -43,6 +44,7 @@ import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { showError } from '../utils/showError'
 import { useLocationQuery } from '../utils/useLocationQuery'
 import { Dialog } from './common/Dialog'
+import ErrorPage from './ErrorPage'
 import { Likes } from './Likes'
 
 const DATE_FORMAT = 'dd MMM yyyy • hh:mmaaa'
@@ -68,7 +70,11 @@ export const Post = ({
 	highlight,
 }) => {
 	const navigate = useNavigate()
-	const { setCurrentId, deletePost, posts, getPosts } = usePostsStore()
+	const locationQuery = useLocationQuery()
+	const page = Number(locationQuery.get('page') || 1)
+	const { posts, isError, error } = usePosts(page)
+	const { mutateAsync: deletePost } = useDeletePost(page)
+	const { setCurrentId } = usePostsStore()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
 	const hasUserLike = likes?.includes(userId)
@@ -80,8 +86,6 @@ export const Post = ({
 	const isPostCreator = checkIsPostCreator(user, creator)
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
-	const locationQuery = useLocationQuery()
-	const page = Number(locationQuery.get('page') || 1)
 	const initialFocusRef = useRef()
 	const userLogged = user?.result
 	const createdAtDate = isValid(new Date(createdAt)) ? new Date(createdAt) : new Date()
@@ -107,8 +111,6 @@ export const Post = ({
 			if (posts?.length === 1 && page > 1) {
 				navigate(`/posts?page=${page - 1}`)
 			}
-
-			getPosts(page)
 		} catch (err) {
 			showError(
 				<>
@@ -119,6 +121,12 @@ export const Post = ({
 			)
 			console.error(err)
 		}
+	}
+
+	if (isError) {
+		console.error(error)
+
+		return <ErrorPage />
 	}
 
 	return (

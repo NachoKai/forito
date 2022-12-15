@@ -16,9 +16,9 @@ import { getThemeColor } from '../utils/getThemeColor'
 
 const POSTS_LIMIT = 6
 
-export const Paginate = () => {
+export const Paginate = ({ currentPage, numberOfPages, count }) => {
 	const navigate = useNavigate()
-	const { count, numberOfPages, setCurrentPage, currentPage } = usePostsStore()
+	const { setCurrentPage } = usePostsStore()
 
 	const { pages } = usePagination({
 		total: count,
@@ -81,5 +81,7 @@ const Container = styled(Stack)`
 `
 
 Paginate.propTypes = {
-	page: PropTypes.number,
+	currentPage: PropTypes.number,
+	numberOfPages: PropTypes.number,
+	count: PropTypes.number,
 }

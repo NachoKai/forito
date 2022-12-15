@@ -3,16 +3,15 @@ import PropTypes from 'prop-types'
 import { useMemo } from 'react'
 import { FaSearch } from 'react-icons/fa'
 
-import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import { Loading } from './common/Loading'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Post } from './Post'
 
-export const Posts = ({ onOpen, posts, highlight }) => {
-	const { loading } = usePostsStore()
+export const Posts = ({ onOpen, posts, highlight, isLoading }) => {
 	const havePosts = posts?.length > 0
 	const user = getUserLocalStorage()
 	const userEmail = user?.result?.email
@@ -30,6 +29,8 @@ export const Posts = ({ onOpen, posts, highlight }) => {
 		[isAdmin, posts, user]
 	)
 
+	if (isLoading) return <Loading />
+
 	return (
 		<Flex flexGrow='1' minH='100vh' w='100%'>
 			<StaggeredSlideFade
@@ -37,7 +38,17 @@ export const Posts = ({ onOpen, posts, highlight }) => {
 				spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 				w='100%'
 			>
-				{!havePosts && !loading ? (
+				{havePosts ? (
+					<StaggeredSlideFade
+						direction='column'
+						spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
+						w='100%'
+					>
+						{publicPosts?.map(post => (
+							<Post key={post?._id} highlight={highlight} post={post} onOpen={onOpen} />
+						))}
+					</StaggeredSlideFade>
+				) : (
 					<Stack align='center' direction='column' my='64px' spacing='4'>
 						<Text color='primary.400' fontSize='6xl'>
 							<FaSearch />
@@ -52,16 +63,6 @@ export const Posts = ({ onOpen, posts, highlight }) => {
 							No posts found
 						</Heading>
 					</Stack>
-				) : (
-					<StaggeredSlideFade
-						direction='column'
-						spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
-						w='100%'
-					>
-						{publicPosts?.map(post => (
-							<Post key={post?._id} highlight={highlight} post={post} onOpen={onOpen} />
-						))}
-					</StaggeredSlideFade>
 				)}
 			</StaggeredSlideFade>
 		</Flex>
@@ -72,4 +73,5 @@ Posts.propTypes = {
 	onOpen: PropTypes.func,
 	posts: PropTypes.array,
 	highlight: PropTypes.string,
+	isLoading: PropTypes.bool,
 }

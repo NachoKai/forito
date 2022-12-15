@@ -14,7 +14,7 @@ const ScrollToTop = loadable(() => import('./components/common/ScrollToTop'))
 const About = loadable(() => import('./components/About'))
 const Auth = loadable(() => import('./components/Auth'))
 const Creator = loadable(() => import('./components/Creator'))
-const ErrorPage = loadable(() => import('./components/ErrorPage'))
+const NotFoundPage = loadable(() => import('./components/NotFoundPage'))
 const Footer = loadable(() => import('./components/Footer'))
 const Home = loadable(() => import('./components/Home'))
 const Navbar = loadable(() => import('./components/Navbar/Navbar'))
@@ -71,7 +71,7 @@ export const App = () => {
 					/>
 					<Route element={<About />} path='about' />
 					<Route element={<TopPosts />} path='posts/top' />
-					<Route element={<ErrorPage />} path='*' />
+					<Route element={<NotFoundPage />} path='*' />
 				</Routes>
 			</Stack>
 

@@ -7,17 +7,24 @@ import { CreateGradColor } from '../theme'
 import { getTopPosts } from '../utils/getTopPosts'
 import { Loading } from './common/Loading'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
+import ErrorPage from './ErrorPage'
 import { Post } from './Post'
 
 const TopPosts = () => {
-	const { allPosts, isSuccess, isLoading } = useAllPosts()
+	const { allPosts, isSuccess, isLoading, isError, error } = useAllPosts()
 	const postsWithLikes = allPosts?.filter(post => post?.likes?.length > 0)
 	const havePosts = postsWithLikes?.length > 0
 	const topPosts = isSuccess && getTopPosts(postsWithLikes, 5)
 
-	return isLoading ? (
-		<Loading />
-	) : (!isSuccess && !topPosts?.length) || !havePosts ? (
+	if (isError) {
+		console.error(error)
+
+		return <ErrorPage />
+	}
+
+	if (isLoading) return <Loading />
+
+	return (!isSuccess && !topPosts?.length) || !havePosts ? (
 		<Flex align='center' direction='column' h='100%' minH='100vh' my='64px'>
 			<Text color='primary.400' fontSize='6xl' mb='16px'>
 				<FaSearch />
