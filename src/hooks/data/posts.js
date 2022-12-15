@@ -302,7 +302,8 @@ export const useAddComment = () => {
 	return useMutation(
 		async ({ id, value }) => {
 			try {
-				await addComment({ id, value })
+				await addComment(id, value)
+				showSuccess('Comment successfully added.')
 
 				return { id }
 			} catch (err) {
@@ -323,7 +324,8 @@ export const useDeleteComment = () => {
 	return useMutation(
 		async ({ id, commentId }) => {
 			try {
-				await deleteComment({ id, commentId })
+				await deleteComment(id, commentId)
+				showSuccess('Comment successfully deleted.')
 
 				return { id }
 			} catch (err) {

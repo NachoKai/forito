@@ -33,7 +33,7 @@ export const Comment = ({ comment, deleteComment, postId }) => {
 					maxW='88px'
 					size='xs'
 					variant='solid'
-					onClick={() => deleteComment(postId, comment?.commentId)}
+					onClick={() => deleteComment({ id: postId, commentId: comment?.commentId })}
 				>
 					Delete
 				</Button>

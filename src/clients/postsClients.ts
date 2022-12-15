@@ -103,7 +103,7 @@ export const deletePost = async (id: string) => {
 	}
 }
 
-export const addComment = async (value: CommentI, id: string) => {
+export const addComment = async (id: string, value: CommentI) => {
 	try {
 		return await api.post(`/posts/${id}/addComment`, { value })
 	} catch (err) {

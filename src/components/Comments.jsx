@@ -1,10 +1,10 @@
 import { Button, HStack, Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import React, { useCallback, useState } from 'react'
+import { useCallback, useState } from 'react'
 import { FaExclamationCircle } from 'react-icons/fa'
 import { v4 as uuid } from 'uuid'
+import { useAddComment, useDeleteComment } from '../hooks/data/posts'
 
-import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
 import { showError } from '../utils/showError'
@@ -12,11 +12,12 @@ import { Comment } from './Comment'
 import { FormTextArea } from './common/FormTextArea'
 
 export const Comments = ({ postComments, postId, user }) => {
-	const { addComment, deleteComment } = usePostsStore()
 	const userId = user?.result?.googleId || user?.result?._id
 	const [comment, setComment] = useState('')
 	const [comments, setComments] = useState(postComments)
 	const isInputEmpty = checkEmpty(comment)
+	const { mutateAsync: addComment } = useAddComment()
+	const { mutateAsync: deleteComment } = useDeleteComment()
 
 	const handleAddComment = useCallback(async () => {
 		try {
@@ -27,7 +28,7 @@ export const Comments = ({ postComments, postId, user }) => {
 				commentId: uuid(),
 			}
 
-			await addComment(commentContent, postId)
+			await addComment({ id: postId, value: commentContent })
 			setComments([...comments, commentContent])
 			setComment('')
 		} catch (err) {
