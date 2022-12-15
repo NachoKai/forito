@@ -290,6 +290,7 @@ export const useSavePost = () => {
 		{
 			onSuccess: async ({ id }) => {
 				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
+				await queryClient.refetchQueries({ queryKey: ['savedPostsQuery'] })
 				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
 			},
 		}
