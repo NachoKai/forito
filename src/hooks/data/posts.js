@@ -198,6 +198,9 @@ export const useCreatePost = () => {
 		{
 			onSuccess: async () => {
 				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
+				await queryClient.refetchQueries({ queryKey: ['postsByCreatorQuery'] })
+				await queryClient.refetchQueries({ queryKey: ['savedPostsQuery'] })
+				await queryClient.refetchQueries({ queryKey: ['postsBySearchQuery'] })
 			},
 		}
 	)

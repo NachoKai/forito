@@ -44,6 +44,7 @@ import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { showError } from '../utils/showError'
 import { useLocationQuery } from '../utils/useLocationQuery'
 import { Dialog } from './common/Dialog'
+import { Loading } from './common/Loading'
 import ErrorPage from './ErrorPage'
 import { Likes } from './Likes'
 
@@ -72,7 +73,7 @@ export const Post = ({
 	const navigate = useNavigate()
 	const locationQuery = useLocationQuery()
 	const page = Number(locationQuery.get('page') || 1)
-	const { posts, isError, error } = usePosts(page)
+	const { posts, isError, error, isLoading } = usePosts(page)
 	const { mutateAsync: deletePost } = useDeletePost(page)
 	const { setCurrentId } = usePostsStore()
 	const user = getUserLocalStorage()
@@ -128,6 +129,8 @@ export const Post = ({
 
 		return <ErrorPage />
 	}
+
+	if (isLoading) return <Loading />
 
 	return (
 		<>
