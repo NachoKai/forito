@@ -6,10 +6,12 @@ import { render, screen } from './test-utils'
 describe('Post', () => {
 	let post
 	let onOpen
+	let highlight
 
 	beforeEach(() => {
 		post = null
 		onOpen = null
+		highlight = null
 	})
 
 	test('Renders component sections', () => {
@@ -35,8 +37,9 @@ describe('Post', () => {
 			],
 		}
 		onOpen = jest.fn()
+		highlight = ''
 
-		render(<Post post={post} onOpen={onOpen} />)
+		render(<Post highlight={highlight} post={post} onOpen={onOpen} />)
 		const title = screen.getByRole('button', { name: /test title 1/i })
 		const name = screen.getByRole('link', { name: /test name 1/i })
 		const message = screen.getByText(/test message 1/i)
