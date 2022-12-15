@@ -22,9 +22,9 @@ const TopPosts = () => {
 		return <ErrorPage />
 	}
 
-	return isLoading ? (
-		<Loading />
-	) : (!isSuccess && !topPosts?.length) || !havePosts ? (
+	if (isLoading) return <Loading />
+
+	return (!isSuccess && !topPosts?.length) || !havePosts ? (
 		<Flex align='center' direction='column' h='100%' minH='100vh' my='64px'>
 			<Text color='primary.400' fontSize='6xl' mb='16px'>
 				<FaSearch />

@@ -29,11 +29,11 @@ const Home = ({ onOpen }) => {
 		return <ErrorPage />
 	}
 
+	if (isLoading) return <Loading />
+
 	return (
 		<>
-			{isLoading ? (
-				<Loading />
-			) : isSuccess ? (
+			{isSuccess ? (
 				<Stack pb='4'>
 					<Stack
 						direction={{
@@ -47,7 +47,7 @@ const Home = ({ onOpen }) => {
 						spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 					>
 						<Stack w='100%'>
-							<Posts posts={posts} onOpen={onOpen} />
+							<Posts isLoading={isLoading} posts={posts} onOpen={onOpen} />
 						</Stack>
 					</Stack>
 					<Stack px={{ sm: '4', md: '10', lg: '16', xl: '24' }}>
