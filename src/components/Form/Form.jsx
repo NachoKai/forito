@@ -44,7 +44,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 		isError: isPostsError,
 		error: postsError,
 	} = usePosts(page)
-	const { currentId, setCurrentId, showLoading, hideLoading } = usePostsStore()
+	const { currentId, setCurrentId } = usePostsStore()
 	const { mutateAsync: createPost, isLoading: isCreatePostLoading } = useCreatePost()
 	const { mutateAsync: updatePost, isLoading: isUpdatePostLoading } = useUpdatePost()
 	const btnRef = useRef()
@@ -70,8 +70,6 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 
 	const handleSubmit = async () => {
 		try {
-			showLoading()
-
 			if (postData?.selectedFile?.id) {
 				const imageCollectionRef = firebaseApp.firestore().collection('images')
 
@@ -104,8 +102,6 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 			)
 			console.error(err)
 			throw err
-		} finally {
-			hideLoading()
 		}
 	}
 
