@@ -5,14 +5,11 @@ import { FaSearch } from 'react-icons/fa'
 import { CreateGradColor } from '../theme'
 import { getPublicPosts } from '../utils/getPublicPosts'
 import { Post } from './Post'
-import { Loading } from './common/Loading'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 
-export const Posts = ({ onOpen, posts, highlight, isLoading }) => {
+export const Posts = ({ onOpen, posts, highlight }) => {
 	const havePosts = posts?.length > 0
-	const publicPosts = getPublicPosts(posts)
-
-	if (isLoading) return <Loading />
+	const publicPosts = posts?.length && getPublicPosts(posts)
 
 	return (
 		<Flex flexGrow='1' minH='100vh' w='100%'>

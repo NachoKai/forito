@@ -13,10 +13,11 @@ import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 const Tags = () => {
 	const { name } = useParams()
 	const searchQuery = { tags: name }
-	const { postsBySearch, isLoading, isError, error } = usePostsBySearch(searchQuery)
+	const { postsBySearch, isLoading, isError, error, isSuccess } =
+		usePostsBySearch(searchQuery)
 	const postsQuantity = postsBySearch?.length
 	const title = postsQuantity === 1 ? `${postsQuantity} Post` : `${postsQuantity} Posts`
-	const publicPosts = getPublicPosts(postsBySearch)
+	const publicPosts = isSuccess && postsBySearch?.length && getPublicPosts(postsBySearch)
 
 	if (isError) {
 		console.error(error)

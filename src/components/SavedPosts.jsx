@@ -15,7 +15,7 @@ const SavedPosts = () => {
 	const userId = user?.result?.googleId || user?.result?._id
 	const { id } = useParams()
 	const { savedPosts, count, isLoading, isSuccess } = useSavedPosts(id)
-	const publicPosts = isSuccess && getPublicPosts(savedPosts)
+	const publicPosts = isSuccess && savedPosts?.length && getPublicPosts(savedPosts)
 
 	if (userId !== id) return null
 	if (isLoading) return <Loading />

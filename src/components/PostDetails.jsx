@@ -43,6 +43,13 @@ const PostDetails = ({ user }) => {
 		isError: isPostError,
 		error: postError,
 	} = usePost(id)
+	const searchQuery = { search: 'none', tags: post?.tags?.join(',') }
+	const {
+		postsBySearch,
+		isLoading: isPostsBySearchLoading,
+		isError: isPostsBySearchError,
+		error: postsBySearchError,
+	} = usePostsBySearch(searchQuery)
 	const postComments = post?.comments
 	const postId = post?._id
 	const userEmail = user?.result?.email
@@ -57,13 +64,6 @@ const PostDetails = ({ user }) => {
 	const updatedAtDate = isValid(new Date(post?.updatedAt))
 		? new Date(post.updatedAt)
 		: null
-	const searchQuery = { search: 'none', tags: post?.tags?.join(',') }
-	const {
-		postsBySearch,
-		isLoading: isPostsBySearchLoading,
-		isError: isPostsBySearchError,
-		error: postsBySearchError,
-	} = usePostsBySearch(searchQuery)
 	const recommendedPosts = postsBySearch?.filter(({ _id }) => _id !== post?._id)
 
 	const shareOnTwitter = () => {

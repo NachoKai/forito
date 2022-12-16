@@ -37,7 +37,7 @@ const Home = ({ onOpen }) => {
 				spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 			>
 				<Stack w='100%'>
-					<Posts isLoading={isLoading} posts={posts} onOpen={onOpen} />
+					<Posts posts={posts} onOpen={onOpen} />
 				</Stack>
 			</Stack>
 			<Stack px={{ sm: '4', md: '10', lg: '16', xl: '24' }}>
