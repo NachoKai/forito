@@ -17,6 +17,8 @@ import { useNavigate } from 'react-router-dom'
 
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
 import { useUpdateUserName } from '../../hooks/data/auth'
+import ErrorPage from '../ErrorPage'
+import { Loading } from '../common/Loading'
 
 export const ChangeName = () => {
 	const navigate = useNavigate()
@@ -25,7 +27,7 @@ export const ChangeName = () => {
 	const finalRef = useRef(null)
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
-	const { mutateAsync: updateUserName } = useUpdateUserName()
+	const { mutateAsync: updateUserName, isLoading, isError, error } = useUpdateUserName()
 
 	const handleSubmit = async e => {
 		e.preventDefault()
@@ -44,6 +46,13 @@ export const ChangeName = () => {
 			setLastName('')
 			onClose()
 		}
+	}
+
+	if (isLoading) return <Loading />
+	if (isError) {
+		console.error(error)
+
+		return <ErrorPage />
 	}
 
 	return (

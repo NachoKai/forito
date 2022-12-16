@@ -18,6 +18,8 @@ import { useNavigate } from 'react-router-dom'
 
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
 import { useUpdateUserEmail } from '../../hooks/data/auth'
+import { Loading } from '../common/Loading'
+import ErrorPage from '../ErrorPage'
 
 export const ChangeEmail = () => {
 	const navigate = useNavigate()
@@ -26,7 +28,7 @@ export const ChangeEmail = () => {
 	const finalRef = useRef(null)
 	const [email, setEmail] = useState('')
 	const [emailRepeat, setEmailRepeat] = useState('')
-	const { mutateAsync: updateUserEmail } = useUpdateUserEmail()
+	const { mutateAsync: updateUserEmail, isLoading, isError, error } = useUpdateUserEmail()
 	const emailRegex =
 		/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
@@ -48,6 +50,13 @@ export const ChangeEmail = () => {
 			setEmailRepeat('')
 			onClose()
 		}
+	}
+
+	if (isLoading) return <Loading />
+	if (isError) {
+		console.error(error)
+
+		return <ErrorPage />
 	}
 
 	return (

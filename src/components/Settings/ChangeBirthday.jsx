@@ -18,6 +18,8 @@ import { useNavigate } from 'react-router-dom'
 
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
 import { useUpdateUserBirthday } from '../../hooks/data/auth'
+import { Loading } from '../common/Loading'
+import ErrorPage from '../ErrorPage'
 
 export const ChangeBirthday = () => {
 	const navigate = useNavigate()
@@ -25,7 +27,12 @@ export const ChangeBirthday = () => {
 	const initialRef = useRef(null)
 	const finalRef = useRef(null)
 	const [birthday, setBirthday] = useState('')
-	const { mutateAsync: updateUserBirthday } = useUpdateUserBirthday()
+	const {
+		mutateAsync: updateUserBirthday,
+		isLoading,
+		isError,
+		error,
+	} = useUpdateUserBirthday()
 	const now = new Date()
 	const minDate = sub(now, { years: 100 }).toISOString().split('T')[0]
 	const maxDate = sub(now, { years: 10 }).toISOString().split('T')[0]
@@ -46,6 +53,13 @@ export const ChangeBirthday = () => {
 			setBirthday('')
 			onClose()
 		}
+	}
+
+	if (isLoading) return <Loading />
+	if (isError) {
+		console.error(error)
+
+		return <ErrorPage />
 	}
 
 	return (
