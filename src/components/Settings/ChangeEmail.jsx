@@ -16,8 +16,8 @@ import {
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useAuthStore } from '../../state/authStore'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
+import { useUpdateUserEmail } from '../../hooks/data/auth'
 
 export const ChangeEmail = () => {
 	const navigate = useNavigate()
@@ -26,7 +26,7 @@ export const ChangeEmail = () => {
 	const finalRef = useRef(null)
 	const [email, setEmail] = useState('')
 	const [emailRepeat, setEmailRepeat] = useState('')
-	const { updateUserEmail } = useAuthStore()
+	const { mutateAsync: updateUserEmail } = useUpdateUserEmail()
 	const emailRegex =
 		/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
@@ -39,7 +39,7 @@ export const ChangeEmail = () => {
 			const user = getUserLocalStorage()
 			const userId = user?.result?.googleId || user?.result?._id
 
-			await updateUserEmail(userId, email?.replace(/-/g, '/'))
+			await updateUserEmail({ userId, email: email?.replace(/-/g, '/') })
 			navigate(0)
 		} catch (err) {
 			console.error(err)

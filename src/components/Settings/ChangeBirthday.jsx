@@ -16,8 +16,8 @@ import { sub } from 'date-fns'
 import { useRef, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useAuthStore } from '../../state/authStore'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
+import { useUpdateUserBirthday } from '../../hooks/data/auth'
 
 export const ChangeBirthday = () => {
 	const navigate = useNavigate()
@@ -25,7 +25,7 @@ export const ChangeBirthday = () => {
 	const initialRef = useRef(null)
 	const finalRef = useRef(null)
 	const [birthday, setBirthday] = useState('')
-	const { updateUserBirthday } = useAuthStore()
+	const { mutateAsync: updateUserBirthday } = useUpdateUserBirthday()
 	const now = new Date()
 	const minDate = sub(now, { years: 100 }).toISOString().split('T')[0]
 	const maxDate = sub(now, { years: 10 }).toISOString().split('T')[0]
@@ -38,7 +38,7 @@ export const ChangeBirthday = () => {
 			const user = getUserLocalStorage()
 			const userId = user?.result?.googleId || user?.result?._id
 
-			await updateUserBirthday(userId, birthday?.replace(/-/g, '/'))
+			await updateUserBirthday({ userId, birthday: birthday?.replace(/-/g, '/') })
 			navigate(0)
 		} catch (err) {
 			console.error(err)
