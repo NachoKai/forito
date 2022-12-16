@@ -41,7 +41,7 @@ export const FormInput = ({
 			</Tooltip>
 		)}
 
-		{Boolean(validation) && (
+		{validation && (
 			<FormHelperText color='red.400' fontWeight='bold' mb='4px' whiteSpace='nowrap'>
 				{validation}
 			</FormHelperText>
@@ -49,7 +49,7 @@ export const FormInput = ({
 
 		{child || (
 			<InputGroup whiteSpace='nowrap'>
-				{Boolean(leftIcon) && (
+				{leftIcon && (
 					<InputLeftElement color='gray.300' fontSize='1.2em'>
 						{leftIcon}
 					</InputLeftElement>
@@ -68,7 +68,7 @@ export const FormInput = ({
 					{...rest}
 				/>
 
-				{Boolean(rightIcon) && (
+				{rightIcon && (
 					<InputRightElement color='gray.300' fontSize='1.2em'>
 						{rightIcon}
 					</InputRightElement>
@@ -76,7 +76,7 @@ export const FormInput = ({
 			</InputGroup>
 		)}
 
-		{Boolean(helper) && <FormHelperText>{helper}</FormHelperText>}
+		{helper && <FormHelperText>{helper}</FormHelperText>}
 	</FormControl>
 )
 

@@ -36,7 +36,7 @@ export const UserNavbar = ({ user, handleLogout, colorMode }) => {
 
 	return (
 		<HStack align='center' spacing={{ sm: '4', md: '8', lg: '8', xl: '8' }}>
-			{Boolean(userName) && (
+			{userName && (
 				<Popover
 					isLazy
 					closeOnBlur={true}

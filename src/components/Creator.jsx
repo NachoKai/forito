@@ -1,26 +1,43 @@
 import { Heading, Stack, Text } from '@chakra-ui/react'
-import { useEffect } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 import { usePostsByCreator } from '../hooks/data/posts'
 
-import { useAuthStore } from '../state/authStore'
+import { useGetUser } from '../hooks/data/auth'
 import { CreateGradColor } from '../theme'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import { Post } from './Post'
 import { Loading } from './common/Loading'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
-import { Post } from './Post'
+import ErrorPage from './ErrorPage'
 
 const Creator = () => {
 	const { id } = useParams()
-	const { postsByCreator, count, isLoading } = usePostsByCreator(id)
-	const { user, getUser } = useAuthStore()
-	const userLocalStorage = getUserLocalStorage()
-	const userName = user?.name || userLocalStorage?.result?.name
+	const {
+		user,
+		isLoading: isUserLoading,
+		isError: isUserError,
+		error: userError,
+	} = useGetUser(id)
+	const userName = user?.name
+	const {
+		postsByCreator,
+		count,
+		isLoading: isPostsByCreatorLoading,
+		isError: isPostsByCreatorError,
+		error: postsByCreatorError,
+	} = usePostsByCreator(id)
+	const isLoading = isUserLoading || isPostsByCreatorLoading
 
-	useEffect(() => {
-		getUser(id)
-	}, [getUser, id])
+	if (isUserError) {
+		console.error(userError)
+
+		return <ErrorPage />
+	}
+	if (isPostsByCreatorError) {
+		console.error(postsByCreatorError)
+
+		return <ErrorPage />
+	}
 
 	if (!postsByCreator?.length && !isLoading) {
 		return (

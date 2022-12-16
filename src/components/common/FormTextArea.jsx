@@ -50,7 +50,7 @@ export const FormTextArea = ({
 			/>
 		)}
 
-		{Boolean(helper) && <FormHelperText>{helper}</FormHelperText>}
+		{helper && <FormHelperText>{helper}</FormHelperText>}
 	</FormControl>
 )
 

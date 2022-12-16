@@ -81,7 +81,7 @@ export const ChangeEmail = () => {
 								value={email}
 								onChange={e => setEmail(e.target.value)}
 							/>
-							{Boolean(email && !emailRegex.test(email)) && (
+							{email && !emailRegex.test(email) && (
 								<FormHelperText
 									color='red.400'
 									fontWeight='bold'
@@ -108,7 +108,7 @@ export const ChangeEmail = () => {
 								value={emailRepeat}
 								onChange={e => setEmailRepeat(e.target.value)}
 							/>
-							{Boolean(emailRepeat && email !== emailRepeat) && (
+							{emailRepeat && email !== emailRepeat && (
 								<FormHelperText
 									color='red.400'
 									fontWeight='bold'
@@ -118,7 +118,7 @@ export const ChangeEmail = () => {
 									Emails don&apos;t match
 								</FormHelperText>
 							)}
-							{Boolean(emailRepeat && !emailRegex.test(emailRepeat)) && (
+							{emailRepeat && !emailRegex.test(emailRepeat) && (
 								<FormHelperText
 									color='red.400'
 									fontWeight='bold'

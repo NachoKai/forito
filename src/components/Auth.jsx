@@ -3,27 +3,29 @@ import { GoogleLogin } from 'react-google-login'
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
-import { useAuthStore } from '../state/authStore'
 import { showError } from '../utils/showError'
 import { FormInput } from './common/FormInput'
+import { useGoogleLogin, useLogin, useSignup } from '../hooks/data/auth'
 
 const Auth = () => {
-	const { login, signup, googleLogin } = useAuthStore()
 	const navigate = useNavigate()
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
 	const [isSignup, setIsSignup] = useBoolean()
 	const [showPassword, setShowPassword] = useBoolean()
 	const [showRepeatPassword, setShowRepeatPassword] = useBoolean()
-	const [loading, setLoading] = useBoolean()
+	const { mutateAsync: login, isLoading: isLoginLoading } = useLogin()
+	const { mutateAsync: googleLogin } = useGoogleLogin()
+	const { mutateAsync: signup, isLoading: isSignupLoading } = useSignup()
+	const isLoading = isLoginLoading || isSignupLoading
 
 	const onSuccess = async res => {
 		try {
-			setLoading.on()
 			const result = res?.profileObj
 			const token = res?.tokenId
 
 			await googleLogin({ result, token })
-			navigate('/posts')
+			navigate('/posts', { replace: true })
+			navigate(0)
 		} catch (err) {
 			showError(
 				<>
@@ -33,8 +35,6 @@ const Auth = () => {
 				</>
 			)
 			console.error(err)
-		} finally {
-			setLoading.off()
 		}
 	}
 
@@ -46,7 +46,6 @@ const Auth = () => {
 			</>
 		)
 		console.error('Google login was unsuccessful: ', res)
-		setLoading.off()
 	}
 
 	const handleSubmit = async e => {
@@ -55,7 +54,6 @@ const Auth = () => {
 
 		try {
 			if (isSignup) {
-				setLoading.on()
 				await signup({
 					firstName: e.target.firstName.value,
 					lastName: e.target.lastName.value,
@@ -64,14 +62,13 @@ const Auth = () => {
 					confirmPassword: e.target.confirmPassword.value,
 				})
 			} else {
-				setLoading.on()
 				await login({
 					email: e.target.email.value,
 					password: e.target.password.value,
 				})
 			}
-			setLoading.off()
-			navigate('/posts')
+			navigate('/posts', { replace: true })
+			navigate(0)
 		} catch (err) {
 			showError(
 				<>
@@ -82,8 +79,6 @@ const Auth = () => {
 			)
 			console.error(err)
 			throw err
-		} finally {
-			setLoading.off()
 		}
 	}
 
@@ -110,7 +105,7 @@ const Auth = () => {
 				</Text>
 				<form onSubmit={handleSubmit}>
 					<Stack spacing='4'>
-						{Boolean(isSignup) && (
+						{isSignup && (
 							<HStack spacing='4'>
 								<FormInput
 									autoFocus
@@ -158,7 +153,7 @@ const Auth = () => {
 							tooltip='Required'
 							type={showPassword ? 'text' : 'password'}
 						/>
-						{Boolean(isSignup) && (
+						{isSignup && (
 							<FormInput
 								isRequired
 								dataCy='auth-confirm-password'
@@ -181,8 +176,8 @@ const Auth = () => {
 						<Button
 							className='button'
 							data-cy='auth-login-signup-button'
-							disabled={Boolean(loading)}
-							isLoading={Boolean(loading)}
+							disabled={isLoading}
+							isLoading={isLoading}
 							loadingText='Loading...'
 							type='submit'
 							variant='solid'
