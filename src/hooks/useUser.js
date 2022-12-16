@@ -2,13 +2,13 @@ import decode from 'jwt-decode'
 import { useCallback, useEffect, useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 
-import { useAuthStore } from '../state/authStore'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import { useLogout } from './data/auth'
 
 export const useUser = () => {
 	const navigate = useNavigate()
 	const location = useLocation()
-	const { logout } = useAuthStore()
+	const { mutateAsync: logout } = useLogout()
 	const [user, setUser] = useState(() => getUserLocalStorage())
 
 	const handleLogout = useCallback(async () => {
