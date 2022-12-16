@@ -1,15 +1,30 @@
 import { Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
-import { usePostsStore } from '../state/postsStore'
+import { usePostsBySearch } from '../hooks/data/posts'
 import { useLocationQuery } from '../utils/useLocationQuery'
+import ErrorPage from './ErrorPage'
 import { Posts } from './Posts'
 import { Search } from './Search'
+import { Loading } from './common/Loading'
+import { usePostsStore } from '../state/postsStore'
 
 const SearchView = () => {
+	const { searchQuery } = usePostsStore()
+	const searchQueryText = searchQuery?.search
 	const locationQuery = useLocationQuery()
-	const searchQuery = locationQuery.get('searchQuery')
-	const { posts } = usePostsStore()
+	const locationSearchQueryText = locationQuery.get('searchQuery')
+	const locationSearchQuery = { search: locationSearchQueryText, tags: '' }
+	const { postsBySearch, isLoading, isError, error } = usePostsBySearch(
+		locationSearchQuery || searchQuery
+	)
+
+	if (isLoading) return <Loading />
+	if (isError) {
+		console.error(error)
+
+		return <ErrorPage error={error} />
+	}
 
 	return (
 		<Stack pb='4'>
@@ -21,7 +36,10 @@ const SearchView = () => {
 			>
 				<Stack align='center' spacing='8' w='100%'>
 					<Search />
-					<Posts highlight={searchQuery} posts={searchQuery ? posts : []} />
+					<Posts
+						highlight={locationSearchQueryText || searchQueryText}
+						posts={locationSearchQuery ? postsBySearch : []}
+					/>
 				</Stack>
 			</Stack>
 		</Stack>

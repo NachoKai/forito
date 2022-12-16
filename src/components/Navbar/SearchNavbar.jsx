@@ -13,14 +13,14 @@ export const SearchNavbar = () => {
 	const navigate = useNavigate()
 	const [searchValue, setSearchValue] = useState('')
 	const [searchTags, setSearchTags] = useState([])
-	const { getPostsBySearch } = usePostsStore()
+	const { setSearchQuery } = usePostsStore()
 
 	const searchPost = useCallback(async () => {
 		try {
 			if (searchValue.trim() || searchTags) {
 				setSearchValue('')
 				setSearchTags([])
-				await getPostsBySearch({ search: searchValue, tags: searchTags.join(',') })
+				await setSearchQuery({ search: searchValue, tags: searchTags.join(',') })
 				navigate(
 					`search?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`
 				)
@@ -34,7 +34,7 @@ export const SearchNavbar = () => {
 				</>
 			)
 		}
-	}, [getPostsBySearch, navigate, searchTags, searchValue])
+	}, [setSearchQuery, navigate, searchTags, searchValue])
 
 	const handleKeyDown = useCallback(
 		e => {

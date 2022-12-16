@@ -23,7 +23,7 @@ const ENTER_KEYCODE = 13
 
 export const Search = () => {
 	const navigate = useNavigate()
-	const { getPostsBySearch } = usePostsStore()
+	const { setSearchQuery } = usePostsStore()
 	const [searchValue, setSearchValue] = useState('')
 	const { searchTags, setSearchTags, handleAddTag, handleDeleteTag } = useTags()
 	const isInputEmpty = !searchValue?.trim()?.length && !searchTags?.length
@@ -33,7 +33,7 @@ export const Search = () => {
 			if (searchValue.trim() || searchTags) {
 				setSearchValue('')
 				setSearchTags([])
-				await getPostsBySearch({ search: searchValue, tags: searchTags.join(',') })
+				await setSearchQuery({ search: searchValue, tags: searchTags.join(',') })
 				navigate(`?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`)
 			}
 		} catch (err) {
@@ -45,7 +45,7 @@ export const Search = () => {
 				</>
 			)
 		}
-	}, [getPostsBySearch, navigate, searchTags, searchValue, setSearchTags])
+	}, [setSearchQuery, navigate, searchTags, searchValue, setSearchTags])
 
 	const handleKeyDown = e => {
 		const disabled = !searchValue?.trim()?.length && !searchTags?.length
