@@ -1,39 +1,22 @@
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
-import { useMemo } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 
 import { usePostsBySearch } from '../hooks/data/posts'
 import { CreateGradColor } from '../theme'
-import { PostI, UserI } from '../types'
-import { checkIsAdmin } from '../utils/checkIsAdmin'
-import { checkIsPostCreator } from '../utils/checkIsPostCreator'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import { PostI } from '../types'
+import { getPublicPosts } from '../utils/getPublicPosts'
 import ErrorPage from './ErrorPage'
 import { Post } from './Post'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 
 const Tags = () => {
 	const { name } = useParams()
-	const user: UserI = getUserLocalStorage()
-	const userEmail = user?.result?.email
-	const isAdmin = checkIsAdmin(userEmail)
 	const searchQuery = { tags: name }
 	const { postsBySearch, isLoading, isError, error } = usePostsBySearch(searchQuery)
 	const postsQuantity = postsBySearch?.length
 	const title = postsQuantity === 1 ? `${postsQuantity} Post` : `${postsQuantity} Posts`
-
-	const publicPosts = useMemo(
-		() =>
-			postsBySearch?.filter((post: PostI) => {
-				const isPrivate = post?.privacy === 'private'
-				const creator = post?.creator
-				const isPostCreator = checkIsPostCreator(user, creator)
-
-				return !isPrivate || (isPrivate && isPostCreator) || isAdmin
-			}),
-		[isAdmin, postsBySearch, user]
-	)
+	const publicPosts = getPublicPosts(postsBySearch)
 
 	if (isError) {
 		console.error(error)
