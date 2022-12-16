@@ -1,37 +1,21 @@
 import { Heading, Stack, Text } from '@chakra-ui/react'
-import { useMemo } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 
 import { useSavedPosts } from '../hooks/data/posts'
 import { CreateGradColor } from '../theme'
-import { checkIsAdmin } from '../utils/checkIsAdmin'
-import { checkIsPostCreator } from '../utils/checkIsPostCreator'
+import { getPublicPosts } from '../utils/getPublicPosts'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import { Post } from './Post'
 import { Loading } from './common/Loading'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
-import { Post } from './Post'
 
 const SavedPosts = () => {
 	const user = getUserLocalStorage()
-	const userEmail = user?.result?.email
 	const userId = user?.result?.googleId || user?.result?._id
-	const isAdmin = checkIsAdmin(userEmail)
 	const { id } = useParams()
 	const { savedPosts, count, isLoading, isSuccess } = useSavedPosts(id)
-
-	const publicPosts = useMemo(
-		() =>
-			isSuccess &&
-			savedPosts?.filter(post => {
-				const isPrivate = post?.privacy === 'private'
-				const creator = post?.creator
-				const isPostCreator = checkIsPostCreator(user, creator)
-
-				return !isPrivate || (isPrivate && isPostCreator) || isAdmin
-			}),
-		[isAdmin, savedPosts, user, isSuccess]
-	)
+	const publicPosts = isSuccess && getPublicPosts(savedPosts)
 
 	if (userId !== id) return null
 	if (isLoading) return <Loading />

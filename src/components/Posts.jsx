@@ -1,33 +1,16 @@
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { useMemo } from 'react'
 import { FaSearch } from 'react-icons/fa'
 
 import { CreateGradColor } from '../theme'
-import { checkIsAdmin } from '../utils/checkIsAdmin'
-import { checkIsPostCreator } from '../utils/checkIsPostCreator'
-import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import { getPublicPosts } from '../utils/getPublicPosts'
+import { Post } from './Post'
 import { Loading } from './common/Loading'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
-import { Post } from './Post'
 
 export const Posts = ({ onOpen, posts, highlight, isLoading }) => {
 	const havePosts = posts?.length > 0
-	const user = getUserLocalStorage()
-	const userEmail = user?.result?.email
-	const isAdmin = checkIsAdmin(userEmail)
-
-	const publicPosts = useMemo(
-		() =>
-			posts?.filter(post => {
-				const isPrivate = post?.privacy === 'private'
-				const creator = post?.creator
-				const isPostCreator = checkIsPostCreator(user, creator)
-
-				return !isPrivate || (isPrivate && isPostCreator) || isAdmin
-			}),
-		[isAdmin, posts, user]
-	)
+	const publicPosts = getPublicPosts(posts)
 
 	if (isLoading) return <Loading />
 

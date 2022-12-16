@@ -15,7 +15,6 @@ import { format, formatDistance, isValid } from 'date-fns'
 import { motion, useScroll } from 'framer-motion'
 import Linkify from 'linkify-react'
 import PropTypes from 'prop-types'
-import { useMemo } from 'react'
 import { FaSearch, FaTwitter } from 'react-icons/fa'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { Link, useParams } from 'react-router-dom'
@@ -65,10 +64,7 @@ const PostDetails = ({ user }) => {
 		isError: isPostsBySearchError,
 		error: postsBySearchError,
 	} = usePostsBySearch(searchQuery)
-	const recommendedPosts = useMemo(
-		() => postsBySearch?.filter(({ _id }) => _id !== post?._id),
-		[post?._id, postsBySearch]
-	)
+	const recommendedPosts = postsBySearch?.filter(({ _id }) => _id !== post?._id)
 
 	const shareOnTwitter = () => {
 		const url = `${BASE_URL}/${id}`
