@@ -32,7 +32,7 @@ export const fetchPosts = async (page: number) => {
 export const fetchPostsBySearch = async (searchQuery: SearchQueryI) => {
 	try {
 		return await api.get(
-			`/posts/search?searchQuery=${searchQuery.search || 'none'}&tags=${searchQuery.tags}`
+			`/posts/search?searchQuery=${searchQuery.search || ''}&tags=${searchQuery.tags}`
 		)
 	} catch (err) {
 		console.error('Error getting posts by search', err)
