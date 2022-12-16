@@ -10,14 +10,15 @@ import { Loading } from './common/Loading'
 import { usePostsStore } from '../state/postsStore'
 
 const SearchView = () => {
-	const { searchQuery } = usePostsStore()
-	const searchQueryText = searchQuery?.search
-	const locationQuery = useLocationQuery()
-	const locationSearchQueryText = locationQuery.get('searchQuery')
-	const locationSearchQuery = { search: locationSearchQueryText, tags: '' }
-	const { postsBySearch, isLoading, isError, error } = usePostsBySearch(
-		locationSearchQuery || searchQuery
-	)
+	const location = useLocationQuery()
+	const { searchQuery, tagsQuery } = usePostsStore()
+	const searchQueryText = searchQuery || location.get('searchQuery')
+	const tagsQueryText = tagsQuery || location.get('tags')
+	const locationQuery = {
+		search: searchQueryText,
+		tags: tagsQueryText,
+	}
+	const { postsBySearch, isLoading, isError, error } = usePostsBySearch(locationQuery)
 
 	if (isLoading) return <Loading />
 	if (isError) {
@@ -37,8 +38,8 @@ const SearchView = () => {
 				<Stack align='center' spacing='8' w='100%'>
 					<Search />
 					<Posts
-						highlight={locationSearchQueryText || searchQueryText}
-						posts={locationSearchQuery ? postsBySearch : []}
+						highlight={searchQueryText || ''}
+						posts={locationQuery.search || locationQuery.tags ? postsBySearch : []}
 					/>
 				</Stack>
 			</Stack>
