@@ -13,9 +13,12 @@ import {
 	useDisclosure,
 } from '@chakra-ui/react'
 import { useRef, useState } from 'react'
-import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
-import { useAuthStore } from '../../state/authStore'
 import { useNavigate } from 'react-router-dom'
+
+import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
+import { useUpdateUserName } from '../../hooks/data/auth'
+import ErrorPage from '../ErrorPage'
+import { Loading } from '../common/Loading'
 
 export const ChangeName = () => {
 	const navigate = useNavigate()
@@ -24,7 +27,7 @@ export const ChangeName = () => {
 	const finalRef = useRef(null)
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
-	const { updateUserName } = useAuthStore()
+	const { mutateAsync: updateUserName, isLoading, isError, error } = useUpdateUserName()
 
 	const handleSubmit = async e => {
 		e.preventDefault()
@@ -34,7 +37,7 @@ export const ChangeName = () => {
 			const user = getUserLocalStorage()
 			const userId = user?.result?.googleId || user?.result?._id
 
-			await updateUserName(userId, firstName, lastName)
+			await updateUserName({ userId, firstName, lastName })
 			navigate(0)
 		} catch (err) {
 			console.error(err)
@@ -43,6 +46,13 @@ export const ChangeName = () => {
 			setLastName('')
 			onClose()
 		}
+	}
+
+	if (isLoading) return <Loading />
+	if (isError) {
+		console.error(error)
+
+		return <ErrorPage />
 	}
 
 	return (
