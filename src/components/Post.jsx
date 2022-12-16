@@ -267,7 +267,7 @@ export const Post = ({
 									<Button
 										className={userLogged ? 'button' : ''}
 										disabled={!userLogged}
-										isLoading={Boolean(likeLoading)}
+										isLoading={likeLoading}
 										loadingText='Loading...'
 										minW='80px'
 										size='sm'
@@ -290,7 +290,7 @@ export const Post = ({
 												<VisuallyHidden>More Options</VisuallyHidden>
 											</MenuButton>
 											<MenuList border='2px solid #0d0d0d' className='button'>
-												{Boolean(userEmail) && (
+												{userEmail && (
 													<MenuItem onClick={handleSave}>
 														<HStack align='center' spacing='2'>
 															{hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
@@ -300,14 +300,14 @@ export const Post = ({
 														</HStack>
 													</MenuItem>
 												)}
-												{Boolean(isPostCreator || isAdmin) && (
+												{(isPostCreator || isAdmin) && (
 													<MenuItem onClick={handleEdit}>
 														<HStack align='center' spacing='2'>
 															<FaPen /> <Text fontWeight='bold'>Edit</Text>
 														</HStack>
 													</MenuItem>
 												)}
-												{Boolean(isPostCreator || isAdmin) && (
+												{(isPostCreator || isAdmin) && (
 													<MenuItem onClick={setIsDialogOpen.on}>
 														<HStack align='center' spacing='2'>
 															<FaEraser />
@@ -318,12 +318,12 @@ export const Post = ({
 											</MenuList>
 										</Menu>
 									)}
-									{Boolean(userEmail) && (
+									{userEmail && (
 										<Button
 											className={userLogged ? 'button' : ''}
 											disabled={!userLogged}
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
-											isLoading={Boolean(saveLoading)}
+											isLoading={saveLoading}
 											leftIcon={hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
 											loadingText='Loading...'
 											minW='88px'
@@ -337,7 +337,7 @@ export const Post = ({
 								</HStack>
 
 								<HStack spacing='2'>
-									{Boolean(isPostCreator || isAdmin) && (
+									{(isPostCreator || isAdmin) && (
 										<Button
 											className='button'
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
@@ -350,7 +350,7 @@ export const Post = ({
 											Edit
 										</Button>
 									)}
-									{Boolean(isPostCreator || isAdmin) && (
+									{(isPostCreator || isAdmin) && (
 										<Button
 											className='button'
 											colorScheme='red'
@@ -374,7 +374,7 @@ export const Post = ({
 						</Stack>
 					</Stack>
 
-					{Boolean(selectedFile?.url) && (
+					{selectedFile?.url && (
 						<AspectRatio
 							maxH='70vh'
 							maxW={{ sm: '100%', md: '100%', lg: '100%', xl: '500px' }}

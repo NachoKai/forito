@@ -8,13 +8,13 @@ import { FormInput } from './common/FormInput'
 import { useGoogleLogin, useLogin, useSignup } from '../hooks/data/auth'
 
 const Auth = () => {
-	const { mutateAsync: googleLogin } = useGoogleLogin()
 	const navigate = useNavigate()
 	const clientId = process.env.REACT_APP_GOOGLE_CLIENT_ID || null
 	const [isSignup, setIsSignup] = useBoolean()
 	const [showPassword, setShowPassword] = useBoolean()
 	const [showRepeatPassword, setShowRepeatPassword] = useBoolean()
 	const { mutateAsync: login, isLoading: isLoginLoading } = useLogin()
+	const { mutateAsync: googleLogin } = useGoogleLogin()
 	const { mutateAsync: signup, isLoading: isSignupLoading } = useSignup()
 	const isLoading = isLoginLoading || isSignupLoading
 
@@ -105,7 +105,7 @@ const Auth = () => {
 				</Text>
 				<form onSubmit={handleSubmit}>
 					<Stack spacing='4'>
-						{Boolean(isSignup) && (
+						{isSignup && (
 							<HStack spacing='4'>
 								<FormInput
 									autoFocus
@@ -153,7 +153,7 @@ const Auth = () => {
 							tooltip='Required'
 							type={showPassword ? 'text' : 'password'}
 						/>
-						{Boolean(isSignup) && (
+						{isSignup && (
 							<FormInput
 								isRequired
 								dataCy='auth-confirm-password'
@@ -176,8 +176,8 @@ const Auth = () => {
 						<Button
 							className='button'
 							data-cy='auth-login-signup-button'
-							disabled={Boolean(isLoading)}
-							isLoading={Boolean(isLoading)}
+							disabled={isLoading}
+							isLoading={isLoading}
 							loadingText='Loading...'
 							type='submit'
 							variant='solid'

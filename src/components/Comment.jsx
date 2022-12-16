@@ -20,7 +20,7 @@ export const Comment = ({ comment, deleteComment, postId }) => {
 				</Link>
 				<Linkify>{comment?.comment}</Linkify>
 			</Text>
-			{Boolean(isAdmin) && (
+			{isAdmin && (
 				<Button
 					colorScheme='red'
 					display={{

@@ -253,7 +253,7 @@ const PostDetails = ({ user }) => {
 				<Comments postComments={postComments} postId={postId} user={user} />
 			</StaggeredSlideFade>
 
-			{Boolean(recommendedPosts?.length) && (
+			{recommendedPosts?.length && (
 				<>
 					<Divider />
 
