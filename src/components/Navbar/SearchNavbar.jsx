@@ -13,17 +13,16 @@ export const SearchNavbar = () => {
 	const navigate = useNavigate()
 	const [searchValue, setSearchValue] = useState('')
 	const [searchTags, setSearchTags] = useState([])
-	const { getPostsBySearch } = usePostsStore()
+	const { setSearchQuery, setTagsQuery } = usePostsStore()
 
 	const searchPost = useCallback(async () => {
 		try {
 			if (searchValue.trim() || searchTags) {
 				setSearchValue('')
 				setSearchTags([])
-				await getPostsBySearch({ search: searchValue, tags: searchTags.join(',') })
-				navigate(
-					`search?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`
-				)
+				await setSearchQuery(searchValue || '')
+				await setTagsQuery(searchTags.join(','))
+				navigate(`search?searchQuery=${searchValue}&tags=${searchTags.join(',')}`)
 			}
 		} catch (err) {
 			showError(
@@ -34,7 +33,7 @@ export const SearchNavbar = () => {
 				</>
 			)
 		}
-	}, [getPostsBySearch, navigate, searchTags, searchValue])
+	}, [searchValue, searchTags, setSearchQuery, setTagsQuery, navigate])
 
 	const handleKeyDown = useCallback(
 		e => {

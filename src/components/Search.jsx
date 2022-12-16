@@ -12,7 +12,6 @@ import {
 import { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { useTags } from '../hooks/useTags'
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme'
 import { showError } from '../utils/showError'
@@ -23,18 +22,24 @@ const ENTER_KEYCODE = 13
 
 export const Search = () => {
 	const navigate = useNavigate()
-	const { getPostsBySearch } = usePostsStore()
+	const { setSearchQuery, setTagsQuery } = usePostsStore()
 	const [searchValue, setSearchValue] = useState('')
-	const { searchTags, setSearchTags, handleAddTag, handleDeleteTag } = useTags()
+	const [searchTags, setSearchTags] = useState([])
 	const isInputEmpty = !searchValue?.trim()?.length && !searchTags?.length
+
+	const handleAddTag = tag => setSearchTags([...searchTags, tag])
+
+	const handleDeleteTag = tagToDelete =>
+		setSearchTags(searchTags.filter(tag => tag !== tagToDelete))
 
 	const searchPost = useCallback(async () => {
 		try {
 			if (searchValue.trim() || searchTags) {
 				setSearchValue('')
 				setSearchTags([])
-				await getPostsBySearch({ search: searchValue, tags: searchTags.join(',') })
-				navigate(`?searchQuery=${searchValue || 'none'}&tags=${searchTags.join(',')}`)
+				await setSearchQuery(searchValue)
+				await setTagsQuery(searchTags.join(','))
+				navigate(`?searchQuery=${searchValue || ''}&tags=${searchTags.join(',')}`)
 			}
 		} catch (err) {
 			showError(
@@ -45,7 +50,7 @@ export const Search = () => {
 				</>
 			)
 		}
-	}, [getPostsBySearch, navigate, searchTags, searchValue, setSearchTags])
+	}, [searchValue, searchTags, setSearchTags, setSearchQuery, setTagsQuery, navigate])
 
 	const handleKeyDown = e => {
 		const disabled = !searchValue?.trim()?.length && !searchTags?.length
