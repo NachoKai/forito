@@ -1,42 +1,47 @@
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
-import { useEffect, useMemo } from 'react'
+import { useMemo } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
 
-import { usePostsStore } from '../state/postsStore'
+import { usePostsBySearch } from '../hooks/data/posts'
 import { CreateGradColor } from '../theme'
 import { PostI, UserI } from '../types'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
-import { StaggeredSlideFade } from './common/StaggeredSlideFade'
+import ErrorPage from './ErrorPage'
 import { Post } from './Post'
+import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 
 const Tags = () => {
 	const { name } = useParams()
-	const { posts, loading, getPostsBySearch } = usePostsStore()
 	const user: UserI = getUserLocalStorage()
 	const userEmail = user?.result?.email
 	const isAdmin = checkIsAdmin(userEmail)
-	const title = posts?.length === 1 ? `${posts?.length} Post` : `${posts?.length} Posts`
+	const searchQuery = { tags: name }
+	const { postsBySearch, isLoading, isError, error } = usePostsBySearch(searchQuery)
+	const postsQuantity = postsBySearch?.length
+	const title = postsQuantity === 1 ? `${postsQuantity} Post` : `${postsQuantity} Posts`
 
 	const publicPosts = useMemo(
 		() =>
-			posts?.filter((post: PostI) => {
+			postsBySearch?.filter((post: PostI) => {
 				const isPrivate = post?.privacy === 'private'
 				const creator = post?.creator
 				const isPostCreator = checkIsPostCreator(user, creator)
 
 				return !isPrivate || (isPrivate && isPostCreator) || isAdmin
 			}),
-		[isAdmin, posts, user]
+		[isAdmin, postsBySearch, user]
 	)
 
-	useEffect(() => {
-		getPostsBySearch({ tags: name })
-	}, [getPostsBySearch, name])
+	if (isError) {
+		console.error(error)
 
-	return !publicPosts?.length && !loading ? (
+		return <ErrorPage />
+	}
+
+	return !publicPosts?.length && !isLoading ? (
 		<Flex align='center' direction='column' h='100%' minH='100vh' my='64px'>
 			<Text color='primary.400' fontSize='6xl' mb='16px'>
 				<FaSearch />
@@ -61,11 +66,11 @@ const Tags = () => {
 		>
 			<Stack spacing='2'>
 				<Text fontSize='2xl'>#{name?.toUpperCase()}</Text>
-				<Text fontSize='md'>{!loading && posts?.length ? title : ''}</Text>
+				<Text fontSize='md'>{!isLoading && postsQuantity ? title : ''}</Text>
 			</Stack>
 
 			<StaggeredSlideFade spacing='3'>
-				{posts?.map((post: PostI) => (
+				{postsBySearch?.map((post: PostI) => (
 					<Post key={post._id} post={post} />
 				))}
 			</StaggeredSlideFade>
