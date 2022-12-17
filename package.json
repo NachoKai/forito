@@ -16,7 +16,6 @@
     "build-storybook": "build-storybook -s public"
   },
   "dependencies": {
-    "@ajna/pagination": "^1.4.19",
     "@babel/plugin-proposal-private-property-in-object": "^7.20.5",
     "@babel/runtime": "^7.19.0",
     "@chakra-ui/icons": "^2.0.11",
