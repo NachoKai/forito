@@ -36,9 +36,9 @@ const Home = ({ onOpen }) => {
 				</Stack>
 			</Stack>
 			<Stack px={{ sm: '4', md: '10', lg: '16', xl: '24' }}>
-				{!searchQuery && (
+				{!searchQuery || numberOfPages <= 1 ? (
 					<Paginate currentPage={currentPage} numberOfPages={numberOfPages} />
-				)}
+				) : null}
 			</Stack>
 		</Stack>
 	)
