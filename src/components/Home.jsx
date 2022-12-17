@@ -12,16 +12,8 @@ const Home = ({ onOpen }) => {
 	const locationQuery = useLocationQuery()
 	const page = Number(locationQuery.get('page') || 1)
 	const searchQuery = locationQuery.get('searchQuery')
-	const {
-		posts,
-		currentPage,
-		numberOfPages,
-		count,
-		isLoading,
-		isFetching,
-		isError,
-		error,
-	} = usePosts(page)
+	const { posts, currentPage, numberOfPages, isLoading, isFetching, isError, error } =
+		usePosts(page)
 
 	if (isError) return <ErrorPage error={error} />
 	if (isLoading || isFetching) return <Loading />
@@ -45,11 +37,7 @@ const Home = ({ onOpen }) => {
 			</Stack>
 			<Stack px={{ sm: '4', md: '10', lg: '16', xl: '24' }}>
 				{!searchQuery && (
-					<Paginate
-						count={count}
-						currentPage={currentPage}
-						numberOfPages={numberOfPages}
-					/>
+					<Paginate currentPage={currentPage} numberOfPages={numberOfPages} />
 				)}
 			</Stack>
 		</Stack>
