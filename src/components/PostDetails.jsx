@@ -78,19 +78,9 @@ const PostDetails = ({ user }) => {
 		return false
 	}
 
+	if (isPostError) return <ErrorPage error={postError} />
+	if (isPostsBySearchError) return <ErrorPage error={postsBySearchError} />
 	if (isPostLoading || isPostsBySearchLoading) return <Loading />
-
-	if (isPostError) {
-		console.error(postError)
-
-		return <ErrorPage />
-	}
-
-	if (isPostsBySearchError) {
-		console.error(postsBySearchError)
-
-		return <ErrorPage />
-	}
 
 	return post && showPost ? (
 		<Stack
