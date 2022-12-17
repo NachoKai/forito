@@ -61,8 +61,8 @@ export const Paginate = ({ currentPage, numberOfPages, count }) => {
 								bg='primary_100_900'
 								className='pagination'
 								color='primary_900_100'
-								h={{ sm: '6', md: '8', lg: '10', xl: '10' }}
-								w={{ sm: '6', md: '8', lg: '10', xl: '10' }}
+								h={10}
+								w={10}
 								onClick={() => navigate(`/posts?page=${currentPage - 1}`)}
 							>
 								{'<'}
@@ -76,8 +76,8 @@ export const Paginate = ({ currentPage, numberOfPages, count }) => {
 									bg='primary_100_900'
 									className='pagination'
 									color='primary_900_100'
-									h={{ sm: '6', md: '8', lg: '10', xl: '10' }}
-									w={{ sm: '6', md: '8', lg: '10', xl: '10' }}
+									h={10}
+									w={10}
 								/>
 							}
 						>
@@ -91,9 +91,9 @@ export const Paginate = ({ currentPage, numberOfPages, count }) => {
 									bg='primary_100_900'
 									className='pagination'
 									color='primary_900_100'
-									h={{ sm: '6', md: '8', lg: '10', xl: '10' }}
+									h={10}
 									page={page}
-									w={{ sm: '6', md: '8', lg: '10', xl: '10' }}
+									w={10}
 									onClick={() => navigate(`/posts?page=${page}`)}
 								/>
 							))}
@@ -108,8 +108,8 @@ export const Paginate = ({ currentPage, numberOfPages, count }) => {
 								bg='primary_100_900'
 								className='pagination'
 								color='primary_900_100'
-								h={{ sm: '6', md: '8', lg: '10', xl: '10' }}
-								w={{ sm: '6', md: '8', lg: '10', xl: '10' }}
+								h={10}
+								w={10}
 								onClick={() => navigate(`/posts?page=${currentPage + 1}`)}
 							>
 								{'>'}
