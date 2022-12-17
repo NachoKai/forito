@@ -54,36 +54,6 @@ input[type="file"] {
   background: #555;
 } */
 
-.loading-background-dark,
-.loading-background-light {
-  position: fixed;
-  top: 0;
-  left: 0;
-  z-index: 9998;
-  width: 100vw;
-  height: 100vh;
-  pointer-events: none;
-  cursor: progress;
-  backdrop-filter: blur(15px);
-}
-
-.loading-background-light {
-  background: rgb(255 255 255 / 40%);
-}
-
-.loading-background-dark {
-  background: rgb(0 0 0 / 40%);
-}
-
-.loading-bar .loading-circle {
-  z-index: 9999;
-  position: absolute;
-  top: 40%;
-  left: 49%;
-  pointer-events: none;
-  cursor: progress;
-}
-
 p a:hover {
   font-weight: bold;
 }
