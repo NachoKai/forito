@@ -88,13 +88,11 @@ p a:hover {
   font-weight: bold;
 }
 
-.container,
-.pagination {
+.container {
   border: 2px solid #0d0d0d !important;
 }
 
-.container:hover,
-.pagination:hover {
+.container:hover {
   border: 2px solid #0d0d0d !important;
   box-shadow: 2px 2px 0 0 #0d0d0d !important;
   transition: box-shadow 0.2s ease-in-out !important;

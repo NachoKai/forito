@@ -33,13 +33,11 @@ export const Paginate = ({ currentPage, numberOfPages }) => {
 			) : null}
 
 			<Button
-				key={currentPage}
 				bg='primary_100_900'
-				className='pagination'
+				className='container'
 				color='primary_900_100'
 				h={10}
 				m='8px'
-				page={currentPage}
 				variant='ghost'
 				w={10}
 				onClick={() => handlePageChange(currentPage)}
