@@ -20,13 +20,7 @@ const SavedPosts = () => {
 	const publicPosts = isSuccess && savedPosts?.length && getPublicPosts(savedPosts)
 
 	if (userId !== id) return null
-
-	if (isError) {
-		console.error(error)
-
-		return <ErrorPage />
-	}
-
+	if (isError) return <ErrorPage error={error} />
 	if (isLoading || isFetching) return <Loading />
 
 	if (!publicPosts?.length) {

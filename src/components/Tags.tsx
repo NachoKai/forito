@@ -9,38 +9,21 @@ import { getPublicPosts } from '../utils/getPublicPosts'
 import ErrorPage from './ErrorPage'
 import { Post } from './Post'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
+import { Loading } from './common/Loading'
 
 const Tags = () => {
 	const { name } = useParams()
 	const searchQuery = { tags: name }
-	const { postsBySearch, isLoading, isError, error, isSuccess } =
+	const { postsBySearch, isLoading, isError, error, isSuccess, isFetching } =
 		usePostsBySearch(searchQuery)
 	const postsQuantity = postsBySearch?.length
 	const title = postsQuantity === 1 ? `${postsQuantity} Post` : `${postsQuantity} Posts`
 	const publicPosts = isSuccess && postsBySearch?.length && getPublicPosts(postsBySearch)
 
-	if (isError) {
-		console.error(error)
+	if (isError) return <ErrorPage error={error} />
+	if (isLoading || isFetching) return <Loading />
 
-		return <ErrorPage />
-	}
-
-	return !publicPosts?.length && !isLoading ? (
-		<Flex align='center' direction='column' h='100%' minH='100vh' my='64px'>
-			<Text color='primary.400' fontSize='6xl' mb='16px'>
-				<FaSearch />
-			</Text>
-			<Heading
-				as='h2'
-				bgClip='text'
-				bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
-				fontSize='4xl'
-				fontWeight='bold'
-			>
-				No posts found for &quot;#{name}&quot;
-			</Heading>
-		</Flex>
-	) : (
+	return publicPosts?.length ? (
 		<StaggeredSlideFade
 			borderRadius='24px'
 			h='100%'
@@ -59,6 +42,21 @@ const Tags = () => {
 				))}
 			</StaggeredSlideFade>
 		</StaggeredSlideFade>
+	) : (
+		<Flex align='center' direction='column' h='100%' minH='100vh' my='64px'>
+			<Text color='primary.400' fontSize='6xl' mb='16px'>
+				<FaSearch />
+			</Text>
+			<Heading
+				as='h2'
+				bgClip='text'
+				bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
+				fontSize='4xl'
+				fontWeight='bold'
+			>
+				No posts found for &quot;#{name}&quot;
+			</Heading>
+		</Flex>
 	)
 }
 

@@ -21,12 +21,7 @@ const SearchView = () => {
 	const { postsBySearch, isLoading, isError, error, isFetching } =
 		usePostsBySearch(locationQuery)
 
-	if (isError) {
-		console.error(error)
-
-		return <ErrorPage error={error} />
-	}
-
+	if (isError) return <ErrorPage error={error} />
 	if (isLoading || isFetching) return <Loading />
 
 	return (
