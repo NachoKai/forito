@@ -90,8 +90,8 @@ export const Post = ({
 	const userLogged = user?.result
 	const createdAtDate = isValid(new Date(createdAt)) ? new Date(createdAt) : new Date()
 	const updatedAtDate = isValid(new Date(updatedAt)) ? new Date(updatedAt) : null
-	const { handleLike, likeLoading } = useLike(_id)
-	const { handleSave, saveLoading } = useSave(_id)
+	const { handleLike, likeLoading } = useLike(_id, creator, isPostCreator, hasUserLike)
+	const { handleSave, saveLoading } = useSave(_id, creator, isPostCreator, hasUserLike)
 	const pathname = location?.pathname
 
 	const openPost = () => navigate(`/posts/${_id}`)

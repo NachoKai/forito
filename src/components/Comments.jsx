@@ -10,17 +10,17 @@ import { checkEmpty } from '../utils/checkEmpty'
 import { showError } from '../utils/showError'
 import { Comment } from './Comment'
 import { FormTextArea } from './common/FormTextArea'
-// import { useUpdateNotification } from '../hooks/data/auth'
+import { useUpdateNotification } from '../hooks/data/auth'
 
-export const Comments = ({ postComments, postId, user }) => {
+export const Comments = ({ postComments, postId, user, creator, isPostCreator }) => {
 	const userId = user?.result?.googleId || user?.result?._id
 	const [comment, setComment] = useState('')
 	const [comments, setComments] = useState(postComments)
 	const isInputEmpty = checkEmpty(comment)
 	const { mutateAsync: addComment } = useAddComment()
 	const { mutateAsync: deleteComment } = useDeleteComment()
-	// const { mutateAsync: updateNotification } = useUpdateNotification()
-	// const userName = user?.result?.name
+	const { mutateAsync: updateNotification } = useUpdateNotification()
+	const userName = user?.result?.name
 
 	const handleAddComment = useCallback(async () => {
 		try {
@@ -34,17 +34,20 @@ export const Comments = ({ postComments, postId, user }) => {
 			await addComment({ id: postId, value: commentContent })
 			setComments([...comments, commentContent])
 			setComment('')
-			// await updateNotification({
-			// 	userId,
-			// 	notification: {
-			// 		_id: uuid(),
-			// 		postId,
-			// 		read: false,
-			// 		username: userName,
-			// 		type: 'save',
-			// 		createdAt: new Date().toISOString(),
-			// 	},
-			// })
+
+			if (!isPostCreator) {
+				await updateNotification({
+					userId: creator,
+					notification: {
+						_id: uuid(),
+						postId,
+						read: false,
+						username: userName,
+						type: 'comment',
+						createdAt: new Date().toISOString(),
+					},
+				})
+			}
 		} catch (err) {
 			console.error(err)
 			showError(
@@ -55,7 +58,18 @@ export const Comments = ({ postComments, postId, user }) => {
 				</>
 			)
 		}
-	}, [addComment, comment, comments, postId, user?.result?.name, userId])
+	}, [
+		addComment,
+		comment,
+		comments,
+		creator,
+		isPostCreator,
+		postId,
+		updateNotification,
+		user?.result?.name,
+		userId,
+		userName,
+	])
 
 	const handleClear = () => setComment('')
 
@@ -150,4 +164,6 @@ Comments.propTypes = {
 			_id: PropTypes.string,
 		}),
 	}),
+	isPostCreator: PropTypes.bool,
+	creator: PropTypes.string,
 }
