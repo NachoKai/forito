@@ -17,7 +17,6 @@ import PropTypes from 'prop-types'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import { MdNotificationsActive } from 'react-icons/md'
 import { Link } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
 
 import { displayNotificationType } from '../../utils/displayNotificationType'
 import { useNotifications } from '../../hooks/data/auth'
@@ -78,7 +77,7 @@ export const NotificationsNavbar = ({ colorMode }) => {
 					{hasNotifications ? (
 						lastNotifications?.map(notification => (
 							<Link
-								key={uuid()}
+								key={notification?._id}
 								to={`/posts/${notification?.postId}`}
 								onClick={setIsDropdownOpen.off}
 							>

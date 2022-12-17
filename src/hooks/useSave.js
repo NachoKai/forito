@@ -1,32 +1,35 @@
 import { Text } from '@chakra-ui/react'
-// import { v4 as uuid } from 'uuid'
+import { v4 as uuid } from 'uuid'
+import PropTypes from 'prop-types'
 
 import { showError } from '../utils/showError'
 import { useSavePost } from './data/posts'
-// import { useUpdateNotification } from './data/auth'
-// import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import { useUpdateNotification } from './data/auth'
+import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 
-export const useSave = id => {
+export const useSave = (id, creator, isPostCreator, hasUserLike) => {
 	const { mutateAsync: savePost, isLoading } = useSavePost()
-	// const { mutateAsync: updateNotification } = useUpdateNotification()
-	// const user = getUserLocalStorage()
-	// const userId = user?.result?.googleId || user?.result?._id
-	// const userName = user?.result?.name
+	const { mutateAsync: updateNotification } = useUpdateNotification()
+	const user = getUserLocalStorage()
+	const userName = user?.result?.name
 
 	const handleSave = async () => {
 		try {
 			await savePost(id)
-			// await updateNotification({
-			// 	userId,
-			// 	notification: {
-			// 		_id: uuid(),
-			// 		postId: id,
-			// 		read: false,
-			// 		username: userName,
-			// 		type: 'save',
-			// 		createdAt: new Date().toISOString(),
-			// 	},
-			// })
+
+			if (!isPostCreator && !hasUserLike) {
+				await updateNotification({
+					userId: creator,
+					notification: {
+						_id: uuid(),
+						postId: id,
+						read: false,
+						username: userName,
+						type: 'save',
+						createdAt: new Date().toISOString(),
+					},
+				})
+			}
 		} catch (err) {
 			showError(
 				<>
@@ -40,4 +43,11 @@ export const useSave = id => {
 	}
 
 	return { handleSave, saveLoading: isLoading }
+}
+
+useSave.propTypes = {
+	id: PropTypes.string,
+	creator: PropTypes.string,
+	isPostCreator: PropTypes.bool,
+	hasUserLike: PropTypes.bool,
 }

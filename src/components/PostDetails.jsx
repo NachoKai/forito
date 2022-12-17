@@ -236,7 +236,13 @@ const PostDetails = ({ user }) => {
 				>
 					Comments
 				</Text>
-				<Comments postComments={postComments} postId={postId} user={user} />
+				<Comments
+					creator={post?.creator}
+					isPostCreator={isPostCreator}
+					postComments={postComments}
+					postId={postId}
+					user={user}
+				/>
 			</StaggeredSlideFade>
 
 			{recommendedPosts?.length && (
