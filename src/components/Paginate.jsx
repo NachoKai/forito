@@ -26,8 +26,8 @@ export const Paginate = ({ currentPage, numberOfPages, count }) => {
 	const { pages } = usePagination({
 		total: count,
 		limits: {
-			outer: 2,
-			inner: 2,
+			outer: 3,
+			inner: 3,
 		},
 		initialState: {
 			pageSize: POSTS_LIMIT,
