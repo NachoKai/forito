@@ -18,14 +18,16 @@ const SearchView = () => {
 		search: searchQueryText,
 		tags: tagsQueryText,
 	}
-	const { postsBySearch, isLoading, isError, error } = usePostsBySearch(locationQuery)
+	const { postsBySearch, isLoading, isError, error, isFetching } =
+		usePostsBySearch(locationQuery)
 
-	if (isLoading) return <Loading />
 	if (isError) {
 		console.error(error)
 
 		return <ErrorPage error={error} />
 	}
+
+	if (isLoading || isFetching) return <Loading />
 
 	return (
 		<Stack pb='4'>

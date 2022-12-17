@@ -15,6 +15,7 @@ const Creator = () => {
 	const {
 		user,
 		isLoading: isUserLoading,
+		isFetching: isUserFetching,
 		isError: isUserError,
 		error: userError,
 	} = useGetUser(id)
@@ -23,10 +24,12 @@ const Creator = () => {
 		postsByCreator,
 		count,
 		isLoading: isPostsByCreatorLoading,
+		isFetching: isPostsByCreatorFetching,
 		isError: isPostsByCreatorError,
 		error: postsByCreatorError,
 	} = usePostsByCreator(id)
 	const isLoading = isUserLoading || isPostsByCreatorLoading
+	const isFetching = isUserFetching || isPostsByCreatorFetching
 
 	if (isUserError) {
 		console.error(userError)
@@ -69,7 +72,7 @@ const Creator = () => {
 		)
 	}
 
-	if (isLoading) return <Loading />
+	if (isLoading || isFetching) return <Loading />
 
 	return (
 		<>

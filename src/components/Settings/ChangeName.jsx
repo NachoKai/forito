@@ -27,7 +27,13 @@ export const ChangeName = () => {
 	const finalRef = useRef(null)
 	const [firstName, setFirstName] = useState('')
 	const [lastName, setLastName] = useState('')
-	const { mutateAsync: updateUserName, isLoading, isError, error } = useUpdateUserName()
+	const {
+		mutateAsync: updateUserName,
+		isLoading,
+		isError,
+		error,
+		isFetching,
+	} = useUpdateUserName()
 
 	const handleSubmit = async e => {
 		e.preventDefault()
@@ -48,12 +54,13 @@ export const ChangeName = () => {
 		}
 	}
 
-	if (isLoading) return <Loading />
 	if (isError) {
 		console.error(error)
 
 		return <ErrorPage />
 	}
+
+	if (isLoading || isFetching) return <Loading />
 
 	return (
 		<>

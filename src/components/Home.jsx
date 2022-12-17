@@ -12,8 +12,16 @@ const Home = ({ onOpen }) => {
 	const locationQuery = useLocationQuery()
 	const page = Number(locationQuery.get('page') || 1)
 	const searchQuery = locationQuery.get('searchQuery')
-	const { posts, currentPage, numberOfPages, count, isLoading, isError, error } =
-		usePosts(page)
+	const {
+		posts,
+		currentPage,
+		numberOfPages,
+		count,
+		isLoading,
+		isFetching,
+		isError,
+		error,
+	} = usePosts(page)
 
 	if (isError) {
 		console.error(error)
@@ -21,7 +29,7 @@ const Home = ({ onOpen }) => {
 		return <ErrorPage />
 	}
 
-	if (isLoading) return <Loading />
+	if (isLoading || isFetching) return <Loading />
 
 	return (
 		<Stack pb='4'>

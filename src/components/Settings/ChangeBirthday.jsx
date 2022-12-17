@@ -32,6 +32,7 @@ export const ChangeBirthday = () => {
 		isLoading,
 		isError,
 		error,
+		isFetching,
 	} = useUpdateUserBirthday()
 	const now = new Date()
 	const minDate = sub(now, { years: 100 }).toISOString().split('T')[0]
@@ -55,12 +56,13 @@ export const ChangeBirthday = () => {
 		}
 	}
 
-	if (isLoading) return <Loading />
 	if (isError) {
 		console.error(error)
 
 		return <ErrorPage />
 	}
+
+	if (isLoading || isFetching) return <Loading />
 
 	return (
 		<>
