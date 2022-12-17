@@ -47,3 +47,12 @@ export interface UserI {
 	}
 	token?: string
 }
+
+export interface NotificationI {
+	_id: string
+	postId: string
+	read: boolean
+	username: string
+	type: string
+	createdAt: string
+}

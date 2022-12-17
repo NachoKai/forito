@@ -54,3 +54,21 @@ export const updateEmail = async (id: string, email: string) => {
 		throw err
 	}
 }
+
+export const fetchNotifications = async (id: string) => {
+	try {
+		return await api.get(`/user/${id}/notifications`)
+	} catch (err) {
+		console.error('Error getting notifications', err)
+		throw err
+	}
+}
+
+export const updateNotification = async (id: string, notification: boolean) => {
+	try {
+		return await api.patch(`/user/${id}/setNotification`, { notification })
+	} catch (err) {
+		console.error('Error setting notification', err)
+		throw err
+	}
+}
