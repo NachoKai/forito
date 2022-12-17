@@ -9,16 +9,25 @@ import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { Post } from './Post'
 import { Loading } from './common/Loading'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
+import ErrorPage from './ErrorPage'
 
 const SavedPosts = () => {
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
 	const { id } = useParams()
-	const { savedPosts, count, isLoading, isSuccess } = useSavedPosts(id)
+	const { savedPosts, count, isLoading, isSuccess, isFetching, isError, error } =
+		useSavedPosts(id)
 	const publicPosts = isSuccess && savedPosts?.length && getPublicPosts(savedPosts)
 
 	if (userId !== id) return null
-	if (isLoading) return <Loading />
+
+	if (isError) {
+		console.error(error)
+
+		return <ErrorPage />
+	}
+
+	if (isLoading || isFetching) return <Loading />
 
 	if (!publicPosts?.length) {
 		return (
