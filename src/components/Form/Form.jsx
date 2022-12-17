@@ -18,7 +18,6 @@ import { checkEmpty } from '../../utils/checkEmpty'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
 import { showError } from '../../utils/showError'
 import { useLocationQuery } from '../../utils/useLocationQuery'
-import { Loading } from '../common/Loading'
 import { FormBody } from './FormBody'
 import { FormFooter } from './FormFooter'
 import { FormHeader } from './FormHeader'
@@ -39,8 +38,8 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 	const page = Number(locationQuery.get('page') || 1)
 	const { posts } = usePosts(page)
 	const { currentId, setCurrentId } = usePostsStore()
-	const { mutateAsync: createPost, isLoading: isCreatePostLoading } = useCreatePost()
-	const { mutateAsync: updatePost, isLoading: isUpdatePostLoading } = useUpdatePost()
+	const { mutateAsync: createPost } = useCreatePost()
+	const { mutateAsync: updatePost } = useUpdatePost()
 	const btnRef = useRef()
 	const user = getUserLocalStorage()
 	const [postData, setPostData] = useState(initialState)
@@ -120,8 +119,6 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 	}, [post, setImages, setPrivacy])
 
 	if (!user?.result?.name) return null
-
-	if (isCreatePostLoading || isUpdatePostLoading) return <Loading />
 
 	return (
 		<>
