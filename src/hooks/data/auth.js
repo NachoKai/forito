@@ -1,13 +1,15 @@
 import { Text } from '@chakra-ui/react'
-import { useMutation, useQuery } from '@tanstack/react-query'
+import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import {
+	fetchNotifications,
 	fetchUser,
 	login,
 	signup,
 	updateBirthday,
 	updateEmail,
 	updateName,
+	updateNotification,
 } from '../../clients/userClients'
 import { showError } from '../../utils/showError.ts'
 import { handleErrorResponse, retry } from './utils'
@@ -195,4 +197,67 @@ export const useUpdateUserBirthday = () => {
 			handleErrorResponse(err, { source: 'update-user-birthday' })
 		}
 	})
+}
+
+export const useNotifications = userId => {
+	const notificationsQuery = useQuery(
+		['notificationsQuery'],
+		async () => {
+			try {
+				const { data } = await fetchNotifications(userId)
+
+				return data
+			} catch (err) {
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>
+							Something went wrong when trying to get notifications. {err.message}
+						</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
+				handleErrorResponse(err, { source: 'get-notifications' })
+			}
+		},
+		{
+			retry,
+		}
+	)
+
+	return {
+		...notificationsQuery,
+		notifications: notificationsQuery?.data,
+	}
+}
+
+export const useUpdateNotification = () => {
+	const queryClient = useQueryClient()
+
+	return useMutation(
+		async ({ userId, notification }) => {
+			try {
+				const { data } = await updateNotification(userId, notification)
+
+				return data
+			} catch (err) {
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>
+							Something went wrong when trying to add notification. {err.message}
+						</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
+				console.error(err)
+				handleErrorResponse(err, { source: 'update-notification' })
+			}
+		},
+		{
+			onSuccess: async () => {
+				await queryClient.refetchQueries({ queryKey: ['notificationsQuery'] })
+			},
+		}
+	)
 }
