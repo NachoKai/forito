@@ -60,9 +60,9 @@ export const Paginate = ({ currentPage, numberOfPages, count }) => {
 									bg='primary_100_900'
 									className='pagination'
 									color='primary_900_100'
-									h={8}
+									h={10}
 									page={page}
-									w={8}
+									w={10}
 									onClick={() => navigate(`/posts?page=${page}`)}
 								/>
 							))}
