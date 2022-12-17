@@ -16,15 +16,10 @@ const TopPosts = () => {
 	const havePosts = postsWithLikes?.length > 0
 	const topPosts = isSuccess && getTopPosts(postsWithLikes, 5)
 
-	if (isError) {
-		console.error(error)
-
-		return <ErrorPage />
-	}
-
+	if (isError) return <ErrorPage error={error} />
 	if (isLoading || isFetching) return <Loading />
 
-	return (!isSuccess && !topPosts?.length) || !havePosts ? (
+	return !topPosts?.length || !havePosts ? (
 		<Flex align='center' direction='column' h='100%' minH='100vh' my='64px'>
 			<Text color='primary.400' fontSize='6xl' mb='16px'>
 				<FaSearch />

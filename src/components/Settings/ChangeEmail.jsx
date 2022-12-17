@@ -58,12 +58,7 @@ export const ChangeEmail = () => {
 		}
 	}
 
-	if (isError) {
-		console.error(error)
-
-		return <ErrorPage />
-	}
-
+	if (isError) return <ErrorPage error={error} />
 	if (isLoading || isFetching) return <Loading />
 
 	return (

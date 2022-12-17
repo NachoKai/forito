@@ -123,11 +123,7 @@ export const Post = ({
 		}
 	}
 
-	if (isError) {
-		console.error(error)
-
-		return <ErrorPage />
-	}
+	if (isError) return <ErrorPage error={error} />
 
 	return (
 		<>
