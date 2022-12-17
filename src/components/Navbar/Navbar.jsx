@@ -28,9 +28,13 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 		>
 			<HStack align='center' spacing='4'>
 				<Heading
+					_hover={{
+						bgGradient: CreateGradColor('primary', 300, 300, 400, 400),
+						transition: 'all 0.2s ease-in-out',
+					}}
 					as='h1'
 					bgClip='text'
-					bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
+					bgGradient={CreateGradColor('primary', 300, 900, 100, 400)}
 					fontSize={{ sm: '2xl', md: '2xl', lg: '3xl', xl: '3xl' }}
 					fontWeight='bold'
 				>
