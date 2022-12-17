@@ -5,6 +5,7 @@ import { FaExclamationCircle } from 'react-icons/fa'
 const ErrorPage = ({ error }) => {
 	const errorName = error?.name || 'Error'
 	const errorMessage = error?.message || 'An error occurred.'
+	const errorCode = error?.code
 
 	console.error(error)
 
@@ -26,11 +27,11 @@ const ErrorPage = ({ error }) => {
 				Error
 			</Heading>
 			<Heading color='primary.400' fontSize='3xl'>
-				Something went wrong.
+				Something went wrong. Try again later.
 			</Heading>
 
 			<Text color='primary.400' fontSize='xl'>
-				{errorName} {errorMessage}
+				{errorName}: {errorMessage} {errorCode}
 			</Text>
 		</Flex>
 	)
