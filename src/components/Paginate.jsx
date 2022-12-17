@@ -1,8 +1,11 @@
 import {
 	Pagination,
 	PaginationContainer,
+	PaginationNext,
 	PaginationPage,
 	PaginationPageGroup,
+	PaginationPrevious,
+	PaginationSeparator,
 	usePagination,
 } from '@ajna/pagination'
 import { Stack } from '@chakra-ui/react'
@@ -23,8 +26,8 @@ export const Paginate = ({ currentPage, numberOfPages, count }) => {
 	const { pages } = usePagination({
 		total: count,
 		limits: {
-			outer: 4,
-			inner: 4,
+			outer: 2,
+			inner: 2,
 		},
 		initialState: {
 			pageSize: POSTS_LIMIT,
@@ -49,7 +52,35 @@ export const Paginate = ({ currentPage, numberOfPages, count }) => {
 					onPageChange={handlePageChange}
 				>
 					<PaginationContainer>
-						<PaginationPageGroup>
+						{currentPage > 1 ? (
+							<PaginationPrevious
+								_current={{
+									bg: () => `${getThemeColor()}.700`,
+									color: () => `${getThemeColor()}.100`,
+								}}
+								bg='primary_100_900'
+								className='pagination'
+								color='primary_900_100'
+								h={{ sm: '6', md: '8', lg: '10', xl: '10' }}
+								w={{ sm: '6', md: '8', lg: '10', xl: '10' }}
+								onClick={() => navigate(`/posts?page=${currentPage - 1}`)}
+							>
+								{'<'}
+							</PaginationPrevious>
+						) : null}
+
+						<PaginationPageGroup
+							separator={
+								<PaginationSeparator
+									isDisabled
+									bg='primary_100_900'
+									className='pagination'
+									color='primary_900_100'
+									h={{ sm: '6', md: '8', lg: '10', xl: '10' }}
+									w={{ sm: '6', md: '8', lg: '10', xl: '10' }}
+								/>
+							}
+						>
 							{pages.map(page => (
 								<PaginationPage
 									key={page}
@@ -60,13 +91,30 @@ export const Paginate = ({ currentPage, numberOfPages, count }) => {
 									bg='primary_100_900'
 									className='pagination'
 									color='primary_900_100'
-									h={10}
+									h={{ sm: '6', md: '8', lg: '10', xl: '10' }}
 									page={page}
-									w={10}
+									w={{ sm: '6', md: '8', lg: '10', xl: '10' }}
 									onClick={() => navigate(`/posts?page=${page}`)}
 								/>
 							))}
 						</PaginationPageGroup>
+
+						{currentPage < numberOfPages ? (
+							<PaginationNext
+								_current={{
+									bg: () => `${getThemeColor()}.700`,
+									color: () => `${getThemeColor()}.100`,
+								}}
+								bg='primary_100_900'
+								className='pagination'
+								color='primary_900_100'
+								h={{ sm: '6', md: '8', lg: '10', xl: '10' }}
+								w={{ sm: '6', md: '8', lg: '10', xl: '10' }}
+								onClick={() => navigate(`/posts?page=${currentPage + 1}`)}
+							>
+								{'>'}
+							</PaginationNext>
+						) : null}
 					</PaginationContainer>
 				</Pagination>
 			)}
