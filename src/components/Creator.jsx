@@ -31,47 +31,8 @@ const Creator = () => {
 	const isLoading = isUserLoading || isPostsByCreatorLoading
 	const isFetching = isUserFetching || isPostsByCreatorFetching
 
-	if (isUserError) {
-		console.error(userError)
-
-		return <ErrorPage />
-	}
-	if (isPostsByCreatorError) {
-		console.error(postsByCreatorError)
-
-		return <ErrorPage />
-	}
-
-	if (!postsByCreator?.length && !isLoading) {
-		return (
-			<StaggeredSlideFade
-				align='center'
-				direction='column'
-				h='100%'
-				minH='100vh'
-				my='64px'
-				px={{ sm: '0', md: '10', lg: '16', xl: '24' }}
-				py={{ sm: '4', md: '6', lg: '8', xl: '8' }}
-			>
-				<Text color='primary.400' fontSize='6xl' mb='16px'>
-					<FaSearch />
-				</Text>
-				<Heading
-					as='h2'
-					bgClip='text'
-					bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
-					fontSize='4xl'
-					fontWeight='bold'
-					px={{ sm: '4' }}
-				>
-					{userName
-						? `No posts created by ${userName} were found.`
-						: 'No posts created were found.'}
-				</Heading>
-			</StaggeredSlideFade>
-		)
-	}
-
+	if (isUserError) return <ErrorPage error={userError} />
+	if (isPostsByCreatorError) return <ErrorPage error={postsByCreatorError} />
 	if (isLoading || isFetching) return <Loading />
 
 	return (
