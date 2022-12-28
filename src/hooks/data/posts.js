@@ -155,7 +155,7 @@ export const usePostsByCreator = id => {
 
 export const useSavedPosts = id => {
 	const savedPostsQuery = useQuery(
-		['savedPostsQuery'],
+		['savedPostsQuery', id],
 		async () => {
 			try {
 				const {
@@ -314,6 +314,7 @@ export const useAddComment = () => {
 		{
 			onSuccess: async ({ id }) => {
 				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
+				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
 			},
 		}
 	)
@@ -336,6 +337,7 @@ export const useDeleteComment = () => {
 		{
 			onSuccess: async ({ id }) => {
 				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
+				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
 			},
 		}
 	)

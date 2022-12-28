@@ -87,12 +87,12 @@ export const NotificationsNavbar = ({ colorMode }) => {
 									cursor='pointer'
 									fontWeight={notification?.read ? 'normal' : 'bold'}
 								>
-									<Flex align='center' justify='space-between' spacing='2'>
-										<Text pr='8px' w='70%'>
+									<Flex align='flex-start' justify='space-between' spacing='2'>
+										<Text pr='8px' w='68%'>
 											{notification?.username}{' '}
 											{displayNotificationType(notification?.type)}
 										</Text>
-										<Text fontSize='sm' w='30%'>
+										<Text fontSize='sm' w='28%'>
 											{formatDistance(new Date(), new Date(notification?.createdAt)) +
 												' ago'}
 										</Text>
