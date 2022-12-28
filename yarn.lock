@@ -1385,7 +1385,7 @@
   dependencies:
     "@chakra-ui/shared-utils" "2.0.3"
 
-"@chakra-ui/icons@2.0.11", "@chakra-ui/icons@^2.0.11":
+"@chakra-ui/icons@^2.0.11":
   version "2.0.11"
   resolved "https://registry.yarnpkg.com/@chakra-ui/icons/-/icons-2.0.11.tgz#3faf53c499c7c61c65b6e5ff4b0933f48b9ba416"
   integrity sha512-WjxrFMt9hHpuZlnBh4fhtGOkIVlwYwHNmwq4sJGxYWlg8UnEhVJMoOojheJDy/d3Gp9+ApetlK3vt8fV/rZamg==
@@ -1825,12 +1825,10 @@
     "@chakra-ui/icon" "3.0.13"
     "@chakra-ui/react-context" "2.0.5"
 
-"@chakra-ui/storybook-addon@^4.0.12":
-  version "4.0.12"
-  resolved "https://registry.yarnpkg.com/@chakra-ui/storybook-addon/-/storybook-addon-4.0.12.tgz#cb272b0e643b59e3a1da9921f9ffbcdd7a4b1224"
-  integrity sha512-7yLNNAUEnab0BS6glJh5OQMMWTu8Xjny7ihW+4dMbsRikb6VDIkzNbQUL00eVPGlll9EdA5lpTCTKl+oAKQgcg==
-  dependencies:
-    "@chakra-ui/icons" "2.0.11"
+"@chakra-ui/storybook-addon@^4.0.16":
+  version "4.0.16"
+  resolved "https://registry.yarnpkg.com/@chakra-ui/storybook-addon/-/storybook-addon-4.0.16.tgz#6e2c1c6c92aa50eda6db412fd53cce5088e3e514"
+  integrity sha512-4+Mm9WHl+2lZ6BFTRV9xE+vT6Gxh0cvtScOw7idvhPru1vzTiJVsSpHoWANzQAs08DAzwulexjLghCMGnLKKhw==
 
 "@chakra-ui/styled-system@2.4.0":
   version "2.4.0"
