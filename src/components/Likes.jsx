@@ -2,12 +2,7 @@ import { HStack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa'
 
-interface LikesProps {
-	likes: string[]
-	hasUserLike: boolean
-}
-
-export const Likes = ({ likes, hasUserLike }: LikesProps) => {
+export const Likes = ({ likes, hasUserLike }) => {
 	const likesQuantity = likes?.length
 
 	if (likesQuantity > 0) {
