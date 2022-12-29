@@ -1,5 +1,5 @@
 import { FormDataI } from './../types'
-import { api } from '../api'
+import { api } from '../api/api'
 
 export const login = async (formData: FormDataI) => {
 	try {

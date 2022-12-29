@@ -14,6 +14,7 @@ import { useCreatePost, usePosts, useUpdatePost } from '../../hooks/data/posts'
 import { useImage } from '../../hooks/useImage'
 import { usePrivacy } from '../../hooks/usePrivacy'
 import { usePostsStore } from '../../state/postsStore'
+import { calculateValidTags } from '../../utils/calculateValidTags'
 import { checkEmpty } from '../../utils/checkEmpty'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
 import { showError } from '../../utils/showError'
@@ -31,8 +32,6 @@ const initialState = {
 	alt: '',
 }
 
-const regEx = /^[a-zA-Z0-9_.-]*$/
-
 export const Form = ({ isOpen, onOpen, onClose }) => {
 	const locationQuery = useLocationQuery()
 	const page = Number(locationQuery.get('page') || 1)
@@ -43,10 +42,9 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 	const btnRef = useRef()
 	const user = getUserLocalStorage()
 	const [postData, setPostData] = useState(initialState)
+	const areValidTags = calculateValidTags(postData?.tags)
 	const isSubmitDisabled =
-		!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) ||
-		![...new Set(postData.tags)].every(tag => regEx.test(tag))
-	const areValidTags = ![...new Set(postData?.tags)].every(tag => regEx.test(tag))
+		!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) || !areValidTags
 	const post = currentId ? posts?.find(message => message._id === currentId) : null
 	const { privacy, setPrivacy, handlePrivacy } = usePrivacy(postData, setPostData)
 	const { onImageUpload, handleRemoveImage, images, setImages } = useImage(
