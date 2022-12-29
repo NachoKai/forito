@@ -83,6 +83,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 			} else {
 				updatePost({ id: currentId, post: newPost })
 			}
+
 			handleClear()
 			onClose()
 		} catch (err) {
