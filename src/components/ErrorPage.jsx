@@ -7,8 +7,6 @@ const ErrorPage = ({ error }) => {
 	const errorMessage = error?.message || 'An error occurred.'
 	const errorCode = error?.code
 
-	console.error(error)
-
 	return (
 		<Flex
 			align='center'
