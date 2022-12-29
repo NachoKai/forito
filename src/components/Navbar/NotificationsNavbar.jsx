@@ -19,7 +19,7 @@ import { IoMdNotificationsOutline } from 'react-icons/io'
 import { MdNotificationsActive } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 
-import { useNotifications } from '../../hooks/data/auth'
+import { useNotifications, useUpdateNotifications } from '../../hooks/data/auth'
 import { calculateLastNotifications } from '../../utils/calculateLastNotifications'
 import { displayNotificationType } from '../../utils/displayNotificationType'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
@@ -28,13 +28,36 @@ export const NotificationsNavbar = ({ colorMode }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
-	const { notifications, isSuccess, count } = useNotifications(userId)
-	const notificationsQuantity = notifications?.length
-	const hasNotifications = notificationsQuantity > 0
-	const lastNotifications = isSuccess && calculateLastNotifications(notifications, 5)
+	const {
+		notifications,
+		isSuccess: isNotificationsSuccess,
+		count,
+		notReadCount,
+	} = useNotifications(userId)
+	const hasNotifications = count > 0
+	const hasNotReadNotifications = notReadCount > 0
+	const lastNotifications =
+		isNotificationsSuccess && calculateLastNotifications(notifications, 5)
+	const { mutateAsync: updateNotifications } = useUpdateNotifications()
+
+	const handleClick = () => {
+		if (isNotificationsSuccess) {
+			updateNotifications({
+				userId,
+				notifications: notifications.map(notification => ({
+					...notification,
+					read: true,
+				})),
+			})
+		}
+	}
 
 	return (
-		<HStack align='center' spacing={{ sm: '4', md: '8', lg: '8', xl: '8' }}>
+		<HStack
+			align='center'
+			spacing={{ sm: '4', md: '8', lg: '8', xl: '8' }}
+			onClick={handleClick}
+		>
 			<Popover
 				isLazy
 				closeOnBlur={true}
@@ -49,7 +72,7 @@ export const NotificationsNavbar = ({ colorMode }) => {
 							_hover={{ bg: 'primary_600_300' }}
 							bg='primary_500_200'
 							icon={
-								hasNotifications ? (
+								hasNotReadNotifications ? (
 									<MdNotificationsActive
 										color={colorMode === 'dark' ? '#000' : '#fff'}
 										size='1.5rem'
@@ -63,9 +86,9 @@ export const NotificationsNavbar = ({ colorMode }) => {
 							}
 							size='sm'
 						>
-							{hasNotifications ? (
+							{hasNotReadNotifications ? (
 								<AvatarBadge bg='white' boxSize='1.7em' color='black'>
-									{notificationsQuantity}
+									{notReadCount}
 								</AvatarBadge>
 							) : null}
 						</Avatar>
