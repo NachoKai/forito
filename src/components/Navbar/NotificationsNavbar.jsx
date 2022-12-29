@@ -7,6 +7,7 @@ import {
 	PopoverBody,
 	PopoverCloseButton,
 	PopoverContent,
+	PopoverFooter,
 	PopoverHeader,
 	PopoverTrigger,
 	Text,
@@ -27,10 +28,10 @@ export const NotificationsNavbar = ({ colorMode }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
-	const { notifications, isSuccess } = useNotifications(userId)
+	const { notifications, isSuccess, count } = useNotifications(userId)
 	const notificationsQuantity = notifications?.length
 	const hasNotifications = notificationsQuantity > 0
-	const lastNotifications = isSuccess && calculateLastNotifications(notifications, 10)
+	const lastNotifications = isSuccess && calculateLastNotifications(notifications, 5)
 
 	return (
 		<HStack align='center' spacing={{ sm: '4', md: '8', lg: '8', xl: '8' }}>
@@ -93,8 +94,10 @@ export const NotificationsNavbar = ({ colorMode }) => {
 											{displayNotificationType(notification?.type)}
 										</Text>
 										<Text fontSize='sm' w='28%'>
-											{formatDistance(new Date(), new Date(notification?.createdAt)) +
-												' ago'}
+											{`${formatDistance(
+												new Date(),
+												new Date(notification?.createdAt)
+											)} ago`}
 										</Text>
 									</Flex>
 								</PopoverBody>
@@ -102,6 +105,20 @@ export const NotificationsNavbar = ({ colorMode }) => {
 						))
 					) : (
 						<PopoverBody>There are no notifications.</PopoverBody>
+					)}
+
+					{count > 0 && (
+						<PopoverFooter
+							_hover={{ bg: colorMode === 'dark' ? 'gray.600' : 'gray.100' }}
+							borderRadius='md'
+							cursor='pointer'
+						>
+							<Link to={`/notifications/${userId}`} onClick={setIsDropdownOpen.off}>
+								<Text colorScheme='primary' size='sm'>
+									See all
+								</Text>
+							</Link>
+						</PopoverFooter>
 					)}
 				</PopoverContent>
 			</Popover>
