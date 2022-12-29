@@ -23,6 +23,7 @@ import { useNotifications, useUpdateNotifications } from '../../hooks/data/auth'
 import { calculateLastNotifications } from '../../utils/calculateLastNotifications'
 import { displayNotificationType } from '../../utils/displayNotificationType'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
+import ErrorPage from '../ErrorPage'
 
 export const NotificationsNavbar = ({ colorMode }) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
@@ -31,14 +32,20 @@ export const NotificationsNavbar = ({ colorMode }) => {
 	const {
 		notifications,
 		isSuccess: isNotificationsSuccess,
+		isError: isNotificationsError,
+		error: notificationsError,
 		count,
 		notReadCount,
 	} = useNotifications(userId)
+	const {
+		mutateAsync: updateNotifications,
+		isError: isUpdateNotificationsError,
+		error: updateNotificationsError,
+	} = useUpdateNotifications()
 	const hasNotifications = count > 0
 	const hasNotReadNotifications = notReadCount > 0
 	const lastNotifications =
 		isNotificationsSuccess && calculateLastNotifications(notifications, 5)
-	const { mutateAsync: updateNotifications } = useUpdateNotifications()
 
 	const handleClick = () => {
 		if (isNotificationsSuccess) {
@@ -51,6 +58,9 @@ export const NotificationsNavbar = ({ colorMode }) => {
 			})
 		}
 	}
+
+	if (isNotificationsError) return <ErrorPage error={notificationsError} />
+	if (isUpdateNotificationsError) return <ErrorPage error={updateNotificationsError} />
 
 	return (
 		<HStack
