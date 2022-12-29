@@ -66,6 +66,7 @@ To run this project, you will need to add the following environment variables to
 `REACT_APP_MEASUREMENT_ID`  
 `REACT_APP_PUBLIC_URL`  
 `REACT_APP_SERVER_URL`  
+`REACT_APP_IMAGE_COLLECTION_NAME`  
  
 ## Tech Stack
 

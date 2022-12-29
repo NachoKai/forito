@@ -3,11 +3,7 @@ import PropTypes from 'prop-types'
 
 import { CreateGradColor } from '../../theme'
 
-interface FormHeaderProps {
-	currentId: string
-}
-
-export const FormHeader = ({ currentId }: FormHeaderProps) => {
+export const FormHeader = ({ currentId }) => {
 	return (
 		<DrawerHeader>
 			<Text
