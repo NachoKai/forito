@@ -4,12 +4,12 @@ import PropTypes from 'prop-types'
 
 import { showError } from '../utils/showError'
 import { useLikePost } from './data/posts'
-import { useUpdateNotification } from './data/auth'
+import { useAddNotification } from './data/auth'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 
 export const useLike = (id, creator, isPostCreator, hasUserLike) => {
 	const { mutateAsync: likePost, isLoading } = useLikePost()
-	const { mutateAsync: updateNotification } = useUpdateNotification()
+	const { mutateAsync: addNotification } = useAddNotification()
 	const user = getUserLocalStorage()
 	const userName = user?.result?.name
 
@@ -18,7 +18,7 @@ export const useLike = (id, creator, isPostCreator, hasUserLike) => {
 			await likePost(id)
 
 			if (!isPostCreator && !hasUserLike) {
-				await updateNotification({
+				await addNotification({
 					userId: creator,
 					notification: {
 						_id: uuid(),

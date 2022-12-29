@@ -64,11 +64,20 @@ export const fetchNotifications = async (id: string) => {
 	}
 }
 
-export const updateNotification = async (id: string, notification: boolean) => {
+export const addNotification = async (id: string, notification: boolean) => {
 	try {
-		return await api.patch(`/user/${id}/setNotification`, { notification })
+		return await api.patch(`/user/${id}/addNotification`, { notification })
 	} catch (err) {
 		console.error('Error setting notification', err)
+		throw err
+	}
+}
+
+export const updateNotifications = async (id: string, notifications: boolean) => {
+	try {
+		return await api.patch(`/user/${id}/updateNotifications`, { notifications })
+	} catch (err) {
+		console.error('Error updating notifications', err)
 		throw err
 	}
 }

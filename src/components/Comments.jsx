@@ -10,7 +10,7 @@ import { checkEmpty } from '../utils/checkEmpty'
 import { showError } from '../utils/showError'
 import { Comment } from './Comment'
 import { FormTextArea } from './common/FormTextArea'
-import { useUpdateNotification } from '../hooks/data/auth'
+import { useAddNotification } from '../hooks/data/auth'
 
 export const Comments = ({ postComments, postId, user, creator, isPostCreator }) => {
 	const userId = user?.result?.googleId || user?.result?._id
@@ -19,7 +19,7 @@ export const Comments = ({ postComments, postId, user, creator, isPostCreator })
 	const isInputEmpty = checkEmpty(comment)
 	const { mutateAsync: addComment } = useAddComment()
 	const { mutateAsync: deleteComment } = useDeleteComment()
-	const { mutateAsync: updateNotification } = useUpdateNotification()
+	const { mutateAsync: addNotification } = useAddNotification()
 	const userName = user?.result?.name
 
 	const handleAddComment = useCallback(async () => {
@@ -36,7 +36,7 @@ export const Comments = ({ postComments, postId, user, creator, isPostCreator })
 			setComment('')
 
 			if (!isPostCreator) {
-				await updateNotification({
+				await addNotification({
 					userId: creator,
 					notification: {
 						_id: uuid(),
@@ -65,7 +65,7 @@ export const Comments = ({ postComments, postId, user, creator, isPostCreator })
 		creator,
 		isPostCreator,
 		postId,
-		updateNotification,
+		addNotification,
 		user?.result?.name,
 		userId,
 		userName,

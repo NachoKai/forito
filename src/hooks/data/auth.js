@@ -2,6 +2,7 @@ import { Text } from '@chakra-ui/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import {
+	addNotification,
 	fetchNotifications,
 	fetchUser,
 	login,
@@ -9,7 +10,7 @@ import {
 	updateBirthday,
 	updateEmail,
 	updateName,
-	updateNotification,
+	updateNotifications,
 } from '../../clients/userClients'
 import { showError } from '../../utils/showError.ts'
 import { handleErrorResponse, retry } from './utils'
@@ -229,16 +230,19 @@ export const useNotifications = userId => {
 		...notificationsQuery,
 		notifications: notificationsQuery?.data,
 		count: notificationsQuery?.data?.length,
+		readCount: notificationsQuery?.data?.filter(notification => notification.read).length,
+		notReadCount: notificationsQuery?.data?.filter(notification => !notification.read)
+			.length,
 	}
 }
 
-export const useUpdateNotification = () => {
+export const useAddNotification = () => {
 	const queryClient = useQueryClient()
 
 	return useMutation(
 		async ({ userId, notification }) => {
 			try {
-				const { data } = await updateNotification(userId, notification)
+				const { data } = await addNotification(userId, notification)
 
 				return data
 			} catch (err) {
@@ -253,6 +257,37 @@ export const useUpdateNotification = () => {
 				)
 				console.error(err)
 				handleErrorResponse(err, { source: 'update-notification' })
+			}
+		},
+		{
+			onSuccess: async () => {
+				await queryClient.refetchQueries({ queryKey: ['notificationsQuery'] })
+			},
+		}
+	)
+}
+
+export const useUpdateNotifications = () => {
+	const queryClient = useQueryClient()
+
+	return useMutation(
+		async ({ userId, notifications }) => {
+			try {
+				const { data } = await updateNotifications(userId, notifications)
+
+				return data
+			} catch (err) {
+				showError(
+					<>
+						<Text fontWeight='bold'>{err.name}</Text>
+						<Text>
+							Something went wrong when trying to update notifications. {err.message}
+						</Text>
+						<Text>Please try again.</Text>
+					</>
+				)
+				console.error(err)
+				handleErrorResponse(err, { source: 'update-notifications' })
 			}
 		},
 		{
