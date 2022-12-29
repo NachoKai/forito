@@ -62,7 +62,9 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 	const handleSubmit = async () => {
 		try {
 			if (postData?.selectedFile?.id) {
-				const imageCollectionRef = firebaseApp.firestore().collection('images')
+				const imageCollectionRef = firebaseApp
+					.firestore()
+					.collection(process.env.REACT_APP_IMAGE_COLLECTION_NAME)
 
 				await imageCollectionRef.doc(postData?.selectedFile?.id).set({
 					url: postData?.selectedFile?.url,
