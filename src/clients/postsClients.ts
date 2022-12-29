@@ -1,5 +1,5 @@
 import { PostI } from './../types'
-import { api } from '../api'
+import { api } from '../api/api'
 import { CommentI, SearchQueryI } from '../types'
 
 export const fetchAllPosts = async () => {

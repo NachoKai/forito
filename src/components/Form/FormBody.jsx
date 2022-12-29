@@ -47,11 +47,11 @@ export const FormBody = ({
 					<FormInput
 						dataCy='form-tags'
 						helper='Separated by commas.'
-						isInvalid={areValidTags}
+						isInvalid={!areValidTags}
 						label='Tags'
 						maxLength='55'
 						name='tags'
-						validation={areValidTags && 'Insert only letters and numbers.'}
+						validation={!areValidTags && 'Insert only letters and numbers.'}
 						value={[...new Set(postData?.tags)]}
 						onChange={e => {
 							setPostData({
