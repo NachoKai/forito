@@ -20,6 +20,7 @@ const Home = loadable(() => import('./components/Home'))
 const Navbar = loadable(() => import('./components/Navbar/Navbar'))
 const PostDetails = loadable(() => import('./components/PostDetails'))
 const SavedPosts = loadable(() => import('./components/SavedPosts'))
+const Notifications = loadable(() => import('./components/Notifications'))
 const Tags = loadable(() => import('./components/Tags'))
 const SearchView = loadable(() => import('./components/SearchView'))
 const TopPosts = loadable(() => import('./components/TopPosts'))
@@ -68,6 +69,10 @@ export const App = () => {
 					<Route
 						element={userId ? <Navigate replace={true} to='/' /> : <Auth />}
 						path='auth'
+					/>
+					<Route
+						element={userId ? <Notifications /> : <Navigate replace={true} to='/' />}
+						path='notifications/:id'
 					/>
 					<Route element={<About />} path='about' />
 					<Route element={<TopPosts />} path='posts/top' />

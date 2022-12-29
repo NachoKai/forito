@@ -228,6 +228,7 @@ export const useNotifications = userId => {
 	return {
 		...notificationsQuery,
 		notifications: notificationsQuery?.data,
+		count: notificationsQuery?.data?.length,
 	}
 }
 
