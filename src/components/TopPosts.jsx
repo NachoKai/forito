@@ -11,13 +11,13 @@ import ErrorPage from './ErrorPage'
 import { Post } from './Post'
 
 const TopPosts = () => {
-	const { allPosts, isSuccess, isLoading, isError, error, isFetching } = useAllPosts()
+	const { allPosts, isSuccess, isLoading, isError, error } = useAllPosts()
 	const postsWithLikes = allPosts?.filter(post => post?.likes?.length > 0)
 	const havePosts = postsWithLikes?.length > 0
 	const topPosts = isSuccess && getTopPosts(postsWithLikes, 5)
 
 	if (isError) return <ErrorPage error={error} />
-	if (isLoading || isFetching) return <Loading />
+	if (isLoading) return <Loading />
 
 	return !topPosts?.length || !havePosts ? (
 		<Flex align='center' direction='column' h='100%' minH='100vh' my='64px'>

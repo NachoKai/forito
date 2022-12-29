@@ -17,14 +17,14 @@ const Notifications = () => {
 	const { id } = useParams()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
-	const { notifications, count, isSuccess, isError, error, isLoading, isFetching } =
+	const { notifications, count, isSuccess, isError, error, isLoading } =
 		useNotifications(userId)
 	const lastNotifications = isSuccess && calculateLastNotifications(notifications, 100)
 	const { colorMode } = useColorMode()
 
 	if (userId !== id) return null
 	if (isError) return <ErrorPage error={error} />
-	if (isLoading || isFetching) return <Loading />
+	if (isLoading) return <Loading />
 
 	if (!lastNotifications?.length) {
 		return (

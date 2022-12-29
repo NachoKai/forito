@@ -14,14 +14,14 @@ import { Loading } from './common/Loading'
 const Tags = () => {
 	const { name } = useParams()
 	const searchQuery = { tags: name }
-	const { postsBySearch, isLoading, isError, error, isSuccess, isFetching } =
+	const { postsBySearch, isLoading, isError, error, isSuccess } =
 		usePostsBySearch(searchQuery)
 	const postsQuantity = postsBySearch?.length
 	const title = postsQuantity === 1 ? `${postsQuantity} Post` : `${postsQuantity} Posts`
 	const publicPosts = isSuccess && postsBySearch?.length && getPublicPosts(postsBySearch)
 
 	if (isError) return <ErrorPage error={error} />
-	if (isLoading || isFetching) return <Loading />
+	if (isLoading) return <Loading />
 
 	return publicPosts?.length ? (
 		<StaggeredSlideFade

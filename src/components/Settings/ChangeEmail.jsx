@@ -28,13 +28,7 @@ export const ChangeEmail = () => {
 	const finalRef = useRef(null)
 	const [email, setEmail] = useState('')
 	const [emailRepeat, setEmailRepeat] = useState('')
-	const {
-		mutateAsync: updateUserEmail,
-		isLoading,
-		isError,
-		error,
-		isFetching,
-	} = useUpdateUserEmail()
+	const { mutateAsync: updateUserEmail, isLoading, isError, error } = useUpdateUserEmail()
 	const emailRegex =
 		/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/
 
@@ -59,7 +53,7 @@ export const ChangeEmail = () => {
 	}
 
 	if (isError) return <ErrorPage error={error} />
-	if (isLoading || isFetching) return <Loading />
+	if (isLoading) return <Loading />
 
 	return (
 		<>
