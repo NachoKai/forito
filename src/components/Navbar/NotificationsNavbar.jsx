@@ -18,8 +18,9 @@ import { IoMdNotificationsOutline } from 'react-icons/io'
 import { MdNotificationsActive } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 
-import { displayNotificationType } from '../../utils/displayNotificationType'
 import { useNotifications } from '../../hooks/data/auth'
+import { calculateLastNotifications } from '../../utils/calculateLastNotifications'
+import { displayNotificationType } from '../../utils/displayNotificationType'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
 
 export const NotificationsNavbar = ({ colorMode }) => {
@@ -29,8 +30,7 @@ export const NotificationsNavbar = ({ colorMode }) => {
 	const { notifications, isSuccess } = useNotifications(userId)
 	const notificationsQuantity = notifications?.length
 	const hasNotifications = notificationsQuantity > 0
-	const lastNotifications =
-		isSuccess && [...notifications].sort((a, b) => b.createdAt - a.createdAt).slice(0, 10)
+	const lastNotifications = isSuccess && calculateLastNotifications(notifications, 10)
 
 	return (
 		<HStack align='center' spacing={{ sm: '4', md: '8', lg: '8', xl: '8' }}>
