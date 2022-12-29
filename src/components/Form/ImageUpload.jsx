@@ -4,12 +4,15 @@ import ImageUploading from 'react-images-uploading'
 
 import { showError } from '../../utils/showError'
 
+const VALID_IMAGE_TYPES = ['jpg', 'jpeg', 'gif', 'png']
+const VALID_IMAGE_SIZE = 1024 * 1024 * 2.1
+
 export const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData }) => {
 	return (
 		<ImageUploading
-			acceptType={['jpg', 'jpeg', 'gif', 'png']}
+			acceptType={VALID_IMAGE_TYPES}
 			dataURLKey='data_url'
-			maxFileSize={1024 * 1024 * 2.1}
+			maxFileSize={VALID_IMAGE_SIZE}
 			maxNumber={1}
 			value={images}
 			onChange={onImageUpload}
