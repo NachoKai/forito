@@ -267,7 +267,7 @@ export const Post = ({
 										<Likes hasUserLike={hasUserLike} likes={likes} />
 									</Button>
 									{(isPostCreator || isAdmin || userEmail) && (
-										<Menu>
+										<Menu isLazy placement='top'>
 											<MenuButton
 												as={Button}
 												className='button'
