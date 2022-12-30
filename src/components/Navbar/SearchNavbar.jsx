@@ -1,10 +1,10 @@
-import { Button, Stack, Text } from '@chakra-ui/react'
+import { Button, Stack } from '@chakra-ui/react'
 import { useCallback, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
-import { usePostsStore } from '../../state/postsStore'
 import { showError } from '../../utils/showError'
+import { usePostsStore } from '../../state/postsStore'
 import { FormInput } from '../common/FormInput'
 
 const ENTER_KEYCODE = 13
@@ -25,13 +25,8 @@ export const SearchNavbar = () => {
 				navigate(`search?searchQuery=${searchValue}&tags=${searchTags.join(',')}`)
 			}
 		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to search post. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
+			showError('Something went wrong when trying to search post. Please try again.')
+			console.error(err)
 		}
 	}, [searchValue, searchTags, setSearchQuery, setTagsQuery, navigate])
 

@@ -18,6 +18,12 @@ export const Paginate = ({ currentPage, numberOfPages }) => {
 		[navigate, setCurrentPage]
 	)
 
+	const handlePreviousPage = () => handlePageChange(currentPage - 1)
+
+	const handleCurrentPage = () => handlePageChange(currentPage)
+
+	const handleNextPage = () => handlePageChange(currentPage + 1)
+
 	return (
 		<Stack align='center' direction='row' justify='center'>
 			{currentPage > 1 ? (
@@ -26,7 +32,7 @@ export const Paginate = ({ currentPage, numberOfPages }) => {
 					color='primary_900_100'
 					h={10}
 					variant='ghost'
-					onClick={() => handlePageChange(currentPage - 1)}
+					onClick={handlePreviousPage}
 				>
 					{'< Previous'}
 				</Button>
@@ -40,7 +46,7 @@ export const Paginate = ({ currentPage, numberOfPages }) => {
 				m='8px'
 				variant='ghost'
 				w={10}
-				onClick={() => handlePageChange(currentPage)}
+				onClick={handleCurrentPage}
 			>
 				{currentPage}
 			</Button>
@@ -57,7 +63,7 @@ export const Paginate = ({ currentPage, numberOfPages }) => {
 					color='primary_900_100'
 					h={10}
 					variant='ghost'
-					onClick={() => handlePageChange(currentPage + 1)}
+					onClick={handleNextPage}
 				>
 					{'Next >'}
 				</Button>

@@ -3,9 +3,9 @@ import { GoogleLogin } from 'react-google-login'
 import { FaEye, FaEyeSlash, FaGoogle } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
+import { useGoogleLogin, useLogin, useSignup } from '../hooks/data/auth'
 import { showError } from '../utils/showError'
 import { FormInput } from './common/FormInput'
-import { useGoogleLogin, useLogin, useSignup } from '../hooks/data/auth'
 
 const Auth = () => {
 	const navigate = useNavigate()
@@ -27,24 +27,13 @@ const Auth = () => {
 			navigate('/posts', { replace: true })
 			navigate(0)
 		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to log in. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
+			showError('Something went wrong when trying to log in. Please try again.')
 			console.error(err)
 		}
 	}
 
 	const onFailure = res => {
-		showError(
-			<>
-				<Text>Something went wrong when trying to log in. </Text>
-				<Text>Please try again.</Text>
-			</>
-		)
+		showError('Something went wrong when trying to log in. Please try again.')
 		console.error('Google login was unsuccessful: ', res)
 	}
 
@@ -70,13 +59,7 @@ const Auth = () => {
 			navigate('/posts', { replace: true })
 			navigate(0)
 		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to log in. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
+			showError('Something went wrong when trying to log in. Please try again.')
 			console.error(err)
 			throw err
 		}

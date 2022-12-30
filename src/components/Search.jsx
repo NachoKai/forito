@@ -12,9 +12,9 @@ import {
 import { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
+import { showError } from '../utils/showError'
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme'
-import { showError } from '../utils/showError'
 import { ChipInput } from './common/ChipInput'
 import { FormInput } from './common/FormInput'
 
@@ -42,15 +42,10 @@ export const Search = () => {
 				navigate(`?searchQuery=${searchValue || ''}&tags=${searchTags.join(',')}`)
 			}
 		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to search post. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
+			showError('Something went wrong when trying to search post. Please try again.')
+			console.error(err)
 		}
-	}, [searchValue, searchTags, setSearchTags, setSearchQuery, setTagsQuery, navigate])
+	}, [searchValue, searchTags, setSearchQuery, setTagsQuery, navigate])
 
 	const handleKeyDown = e => {
 		const disabled = !searchValue?.trim()?.length && !searchTags?.length

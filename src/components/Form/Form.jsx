@@ -4,7 +4,6 @@ import {
 	DrawerCloseButton,
 	DrawerContent,
 	DrawerOverlay,
-	Text,
 } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { useCallback, useEffect, useRef, useState } from 'react'
@@ -12,13 +11,13 @@ import { useCallback, useEffect, useRef, useState } from 'react'
 import { firebaseApp } from '../../firebaseApp'
 import { useCreatePost, usePosts, useUpdatePost } from '../../hooks/data/posts'
 import { useImage } from '../../hooks/useImage'
+import { useLocationQuery } from '../../hooks/useLocationQuery'
 import { usePrivacy } from '../../hooks/usePrivacy'
+import { showError } from '../../utils/showError'
 import { usePostsStore } from '../../state/postsStore'
 import { calculateValidTags } from '../../utils/calculateValidTags'
 import { checkEmpty } from '../../utils/checkEmpty'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
-import { showError } from '../../utils/showError'
-import { useLocationQuery } from '../../utils/useLocationQuery'
 import { FormBody } from './FormBody'
 import { FormFooter } from './FormFooter'
 import { FormHeader } from './FormHeader'
@@ -87,13 +86,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 			handleClear()
 			onClose()
 		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to submit post. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
+			showError('Something went wrong when trying to submit post. Please try again.')
 			console.error(err)
 			throw err
 		}

@@ -1,14 +1,13 @@
 import { Button, Stack, useDisclosure } from '@chakra-ui/react'
+import { createStandaloneToast } from '@chakra-ui/toast'
 import loadable from '@loadable/component'
 import { FaChevronUp } from 'react-icons/fa'
 import { BrowserRouter, Navigate, Route, Routes } from 'react-router-dom'
-import { ToastContainer } from 'react-toastify'
-import 'react-toastify/dist/ReactToastify.css'
 
+import { useScroll } from './hooks/useScroll'
 import { usePostsStore } from './state/postsStore'
 import { UserI } from './types'
 import { getUserLocalStorage } from './utils/getUserLocalStorage'
-import { useScroll } from './hooks/useScroll'
 
 const ScrollToTop = loadable(() => import('./components/common/ScrollToTop'))
 const About = loadable(() => import('./components/About'))
@@ -35,6 +34,7 @@ export const App = () => {
 	const { setCurrentId } = usePostsStore()
 	const user: UserI = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
+	const { ToastContainer } = createStandaloneToast()
 
 	const handleOnClose = async () => {
 		await setCurrentId(null)

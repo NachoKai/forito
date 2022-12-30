@@ -2,12 +2,12 @@ import { Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 
 import { usePostsBySearch } from '../hooks/data/posts'
-import { useLocationQuery } from '../utils/useLocationQuery'
+import { useLocationQuery } from '../hooks/useLocationQuery'
+import { usePostsStore } from '../state/postsStore'
 import ErrorPage from './ErrorPage'
 import { Posts } from './Posts'
 import { Search } from './Search'
 import { Loading } from './common/Loading'
-import { usePostsStore } from '../state/postsStore'
 
 const SearchView = () => {
 	const location = useLocationQuery()

@@ -1,12 +1,17 @@
-import { toast } from 'react-toastify'
+import { createStandaloneToast } from '@chakra-ui/toast'
 
-export const showSuccess = (message: string) =>
-	toast.success(message, {
-		position: 'bottom-right',
-		autoClose: 3000,
-		hideProgressBar: false,
-		closeOnClick: true,
-		pauseOnHover: true,
-		draggable: true,
-		progress: undefined,
-	})
+export const showSuccess = (message: string) => {
+	const { toast } = createStandaloneToast()
+
+	if (!toast.isActive(message)) {
+		return toast({
+			title: 'Success',
+			description: message,
+			status: 'success',
+			duration: 3000,
+			isClosable: true,
+			position: 'bottom-right',
+			variant: 'left-accent',
+		})
+	}
+}

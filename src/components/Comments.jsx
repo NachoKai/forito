@@ -3,14 +3,14 @@ import PropTypes from 'prop-types'
 import { useCallback, useState } from 'react'
 import { FaExclamationCircle } from 'react-icons/fa'
 import { v4 as uuid } from 'uuid'
-import { useAddComment, useDeleteComment } from '../hooks/data/posts'
 
+import { useAddNotification } from '../hooks/data/auth'
+import { useAddComment, useDeleteComment } from '../hooks/data/posts'
+import { showError } from '../utils/showError'
 import { CreateGradColor } from '../theme'
 import { checkEmpty } from '../utils/checkEmpty'
-import { showError } from '../utils/showError'
 import { Comment } from './Comment'
 import { FormTextArea } from './common/FormTextArea'
-import { useAddNotification } from '../hooks/data/auth'
 
 export const Comments = ({ postComments, postId, user, creator, isPostCreator }) => {
 	const userId = user?.result?.googleId || user?.result?._id
@@ -49,25 +49,19 @@ export const Comments = ({ postComments, postId, user, creator, isPostCreator })
 				})
 			}
 		} catch (err) {
+			showError('Something went wrong when trying to add comment. Please try again.')
 			console.error(err)
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to add comment. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
 		}
 	}, [
-		addComment,
-		comment,
-		comments,
-		creator,
-		isPostCreator,
-		postId,
-		addNotification,
-		user?.result?.name,
 		userId,
+		user?.result?.name,
+		comment,
+		addComment,
+		postId,
+		comments,
+		isPostCreator,
+		addNotification,
+		creator,
 		userName,
 	])
 

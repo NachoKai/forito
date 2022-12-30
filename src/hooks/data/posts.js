@@ -1,4 +1,3 @@
-import { Text } from '@chakra-ui/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from 'react-router-dom'
 
@@ -17,9 +16,9 @@ import {
 	savePost,
 	updatePost,
 } from '../../clients/postsClients'
-import { showError } from '../../utils/showError.ts'
-import { handleErrorResponse, retry } from './utils'
+import { showError } from '../../utils/showError'
 import { showSuccess } from '../../utils/showSuccess'
+import { retry } from './utils'
 
 export const useAllPosts = () => {
 	const allPostsQuery = useQuery(
@@ -28,14 +27,8 @@ export const useAllPosts = () => {
 			try {
 				return await fetchAllPosts()
 			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to get all posts. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				handleErrorResponse(err, { source: 'all-posts' })
+				showError('Something went wrong when trying to get all posts. Please try again.')
+				console.error(err)
 			}
 		},
 		{
@@ -59,7 +52,7 @@ export const usePost = id => {
 				return await fetchPost(id)
 			} catch (err) {
 				showError('Something went wrong when trying to get post. Please try again.')
-				handleErrorResponse(err, { source: 'post' })
+				console.error(err)
 			}
 		},
 		{
@@ -86,7 +79,8 @@ export const usePosts = page => {
 
 				return { data, currentPage, numberOfPages, count }
 			} catch (err) {
-				handleErrorResponse(err, { source: 'posts' })
+				showError('Something went wrong when trying to get posts. Please try again.')
+				console.error(err)
 			}
 		},
 		{
@@ -112,7 +106,8 @@ export const usePostsBySearch = searchQuery => {
 			try {
 				return await fetchPostsBySearch(searchQuery)
 			} catch (err) {
-				handleErrorResponse(err, { source: 'posts-by-search' })
+				showError('Something went wrong when trying to get posts. Please try again.')
+				console.error(err)
 			}
 		},
 		{
@@ -136,7 +131,7 @@ export const usePostsByCreator = id => {
 				return await fetchPostsByCreator(id)
 			} catch (err) {
 				showError('Something went wrong when trying to get posts. Please try again.')
-				handleErrorResponse(err, { source: 'posts-by-creator' })
+				console.error(err)
 			}
 		},
 		{
@@ -164,7 +159,10 @@ export const useSavedPosts = id => {
 
 				return { data, count }
 			} catch (err) {
-				handleErrorResponse(err, { source: 'saved-posts' })
+				showError(
+					'Something went wrong when trying to get saved posts. Please try again.'
+				)
+				console.error(err)
 			}
 		},
 		{
@@ -192,7 +190,8 @@ export const useCreatePost = () => {
 				showSuccess('Post successfully created.')
 				navigate(`/posts/${data._id}`)
 			} catch (err) {
-				handleErrorResponse(err, { source: 'create-post' })
+				showError('Something went wrong when trying to create post. Please try again.')
+				console.error(err)
 			}
 		},
 		{
@@ -218,7 +217,8 @@ export const useUpdatePost = () => {
 
 				return { id }
 			} catch (err) {
-				handleErrorResponse(err, { source: 'update-post' })
+				showError('Something went wrong when trying to update post. Please try again.')
+				console.error(err)
 			}
 		},
 		{
@@ -240,7 +240,8 @@ export const useDeletePost = () => {
 
 				return { id }
 			} catch (err) {
-				handleErrorResponse(err, { source: 'delete-post' })
+				showError('Something went wrong when trying to delete post. Please try again.')
+				console.error(err)
 			}
 		},
 		{
@@ -262,7 +263,8 @@ export const useLikePost = () => {
 
 				return { id }
 			} catch (err) {
-				handleErrorResponse(err, { source: 'like-post' })
+				showError('Something went wrong when trying to like post. Please try again.')
+				console.error(err)
 			}
 		},
 		{
@@ -284,7 +286,8 @@ export const useSavePost = () => {
 
 				return { id }
 			} catch (err) {
-				handleErrorResponse(err, { source: 'save-post' })
+				showError('Something went wrong when trying to save post. Please try again.')
+				console.error(err)
 			}
 		},
 		{
@@ -308,7 +311,8 @@ export const useAddComment = () => {
 
 				return { id }
 			} catch (err) {
-				handleErrorResponse(err, { source: 'add-comment' })
+				showError('Something went wrong when trying to add comment. Please try again.')
+				console.error(err)
 			}
 		},
 		{
@@ -331,7 +335,8 @@ export const useDeleteComment = () => {
 
 				return { id }
 			} catch (err) {
-				handleErrorResponse(err, { source: 'delete-comment' })
+				showError('Something went wrong when trying to delete comment. Please try again.')
+				console.error(err)
 			}
 		},
 		{

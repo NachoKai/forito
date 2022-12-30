@@ -2,11 +2,11 @@ import { Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { usePosts } from '../hooks/data/posts'
 
-import { useLocationQuery } from '../utils/useLocationQuery'
-import { Loading } from './common/Loading'
+import { useLocationQuery } from '../hooks/useLocationQuery'
 import ErrorPage from './ErrorPage'
 import { Paginate } from './Paginate'
 import { Posts } from './Posts'
+import { Loading } from './common/Loading'
 
 const Home = ({ onOpen }) => {
 	const locationQuery = useLocationQuery()

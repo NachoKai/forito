@@ -36,16 +36,16 @@ import { v4 as uuid } from 'uuid'
 
 import { useDeletePost, usePosts } from '../hooks/data/posts'
 import { useLike } from '../hooks/useLike'
+import { useLocationQuery } from '../hooks/useLocationQuery'
 import { useSave } from '../hooks/useSave'
+import { showError } from '../utils/showError'
 import { usePostsStore } from '../state/postsStore'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
-import { showError } from '../utils/showError'
-import { useLocationQuery } from '../utils/useLocationQuery'
-import { Dialog } from './common/Dialog'
 import ErrorPage from './ErrorPage'
 import { Likes } from './Likes'
+import { Dialog } from './common/Dialog'
 
 const DATE_FORMAT = 'dd MMM yyyy • hh:mmaaa'
 
@@ -112,13 +112,7 @@ export const Post = ({
 				navigate(`/posts?page=${page - 1}`)
 			}
 		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to delete post. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
+			showError('Something went wrong when trying to delete post. Please try again.')
 			console.error(err)
 		}
 	}
