@@ -157,7 +157,7 @@ const PostDetails = ({ user }) => {
 										className='button'
 										rightIcon={<FaTwitter />}
 										size='xs'
-										onClick={() => shareOnTwitter()}
+										onClick={shareOnTwitter}
 									>
 										Share
 									</Button>

@@ -1,4 +1,3 @@
-import { Text } from '@chakra-ui/react'
 import { useState } from 'react'
 import { v4 as uuid } from 'uuid'
 
@@ -32,13 +31,7 @@ export const useImage = (postData, setPostData) => {
 				},
 			})
 		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to upload image. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
+			showError('Something went wrong when trying to upload image. Please try again.')
 			console.error(err)
 			throw err
 		} finally {

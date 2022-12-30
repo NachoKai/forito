@@ -1,4 +1,3 @@
-import { Text } from '@chakra-ui/react'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import {
@@ -12,8 +11,8 @@ import {
 	updateName,
 	updateNotifications,
 } from '../../clients/userClients'
-import { showError } from '../../utils/showError.ts'
-import { handleErrorResponse, retry } from './utils'
+import { showError } from '../../utils/showError'
+import { retry } from './utils'
 
 export const useLogin = () => {
 	return useMutation(async formData => {
@@ -22,15 +21,8 @@ export const useLogin = () => {
 
 			localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
 		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to log in. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
+			showError('Something went wrong when trying to log in. Please try again.')
 			console.error(err)
-			handleErrorResponse(err, { source: 'login' })
 		}
 	})
 }
@@ -41,15 +33,8 @@ export const useLogout = () => {
 			localStorage.removeItem('forito-profile')
 			localStorage.removeItem('forito-theme')
 		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to log out. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
+			showError('Something went wrong when trying to log out. Please try again.')
 			console.error(err)
-			handleErrorResponse(err, { source: 'logout' })
 		}
 	})
 }
@@ -61,15 +46,8 @@ export const useSignup = () => {
 
 			localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
 		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to sign up. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
+			showError('Something went wrong when trying to sign up. Please try again.')
 			console.error(err)
-			handleErrorResponse(err, { source: 'signup' })
 		}
 	})
 }
@@ -83,14 +61,8 @@ export const useGetUser = id => {
 
 				return data
 			} catch (err) {
-				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>Something went wrong when trying to get user. {err.message}</Text>
-						<Text>Please try again.</Text>
-					</>
-				)
-				handleErrorResponse(err, { source: 'get-user' })
+				showError('Something went wrong when trying to get user. Please try again.')
+				console.error(err)
 			}
 		},
 		{
@@ -110,16 +82,9 @@ export const useGoogleLogin = () => {
 			localStorage.setItem('forito-profile', JSON.stringify({ ...formData }))
 		} catch (err) {
 			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>
-						Something went wrong when trying to login with Google. {err.message}
-					</Text>
-					<Text>Please try again.</Text>
-				</>
+				'Something went wrong when trying to log in with Google. Please try again.'
 			)
 			console.error(err)
-			handleErrorResponse(err, { source: 'google-login' })
 		}
 	})
 }
@@ -135,15 +100,8 @@ export const useUpdateUserName = () => {
 
 			return data
 		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to update user name. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
+			showError('Something went wrong when trying to update your name. Please try again.')
 			console.error(err)
-			handleErrorResponse(err, { source: 'update-user-name' })
 		}
 	})
 }
@@ -160,16 +118,9 @@ export const useUpdateUserEmail = () => {
 			return data
 		} catch (err) {
 			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>
-						Something went wrong when trying to update user email. {err.message}
-					</Text>
-					<Text>Please try again.</Text>
-				</>
+				'Something went wrong when trying to update your email. Please try again.'
 			)
 			console.error(err)
-			handleErrorResponse(err, { source: 'update-user-email' })
 		}
 	})
 }
@@ -186,16 +137,9 @@ export const useUpdateUserBirthday = () => {
 			return data
 		} catch (err) {
 			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>
-						Something went wrong when trying to update user birthday. {err.message}
-					</Text>
-					<Text>Please try again.</Text>
-				</>
+				'Something went wrong when trying to update your birthday. Please try again.'
 			)
 			console.error(err)
-			handleErrorResponse(err, { source: 'update-user-birthday' })
 		}
 	})
 }
@@ -210,15 +154,9 @@ export const useNotifications = userId => {
 				return data
 			} catch (err) {
 				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>
-							Something went wrong when trying to get notifications. {err.message}
-						</Text>
-						<Text>Please try again.</Text>
-					</>
+					'Something went wrong when trying to get notifications. Please try again.'
 				)
-				handleErrorResponse(err, { source: 'get-notifications' })
+				console.error(err)
 			}
 		},
 		{
@@ -247,16 +185,9 @@ export const useAddNotification = () => {
 				return data
 			} catch (err) {
 				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>
-							Something went wrong when trying to add notification. {err.message}
-						</Text>
-						<Text>Please try again.</Text>
-					</>
+					'Something went wrong when trying to add notification. Please try again.'
 				)
 				console.error(err)
-				handleErrorResponse(err, { source: 'update-notification' })
 			}
 		},
 		{
@@ -278,16 +209,9 @@ export const useUpdateNotifications = () => {
 				return data
 			} catch (err) {
 				showError(
-					<>
-						<Text fontWeight='bold'>{err.name}</Text>
-						<Text>
-							Something went wrong when trying to update notifications. {err.message}
-						</Text>
-						<Text>Please try again.</Text>
-					</>
+					'Something went wrong when trying to update notifications. Please try again.'
 				)
 				console.error(err)
-				handleErrorResponse(err, { source: 'update-notifications' })
 			}
 		},
 		{

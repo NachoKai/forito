@@ -1,11 +1,10 @@
-import { Text } from '@chakra-ui/react'
-import { v4 as uuid } from 'uuid'
 import PropTypes from 'prop-types'
+import { v4 as uuid } from 'uuid'
 
-import { showError } from '../utils/showError'
-import { useLikePost } from './data/posts'
-import { useAddNotification } from './data/auth'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import { useAddNotification } from './data/auth'
+import { useLikePost } from './data/posts'
+import { showError } from '../utils/showError'
 
 export const useLike = (id, creator, isPostCreator, hasUserLike) => {
 	const { mutateAsync: likePost, isLoading } = useLikePost()
@@ -31,13 +30,7 @@ export const useLike = (id, creator, isPostCreator, hasUserLike) => {
 				})
 			}
 		} catch (err) {
-			showError(
-				<>
-					<Text fontWeight='bold'>{err.name}</Text>
-					<Text>Something went wrong when trying to like post. {err.message}</Text>
-					<Text>Please try again.</Text>
-				</>
-			)
+			showError('Something went wrong when trying to like post. Please try again.')
 			console.error(err)
 		}
 	}

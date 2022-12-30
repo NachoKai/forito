@@ -12,6 +12,10 @@ export const Comment = ({ comment, deleteComment, postId }) => {
 	const userEmail = user?.result?.email
 	const isAdmin = checkIsAdmin(userEmail)
 
+	const handleDeleteComment = () => {
+		deleteComment({ id: postId, commentId: comment?.commentId })
+	}
+
 	return (
 		<HStack align='center' justify='space-between'>
 			<Text whiteSpace='pre-wrap'>
@@ -33,7 +37,7 @@ export const Comment = ({ comment, deleteComment, postId }) => {
 					maxW='88px'
 					size='xs'
 					variant='solid'
-					onClick={() => deleteComment({ id: postId, commentId: comment?.commentId })}
+					onClick={handleDeleteComment}
 				>
 					Delete
 				</Button>
