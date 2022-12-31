@@ -2,11 +2,15 @@ import { HStack, Text } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
 import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa'
 
-export const Likes = ({ likes, hasUserLike }) => {
-	const likesQuantity = likes?.length
+export const Likes = ({ likes, isLiked, likeLoading }) => {
+	const likesQuantity = likeLoading
+		? isLiked
+			? likes?.length + 1
+			: likes?.length - 1
+		: likes?.length
 
 	if (likesQuantity > 0) {
-		return hasUserLike ? (
+		return isLiked ? (
 			<HStack align='center' spacing='2'>
 				<FaThumbsUp fontSize='small' height='13px' width='13px' />
 				<Text>
@@ -35,5 +39,6 @@ export const Likes = ({ likes, hasUserLike }) => {
 
 Likes.propTypes = {
 	likes: PropTypes.arrayOf(PropTypes.string),
-	hasUserLike: PropTypes.bool,
+	isLiked: PropTypes.bool,
+	likeLoading: PropTypes.bool,
 }

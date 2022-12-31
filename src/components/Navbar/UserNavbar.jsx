@@ -67,7 +67,7 @@ export const UserNavbar = ({ user, handleLogout, colorMode }) => {
 					<PopoverContent className='container'>
 						<PopoverCloseButton />
 						<PopoverHeader>{userName}</PopoverHeader>
-						<PopoverBody fontWeight='bold'>
+						<PopoverBody>
 							<Flex justify='space-between'>
 								Theme color:
 								<ColorPicker />

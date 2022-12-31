@@ -137,7 +137,7 @@ export const NotificationsNavbar = ({ colorMode }) => {
 							cursor='pointer'
 						>
 							<Link to={`/notifications/${userId}`} onClick={setIsDropdownOpen.off}>
-								<Text colorScheme='primary' size='sm'>
+								<Text colorScheme='primary' fontWeight='bold' size='sm'>
 									See all
 								</Text>
 							</Link>
