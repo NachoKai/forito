@@ -71,6 +71,8 @@ export const Post = ({
 }) => {
 	const navigate = useNavigate()
 	const locationQuery = useLocationQuery()
+	const location = useLocation()
+	const pathname = location?.pathname
 	const page = Number(locationQuery.get('page') || 1)
 	const { posts, isError, error } = usePosts(page)
 	const { mutateAsync: deletePost } = useDeletePost(page)
@@ -79,7 +81,6 @@ export const Post = ({
 	const userId = user?.result?.googleId || user?.result?._id
 	const hasUserLike = likes?.includes(userId)
 	const hasUserSaved = saves?.includes(userId)
-	const location = useLocation()
 	const userEmail = user?.result?.email
 	const [isDialogOpen, setIsDialogOpen] = useBoolean()
 	const isPrivate = privacy === 'private'
@@ -92,7 +93,8 @@ export const Post = ({
 	const updatedAtDate = isValid(new Date(updatedAt)) ? new Date(updatedAt) : null
 	const { handleLike, likeLoading } = useLike(_id, creator, isPostCreator, hasUserLike)
 	const { handleSave, saveLoading } = useSave(_id, creator, isPostCreator, hasUserLike)
-	const pathname = location?.pathname
+	const isSaved = (hasUserSaved && !saveLoading) || (!hasUserSaved && saveLoading)
+	const isLiked = (hasUserLike && !likeLoading) || (!hasUserLike && likeLoading)
 
 	const openPost = () => navigate(`/posts/${_id}`)
 
@@ -257,14 +259,12 @@ export const Post = ({
 									<Button
 										className={userLogged ? 'button' : ''}
 										disabled={!userLogged}
-										isLoading={likeLoading}
-										loadingText='Loading...'
 										minW='80px'
 										size='sm'
-										variant={hasUserLike ? 'ghost' : 'outline'}
+										variant={isLiked ? 'ghost' : 'outline'}
 										onClick={handleLike}
 									>
-										<Likes hasUserLike={hasUserLike} likes={likes} />
+										<Likes isLiked={isLiked} likeLoading={likeLoading} likes={likes} />
 									</Button>
 									{(isPostCreator || isAdmin || userEmail) && (
 										<Menu isLazy placement='top'>
@@ -313,15 +313,13 @@ export const Post = ({
 											className={userLogged ? 'button' : ''}
 											disabled={!userLogged}
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
-											isLoading={saveLoading}
-											leftIcon={hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
-											loadingText='Loading...'
+											leftIcon={isSaved ? <FaBookmark /> : <FaRegBookmark />}
 											minW='88px'
 											size='sm'
-											variant={hasUserSaved ? 'ghost' : 'outline'}
+											variant={isSaved ? 'ghost' : 'outline'}
 											onClick={handleSave}
 										>
-											{hasUserSaved ? 'Saved' : 'Save'}
+											{isSaved ? 'Saved' : 'Save'}
 										</Button>
 									)}
 								</HStack>
