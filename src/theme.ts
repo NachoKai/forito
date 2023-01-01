@@ -43,7 +43,6 @@ const colors = {
 const fonts = {
 	body: 'Roboto, sans-serif',
 	heading: 'Roboto Slab, serif',
-	mono: 'Menlo, monospace',
 }
 
 const breakpoints = {
