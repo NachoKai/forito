@@ -3,6 +3,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import '@fontsource/roboto'
+import '@fontsource/roboto-slab'
 
 import { App } from './App'
 import { LoadingContextProvider } from './components/common/LoadingScreen/LoadingContext'
