@@ -116,7 +116,7 @@
     "prettier": "^2.7.1",
     "prop-types": "^15.8.1",
     "react-error-overlay": "^6.0.11",
-    "stylelint": "^14.13.0",
+    "stylelint": "^14.16.1",
     "stylelint-config-standard": "^28.0.0",
     "stylelint-order": "^5.0.0",
     "ts-jest": "^29.0.3",
