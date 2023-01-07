@@ -4,8 +4,6 @@ import {
 	useColorModeValue,
 	withDefaultColorScheme,
 } from '@chakra-ui/react'
-import '@fontsource/roboto'
-import '@fontsource/roboto-slab'
 
 export const getColorTheme = () => {
 	const selectedTheme: string | null = localStorage.getItem('forito-theme')
@@ -41,8 +39,8 @@ const colors = {
 }
 
 const fonts = {
-	body: 'Roboto, sans-serif',
-	heading: 'Roboto Slab, serif',
+	body: `'Roboto', sans-serif`,
+	heading: `'Roboto Slab', serif`,
 }
 
 const breakpoints = {
