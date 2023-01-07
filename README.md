@@ -90,10 +90,6 @@ Contributions are always welcome! [Project Kanban Board](https://github.com/Nach
 Hi, I'm Nacho! 👋 I'm a software developer from Argentina 🇦🇷
 
 
-## LightHouse  
-
-[![.github/workflows/lighthouse-badger-easy.yml](https://github.com/NachoKai/forito/actions/workflows/lighthouse-badger-easy.yml/badge.svg?branch=main)](https://github.com/NachoKai/forito/actions/workflows/lighthouse-badger-easy.yml)
-
 ## License
 
 [MIT](https://github.com/NachoKai/forito/blob/main/LICENSE)
