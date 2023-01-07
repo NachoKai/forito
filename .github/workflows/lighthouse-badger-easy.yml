@@ -16,23 +16,20 @@ name: 'Lighthouse-Badger-Easy'
 env:
   URLS: 'https://forito.vercel.app/'
   TOKEN_NAME: 'LIGHTHOUSE_BADGER_TOKEN'
-  # THAT'S IT; JUMP TO THE TRIGGERS;
-  REPO_BRANCH: '${{ github.repository }} main' # target repo & branch
+  REPO_BRANCH: '${{ github.repository }} main'
 
 # TRIGGERS
 on:
-  # page_build:
-  # schedule: # Check your schedule here => https://crontab.guru/
-  #   - cron: '55 23 * * 0' # e.g. every Sunday at 23:55
-  #
-  # THAT'S IT; YOU'RE DONE;
+   page_build:
+   schedule: # Check your schedule here => https://crontab.guru/
+     - cron: '55 23 * * 0' # e.g. every Sunday at 23:55
   workflow_dispatch:
     inputs:
       urls:
         description: 'https://forito.vercel.app/'
         required: true
       token_name:
-        description: 'Target token name (NO VALUE!)'
+        description: 'Target token NAME'
         required: true
 
 ########################################################################
