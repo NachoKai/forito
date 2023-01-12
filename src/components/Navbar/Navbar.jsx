@@ -32,6 +32,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 					as='h1'
 					bgClip='text'
 					bgGradient={CreateGradColor('primary', 300, 900, 100, 400)}
+					fontFamily='Roboto Slab'
 					fontSize={{ sm: '2xl', md: '2xl', lg: '3xl', xl: '3xl' }}
 					fontWeight='bold'
 				>

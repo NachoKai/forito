@@ -146,7 +146,9 @@ export const Post = ({
 								<Heading
 									as='button'
 									className='pointer'
+									fontFamily='Roboto Slab'
 									fontSize='2xl'
+									maxWidth='75ch'
 									textAlign='left'
 									onClick={openPost}
 								>
@@ -219,8 +221,10 @@ export const Post = ({
 							</HStack>
 
 							<Text
+								fontFamily='Roboto'
 								fontSize='md'
 								m={{ sm: '6', md: '8', lg: '8', xl: '8' }}
+								maxWidth='75ch'
 								noOfLines={[4, 6, 8, 10]}
 								whiteSpace='pre-wrap'
 							>
