@@ -10,6 +10,7 @@ import {
 	Stack,
 	Text,
 	Tooltip,
+	theme,
 } from '@chakra-ui/react'
 import { format, formatDistance, isValid } from 'date-fns'
 import { motion, useScroll } from 'framer-motion'
@@ -23,13 +24,14 @@ import { v4 as uuid } from 'uuid'
 
 import { Comments } from '../components/Comments'
 import { usePost, usePostsBySearch } from '../hooks/data/posts'
-import { CreateGradColor, getColorTheme } from '../theme'
+import { CreateGradColor } from '../theme'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
-import { Loading } from './common/Loading'
-import { StaggeredSlideFade } from './common/StaggeredSlideFade'
+import { getColorTheme } from '../utils/getColorTheme'
 import ErrorPage from './ErrorPage'
 import { RecommendedPost } from './RecommendedPost'
+import { Loading } from './common/Loading'
+import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 
 const DATE_FORMAT = 'dd MMM yyyy • hh:mmaaa'
 const BASE_URL = 'https://forito.vercel.app/posts'
@@ -57,7 +59,7 @@ const PostDetails = ({ user }) => {
 	const isPostCreator = checkIsPostCreator(user, post?.creator)
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
-	const progressBarColor = getColorTheme()
+	const progressBarColor = getColorTheme(theme)
 	const createdAtDate = isValid(new Date(post?.createdAt))
 		? new Date(post.createdAt)
 		: new Date()
@@ -98,7 +100,13 @@ const PostDetails = ({ user }) => {
 				>
 					<Stack spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }} w='100%'>
 						<HStack align='flex-start' justify='space-between' w='100%'>
-							<Heading as='h2' data-cy='post-details-title' size='xl'>
+							<Heading
+								as='h2'
+								data-cy='post-details-title'
+								fontFamily='Roboto Slab'
+								maxWidth='75ch'
+								size='xl'
+							>
 								{post?.title}
 							</Heading>
 							{isPrivate && (
@@ -118,7 +126,13 @@ const PostDetails = ({ user }) => {
 							)}
 						</HStack>
 
-						<Text data-cy='post-details-message' fontSize='lg' whiteSpace='pre-wrap'>
+						<Text
+							data-cy='post-details-message'
+							fontFamily='Roboto'
+							fontSize='lg'
+							maxWidth='75ch'
+							whiteSpace='pre-wrap'
+						>
 							<Linkify>{post?.message}</Linkify>
 						</Text>
 					</Stack>
