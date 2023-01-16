@@ -72,6 +72,10 @@ To run this project, you will need to add the following environment variables to
 
 React, Zustand, ChakraUI, Firebase
 
+## Recent Activity
+
+<!--START_SECTION:activity-->
+
 ## Feedback
 
 If you have any feedback, please reach out to me at ignacio.caiafa@gmail.com
