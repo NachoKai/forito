@@ -68,13 +68,17 @@ To run this project, you will need to add the following environment variables to
 `REACT_APP_SERVER_URL`  
 `REACT_APP_IMAGE_COLLECTION_NAME`  
  
+ 
 ## Tech Stack
 
 React, Zustand, ChakraUI, Firebase
 
+
 ## Recent Activity
 
 <!--START_SECTION:activity-->
+<!--END_SECTION:activity-->
+
 
 ## Feedback
 
@@ -84,6 +88,8 @@ If you have any feedback, please reach out to me at ignacio.caiafa@gmail.com
 ## Contributing
 
 Contributions are always welcome! [Project Kanban Board](https://github.com/NachoKai/forito/projects/1) 
+
+
 ## Authors
 
 - [@NachoKai](https://www.github.com/NachoKai)
