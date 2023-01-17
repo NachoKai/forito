@@ -77,6 +77,12 @@ React, Zustand, ChakraUI, Firebase
 ## Recent Activity
 
 <!--START_SECTION:activity-->
+1. 🎉 Merged PR [#369](https://github.com/NachoKai/forito/pull/369) in [NachoKai/forito](https://github.com/NachoKai/forito)
+2. 🎉 Merged PR [#370](https://github.com/NachoKai/forito/pull/370) in [NachoKai/forito](https://github.com/NachoKai/forito)
+3. 🎉 Merged PR [#371](https://github.com/NachoKai/forito/pull/371) in [NachoKai/forito](https://github.com/NachoKai/forito)
+4. 🎉 Merged PR [#372](https://github.com/NachoKai/forito/pull/372) in [NachoKai/forito](https://github.com/NachoKai/forito)
+5. 🎉 Merged PR [#373](https://github.com/NachoKai/forito/pull/373) in [NachoKai/forito](https://github.com/NachoKai/forito)
+<!--END_SECTION:activity-->
 
 
 ## Feedback
