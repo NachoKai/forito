@@ -23,7 +23,7 @@ export const FormInput = ({
 	dataCy,
 	...rest
 }) => (
-	<FormControl isRequired={isRequired} whiteSpace='nowrap'>
+	<FormControl isRequired={isRequired} whiteSpace='pre-wrap'>
 		{label && (
 			<Tooltip
 				hasArrow
@@ -33,22 +33,22 @@ export const FormInput = ({
 				label={tooltip || ''}
 				openDelay={150}
 				placement='top'
-				whiteSpace='nowrap'
+				whiteSpace='pre-wrap'
 			>
-				<FormLabel fontWeight='bold' w='fit-content' whiteSpace='nowrap'>
+				<FormLabel fontWeight='bold' w='fit-content' whiteSpace='pre-wrap'>
 					{label}
 				</FormLabel>
 			</Tooltip>
 		)}
 
 		{validation && (
-			<FormHelperText color='red.400' fontWeight='bold' mb='4px' whiteSpace='nowrap'>
+			<FormHelperText color='red.400' fontWeight='bold' mb='4px' whiteSpace='pre-wrap'>
 				{validation}
 			</FormHelperText>
 		)}
 
 		{child || (
-			<InputGroup whiteSpace='nowrap'>
+			<InputGroup whiteSpace='pre-wrap'>
 				{leftIcon && (
 					<InputLeftElement color='gray.300' fontSize='1.2em'>
 						{leftIcon}
@@ -64,7 +64,7 @@ export const FormInput = ({
 					focusBorderColor='primary.200'
 					placeholder={placeholder || label}
 					variant='outline'
-					whiteSpace='nowrap'
+					whiteSpace='pre-wrap'
 					{...rest}
 				/>
 

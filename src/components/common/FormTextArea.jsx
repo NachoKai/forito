@@ -17,7 +17,7 @@ export const FormTextArea = ({
 	placeholder,
 	...rest
 }) => (
-	<FormControl isRequired={isRequired} whiteSpace='nowrap'>
+	<FormControl isRequired={isRequired} whiteSpace='pre-wrap'>
 		{label && (
 			<Tooltip
 				hasArrow
@@ -27,9 +27,9 @@ export const FormTextArea = ({
 				label={tooltip || ''}
 				openDelay={150}
 				placement='top'
-				whiteSpace='nowrap'
+				whiteSpace='pre-wrap'
 			>
-				<FormLabel fontWeight='bold' w='fit-content' whiteSpace='nowrap'>
+				<FormLabel fontWeight='bold' w='fit-content' whiteSpace='pre-wrap'>
 					{label}
 				</FormLabel>
 			</Tooltip>

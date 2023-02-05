@@ -1,14 +1,14 @@
 import { Heading, Stack, Text } from '@chakra-ui/react'
 import { FaSearch } from 'react-icons/fa'
 import { useParams } from 'react-router-dom'
-import { usePostsByCreator } from '../hooks/data/posts'
 
 import { useGetUser } from '../hooks/data/auth'
+import { usePostsByCreator } from '../hooks/data/posts'
 import { CreateGradColor } from '../theme'
+import ErrorPage from './ErrorPage'
 import { Post } from './Post'
 import { Loading } from './common/Loading'
 import { StaggeredSlideFade } from './common/StaggeredSlideFade'
-import ErrorPage from './ErrorPage'
 
 const Creator = () => {
 	const { id } = useParams()
@@ -18,7 +18,6 @@ const Creator = () => {
 		isError: isUserError,
 		error: userError,
 	} = useGetUser(id)
-	const userName = user?.name
 	const {
 		postsByCreator,
 		count,
@@ -43,7 +42,7 @@ const Creator = () => {
 					spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 				>
 					<Stack spacing='2'>
-						<Text fontSize='2xl'>{userName || ''}</Text>
+						<Text fontSize='2xl'>{user?.name || ''}</Text>
 						<Text fontSize='md'>
 							{count ? (count === 1 ? `${count} Post` : `${count} Posts`) : ''}
 						</Text>
@@ -75,8 +74,8 @@ const Creator = () => {
 						fontWeight='bold'
 						px={{ sm: '4' }}
 					>
-						{userName
-							? `No posts created by ${userName} were found.`
+						{user?.name
+							? `No posts created by ${user?.name} were found.`
 							: 'No posts created were found.'}
 					</Heading>
 				</StaggeredSlideFade>
