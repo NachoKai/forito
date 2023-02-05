@@ -67,7 +67,13 @@ export const NotificationsNavbar = ({ colorMode }) => {
 				onOpen={setIsDropdownOpen.toggle}
 			>
 				<PopoverTrigger>
-					<HStack align='center' as='button' cursor='pointer'>
+					<HStack
+						align='center'
+						as='button'
+						borderRadius='100%'
+						className='button'
+						cursor='pointer'
+					>
 						<Avatar
 							_hover={{ bg: 'primary_600_300' }}
 							bg='primary_500_200'
