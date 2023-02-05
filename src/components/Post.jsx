@@ -287,10 +287,8 @@ export const Post = ({
 												{userEmail && (
 													<MenuItem onClick={handleSave}>
 														<HStack align='center' spacing='2'>
-															{hasUserSaved ? <FaBookmark /> : <FaRegBookmark />}
-															<Text fontWeight='bold'>
-																{hasUserSaved ? 'Saved' : 'Save'}
-															</Text>
+															{isSaved ? <FaBookmark /> : <FaRegBookmark />}
+															<Text fontWeight='bold'>{isSaved ? 'Saved' : 'Save'}</Text>
 														</HStack>
 													</MenuItem>
 												)}
