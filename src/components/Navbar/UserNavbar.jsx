@@ -48,6 +48,8 @@ export const UserNavbar = ({ user, handleLogout, colorMode }) => {
 					<PopoverTrigger>
 						<HStack align='center' as='button' cursor='pointer'>
 							<Avatar
+								borderRadius='100%'
+								className='button'
 								name={userName}
 								referrerPolicy='no-referrer'
 								size='sm'

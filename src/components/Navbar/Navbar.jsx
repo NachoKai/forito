@@ -61,7 +61,14 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 					</Link>
 				)}
 
-				<Button p='1' size='sm' variant='ghost' onClick={toggleColorMode}>
+				<Button
+					borderRadius='100%'
+					className='button'
+					p='1'
+					size='sm'
+					variant='ghost'
+					onClick={toggleColorMode}
+				>
 					{colorMode === 'light' ? (
 						<FaMoon aria-label='Dark Mode' />
 					) : (
