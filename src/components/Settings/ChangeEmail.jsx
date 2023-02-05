@@ -91,7 +91,7 @@ export const ChangeEmail = () => {
 									color='red.400'
 									fontWeight='bold'
 									mb='4px'
-									whiteSpace='nowrap'
+									whiteSpace='pre-wrap'
 								>
 									Email not valid
 								</FormHelperText>
@@ -118,7 +118,7 @@ export const ChangeEmail = () => {
 									color='red.400'
 									fontWeight='bold'
 									mb='4px'
-									whiteSpace='nowrap'
+									whiteSpace='pre-wrap'
 								>
 									Emails don&apos;t match
 								</FormHelperText>
@@ -128,7 +128,7 @@ export const ChangeEmail = () => {
 									color='red.400'
 									fontWeight='bold'
 									mb='4px'
-									whiteSpace='nowrap'
+									whiteSpace='pre-wrap'
 								>
 									Email not valid
 								</FormHelperText>

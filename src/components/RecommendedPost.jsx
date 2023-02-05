@@ -39,7 +39,7 @@ export const RecommendedPost = ({ post }) => {
 					{message}
 				</Text>
 				{selectedFile?.url && (
-					<AspectRatio maxH='80vh' ratio={1} w='100%'>
+					<AspectRatio maxH='70vh' ratio={4 / 3} w='100%'>
 						<Image
 							alt={title}
 							borderRadius='24px'
