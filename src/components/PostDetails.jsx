@@ -164,7 +164,9 @@ const PostDetails = ({ user }) => {
 				<HStack spacing='2'>
 					<Stack spacing='4' w='100%'>
 						<Flex align='center' justify='space-between'>
-							<Text fontSize='md'>Tags:</Text>
+							<Text fontSize='md' fontWeight='bold'>
+								Tags:
+							</Text>
 							{!isPrivate && (
 								<HStack align='flex-start' h='100%' justify='flex-end' spacing='8px'>
 									<Button
@@ -200,7 +202,9 @@ const PostDetails = ({ user }) => {
 								direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }}
 								spacing='2'
 							>
-								<Text fontSize='md'>Created by:</Text>
+								<Text fontSize='md' fontWeight='bold'>
+									Created by:
+								</Text>
 								<HStack>
 									<Text fontSize='md' fontWeight='bold'>
 										<Link to={`/creator/${post?.creator}`}>{` ${post?.name}`}</Link>
@@ -264,7 +268,15 @@ const PostDetails = ({ user }) => {
 					<Divider />
 
 					<Stack overflow='auto' spacing={{ sm: '6', md: '8', lg: '8', xl: '8' }}>
-						<Text fontWeight='bold'>You might also like:</Text>
+						<Text
+							bgClip='text'
+							bgGradient={CreateGradColor('primary', 300, 900, 50, 400)}
+							fontSize='lg'
+							fontWeight='bold'
+						>
+							You might also like:
+						</Text>
+
 						<HStack
 							align='flex-start'
 							className='recommended-posts'
