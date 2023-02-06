@@ -35,7 +35,7 @@ export const FormInput = ({
 				placement='top'
 				whiteSpace='pre-wrap'
 			>
-				<FormLabel fontWeight='bold' w='fit-content' whiteSpace='pre-wrap'>
+				<FormLabel fontWeight='bold' w='fit-content' whiteSpace='nowrap'>
 					{label}
 				</FormLabel>
 			</Tooltip>
