@@ -198,10 +198,7 @@ const PostDetails = ({ user }) => {
 							)}
 						</HStack>
 						<Flex align='center' justify='space-between' w='100%'>
-							<Stack
-								direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }}
-								spacing='2'
-							>
+							<Stack direction='column' spacing='2'>
 								<Text fontSize='md' fontWeight='bold'>
 									Created by:
 								</Text>
