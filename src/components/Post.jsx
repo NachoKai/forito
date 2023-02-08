@@ -38,11 +38,12 @@ import { useDeletePost, usePosts } from '../hooks/data/posts'
 import { useLike } from '../hooks/useLike'
 import { useLocationQuery } from '../hooks/useLocationQuery'
 import { useSave } from '../hooks/useSave'
-import { showError } from '../utils/showError'
 import { usePostsStore } from '../state/postsStore'
 import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
+import { isEmpty } from '../utils/isEmpty'
+import { showError } from '../utils/showError'
 import ErrorPage from './ErrorPage'
 import { Likes } from './Likes'
 import { Dialog } from './common/Dialog'
@@ -88,7 +89,7 @@ export const Post = ({
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
 	const initialFocusRef = useRef()
-	const userLogged = user?.result
+	const isUserLogged = !isEmpty(user?.result)
 	const createdAtDate = isValid(new Date(createdAt)) ? new Date(createdAt) : new Date()
 	const updatedAtDate = isValid(new Date(updatedAt)) ? new Date(updatedAt) : null
 	const { handleLike, likeLoading } = useLike(_id, creator, isPostCreator, hasUserLike)
@@ -261,8 +262,8 @@ export const Post = ({
 										{comments?.length} {comments?.length === 1 ? 'Comment' : 'Comments'}
 									</Button>
 									<Button
-										className={userLogged ? 'button' : ''}
-										disabled={!userLogged}
+										className={isUserLogged ? 'button' : ''}
+										disabled={!isUserLogged}
 										minW='80px'
 										size='sm'
 										variant={isLiked ? 'ghost' : 'outline'}
@@ -312,8 +313,8 @@ export const Post = ({
 									)}
 									{userEmail && (
 										<Button
-											className={userLogged ? 'button' : ''}
-											disabled={!userLogged}
+											className={isUserLogged ? 'button' : ''}
+											disabled={!isUserLogged}
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
 											leftIcon={isSaved ? <FaBookmark /> : <FaRegBookmark />}
 											minW='88px'

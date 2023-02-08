@@ -8,7 +8,7 @@ import { useAddNotification } from '../hooks/data/auth'
 import { useAddComment, useDeleteComment } from '../hooks/data/posts'
 import { showError } from '../utils/showError'
 import { CreateGradColor } from '../theme'
-import { checkEmpty } from '../utils/checkEmpty'
+import { isEmpty } from '../utils/isEmpty'
 import { Comment } from './Comment'
 import { FormTextArea } from './common/FormTextArea'
 
@@ -16,7 +16,7 @@ export const Comments = ({ postComments, postId, user, creator, isPostCreator })
 	const userId = user?.result?.googleId || user?.result?._id
 	const [comment, setComment] = useState('')
 	const [comments, setComments] = useState(postComments)
-	const isInputEmpty = checkEmpty(comment)
+	const isInputEmpty = isEmpty(comment)
 	const { mutateAsync: addComment } = useAddComment()
 	const { mutateAsync: deleteComment } = useDeleteComment()
 	const { mutateAsync: addNotification } = useAddNotification()
@@ -103,16 +103,16 @@ export const Comments = ({ postComments, postId, user, creator, isPostCreator })
 					/>
 					<HStack spacing='4'>
 						<Button
-							className={isInputEmpty ? 'button' : ''}
-							disabled={!isInputEmpty}
+							className={isInputEmpty ? '' : 'button'}
+							disabled={isInputEmpty}
 							flexGrow='1'
 							onClick={handleAddComment}
 						>
 							Comment
 						</Button>
 						<Button
-							className={isInputEmpty ? 'button' : ''}
-							disabled={!isInputEmpty}
+							className={isInputEmpty ? '' : 'button'}
+							disabled={isInputEmpty}
 							flexGrow='1'
 							variant='outline'
 							onClick={handleClear}
