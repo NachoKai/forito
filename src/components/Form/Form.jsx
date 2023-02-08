@@ -16,7 +16,7 @@ import { usePrivacy } from '../../hooks/usePrivacy'
 import { showError } from '../../utils/showError'
 import { usePostsStore } from '../../state/postsStore'
 import { calculateValidTags } from '../../utils/calculateValidTags'
-import { checkEmpty } from '../../utils/checkEmpty'
+import { isEmpty } from '../../utils/isEmpty'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
 import { FormBody } from './FormBody'
 import { FormFooter } from './FormFooter'
@@ -43,7 +43,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 	const [postData, setPostData] = useState(initialState)
 	const areValidTags = calculateValidTags(postData?.tags)
 	const isSubmitDisabled =
-		!(checkEmpty(postData?.title) && checkEmpty(postData?.message)) || !areValidTags
+		isEmpty(postData?.title) || isEmpty(postData?.message) || !areValidTags
 	const post = currentId ? posts?.find(message => message._id === currentId) : null
 	const { privacy, setPrivacy, handlePrivacy } = usePrivacy(postData, setPostData)
 	const { onImageUpload, handleRemoveImage, images, setImages } = useImage(
