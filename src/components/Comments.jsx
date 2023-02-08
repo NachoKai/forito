@@ -104,16 +104,16 @@ export const Comments = ({ postComments, postId, user, creator, isPostCreator })
 					<HStack spacing='4'>
 						<Button
 							className={isInputEmpty ? '' : 'button'}
-							disabled={isInputEmpty}
 							flexGrow='1'
+							isDisabled={isInputEmpty}
 							onClick={handleAddComment}
 						>
 							Comment
 						</Button>
 						<Button
 							className={isInputEmpty ? '' : 'button'}
-							disabled={isInputEmpty}
 							flexGrow='1'
+							isDisabled={isInputEmpty}
 							variant='outline'
 							onClick={handleClear}
 						>

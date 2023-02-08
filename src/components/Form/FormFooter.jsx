@@ -11,7 +11,7 @@ export const FormFooter = ({ handleClear, handleSubmit, isSubmitDisabled }) => {
 					bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
 					className={isSubmitDisabled ? '' : 'button'}
 					data-cy='form-submit-button'
-					disabled={isSubmitDisabled}
+					isDisabled={isSubmitDisabled}
 					onClick={handleSubmit}
 				>
 					Submit
@@ -19,7 +19,7 @@ export const FormFooter = ({ handleClear, handleSubmit, isSubmitDisabled }) => {
 				<Button
 					className={isSubmitDisabled ? '' : 'button'}
 					data-cy='form-clear-button'
-					disabled={isSubmitDisabled}
+					isDisabled={isSubmitDisabled}
 					variant='outline'
 					onClick={handleClear}
 				>

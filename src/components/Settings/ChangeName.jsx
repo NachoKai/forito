@@ -100,7 +100,7 @@ export const ChangeName = () => {
 						<Button
 							className='button'
 							colorScheme='primary'
-							disabled={!firstName}
+							isDisabled={!firstName}
 							mr={3}
 							onClick={handleSubmit}
 						>
