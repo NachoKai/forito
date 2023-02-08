@@ -263,7 +263,7 @@ export const Post = ({
 									</Button>
 									<Button
 										className={isUserLogged ? 'button' : ''}
-										disabled={!isUserLogged}
+										isDisabled={!isUserLogged}
 										minW='80px'
 										size='sm'
 										variant={isLiked ? 'ghost' : 'outline'}
@@ -314,8 +314,8 @@ export const Post = ({
 									{userEmail && (
 										<Button
 											className={isUserLogged ? 'button' : ''}
-											disabled={!isUserLogged}
 											display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}
+											isDisabled={!isUserLogged}
 											leftIcon={isSaved ? <FaBookmark /> : <FaRegBookmark />}
 											minW='88px'
 											size='sm'

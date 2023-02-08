@@ -103,16 +103,16 @@ export const Search = () => {
 							<Button
 								bgGradient={CreateGradColor('primary', 400, 800, 100, 400)}
 								className={isInputEmpty ? '' : 'button'}
-								disabled={isInputEmpty}
 								flexGrow='1'
+								isDisabled={isInputEmpty}
 								onClick={searchPost}
 							>
 								Search
 							</Button>
 							<Button
 								className={isInputEmpty ? '' : 'button'}
-								disabled={isInputEmpty}
 								flexGrow='1'
+								isDisabled={isInputEmpty}
 								variant='outline'
 								onClick={handleClear}
 							>

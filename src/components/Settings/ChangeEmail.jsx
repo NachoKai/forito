@@ -140,7 +140,7 @@ export const ChangeEmail = () => {
 						<Button
 							className='button'
 							colorScheme='primary'
-							disabled={!email || email !== emailRepeat || !emailRegex.test(email)}
+							isDisabled={!email || email !== emailRepeat || !emailRegex.test(email)}
 							mr={3}
 							onClick={handleSubmit}
 						>

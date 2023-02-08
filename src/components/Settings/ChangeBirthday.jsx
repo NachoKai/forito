@@ -97,7 +97,7 @@ export const ChangeBirthday = () => {
 						<Button
 							className='button'
 							colorScheme='primary'
-							disabled={!birthday}
+							isDisabled={!birthday}
 							mr={3}
 							onClick={handleSubmit}
 						>

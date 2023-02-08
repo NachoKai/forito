@@ -159,7 +159,7 @@ const Auth = () => {
 						<Button
 							className='button'
 							data-cy='auth-login-signup-button'
-							disabled={isLoading}
+							isDisabled={isLoading}
 							isLoading={isLoading}
 							loadingText='Loading...'
 							type='submit'
@@ -181,7 +181,7 @@ const Auth = () => {
 						<Button
 							className={disabled ? '' : 'button'}
 							data-cy='auth-google-login-signup'
-							disabled={disabled}
+							isDisabled={disabled}
 							leftIcon={<FaGoogle />}
 							size='lg'
 							variant='outline'
