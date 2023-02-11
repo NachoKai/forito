@@ -75,14 +75,23 @@ export const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData
 								src={image?.data_url}
 								w='100px'
 							/>
-							<Flex align='center' direction='column' justify='center'>
-								<Button variant='ghost' onClick={() => onImageUpdate(index)}>
+							<Stack align='center' direction='column' justify='center' spacing={2}>
+								<Button
+									className='button'
+									variant='outline'
+									onClick={() => onImageUpdate(index)}
+								>
 									Update
 								</Button>
-								<Button variant='ghost' onClick={handleRemoveImage}>
+								<Button
+									className='button'
+									colorScheme='red'
+									variant='outline'
+									onClick={handleRemoveImage}
+								>
 									Remove
 								</Button>
-							</Flex>
+							</Stack>
 						</HStack>
 					))}
 				</Stack>
