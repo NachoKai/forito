@@ -67,7 +67,7 @@ export const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData
 						</Stack>
 					)}
 					{imageList?.map((image, index) => (
-						<HStack key={index} className='image-item' spacing='2'>
+						<HStack key={index} className='image-item' spacing='4'>
 							<Image
 								alt=''
 								h='100px'
@@ -75,7 +75,7 @@ export const ImageUpload = ({ handleRemoveImage, images, onImageUpload, postData
 								src={image?.data_url}
 								w='100px'
 							/>
-							<Stack align='center' direction='column' justify='center' spacing={2}>
+							<Stack align='center' direction='column' justify='center' spacing='2'>
 								<Button
 									className='button'
 									variant='outline'
