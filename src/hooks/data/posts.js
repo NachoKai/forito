@@ -18,24 +18,20 @@ import {
 } from '../../clients/postsClients'
 import { showError } from '../../utils/showError'
 import { showSuccess } from '../../utils/showSuccess'
-import { retry } from './utils'
 
 export const useAllPosts = () => {
-	const allPostsQuery = useQuery(
-		['allPostsQuery'],
-		async () => {
-			try {
-				return await fetchAllPosts()
-			} catch (err) {
-				showError('Something went wrong when trying to get all posts. Please try again.')
-				console.error(err)
-			}
-		},
-		{
-			retry,
-			staleTime: 60 * 1000,
+	const allPostsQuery = useQuery(['allPostsQuery'], async () => {
+		try {
+			return await fetchAllPosts()
+		} catch (err) {
+			const errorMsg =
+				'Something went wrong when trying to get all posts. Please try again.'
+
+			console.error(err)
+			showError(errorMsg)
+			throw new Error(errorMsg)
 		}
-	)
+	})
 
 	return {
 		...allPostsQuery,
@@ -51,13 +47,14 @@ export const usePost = id => {
 			try {
 				return await fetchPost(id)
 			} catch (err) {
-				showError('Something went wrong when trying to get post. Please try again.')
+				const errorMsg = 'Something went wrong when trying to get post. Please try again.'
+
 				console.error(err)
+				showError(errorMsg)
+				throw new Error(errorMsg)
 			}
 		},
 		{
-			retry,
-			staleTime: 60 * 1000,
 			enabled: !!id,
 		}
 	)
@@ -79,13 +76,15 @@ export const usePosts = page => {
 
 				return { data, currentPage, numberOfPages, count }
 			} catch (err) {
-				showError('Something went wrong when trying to get posts. Please try again.')
+				const errorMsg =
+					'Something went wrong when trying to get posts. Please try again.'
+
 				console.error(err)
+				showError(errorMsg)
+				throw new Error(errorMsg)
 			}
 		},
 		{
-			retry,
-			staleTime: 60 * 1000,
 			enabled: !!page,
 		}
 	)
@@ -106,13 +105,15 @@ export const usePostsBySearch = searchQuery => {
 			try {
 				return await fetchPostsBySearch(searchQuery)
 			} catch (err) {
-				showError('Something went wrong when trying to get posts. Please try again.')
+				const errorMsg =
+					'Something went wrong when trying to get posts by search. Please try again.'
+
 				console.error(err)
+				showError(errorMsg)
+				throw new Error(errorMsg)
 			}
 		},
 		{
-			retry,
-			staleTime: 60 * 1000,
 			enabled: !!searchQuery,
 		}
 	)
@@ -130,13 +131,15 @@ export const usePostsByCreator = id => {
 			try {
 				return await fetchPostsByCreator(id)
 			} catch (err) {
-				showError('Something went wrong when trying to get posts. Please try again.')
+				const errorMsg =
+					'Something went wrong when trying to get posts by creator. Please try again.'
+
 				console.error(err)
+				showError(errorMsg)
+				throw new Error(errorMsg)
 			}
 		},
 		{
-			retry,
-			staleTime: 60 * 1000,
 			enabled: !!id,
 		}
 	)
@@ -149,27 +152,22 @@ export const usePostsByCreator = id => {
 }
 
 export const useSavedPosts = id => {
-	const savedPostsQuery = useQuery(
-		['savedPostsQuery', id],
-		async () => {
-			try {
-				const {
-					data: { data, count },
-				} = await fetchSavedPosts(id)
+	const savedPostsQuery = useQuery(['savedPostsQuery', id], async () => {
+		try {
+			const {
+				data: { data, count },
+			} = await fetchSavedPosts(id)
 
-				return { data, count }
-			} catch (err) {
-				showError(
-					'Something went wrong when trying to get saved posts. Please try again.'
-				)
-				console.error(err)
-			}
-		},
-		{
-			retry,
-			staleTime: 60 * 1000,
+			return { data, count }
+		} catch (err) {
+			const errorMsg =
+				'Something went wrong when trying to get saved posts. Please try again.'
+
+			console.error(err)
+			showError(errorMsg)
+			throw new Error(errorMsg)
 		}
-	)
+	})
 
 	return {
 		...savedPostsQuery,
@@ -190,8 +188,12 @@ export const useCreatePost = () => {
 				showSuccess('Post successfully created.')
 				navigate(`/posts/${data._id}`)
 			} catch (err) {
-				showError('Something went wrong when trying to create post. Please try again.')
+				const errorMsg =
+					'Something went wrong when trying to create post. Please try again.'
+
 				console.error(err)
+				showError(errorMsg)
+				throw new Error(errorMsg)
 			}
 		},
 		{
@@ -217,8 +219,12 @@ export const useUpdatePost = () => {
 
 				return { id }
 			} catch (err) {
-				showError('Something went wrong when trying to update post. Please try again.')
+				const errorMsg =
+					'Something went wrong when trying to update post. Please try again.'
+
 				console.error(err)
+				showError(errorMsg)
+				throw new Error(errorMsg)
 			}
 		},
 		{
@@ -240,8 +246,12 @@ export const useDeletePost = () => {
 
 				return { id }
 			} catch (err) {
-				showError('Something went wrong when trying to delete post. Please try again.')
+				const errorMsg =
+					'Something went wrong when trying to delete post. Please try again.'
+
 				console.error(err)
+				showError(errorMsg)
+				throw new Error(errorMsg)
 			}
 		},
 		{
@@ -263,8 +273,12 @@ export const useLikePost = () => {
 
 				return { id }
 			} catch (err) {
-				showError('Something went wrong when trying to like post. Please try again.')
+				const errorMsg =
+					'Something went wrong when trying to like post. Please try again.'
+
 				console.error(err)
+				showError(errorMsg)
+				throw new Error(errorMsg)
 			}
 		},
 		{
@@ -286,8 +300,12 @@ export const useSavePost = () => {
 
 				return { id }
 			} catch (err) {
-				showError('Something went wrong when trying to save post. Please try again.')
+				const errorMsg =
+					'Something went wrong when trying to save post. Please try again.'
+
 				console.error(err)
+				showError(errorMsg)
+				throw new Error(errorMsg)
 			}
 		},
 		{
@@ -311,8 +329,12 @@ export const useAddComment = () => {
 
 				return { id }
 			} catch (err) {
-				showError('Something went wrong when trying to add comment. Please try again.')
+				const errorMsg =
+					'Something went wrong when trying to add comment. Please try again.'
+
 				console.error(err)
+				showError(errorMsg)
+				throw new Error(errorMsg)
 			}
 		},
 		{
@@ -335,8 +357,12 @@ export const useDeleteComment = () => {
 
 				return { id }
 			} catch (err) {
-				showError('Something went wrong when trying to delete comment. Please try again.')
+				const errorMsg =
+					'Something went wrong when trying to delete comment. Please try again.'
+
 				console.error(err)
+				showError(errorMsg)
+				throw new Error(errorMsg)
 			}
 		},
 		{

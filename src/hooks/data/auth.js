@@ -12,7 +12,6 @@ import {
 	updateNotifications,
 } from '../../clients/userClients'
 import { showError } from '../../utils/showError'
-import { retry } from './utils'
 
 export const useLogin = () => {
 	return useMutation(async formData => {
@@ -21,8 +20,11 @@ export const useLogin = () => {
 
 			localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
 		} catch (err) {
-			showError('Something went wrong when trying to log in. Please try again.')
-			console.error(err)
+			const errorMsg = 'Something went wrong when trying to log in. Please try again.'
+
+			console.error(errorMsg, err)
+			showError(errorMsg)
+			throw new Error(errorMsg)
 		}
 	})
 }
@@ -33,8 +35,11 @@ export const useLogout = () => {
 			localStorage.removeItem('forito-profile')
 			localStorage.removeItem('forito-theme')
 		} catch (err) {
-			showError('Something went wrong when trying to log out. Please try again.')
+			const errorMsg = 'Something went wrong when trying to log out. Please try again.'
+
 			console.error(err)
+			showError(errorMsg)
+			throw new Error(errorMsg)
 		}
 	})
 }
@@ -46,29 +51,29 @@ export const useSignup = () => {
 
 			localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
 		} catch (err) {
-			showError('Something went wrong when trying to sign up. Please try again.')
+			const errorMsg = 'Something went wrong when trying to sign up. Please try again.'
+
 			console.error(err)
+			showError(errorMsg)
+			throw new Error(errorMsg)
 		}
 	})
 }
 
 export const useGetUser = id => {
-	const getUserQuery = useQuery(
-		['getUserQuery'],
-		async () => {
-			try {
-				const { data } = await fetchUser(id)
+	const getUserQuery = useQuery(['getUserQuery'], async () => {
+		try {
+			const { data } = await fetchUser(id)
 
-				return data
-			} catch (err) {
-				showError('Something went wrong when trying to get user. Please try again.')
-				console.error(err)
-			}
-		},
-		{
-			retry,
+			return data
+		} catch (err) {
+			const errorMsg = 'Something went wrong when trying to get user. Please try again.'
+
+			console.error(err)
+			showError(errorMsg)
+			throw new Error(errorMsg)
 		}
-	)
+	})
 
 	return {
 		...getUserQuery,
@@ -81,10 +86,12 @@ export const useGoogleLogin = () => {
 		try {
 			localStorage.setItem('forito-profile', JSON.stringify({ ...formData }))
 		} catch (err) {
-			showError(
-				'Something went wrong when trying to log in with Google. Please try again.'
-			)
+			const errorMsg =
+				'Something went wrong when trying to login with Google. Please try again.'
+
 			console.error(err)
+			showError(errorMsg)
+			throw new Error(errorMsg)
 		}
 	})
 }
@@ -100,8 +107,12 @@ export const useUpdateUserName = () => {
 
 			return data
 		} catch (err) {
-			showError('Something went wrong when trying to update your name. Please try again.')
+			const errorMsg =
+				'Something went wrong when trying to update your name. Please try again.'
+
 			console.error(err)
+			showError(errorMsg)
+			throw new Error(errorMsg)
 		}
 	})
 }
@@ -117,10 +128,12 @@ export const useUpdateUserEmail = () => {
 
 			return data
 		} catch (err) {
-			showError(
+			const errorMsg =
 				'Something went wrong when trying to update your email. Please try again.'
-			)
+
 			console.error(err)
+			showError(errorMsg)
+			throw new Error(errorMsg)
 		}
 	})
 }
@@ -136,33 +149,31 @@ export const useUpdateUserBirthday = () => {
 
 			return data
 		} catch (err) {
-			showError(
+			const errorMsg =
 				'Something went wrong when trying to update your birthday. Please try again.'
-			)
+
 			console.error(err)
+			showError(errorMsg)
+			throw new Error(errorMsg)
 		}
 	})
 }
 
 export const useNotifications = userId => {
-	const notificationsQuery = useQuery(
-		['notificationsQuery'],
-		async () => {
-			try {
-				const { data } = await fetchNotifications(userId)
+	const notificationsQuery = useQuery(['notificationsQuery'], async () => {
+		try {
+			const { data } = await fetchNotifications(userId)
 
-				return data
-			} catch (err) {
-				showError(
-					'Something went wrong when trying to get notifications. Please try again.'
-				)
-				console.error(err)
-			}
-		},
-		{
-			retry,
+			return data
+		} catch (err) {
+			const errorMsg =
+				'Something went wrong when trying to get notifications. Please try again.'
+
+			console.error(err)
+			showError(errorMsg)
+			throw new Error(errorMsg)
 		}
-	)
+	})
 
 	return {
 		...notificationsQuery,
@@ -184,10 +195,12 @@ export const useAddNotification = () => {
 
 				return data
 			} catch (err) {
-				showError(
+				const errorMsg =
 					'Something went wrong when trying to add notification. Please try again.'
-				)
+
 				console.error(err)
+				showError(errorMsg)
+				throw new Error(errorMsg)
 			}
 		},
 		{
@@ -208,10 +221,12 @@ export const useUpdateNotifications = () => {
 
 				return data
 			} catch (err) {
-				showError(
+				const errorMsg =
 					'Something went wrong when trying to update notifications. Please try again.'
-				)
+
 				console.error(err)
+				showError(errorMsg)
+				throw new Error(errorMsg)
 			}
 		},
 		{
