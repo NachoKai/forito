@@ -4,12 +4,11 @@ import { useParams } from 'react-router-dom'
 
 import { usePostsBySearch } from '../hooks/data/posts'
 import { CreateGradColor } from '../theme'
-import { PostI } from '../types'
 import { getPublicPosts } from '../utils/getPublicPosts'
 import ErrorPage from './ErrorPage'
 import { Post } from './Post'
-import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 import { Loading } from './common/Loading'
+import { StaggeredSlideFade } from './common/StaggeredSlideFade'
 
 const Tags = () => {
 	const { name } = useParams()
@@ -37,7 +36,7 @@ const Tags = () => {
 			</Stack>
 
 			<StaggeredSlideFade spacing='3'>
-				{postsBySearch?.map((post: PostI) => (
+				{postsBySearch?.map(post => (
 					<Post key={post._id} post={post} />
 				))}
 			</StaggeredSlideFade>
