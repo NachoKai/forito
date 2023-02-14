@@ -12310,10 +12310,10 @@ linkify-react@^4.0.1:
   resolved "https://registry.yarnpkg.com/linkify-react/-/linkify-react-4.0.1.tgz#deb6093c6607b775724eaabb8177bbb42364f2af"
   integrity sha512-TgHLdhWNsIGIZPthqxqRqNl7PhX0tWv9YSc/+sE8g50NivPY2NgTDGBkecYqgt2MZdMiy/FTFYa38d1r4h8Hlg==
 
-linkifyjs@^4.0.2:
-  version "4.0.2"
-  resolved "https://registry.yarnpkg.com/linkifyjs/-/linkifyjs-4.0.2.tgz#5844ea70f4427004e50036d983b66da50fe13389"
-  integrity sha512-/VSoCZiglX0VMsXmL5PN3lRg45M86lrD9PskdkA2abWaTKap1bIcJ11LS4EE55bcUl9ZOR4eZ792UtQ9E/5xLA==
+linkifyjs@^4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/linkifyjs/-/linkifyjs-4.1.0.tgz#0460bfcc37d3348fa80e078d92e7bbc82588db15"
+  integrity sha512-Ffv8VoY3+ixI1b3aZ3O+jM6x17cOsgwfB1Wq7pkytbo1WlyRp6ZO0YDMqiWT/gQPY/CmtiGuKfzDIVqxh1aCTA==
 
 listr2@^3.8.3:
   version "3.14.0"
