@@ -43,7 +43,6 @@ import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { isEmpty } from '../utils/isEmpty'
-import { showError } from '../utils/showError'
 import ErrorPage from './ErrorPage'
 import { Likes } from './Likes'
 import { Dialog } from './common/Dialog'
@@ -115,7 +114,6 @@ export const Post = ({
 				navigate(`/posts?page=${page - 1}`)
 			}
 		} catch (err) {
-			showError('Something went wrong when trying to delete post. Please try again.')
 			console.error(err)
 		}
 	}

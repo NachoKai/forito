@@ -6,7 +6,6 @@ import { v4 as uuid } from 'uuid'
 
 import { useAddNotification } from '../hooks/data/auth'
 import { useAddComment, useDeleteComment } from '../hooks/data/posts'
-import { showError } from '../utils/showError'
 import { CreateGradColor } from '../theme'
 import { isEmpty } from '../utils/isEmpty'
 import { Comment } from './Comment'
@@ -49,7 +48,6 @@ export const Comments = ({ postComments, postId, user, creator, isPostCreator })
 				})
 			}
 		} catch (err) {
-			showError('Something went wrong when trying to add comment. Please try again.')
 			console.error(err)
 		}
 	}, [
