@@ -8,9 +8,12 @@ export const api = axios.create({
 	timeout: 20_000,
 })
 
+const profile = localStorage.getItem('forito-profile')
+const authToken = getUserLocalStorage().token
+
 api.interceptors.request.use(req => {
-	if (localStorage.getItem('forito-profile')) {
-		req.headers.authorization = `Bearer ${getUserLocalStorage().token}`
+	if (profile) {
+		req.headers.authorization = `Bearer ${authToken}`
 	}
 
 	return req

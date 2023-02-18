@@ -1,9 +1,11 @@
 import { FormDataI } from './../types'
 import { api } from '../api/api'
 
+const USER_ENDPOINT = '/user'
+
 export const login = async (formData: FormDataI) => {
 	try {
-		return await api.post('/user/login', formData)
+		return await api.post(`${USER_ENDPOINT}/login`, formData)
 	} catch (err) {
 		console.error('Error logging in', err)
 		throw err
@@ -12,70 +14,72 @@ export const login = async (formData: FormDataI) => {
 
 export const signup = async (formData: FormDataI) => {
 	try {
-		return await api.post('/user/signup', formData)
+		return await api.post(`${USER_ENDPOINT}/signup`, formData)
 	} catch (err) {
 		console.error('Error signing up', err)
 		throw err
 	}
 }
 
-export const fetchUser = async (id: string) => {
+export const getUser = async (userId: string) => {
 	try {
-		return await api.get(`/user/${id}`)
+		return await api.get(`${USER_ENDPOINT}/${userId}`)
 	} catch (err) {
-		console.error('Error fetching user', err)
+		console.error(`Error getting user ${userId}`, err)
 		throw err
 	}
 }
 
-export const updateBirthday = async (id: string, birthday: string) => {
+export const updateBirthday = async (userId: string, birthday: string) => {
 	try {
-		return await api.patch(`/user/${id}/setBirthday`, birthday)
+		return await api.patch(`${USER_ENDPOINT}/${userId}/setBirthday`, birthday)
 	} catch (err) {
 		console.error('Error updating user birthday', err)
 		throw err
 	}
 }
 
-export const updateName = async (id: string, { firstName, lastName }) => {
+export const updateName = async (userId: string, { firstName, lastName }) => {
 	try {
-		return await api.patch(`/user/${id}/setName`, { firstName, lastName })
+		return await api.patch(`${USER_ENDPOINT}/${userId}/setName`, { firstName, lastName })
 	} catch (err) {
 		console.error('Error updating user name', err)
 		throw err
 	}
 }
 
-export const updateEmail = async (id: string, email: string) => {
+export const updateEmail = async (userId: string, email: string) => {
 	try {
-		return await api.patch(`/user/${id}/setEmail`, email)
+		return await api.patch(`${USER_ENDPOINT}/${userId}/setEmail`, { email })
 	} catch (err) {
 		console.error('Error updating user email', err)
 		throw err
 	}
 }
 
-export const fetchNotifications = async (id: string) => {
+export const getNotifications = async (userId: string) => {
 	try {
-		return await api.get(`/user/${id}/notifications`)
+		return await api.get(`${USER_ENDPOINT}/${userId}/notifications`)
 	} catch (err) {
 		console.error('Error getting notifications', err)
 		throw err
 	}
 }
 
-export const addNotification = async (id: string, notification: boolean) => {
+export const addNotification = async (userId: string, notification: boolean) => {
 	try {
-		return await api.patch(`/user/${id}/addNotification`, { notification })
+		return await api.patch(`${USER_ENDPOINT}/${userId}/addNotification`, { notification })
 	} catch (err) {
 		console.error('Error setting notification', err)
 		throw err
 	}
 }
 
-export const updateNotifications = async (id: string, notifications: boolean) => {
+export const updateNotifications = async (userId: string, notifications: boolean) => {
 	try {
-		return await api.patch(`/user/${id}/updateNotifications`, { notifications })
+		return await api.patch(`${USER_ENDPOINT}/${userId}/updateNotifications`, {
+			notifications,
+		})
 	} catch (err) {
 		console.error('Error updating notifications', err)
 		throw err

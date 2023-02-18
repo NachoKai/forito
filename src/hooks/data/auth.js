@@ -2,8 +2,8 @@ import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import {
 	addNotification,
-	fetchNotifications,
-	fetchUser,
+	getNotifications,
+	getUser,
 	login,
 	signup,
 	updateBirthday,
@@ -74,7 +74,7 @@ export const useGetUser = id => {
 		['getUserQuery'],
 		async () => {
 			try {
-				const { data } = await fetchUser(id)
+				const { data } = await getUser(id)
 
 				return data
 			} catch (err) {
@@ -194,7 +194,7 @@ export const useNotifications = userId => {
 		['notificationsQuery'],
 		async () => {
 			try {
-				const { data } = await fetchNotifications(userId)
+				const { data } = await getNotifications(userId)
 
 				return data
 			} catch (err) {
