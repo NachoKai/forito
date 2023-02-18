@@ -6,12 +6,12 @@ import {
 	createPost,
 	deleteComment,
 	deletePost,
-	fetchAllPosts,
-	fetchPost,
-	fetchPosts,
-	fetchPostsByCreator,
-	fetchPostsBySearch,
-	fetchSavedPosts,
+	getAllPosts,
+	getPost,
+	getPosts,
+	getPostsByCreator,
+	getPostsBySearch,
+	getSavedPosts,
 	likePost,
 	savePost,
 	updatePost,
@@ -24,7 +24,7 @@ export const useAllPosts = () => {
 		['allPostsQuery'],
 		async () => {
 			try {
-				return await fetchAllPosts()
+				return await getAllPosts()
 			} catch (err) {
 				console.error(err)
 			}
@@ -48,7 +48,7 @@ export const usePost = id => {
 		['postQuery', id],
 		async () => {
 			try {
-				return await fetchPost(id)
+				return await getPost(id)
 			} catch (err) {
 				console.error(err)
 			}
@@ -74,7 +74,7 @@ export const usePosts = page => {
 			try {
 				const {
 					data: { data, currentPage, numberOfPages, count },
-				} = await fetchPosts(page)
+				} = await getPosts(page)
 
 				return { data, currentPage, numberOfPages, count }
 			} catch (err) {
@@ -103,7 +103,7 @@ export const usePostsBySearch = searchQuery => {
 		['postsBySearchQuery', searchQuery],
 		async () => {
 			try {
-				return await fetchPostsBySearch(searchQuery)
+				return await getPostsBySearch(searchQuery)
 			} catch (err) {
 				console.error(err)
 			}
@@ -129,7 +129,7 @@ export const usePostsByCreator = id => {
 		['postsByCreatorQuery', id],
 		async () => {
 			try {
-				return await fetchPostsByCreator(id)
+				return await getPostsByCreator(id)
 			} catch (err) {
 				console.error(err)
 			}
@@ -158,7 +158,7 @@ export const useSavedPosts = id => {
 			try {
 				const {
 					data: { data, count },
-				} = await fetchSavedPosts(id)
+				} = await getSavedPosts(id)
 
 				return { data, count }
 			} catch (err) {
