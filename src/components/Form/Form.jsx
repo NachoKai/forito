@@ -13,7 +13,6 @@ import { useCreatePost, usePosts, useUpdatePost } from '../../hooks/data/posts'
 import { useImage } from '../../hooks/useImage'
 import { useLocationQuery } from '../../hooks/useLocationQuery'
 import { usePrivacy } from '../../hooks/usePrivacy'
-import { showError } from '../../utils/showError'
 import { usePostsStore } from '../../state/postsStore'
 import { calculateValidTags } from '../../utils/calculateValidTags'
 import { isEmpty } from '../../utils/isEmpty'
@@ -86,7 +85,6 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 			handleClear()
 			onClose()
 		} catch (err) {
-			showError('Something went wrong when trying to submit post. Please try again.')
 			console.error(err)
 			throw err
 		}

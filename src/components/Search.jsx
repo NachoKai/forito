@@ -12,7 +12,6 @@ import {
 import { useCallback, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 
-import { showError } from '../utils/showError'
 import { usePostsStore } from '../state/postsStore'
 import { CreateGradColor } from '../theme'
 import { ChipInput } from './common/ChipInput'
@@ -42,7 +41,6 @@ export const Search = () => {
 				navigate(`?searchQuery=${searchValue || ''}&tags=${searchTags.join(',')}`)
 			}
 		} catch (err) {
-			showError('Something went wrong when trying to search post. Please try again.')
 			console.error(err)
 		}
 	}, [searchValue, searchTags, setSearchQuery, setTagsQuery, navigate])

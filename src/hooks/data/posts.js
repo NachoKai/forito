@@ -20,18 +20,21 @@ import { showError } from '../../utils/showError'
 import { showSuccess } from '../../utils/showSuccess'
 
 export const useAllPosts = () => {
-	const allPostsQuery = useQuery(['allPostsQuery'], async () => {
-		try {
-			return await fetchAllPosts()
-		} catch (err) {
-			const errorMsg =
-				'Something went wrong when trying to get all posts. Please try again.'
-
-			console.error(err)
-			showError(errorMsg)
-			throw new Error(errorMsg)
+	const allPostsQuery = useQuery(
+		['allPostsQuery'],
+		async () => {
+			try {
+				return await fetchAllPosts()
+			} catch (err) {
+				console.error(err)
+			}
+		},
+		{
+			onError: () => {
+				showError('Something went wrong when trying to get all posts. Please try again.')
+			},
 		}
-	})
+	)
 
 	return {
 		...allPostsQuery,
@@ -47,15 +50,14 @@ export const usePost = id => {
 			try {
 				return await fetchPost(id)
 			} catch (err) {
-				const errorMsg = 'Something went wrong when trying to get post. Please try again.'
-
 				console.error(err)
-				showError(errorMsg)
-				throw new Error(errorMsg)
 			}
 		},
 		{
 			enabled: !!id,
+			onError: () => {
+				showError('Something went wrong when trying to get post. Please try again.')
+			},
 		}
 	)
 
@@ -76,16 +78,14 @@ export const usePosts = page => {
 
 				return { data, currentPage, numberOfPages, count }
 			} catch (err) {
-				const errorMsg =
-					'Something went wrong when trying to get posts. Please try again.'
-
 				console.error(err)
-				showError(errorMsg)
-				throw new Error(errorMsg)
 			}
 		},
 		{
 			enabled: !!page,
+			onError: () => {
+				showError('Something went wrong when trying to get posts. Please try again.')
+			},
 		}
 	)
 
@@ -105,16 +105,16 @@ export const usePostsBySearch = searchQuery => {
 			try {
 				return await fetchPostsBySearch(searchQuery)
 			} catch (err) {
-				const errorMsg =
-					'Something went wrong when trying to get posts by search. Please try again.'
-
 				console.error(err)
-				showError(errorMsg)
-				throw new Error(errorMsg)
 			}
 		},
 		{
 			enabled: !!searchQuery,
+			onError: () => {
+				showError(
+					'Something went wrong when trying to get posts by search. Please try again.'
+				)
+			},
 		}
 	)
 
@@ -131,16 +131,16 @@ export const usePostsByCreator = id => {
 			try {
 				return await fetchPostsByCreator(id)
 			} catch (err) {
-				const errorMsg =
-					'Something went wrong when trying to get posts by creator. Please try again.'
-
 				console.error(err)
-				showError(errorMsg)
-				throw new Error(errorMsg)
 			}
 		},
 		{
 			enabled: !!id,
+			onError: () => {
+				showError(
+					'Something went wrong when trying to get posts by creator. Please try again.'
+				)
+			},
 		}
 	)
 
@@ -152,22 +152,27 @@ export const usePostsByCreator = id => {
 }
 
 export const useSavedPosts = id => {
-	const savedPostsQuery = useQuery(['savedPostsQuery', id], async () => {
-		try {
-			const {
-				data: { data, count },
-			} = await fetchSavedPosts(id)
+	const savedPostsQuery = useQuery(
+		['savedPostsQuery', id],
+		async () => {
+			try {
+				const {
+					data: { data, count },
+				} = await fetchSavedPosts(id)
 
-			return { data, count }
-		} catch (err) {
-			const errorMsg =
-				'Something went wrong when trying to get saved posts. Please try again.'
-
-			console.error(err)
-			showError(errorMsg)
-			throw new Error(errorMsg)
+				return { data, count }
+			} catch (err) {
+				console.error(err)
+			}
+		},
+		{
+			onError: () => {
+				showError(
+					'Something went wrong when trying to get saved posts. Please try again.'
+				)
+			},
 		}
-	})
+	)
 
 	return {
 		...savedPostsQuery,
@@ -188,12 +193,7 @@ export const useCreatePost = () => {
 				showSuccess('Post successfully created.')
 				navigate(`/posts/${data._id}`)
 			} catch (err) {
-				const errorMsg =
-					'Something went wrong when trying to create post. Please try again.'
-
 				console.error(err)
-				showError(errorMsg)
-				throw new Error(errorMsg)
 			}
 		},
 		{
@@ -202,6 +202,9 @@ export const useCreatePost = () => {
 				await queryClient.refetchQueries({ queryKey: ['postsByCreatorQuery'] })
 				await queryClient.refetchQueries({ queryKey: ['savedPostsQuery'] })
 				await queryClient.refetchQueries({ queryKey: ['postsBySearchQuery'] })
+			},
+			onError: () => {
+				showError('Something went wrong when trying to create post. Please try again.')
 			},
 		}
 	)
@@ -219,18 +222,16 @@ export const useUpdatePost = () => {
 
 				return { id }
 			} catch (err) {
-				const errorMsg =
-					'Something went wrong when trying to update post. Please try again.'
-
 				console.error(err)
-				showError(errorMsg)
-				throw new Error(errorMsg)
 			}
 		},
 		{
 			onSuccess: async ({ id }) => {
 				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
 				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
+			},
+			onError: () => {
+				showError('Something went wrong when trying to update post. Please try again.')
 			},
 		}
 	)
@@ -246,18 +247,16 @@ export const useDeletePost = () => {
 
 				return { id }
 			} catch (err) {
-				const errorMsg =
-					'Something went wrong when trying to delete post. Please try again.'
-
 				console.error(err)
-				showError(errorMsg)
-				throw new Error(errorMsg)
 			}
 		},
 		{
 			onSuccess: async ({ id }) => {
 				queryClient.removeQueries({ queryKey: ['postQuery', id] })
 				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
+			},
+			onError: () => {
+				showError('Something went wrong when trying to delete post. Please try again.')
 			},
 		}
 	)
@@ -273,18 +272,16 @@ export const useLikePost = () => {
 
 				return { id }
 			} catch (err) {
-				const errorMsg =
-					'Something went wrong when trying to like post. Please try again.'
-
 				console.error(err)
-				showError(errorMsg)
-				throw new Error(errorMsg)
 			}
 		},
 		{
 			onSuccess: async ({ id }) => {
 				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
 				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
+			},
+			onError: () => {
+				showError('Something went wrong when trying to like post. Please try again.')
 			},
 		}
 	)
@@ -300,12 +297,7 @@ export const useSavePost = () => {
 
 				return { id }
 			} catch (err) {
-				const errorMsg =
-					'Something went wrong when trying to save post. Please try again.'
-
 				console.error(err)
-				showError(errorMsg)
-				throw new Error(errorMsg)
 			}
 		},
 		{
@@ -313,6 +305,9 @@ export const useSavePost = () => {
 				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
 				await queryClient.refetchQueries({ queryKey: ['savedPostsQuery'] })
 				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
+			},
+			onError: () => {
+				showError('Something went wrong when trying to save post. Please try again.')
 			},
 		}
 	)
@@ -329,18 +324,16 @@ export const useAddComment = () => {
 
 				return { id }
 			} catch (err) {
-				const errorMsg =
-					'Something went wrong when trying to add comment. Please try again.'
-
 				console.error(err)
-				showError(errorMsg)
-				throw new Error(errorMsg)
 			}
 		},
 		{
 			onSuccess: async ({ id }) => {
 				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
 				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
+			},
+			onError: () => {
+				showError('Something went wrong when trying to add comment. Please try again.')
 			},
 		}
 	)
@@ -357,18 +350,16 @@ export const useDeleteComment = () => {
 
 				return { id }
 			} catch (err) {
-				const errorMsg =
-					'Something went wrong when trying to delete comment. Please try again.'
-
 				console.error(err)
-				showError(errorMsg)
-				throw new Error(errorMsg)
 			}
 		},
 		{
 			onSuccess: async ({ id }) => {
 				await queryClient.refetchQueries({ queryKey: ['postQuery', Number(id)] })
 				await queryClient.refetchQueries({ queryKey: ['postsQuery'] })
+			},
+			onError: () => {
+				showError('Something went wrong when trying to delete comment. Please try again.')
 			},
 		}
 	)
