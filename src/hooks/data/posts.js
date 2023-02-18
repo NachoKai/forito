@@ -166,6 +166,7 @@ export const useSavedPosts = id => {
 			}
 		},
 		{
+			enabled: !!id,
 			onError: () => {
 				showError(
 					'Something went wrong when trying to get saved posts. Please try again.'
