@@ -7,6 +7,8 @@ const ErrorPage = ({ error }) => {
 	const errorMessage = error?.message || 'An error occurred.'
 	const errorCode = error?.code
 
+	console.error(errorName, errorMessage, errorCode)
+
 	return (
 		<Flex
 			align='center'
@@ -27,10 +29,6 @@ const ErrorPage = ({ error }) => {
 			<Heading color='primary.400' fontSize='3xl'>
 				Something went wrong. Try again later.
 			</Heading>
-
-			<Text color='primary.400' fontSize='xl'>
-				{errorName}: {errorMessage} {errorCode}
-			</Text>
 		</Flex>
 	)
 }
