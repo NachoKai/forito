@@ -1,7 +1,7 @@
 import { Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import { usePosts } from '../hooks/data/posts'
 
+import { usePosts } from '../hooks/data/posts'
 import { useLocationQuery } from '../hooks/useLocationQuery'
 import ErrorPage from './ErrorPage'
 import { Paginate } from './Paginate'

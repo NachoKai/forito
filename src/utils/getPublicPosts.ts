@@ -8,11 +8,13 @@ export const getPublicPosts = (posts: PostI[]) => {
 	const userEmail = user?.result?.email
 	const isAdmin = checkIsAdmin(userEmail)
 
-	return posts?.filter((post: PostI) => {
+	const filteredPosts = posts?.filter((post: PostI) => {
 		const isPrivate = post?.privacy === 'private'
 		const creator = post?.creator
 		const isPostCreator = checkIsPostCreator(user, creator)
 
 		return !isPrivate || (isPrivate && isPostCreator) || isAdmin
 	})
+
+	return filteredPosts || []
 }
