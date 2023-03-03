@@ -32,9 +32,9 @@ export const App = () => {
 	const { isOpen, onOpen, onClose } = useDisclosure()
 	const { checkScrollTop, scrollTop, showScroll } = useScroll()
 	const { setCurrentId } = usePostsStore()
+	const { ToastContainer } = createStandaloneToast()
 	const user: UserI = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
-	const { ToastContainer } = createStandaloneToast()
 
 	const handleOnClose = async () => {
 		await setCurrentId(null)
