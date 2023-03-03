@@ -1,5 +1,5 @@
 import produce from 'immer'
-import createStore from 'zustand'
+import { create as createStore } from 'zustand'
 import { devtools } from 'zustand/middleware'
 
 const selectiveImmer = mutator =>
