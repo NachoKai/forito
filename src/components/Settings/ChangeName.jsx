@@ -41,6 +41,7 @@ export const ChangeName = () => {
 			navigate(0)
 		} catch (err) {
 			console.error(err)
+			throw err
 		} finally {
 			setFirstName('')
 			setLastName('')

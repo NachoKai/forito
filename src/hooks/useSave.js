@@ -32,6 +32,7 @@ export const useSave = (id, creator, isPostCreator, hasUserLike) => {
 		} catch (err) {
 			showError('Something went wrong when trying to save post. Please try again.')
 			console.error(err)
+			throw err
 		}
 	}
 

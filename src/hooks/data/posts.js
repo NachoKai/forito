@@ -27,6 +27,7 @@ export const useAllPosts = () => {
 				return await getAllPosts()
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -51,6 +52,7 @@ export const usePost = id => {
 				return await getPost(id)
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -79,6 +81,7 @@ export const usePosts = page => {
 				return { data, currentPage, numberOfPages, count }
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -106,6 +109,7 @@ export const usePostsBySearch = searchQuery => {
 				return await getPostsBySearch(searchQuery)
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -132,6 +136,7 @@ export const usePostsByCreator = id => {
 				return await getPostsByCreator(id)
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -163,6 +168,7 @@ export const useSavedPosts = id => {
 				return { data, count }
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -195,6 +201,7 @@ export const useCreatePost = () => {
 				navigate(`/posts/${data._id}`)
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -224,6 +231,7 @@ export const useUpdatePost = () => {
 				return { id }
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -249,6 +257,7 @@ export const useDeletePost = () => {
 				return { id }
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -274,6 +283,7 @@ export const useLikePost = () => {
 				return { id }
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -299,6 +309,7 @@ export const useSavePost = () => {
 				return { id }
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -326,6 +337,7 @@ export const useAddComment = () => {
 				return { id }
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -352,6 +364,7 @@ export const useDeleteComment = () => {
 				return { id }
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{

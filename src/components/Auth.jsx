@@ -18,7 +18,7 @@ const Auth = () => {
 	const { mutateAsync: signup, isLoading: isSignupLoading } = useSignup()
 	const isLoading = isLoginLoading || isSignupLoading
 
-	const onSuccess = async res => {
+	const onGoogleSuccess = async res => {
 		try {
 			const result = res?.profileObj
 			const token = res?.tokenId
@@ -27,13 +27,16 @@ const Auth = () => {
 			navigate('/posts', { replace: true })
 			navigate(0)
 		} catch (err) {
-			showError('Something went wrong when trying to log in. Please try again.')
+			showError(
+				'Something went wrong when trying to log in with Google. Please try again.'
+			)
 			console.error(err)
+			throw err
 		}
 	}
 
-	const onFailure = res => {
-		showError('Something went wrong when trying to log in. Please try again.')
+	const onGoogleFailure = res => {
+		showError('Something went wrong when trying to log in with Google. Please try again.')
 		console.error('Google login was unsuccessful: ', res)
 	}
 
@@ -41,8 +44,8 @@ const Auth = () => {
 		e.preventDefault()
 		e.stopPropagation()
 
-		try {
-			if (isSignup) {
+		if (isSignup) {
+			try {
 				await signup({
 					firstName: e.target.firstName.value,
 					lastName: e.target.lastName.value,
@@ -50,18 +53,25 @@ const Auth = () => {
 					password: e.target.password.value,
 					confirmPassword: e.target.confirmPassword.value,
 				})
-			} else {
+				navigate('/posts', { replace: true })
+				navigate(0)
+			} catch (err) {
+				showError('Something went wrong when trying to sign up. Please try again.')
+				console.error(err)
+				throw err
+			}
+		} else {
+			try {
 				await login({
 					email: e.target.email.value,
 					password: e.target.password.value,
 				})
+				navigate('/posts', { replace: true })
+				navigate(0)
+			} catch (err) {
+				console.error(err)
+				throw err
 			}
-			navigate('/posts', { replace: true })
-			navigate(0)
-		} catch (err) {
-			showError('Something went wrong when trying to log in. Please try again.')
-			console.error(err)
-			throw err
 		}
 	}
 
@@ -190,8 +200,8 @@ const Auth = () => {
 							Google Login
 						</Button>
 					)}
-					onFailure={onFailure}
-					onSuccess={onSuccess}
+					onFailure={onGoogleFailure}
+					onSuccess={onGoogleSuccess}
 				/>
 
 				<Flex justify='flex-end'>

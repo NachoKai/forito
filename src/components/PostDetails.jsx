@@ -37,21 +37,14 @@ const DATE_FORMAT = 'dd MMM yyyy • hh:mmaaa'
 const BASE_URL = 'https://forito.vercel.app/posts'
 
 const PostDetails = ({ user }) => {
-	const { scrollYProgress } = useScroll()
 	const { id } = useParams()
+	const { scrollYProgress } = useScroll()
 	const {
 		post,
 		isLoading: isPostLoading,
 		isError: isPostError,
 		error: postError,
 	} = usePost(id)
-	const searchQuery = { search: 'none', tags: post?.tags?.join(',') }
-	const {
-		postsBySearch,
-		isLoading: isPostsBySearchLoading,
-		isError: isPostsBySearchError,
-		error: postsBySearchError,
-	} = usePostsBySearch(searchQuery)
 	const postComments = post?.comments
 	const postId = post?._id
 	const userEmail = user?.result?.email
@@ -59,14 +52,21 @@ const PostDetails = ({ user }) => {
 	const isPostCreator = checkIsPostCreator(user, post?.creator)
 	const isAdmin = checkIsAdmin(userEmail)
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
-	const progressBarColor = getColorTheme(theme)
+	const searchQuery = { search: 'none', tags: post?.tags?.join(',') }
+	const {
+		postsBySearch,
+		isLoading: isPostsBySearchLoading,
+		isError: isPostsBySearchError,
+		error: postsBySearchError,
+	} = usePostsBySearch(searchQuery)
+	const recommendedPosts = postsBySearch?.filter(({ _id }) => _id !== post?._id)
 	const createdAtDate = isValid(new Date(post?.createdAt))
 		? new Date(post.createdAt)
 		: new Date()
 	const updatedAtDate = isValid(new Date(post?.updatedAt))
 		? new Date(post.updatedAt)
 		: null
-	const recommendedPosts = postsBySearch?.filter(({ _id }) => _id !== post?._id)
+	const progressBarColor = getColorTheme(theme)
 
 	const shareOnTwitter = () => {
 		const url = `${BASE_URL}/${id}`
