@@ -12,9 +12,7 @@ const profile = localStorage.getItem('forito-profile')
 const authToken = getUserLocalStorage().token
 
 api.interceptors.request.use(req => {
-	if (profile) {
-		req.headers.authorization = `Bearer ${authToken}`
-	}
+	if (profile) req.headers.authorization = `Bearer ${authToken}`
 
 	return req
 })

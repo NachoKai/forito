@@ -13,7 +13,13 @@ import { themeConfig } from './theme'
 
 const rootElement = document.getElementById('root')
 const root = createRoot(rootElement)
-const queryClient = new QueryClient()
+const queryClient = new QueryClient({
+	defaultOptions: {
+		queries: {
+			retryDelay: attemptIndex => Math.min(1000 * 2 ** attemptIndex, 30000), // 1s, 2s, 4s, 8s, 16s, 30s
+		},
+	},
+})
 
 root.render(
 	<StrictMode>
