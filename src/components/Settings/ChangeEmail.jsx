@@ -45,6 +45,7 @@ export const ChangeEmail = () => {
 			navigate(0)
 		} catch (err) {
 			console.error(err)
+			throw err
 		} finally {
 			setEmail('')
 			setEmailRepeat('')

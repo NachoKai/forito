@@ -14,22 +14,17 @@ import {
 import { showError } from '../../utils/showError'
 
 export const useLogin = () => {
-	return useMutation(
-		async formData => {
-			try {
-				const { data } = await login(formData)
+	return useMutation(async formData => {
+		try {
+			const { data } = await login(formData)
 
-				localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
-			} catch (err) {
-				console.error(err)
-			}
-		},
-		{
-			onError: () => {
-				showError('Something went wrong when trying to log in. Please try again.')
-			},
+			localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
+		} catch (err) {
+			showError('Something went wrong when trying to log in. Please try again.')
+			console.error(err)
+			throw err
 		}
-	)
+	})
 }
 
 export const useLogout = () => {
@@ -40,6 +35,7 @@ export const useLogout = () => {
 				localStorage.removeItem('forito-theme')
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -59,6 +55,7 @@ export const useSignup = () => {
 				localStorage.setItem('forito-profile', JSON.stringify({ ...data }))
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -79,6 +76,7 @@ export const useGetUser = id => {
 				return data
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -102,6 +100,7 @@ export const useGoogleLogin = () => {
 				localStorage.setItem('forito-profile', JSON.stringify({ ...formData }))
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -127,6 +126,7 @@ export const useUpdateUserName = () => {
 				return data
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -152,6 +152,7 @@ export const useUpdateUserEmail = () => {
 				return data
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -177,6 +178,7 @@ export const useUpdateUserBirthday = () => {
 				return data
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -199,6 +201,7 @@ export const useNotifications = userId => {
 				return data
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -232,6 +235,7 @@ export const useAddNotification = () => {
 				return data
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{
@@ -258,6 +262,7 @@ export const useUpdateNotifications = () => {
 				return data
 			} catch (err) {
 				console.error(err)
+				throw err
 			}
 		},
 		{

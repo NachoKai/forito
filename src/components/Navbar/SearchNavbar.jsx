@@ -27,6 +27,7 @@ export const SearchNavbar = () => {
 		} catch (err) {
 			showError('Something went wrong when trying to search post. Please try again.')
 			console.error(err)
+			throw err
 		}
 	}, [searchValue, searchTags, setSearchQuery, setTagsQuery, navigate])
 

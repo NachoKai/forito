@@ -32,6 +32,7 @@ export const useLike = (id, creator, isPostCreator, hasUserLike) => {
 		} catch (err) {
 			showError('Something went wrong when trying to like post. Please try again.')
 			console.error(err)
+			throw err
 		}
 	}
 

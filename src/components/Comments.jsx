@@ -49,6 +49,7 @@ export const Comments = ({ postComments, postId, user, creator, isPostCreator })
 			}
 		} catch (err) {
 			console.error(err)
+			throw err
 		}
 	}, [
 		userId,
