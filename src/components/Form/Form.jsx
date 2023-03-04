@@ -9,14 +9,13 @@ import PropTypes from 'prop-types'
 import { useCallback, useEffect, useRef, useState } from 'react'
 
 import { firebaseApp } from '../../firebaseApp'
-import { useCreatePost, usePosts, useUpdatePost } from '../../hooks/data/posts'
+import { useCreatePost, usePost, useUpdatePost } from '../../hooks/data/posts'
 import { useImage } from '../../hooks/useImage'
-import { useLocationQuery } from '../../hooks/useLocationQuery'
 import { usePrivacy } from '../../hooks/usePrivacy'
 import { usePostsStore } from '../../state/postsStore'
 import { calculateValidTags } from '../../utils/calculateValidTags'
-import { isEmpty } from '../../utils/isEmpty'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
+import { isEmpty } from '../../utils/isEmpty'
 import { FormBody } from './FormBody'
 import { FormFooter } from './FormFooter'
 import { FormHeader } from './FormHeader'
@@ -31,10 +30,8 @@ const initialState = {
 }
 
 export const Form = ({ isOpen, onOpen, onClose }) => {
-	const locationQuery = useLocationQuery()
-	const page = Number(locationQuery.get('page') || 1)
-	const { posts } = usePosts(page)
 	const { currentId, setCurrentId } = usePostsStore()
+	const { post } = usePost(currentId)
 	const { mutateAsync: createPost } = useCreatePost()
 	const { mutateAsync: updatePost } = useUpdatePost()
 	const btnRef = useRef()
@@ -43,7 +40,6 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 	const areValidTags = calculateValidTags(postData?.tags)
 	const isSubmitDisabled =
 		isEmpty(postData?.title) || isEmpty(postData?.message) || !areValidTags
-	const post = currentId ? posts?.find(message => message._id === currentId) : null
 	const { privacy, setPrivacy, handlePrivacy } = usePrivacy(postData, setPostData)
 	const { onImageUpload, handleRemoveImage, images, setImages } = useImage(
 		postData,
