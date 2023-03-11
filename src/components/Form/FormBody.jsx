@@ -1,6 +1,6 @@
 import { DrawerBody, Stack } from '@chakra-ui/react'
 import PropTypes from 'prop-types'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 import { FormInput } from '../common/FormInput'
 import { FormTextArea } from '../common/FormTextArea'
