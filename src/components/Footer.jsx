@@ -1,7 +1,7 @@
 import { Link as ChakraLink, Divider, HStack, Stack, Text } from '@chakra-ui/react'
 import { FaGithub } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 
 const GITHUB_URL = 'https://github.com/NachoKai/forito'
 

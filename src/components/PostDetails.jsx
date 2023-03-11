@@ -19,7 +19,7 @@ import PropTypes from 'prop-types'
 import { FaSearch, FaTwitter } from 'react-icons/fa'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { Link, useParams } from 'react-router-dom'
-import styled from 'styled-components'
+import styled from '@emotion/styled'
 import { v4 as uuid } from 'uuid'
 
 import { Comments } from '../components/Comments'
