@@ -26,6 +26,18 @@ export const Paginate = ({ currentPage, numberOfPages }) => {
 
 	return (
 		<Stack align='center' direction='row' justify='center'>
+			{currentPage > 2 ? (
+				<Button
+					className='button'
+					color='primary_900_100'
+					h={10}
+					variant='ghost'
+					onClick={() => handlePageChange(1)}
+				>
+					{'<<'}
+				</Button>
+			) : null}
+
 			{currentPage > 1 ? (
 				<Button
 					className='button'
@@ -34,7 +46,7 @@ export const Paginate = ({ currentPage, numberOfPages }) => {
 					variant='ghost'
 					onClick={handlePreviousPage}
 				>
-					{'< Previous'}
+					{'Previous'}
 				</Button>
 			) : null}
 
@@ -65,7 +77,19 @@ export const Paginate = ({ currentPage, numberOfPages }) => {
 					variant='ghost'
 					onClick={handleNextPage}
 				>
-					{'Next >'}
+					{'Next'}
+				</Button>
+			) : null}
+
+			{currentPage < numberOfPages ? (
+				<Button
+					className='button'
+					color='primary_900_100'
+					h={10}
+					variant='ghost'
+					onClick={() => handlePageChange(numberOfPages)}
+				>
+					{'>>'}
 				</Button>
 			) : null}
 		</Stack>
