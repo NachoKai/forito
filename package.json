@@ -20,7 +20,7 @@
     "@babel/runtime": "^7.20.13",
     "@chakra-ui/icons": "^2.0.17",
     "@chakra-ui/react": "^2.5.1",
-    "@emotion/react": "^11.10.4",
+    "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@fontsource/roboto": "^4.5.8",
     "@fontsource/roboto-slab": "^4.5.11",
