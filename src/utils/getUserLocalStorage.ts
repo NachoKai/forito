@@ -1,5 +1,9 @@
-export const getUserLocalStorage = (): object => {
+import { UserLocalStorageI } from '../types'
+
+export const getUserLocalStorage = (): UserLocalStorageI => {
 	const profile = localStorage.getItem('forito-profile')
 
-	return profile ? JSON.parse(profile) : {}
+	if (!profile) return {} as UserLocalStorageI
+
+	return JSON.parse(profile) as UserLocalStorageI
 }
