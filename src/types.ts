@@ -56,3 +56,7 @@ export interface NotificationI {
 	type: string
 	createdAt: string
 }
+
+export interface UserLocalStorageI {
+	token: string
+}
