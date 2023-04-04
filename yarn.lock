@@ -4742,13 +4742,14 @@
   dependencies:
     core-js "^3.8.2"
 
-"@storybook/preset-create-react-app@^4.1.2":
-  version "4.1.2"
-  resolved "https://registry.yarnpkg.com/@storybook/preset-create-react-app/-/preset-create-react-app-4.1.2.tgz#65bdfd3e32d84e06ad4db2bb491534cd6bcd2dbb"
-  integrity sha512-5uBZPhuyXx4APgLZnhiZ/PqYYprBua5CabQCfAlk+/9V4vSpX+ww+XP4Rl8Ifc/nf/HktgwtJFH4HXrZGRKC4w==
+"@storybook/preset-create-react-app@^7.0.2":
+  version "7.0.2"
+  resolved "https://registry.yarnpkg.com/@storybook/preset-create-react-app/-/preset-create-react-app-7.0.2.tgz#c01daa827854cb20cb0ce5c9f8a9b694cc79fcc5"
+  integrity sha512-TrDYByWwwbl0e8tytlLt53DCKiz3HQbxC1waM9DqrMg//ZHk77nmah6MCb8n/e+QLx5Xb8eKR5Qr0vmci3uQYQ==
   dependencies:
     "@pmmmwh/react-refresh-webpack-plugin" "^0.5.1"
-    "@storybook/react-docgen-typescript-plugin" canary
+    "@storybook/react-docgen-typescript-plugin" "1.0.6--canary.9.630821.0"
+    "@storybook/types" "7.0.2"
     "@types/babel__core" "^7.1.7"
     babel-plugin-react-docgen "^4.1.0"
     pnp-webpack-plugin "^1.7.0"
@@ -4819,7 +4820,7 @@
     unfetch "^4.2.0"
     util-deprecate "^1.0.2"
 
-"@storybook/react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0", "@storybook/react-docgen-typescript-plugin@canary":
+"@storybook/react-docgen-typescript-plugin@1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0":
   version "1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0"
   resolved "https://registry.yarnpkg.com/@storybook/react-docgen-typescript-plugin/-/react-docgen-typescript-plugin-1.0.2-canary.6.9d540b91e815f8fc2f8829189deb00553559ff63.0.tgz#3103532ff494fb7dc3cf835f10740ecf6a26c0f9"
   integrity sha512-eVg3BxlOm2P+chijHBTByr90IZVUtgRW56qEOLX7xlww2NBuKrcavBlcmn+HH7GIUktquWkMPtvy6e0W0NgA5w==
@@ -4830,6 +4831,19 @@
     flat-cache "^3.0.4"
     micromatch "^4.0.2"
     react-docgen-typescript "^2.1.1"
+    tslib "^2.0.0"
+
+"@storybook/react-docgen-typescript-plugin@1.0.6--canary.9.630821.0":
+  version "1.0.6--canary.9.630821.0"
+  resolved "https://registry.yarnpkg.com/@storybook/react-docgen-typescript-plugin/-/react-docgen-typescript-plugin-1.0.6--canary.9.630821.0.tgz#ace095d04edd5abd19c9a62ee1348c66e7cce5e8"
+  integrity sha512-adrUdN/hb/bzRBmSJtHBEwoPpZzmMbr9WIEp83As69j0hkSa2Rp/Fvp+f97A2FyEx0+skiSX8ENLnwuup+5yuA==
+  dependencies:
+    debug "^4.1.1"
+    endent "^2.0.1"
+    find-cache-dir "^3.3.1"
+    flat-cache "^3.0.4"
+    micromatch "^4.0.2"
+    react-docgen-typescript "^2.2.2"
     tslib "^2.0.0"
 
 "@storybook/react@^6.5.16":
@@ -15103,7 +15117,7 @@ react-dev-utils@^12.0.1:
     strip-ansi "^6.0.1"
     text-table "^0.2.0"
 
-react-docgen-typescript@^2.1.1:
+react-docgen-typescript@^2.1.1, react-docgen-typescript@^2.2.2:
   version "2.2.2"
   resolved "https://registry.yarnpkg.com/react-docgen-typescript/-/react-docgen-typescript-2.2.2.tgz#4611055e569edc071204aadb20e1c93e1ab1659c"
   integrity sha512-tvg2ZtOpOi6QDwsb3GZhOjDkkX0h8Z2gipvTg6OVMUyoYoURhEiRNePT8NZItTVCDh39JJHnLdfCOkzoLbFnTg==
