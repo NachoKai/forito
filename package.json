@@ -79,7 +79,7 @@
     ]
   },
   "devDependencies": {
-    "@babel/preset-typescript": "^7.21.0",
+    "@babel/preset-typescript": "^7.21.4",
     "@chakra-ui/storybook-addon": "^4.0.16",
     "@jest/globals": "^29.5.0",
     "@playwright/test": "^1.31.2",
