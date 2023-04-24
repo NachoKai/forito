@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { StrictMode } from 'react'
 import { createRoot } from 'react-dom/client'
+import { Analytics } from '@vercel/analytics/react'
 
 import { App } from './App'
 import { LoadingContextProvider } from './components/common/LoadingScreen/LoadingContext'
@@ -27,6 +28,7 @@ root.render(
 			<ChakraProvider theme={themeConfig}>
 				<ColorModeScript initialColorMode={themeConfig?.config?.initialColorMode} />
 				<LoadingContextProvider>
+					<Analytics />
 					<App />
 				</LoadingContextProvider>
 			</ChakraProvider>
