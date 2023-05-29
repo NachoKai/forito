@@ -2983,10 +2983,10 @@
   resolved "https://registry.yarnpkg.com/@firebase/webchannel-wrapper/-/webchannel-wrapper-0.9.0.tgz#9340bce56560a8bdba1d25d6281d4bfc397450dc"
   integrity sha512-BpiZLBWdLFw+qFel9p3Zs1jD6QmH7Ii4aTDu6+vx8ShdidChZUXqDhYJly4ZjSgQh54miXbBgBrk0S+jTIh/Qg==
 
-"@fontsource/roboto-slab@^4.5.11":
-  version "4.5.11"
-  resolved "https://registry.yarnpkg.com/@fontsource/roboto-slab/-/roboto-slab-4.5.11.tgz#fb5290d3d5c9ca6974e6b3a20441a30114d9e47b"
-  integrity sha512-0HXK8WNvZZg4vglhUY4ySBmlh+wnO1JsGcPfCaxDhY24gtRf2POmmeNpSxKFjjQTDV8BiYDXF2H9p15d/6c/YA==
+"@fontsource/roboto-slab@^5.0.1":
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto-slab/-/roboto-slab-5.0.1.tgz#b0d6d8f40eb762cae9d6f6e10770f660ec7b8c80"
+  integrity sha512-zIchCRA6DtB64RAy9+9VW5gMefTht+Zzr3BzvIuJ0y3w5K4dmBIeX9eZbdMuKr1dN4EU2IHPWNsAOXf7jXfbaQ==
 
 "@fontsource/roboto@^4.5.8":
   version "4.5.8"
