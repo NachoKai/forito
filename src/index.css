@@ -85,11 +85,11 @@ p a:hover {
 }
 
 .form {
-  border-left: 2px solid #0d0d0d !important;
+  border-left: 3px solid #0d0d0d !important;
 }
 
 .footer {
-  border-top: 2px solid #0d0d0d !important;
+  border-top: 3px solid #0d0d0d !important;
 }
 
 input,
