@@ -222,7 +222,6 @@ export const Post = ({
 							<Text
 								fontFamily='Roboto'
 								fontSize='md'
-								m={{ sm: '6', md: '8', lg: '8', xl: '8' }}
 								maxWidth='75ch'
 								noOfLines={[4, 6, 8, 10]}
 								whiteSpace='pre-wrap'
