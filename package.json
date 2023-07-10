@@ -91,7 +91,7 @@
     "@storybook/builder-webpack5": "^7.0.7",
     "@storybook/manager-webpack5": "^6.5.16",
     "@storybook/node-logger": "^7.0.18",
-    "@storybook/preset-create-react-app": "^7.0.2",
+    "@storybook/preset-create-react-app": "^7.0.26",
     "@storybook/react": "^7.0.25",
     "@storybook/testing-library": "^0.1.0",
     "@testing-library/dom": "^9.3.1",
