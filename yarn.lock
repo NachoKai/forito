@@ -3289,10 +3289,10 @@
   resolved "https://registry.yarnpkg.com/@fontsource/roboto-slab/-/roboto-slab-5.0.5.tgz#fd06746e5cd28aad2929cd92bdd36703b63c394d"
   integrity sha512-3K/fRYLKxuXJB3Z4niUPkB+Gl45tsKMuKiWzn7zMYZLSIOJxz+yA+69IPE2Zv1RGHDDVDgWGOt4lZVDShI2qrQ==
 
-"@fontsource/roboto@^5.0.3":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-5.0.3.tgz#bff6ce627b8c537e8f56e6f2bba221f425bfdf78"
-  integrity sha512-jbZDFwEFARDlo8TqG7th/xjhuq87GYfFpFb+uxuy+0Ng1bhRVgBRWlLj8+WIKhCTOr+h4QXbjpybLWFLUirOwQ==
+"@fontsource/roboto@^5.0.8":
+  version "5.0.8"
+  resolved "https://registry.yarnpkg.com/@fontsource/roboto/-/roboto-5.0.8.tgz#613b477a56f21b5705db1a67e995c033ef317f76"
+  integrity sha512-XxPltXs5R31D6UZeLIV1td3wTXU3jzd3f2DLsXI8tytMGBkIsGcc9sIyiupRtA8y73HAhuSCeweOoBqf6DbWCA==
 
 "@grpc/grpc-js@~1.8.17":
   version "1.8.20"
