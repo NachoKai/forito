@@ -104,7 +104,7 @@
     "@testing-library/user-event": "^14.4.3",
     "@types/styled-components": "^5.1.32",
     "@types/uuid": "^9.0.7",
-    "@typescript-eslint/eslint-plugin": "^5.59.2",
+    "@typescript-eslint/eslint-plugin": "^5.62.0",
     "@typescript-eslint/parser": "^5.62.0",
     "babel-plugin-named-exports-order": "^0.0.2",
     "cypress": "^12.7.0",
