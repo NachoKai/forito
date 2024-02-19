@@ -96,7 +96,7 @@
     "@storybook/manager-webpack5": "^6.5.16",
     "@storybook/node-logger": "^7.0.18",
     "@storybook/preset-create-react-app": "^7.0.26",
-    "@storybook/react": "^7.5.3",
+    "@storybook/react": "^7.6.16",
     "@storybook/testing-library": "^0.2.0",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^6.1.3",
