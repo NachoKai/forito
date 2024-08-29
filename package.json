@@ -124,6 +124,6 @@
     "react-error-overlay": "^6.0.11",
     "ts-jest": "^29.1.0",
     "typescript": "^5.1.6",
-    "webpack": "^5.88.2"
+    "webpack": "^5.94.0"
   }
 }
