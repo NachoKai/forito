@@ -4,8 +4,18 @@ import { UserLocalStorageI } from '../types'
 import { isDev } from '../utils/checkIsDev'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 
+const getBaseURL = () => {
+	if (isDev) {
+		return 'http://localhost:5000/api'
+	}
+	const serverUrl = process.env.REACT_APP_SERVER_URL || ''
+
+	// Remove trailing slash if present, then add /api
+	return `${serverUrl.replace(/\/$/, '')}/api`
+}
+
 export const api = axios.create({
-	baseURL: isDev ? 'http://localhost:5000' : process.env.REACT_APP_SERVER_URL,
+	baseURL: getBaseURL(),
 	timeout: 20_000,
 })
 
