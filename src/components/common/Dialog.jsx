@@ -31,7 +31,7 @@ export const Dialog = ({
 			leastDestructiveRef={cancelRef}
 			onClose={setIsDialogOpen.off}
 		>
-			<AlertDialogOverlay backdropFilter='blur(10px)' bg='blackAlpha.300'>
+			<AlertDialogOverlay bg='blackAlpha.300'>
 				<AlertDialogContent boxShadow='none' className='container'>
 					<AlertDialogHeader fontSize='lg' fontWeight='bold'>
 						{title}

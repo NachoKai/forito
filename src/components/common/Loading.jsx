@@ -28,7 +28,6 @@ const Container = styled(Stack)`
 	z-index: 9998;
 	width: 100vw;
 	height: 100vh;
-	backdrop-filter: blur(15px);
 	overflow: hidden;
 	overscroll-behavior: none;
 	pointer-events: none;

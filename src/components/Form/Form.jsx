@@ -135,7 +135,7 @@ export const Form = ({ isOpen, onOpen, onClose }) => {
 				size='md'
 				onClose={onClose}
 			>
-				<DrawerOverlay backdropFilter='blur(10px)' bg='blackAlpha.300' />
+				<DrawerOverlay bg='blackAlpha.300' />
 				<DrawerContent bg='primary_100_900' className='form'>
 					<DrawerCloseButton />
 					<FormHeader currentId={currentId} />
