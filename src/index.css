@@ -24,13 +24,11 @@ input[type="file"] {
 .glassmorphism-light {
   background: rgb(255 255 255 / 40%);
   border: 2px solid rgb(255 255 255 / 20%);
-  backdrop-filter: blur(5px);
 }
 
 .glassmorphism-dark {
   background: rgb(0 0 0 / 40%);
   border: 2px solid rgb(0 0 0 / 20%);
-  backdrop-filter: blur(5px);
 }
 
 .chakra-accordion__item {
