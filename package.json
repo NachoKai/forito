@@ -13,8 +13,6 @@
     "test:coverage": "npm run test -- --watchAll=false",
     "eject": "react-scripts eject",
     "cypress": "cypress open",
-    "storybook": "start-storybook -p 6006 -s public",
-    "build-storybook": "build-storybook -s public",
     "prepare": "husky"
   },
   "engines": {
@@ -105,19 +103,8 @@
   },
   "devDependencies": {
     "@babel/preset-typescript": "^7.23.3",
-    "@chakra-ui/storybook-addon": "^4.0.16",
     "@jest/globals": "^29.5.0",
     "@playwright/test": "^1.35.1",
-    "@storybook/addon-actions": "^7.0.26",
-    "@storybook/addon-essentials": "^7.6.17",
-    "@storybook/addon-interactions": "^7.0.23",
-    "@storybook/addon-links": "^7.0.20",
-    "@storybook/builder-webpack5": "^7.4.6",
-    "@storybook/manager-webpack5": "^6.5.16",
-    "@storybook/node-logger": "^7.0.18",
-    "@storybook/preset-create-react-app": "^7.0.26",
-    "@storybook/react": "^7.5.3",
-    "@storybook/testing-library": "^0.2.0",
     "@testing-library/dom": "^9.3.3",
     "@testing-library/jest-dom": "^6.4.8",
     "@testing-library/react": "^14.2.1",
@@ -138,13 +125,27 @@
     "eslint-plugin-promise": "^6.0.1",
     "eslint-plugin-react": "^7.33.2",
     "eslint-plugin-react-hooks": "^4.6.0",
-    "eslint-plugin-storybook": "^0.6.15",
     "husky": "^9.1.7",
+    "identity-obj-proxy": "^3.0.0",
     "prettier": "^2.8.8",
     "prop-types": "^15.8.1",
     "react-error-overlay": "^6.0.11",
     "ts-jest": "^29.1.0",
     "typescript": "^5.1.6",
     "webpack": "^5.88.2"
+  },
+  "jest": {
+    "collectCoverageFrom": [
+      "**/*.{js,jsx,ts,tsx}",
+      "!**/*.d.ts",
+      "!**/node_modules/**"
+    ],
+    "moduleNameMapper": {
+      "~/(.*)": "<rootDir>/$1",
+      "\\.(css|less|scss|sass)$": "identity-obj-proxy"
+    },
+    "transformIgnorePatterns": [
+      "node_modules/(?!(axios|@fontsource)/)"
+    ]
   }
 }
