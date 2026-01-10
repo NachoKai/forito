@@ -1,42 +1,42 @@
-input[type="file"] {
-  max-width: 250px;
-  cursor: pointer;
+input[type='file'] {
+	max-width: 250px;
+	cursor: pointer;
 }
 
 .recommended-posts {
-  scroll-snap-type: x mandatory;
+	scroll-snap-type: x mandatory;
 }
 
 .recommended-post {
-  scroll-snap-align: start;
+	scroll-snap-align: start;
 }
 
 .pointer {
-  cursor: pointer;
+	cursor: pointer;
 }
 
 .MuiButtonBase-root {
-  align-items: center;
-  padding: 4px !important;
-  margin: 4px !important;
+	align-items: center;
+	padding: 4px !important;
+	margin: 4px !important;
 }
 
 .glassmorphism-light {
-  background: rgb(255 255 255 / 40%);
-  border: 2px solid rgb(255 255 255 / 20%);
+	background: rgb(255 255 255 / 40%);
+	border: 2px solid rgb(255 255 255 / 20%);
 }
 
 .glassmorphism-dark {
-  background: rgb(0 0 0 / 40%);
-  border: 2px solid rgb(0 0 0 / 20%);
+	background: rgb(0 0 0 / 40%);
+	border: 2px solid rgb(0 0 0 / 20%);
 }
 
 .chakra-accordion__item {
-  border-radius: 6px;
+	border-radius: 6px;
 }
 
 .chakra-skeleton {
-  width: 100% !important;
+	width: 100% !important;
 }
 
 /* ::-webkit-scrollbar {
@@ -53,35 +53,35 @@ input[type="file"] {
 } */
 
 p a:hover {
-  font-weight: bold;
+	font-weight: bold;
 }
 
 .container {
-  border: 2px solid #0d0d0d !important;
+	border: 2px solid #0d0d0d !important;
 }
 
 .container:hover {
-  border: 2px solid #0d0d0d !important;
-  box-shadow: 2px 2px 0 0 #0d0d0d !important;
-  transition: box-shadow 0.2s ease-in-out !important;
+	border: 2px solid #0d0d0d !important;
+	box-shadow: 2px 2px 0 0 #0d0d0d !important;
+	transition: box-shadow 0.2s ease-in-out !important;
 }
 
 .button:hover {
-  box-shadow: 2px 2px 0 0 #0d0d0d !important;
-  transition: box-shadow 0.2s ease-in-out !important;
+	box-shadow: 2px 2px 0 0 #0d0d0d !important;
+	transition: box-shadow 0.2s ease-in-out !important;
 }
 
 .form {
-  border-left: 2px solid #0d0d0d !important;
+	border-left: 2px solid #0d0d0d !important;
 }
 
 .footer {
-  border-top: 2px solid #0d0d0d !important;
+	border-top: 2px solid #0d0d0d !important;
 }
 
 input,
 textarea {
-  border: 1px solid #0d0d0d !important;
+	border: 1px solid #0d0d0d !important;
 }
 
 input:hover,
@@ -90,12 +90,12 @@ input:focus,
 textarea:hover,
 textarea:active,
 textarea:focus {
-  border: 1px solid #0d0d0d !important;
-  box-shadow: 1px 1px 0 0 #0d0d0d !important;
-  transition: box-shadow 0.2s ease-in-out !important;
+	border: 1px solid #0d0d0d !important;
+	box-shadow: 1px 1px 0 0 #0d0d0d !important;
+	transition: box-shadow 0.2s ease-in-out !important;
 }
 
 .chakra-popover__popper {
-  max-height: 133px;
-  max-width: 322px;
+	max-height: 133px;
+	max-width: 322px;
 }
