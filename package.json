@@ -5,7 +5,7 @@
   "private": true,
   "proxy": "http://localhost:5000",
   "scripts": {
-    "lint": "eslint --ext .jsx,.js src",
+    "lint": "eslint --ext .jsx,.js,.tsx,.ts src",
     "format": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
     "start": "react-scripts start",
     "build": "react-scripts build",

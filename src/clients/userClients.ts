@@ -1,9 +1,14 @@
-import { FormDataI } from './../types'
+import { FormDataI, NotificationI } from './../types'
 import { api } from '../api/api'
 
 const USER_ENDPOINT = '/user'
 
-export const login = async (formData: FormDataI) => {
+interface LoginFormData {
+	email: string
+	password: string
+}
+
+export const login = async (formData: LoginFormData) => {
 	try {
 		return await api.post(`${USER_ENDPOINT}/login`, formData)
 	} catch (err) {
@@ -30,7 +35,7 @@ export const getUser = async (userId: string) => {
 	}
 }
 
-export const updateBirthday = async (userId: string, birthday: string) => {
+export const updateBirthday = async (userId: string, birthday: { birthday: string }) => {
 	try {
 		return await api.patch(`${USER_ENDPOINT}/${userId}/setBirthday`, birthday)
 	} catch (err) {
@@ -48,9 +53,9 @@ export const updateName = async (userId: string, { firstName, lastName }) => {
 	}
 }
 
-export const updateEmail = async (userId: string, email: string) => {
+export const updateEmail = async (userId: string, email: { email: string }) => {
 	try {
-		return await api.patch(`${USER_ENDPOINT}/${userId}/setEmail`, { email })
+		return await api.patch(`${USER_ENDPOINT}/${userId}/setEmail`, email)
 	} catch (err) {
 		console.error('Error updating user email', err)
 		throw err
@@ -66,7 +71,7 @@ export const getNotifications = async (userId: string) => {
 	}
 }
 
-export const addNotification = async (userId: string, notification: boolean) => {
+export const addNotification = async (userId: string, notification: NotificationI) => {
 	try {
 		return await api.patch(`${USER_ENDPOINT}/${userId}/addNotification`, { notification })
 	} catch (err) {
@@ -75,7 +80,10 @@ export const addNotification = async (userId: string, notification: boolean) => 
 	}
 }
 
-export const updateNotifications = async (userId: string, notifications: boolean) => {
+export const updateNotifications = async (
+	userId: string,
+	notifications: NotificationI[]
+) => {
 	try {
 		return await api.patch(`${USER_ENDPOINT}/${userId}/updateNotifications`, {
 			notifications,

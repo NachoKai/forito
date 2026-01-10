@@ -60,7 +60,7 @@ export const getSavedPosts = async (postId: string) => {
 	}
 }
 
-export const createPost = async (newPost: PostI) => {
+export const createPost = async (newPost: Partial<PostI>) => {
 	try {
 		return await api.post(`${POSTS_ENDPOINT}`, newPost)
 	} catch (err) {
@@ -87,7 +87,7 @@ export const savePost = async (postId: string) => {
 	}
 }
 
-export const updatePost = async (postId: string, updatedPost: PostI) => {
+export const updatePost = async (postId: string, updatedPost: Partial<PostI>) => {
 	try {
 		return await api.patch(`${POSTS_ENDPOINT}/${postId}`, updatedPost)
 	} catch (err) {

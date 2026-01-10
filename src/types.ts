@@ -14,13 +14,17 @@ export interface PostI {
 	title: string
 	message: string
 	tags: string[]
-	selectedFile: string
+	selectedFile?: {
+		url?: string
+		name?: string
+		id?: string
+	}
 	privacy: string
 	creator: string
 	createdAt: string
 	updatedAt: string
-	likes: []
-	saves: []
+	likes: string[]
+	saves: string[]
 	alt: string
 	name: string
 	comments: CommentI[]
@@ -39,7 +43,9 @@ export interface UserI {
 		_id: string
 		firstName: string
 		lastName: string
+		name?: string
 		email: string
+		birthday?: string
 		createdAt: string
 		updatedAt: string
 		__v: number
