@@ -14,17 +14,21 @@ import {
 	useBoolean,
 } from '@chakra-ui/react'
 import { formatDistance } from 'date-fns'
-import PropTypes from 'prop-types'
 import { IoMdNotificationsOutline } from 'react-icons/io'
 import { MdNotificationsActive } from 'react-icons/md'
 import { Link } from 'react-router-dom'
 
 import { useNotifications, useUpdateNotifications } from '../../hooks/data/auth'
+import { NotificationI } from '../../types'
 import { calculateLastNotifications } from '../../utils/calculateLastNotifications'
 import { displayNotificationType } from '../../utils/displayNotificationType'
 import { getUserLocalStorage } from '../../utils/getUserLocalStorage'
 
-export const NotificationsNavbar = ({ colorMode }) => {
+interface NotificationsNavbarProps {
+	colorMode: string
+}
+
+export const NotificationsNavbar = ({ colorMode }: NotificationsNavbarProps) => {
 	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
 	const user = getUserLocalStorage()
 	const userId = user?.result?.googleId || user?.result?._id
@@ -34,7 +38,7 @@ export const NotificationsNavbar = ({ colorMode }) => {
 		count,
 		notReadCount,
 	} = useNotifications(userId)
-	const { mutateAsync: updateNotifications } = useUpdateNotifications()
+	const { mutateAsync: updateNotifications } = useUpdateNotifications() as any
 	const hasNotifications = count > 0
 	const hasNotReadNotifications = notReadCount > 0
 	const lastNotifications =
@@ -44,7 +48,7 @@ export const NotificationsNavbar = ({ colorMode }) => {
 		if (isNotificationsSuccess) {
 			updateNotifications({
 				userId,
-				notifications: notifications.map(notification => ({
+				notifications: notifications.map((notification: NotificationI) => ({
 					...notification,
 					read: true,
 				})),
@@ -105,7 +109,7 @@ export const NotificationsNavbar = ({ colorMode }) => {
 					<PopoverHeader>Notifications</PopoverHeader>
 
 					{hasNotifications ? (
-						lastNotifications?.map(notification => (
+						lastNotifications?.map((notification: NotificationI) => (
 							<Link
 								key={notification?._id}
 								to={`/posts/${notification?.postId}`}
@@ -117,7 +121,7 @@ export const NotificationsNavbar = ({ colorMode }) => {
 									cursor='pointer'
 									fontWeight={notification?.read ? 'normal' : 'bold'}
 								>
-									<Flex align='flex-start' justify='space-between' spacing='2'>
+									<Flex align='flex-start' gap='2' justify='space-between'>
 										<Text pr='8px' w='68%'>
 											{notification?.username}{' '}
 											{displayNotificationType(notification?.type)}
@@ -143,7 +147,7 @@ export const NotificationsNavbar = ({ colorMode }) => {
 							cursor='pointer'
 						>
 							<Link to={`/notifications/${userId}`} onClick={setIsDropdownOpen.off}>
-								<Text colorScheme='primary' fontWeight='bold' size='sm'>
+								<Text colorScheme='primary' fontSize='sm' fontWeight='bold'>
 									See all
 								</Text>
 							</Link>
@@ -153,9 +157,4 @@ export const NotificationsNavbar = ({ colorMode }) => {
 			</Popover>
 		</HStack>
 	)
-}
-
-NotificationsNavbar.propTypes = {
-	user: PropTypes.object,
-	colorMode: PropTypes.string,
 }

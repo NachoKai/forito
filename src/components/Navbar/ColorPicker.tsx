@@ -9,7 +9,6 @@ import {
 	PopoverTrigger,
 	SimpleGrid,
 } from '@chakra-ui/react'
-import {} from 'lodash/fp'
 import { useState } from 'react'
 
 const colors = [
@@ -59,7 +58,7 @@ export const ColorPicker = () => {
 				</PopoverHeader>
 				<PopoverBody h='70px'>
 					<SimpleGrid columns={5} spacing={2}>
-						{colors?.map(color => (
+						{colors.map(color => (
 							<Button
 								key={color}
 								_hover={{ background: color }}

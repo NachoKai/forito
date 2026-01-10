@@ -1,7 +1,7 @@
 import { Spinner, Stack, useColorMode } from '@chakra-ui/react'
 import styled from '@emotion/styled'
 
-import { getThemeColor } from '../../utils/getThemeColor.ts'
+import { getThemeColor } from '../../utils/getThemeColor'
 
 export const Loading = () => {
 	const { colorMode } = useColorMode()
@@ -10,7 +10,7 @@ export const Loading = () => {
 		<Container bg={colorMode === 'light' ? 'rgb(255 255 255 / 40%)' : 'rgb(0 0 0 / 40%)'}>
 			<SpinnerContainer>
 				<Spinner
-					color={() => `${getThemeColor()}.500`}
+					color={`${getThemeColor()}.500`}
 					emptyColor='gray.200'
 					size='xl'
 					speed='0.65s'

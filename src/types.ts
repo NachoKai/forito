@@ -48,15 +48,18 @@ export interface UserI {
 	token?: string
 }
 
+export type NotificationType = 'like' | 'comment' | 'save'
+
 export interface NotificationI {
 	_id: string
 	postId: string
 	read: boolean
 	username: string
-	type: string
+	type: NotificationType
 	createdAt: string
 }
 
 export interface UserLocalStorageI {
+	result?: UserI['result']
 	token: string
 }

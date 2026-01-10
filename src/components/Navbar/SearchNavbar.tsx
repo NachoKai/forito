@@ -1,5 +1,5 @@
 import { Button, Stack } from '@chakra-ui/react'
-import { useCallback, useState } from 'react'
+import { ChangeEvent, KeyboardEvent, useCallback, useState } from 'react'
 import { FaSearch } from 'react-icons/fa'
 import { useNavigate } from 'react-router-dom'
 
@@ -12,7 +12,7 @@ const ENTER_KEYCODE = 13
 export const SearchNavbar = () => {
 	const navigate = useNavigate()
 	const [searchValue, setSearchValue] = useState('')
-	const [searchTags, setSearchTags] = useState([])
+	const [searchTags, setSearchTags] = useState<string[]>([])
 	const { setSearchQuery, setTagsQuery } = usePostsStore()
 
 	const searchPost = useCallback(async () => {
@@ -32,7 +32,7 @@ export const SearchNavbar = () => {
 	}, [searchValue, searchTags, setSearchQuery, setTagsQuery, navigate])
 
 	const handleKeyDown = useCallback(
-		e => {
+		(e: KeyboardEvent<HTMLInputElement>) => {
 			const disabled = !searchValue?.trim()?.length && !searchTags?.length
 
 			if (e.keyCode === ENTER_KEYCODE && !disabled) searchPost()
@@ -43,7 +43,7 @@ export const SearchNavbar = () => {
 	return (
 		<Stack align='center' display={{ sm: 'none', md: 'none', lg: 'flex', xl: 'flex' }}>
 			<FormInput
-				maxLength='105'
+				maxLength={105}
 				name='search'
 				placeholder='Search...'
 				rightIcon={
@@ -59,7 +59,7 @@ export const SearchNavbar = () => {
 					</Button>
 				}
 				value={searchValue}
-				onChange={e => {
+				onChange={(e: ChangeEvent<HTMLInputElement>) => {
 					setSearchValue(e.target.value)
 				}}
 				onKeyDown={handleKeyDown}

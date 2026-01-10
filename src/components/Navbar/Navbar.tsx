@@ -1,5 +1,4 @@
 import { Button, Flex, HStack, Heading, useColorMode } from '@chakra-ui/react'
-import PropTypes from 'prop-types'
 import { FaMoon, FaSun } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 
@@ -10,7 +9,13 @@ import { SearchNavbar } from './SearchNavbar'
 import { UserNavbar } from './UserNavbar'
 import { NotificationsNavbar } from './NotificationsNavbar'
 
-const Navbar = ({ isOpen, onOpen, onClose }) => {
+interface NavbarProps {
+	isOpen: boolean
+	onOpen: () => void
+	onClose: () => void
+}
+
+const Navbar = ({ isOpen, onOpen, onClose }: NavbarProps) => {
 	const { user, handleLogout } = useUser()
 	const { colorMode, toggleColorMode } = useColorMode()
 
@@ -18,7 +23,7 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 		<Flex
 			align='center'
 			className={colorMode === 'light' ? 'glassmorphism-light' : 'glassmorphism-dark'}
-			flexGrow='1'
+			flexGrow={1}
 			h='70px'
 			justify='space-between'
 			pos='sticky'
@@ -77,12 +82,6 @@ const Navbar = ({ isOpen, onOpen, onClose }) => {
 			</HStack>
 		</Flex>
 	)
-}
-
-Navbar.propTypes = {
-	isOpen: PropTypes.bool,
-	onOpen: PropTypes.func,
-	onClose: PropTypes.func,
 }
 
 export default Navbar

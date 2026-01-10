@@ -13,13 +13,18 @@ import {
 	Text,
 	useBoolean,
 } from '@chakra-ui/react'
-import React, { useEffect } from 'react'
-import PropTypes from 'prop-types'
-
-import { ColorPicker } from './ColorPicker'
+import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
-export const UserNavbar = ({ user, handleLogout, colorMode }) => {
+import { ColorPicker } from './ColorPicker'
+
+interface UserNavbarProps {
+	user: any
+	handleLogout: () => void
+	colorMode: string
+}
+
+export const UserNavbar = ({ user, handleLogout, colorMode }: UserNavbarProps) => {
 	const userId = user?.result?.googleId || user?.result?._id
 	const [isDropdownOpen, setIsDropdownOpen] = useBoolean()
 	const [isOnline, setIsOnline] = useBoolean(false)
@@ -120,10 +125,4 @@ export const UserNavbar = ({ user, handleLogout, colorMode }) => {
 			)}
 		</HStack>
 	)
-}
-
-UserNavbar.propTypes = {
-	user: PropTypes.object,
-	handleLogout: PropTypes.func,
-	colorMode: PropTypes.string,
 }

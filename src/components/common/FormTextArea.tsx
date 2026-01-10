@@ -3,9 +3,18 @@ import {
 	FormHelperText,
 	FormLabel,
 	Textarea,
+	TextareaProps,
 	Tooltip,
 } from '@chakra-ui/react'
-import PropTypes from 'prop-types'
+import { ReactNode } from 'react'
+
+interface FormTextAreaProps extends TextareaProps {
+	label?: string
+	helper?: string
+	child?: ReactNode
+	dataCy?: string
+	tooltip?: string
+}
 
 export const FormTextArea = ({
 	label,
@@ -16,7 +25,7 @@ export const FormTextArea = ({
 	tooltip,
 	placeholder,
 	...rest
-}) => (
+}: FormTextAreaProps) => (
 	<FormControl isRequired={isRequired} whiteSpace='pre-wrap'>
 		{label && (
 			<Tooltip
@@ -53,19 +62,3 @@ export const FormTextArea = ({
 		{helper && <FormHelperText>{helper}</FormHelperText>}
 	</FormControl>
 )
-
-FormTextArea.propTypes = {
-	label: PropTypes.string,
-	name: PropTypes.string,
-	value: PropTypes.string,
-	isRequired: PropTypes.bool,
-	helper: PropTypes.string,
-	autoFocus: PropTypes.bool,
-	maxLength: PropTypes.string,
-	onChange: PropTypes.func,
-	child: PropTypes.node,
-	type: PropTypes.string,
-	dataCy: PropTypes.string,
-	tooltip: PropTypes.string,
-	placeholder: PropTypes.string,
-}

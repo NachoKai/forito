@@ -5,10 +5,22 @@ import {
 	Input,
 	InputGroup,
 	InputLeftElement,
+	InputProps,
 	InputRightElement,
 	Tooltip,
 } from '@chakra-ui/react'
-import PropTypes from 'prop-types'
+import { ReactNode } from 'react'
+
+interface FormInputProps extends InputProps {
+	label?: string
+	helper?: string
+	validation?: string | boolean
+	child?: ReactNode
+	leftIcon?: ReactNode
+	rightIcon?: ReactNode
+	tooltip?: string
+	dataCy?: string
+}
 
 export const FormInput = ({
 	label,
@@ -22,8 +34,8 @@ export const FormInput = ({
 	tooltip,
 	dataCy,
 	...rest
-}) => (
-	<FormControl isRequired={isRequired} whiteSpace='pre-wrap'>
+}: FormInputProps) => (
+	<FormControl isInvalid={!!validation} isRequired={isRequired} whiteSpace='pre-wrap'>
 		{label && (
 			<Tooltip
 				hasArrow
@@ -79,23 +91,3 @@ export const FormInput = ({
 		{helper && <FormHelperText>{helper}</FormHelperText>}
 	</FormControl>
 )
-
-FormInput.propTypes = {
-	label: PropTypes.string,
-	name: PropTypes.string,
-	isInvalid: PropTypes.bool,
-	value: PropTypes.oneOfType([PropTypes.string, PropTypes.array]),
-	isRequired: PropTypes.bool,
-	helper: PropTypes.string,
-	validation: PropTypes.bool,
-	autoFocus: PropTypes.bool,
-	maxLength: PropTypes.string,
-	onChange: PropTypes.func,
-	child: PropTypes.node,
-	type: PropTypes.string,
-	leftIcon: PropTypes.node,
-	rightIcon: PropTypes.node,
-	placeholder: PropTypes.string,
-	tooltip: PropTypes.string,
-	dataCy: PropTypes.string,
-}

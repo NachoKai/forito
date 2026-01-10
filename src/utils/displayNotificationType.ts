@@ -1,4 +1,4 @@
-type NotificationType = 'like' | 'comment' | 'save'
+import { NotificationType } from '../types'
 
 export const displayNotificationType = (type: NotificationType) => {
 	switch (type) {
