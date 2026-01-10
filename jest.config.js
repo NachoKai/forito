@@ -8,5 +8,5 @@ module.exports = {
 	},
 	testMatch: ['**/__tests__/**/*.test.[jt]s?(x)'],
 	testPathIgnorePatterns: ['/node_modules/'],
-	transformIgnorePatterns: ['/node_modules/'],
+	transformIgnorePatterns: ['/node_modules/(?!(axios)/)'],
 }

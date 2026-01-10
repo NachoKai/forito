@@ -10,7 +10,7 @@ describe('RecommendedPost', () => {
 		name: 'Test Name',
 		message: 'Test Message',
 		selectedFile: { url: 'test-url' },
-		createdAt: '2021-08-01T00:00:00.000Z',
+		createdAt: new Date(Date.now() - 365 * 24 * 60 * 60 * 1000 * 1.5).toISOString(),
 		tags: ['test', 'tag'],
 	}
 
