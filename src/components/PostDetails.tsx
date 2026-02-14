@@ -12,15 +12,13 @@ import {
 	Tooltip,
 	theme,
 } from '@chakra-ui/react'
+import styled from '@emotion/styled'
 import { format, formatDistance, isValid } from 'date-fns'
 import { motion, useScroll } from 'framer-motion'
 import Linkify from 'linkify-react'
 import { FaSearch, FaTwitter } from 'react-icons/fa'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { Link, useParams } from 'react-router-dom'
-import styled from '@emotion/styled'
-import { v4 as uuid } from 'uuid'
-
 import { Comments } from '../components/Comments'
 import { usePost, usePostsBySearch } from '../hooks/data/posts'
 import { CreateGradColor } from '../theme'
@@ -186,9 +184,9 @@ const PostDetails = ({ user }: PostDetailsProps) => {
 						</Flex>
 						<HStack spacing='2'>
 							{post?.tags?.length ? (
-								[...new Set(post?.tags)].filter(Boolean).map(tag => (
+								[...new Set(post?.tags)].filter(Boolean).map((tag: string) => (
 									<Badge
-										key={uuid()}
+										key={tag}
 										bg='primary.600'
 										borderRadius='4px'
 										color='white'

@@ -1,3 +1,4 @@
+import { useMemo } from 'react'
 import { Flex, Heading, Stack, Text } from '@chakra-ui/react'
 import { FaSearch } from 'react-icons/fa'
 
@@ -15,7 +16,10 @@ interface PostsProps {
 
 export const Posts = ({ onOpen, posts, highlight }: PostsProps) => {
 	const havePosts = posts?.length && posts.length > 0
-	const publicPosts = posts?.length && getPublicPosts(posts)
+	const publicPosts = useMemo(
+		() => (posts?.length ? getPublicPosts(posts) : undefined),
+		[posts]
+	)
 
 	return (
 		<Flex flexGrow='1' minH='100vh' w='100%'>

@@ -46,6 +46,7 @@ export const useAllPosts = () => {
 				throw err
 			}
 		},
+		staleTime: 5 * 60 * 1000,
 		onError: () => {
 			showError('Something went wrong when trying to get all posts. Please try again.')
 		},
@@ -70,6 +71,7 @@ export const usePost = (id: string | undefined) => {
 			}
 		},
 		enabled: !!id,
+		staleTime: 5 * 60 * 1000,
 		onError: () => {
 			showError('Something went wrong when trying to get post. Please try again.')
 		},
@@ -97,6 +99,7 @@ export const usePosts = (page: number) => {
 			}
 		},
 		enabled: !!page,
+		staleTime: 5 * 60 * 1000,
 		onError: () => {
 			showError('Something went wrong when trying to get posts. Please try again.')
 		},
@@ -125,6 +128,7 @@ export const usePostsBySearch = (
 			}
 		},
 		enabled: !!searchQuery,
+		staleTime: 5 * 60 * 1000,
 		onError: () => {
 			showError(
 				'Something went wrong when trying to get posts by search. Please try again.'
@@ -150,6 +154,7 @@ export const usePostsByCreator = (id: string | undefined) => {
 			}
 		},
 		enabled: !!id,
+		staleTime: 5 * 60 * 1000,
 		onError: () => {
 			showError(
 				'Something went wrong when trying to get posts by creator. Please try again.'
@@ -180,6 +185,7 @@ export const useSavedPosts = (id: string | undefined) => {
 			}
 		},
 		enabled: !!id,
+		staleTime: 5 * 60 * 1000,
 		onError: () => {
 			showError('Something went wrong when trying to get saved posts. Please try again.')
 		},

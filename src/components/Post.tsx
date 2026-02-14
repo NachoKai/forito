@@ -24,16 +24,15 @@ import {
 	VisuallyHidden,
 	useBoolean,
 } from '@chakra-ui/react'
+import { useQueryClient } from '@tanstack/react-query'
 import { format, formatDistance, isValid } from 'date-fns'
 import Linkify from 'linkify-react'
-import { useRef } from 'react'
+import { useCallback, useMemo, useRef } from 'react'
 import { FaBookmark, FaEraser, FaPen, FaRegBookmark, FaRegComments } from 'react-icons/fa'
 import { FiMoreHorizontal } from 'react-icons/fi'
 import { RiGitRepositoryPrivateFill } from 'react-icons/ri'
 import { Link, useLocation, useNavigate } from 'react-router-dom'
-import { v4 as uuid } from 'uuid'
-
-import { useDeletePost, usePosts } from '../hooks/data/posts'
+import { useDeletePost } from '../hooks/data/posts'
 import { useLike } from '../hooks/useLike'
 import { useLocationQuery } from '../hooks/useLocationQuery'
 import { useSave } from '../hooks/useSave'
@@ -43,7 +42,6 @@ import { checkIsAdmin } from '../utils/checkIsAdmin'
 import { checkIsPostCreator } from '../utils/checkIsPostCreator'
 import { getUserLocalStorage } from '../utils/getUserLocalStorage'
 import { isEmpty } from '../utils/isEmpty'
-import ErrorPage from './ErrorPage'
 import { Likes } from './Likes'
 import { Dialog } from './common/Dialog'
 
@@ -78,7 +76,10 @@ export const Post = ({ post, onOpen, highlight }: PostProps) => {
 	const location = useLocation()
 	const pathname = location?.pathname
 	const page = Number(locationQuery.get('page') || 1)
-	const { posts, isError, error } = usePosts(page)
+	const queryClient = useQueryClient()
+	const cachedPosts = queryClient.getQueryData(['postsQuery', page]) as
+		| { data?: PostI[] }
+		| undefined
 	const { mutateAsync: deletePost } = useDeletePost()
 	const { setCurrentId } = usePostsStore()
 	const user = getUserLocalStorage()
@@ -93,36 +94,44 @@ export const Post = ({ post, onOpen, highlight }: PostProps) => {
 	const showPost = !isPrivate || (isPrivate && isPostCreator) || isAdmin
 	const initialFocusRef = useRef(null)
 	const isUserLogged = !isEmpty(user?.result)
-	const createdAtDate = isValid(new Date(createdAt)) ? new Date(createdAt) : new Date()
-	const updatedAtDate = isValid(new Date(updatedAt)) ? new Date(updatedAt) : null
+	const createdAtDate = useMemo(
+		() => (isValid(new Date(createdAt)) ? new Date(createdAt) : new Date()),
+		[createdAt]
+	)
+	const updatedAtDate = useMemo(
+		() => (isValid(new Date(updatedAt)) ? new Date(updatedAt) : null),
+		[updatedAt]
+	)
+	const uniqueTags = useMemo(() => [...new Set(tags)].filter(Boolean), [tags])
 	const { handleLike, likeLoading } = useLike(_id, creator, isPostCreator, hasUserLike)
 	const { handleSave, saveLoading } = useSave(_id, creator, isPostCreator, hasUserLike)
 	const isSaved = (hasUserSaved && !saveLoading) || (!hasUserSaved && saveLoading)
 	const isLiked = (hasUserLike && !likeLoading) || (!hasUserLike && likeLoading)
 
-	const openPost = () => navigate(`/posts/${_id}`)
+	const openPost = useCallback(() => navigate(`/posts/${_id}`), [_id, navigate])
 
-	const openComments = () => navigate(`/posts/${_id}#comments`)
+	const openComments = useCallback(
+		() => navigate(`/posts/${_id}#comments`),
+		[_id, navigate]
+	)
 
-	const handleEdit = async () => {
+	const handleEdit = useCallback(async () => {
 		await setCurrentId(_id)
 		onOpen?.()
-	}
+	}, [_id, onOpen, setCurrentId])
 
-	const handleDelete = async () => {
+	const handleDelete = useCallback(async () => {
 		try {
 			await deletePost(_id)
 			setIsDialogOpen.off()
 
-			if (posts?.length === 1 && page > 1) {
+			if (cachedPosts?.data?.length === 1 && page > 1) {
 				navigate(`/posts?page=${page - 1}`)
 			}
 		} catch (err) {
 			console.error(err)
 		}
-	}
-
-	if (isError) return <ErrorPage error={error} />
+	}, [_id, deletePost, cachedPosts, page, navigate, setIsDialogOpen])
 
 	return (
 		<>
@@ -236,8 +245,8 @@ export const Post = ({ post, onOpen, highlight }: PostProps) => {
 
 						<Stack spacing='4'>
 							<HStack overflow='auto' spacing='2'>
-								{[...new Set(tags)].filter(Boolean).map(tag => (
-									<Badge key={uuid()} bg='primary.600' borderRadius='4px' color='white'>
+								{uniqueTags.map(tag => (
+									<Badge key={tag} bg='primary.600' borderRadius='4px' color='white'>
 										<Link to={`/tags/${tag}`}>{` #${tag} `}</Link>
 									</Badge>
 								))}

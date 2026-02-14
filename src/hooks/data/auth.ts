@@ -128,6 +128,7 @@ export const useGetUser = (id: string) => {
 			}
 		},
 		enabled: !!id,
+		staleTime: 5 * 60 * 1000,
 		onError: () => {
 			showError('Something went wrong when trying to get user. Please try again.')
 		},
@@ -241,6 +242,7 @@ export const useNotifications = (userId: string) => {
 			}
 		},
 		enabled: !!userId,
+		staleTime: 5 * 60 * 1000,
 		onError: () => {
 			showError(
 				'Something went wrong when trying to get notifications. Please try again.'

@@ -1,3 +1,4 @@
+import { memo } from 'react'
 import { HStack, Text } from '@chakra-ui/react'
 import { FaRegThumbsUp, FaThumbsUp } from 'react-icons/fa'
 
@@ -7,7 +8,7 @@ interface LikesProps {
 	likeLoading: boolean
 }
 
-export const Likes = ({ likes, isLiked, likeLoading }: LikesProps) => {
+export const Likes = memo(({ likes, isLiked, likeLoading }: LikesProps) => {
 	const likesQuantity = likeLoading
 		? isLiked
 			? likes?.length + 1
@@ -40,4 +41,6 @@ export const Likes = ({ likes, isLiked, likeLoading }: LikesProps) => {
 			<Text>Like</Text>
 		</HStack>
 	)
-}
+})
+
+Likes.displayName = 'Likes'

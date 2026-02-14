@@ -3,9 +3,22 @@ import '@fontsource/roboto'
 import '@fontsource/roboto-slab'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { StrictMode } from 'react'
+import { StrictMode, useEffect, useState } from 'react'
 import { createRoot } from 'react-dom/client'
-import { Analytics } from '@vercel/analytics/react'
+
+const AnalyticsLoader = () => {
+	const [AnalyticsComponent, setAnalyticsComponent] = useState(null)
+
+	useEffect(() => {
+		import('@vercel/analytics/react').then(module => {
+			setAnalyticsComponent(() => module.Analytics)
+		})
+	}, [])
+
+	if (!AnalyticsComponent) return null
+
+	return <AnalyticsComponent />
+}
 
 import { App } from './App'
 import { LoadingContextProvider } from './components/common/LoadingScreen/LoadingContext'
@@ -28,7 +41,7 @@ root.render(
 			<ChakraProvider theme={themeConfig}>
 				<ColorModeScript initialColorMode={themeConfig?.config?.initialColorMode} />
 				<LoadingContextProvider>
-					<Analytics />
+					<AnalyticsLoader />
 					<App />
 				</LoadingContextProvider>
 			</ChakraProvider>

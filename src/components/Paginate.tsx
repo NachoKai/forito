@@ -22,11 +22,20 @@ export const Paginate = ({ currentPage, numberOfPages }: PaginateProps) => {
 		[navigate, setCurrentPage]
 	)
 
-	const handlePreviousPage = () => handlePageChange(currentPage - 1)
+	const handlePreviousPage = useCallback(
+		() => handlePageChange(currentPage - 1),
+		[handlePageChange, currentPage]
+	)
 
-	const handleCurrentPage = () => handlePageChange(currentPage)
+	const handleCurrentPage = useCallback(
+		() => handlePageChange(currentPage),
+		[handlePageChange, currentPage]
+	)
 
-	const handleNextPage = () => handlePageChange(currentPage + 1)
+	const handleNextPage = useCallback(
+		() => handlePageChange(currentPage + 1),
+		[handlePageChange, currentPage]
+	)
 
 	return (
 		<Stack align='center' direction='row' justify='center'>

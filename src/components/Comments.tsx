@@ -1,5 +1,5 @@
 import { Button, HStack, Stack, Text } from '@chakra-ui/react'
-import { useCallback, useState } from 'react'
+import { useCallback, useState, useEffect } from 'react'
 import { FaExclamationCircle } from 'react-icons/fa'
 import { v4 as uuid } from 'uuid'
 
@@ -34,6 +34,10 @@ export const Comments = ({
 	const { mutateAsync: deleteComment } = useDeleteComment()
 	const { mutateAsync: addNotification } = useAddNotification()
 	const userName = user?.result?.name
+
+	useEffect(() => {
+		setComments(postComments || [])
+	}, [postComments])
 
 	const handleAddComment = useCallback(async () => {
 		try {
@@ -78,7 +82,7 @@ export const Comments = ({
 		userName,
 	])
 
-	const handleClear = () => setComment('')
+	const handleClear = useCallback(() => setComment(''), [])
 
 	return (
 		<Stack direction={{ sm: 'column', md: 'column', lg: 'row', xl: 'row' }} spacing='8'>

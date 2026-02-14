@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import { Button, Stack, useDisclosure } from '@chakra-ui/react'
 import { createStandaloneToast } from '@chakra-ui/toast'
 import loadable from '@loadable/component'
@@ -41,7 +42,11 @@ export const App = () => {
 		onClose()
 	}
 
-	window.addEventListener('scroll', checkScrollTop)
+	useEffect(() => {
+		window.addEventListener('scroll', checkScrollTop, { passive: true })
+
+		return () => window.removeEventListener('scroll', checkScrollTop)
+	}, [checkScrollTop])
 
 	return (
 		<BrowserRouter>
