@@ -9,7 +9,7 @@ import {
 import { MouseEvent, useCallback } from 'react'
 
 export interface ChakraTagInputTagProps extends TagProps {
-	onRemove?: (event: MouseEvent<HTMLButtonElement>) => void
+	onRemove?: (_event: MouseEvent<HTMLButtonElement>) => void
 	tagLabelProps?: TagLabelProps
 	tagCloseButtonProps?: TagCloseButtonProps
 }
@@ -24,11 +24,11 @@ export const ChakraTagInputTag = ({
 	const onTagCloseButtonClick = tagCloseButtonProps?.onClick
 
 	const handleClickTagCloseButton = useCallback(
-		(event: MouseEvent<HTMLButtonElement>) => {
-			onTagCloseButtonClick?.(event)
-			if (event.isDefaultPrevented()) return
+		(_event: MouseEvent<HTMLButtonElement>) => {
+			onTagCloseButtonClick?.(_event)
+			if (_event.isDefaultPrevented()) return
 
-			onRemove?.(event)
+			onRemove?.(_event)
 		},
 		[onRemove, onTagCloseButtonClick]
 	)

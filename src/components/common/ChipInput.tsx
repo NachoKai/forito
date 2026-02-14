@@ -6,7 +6,7 @@ export interface ChipInputProps {
 	setTags: (tags: string[]) => void
 }
 
-export const ChipInput = ({ tags, setTags }: ChipInputProps) => {
+export const ChipInput = ({ tags: _tags, setTags }: ChipInputProps) => {
 	const handleTagsChange = (
 		_event:
 			| ChangeEvent<HTMLInputElement>
@@ -19,7 +19,7 @@ export const ChipInput = ({ tags, setTags }: ChipInputProps) => {
 
 	return (
 		<ChakraTagInput
-			tags={tags}
+			tags={_tags}
 			wrapProps={{ w: '100%' }}
 			onTagsChange={handleTagsChange}
 		/>

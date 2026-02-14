@@ -16,19 +16,19 @@ import { ChakraTagInputTag } from './Tag'
 export interface ChakraTagInputProps {
 	tags?: string[]
 	onTagsChange?: (
-		event:
+		_event:
 			| ChangeEvent<HTMLInputElement>
 			| KeyboardEvent<HTMLInputElement>
 			| MouseEvent<HTMLElement>,
-		tags: string[]
+		_tags: string[]
 	) => void
 	onTagAdd?: (
-		event: ChangeEvent<HTMLInputElement> | KeyboardEvent<HTMLInputElement>,
-		tag: string
+		_event: ChangeEvent<HTMLInputElement> | KeyboardEvent<HTMLInputElement>,
+		_tag: string
 	) => void
 	onTagRemove?: (
-		event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLInputElement>,
-		index: number
+		_event: MouseEvent<HTMLElement> | KeyboardEvent<HTMLInputElement>,
+		_index: number
 	) => void
 	addKeys?: string[]
 	wrapProps?: WrapProps

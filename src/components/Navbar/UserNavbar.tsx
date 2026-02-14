@@ -17,9 +17,10 @@ import { useEffect } from 'react'
 import { Link } from 'react-router-dom'
 
 import { ColorPicker } from './ColorPicker'
+import { UserI } from '../../types'
 
 interface UserNavbarProps {
-	user: any
+	user: UserI
 	handleLogout: () => void
 	colorMode: string
 }

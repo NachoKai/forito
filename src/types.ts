@@ -50,6 +50,7 @@ export interface UserI {
 		updatedAt: string
 		__v: number
 		googleId: string
+		imageUrl?: string
 	}
 	token?: string
 }

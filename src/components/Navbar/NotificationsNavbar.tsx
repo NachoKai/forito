@@ -38,7 +38,9 @@ export const NotificationsNavbar = ({ colorMode }: NotificationsNavbarProps) => 
 		count,
 		notReadCount,
 	} = useNotifications(userId)
-	const { mutateAsync: updateNotifications } = useUpdateNotifications() as any
+	const { mutateAsync: updateNotifications } =
+		// eslint-disable-next-line @typescript-eslint/no-explicit-any
+		useUpdateNotifications() as any
 	const hasNotifications = count > 0
 	const hasNotReadNotifications = notReadCount > 0
 	const lastNotifications =
